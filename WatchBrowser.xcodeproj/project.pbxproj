@@ -162,11 +162,11 @@
 			};
 			buildConfigurationList = 6BF209E52990E61C00E623FC /* Build configuration list for PBXProject "WatchBrowser" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = "zh-Hans";
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 6BF209E12990E61C00E623FC;
 			productRefGroup = 6BF209E92990E61C00E623FC /* Products */;
