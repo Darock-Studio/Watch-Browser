@@ -11,8 +11,11 @@ import AuthenticationServices
 struct ContentView: View {
     @AppStorage("WebSearch") var webSearch = 0
     @AppStorage("IsUseModifyKeyboard") var isUseModifyKeyboard = true
+    @AppStorage("IsAllowCookie") var isAllowCookie = false
     @State var textOrURL = ""
     @State var goToButtonLabelText = "搜索"
+    @State var isKeyboardPresented = false
+    @State var isCookieTipPresented = false
     var body: some View {
         NavigationView {
             ScrollView {
@@ -32,10 +35,15 @@ struct ContentView: View {
                          })
                     } else {
                         Button(action: {
-                            
+                            isKeyboardPresented = true
                         }, label: {
                             Text(textOrURL != "" ? textOrURL : "搜索或输入网址")
                                 .foregroundColor(textOrURL == "" ? Color.gray : Color.white)
+                        })
+                        .sheet(isPresented: $isKeyboardPresented, content: {
+                            ExtKeyboardView(startText: textOrURL) { ott in
+                                textOrURL = ott
+                            }
                         })
                     }
                     Button(action: {
@@ -50,7 +58,7 @@ struct ContentView: View {
                                 
                             }
                             // Makes the "Watch App Wants To Use example.com to Sign In" popup not show up
-                            session.prefersEphemeralWebBrowserSession = true
+                            session.prefersEphemeralWebBrowserSession = !isAllowCookie
                             session.start()
                         } else {
                             var wisu = ""
@@ -77,7 +85,7 @@ struct ContentView: View {
                                 
                             }
                             // Makes the "Watch App Wants To Use example.com to Sign In" popup not show up
-                            session.prefersEphemeralWebBrowserSession = true
+                            session.prefersEphemeralWebBrowserSession = !isAllowCookie
                             session.start()
                         }
                     }, label: {
@@ -99,6 +107,38 @@ struct ContentView: View {
                     Toggle(isOn: $isUseModifyKeyboard) {
                         Text("使用自定义键盘")
                     }
+                    Toggle(isOn: $isAllowCookie) {
+                        Text("使用Cookie")
+                    }
+                    .onChange(of: isAllowCookie) { value in
+                        if value {
+                            isCookieTipPresented = true
+                        }
+                    }
+                    .sheet(isPresented: $isCookieTipPresented, content: {
+                            CookieTip()
+                    })
+                }
+            }
+        }
+    }
+}
+
+struct CookieTip: View {
+    var body: some View {
+        ScrollView {
+            VStack {
+                Text("开启Cookie后，每次访问网页前会出现如下页面，是否开启？")
+                Text("Placeholder")
+                Button(action: {
+                    
+                }, label: {
+                    Text("开启")
+                }
+                Button(action: {
+                    
+                }, label: {
+                    Text("不开启")
                 }
             }
         }
