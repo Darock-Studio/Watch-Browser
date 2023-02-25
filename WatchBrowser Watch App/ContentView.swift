@@ -10,6 +10,7 @@ import AuthenticationServices
 
 struct ContentView: View {
     @AppStorage("WebSearch") var webSearch = 0
+    @AppStorage("IsUseModifyKeyboard") var isUseModifyKeyboard = true
     @State var textOrURL = ""
     @State var goToButtonLabelText = "搜索"
     var body: some View {
@@ -18,16 +19,25 @@ struct ContentView: View {
                 VStack {
                     Text("抬腕浏览器")
                         .font(.system(size: 20))
-                    TextField("搜索或输入网址", text: $textOrURL)
-                        .autocorrectionDisabled()
-                        .textInputAutocapitalization(.never)
-                        .onSubmit({
-                            if textOrURL.contains(".com") || textOrURL.contains(".top") || textOrURL.contains(".cn") || textOrURL.contains(".net") || textOrURL.contains(".xyz") || textOrURL.contains(".vip") || textOrURL.contains(".org") {
-                                goToButtonLabelText = "前往"
-                            } else {
-                                goToButtonLabelText = "搜索"
-                            }
+                    if !isUseModifyKeyboard {
+                        TextField("搜索或输入网址", text: $textOrURL)
+                            .autocorrectionDisabled()
+                            .textInputAutocapitalization(.never)
+                            .onSubmit({
+                                if textOrURL.contains(".com") || textOrURL.contains(".top") || textOrURL.contains(".cn") || textOrURL.contains(".net") || textOrURL.contains(".xyz") || textOrURL.contains(".vip") || textOrURL.contains(".org") {
+                                    goToButtonLabelText = "前往"
+                                } else {
+                                    goToButtonLabelText = "搜索"
+                                }
+                         })
+                    } else {
+                        Button(action: {
+                            
+                        }, label: {
+                            Text(textOrURL != "" ? textOrURL : "搜索或输入网址")
+                                .foregroundColor(textOrURL == "" ? Color.gray : Color.white)
                         })
+                    }
                     Button(action: {
                         if textOrURL.contains(".com") || textOrURL.contains(".top") || textOrURL.contains(".cn") || textOrURL.contains(".net") || textOrURL.contains(".xyz") || textOrURL.contains(".vip") || textOrURL.contains(".org") {
                             if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
@@ -86,6 +96,9 @@ struct ContentView: View {
                     }, label: {
                         Label("更改搜索引擎", systemImage: "magnifyingglass.circle")
                     })
+                    Toggle(isOn: $isUseModifyKeyboard) {
+                        Text("使用自定义键盘")
+                    }
                 }
             }
         }
