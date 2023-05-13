@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EnginesView: View {
-    @AppStorage("WebSearch") var webSearch = 0
+    @AppStorage("WebSearch") var webSearch = "必应"
     enum EngineNames: String, CaseIterable {
         case bing = "必应"
         case baidu = "百度"
@@ -17,14 +17,22 @@ struct EnginesView: View {
     }
     
     var body: some View {
-        NavigationView {
-            Picker(selection: $webSearch, label: Label("搜索引擎", systemImage: "magnifyingglass.circle.fill")) {
-                ForEach(EngineNames.allCases, id: \.self) {EngineNames in
-                    Text(EngineNames.rawValue).tag(EngineNames)
-                }
+        Picker(selection: $webSearch, label: Label("搜索引擎", systemImage: "magnifyingglass.circle.fill")) {
+            ForEach(EngineNames.allCases, id: \.self) {EngineNames in
+                Text(EngineNames.rawValue).tag(EngineNames.rawValue)
             }
         }
         .navigationTitle("搜索引擎")
+        .navigationBarTitleDisplayMode(.inline)
+//        .onAppear(perform: {
+//            webSearchCache = webSearch
+//        })
+//        .onDisappear(perform: {
+//            webSearch = webSearchCache
+//        })
+        .onChange(of: webSearch, perform: { value in
+            debugPrint(value)
+        })
     }
 }
 

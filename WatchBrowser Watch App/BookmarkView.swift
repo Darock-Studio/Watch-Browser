@@ -10,10 +10,12 @@ import AuthenticationServices
 
 struct BookmarkView: View {
     @State var markTotal = UserDefaults.standard.integer(forKey: "BookmarkTotal")
+    @AppStorage("IsAllowCookie") var isAllowCookie = false
+    @AppStorage("IsRecordHistory") var isRecordHistory = true
     @State var isNewMarkPresented = false
     var body: some View {
         let userdefault = UserDefaults.standard
-        ScrollView {
+        //ScrollView {
             VStack {
                 Button(action: {
                     isNewMarkPresented = true
@@ -28,8 +30,8 @@ struct BookmarkView: View {
                 Spacer()
                     .frame(height: 14)
                 if markTotal != 0 {
-                    //List {
-                        //Section {
+                    Section {
+                        List {
                             ForEach(1...markTotal, id: \.self) { i in
                                 Button(action: {
                                     let session = ASWebAuthenticationSession(
@@ -38,24 +40,33 @@ struct BookmarkView: View {
                                     ) { _, _ in
                                         
                                     }
-                                    // Makes the "Watch App Wants To Use example.com to Sign In" popup not show up
-                                    session.prefersEphemeralWebBrowserSession = true
+                                    session.prefersEphemeralWebBrowserSession = !isAllowCookie
                                     session.start()
+                                    if isRecordHistory {
+                                        if (UserDefaults.standard.stringArray(forKey: "WebHistory") != nil) ? (UserDefaults.standard.stringArray(forKey: "WebHistory")![UserDefaults.standard.stringArray(forKey: "WebHistory")!.count - 1] != userdefault.string(forKey: "BookmarkLink\(i)")!) : true {
+                                            UserDefaults.standard.set([userdefault.string(forKey: "BookmarkLink\(i)")!] + (UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()), forKey: "WebHistory")
+                                        }
+                                    }
                                 }, label: {
                                     Text(userdefault.string(forKey: "BookmarkName\(i)") ?? "")
                                 })
-//                                .swipeActions(edge: .trailing, allowsFullSwipe: true, content: {
-//                                    Button(role: .destructive, action: {
-//
-//                                    }, label: {
-//                                        Image(systemName: "bin.xmark.fill")
-//                                    })
-//                                })
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true, content: {
+                                    Button(role: .destructive, action: {
+                                        for i2 in i...markTotal {
+                                            userdefault.set(userdefault.string(forKey: "BookmarkName\(i2 + 1)"), forKey: "BookmarkName\(i2)")
+                                            userdefault.set(userdefault.string(forKey: "BookmarkLink\(i2 + 1)"), forKey: "BookmarkLink\(i2)")
+                                        }
+                                        userdefault.set(markTotal - 1, forKey: "BookmarkTotal")
+                                        markTotal -= 1
+                                    }, label: {
+                                        Image(systemName: "bin.xmark.fill")
+                                    })
+                                })
                             }
-                        //}
-                    //}
+                        }
+                    }
                 }
-            }
+            //}
         }
     }
 }

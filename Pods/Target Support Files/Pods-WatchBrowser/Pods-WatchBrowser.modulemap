@@ -1,0 +1,6 @@
+framework module Pods_WatchBrowser {
+  umbrella header "Pods-WatchBrowser-umbrella.h"
+
+  export *
+  module * { export * }
+}
