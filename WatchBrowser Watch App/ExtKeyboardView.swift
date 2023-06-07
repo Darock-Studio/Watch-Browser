@@ -145,6 +145,7 @@ struct ExtKeyboardView: View {
     @Environment(\.dismiss) var dismiss
     var onFinished:(String) -> () = { _ in }
 }
+
 struct 文本显示View: View {
     @Binding var fullText : [charater]
     @Binding var cursor:Int
@@ -183,12 +184,13 @@ struct 文本显示View: View {
                                 .matchedGeometryEffect(id: /*@START_MENU_TOKEN@*/"ID"/*@END_MENU_TOKEN@*/, in: MYcursor)
                                 .id("光标")
                         }
-                        
                         Color.black
+                            .opacity(0.001)
                             .frame(width: fullWidth/2)
                             .onTapGesture {
                                 cursor = -1
                             }
+                            
                     })
                 })
                 .onChange(of: fullText, perform: { f in
@@ -224,9 +226,13 @@ struct 文本显示View: View {
             })
         }
         .focusable()
-        .digitalCrownRotation($crownRatation, from: -1, through: Double(cursor))
+        .digitalCrownRotation($crownRatation, from: 0, through: Double(fullText.count), by: 1, sensitivity: .low)
         .onChange(of: crownRatation, perform: { value in
-            cursor = Int(crownRatation)
+            if Int(crownRatation) <= fullText.count - 1 {
+                cursor = Int(crownRatation)
+            } else {
+                cursor = -1
+            }
         })
     }
     fileprivate func DeleteOneCha() {

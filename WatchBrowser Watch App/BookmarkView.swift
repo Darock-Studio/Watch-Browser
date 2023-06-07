@@ -15,23 +15,23 @@ struct BookmarkView: View {
     @State var isNewMarkPresented = false
     var body: some View {
         let userdefault = UserDefaults.standard
-        //ScrollView {
-            VStack {
+        List {
                 Button(action: {
                     isNewMarkPresented = true
                 }, label: {
-                    Label("添加书签", systemImage: "plus")
+                    HStack {
+                        Spacer()
+                        Label("添加书签", systemImage: "plus")
+                        Spacer()
+                    }
                 })
                 .sheet(isPresented: $isNewMarkPresented, onDismiss: {
                     markTotal = UserDefaults.standard.integer(forKey: "BookmarkTotal")
                 }, content: {
                     AddBookmarkView()
                 })
-                Spacer()
-                    .frame(height: 14)
                 if markTotal != 0 {
                     Section {
-                        List {
                             ForEach(1...markTotal, id: \.self) { i in
                                 Button(action: {
                                     let session = ASWebAuthenticationSession(
@@ -50,6 +50,7 @@ struct BookmarkView: View {
                                 }, label: {
                                     Text(userdefault.string(forKey: "BookmarkName\(i)") ?? "")
                                 })
+                                .privacySensitive()
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true, content: {
                                     Button(role: .destructive, action: {
                                         for i2 in i...markTotal {
@@ -63,10 +64,8 @@ struct BookmarkView: View {
                                     })
                                 })
                             }
-                        }
                     }
-                }
-            //}
+            }
         }
     }
 }

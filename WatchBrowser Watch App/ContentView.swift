@@ -8,6 +8,31 @@ import SwiftUI
 import AuthenticationServices
 
 struct ContentView: View {
+    
+    var body: some View {
+        if #available(watchOS 10.0, *) {
+            NavigationStack {
+                    MainView()
+                        .containerBackground(Color(hex: 0x13A4FF).gradient, for: .navigation)
+                        .toolbar {
+                            ToolbarItem(placement: .topBarLeading) {
+                                NavigationLink(destination: {SettingsView()}, label: {
+                                    Image(systemName: "gear")
+                                })
+                            }
+                        }
+            }
+        } else {
+            NavigationView {
+                MainView(withSetting: true)
+            }
+            .navigationViewStyle(.stack)
+        }
+    }
+}
+
+struct MainView: View {
+    var withSetting: Bool = false
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("IsUseModifyKeyboard") var isUseModifyKeyboard = true
     @AppStorage("IsAllowCookie") var isAllowCookie = false
@@ -17,129 +42,115 @@ struct ContentView: View {
     @State var isKeyboardPresented = false
     @State var isCookieTipPresented = false
     var body: some View {
-        NavigationView {
-            List {
-                Section { }
-                Section {
-                    if !isUseModifyKeyboard {
-                        TextField("搜索或输入网址", text: $textOrURL)
-                            .autocorrectionDisabled()
-                            .textInputAutocapitalization(.never)
-                            .onSubmit({
-                                if textOrURL.isURL() {
-                                    goToButtonLabelText = "前往"
-                                } else {
-                                    goToButtonLabelText = "搜索"
-                                }
-                            })
-                    } else {
-                        Button(action: {
-                            isKeyboardPresented = true
-                        }, label: {
-                            HStack {
-                                Text(textOrURL != "" ? textOrURL : "搜索或输入网址")
-                                    .foregroundColor(textOrURL == "" ? Color.gray : Color.white)
-                                Spacer()
-                            }
-                        })
-                        .sheet(isPresented: $isKeyboardPresented, content: {
-                            ExtKeyboardView(startText: textOrURL) { ott in
-                                textOrURL = ott
-                            }
-                        })
-                        .onChange(of: textOrURL, perform: { value in
-                            if value.isURL() {
+        List {
+            Section {
+                if !isUseModifyKeyboard {
+                    TextField("搜索或输入网址", text: $textOrURL)
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
+                        .privacySensitive()
+                        .onSubmit({
+                            if textOrURL.isURL() {
                                 goToButtonLabelText = "前往"
                             } else {
                                 goToButtonLabelText = "搜索"
                             }
                         })
-                    }
+                } else {
                     Button(action: {
-                        if textOrURL.isURL() {
-                            if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                                textOrURL = "http://" + textOrURL
-                            }
-                            let session = ASWebAuthenticationSession(
-                                url: URL(string: textOrURL.urlEncoded())!,
-                                callbackURLScheme: nil
-                            ) { _, _ in
-                                
-                            }
-                            session.prefersEphemeralWebBrowserSession = !isAllowCookie
-                            session.start()
-                        } else {
-                            let session = ASWebAuthenticationSession(
-                                url: URL(string: GetWebSearchedURL(textOrURL))!,
-                                callbackURLScheme: nil
-                            ) { _, _ in
-                                
-                            }
-                            session.prefersEphemeralWebBrowserSession = !isAllowCookie
-                            session.start()
-                        }
-                        if isRecordHistory {
-                            if (UserDefaults.standard.stringArray(forKey: "WebHistory") != nil) ? (UserDefaults.standard.stringArray(forKey: "WebHistory")![UserDefaults.standard.stringArray(forKey: "WebHistory")!.count - 1] != (textOrURL.isURL() ? textOrURL : GetWebSearchedURL(textOrURL))) : true {
-                                UserDefaults.standard.set((textOrURL.isURL() ? [textOrURL] : [GetWebSearchedURL(textOrURL)]) + (UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()), forKey: "WebHistory")
-                            }
-                        }
+                        isKeyboardPresented = true
                     }, label: {
                         HStack {
+                            Text(textOrURL != "" ? textOrURL : "搜索或输入网址")
+                                .foregroundColor(textOrURL == "" ? Color.gray : Color.white)
+                                .privacySensitive()
                             Spacer()
-                            Label(goToButtonLabelText, systemImage: goToButtonLabelText == "搜索" ? "magnifyingglass" : "globe")
-                                .font(.system(size: 18))
-                            Spacer()
+                        }
+                    })
+                    .sheet(isPresented: $isKeyboardPresented, content: {
+                        ExtKeyboardView(startText: textOrURL) { ott in
+                            textOrURL = ott
+                        }
+                    })
+                    .onChange(of: textOrURL, perform: { value in
+                        if value.isURL() {
+                            goToButtonLabelText = "前往"
+                        } else {
+                            goToButtonLabelText = "搜索"
                         }
                     })
                 }
-                Section {
+                Button(action: {
+                    if textOrURL.isURL() {
+                        if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+                            textOrURL = "http://" + textOrURL
+                        }
+                        let session = ASWebAuthenticationSession(
+                            url: URL(string: textOrURL.urlEncoded())!,
+                            callbackURLScheme: nil
+                        ) { _, _ in
+                            
+                        }
+                        session.prefersEphemeralWebBrowserSession = !isAllowCookie
+                        session.start()
+                    } else {
+                        let session = ASWebAuthenticationSession(
+                            url: URL(string: GetWebSearchedURL(textOrURL))!,
+                            callbackURLScheme: nil
+                        ) { _, _ in
+                            
+                        }
+                        session.prefersEphemeralWebBrowserSession = !isAllowCookie
+                        session.start()
+                    }
+                    if isRecordHistory {
+                        if (UserDefaults.standard.stringArray(forKey: "WebHistory") != nil) ? (UserDefaults.standard.stringArray(forKey: "WebHistory")![UserDefaults.standard.stringArray(forKey: "WebHistory")!.count - 1] != (textOrURL.isURL() ? textOrURL : GetWebSearchedURL(textOrURL))) : true {
+                            UserDefaults.standard.set((textOrURL.isURL() ? [textOrURL] : [GetWebSearchedURL(textOrURL)]) + (UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()), forKey: "WebHistory")
+                        }
+                    }
+                }, label: {
+                    HStack {
+                        Spacer()
+                        Label(goToButtonLabelText, systemImage: goToButtonLabelText == "搜索" ? "magnifyingglass" : "globe")
+                            .font(.system(size: 18))
+                        Spacer()
+                    }
+                })
+            }
+            Section {
+                NavigationLink(destination: {
+                    BookmarkView()
+                }, label: {
+                    HStack {
+                        Spacer()
+                        Label("书签", systemImage: "bookmark")
+                        Spacer()
+                    }
+                })
+                NavigationLink(destination: {
+                    HistoryView()
+                }, label: {
+                    HStack {
+                        Spacer()
+                        Label("历史记录", systemImage: "clock")
+                        Spacer()
+                    }
+                })
+                if withSetting {
                     NavigationLink(destination: {
-                        BookmarkView()
+                        SettingsView()
                     }, label: {
                         HStack {
                             Spacer()
-                            Label("书签", systemImage: "bookmark")
+                            Label("设置", systemImage: "gear")
                             Spacer()
                         }
-                    })
-                    NavigationLink(destination: {
-                        HistoryView()
-                    }, label: {
-                        HStack {
-                            Spacer()
-                            Label("历史记录", systemImage: "clock")
-                            Spacer()
-                        }
-                    })
-                    NavigationLink(destination: {
-                        EnginesView()
-                    }, label: {
-                        HStack {
-                            Spacer()
-                            Label("更改搜索引擎", systemImage: "magnifyingglass.circle")
-                            Spacer()
-                        }
-                    })
-                    Toggle(isOn: $isUseModifyKeyboard) {
-                        Text("使用自定义键盘")
-                    }
-                    Toggle(isOn: $isAllowCookie) {
-                        Text("使用Cookie")
-                    }
-                    .onChange(of: isAllowCookie) { value in
-                        if value {
-                            isCookieTipPresented = true
-                        }
-                    }
-                    .sheet(isPresented: $isCookieTipPresented, content: {
-                        CookieTip()
                     })
                 }
             }
-            .navigationTitle("暗礁浏览器")
-            .navigationBarTitleDisplayMode(.large)
         }
-        .navigationViewStyle(.stack)
+        .navigationTitle("暗礁浏览器")
+        .navigationBarTitleDisplayMode(.large)
     }
     
     func GetWebSearchedURL(_ iUrl: String) -> String {
@@ -201,6 +212,7 @@ struct CookieTip: View {
                 }, label: {
                     Text("不开启")
                 })
+                Text("Darock 以及暗礁浏览器不会收集您的 Cookie 信息，所有信息均由 watchOS 处理。")
             }
         }
     }
@@ -231,6 +243,22 @@ extension String {
     }
 }
 
+extension Color {
+    init(hex: Int, alpha: Double = 1) {
+        let components = (
+            R: Double((hex >> 16) & 0xff) / 255,
+            G: Double((hex >> 08) & 0xff) / 255,
+            B: Double((hex >> 00) & 0xff) / 255
+        )
+        self.init(
+            .sRGB,
+            red: components.R,
+            green: components.G,
+            blue: components.B,
+            opacity: alpha
+        )
+    }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

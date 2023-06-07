@@ -41,7 +41,7 @@ struct HistoryView: View {
                         ForEach(0...historys.count - 1, id: \.self) { i in
                             Button(action: {
                                 let session = ASWebAuthenticationSession(
-                                    url: URL(string: historys[i].urlEncoded())!,
+                                    url: URL(string: historys[i].urlDecoded().urlEncoded())!,
                                     callbackURLScheme: nil
                                 ) { _, _ in
                                     
@@ -50,17 +50,18 @@ struct HistoryView: View {
                                 session.start()
                             }, label: {
                                 if historys[i].hasPrefix("https://www.bing.com/search?q=") {
-                                    Label(String(historys[i].dropFirst(30)), systemImage: "magnifyingglass")
+                                    Label(String(historys[i].urlDecoded().dropFirst(30)), systemImage: "magnifyingglass")
                                 } else if historys[i].hasPrefix("https://www.baidu.com/s?wd=") {
-                                    Label(String(historys[i].dropFirst(27)), systemImage: "magnifyingglass")
+                                    Label(String(historys[i].urlDecoded().dropFirst(27)), systemImage: "magnifyingglass")
                                 } else if historys[i].hasPrefix("https://www.google.com/search?q=") {
-                                    Label(String(historys[i].dropFirst(32)), systemImage: "magnifyingglass")
+                                    Label(String(historys[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
                                 } else if historys[i].hasPrefix("https://www.sogou.com/web?query=") {
-                                    Label(String(historys[i].dropFirst(32)), systemImage: "magnifyingglass")
+                                    Label(String(historys[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
                                 } else {
                                     Label(historys[i], systemImage: "globe")
                                 }
                             })
+                            .privacySensitive()
                         }
                     } else {
                         Text("无历史记录")
