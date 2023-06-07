@@ -23,7 +23,7 @@ struct SettingsView: View {
     var body: some View {
         if #available(watchOS 10.0, *) {
             NavigationStack {
-                #if FOR_NEW_OS
+                #if swift(>=5.9)
                 TabView {
                     Group {
                         List {

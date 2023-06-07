@@ -12,7 +12,7 @@ struct ContentView: View {
     var body: some View {
         if #available(watchOS 10.0, *) {
             NavigationStack {
-                #if FOR_NEW_OS
+                #if swift(>=5.9)
                 MainView()
                     .containerBackground(Color(hex: 0x13A4FF).gradient, for: .navigation)
                     .toolbar {
