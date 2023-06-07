@@ -23,6 +23,7 @@ struct SettingsView: View {
     var body: some View {
         if #available(watchOS 10.0, *) {
             NavigationStack {
+                #if FOR_NEW_OS
                 TabView {
                     Group {
                         List {
@@ -88,6 +89,29 @@ struct SettingsView: View {
                     .tag(3)
                 }
                 .tabViewStyle(.verticalPage)
+                #else
+                List {
+                    Picker(selection: $webSearch, label: Text("搜索引擎")) {
+                        ForEach(EngineNames.allCases, id: \.self) {EngineNames in
+                            Text(EngineNames.rawValue).tag(EngineNames.rawValue)
+                        }
+                    }
+                    Toggle(isOn: $isUseModifyKeyboard) {
+                        Text("使用自定义键盘")
+                    }
+                    Toggle(isOn: $isAllowCookie) {
+                        Text("使用Cookie")
+                    }
+                    .onChange(of: isAllowCookie) { value in
+                        if value {
+                            isCookieTipPresented = true
+                        }
+                    }
+                    .sheet(isPresented: $isCookieTipPresented, content: {
+                        CookieTip()
+                    })
+                }
+                #endif
             }
         } else {
             NavigationView {

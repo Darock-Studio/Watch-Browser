@@ -12,15 +12,19 @@ struct ContentView: View {
     var body: some View {
         if #available(watchOS 10.0, *) {
             NavigationStack {
-                    MainView()
-                        .containerBackground(Color(hex: 0x13A4FF).gradient, for: .navigation)
-                        .toolbar {
-                            ToolbarItem(placement: .topBarLeading) {
-                                NavigationLink(destination: {SettingsView()}, label: {
-                                    Image(systemName: "gear")
-                                })
-                            }
+                #if FOR_NEW_OS
+                MainView()
+                    .containerBackground(Color(hex: 0x13A4FF).gradient, for: .navigation)
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            NavigationLink(destination: {SettingsView()}, label: {
+                                Image(systemName: "gear")
+                            })
                         }
+                    }
+                #else
+                MainView(withSetting: true)
+                #endif
             }
         } else {
             NavigationView {
