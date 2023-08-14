@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		45118DC5A4065D06CADF7CBE /* Pods_WatchBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3189B6006A74D28B17F546A9 /* Pods_WatchBrowser.framework */; };
+		6B0253D82A4EFB0100567986 /* DarockKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6B0253D72A4EFB0100567986 /* DarockKit */; };
+		6B0253DA2A4F02A500567986 /* BingSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0253D92A4F02A500567986 /* BingSearchView.swift */; };
 		6B6DA6B72A0149EF00BBE6CA /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6DA6B62A0149EF00BBE6CA /* HistoryView.swift */; };
 		6BA7F7A02A2F6FC600FFEED0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7F79F2A2F6FC600FFEED0 /* SettingsView.swift */; };
 		6BF209EF2990E61C00E623FC /* 抬腕浏览器.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6BF209EE2990E61C00E623FC /* 抬腕浏览器.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -17,7 +18,7 @@
 		6BF209FB2990E61E00E623FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BF209FA2990E61E00E623FC /* Preview Assets.xcassets */; };
 		6BF20A0A299100AE00E623FC /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF20A09299100AE00E623FC /* BookmarkView.swift */; };
 		6BF20A0D2991302C00E623FC /* ExtKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF20A0C2991302C00E623FC /* ExtKeyboardView.swift */; };
-		EB669D3327B8C27C88E572C5 /* Pods_WatchBrowser_Watch_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9273911C54821B989FA5AD9 /* Pods_WatchBrowser_Watch_App.framework */; };
+		E296FE022A459C5D00331BD4 /* BulletinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E296FE012A459C5D00331BD4 /* BulletinView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,8 +56,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3189B6006A74D28B17F546A9 /* Pods_WatchBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6ADCD73F0F8884D579B74775 /* Pods-WatchBrowser Watch App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchBrowser Watch App.debug.xcconfig"; path = "Target Support Files/Pods-WatchBrowser Watch App/Pods-WatchBrowser Watch App.debug.xcconfig"; sourceTree = "<group>"; };
+		6B0253D92A4F02A500567986 /* BingSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingSearchView.swift; sourceTree = "<group>"; };
 		6B6DA6B62A0149EF00BBE6CA /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		6BA7F79F2A2F6FC600FFEED0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6BF209E82990E61C00E623FC /* WatchBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,12 +67,7 @@
 		6BF209FA2990E61E00E623FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6BF20A09299100AE00E623FC /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
 		6BF20A0C2991302C00E623FC /* ExtKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtKeyboardView.swift; sourceTree = "<group>"; };
-		6BFD15962A305A4600CB9A1D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
-		6BFD15982A305A4600CB9A1D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		6D88E55F611EB70A130405A4 /* Pods-WatchBrowser Watch App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchBrowser Watch App.release.xcconfig"; path = "Target Support Files/Pods-WatchBrowser Watch App/Pods-WatchBrowser Watch App.release.xcconfig"; sourceTree = "<group>"; };
-		8242CED618213B031D178CBD /* Pods-WatchBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchBrowser.release.xcconfig"; path = "Target Support Files/Pods-WatchBrowser/Pods-WatchBrowser.release.xcconfig"; sourceTree = "<group>"; };
-		A9273911C54821B989FA5AD9 /* Pods_WatchBrowser_Watch_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchBrowser_Watch_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5AEA8BAFDAE784A73490E0B /* Pods-WatchBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchBrowser.debug.xcconfig"; path = "Target Support Files/Pods-WatchBrowser/Pods-WatchBrowser.debug.xcconfig"; sourceTree = "<group>"; };
+		E296FE012A459C5D00331BD4 /* BulletinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB669D3327B8C27C88E572C5 /* Pods_WatchBrowser_Watch_App.framework in Frameworks */,
+				6B0253D82A4EFB0100567986 /* DarockKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,42 +83,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45118DC5A4065D06CADF7CBE /* Pods_WatchBrowser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0B761D38E0842A581907A24A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3189B6006A74D28B17F546A9 /* Pods_WatchBrowser.framework */,
-				A9273911C54821B989FA5AD9 /* Pods_WatchBrowser_Watch_App.framework */,
-				6BFD15962A305A4600CB9A1D /* WidgetKit.framework */,
-				6BFD15982A305A4600CB9A1D /* SwiftUI.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		26F818585808421B11E106A9 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B5AEA8BAFDAE784A73490E0B /* Pods-WatchBrowser.debug.xcconfig */,
-				8242CED618213B031D178CBD /* Pods-WatchBrowser.release.xcconfig */,
-				6ADCD73F0F8884D579B74775 /* Pods-WatchBrowser Watch App.debug.xcconfig */,
-				6D88E55F611EB70A130405A4 /* Pods-WatchBrowser Watch App.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		6BF209E12990E61C00E623FC = {
 			isa = PBXGroup;
 			children = (
 				6BF209F22990E61C00E623FC /* WatchBrowser Watch App */,
 				6BF209E92990E61C00E623FC /* Products */,
-				26F818585808421B11E106A9 /* Pods */,
-				0B761D38E0842A581907A24A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,7 +111,9 @@
 			children = (
 				6BF209F32990E61C00E623FC /* WatchBrowserApp.swift */,
 				6BF209F52990E61C00E623FC /* ContentView.swift */,
+				6B0253D92A4F02A500567986 /* BingSearchView.swift */,
 				6BF20A09299100AE00E623FC /* BookmarkView.swift */,
+				E296FE012A459C5D00331BD4 /* BulletinView.swift */,
 				6B6DA6B62A0149EF00BBE6CA /* HistoryView.swift */,
 				6BF20A0C2991302C00E623FC /* ExtKeyboardView.swift */,
 				6BA7F79F2A2F6FC600FFEED0 /* SettingsView.swift */,
@@ -166,7 +138,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6BF20A022990E61E00E623FC /* Build configuration list for PBXNativeTarget "WatchBrowser" */;
 			buildPhases = (
-				7E43F414B5B82E90ACFA4C2D /* [CP] Check Pods Manifest.lock */,
 				6BF209E62990E61C00E623FC /* Resources */,
 				6BF20A012990E61E00E623FC /* Embed Watch Content */,
 				F80BDB35D391E4AFB9701932 /* Frameworks */,
@@ -185,7 +156,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6BF209FE2990E61E00E623FC /* Build configuration list for PBXNativeTarget "WatchBrowser Watch App" */;
 			buildPhases = (
-				1DC9FAABF4FB47FC7D204D23 /* [CP] Check Pods Manifest.lock */,
 				6BF209EA2990E61C00E623FC /* Sources */,
 				6BF209EB2990E61C00E623FC /* Frameworks */,
 				6BF209EC2990E61C00E623FC /* Resources */,
@@ -196,6 +166,9 @@
 			dependencies = (
 			);
 			name = "WatchBrowser Watch App";
+			packageProductDependencies = (
+				6B0253D72A4EFB0100567986 /* DarockKit */,
+			);
 			productName = "WatchBrowser Watch App";
 			productReference = 6BF209EE2990E61C00E623FC /* 抬腕浏览器.app */;
 			productType = "com.apple.product-type.application";
@@ -227,6 +200,9 @@
 				"zh-Hans",
 			);
 			mainGroup = 6BF209E12990E61C00E623FC;
+			packageReferences = (
+				6B0253D62A4EFB0100567986 /* XCLocalSwiftPackageReference "../DarockKit" */,
+			);
 			productRefGroup = 6BF209E92990E61C00E623FC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -256,59 +232,14 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		1DC9FAABF4FB47FC7D204D23 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WatchBrowser Watch App-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7E43F414B5B82E90ACFA4C2D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WatchBrowser-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		6BF209EA2990E61C00E623FC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B0253DA2A4F02A500567986 /* BingSearchView.swift in Sources */,
 				6BA7F7A02A2F6FC600FFEED0 /* SettingsView.swift in Sources */,
+				E296FE022A459C5D00331BD4 /* BulletinView.swift in Sources */,
 				6B6DA6B72A0149EF00BBE6CA /* HistoryView.swift in Sources */,
 				6BF20A0A299100AE00E623FC /* BookmarkView.swift in Sources */,
 				6BF209F62990E61C00E623FC /* ContentView.swift in Sources */,
@@ -385,7 +316,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 8.4;
 			};
 			name = Debug;
 		};
@@ -439,13 +370,12 @@
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 8.4;
 			};
 			name = Release;
 		};
 		6BF209FF2990E61E00E623FC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6ADCD73F0F8884D579B74775 /* Pods-WatchBrowser Watch App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -463,7 +393,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.1.1;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = "抬腕浏览器";
@@ -478,7 +408,6 @@
 		};
 		6BF20A002990E61E00E623FC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6D88E55F611EB70A130405A4 /* Pods-WatchBrowser Watch App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -496,7 +425,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.1.1;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = "抬腕浏览器";
@@ -512,14 +441,13 @@
 		};
 		6BF20A032990E61E00E623FC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B5AEA8BAFDAE784A73490E0B /* Pods-WatchBrowser.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B57D8PP775;
 				INFOPLIST_KEY_CFBundleDisplayName = WatchBrowser;
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -529,14 +457,13 @@
 		};
 		6BF20A042990E61E00E623FC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8242CED618213B031D178CBD /* Pods-WatchBrowser.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B57D8PP775;
 				INFOPLIST_KEY_CFBundleDisplayName = WatchBrowser;
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -576,6 +503,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		6B0253D62A4EFB0100567986 /* XCLocalSwiftPackageReference "../DarockKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../DarockKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6B0253D72A4EFB0100567986 /* DarockKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DarockKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6BF209E22990E61C00E623FC /* Project object */;
 }

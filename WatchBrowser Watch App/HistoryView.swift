@@ -9,56 +9,48 @@ import SwiftUI
 import AuthenticationServices
 
 struct HistoryView: View {
-    @AppStorage("IsRecordHistory") var isRecordHistory = true
-    @AppStorage("IsAllowCookie") var isAllowCookie = false
+    @AppStorage("isHistoryRecording") var isHistoryRecording = true
+    @AppStorage("AllowCookies") var AllowCookies = false
     @State var isSettingPresented = false
+    @State var isStopRecordingPagePresenting = false
     var body: some View {
         List {
-            VStack {
-                HStack {
-                    Spacer()
-                    Text("历史记录")
-                        .fontWeight(.bold)
-                        .font(.system(size: 20))
-                    Spacer()
-                }
-                HStack {
-                    Spacer()
-                    Text("单击查看选项")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 16))
-                    Spacer()
-                }
-            }
-            .onTapGesture {
-                isSettingPresented = true
-            }
-            .sheet(isPresented: $isSettingPresented, content: {HistorySettingView()})
+            Toggle("记录历史记录", isOn: $isHistoryRecording)
+                .onChange(of: isHistoryRecording, perform: { e in
+                    if !e {
+                        isStopRecordingPagePresenting = true
+                    }
+                })
+                .sheet(isPresented: $isStopRecordingPagePresenting, content: {CloseHistoryTipView()})
+//            .onTapGesture {
+//                isSettingPresented = true
+//            }
+//            .sheet(isPresented: $isSettingPresented, content: {historiesettingView()})
             Section {
-                if isRecordHistory {
-                    let historys = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
-                    if historys.count != 0 {
-                        ForEach(0...historys.count - 1, id: \.self) { i in
+                if isHistoryRecording {
+                    let histories = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
+                    if histories.count != 0 {
+                        ForEach(0...histories.count - 1, id: \.self) { i in
                             Button(action: {
                                 let session = ASWebAuthenticationSession(
-                                    url: URL(string: historys[i].urlDecoded().urlEncoded())!,
+                                    url: URL(string: histories[i].urlDecoded().urlEncoded())!,
                                     callbackURLScheme: nil
                                 ) { _, _ in
                                     
                                 }
-                                session.prefersEphemeralWebBrowserSession = !isAllowCookie
+                                session.prefersEphemeralWebBrowserSession = !AllowCookies
                                 session.start()
                             }, label: {
-                                if historys[i].hasPrefix("https://www.bing.com/search?q=") {
-                                    Label(String(historys[i].urlDecoded().dropFirst(30)), systemImage: "magnifyingglass")
-                                } else if historys[i].hasPrefix("https://www.baidu.com/s?wd=") {
-                                    Label(String(historys[i].urlDecoded().dropFirst(27)), systemImage: "magnifyingglass")
-                                } else if historys[i].hasPrefix("https://www.google.com/search?q=") {
-                                    Label(String(historys[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
-                                } else if historys[i].hasPrefix("https://www.sogou.com/web?query=") {
-                                    Label(String(historys[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
+                                if histories[i].hasPrefix("https://www.bing.com/search?q=") {
+                                    Label(String(histories[i].urlDecoded().dropFirst(30)), systemImage: "magnifyingglass")
+                                } else if histories[i].hasPrefix("https://www.baidu.com/s?wd=") {
+                                    Label(String(histories[i].urlDecoded().dropFirst(27)), systemImage: "magnifyingglass")
+                                } else if histories[i].hasPrefix("https://www.google.com/search?q=") {
+                                    Label(String(histories[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
+                                } else if histories[i].hasPrefix("https://www.sogou.com/web?query=") {
+                                    Label(String(histories[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
                                 } else {
-                                    Label(historys[i], systemImage: "globe")
+                                    Label(histories[i], systemImage: "globe")
                                 }
                             })
                             .privacySensitive()
@@ -76,8 +68,8 @@ struct HistoryView: View {
     }
 }
 
-struct HistorySettingView: View {
-    @AppStorage("IsRecordHistory") var isRecordHistory = true
+struct historiesettingView: View {
+    @AppStorage("isHistoryRecording") var isHistoryRecording = true
     @State var isClosePagePresented = false
     var body: some View {
         List {
@@ -85,8 +77,8 @@ struct HistorySettingView: View {
                 .fontWeight(.bold)
                 .font(.system(size: 20))
             Section {
-                Toggle("记录历史记录", isOn: $isRecordHistory)
-                    .onChange(of: isRecordHistory, perform: { e in
+                Toggle("记录历史记录", isOn: $isHistoryRecording)
+                    .onChange(of: isHistoryRecording, perform: { e in
                         if !e {
                             isClosePagePresented = true
                         }

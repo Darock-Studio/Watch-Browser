@@ -23,24 +23,24 @@ struct ExtKeyboardView: View {
     let firstRow = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"]
     let secondRow = ["A", "S", "D", "F", "G", "H", "J", "K", "L"]
     let thirdRow = ["Z", "X", "C", "V", "B", "N", "M"]
-    let nFirstRow = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-    let nSecondRow = ["-", "/", ":", ";", "(", ")", "$", "&", "@", "\""]
-    let nThirdRow = [".", ",", "?", "!", "'"]
+    let numFirstRow = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+    let numSecondRow = ["-", "/", ":", ";", "(", ")", "$", "&", "@", "\""]
+    let numThirdRow = [".", ",", "?", "!", "'"]
     @State var lastTimeTap = Date.distantPast
     @State var fullText = [charater]()
     @State var isShowingNumber = false
     var body: some View {
         VStack(spacing:0) {
-            文本显示View(fullText: $fullText, cursor: $cursor)
+            TextDisplayView(fullText: $fullText, cursor: $cursor)
             if !isShowingNumber {
                 EachRowView(allCharater: firstRow,dect: true,onTap: add)
             } else {
-                EachRowView(allCharater: nFirstRow,dect: true,onTap: add)
+                EachRowView(allCharater: numFirstRow,dect: true,onTap: add)
             }
             if !isShowingNumber {
                 EachRowView(allCharater: secondRow,onTap: add)
             } else {
-                EachRowView(allCharater: nSecondRow,onTap: add)
+                EachRowView(allCharater: numSecondRow,onTap: add)
             }
             HStack {
                 if !isShowingNumber {
@@ -74,16 +74,16 @@ struct ExtKeyboardView: View {
                 if !isShowingNumber {
                     EachRowView(allCharater: thirdRow,onTap: add)
                 } else {
-                    EachRowView(allCharater: nThirdRow,onTap: add, widthFix: 7)
+                    EachRowView(allCharater: numThirdRow,onTap: add, widthFix: 7)
                 }
                 Button(action: {
                     isShowingNumber = !isShowingNumber
                 }, label: {
                     if !isShowingNumber {
-                        Text("123")
+                        Image(systemName: "textformat.123")
                             .font(.system(size: 13))
                     } else {
-                        Text("ABC")
+                        Image(systemName:"abc")
                     }
                 })
                 .buttonStyle(.plain)
@@ -95,9 +95,15 @@ struct ExtKeyboardView: View {
         .animation(.easeOut, value: fullText)
         .toolbar {
             ToolbarItem(placement: .confirmationAction, content: {
-                Button("完成", action: {
+                Button(action: {
                     dismiss()
-                    onFinished(合成())
+                    onFinished(Combine())
+                }, label: {
+                    if #available(watchOS 10.0, *) {
+                        Image(systemName: "checkmark")
+                    } else {
+                        Text("完成")
+                    }
                 })
             })
         }
@@ -133,7 +139,7 @@ struct ExtKeyboardView: View {
             cursor += 1
         }
     }
-    func 合成() -> String {
+    func Combine() -> String {
         var back = ""
         fullText.forEach { e in
             back += e.value
@@ -146,14 +152,14 @@ struct ExtKeyboardView: View {
     var onFinished:(String) -> () = { _ in }
 }
 
-struct 文本显示View: View {
+struct TextDisplayView: View {
     @Binding var fullText : [charater]
     @Binding var cursor:Int
     @Namespace private var MYcursor
     @GestureState var isDetectingLongPress = false
     @State var completedLongPress = false
-    @State var 触发时间 = Date.now
-    @State var 手势触发 = false
+    @State var TriggerTime = Date.now
+    @State var isGestureTriggered = false
     @State var crownRatation = 0.0
     let timer = Timer.publish(every: 0.1, on: .main, in: .default).autoconnect()
     var body: some View {
@@ -167,6 +173,7 @@ struct 文本显示View: View {
                                 if cursor == index {
                                     Color.accentColor
                                         .frame(width: 3, height: 26)
+                                        .cornerRadius(3)
                                         .matchedGeometryEffect(id: "ID", in: MYcursor)
                                         .id("光标")
                                 }
@@ -181,6 +188,7 @@ struct 文本显示View: View {
                         if cursor == -1 {
                             Color.accentColor
                                 .frame(width: 3, height: 26)
+                                .cornerRadius(3)
                                 .matchedGeometryEffect(id: /*@START_MENU_TOKEN@*/"ID"/*@END_MENU_TOKEN@*/, in: MYcursor)
                                 .id("光标")
                         }
@@ -212,14 +220,14 @@ struct 文本显示View: View {
                     transaction.animation = Animation.easeIn(duration: 2.0)
                 })
             .onChange(of: isDetectingLongPress, perform: { i in
-                手势触发 = i
+                isGestureTriggered = i
                 if i {
-                    触发时间 = .now
+                    TriggerTime = .now
                 }
             })
             .onReceive(timer, perform: { i in
-                if 手势触发 {
-                    if 触发时间.distance(to: .now) > 0.3 {
+                if isGestureTriggered {
+                    if TriggerTime.distance(to: .now) > 0.3 {
                         DeleteOneCha()
                     }
                 }
@@ -316,15 +324,15 @@ struct BottomLine: View {
             //支持长按
         }      .buttonStyle(.plain)
             .onReceive(timer, perform: { i in
-                if 手势触发 {
-                    if 触发时间.distance(to: .now) > 0.3 {
+                if isGestureTriggered {
+                    if TriggerTime.distance(to: .now) > 0.3 {
                         DeleteOneCha()
                     }
                 }
             })
     }
-    @State var 触发时间 = Date.now
-    @State var 手势触发 = false
+    @State var TriggerTime = Date.now
+    @State var isGestureTriggered = false
 }
 
 
