@@ -116,9 +116,9 @@ struct SettingsView: View {
                 #else
                 Form {
                     Section {
-                        Toggle(isOn: SettingsView.$Bing_API) {
-                            Text("使用Bing API搜索")
-                        }
+//                        Toggle(isOn: SettingsView.$Bing_API) {
+//                            Text("使用Bing API搜索")
+//                        }
                         Picker(selection: $webSearch, label: Text("搜索引擎")) {
                             ForEach(EngineNames.allCases, id: \.self) {EngineNames in
                                 Text(EngineNames.rawValue).tag(EngineNames.rawValue)
