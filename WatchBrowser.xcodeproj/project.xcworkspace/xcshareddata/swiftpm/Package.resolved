@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "darockkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Darock-Studio/DarockKit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "8653ae946660d0669fc2bbbd40a40f62dc192308"
+      }
+    },
+    {
       "identity" : "swiftyjson",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SwiftyJSON/SwiftyJSON",
