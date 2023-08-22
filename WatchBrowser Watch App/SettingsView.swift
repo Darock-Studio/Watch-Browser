@@ -114,7 +114,7 @@ struct SettingsView: View {
                 }
 //                .tabViewStyle(.verticalPage)
                 #else
-                //Form {
+                List {
                     Section {
 //                        Toggle(isOn: SettingsView.$Bing_API) {
 //                            Text("使用Bing API搜索")
@@ -198,7 +198,7 @@ struct SettingsView: View {
                     }
                     .navigationTitle("Cookie")
                     .navigationBarTitleDisplayMode(.inline)
-                //}
+                }
                 #endif
             }
         } else {
