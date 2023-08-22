@@ -152,7 +152,7 @@ struct SettingsView: View {
                     }
                     .navigationTitle("键盘")
                     .navigationBarTitleDisplayMode(.inline)
-                    .onChange(of: ModifyKeyboard) {
+                    .onChange(of: ModifyKeyboard) { _ in
 //                        KeyboardChanged = true
                     }
                     .alert(isPresented: $KeyboardChanged) {
