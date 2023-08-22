@@ -37,7 +37,7 @@ struct SettingsView: View {
                                 Text(EngineNames.rawValue).tag(EngineNames.rawValue)
                             }
                         }
-                        .disabled(isUsingBingAPI)
+                        //.disabled(isUsingBingAPI)
                     } header: {
                         Text("搜索")
                     }
@@ -124,7 +124,7 @@ struct SettingsView: View {
                                 Text(EngineNames.rawValue).tag(EngineNames.rawValue)
                             }
                         }
-                        .disabled(SettingsView.Bing_API)
+                        //.disabled(SettingsView.Bing_API)
                     } header: {
                         Text("搜索")
                     }
