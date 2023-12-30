@@ -41,7 +41,6 @@ struct ContentView: View {
 
 struct MainView: View {
     var withSetting: Bool = false
-    @AppStorage("Bing_API") var isUsingBingAPI = false
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("IsAllowCookie") var isAllowCookie = false
     @AppStorage("IsRecordHistory") var isRecordHistory = true
@@ -50,11 +49,6 @@ struct MainView: View {
     @State var goToButtonLabelText = "搜索"
     @State var isKeyboardPresented = false
     @State var isCookieTipPresented = false
-    @State var isBingSearchPresented = false
-    @AppStorage("isBulletinPresenting") var isBulletinPresenting = true
-    @AppStorage("isNewBulletinUnread") var isNewBulletinUnread = true
-    @AppStorage("BulletinTitle") var BulletinTitle = "招新"
-    @AppStorage("BulletinContent") var BulletinContent = "暗礁工作室招新啦，有代码、美术、宣传才能的小伙伴欢迎加入！ 加群或联系QQ 3245146430了解详情"
     var body: some View {
         List {
             Section {
@@ -108,23 +102,22 @@ struct MainView: View {
                         session.prefersEphemeralWebBrowserSession = !isAllowCookie
                         session.start()
                     } else {
-                        if isUsingBingAPI {
-                            ContentView.bingSearchingText = textOrURL
-                            isBingSearchPresented = true
-                        } else {
-                            let session = ASWebAuthenticationSession(
-                                url: URL(string: GetWebSearchedURL(textOrURL))!,
-                                callbackURLScheme: nil
-                            ) { _, _ in
-                                
-                            }
-                            session.prefersEphemeralWebBrowserSession = !isAllowCookie
-                            session.start()
+                        let session = ASWebAuthenticationSession(
+                            url: URL(string: GetWebSearchedURL(textOrURL))!,
+                            callbackURLScheme: nil
+                        ) { _, _ in
+                            
                         }
+                        session.prefersEphemeralWebBrowserSession = !isAllowCookie
+                        session.start()
                     }
                     if isRecordHistory {
-                        if (UserDefaults.standard.stringArray(forKey: "WebHistory") != nil) ? (UserDefaults.standard.stringArray(forKey: "WebHistory")![UserDefaults.standard.stringArray(forKey: "WebHistory")!.count - 1] != (textOrURL.isURL() ? textOrURL : GetWebSearchedURL(textOrURL))) : true {
-                            UserDefaults.standard.set((textOrURL.isURL() ? [textOrURL] : [GetWebSearchedURL(textOrURL)]) + (UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()), forKey: "WebHistory")
+                        if UserDefaults.standard.stringArray(forKey: "Histories") != nil {
+                            UserDefaults.standard.set(textOrURL.isURL() ? [textOrURL] : [GetWebSearchedURL(textOrURL)], forKey: "Histories")
+                        } else {
+                            var histories = UserDefaults.standard.stringArray(forKey: "Histories") ?? [String]()
+                            histories.insert(textOrURL.isURL() ? [textOrURL] : [GetWebSearchedURL(textOrURL)], at: 0)
+                            UserDefaults.standard.set(histories, forKey: "Histories")
                         }
                     }
                 }, label: {
@@ -135,36 +128,6 @@ struct MainView: View {
                         Spacer()
                     }
                 })
-                .sheet(isPresented: $isBingSearchPresented, content: {BingSearchView()})
-                if isBulletinPresenting && isNewBulletinUnread {
-//                    NavigationLink(destination: {
-//                        BulletinView()
-//                    }, label: {
-//                        VStack(alignment: .center) {
-//                            HStack {
-//                                Spacer()
-//                                Label(BulletinTitle.isEmpty ? "新公告" : BulletinTitle, systemImage: "megaphone")
-//                                Spacer()
-//                            }
-//                            HStack {
-//                                Spacer()
-//                                Text("轻点标记为已阅")
-//                                    .font(.caption)
-//                                    .bold()
-//                                Spacer()
-//                            }
-//                            Spacer(minLength: 7)
-//                            HStack {
-//                                Spacer()
-//                                Text(BulletinContent)
-//                                    .font(.caption)
-//                                    .multilineTextAlignment(.center)
-//                                Spacer()
-//                            }
-//                        }
-//                        .padding()
-//                    })
-                }
             }
             Section {
                 NavigationLink(destination: {
@@ -185,17 +148,6 @@ struct MainView: View {
                         Spacer()
                     }
                 })
-                if isBulletinPresenting && !isNewBulletinUnread {
-                    NavigationLink(destination: {
-                        BulletinView()
-                    }, label: {
-                        HStack {
-                            Spacer()
-                            Label("公告", systemImage: "megaphone")
-                            Spacer()
-                        }
-                    })
-                }
                 if withSetting {
                     NavigationLink(destination: {
                         SettingsView()
@@ -207,6 +159,17 @@ struct MainView: View {
                         }
                     })
                 }
+            }
+            Section {
+                NavigationLink(destination: {
+                    BulletinView()
+                }, label: {
+                    HStack {
+                        Spacer()
+                        Label("公告", systemImage: "megaphone")
+                        Spacer()
+                    }
+                })
             }
         }
         .navigationTitle("暗礁浏览器")
