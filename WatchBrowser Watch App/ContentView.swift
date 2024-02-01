@@ -12,11 +12,10 @@ import Alamofire
 import SwiftyJSON
 
 struct ContentView: View {
-    public static var bingSearchingText = "Darock"
+    public static var bingSearchingText = ""
     var body: some View {
         if #available(watchOS 10.0, *) {
             NavigationStack {
-                #if swift(>=5.9)
                 MainView()
                     .containerBackground(Color(hex: 0x13A4FF).gradient, for: .navigation)
                     .toolbar {
@@ -26,9 +25,6 @@ struct ContentView: View {
                             })
                         }
                     }
-                #else
-                MainView(withSetting: true)
-                #endif
             }
         } else {
             NavigationView {
@@ -46,53 +42,86 @@ struct MainView: View {
     @AppStorage("IsAllowCookie") var isAllowCookie = false
     @AppStorage("IsRecordHistory") var isRecordHistory = true
     @AppStorage("ModifyKeyboard") var ModifyKeyboard = false
+    @AppStorage("IsShowBetaTest1") var isShowBetaTest = true
     @State var textOrURL = ""
-    @State var goToButtonLabelText = "搜索"
+    @State var goToButtonLabelText: LocalizedStringKey = "搜索"
     @State var isKeyboardPresented = false
     @State var isCookieTipPresented = false
     @State var isBingSearchPresented = false
-    @AppStorage("isBulletinPresenting") var isBulletinPresenting = true
-    @AppStorage("isNewBulletinUnread") var isNewBulletinUnread = true
-    @AppStorage("BulletinTitle") var BulletinTitle = "招新"
-    @AppStorage("BulletinContent") var BulletinContent = "暗礁工作室招新啦，有代码、美术、宣传才能的小伙伴欢迎加入！ 加群或联系QQ 3245146430了解详情"
+    @State var pinnedBookmarkIndexs = [Int]()
     var body: some View {
         List {
             Section {
-                if !ModifyKeyboard {
-                    TextField("搜索或输入网址", text: $textOrURL)
-                        .autocorrectionDisabled()
-                        .textInputAutocapitalization(.never)
-                        .privacySensitive()
-                        .onSubmit({
-                            if textOrURL.isURL() {
+                Group {
+                    if !ModifyKeyboard {
+                        TextField("搜索或输入网址", text: $textOrURL)
+                            .autocorrectionDisabled()
+                            .textInputAutocapitalization(.never)
+                            .privacySensitive()
+                            .onSubmit({
+                                if textOrURL.isURL() {
+                                    goToButtonLabelText = "前往"
+                                } else {
+                                    goToButtonLabelText = "搜索"
+                                }
+                            })
+                    } else {
+                        Button(action: {
+                            isKeyboardPresented = true
+                        }, label: {
+                            HStack {
+                                Text(textOrURL != "" ? textOrURL : "搜索或输入网址")
+                                    .foregroundColor(textOrURL == "" ? Color.gray : Color.white)
+                                    .privacySensitive()
+                                Spacer()
+                            }
+                        })
+                        .sheet(isPresented: $isKeyboardPresented, content: {
+                            ExtKeyboardView(startText: textOrURL) { ott in
+                                textOrURL = ott
+                            }
+                        })
+                        .onChange(of: textOrURL, perform: { value in
+                            if value.isURL() {
                                 goToButtonLabelText = "前往"
                             } else {
                                 goToButtonLabelText = "搜索"
                             }
                         })
-                } else {
-                    Button(action: {
-                        isKeyboardPresented = true
-                    }, label: {
-                        HStack {
-                            Text(textOrURL != "" ? textOrURL : "搜索或输入网址")
-                                .foregroundColor(textOrURL == "" ? Color.gray : Color.white)
-                                .privacySensitive()
-                            Spacer()
-                        }
-                    })
-                    .sheet(isPresented: $isKeyboardPresented, content: {
-                        ExtKeyboardView(startText: textOrURL) { ott in
-                            textOrURL = ott
-                        }
-                    })
-                    .onChange(of: textOrURL, perform: { value in
-                        if value.isURL() {
-                            goToButtonLabelText = "前往"
-                        } else {
-                            goToButtonLabelText = "搜索"
-                        }
-                    })
+                    }
+                }
+                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                    if #available(watchOS 9, *), textOrURL != "" {
+                        Button(action: {
+                            let userdefault = UserDefaults.standard
+                            let total = userdefault.integer(forKey: "BookmarkTotal") + 1
+                            let markName = { () -> String in
+                                if textOrURL.isURL() {
+                                    if textOrURL.hasPrefix("https://") || textOrURL.hasPrefix("http://") {
+                                        let ped = textOrURL.split(separator: "://")[1]
+                                        let sed = ped.split(separator: "/")[0]
+                                        let ded = sed.split(separator: ".")
+                                        return String(ded[ded.count - 2])
+                                    } else {
+                                        let sed = textOrURL.split(separator: "/")[0]
+                                        let ded = sed.split(separator: ".")
+                                        return String(ded[ded.count - 2])
+                                    }
+                                } else {
+                                    return textOrURL
+                                }
+                            }()
+                            userdefault.set(markName, forKey: "BookmarkName\(total)")
+                            if textOrURL.isURL() {
+                                userdefault.set((textOrURL.hasPrefix("https://") || textOrURL.hasPrefix("http://")) ? textOrURL.urlEncoded() : "http://" + textOrURL.urlEncoded(), forKey: "BookmarkLink\(total)")
+                            } else {
+                                userdefault.set(GetWebSearchedURL(textOrURL, webSearch: webSearch).urlEncoded(), forKey: "BookmarkLink\(total)")
+                            }
+                            userdefault.set(total, forKey: "BookmarkTotal")
+                        }, label: {
+                            Image(systemName: "bookmark.fill")
+                        })
+                    }
                 }
                 Button(action: {
                     if textOrURL.isURL() {
@@ -113,7 +142,7 @@ struct MainView: View {
                             isBingSearchPresented = true
                         } else {
                             let session = ASWebAuthenticationSession(
-                                url: URL(string: GetWebSearchedURL(textOrURL))!,
+                                url: URL(string: GetWebSearchedURL(textOrURL, webSearch: webSearch))!,
                                 callbackURLScheme: nil
                             ) { _, _ in
                                 
@@ -123,9 +152,7 @@ struct MainView: View {
                         }
                     }
                     if isRecordHistory {
-                        if (UserDefaults.standard.stringArray(forKey: "WebHistory") != nil) ? (UserDefaults.standard.stringArray(forKey: "WebHistory")![UserDefaults.standard.stringArray(forKey: "WebHistory")!.count - 1] != (textOrURL.isURL() ? textOrURL : GetWebSearchedURL(textOrURL))) : true {
-                            UserDefaults.standard.set((textOrURL.isURL() ? [textOrURL] : [GetWebSearchedURL(textOrURL)]) + (UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()), forKey: "WebHistory")
-                        }
+                        RecordHistory(textOrURL, webSearch: webSearch)
                     }
                 }, label: {
                     HStack {
@@ -136,35 +163,6 @@ struct MainView: View {
                     }
                 })
                 .sheet(isPresented: $isBingSearchPresented, content: {BingSearchView()})
-                if isBulletinPresenting && isNewBulletinUnread {
-//                    NavigationLink(destination: {
-//                        BulletinView()
-//                    }, label: {
-//                        VStack(alignment: .center) {
-//                            HStack {
-//                                Spacer()
-//                                Label(BulletinTitle.isEmpty ? "新公告" : BulletinTitle, systemImage: "megaphone")
-//                                Spacer()
-//                            }
-//                            HStack {
-//                                Spacer()
-//                                Text("轻点标记为已阅")
-//                                    .font(.caption)
-//                                    .bold()
-//                                Spacer()
-//                            }
-//                            Spacer(minLength: 7)
-//                            HStack {
-//                                Spacer()
-//                                Text(BulletinContent)
-//                                    .font(.caption)
-//                                    .multilineTextAlignment(.center)
-//                                Spacer()
-//                            }
-//                        }
-//                        .padding()
-//                    })
-                }
             }
             Section {
                 NavigationLink(destination: {
@@ -185,17 +183,6 @@ struct MainView: View {
                         Spacer()
                     }
                 })
-                if isBulletinPresenting && !isNewBulletinUnread {
-                    NavigationLink(destination: {
-                        BulletinView()
-                    }, label: {
-                        HStack {
-                            Spacer()
-                            Label("公告", systemImage: "megaphone")
-                            Spacer()
-                        }
-                    })
-                }
                 if withSetting {
                     NavigationLink(destination: {
                         SettingsView()
@@ -207,33 +194,69 @@ struct MainView: View {
                         }
                     })
                 }
+                if isShowBetaTest {
+                    NavigationLink(destination: {MLTestsView()}, label: {
+                        HStack {
+                            Spacer()
+                            Label("Darock 邀请您参与测试", systemImage: "megaphone")
+                            Spacer()
+                        }
+                    })
+                }
+            }
+            if pinnedBookmarkIndexs.count != 0 {
+                Section {
+                    ForEach(0..<pinnedBookmarkIndexs.count, id: \.self) { i in
+                        Button(action: {
+                            let session = ASWebAuthenticationSession(
+                                url: URL(string: UserDefaults.standard.string(forKey: "BookmarkLink\(pinnedBookmarkIndexs[i])")!)!,
+                                callbackURLScheme: nil
+                            ) { _, _ in
+                                
+                            }
+                            session.prefersEphemeralWebBrowserSession = !isAllowCookie
+                            session.start()
+                            if isRecordHistory {
+                                RecordHistory(UserDefaults.standard.string(forKey: "BookmarkLink\(pinnedBookmarkIndexs[i])")!, webSearch: webSearch)
+                            }
+                        }, label: {
+                            Text(UserDefaults.standard.string(forKey: "BookmarkName\(pinnedBookmarkIndexs[i])") ?? "")
+                                .privacySensitive()
+                        })
+                    }
+                } header: {
+                    Text("已固定的书签")
+                }
             }
         }
         .navigationTitle("暗礁浏览器")
         .navigationBarTitleDisplayMode(.large)
-    }
-    
-    func GetWebSearchedURL(_ iUrl: String) -> String {
-        var wisu = ""
-        switch webSearch {
-        case "必应":
-            wisu = "https://www.bing.com/search?q=\(iUrl.urlEncoded())"
-            break
-        case "百度":
-            wisu = "https://www.baidu.com/s?wd=\(iUrl.urlEncoded())"
-            break
-        case "谷歌":
-            wisu = "https://www.google.com/search?q=\(iUrl.urlEncoded())"
-            break
-        case "搜狗":
-            wisu = "https://www.sogou.com/web?query=\(iUrl.urlEncoded())"
-            break
-        default:
-            wisu = "https://www.bing.com/search?q=\(iUrl.urlEncoded())"
-            break
+        .onAppear {
+            pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()
         }
-        return wisu
     }
+}
+
+func GetWebSearchedURL(_ iUrl: String, webSearch: String) -> String {
+    var wisu = ""
+    switch webSearch {
+    case "必应":
+        wisu = "https://www.bing.com/search?q=\(iUrl.urlEncoded())"
+        break
+    case "百度":
+        wisu = "https://www.baidu.com/s?wd=\(iUrl.urlEncoded())"
+        break
+    case "谷歌":
+        wisu = "https://www.google.com/search?q=\(iUrl.urlEncoded())"
+        break
+    case "搜狗":
+        wisu = "https://www.sogou.com/web?query=\(iUrl.urlEncoded())"
+        break
+    default:
+        wisu = "https://www.bing.com/search?q=\(iUrl.urlEncoded())"
+        break
+    }
+    return wisu
 }
 
 struct CookieTip: View {

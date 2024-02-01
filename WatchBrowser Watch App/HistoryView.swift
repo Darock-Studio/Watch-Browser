@@ -13,6 +13,7 @@ struct HistoryView: View {
     @AppStorage("AllowCookies") var AllowCookies = false
     @State var isSettingPresented = false
     @State var isStopRecordingPagePresenting = false
+    @State var histories = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
     var body: some View {
         List {
             Toggle("记录历史记录", isOn: $isHistoryRecording)
@@ -22,13 +23,9 @@ struct HistoryView: View {
                     }
                 })
                 .sheet(isPresented: $isStopRecordingPagePresenting, content: {CloseHistoryTipView()})
-//            .onTapGesture {
-//                isSettingPresented = true
-//            }
-//            .sheet(isPresented: $isSettingPresented, content: {historiesettingView()})
+
             Section {
                 if isHistoryRecording {
-                    let histories = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
                     if histories.count != 0 {
                         ForEach(0...histories.count - 1, id: \.self) { i in
                             Button(action: {
@@ -54,6 +51,14 @@ struct HistoryView: View {
                                 }
                             })
                             .privacySensitive()
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                Button(role: .destructive, action: {
+                                    histories.remove(at: i)
+                                    UserDefaults.standard.set(histories, forKey: "WebHistory")
+                                }, label: {
+                                    Image(systemName: "bin.xmark.fill")
+                                })
+                            }
                         }
                     } else {
                         Text("无历史记录")
@@ -66,6 +71,21 @@ struct HistoryView: View {
             }
         }
     }
+}
+
+func RecordHistory(_ inp: String, webSearch: String) {
+    var fullHistory = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
+    if let lstf = fullHistory.last {
+        guard lstf != inp && lstf != GetWebSearchedURL(inp, webSearch: webSearch) else {
+            return
+        }
+    }
+    if inp.isURL() {
+        fullHistory = [inp.urlEncoded()] + fullHistory
+    } else {
+        fullHistory = [GetWebSearchedURL(inp, webSearch: webSearch)] + fullHistory
+    }
+    UserDefaults.standard.set(fullHistory, forKey: "WebHistory")
 }
 
 struct historiesettingView: View {

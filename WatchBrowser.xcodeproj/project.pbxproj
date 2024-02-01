@@ -10,8 +10,9 @@
 		6B0253D82A4EFB0100567986 /* DarockKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6B0253D72A4EFB0100567986 /* DarockKit */; };
 		6B0253DA2A4F02A500567986 /* BingSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0253D92A4F02A500567986 /* BingSearchView.swift */; };
 		6B6DA6B72A0149EF00BBE6CA /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6DA6B62A0149EF00BBE6CA /* HistoryView.swift */; };
+		6B7CA9052ABE7C05006FDCDA /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6B7CA9042ABE7C05006FDCDA /* Localizable.xcstrings */; };
 		6BA7F7A02A2F6FC600FFEED0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7F79F2A2F6FC600FFEED0 /* SettingsView.swift */; };
-		6BF209EF2990E61C00E623FC /* 抬腕浏览器.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6BF209EE2990E61C00E623FC /* 抬腕浏览器.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6BF209EF2990E61C00E623FC /* 暗礁浏览器.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6BF209EE2990E61C00E623FC /* 暗礁浏览器.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6BF209F42990E61C00E623FC /* WatchBrowserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF209F32990E61C00E623FC /* WatchBrowserApp.swift */; };
 		6BF209F62990E61C00E623FC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF209F52990E61C00E623FC /* ContentView.swift */; };
 		6BF209F82990E61E00E623FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BF209F72990E61E00E623FC /* Assets.xcassets */; };
@@ -19,6 +20,8 @@
 		6BF20A0A299100AE00E623FC /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF20A09299100AE00E623FC /* BookmarkView.swift */; };
 		6BF20A0D2991302C00E623FC /* ExtKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF20A0C2991302C00E623FC /* ExtKeyboardView.swift */; };
 		6BFFCC562A8A6CF3001175EE /* DarockKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6BFFCC552A8A6CF3001175EE /* DarockKit */; };
+		8CA4537B2AE3C5F600138CE4 /* EFQRCode in Frameworks */ = {isa = PBXBuildFile; productRef = 8CA4537A2AE3C5F600138CE4 /* EFQRCode */; };
+		8CA4537D2AE3C63900138CE4 /* MLTestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4537C2AE3C63900138CE4 /* MLTestsView.swift */; };
 		E296FE022A459C5D00331BD4 /* BulletinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E296FE012A459C5D00331BD4 /* BulletinView.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +42,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				6BF209EF2990E61C00E623FC /* 抬腕浏览器.app in Embed Watch Content */,
+				6BF209EF2990E61C00E623FC /* 暗礁浏览器.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,15 +62,17 @@
 /* Begin PBXFileReference section */
 		6B0253D92A4F02A500567986 /* BingSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingSearchView.swift; sourceTree = "<group>"; };
 		6B6DA6B62A0149EF00BBE6CA /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		6B7CA9042ABE7C05006FDCDA /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		6BA7F79F2A2F6FC600FFEED0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6BF209E82990E61C00E623FC /* WatchBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6BF209EE2990E61C00E623FC /* 抬腕浏览器.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "抬腕浏览器.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BF209EE2990E61C00E623FC /* 暗礁浏览器.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "暗礁浏览器.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BF209F32990E61C00E623FC /* WatchBrowserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchBrowserApp.swift; sourceTree = "<group>"; };
 		6BF209F52990E61C00E623FC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6BF209F72990E61E00E623FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6BF209FA2990E61E00E623FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6BF20A09299100AE00E623FC /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
 		6BF20A0C2991302C00E623FC /* ExtKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtKeyboardView.swift; sourceTree = "<group>"; };
+		8CA4537C2AE3C63900138CE4 /* MLTestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLTestsView.swift; sourceTree = "<group>"; };
 		E296FE012A459C5D00331BD4 /* BulletinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +83,7 @@
 			files = (
 				6B0253D82A4EFB0100567986 /* DarockKit in Frameworks */,
 				6BFFCC562A8A6CF3001175EE /* DarockKit in Frameworks */,
+				8CA4537B2AE3C5F600138CE4 /* EFQRCode in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				6BF209E82990E61C00E623FC /* WatchBrowser.app */,
-				6BF209EE2990E61C00E623FC /* 抬腕浏览器.app */,
+				6BF209EE2990E61C00E623FC /* 暗礁浏览器.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,6 +117,7 @@
 		6BF209F22990E61C00E623FC /* WatchBrowser Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				6B7CA9042ABE7C05006FDCDA /* Localizable.xcstrings */,
 				6BF209F32990E61C00E623FC /* WatchBrowserApp.swift */,
 				6BF209F52990E61C00E623FC /* ContentView.swift */,
 				6B0253D92A4F02A500567986 /* BingSearchView.swift */,
@@ -119,6 +126,7 @@
 				6B6DA6B62A0149EF00BBE6CA /* HistoryView.swift */,
 				6BF20A0C2991302C00E623FC /* ExtKeyboardView.swift */,
 				6BA7F79F2A2F6FC600FFEED0 /* SettingsView.swift */,
+				8CA4537C2AE3C63900138CE4 /* MLTestsView.swift */,
 				6BF209F72990E61E00E623FC /* Assets.xcassets */,
 				6BF209F92990E61E00E623FC /* Preview Content */,
 			);
@@ -171,9 +179,10 @@
 			packageProductDependencies = (
 				6B0253D72A4EFB0100567986 /* DarockKit */,
 				6BFFCC552A8A6CF3001175EE /* DarockKit */,
+				8CA4537A2AE3C5F600138CE4 /* EFQRCode */,
 			);
 			productName = "WatchBrowser Watch App";
-			productReference = 6BF209EE2990E61C00E623FC /* 抬腕浏览器.app */;
+			productReference = 6BF209EE2990E61C00E623FC /* 暗礁浏览器.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -184,7 +193,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					6BF209E72990E61C00E623FC = {
 						CreatedOnToolsVersion = 14.2;
@@ -201,10 +210,12 @@
 			knownRegions = (
 				Base,
 				"zh-Hans",
+				en,
 			);
 			mainGroup = 6BF209E12990E61C00E623FC;
 			packageReferences = (
 				6BFFCC542A8A6CF3001175EE /* XCRemoteSwiftPackageReference "DarockKit" */,
+				8CA453792AE3C5F600138CE4 /* XCRemoteSwiftPackageReference "EFQRCode" */,
 			);
 			productRefGroup = 6BF209E92990E61C00E623FC /* Products */;
 			projectDirPath = "";
@@ -230,6 +241,7 @@
 			files = (
 				6BF209FB2990E61E00E623FC /* Preview Assets.xcassets in Resources */,
 				6BF209F82990E61E00E623FC /* Assets.xcassets in Resources */,
+				6B7CA9052ABE7C05006FDCDA /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +258,7 @@
 				6B6DA6B72A0149EF00BBE6CA /* HistoryView.swift in Sources */,
 				6BF20A0A299100AE00E623FC /* BookmarkView.swift in Sources */,
 				6BF209F62990E61C00E623FC /* ContentView.swift in Sources */,
+				8CA4537D2AE3C63900138CE4 /* MLTestsView.swift in Sources */,
 				6BF209F42990E61C00E623FC /* WatchBrowserApp.swift in Sources */,
 				6BF20A0D2991302C00E623FC /* ExtKeyboardView.swift in Sources */,
 			);
@@ -266,6 +279,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -299,6 +313,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -327,6 +342,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -360,6 +376,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -396,10 +413,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 3.2.0;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
-				PRODUCT_NAME = "抬腕浏览器";
+				PRODUCT_NAME = "暗礁浏览器";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -428,10 +445,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 3.2.0;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
-				PRODUCT_NAME = "抬腕浏览器";
+				PRODUCT_NAME = "暗礁浏览器";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -450,7 +467,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B57D8PP775;
 				INFOPLIST_KEY_CFBundleDisplayName = WatchBrowser;
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 3.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -466,7 +483,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B57D8PP775;
 				INFOPLIST_KEY_CFBundleDisplayName = WatchBrowser;
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 3.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -516,6 +533,14 @@
 				kind = branch;
 			};
 		};
+		8CA453792AE3C5F600138CE4 /* XCRemoteSwiftPackageReference "EFQRCode" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EFPrefix/EFQRCode";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.2.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -527,6 +552,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6BFFCC542A8A6CF3001175EE /* XCRemoteSwiftPackageReference "DarockKit" */;
 			productName = DarockKit;
+		};
+		8CA4537A2AE3C5F600138CE4 /* EFQRCode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CA453792AE3C5F600138CE4 /* XCRemoteSwiftPackageReference "EFQRCode" */;
+			productName = EFQRCode;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
