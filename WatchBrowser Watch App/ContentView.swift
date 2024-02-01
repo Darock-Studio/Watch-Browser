@@ -43,6 +43,7 @@ struct MainView: View {
     @AppStorage("IsRecordHistory") var isRecordHistory = true
     @AppStorage("ModifyKeyboard") var ModifyKeyboard = false
     @AppStorage("IsShowBetaTest1") var isShowBetaTest = true
+    @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
     @State var textOrURL = ""
     @State var goToButtonLabelText: LocalizedStringKey = "Home.search"
     @State var isKeyboardPresented = false
@@ -62,7 +63,21 @@ struct MainView: View {
                                 if textOrURL.isURL() {
                                     goToButtonLabelText = "Home.go"
                                 } else {
-                                    goToButtonLabelText = "Home.search"
+                                    if isSearchEngineShortcutEnabled {
+                                        if textOrURL.hasPrefix("bing") {
+                                            goToButtonLabelText = "通过必应搜索"
+                                        } else if textOrURL.hasPrefix("baidu") {
+                                            goToButtonLabelText = "通过百度搜索"
+                                        } else if textOrURL.hasPrefix("google") {
+                                            goToButtonLabelText = "通过谷歌搜索"
+                                        } else if textOrURL.hasPrefix("sogou") {
+                                            goToButtonLabelText = "通过搜狗搜索"
+                                        } else {
+                                            goToButtonLabelText = "Home.search"
+                                        }
+                                    } else {
+                                        goToButtonLabelText = "Home.search"
+                                    }
                                 }
                             })
                     } else {
@@ -85,7 +100,21 @@ struct MainView: View {
                             if value.isURL() {
                                 goToButtonLabelText = "Home.go"
                             } else {
-                                goToButtonLabelText = "Home.search"
+                                if isSearchEngineShortcutEnabled {
+                                    if value.hasPrefix("bing") {
+                                        goToButtonLabelText = "通过必应搜索"
+                                    } else if value.hasPrefix("baidu") {
+                                        goToButtonLabelText = "通过百度搜索"
+                                    } else if value.hasPrefix("google") {
+                                        goToButtonLabelText = "通过谷歌搜索"
+                                    } else if value.hasPrefix("sogou") {
+                                        goToButtonLabelText = "通过搜狗搜索"
+                                    } else {
+                                        goToButtonLabelText = "Home.search"
+                                    }
+                                } else {
+                                    goToButtonLabelText = "Home.search"
+                                }
                             }
                         })
                     }
@@ -115,7 +144,7 @@ struct MainView: View {
                             if textOrURL.isURL() {
                                 userdefault.set((textOrURL.hasPrefix("https://") || textOrURL.hasPrefix("http://")) ? textOrURL.urlEncoded() : "http://" + textOrURL.urlEncoded(), forKey: "BookmarkLink\(total)")
                             } else {
-                                userdefault.set(GetWebSearchedURL(textOrURL, webSearch: webSearch).urlEncoded(), forKey: "BookmarkLink\(total)")
+                                userdefault.set(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled).urlEncoded(), forKey: "BookmarkLink\(total)")
                             }
                             userdefault.set(total, forKey: "BookmarkTotal")
                         }, label: {
@@ -151,7 +180,7 @@ struct MainView: View {
                             isBingSearchPresented = true
                         } else {
                             let session = ASWebAuthenticationSession(
-                                url: URL(string: GetWebSearchedURL(textOrURL, webSearch: webSearch))!,
+                                url: URL(string: GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled))!,
                                 callbackURLScheme: nil
                             ) { _, _ in
                                 
@@ -246,8 +275,19 @@ struct MainView: View {
     }
 }
 
-func GetWebSearchedURL(_ iUrl: String, webSearch: String) -> String {
+func GetWebSearchedURL(_ iUrl: String, webSearch: String, isSearchEngineShortcutEnabled: Bool) -> String {
     var wisu = ""
+    if isSearchEngineShortcutEnabled {
+        if iUrl.hasPrefix("bing") {
+            return "https://www.bing.com/search?q=\(iUrl.urlEncoded().dropFirst(4))"
+        } else if iUrl.hasPrefix("baidu") {
+            return "https://www.baidu.com/s?wd=\(iUrl.urlEncoded().dropFirst(5))"
+        } else if iUrl.hasPrefix("google") {
+            return "https://www.google.com/search?q=\(iUrl.urlEncoded().dropFirst(6))"
+        } else if iUrl.hasPrefix("sogou") {
+            return "https://www.sogou.com/web?query=\(iUrl.urlEncoded().dropFirst(5))"
+        }
+    }
     switch webSearch {
     case "必应":
         wisu = "https://www.bing.com/search?q=\(iUrl.urlEncoded())"
@@ -262,7 +302,7 @@ func GetWebSearchedURL(_ iUrl: String, webSearch: String) -> String {
         wisu = "https://www.sogou.com/web?query=\(iUrl.urlEncoded())"
         break
     default:
-        wisu = "https://www.bing.com/search?q=\(iUrl.urlEncoded())"
+        wisu = webSearch.replacingOccurrences(of: "%lld", with: iUrl.urlEncoded())
         break
     }
     return wisu
