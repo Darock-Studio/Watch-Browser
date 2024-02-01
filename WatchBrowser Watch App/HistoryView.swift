@@ -16,7 +16,7 @@ struct HistoryView: View {
     @State var histories = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
     var body: some View {
         List {
-            Toggle("记录历史记录", isOn: $isHistoryRecording)
+            Toggle("History.record", isOn: $isHistoryRecording)
                 .onChange(of: isHistoryRecording, perform: { e in
                     if !e {
                         isStopRecordingPagePresenting = true
@@ -61,11 +61,11 @@ struct HistoryView: View {
                             }
                         }
                     } else {
-                        Text("无历史记录")
+                        Text("History.nothing")
                             .foregroundColor(.gray)
                     }
                 } else {
-                    Text("未开启记录")
+                    Text("History.not-recording")
                         .foregroundColor(.gray)
                 }
             }
@@ -93,11 +93,11 @@ struct historiesettingView: View {
     @State var isClosePagePresented = false
     var body: some View {
         List {
-            Text("历史记录选项")
+            Text("History.settings")
                 .fontWeight(.bold)
                 .font(.system(size: 20))
             Section {
-                Toggle("记录历史记录", isOn: $isHistoryRecording)
+                Toggle("History.record", isOn: $isHistoryRecording)
                     .onChange(of: isHistoryRecording, perform: { e in
                         if !e {
                             isClosePagePresented = true
@@ -109,7 +109,7 @@ struct historiesettingView: View {
                 Button(role: .destructive, action: {
                     UserDefaults.standard.set([String](), forKey: "WebHistory")
                 }, label: {
-                    Text("清空历史记录")
+                    Text("History.clear")
                 })
             }
         }
@@ -120,20 +120,20 @@ struct CloseHistoryTipView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var body: some View {
         ScrollView {
-            Text("关闭历史记录")
+            Text("History.turn-off")
                 .fontWeight(.bold)
                 .font(.system(size: 20))
-            Text("要在关闭历史记录的同时清空列表吗？")
+            Text("History.clear-history-at-the-same-time")
             Button(role: .destructive, action: {
                 UserDefaults.standard.set([String](), forKey: "WebHistory")
                 self.presentationMode.wrappedValue.dismiss()
             }, label: {
-                Label("清空", systemImage: "trash.fill")
+                Label("History.clear", systemImage: "trash.fill")
             })
             Button(role: .cancel, action: {
                 self.presentationMode.wrappedValue.dismiss()
             }, label: {
-                Label("保留", systemImage: "arrow.down.doc.fill")
+                Label("History.save", systemImage: "arrow.down.doc.fill")
             })
         }
     }

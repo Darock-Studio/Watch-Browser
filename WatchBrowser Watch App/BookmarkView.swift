@@ -25,7 +25,7 @@ struct BookmarkView: View {
                 }, label: {
                     HStack {
                         Spacer()
-                        Label("添加书签", systemImage: "plus")
+                        Label("Bookmark.add", systemImage: "plus")
                         Spacer()
                     }
                 })
@@ -114,8 +114,8 @@ struct AddBookmarkView: View {
     var body: some View {
         ScrollView {
             VStack {
-                TextField("书签名称", text: $markName)
-                TextField("书签链接", text: $markLink)
+                TextField("Bookmark.name", text: $markName)
+                TextField("Bookmark.link", text: $markLink)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                 Button(action: {
@@ -126,7 +126,7 @@ struct AddBookmarkView: View {
                     userdefault.set(total, forKey: "BookmarkTotal")
                     self.presentationMode.wrappedValue.dismiss()
                 }, label: {
-                    Label("添加", systemImage: "plus")
+                    Label("Bookmark.add", systemImage: "plus")
                 })
             }
         }
@@ -140,10 +140,10 @@ struct EditBookmarkView: View {
     var body: some View {
         ScrollView {
             VStack {
-                Text("编辑书签")
+                Text("Bookmark.edit")
                     .font(.system(size: 18, weight: .bold))
-                TextField("书签名称", text: $markName)
-                TextField("书签链接", text: $markLink)
+                TextField("Bookmark.name", text: $markName)
+                TextField("Bookmark.link", text: $markLink)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                 Button(action: {
@@ -152,7 +152,7 @@ struct EditBookmarkView: View {
                     userdefault.set(markLink.hasPrefix("https://") || markLink.hasPrefix("http://") ? markLink.urlEncoded() : "http://" + markLink.urlEncoded(), forKey: "BookmarkLink\(BookmarkView.editingBookmarkIndex)")
                     dismiss()
                 }, label: {
-                    Label("完成", systemImage: "checkmark")
+                    Label("Bookmark.finish", systemImage: "checkmark")
                 })
             }
         }

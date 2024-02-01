@@ -102,7 +102,7 @@ struct ExtKeyboardView: View {
                     if #available(watchOS 10.0, *) {
                         Image(systemName: "checkmark")
                     } else {
-                        Text("完成")
+                        Text("Keybord.finish")
                     }
                 })
             })
@@ -319,7 +319,7 @@ struct BottomLine: View {
             Button(action: {
                 onTap(" ")
             }, label: {
-                Text("空格")
+                Text("Keyboard.space")
             })
             //支持长按
         }      .buttonStyle(.plain)

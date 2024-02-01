@@ -23,23 +23,24 @@ struct SettingsView: View {
         case google = "谷歌"
         case sougou = "搜狗"
     }
+    let engineTitle = ["必应": String(localized: "Search.bing"), "百度": String(localized: "Search.baidu"), "谷歌": String(localized: "Search.google"), "搜狗": String(localized: "Search.sougou")]
     var body: some View {
         if #available(watchOS 10.0, *) {
             NavigationStack {
                 Form {
                     Section {
-                        Picker(selection: $webSearch, label: Text("搜索引擎")) {
-                            ForEach(EngineNames.allCases, id: \.self) {EngineNames in
-                                Text(EngineNames.rawValue).tag(EngineNames.rawValue)
+                        Picker(selection: $webSearch, label: Text("Settings.search.engine")) {
+                            ForEach(EngineNames.allCases, id: \.self) { engineNames in
+                                Text(engineTitle[engineNames.rawValue]!).tag(engineNames.rawValue)
                             }
                         }
                         NavigationLink(destination: {CustomSearchEngineSettingsView()}, label: {
                             Text("自定搜索引擎")
                         })
                     } header: {
-                        Text("搜索")
+                        Text("Settings.search")
                     }
-                    .navigationTitle("搜索")
+                    .navigationTitle("Settings.search")
                     .navigationBarTitleDisplayMode(.inline)
                     Section {
                         NavigationLink(destination: {SearchEngineShortcutSettingsView()}, label: {
@@ -50,38 +51,38 @@ struct SettingsView: View {
                     .navigationBarTitleDisplayMode(.inline)
                     Section {
                         Toggle(isOn: $ModifyKeyboard) {
-                            Text("第三方全键盘")
+                            Text("Settings.keyboard.third-party")
                         }
                         Button(action: {
                             isKeyboardPresented = true
                         }, label: {
-                            Label("预览…", systemImage: "keyboard.badge.eye")
+                            Label("Settings.keyboard.preview", systemImage: "keyboard.badge.eye")
                         })
                         .sheet(isPresented: $isKeyboardPresented, content: {
                             ExtKeyboardView(startText: "") { _ in }
                         })
                     } header: {
-                        Text("键盘")
+                        Text("Settings.keyboard")
                     } footer: {
-                        Text("该键盘为不支持系统全键盘的Watch开发了一套全键盘英文输入法")
+                        Text("Settings.keyboard.discription")
                     }
-                    .navigationTitle("键盘")
+                    .navigationTitle("Settings.keyboard")
                     .navigationBarTitleDisplayMode(.inline)
                     .onChange(of: ModifyKeyboard) {
 //                        KeyboardChanged = true
                     }
                     .alert(isPresented: $KeyboardChanged) {
                         Alert(
-                            title: Text("直到App关闭前，键盘更改不会生效。"),
-                            message: Text("您可以选择现在关闭App，或者稍后自行关闭App。"),
+                            title: Text("Settings.keyboard.alert.title"),
+                            message: Text("Settings.keyboard.alert.details"),
                             primaryButton: .destructive(
-                                Text("现在关闭"),
+                                Text("Settings.keyboard.alert.close-now"),
                                 action: {
                                     exit(0)
                                 }
                             ),
                             secondaryButton: .cancel(
-                                Text("稍后"),
+                                Text("Settings.keyboard.alert.later"),
                                 action: {
                                     Dismiss()
                                 }
@@ -91,28 +92,28 @@ struct SettingsView: View {
                     Section {
                         Toggle(isOn: $AllowCookies) {
                             VStack(alignment: .leading) {
-                                Text("允许Cookie")
-                                Text("Cookie被用来标记登录信息等内容")
+                                Text("Settings.cookies.allow")
+                                Text("Settings.cookies.description")
                                     .foregroundStyle(.secondary)
                                     .font(.caption2)
                             }
                         }
                         HStack(alignment: .center) {
                             Image(systemName: "hand.raised.fill")
-                            Text("Darock无法知晓或查看任何网页信息")
+                            Text("Settings.cookies.privacy")
                         }
                         HStack(alignment: .center) {
                             Image(systemName: "exclamationmark.triangle")
-                            Text("启用Cookie后，访问网页前可能会出现弹窗")
+                            Text("Settings.cookies.pop-up")
                         }
                         HStack(alignment: .center) {
                             Image(systemName: "minus.diamond")
-                            Text("由于 watchOS 的限制, 可能无法允许所有 Cookie")
+                            Text("Settings.cookies.limitation")
                         }
                     } header: {
-                        Text("Cookie")
+                        Text("Settings.cookies")
                     }
-                    .navigationTitle("Cookie")
+                    .navigationTitle("Settings.cookies")
                     .navigationBarTitleDisplayMode(.inline)
                 }
 //                .tabViewStyle(.verticalPage)
@@ -124,54 +125,54 @@ struct SettingsView: View {
 //                        Toggle(isOn: $isUsingBingAPI) {
 //                            Text("使用Bing API搜索")
 //                        }
-                        Picker(selection: $webSearch, label: Text("搜索引擎")) {
+                        Picker(selection: $webSearch, label: Text("Settings.search.engine")) {
                             ForEach(EngineNames.allCases, id: \.self) {EngineNames in
                                 Text(EngineNames.rawValue).tag(EngineNames.rawValue)
                             }
                         }
                         .disabled(isUsingBingAPI)
                     } header: {
-                        Text("搜索")
+                        Text("Settings.search")
                     }
-                    .navigationTitle("搜索")
+                    .navigationTitle("Settings.search")
                     .navigationBarTitleDisplayMode(.inline)
                     
                     
                     
                     Section {
                         Toggle(isOn: $ModifyKeyboard) {
-                            Text("第三方全键盘")
+                            Text("Settings.keyboard.third-party")
                         }
                         Button(action: {
                             isKeyboardPresented = true
                         }, label: {
-                            Label("预览…", systemImage: "keyboard.badge.eye")
+                            Label("Settings.keyboard.preview", systemImage: "keyboard.badge.eye")
                         })
                         .sheet(isPresented: $isKeyboardPresented, content: {
                             ExtKeyboardView(startText: "") { _ in }
                         })
                     } header: {
-                        Text("键盘")
+                        Text("Settings.keyboard")
                     } footer: {
-                        Text("该键盘为不支持系统全键盘的Watch开发了一套全键盘英文输入法")
+                        Text("Settings.keyboard.discription")
                     }
-                    .navigationTitle("键盘")
+                    .navigationTitle("Settings.keyboard")
                     .navigationBarTitleDisplayMode(.inline)
 //                    .onChange(of: ModifyKeyboard) {
 //                        KeyboardChanged = true
 //                    }
                     .alert(isPresented: $KeyboardChanged) {
                         Alert(
-                            title: Text("直到App关闭前，键盘更改不会生效。"),
-                            message: Text("您可以选择现在关闭App，或者稍后自行关闭App。"),
+                            title: Text("Settings.keyboard.alert.title"),
+                            message: Text("Settings.keyboard.alert.details"),
                             primaryButton: .destructive(
-                                Text("现在关闭"),
+                                Text("Settings.keyboard.alert.close-now"),
                                 action: {
                                     exit(0)
                                 }
                             ),
                             secondaryButton: .cancel(
-                                Text("稍后"),
+                                Text("Settings.keyboard.alert.later"),
                                 action: {
                                     Dismiss()
                                 }
@@ -184,28 +185,28 @@ struct SettingsView: View {
                     Section {
                         Toggle(isOn: $AllowCookies) {
                             VStack(alignment: .leading) {
-                                Text("允许Cookie")
-                                Text("Cookie被用来标记登录信息等内容")
+                                Text("Settings.cookies.allow")
+                                Text("Settings.cookies.description")
                                     .foregroundStyle(.secondary)
                                     .font(.caption2)
                             }
                         }
                         HStack(alignment: .center) {
                             Image(systemName: "hand.raised.fill")
-                            Text("Darock无法知晓或查看任何网页信息")
+                            Text("Settings.cookies.privacy")
                         }
                         HStack(alignment: .center) {
                             Image(systemName: "exclamationmark.triangle")
-                            Text("启用Cookie后，访问网页前可能会出现弹窗")
+                            Text("Settings.cookies.pop-up")
                         }
                         HStack(alignment: .center) {
                             Image(systemName: "minus.diamond")
-                            Text("由于 watchOS 的限制, 可能无法允许所有 Cookie")
+                            Text("Settings.cookies.limitation")
                         }
                     } header: {
-                        Text("Cookie")
+                        Text("Settings.cookies")
                     }
-                    .navigationTitle("Cookie")
+                    .navigationTitle("Settings.cookies")
                     .navigationBarTitleDisplayMode(.inline)
                 }
             }

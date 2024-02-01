@@ -44,7 +44,7 @@ struct MainView: View {
     @AppStorage("ModifyKeyboard") var ModifyKeyboard = false
     @AppStorage("IsShowBetaTest1") var isShowBetaTest = true
     @State var textOrURL = ""
-    @State var goToButtonLabelText: LocalizedStringKey = "搜索"
+    @State var goToButtonLabelText: LocalizedStringKey = "Home.search"
     @State var isKeyboardPresented = false
     @State var isCookieTipPresented = false
     @State var isBingSearchPresented = false
@@ -54,15 +54,15 @@ struct MainView: View {
             Section {
                 Group {
                     if !ModifyKeyboard {
-                        TextField("搜索或输入网址", text: $textOrURL)
+                        TextField("Home.search-or-URL", text: $textOrURL)
                             .autocorrectionDisabled()
                             .textInputAutocapitalization(.never)
                             .privacySensitive()
                             .onSubmit({
                                 if textOrURL.isURL() {
-                                    goToButtonLabelText = "前往"
+                                    goToButtonLabelText = "Home.go"
                                 } else {
-                                    goToButtonLabelText = "搜索"
+                                    goToButtonLabelText = "Home.search"
                                 }
                             })
                     } else {
@@ -70,8 +70,8 @@ struct MainView: View {
                             isKeyboardPresented = true
                         }, label: {
                             HStack {
-                                Text(textOrURL != "" ? textOrURL : "搜索或输入网址")
-                                    .foregroundColor(textOrURL == "" ? Color.gray : Color.white)
+                                Text(!textOrURL.isEmpty ? textOrURL : String(localized: "Home.search-or-URL"))
+                                    .foregroundColor(textOrURL.isEmpty ? Color.gray : Color.white)
                                     .privacySensitive()
                                 Spacer()
                             }
@@ -83,9 +83,9 @@ struct MainView: View {
                         })
                         .onChange(of: textOrURL, perform: { value in
                             if value.isURL() {
-                                goToButtonLabelText = "前往"
+                                goToButtonLabelText = "Home.go"
                             } else {
-                                goToButtonLabelText = "搜索"
+                                goToButtonLabelText = "Home.search"
                             }
                         })
                     }
@@ -166,7 +166,7 @@ struct MainView: View {
                 }, label: {
                     HStack {
                         Spacer()
-                        Label(goToButtonLabelText, systemImage: goToButtonLabelText == "搜索" ? "magnifyingglass" : "globe")
+                        Label(goToButtonLabelText, systemImage: goToButtonLabelText == "Home.search" ? "magnifyingglass" : "globe")
                             .font(.system(size: 18))
                         Spacer()
                     }
@@ -179,7 +179,7 @@ struct MainView: View {
                 }, label: {
                     HStack {
                         Spacer()
-                        Label("书签", systemImage: "bookmark")
+                        Label("Home.bookmarks", systemImage: "bookmark")
                         Spacer()
                     }
                 })
@@ -188,7 +188,7 @@ struct MainView: View {
                 }, label: {
                     HStack {
                         Spacer()
-                        Label("历史记录", systemImage: "clock")
+                        Label("Home.history", systemImage: "clock")
                         Spacer()
                     }
                 })
@@ -198,7 +198,7 @@ struct MainView: View {
                     }, label: {
                         HStack {
                             Spacer()
-                            Label("设置", systemImage: "gear")
+                            Label("Home.settings", systemImage: "gear")
                             Spacer()
                         }
                     })
@@ -207,7 +207,7 @@ struct MainView: View {
                     NavigationLink(destination: {MLTestsView()}, label: {
                         HStack {
                             Spacer()
-                            Label("Darock 邀请您参与测试", systemImage: "megaphone")
+                            Label("Home.invatation", systemImage: "megaphone")
                             Spacer()
                         }
                     })
@@ -234,11 +234,11 @@ struct MainView: View {
                         })
                     }
                 } header: {
-                    Text("已固定的书签")
+                    Text("Home.bookmarks.pinned")
                 }
             }
         }
-        .navigationTitle("暗礁浏览器")
+        .navigationTitle("Home.title")
         .navigationBarTitleDisplayMode(.large)
         .onAppear {
             pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()
@@ -268,47 +268,6 @@ func GetWebSearchedURL(_ iUrl: String, webSearch: String) -> String {
     return wisu
 }
 
-struct CookieTip: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @AppStorage("IsAllowCookie") var isAllowCookie = false
-    var body: some View {
-        ScrollView {
-            VStack {
-                Text("开启Cookie后，每次访问网页前会出现如下页面，是否开启？")
-                Group {
-                    Spacer()
-                        .frame(height: 26)
-                    Text("“暗礁浏览器”想要使用“example.com”登录")
-                        .fontWeight(.bold)
-                    Text("这将允许App和网站共享你的信息。")
-                    Button(action: {}, label: {
-                        Text("取消")
-                    })
-                    .disabled(true)
-                    Button(action: {}, label: {
-                        Text("继续")
-                    })
-                    .disabled(true)
-                    Spacer()
-                        .frame(height: 26)
-                }
-                Button(action: {
-                    isAllowCookie = true
-                    self.presentationMode.wrappedValue.dismiss()
-                }, label: {
-                    Text("开启")
-                })
-                Button(action: {
-                    isAllowCookie = false
-                    self.presentationMode.wrappedValue.dismiss()
-                }, label: {
-                    Text("不开启")
-                })
-                Text("Darock 以及暗礁浏览器不会收集您的 Cookie 信息，所有信息均由 watchOS 处理。")
-            }
-        }
-    }
-}
 
 extension String {
     //将原始的url编码为合法的url
