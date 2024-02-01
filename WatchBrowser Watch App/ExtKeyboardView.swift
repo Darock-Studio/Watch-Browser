@@ -189,7 +189,7 @@ struct TextDisplayView: View {
                             Color.accentColor
                                 .frame(width: 3, height: 26)
                                 .cornerRadius(3)
-                                .matchedGeometryEffect(id: /*@START_MENU_TOKEN@*/"ID"/*@END_MENU_TOKEN@*/, in: MYcursor)
+                                .matchedGeometryEffect(id: "ID", in: MYcursor)
                                 .id("光标")
                         }
                         Color.black
