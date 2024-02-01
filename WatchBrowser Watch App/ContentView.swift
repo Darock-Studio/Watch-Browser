@@ -90,7 +90,7 @@ struct MainView: View {
                         })
                     }
                 }
-                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                .swipeActions(edge: .leading, allowsFullSwipe: true) {
                     if #available(watchOS 9, *), textOrURL != "" {
                         Button(action: {
                             let userdefault = UserDefaults.standard
@@ -120,6 +120,15 @@ struct MainView: View {
                             userdefault.set(total, forKey: "BookmarkTotal")
                         }, label: {
                             Image(systemName: "bookmark.fill")
+                        })
+                    }
+                }
+                .swipeActions {
+                    if textOrURL != "" {
+                        Button(role: .destructive, action: {
+                            textOrURL = ""
+                        }, label: {
+                            Image(systemName: "xmark.bin.fill")
                         })
                     }
                 }
