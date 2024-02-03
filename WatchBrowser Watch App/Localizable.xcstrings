@@ -555,6 +555,16 @@
 
     },
     "Search.sougou" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜狗"
+          }
+        }
+      }
+    },
+    "Setting.search.customize" : {
 
     },
     "Settings.cookies" : {
@@ -835,9 +845,6 @@
 
     },
     "滚动数码表冠, 将光标移动到应当插入搜索词的位置." : {
-
-    },
-    "自定搜索引擎" : {
 
     },
     "输入您要自定的搜索引擎的搜索链接,如“bing.com?q=”.要填充搜索内容的位置请暂时留空" : {

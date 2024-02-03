@@ -35,7 +35,7 @@ struct SettingsView: View {
                             }
                         }
                         NavigationLink(destination: {CustomSearchEngineSettingsView()}, label: {
-                            Text("自定搜索引擎")
+                            Text("Setting.search.customize")
                         })
                     } header: {
                         Text("Settings.search")
