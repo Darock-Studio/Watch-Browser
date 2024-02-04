@@ -212,6 +212,10 @@ struct SettingsView: View {
                         }
                         .navigationTitle("Settings.cookies")
                         .navigationBarTitleDisplayMode(.inline)
+
+                        Section {
+                            Text("欢迎加入QQ交流群 248036605")
+                        }
                     }
                 }
             }
