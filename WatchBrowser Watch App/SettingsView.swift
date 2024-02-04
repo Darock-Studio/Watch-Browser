@@ -123,6 +123,10 @@ struct SettingsView: View {
                         }
                         .navigationTitle("Settings.cookies")
                         .navigationBarTitleDisplayMode(.inline)
+                        
+                        Section {
+                            Text("Settings.invatation")
+                        }
                     }
                 }
             } else {
@@ -214,7 +218,7 @@ struct SettingsView: View {
                         .navigationBarTitleDisplayMode(.inline)
 
                         Section {
-                            Text("欢迎加入QQ交流群 248036605")
+                            Text("Settings.invatation")
                         }
                     }
                 }

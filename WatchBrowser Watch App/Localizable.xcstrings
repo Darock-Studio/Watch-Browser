@@ -817,6 +817,22 @@
         }
       }
     },
+    "Settings.invatation" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to our international community: https://t.me/drkcomu"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "欢迎加入QQ交流群 248036605"
+          }
+        }
+      }
+    },
     "Settings.keyboard" : {
       "localizations" : {
         "en" : {
