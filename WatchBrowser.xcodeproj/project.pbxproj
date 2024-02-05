@@ -22,6 +22,7 @@
 		6BFFCC562A8A6CF3001175EE /* DarockKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6BFFCC552A8A6CF3001175EE /* DarockKit */; };
 		8CA4537B2AE3C5F600138CE4 /* EFQRCode in Frameworks */ = {isa = PBXBuildFile; productRef = 8CA4537A2AE3C5F600138CE4 /* EFQRCode */; };
 		8CA4537D2AE3C63900138CE4 /* MLTestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4537C2AE3C63900138CE4 /* MLTestsView.swift */; };
+		E25EA8382B70ABEF00BFEC6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E25EA83A2B70ABEF00BFEC6E /* InfoPlist.strings */; };
 		E296FE022A459C5D00331BD4 /* BulletinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E296FE012A459C5D00331BD4 /* BulletinView.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,8 @@
 		6BF20A09299100AE00E623FC /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
 		6BF20A0C2991302C00E623FC /* ExtKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtKeyboardView.swift; sourceTree = "<group>"; };
 		8CA4537C2AE3C63900138CE4 /* MLTestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLTestsView.swift; sourceTree = "<group>"; };
+		E25EA8392B70ABEF00BFEC6E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		E25EA83B2B70ABF000BFEC6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E296FE012A459C5D00331BD4 /* BulletinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,6 +131,7 @@
 				6BA7F79F2A2F6FC600FFEED0 /* SettingsView.swift */,
 				8CA4537C2AE3C63900138CE4 /* MLTestsView.swift */,
 				6BF209F72990E61E00E623FC /* Assets.xcassets */,
+				E25EA83A2B70ABEF00BFEC6E /* InfoPlist.strings */,
 				6BF209F92990E61E00E623FC /* Preview Content */,
 			);
 			path = "WatchBrowser Watch App";
@@ -240,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BF209FB2990E61E00E623FC /* Preview Assets.xcassets in Resources */,
+				E25EA8382B70ABEF00BFEC6E /* InfoPlist.strings in Resources */,
 				6BF209F82990E61E00E623FC /* Assets.xcassets in Resources */,
 				6B7CA9052ABE7C05006FDCDA /* Localizable.xcstrings in Resources */,
 			);
@@ -273,6 +278,18 @@
 			targetProxy = 6BF209F02990E61C00E623FC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E25EA83A2B70ABEF00BFEC6E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E25EA8392B70ABEF00BFEC6E /* zh-Hans */,
+				E25EA83B2B70ABF000BFEC6E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		6BF209FC2990E61E00E623FC /* Debug */ = {
