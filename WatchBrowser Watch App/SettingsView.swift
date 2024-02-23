@@ -13,10 +13,13 @@ struct SettingsView: View {
     @AppStorage("AllowCookies") var AllowCookies = false
     @AppStorage("ModifyKeyboard") var ModifyKeyboard = false
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
+    @AppStorage("UserPassword") var userPassword = ""
     @State var KeyboardChanged = false
     @State var isKeyboardPresented = false
     @State var isCookieTipPresented = false
     @State var customSearchEngineList = [String]()
+    @State var passwordInputCache = ""
+    @State var isPasswordInputPresented = false
     @Namespace var namespace
     @Environment(\.dismiss) var Dismiss
     enum EngineNames: String, CaseIterable {
@@ -27,194 +30,112 @@ struct SettingsView: View {
     }
     let engineTitle = ["必应": String(localized: "Search.bing"), "百度": String(localized: "Search.baidu"), "谷歌": String(localized: "Search.google"), "搜狗": String(localized: "Search.sougou")]
     var body: some View {
-        Group {
-            if #available(watchOS 10.0, *) {
-                NavigationStack {
-                    Form {
-                        Section {
-                            Picker(selection: $webSearch, label: Text(isSearchEngineShortcutEnabled ? "默认搜索引擎" : "Settings.search.engine")) {
-                                ForEach(EngineNames.allCases, id: \.self) { engineNames in
-                                    Text(engineTitle[engineNames.rawValue]!).tag(engineNames.rawValue)
-                                }
-                                if customSearchEngineList.count != 0 {
-                                    ForEach(0..<customSearchEngineList.count, id: \.self) { i in
-                                        Text(customSearchEngineList[i].replacingOccurrences(of: "%lld", with: "[搜索内容]")).tag(customSearchEngineList[i])
-                                    }
-                                }
-                            }
-                            NavigationLink(destination: {CustomSearchEngineSettingsView()}, label: {
-                                Text("自定搜索引擎")
-                            })
-                        } header: {
-                            Text("Settings.search")
+        Form {
+            Section {
+                Picker(selection: $webSearch, label: Text(isSearchEngineShortcutEnabled ? "默认搜索引擎" : "Settings.search.engine")) {
+                    ForEach(EngineNames.allCases, id: \.self) { engineNames in
+                        Text(engineTitle[engineNames.rawValue]!).tag(engineNames.rawValue)
+                    }
+                    if customSearchEngineList.count != 0 {
+                        ForEach(0..<customSearchEngineList.count, id: \.self) { i in
+                            Text(customSearchEngineList[i].replacingOccurrences(of: "%lld", with: "[搜索内容]")).tag(customSearchEngineList[i])
                         }
-                        .navigationTitle("Settings.search")
-                        .navigationBarTitleDisplayMode(.inline)
-                        Section {
-                            NavigationLink(destination: {SearchEngineShortcutSettingsView()}, label: {
-                                Text("搜索引擎快捷方式")
-                            })
-                        }
-                        .navigationTitle("快速搜索引擎")
-                        .navigationBarTitleDisplayMode(.inline)
-                        Section {
-                            Toggle(isOn: $ModifyKeyboard) {
-                                Text("Settings.keyboard.third-party")
-                            }
-                            Button(action: {
-                                isKeyboardPresented = true
-                            }, label: {
-                                Label("Settings.keyboard.preview", systemImage: "keyboard.badge.eye")
-                            })
-                            .sheet(isPresented: $isKeyboardPresented, content: {
-                                ExtKeyboardView(startText: "") { _ in }
-                            })
-                        } header: {
-                            Text("Settings.keyboard")
-                        } footer: {
-                            Text("Settings.keyboard.discription")
-                        }
-                        .navigationTitle("Settings.keyboard")
-                        .navigationBarTitleDisplayMode(.inline)
-                        .onChange(of: ModifyKeyboard) {
-                            //                        KeyboardChanged = true
-                        }
-                        .alert(isPresented: $KeyboardChanged) {
-                            Alert(
-                                title: Text("Settings.keyboard.alert.title"),
-                                message: Text("Settings.keyboard.alert.details"),
-                                primaryButton: .destructive(
-                                    Text("Settings.keyboard.alert.close-now"),
-                                    action: {
-                                        exit(0)
-                                    }
-                                ),
-                                secondaryButton: .cancel(
-                                    Text("Settings.keyboard.alert.later"),
-                                    action: {
-                                        Dismiss()
-                                    }
-                                )
-                            )
-                        }
-                        Section {
-                            Toggle(isOn: $AllowCookies) {
-                                VStack(alignment: .leading) {
-                                    Text("Settings.cookies.allow")
-                                    Text("Settings.cookies.description")
-                                        .foregroundStyle(.secondary)
-                                        .font(.caption2)
-                                }
-                            }
-                            HStack(alignment: .center) {
-                                Image(systemName: "hand.raised.fill")
-                                Text("Settings.cookies.privacy")
-                            }
-                            HStack(alignment: .center) {
-                                Image(systemName: "exclamationmark.triangle")
-                                Text("Settings.cookies.pop-up")
-                            }
-                            HStack(alignment: .center) {
-                                Image(systemName: "minus.diamond")
-                                Text("Settings.cookies.limitation")
-                            }
-                        } header: {
-                            Text("Settings.cookies")
-                        }
-                        .navigationTitle("Settings.cookies")
-                        .navigationBarTitleDisplayMode(.inline)
                     }
                 }
-            } else {
-                NavigationView {
-                    Form {
-                        Section {
-                            Picker(selection: $webSearch, label: Text("Settings.search.engine")) {
-                                ForEach(EngineNames.allCases, id: \.self) {EngineNames in
-                                    Text(EngineNames.rawValue).tag(EngineNames.rawValue)
-                                }
-                            }
-                            .disabled(isUsingBingAPI)
-                        } header: {
-                            Text("Settings.search")
-                        }
-                        .navigationTitle("Settings.search")
-                        .navigationBarTitleDisplayMode(.inline)
-                        
-                        
-                        
-                        Section {
-                            Toggle(isOn: $ModifyKeyboard) {
-                                Text("Settings.keyboard.third-party")
-                            }
-                            Button(action: {
-                                isKeyboardPresented = true
-                            }, label: {
-                                Label("Settings.keyboard.preview", systemImage: "keyboard.badge.eye")
-                            })
-                            .sheet(isPresented: $isKeyboardPresented, content: {
-                                ExtKeyboardView(startText: "") { _ in }
-                            })
-                        } header: {
-                            Text("Settings.keyboard")
-                        } footer: {
-                            Text("Settings.keyboard.discription")
-                        }
-                        .navigationTitle("Settings.keyboard")
-                        .navigationBarTitleDisplayMode(.inline)
-                        //                    .onChange(of: ModifyKeyboard) {
-                        //                        KeyboardChanged = true
-                        //                    }
-                        .alert(isPresented: $KeyboardChanged) {
-                            Alert(
-                                title: Text("Settings.keyboard.alert.title"),
-                                message: Text("Settings.keyboard.alert.details"),
-                                primaryButton: .destructive(
-                                    Text("Settings.keyboard.alert.close-now"),
-                                    action: {
-                                        exit(0)
-                                    }
-                                ),
-                                secondaryButton: .cancel(
-                                    Text("Settings.keyboard.alert.later"),
-                                    action: {
-                                        Dismiss()
-                                    }
-                                )
-                            )
-                        }
-                        
-                        
-                        
-                        Section {
-                            Toggle(isOn: $AllowCookies) {
-                                VStack(alignment: .leading) {
-                                    Text("Settings.cookies.allow")
-                                    Text("Settings.cookies.description")
-                                        .foregroundStyle(.secondary)
-                                        .font(.caption2)
-                                }
-                            }
-                            HStack(alignment: .center) {
-                                Image(systemName: "hand.raised.fill")
-                                Text("Settings.cookies.privacy")
-                            }
-                            HStack(alignment: .center) {
-                                Image(systemName: "exclamationmark.triangle")
-                                Text("Settings.cookies.pop-up")
-                            }
-                            HStack(alignment: .center) {
-                                Image(systemName: "minus.diamond")
-                                Text("Settings.cookies.limitation")
-                            }
-                        } header: {
-                            Text("Settings.cookies")
-                        }
-                        .navigationTitle("Settings.cookies")
-                        .navigationBarTitleDisplayMode(.inline)
-                    }
-                }
+                NavigationLink(destination: {CustomSearchEngineSettingsView()}, label: {
+                    Text("自定搜索引擎")
+                })
+            } header: {
+                Text("Settings.search")
             }
+            .navigationTitle("Settings.search")
+            .navigationBarTitleDisplayMode(.inline)
+            Section {
+                NavigationLink(destination: {SearchEngineShortcutSettingsView()}, label: {
+                    Text("搜索引擎快捷方式")
+                })
+            }
+            .navigationTitle("快速搜索引擎")
+            .navigationBarTitleDisplayMode(.inline)
+            Section {
+                Toggle(isOn: $ModifyKeyboard) {
+                    Text("Settings.keyboard.third-party")
+                }
+                Button(action: {
+                    isKeyboardPresented = true
+                }, label: {
+                    Label("Settings.keyboard.preview", systemImage: "keyboard.badge.eye")
+                })
+                .sheet(isPresented: $isKeyboardPresented, content: {
+                    ExtKeyboardView(startText: "") { _ in }
+                })
+            } header: {
+                Text("Settings.keyboard")
+            } footer: {
+                Text("Settings.keyboard.discription")
+            }
+            .navigationTitle("Settings.keyboard")
+            .navigationBarTitleDisplayMode(.inline)
+            .alert(isPresented: $KeyboardChanged) {
+                Alert(
+                    title: Text("Settings.keyboard.alert.title"),
+                    message: Text("Settings.keyboard.alert.details"),
+                    primaryButton: .destructive(
+                        Text("Settings.keyboard.alert.close-now"),
+                        action: {
+                            exit(0)
+                        }
+                    ),
+                    secondaryButton: .cancel(
+                        Text("Settings.keyboard.alert.later"),
+                        action: {
+                            Dismiss()
+                        }
+                    )
+                )
+            }
+            Section {
+                Toggle(isOn: $AllowCookies) {
+                    VStack(alignment: .leading) {
+                        Text("Settings.cookies.allow")
+                        Text("Settings.cookies.description")
+                            .foregroundStyle(.secondary)
+                            .font(.caption2)
+                    }
+                }
+                HStack(alignment: .center) {
+                    Image(systemName: "hand.raised.fill")
+                    Text("Settings.cookies.privacy")
+                }
+                HStack(alignment: .center) {
+                    Image(systemName: "exclamationmark.triangle")
+                    Text("Settings.cookies.pop-up")
+                }
+                HStack(alignment: .center) {
+                    Image(systemName: "minus.diamond")
+                    Text("Settings.cookies.limitation")
+                }
+            } header: {
+                Text("Settings.cookies")
+            }
+            .navigationTitle("Settings.cookies")
+            .navigationBarTitleDisplayMode(.inline)
+//            Section {
+//                VStack {
+//                    DigiTextView(placeholder: "", text: $passwordInputCache, presentingModal: isPasswordInputPresented)
+//                        .frame(width: 0, height: 0)
+//                        .hidden()
+//                    Button(action: {
+//                        isPasswordInputPresented = true
+//                    }, label: {
+//                        Label(userPassword == "" ? "创建密码" : "关闭密码", systemImage: userPassword == "" ? "lock.fill" : "lock.slash.fill")
+//                    })
+//                }
+//            } header: {
+//                Text("密码")
+//            }
+//            .navigationTitle("密码")
+//            .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear {
             customSearchEngineList = UserDefaults.standard.stringArray(forKey: "CustomSearchEngineList") ?? [String]()
@@ -352,6 +273,9 @@ struct CustomSearchEngineSettingsView: View {
                             if i == Int(cursorPosition) {
                                 combinedText += "%lld"
                             }
+                        }
+                        if !combinedText.hasPrefix("http://") && !combinedText.hasPrefix("https://") {
+                            combinedText = "http://" + combinedText
                         }
                         var newLists = UserDefaults.standard.stringArray(forKey: "CustomSearchEngineList") ?? [String]()
                         newLists.append(combinedText)

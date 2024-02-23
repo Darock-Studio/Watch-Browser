@@ -266,6 +266,11 @@ struct MainView: View {
                     Text("Home.bookmarks.pinned")
                 }
             }
+            Section {
+                NavigationLink(destination: { FeedbackView() }, label: {
+                    Label("反馈助理", systemImage: "exclamationmark.bubble")
+                })
+            }
         }
         .navigationTitle("Home.title")
         .navigationBarTitleDisplayMode(.large)
