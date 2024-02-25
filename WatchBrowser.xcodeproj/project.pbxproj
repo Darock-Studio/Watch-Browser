@@ -20,8 +20,10 @@
 		6BF20A0A299100AE00E623FC /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF20A09299100AE00E623FC /* BookmarkView.swift */; };
 		6BF20A0D2991302C00E623FC /* ExtKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF20A0C2991302C00E623FC /* ExtKeyboardView.swift */; };
 		6BFFCC562A8A6CF3001175EE /* DarockKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6BFFCC552A8A6CF3001175EE /* DarockKit */; };
+		8CA370E32B835AAD00CE0E9E /* NumberPadExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA370E22B835AAD00CE0E9E /* NumberPadExt.swift */; };
 		8CA4537B2AE3C5F600138CE4 /* EFQRCode in Frameworks */ = {isa = PBXBuildFile; productRef = 8CA4537A2AE3C5F600138CE4 /* EFQRCode */; };
 		8CA4537D2AE3C63900138CE4 /* MLTestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4537C2AE3C63900138CE4 /* MLTestsView.swift */; };
+		8CB0D0202B889F3D0057EF1C /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB0D01F2B889F3D0057EF1C /* FeedbackView.swift */; };
 		E25EA8382B70ABEF00BFEC6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E25EA83A2B70ABEF00BFEC6E /* InfoPlist.strings */; };
 		E296FE022A459C5D00331BD4 /* BulletinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E296FE012A459C5D00331BD4 /* BulletinView.swift */; };
 /* End PBXBuildFile section */
@@ -73,7 +75,9 @@
 		6BF209FA2990E61E00E623FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6BF20A09299100AE00E623FC /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
 		6BF20A0C2991302C00E623FC /* ExtKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtKeyboardView.swift; sourceTree = "<group>"; };
+		8CA370E22B835AAD00CE0E9E /* NumberPadExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadExt.swift; sourceTree = "<group>"; };
 		8CA4537C2AE3C63900138CE4 /* MLTestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLTestsView.swift; sourceTree = "<group>"; };
+		8CB0D01F2B889F3D0057EF1C /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		E25EA8392B70ABEF00BFEC6E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E25EA83B2B70ABF000BFEC6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E296FE012A459C5D00331BD4 /* BulletinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinView.swift; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 				6BF20A0C2991302C00E623FC /* ExtKeyboardView.swift */,
 				6BA7F79F2A2F6FC600FFEED0 /* SettingsView.swift */,
 				8CA4537C2AE3C63900138CE4 /* MLTestsView.swift */,
+				8CA370E22B835AAD00CE0E9E /* NumberPadExt.swift */,
+				8CB0D01F2B889F3D0057EF1C /* FeedbackView.swift */,
 				6BF209F72990E61E00E623FC /* Assets.xcassets */,
 				E25EA83A2B70ABEF00BFEC6E /* InfoPlist.strings */,
 				6BF209F92990E61E00E623FC /* Preview Content */,
@@ -262,9 +268,11 @@
 				E296FE022A459C5D00331BD4 /* BulletinView.swift in Sources */,
 				6B6DA6B72A0149EF00BBE6CA /* HistoryView.swift in Sources */,
 				6BF20A0A299100AE00E623FC /* BookmarkView.swift in Sources */,
+				8CA370E32B835AAD00CE0E9E /* NumberPadExt.swift in Sources */,
 				6BF209F62990E61C00E623FC /* ContentView.swift in Sources */,
 				8CA4537D2AE3C63900138CE4 /* MLTestsView.swift in Sources */,
 				6BF209F42990E61C00E623FC /* WatchBrowserApp.swift in Sources */,
+				8CB0D0202B889F3D0057EF1C /* FeedbackView.swift in Sources */,
 				6BF20A0D2991302C00E623FC /* ExtKeyboardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,7 +438,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.3.0;
+				MARKETING_VERSION = 3.4.0;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = "暗礁浏览器";
@@ -462,7 +470,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.3.0;
+				MARKETING_VERSION = 3.4.0;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = "暗礁浏览器";
@@ -484,7 +492,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B57D8PP775;
 				INFOPLIST_KEY_CFBundleDisplayName = WatchBrowser;
-				MARKETING_VERSION = 3.3.0;
+				MARKETING_VERSION = 3.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -500,7 +508,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B57D8PP775;
 				INFOPLIST_KEY_CFBundleDisplayName = WatchBrowser;
-				MARKETING_VERSION = 3.3.0;
+				MARKETING_VERSION = 3.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
