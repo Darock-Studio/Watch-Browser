@@ -65,13 +65,13 @@ struct MainView: View {
                                 } else {
                                     if isSearchEngineShortcutEnabled {
                                         if textOrURL.hasPrefix("bing") {
-                                            goToButtonLabelText = "通过必应搜索"
+                                            goToButtonLabelText = "Home.search.bing"
                                         } else if textOrURL.hasPrefix("baidu") {
-                                            goToButtonLabelText = "通过百度搜索"
+                                            goToButtonLabelText = "Home.search.baidu"
                                         } else if textOrURL.hasPrefix("google") {
-                                            goToButtonLabelText = "通过谷歌搜索"
+                                            goToButtonLabelText = "Home.search.google"
                                         } else if textOrURL.hasPrefix("sogou") {
-                                            goToButtonLabelText = "通过搜狗搜索"
+                                            goToButtonLabelText = "Home.search.sogou"
                                         } else {
                                             goToButtonLabelText = "Home.search"
                                         }
@@ -102,13 +102,13 @@ struct MainView: View {
                             } else {
                                 if isSearchEngineShortcutEnabled {
                                     if value.hasPrefix("bing") {
-                                        goToButtonLabelText = "通过必应搜索"
+                                        goToButtonLabelText = "Home.search.bing"
                                     } else if value.hasPrefix("baidu") {
-                                        goToButtonLabelText = "通过百度搜索"
+                                        goToButtonLabelText = "Home.search.baidu"
                                     } else if value.hasPrefix("google") {
-                                        goToButtonLabelText = "通过谷歌搜索"
+                                        goToButtonLabelText = "Home.search.google"
                                     } else if value.hasPrefix("sogou") {
-                                        goToButtonLabelText = "通过搜狗搜索"
+                                        goToButtonLabelText = "Home.search.sogou"
                                     } else {
                                         goToButtonLabelText = "Home.search"
                                     }

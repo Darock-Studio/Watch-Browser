@@ -178,13 +178,13 @@ struct CustomSearchEngineSettingsView: View {
                         Button(action: {
                             isAddCustomSEPresented = true
                         }, label: {
-                            Label("添加自定搜索引擎", systemImage: "plus")
+                            Label("Settings.search.customize.add", systemImage: "plus")
                         })
                     }
                 }
                 if customSearchEngineList.count != 0 {
                     ForEach(0..<customSearchEngineList.count, id: \.self) { i in
-                        Text(customSearchEngineList[i].replacingOccurrences(of: "%lld", with: "[搜索内容]"))
+                        Text(customSearchEngineList[i].replacingOccurrences(of: "%lld", with: String(localized: "Settings.search.customize.search-content")))
                             .swipeActions {
                                 Button(role: .destructive, action: {
                                     customSearchEngineList.remove(at: i)
@@ -197,7 +197,7 @@ struct CustomSearchEngineSettingsView: View {
                 } else {
                     HStack {
                         Spacer()
-                        Text("无自定搜索引擎")
+                        Text("Settings.search.customize.nothing")
                         Spacer()
                     }
                 }
@@ -215,19 +215,19 @@ struct CustomSearchEngineSettingsView: View {
             NavigationView {
                 List {
                     Section {
-                        TextField("搜索引擎的链接", text: $customUrlInput)
+                        TextField("Settings.search.customize.link", text: $customUrlInput)
                             .autocorrectionDisabled()
                             .textInputAutocapitalization(.never)
                     } footer: {
-                        Text("输入您要自定的搜索引擎的搜索链接,如“bing.com?q=”.要填充搜索内容的位置请暂时留空")
+                        Text("Settings.search.customize.link.discription")
                     }
                     Section {
                         NavigationLink(destination: {Step2(customUrlInput: customUrlInput, isAddCustomSEPresented: $isAddCustomSEPresented)}, label: {
-                            Text("下一步")
+                            Text("Settings.search.customize.next")
                         })
                     }
                 }
-                .navigationTitle("输入链接")
+                .navigationTitle("Settings.search.customize.link.title")
                 .navigationBarTitleDisplayMode(.inline)
             }
         }
@@ -263,7 +263,7 @@ struct CustomSearchEngineSettingsView: View {
                     .digitalCrownRotation($cursorPosition, from: 0, through: Double(charas.count - 1), by: 1, sensitivity: .medium, isHapticFeedbackEnabled: true)
                     Spacer()
                         .frame(height: 15)
-                    Text("滚动数码表冠, 将光标移动到应当插入搜索词的位置.")
+                    Text("Settings.search.customize.cursor")
                         .font(.footnote)
                         .opacity(0.65)
                     Button(action: {
@@ -282,10 +282,10 @@ struct CustomSearchEngineSettingsView: View {
                         UserDefaults.standard.set(newLists, forKey: "CustomSearchEngineList")
                         isAddCustomSEPresented = false
                     }, label: {
-                        Label("完成", systemImage: "checkmark")
+                        Label("Settings.search.customize.done", systemImage: "checkmark")
                     })
                 }
-                .navigationTitle("选取插入位置")
+                .navigationTitle("Settings.search.customize.cursor.title")
                 .navigationBarTitleDisplayMode(.inline)
                 .onAppear {
                     for c in customUrlInput {
@@ -304,33 +304,33 @@ struct SearchEngineShortcutSettingsView: View {
         List {
             Section {
                 Toggle(isOn: $isSearchEngineShortcutEnabled, label: {
-                    Text("启用搜索引擎快捷方式")
+                    Text("Settings.search.shortcut.enable")
                 })
             } footer: {
-                Text("启用后, 在搜索内容前加上快捷名即可使用指定引擎搜索.")
+                Text("Settings.search.shortcut.discription")
             }
             if isSearchEngineShortcutEnabled {
                 Section {
                     HStack {
-                        Text("必应")
+                        Text("Search.bing")
                         Spacer()
                         Text("bing")
                             .font(.system(size: 15).monospaced())
                     }
                     HStack {
-                        Text("百度")
+                        Text("Search.baidu")
                         Spacer()
                         Text("baidu")
                             .font(.system(size: 15).monospaced())
                     }
                     HStack {
-                        Text("谷歌")
+                        Text("Search.google")
                         Spacer()
                         Text("google")
                             .font(.system(size: 15).monospaced())
                     }
                     HStack {
-                        Text("搜狗")
+                        Text("Search.sougou")
                         Spacer()
                         Text("sogou")
                             .font(.system(size: 15).monospaced())
@@ -338,7 +338,7 @@ struct SearchEngineShortcutSettingsView: View {
                 }
             }
         }
-        .navigationTitle("搜索引擎快捷方式")
+        .navigationTitle("Settings.search.shorcut")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

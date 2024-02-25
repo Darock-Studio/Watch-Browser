@@ -1,0 +1,9 @@
+/*
+  InfoPlist.strings
+  WatchBrowser
+
+  Created by 雷美淳 on 2024/2/5.
+  
+*/
+
+CFBundleDisplayName = "Darock Browser";
