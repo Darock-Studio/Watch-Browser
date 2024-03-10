@@ -131,6 +131,7 @@ struct FeedbackView: View {
         @State var content = ""
         @State var status = 8
         @State var replies = [(status: Int, content: String, sender: String)]()
+        @State var isSendReplyPresented = false
         var body: some View {
             List {
                 Section {
@@ -179,12 +180,21 @@ struct FeedbackView: View {
                         } header: {
                             Text("状态")
                         }
-                        Section {
-                            Text(replies[i].content)
-                        } header: {
-                            Text("回复内容")
+                        if replies[i].content != "" {
+                            Section {
+                                Text(replies[i].content)
+                            } header: {
+                                Text("回复内容")
+                            }
                         }
                     }
+                }
+                Section {
+                    Button(action: {
+                        isSendReplyPresented = true
+                    }, label: {
+                        Label("回复", systemImage: "arrowshape.turn.up.left.fill")
+                    })
                 }
             }
             .navigationTitle(id)
@@ -232,6 +242,26 @@ struct FeedbackView: View {
                             }
                         }
                     }
+                }
+                .sheet(isPresented: $isSendReplyPresented) {
+                    TextField("回复信息", text: $replyInput)
+                        .onSubmit {
+                            if replyInput != "" {
+                                let enced = """
+                                Content：\(replyInput)
+                                Sender：User
+                                """.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
+                                DarockKit.Network.shared.requestString("https://api.darock.top/radar/reply/Darock Browser/\(id)/\(enced)") { respStr, isSuccess in
+                                    if isSuccess {
+                                        if respStr.apiFixed() == "Success" {
+                                            isSendReplyPresented = false
+                                        } else {
+                                            tipWithText("未知错误", symbol: "xmark.circle.fill")
+                                        }
+                                    }
+                                }
+                            }
+                        }
                 }
             }
         }
