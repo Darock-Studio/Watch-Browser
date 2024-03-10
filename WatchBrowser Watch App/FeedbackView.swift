@@ -244,26 +244,26 @@ struct FeedbackView: View {
                         }
                     }
                 }
-                .sheet(isPresented: $isSendReplyPresented) {
-                    TextField("回复信息", text: $replyInput)
-                        .onSubmit {
-                            if replyInput != "" {
-                                let enced = """
-                                Content：\(replyInput)
-                                Sender：User
-                                """.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
-                                DarockKit.Network.shared.requestString("https://api.darock.top/radar/reply/Darock Browser/\(id)/\(enced)") { respStr, isSuccess in
-                                    if isSuccess {
-                                        if respStr.apiFixed() == "Success" {
-                                            isSendReplyPresented = false
-                                        } else {
-                                            tipWithText("未知错误", symbol: "xmark.circle.fill")
-                                        }
+            }
+            .sheet(isPresented: $isSendReplyPresented) {
+                TextField("回复信息", text: $replyInput)
+                    .onSubmit {
+                        if replyInput != "" {
+                            let enced = """
+                            Content：\(replyInput)
+                            Sender：User
+                            """.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
+                            DarockKit.Network.shared.requestString("https://api.darock.top/radar/reply/Darock Browser/\(id)/\(enced)") { respStr, isSuccess in
+                                if isSuccess {
+                                    if respStr.apiFixed() == "Success" {
+                                        isSendReplyPresented = false
+                                    } else {
+                                        tipWithText("未知错误", symbol: "xmark.circle.fill")
                                     }
                                 }
                             }
                         }
-                }
+                    }
             }
         }
     }
