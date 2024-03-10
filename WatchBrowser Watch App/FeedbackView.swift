@@ -132,6 +132,7 @@ struct FeedbackView: View {
         @State var status = 8
         @State var replies = [(status: Int, content: String, sender: String)]()
         @State var isSendReplyPresented = false
+        @State var replyInput = ""
         var body: some View {
             List {
                 Section {
