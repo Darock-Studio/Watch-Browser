@@ -948,6 +948,7 @@
       }
     },
     "Settings.invatation" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1108,6 +1109,7 @@
       }
     },
     "Settings.search.customize" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1300,6 +1302,7 @@
       }
     },
     "Settings.search.engine.default" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1332,6 +1335,7 @@
       }
     },
     "Settings.search.shorcut.title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1390,6 +1394,7 @@
       }
     },
     "下一步" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1450,6 +1455,7 @@
       }
     },
     "启用后, 在搜索内容前加上快捷名即可使用指定引擎搜索." : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1460,11 +1466,22 @@
       }
     },
     "启用搜索引擎快捷方式" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enable Search Engine Shortcuts"
+          }
+        }
+      }
+    },
+    "回复" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reply"
           }
         }
       }
@@ -1475,6 +1492,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reply %lld"
+          }
+        }
+      }
+    },
+    "回复信息" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Content"
           }
         }
       }
@@ -1490,6 +1517,7 @@
       }
     },
     "完成" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1530,6 +1558,7 @@
       }
     },
     "必应" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1570,6 +1599,7 @@
       }
     },
     "搜狗" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1590,6 +1620,7 @@
       }
     },
     "搜索引擎的链接" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1620,6 +1651,7 @@
       }
     },
     "无自定搜索引擎" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1690,6 +1722,7 @@
       }
     },
     "添加自定搜索引擎" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1700,6 +1733,7 @@
       }
     },
     "滚动数码表冠, 将光标移动到应当插入搜索词的位置." : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1720,6 +1754,7 @@
       }
     },
     "百度" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1770,6 +1805,7 @@
       }
     },
     "谷歌" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1780,6 +1816,7 @@
       }
     },
     "输入您要自定的搜索引擎的搜索链接,如“bing.com?q=”.要填充搜索内容的位置请暂时留空" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1790,6 +1827,7 @@
       }
     },
     "输入链接" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1800,6 +1838,7 @@
       }
     },
     "选取插入位置" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1810,6 +1849,7 @@
       }
     },
     "通过必应搜索" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1820,6 +1860,7 @@
       }
     },
     "通过搜狗搜索" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1830,6 +1871,7 @@
       }
     },
     "通过百度搜索" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1840,6 +1882,7 @@
       }
     },
     "通过谷歌搜索" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

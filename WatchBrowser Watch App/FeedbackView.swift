@@ -229,7 +229,7 @@ struct FeedbackView: View {
                                 var co = ""
                                 var se = ""
                                 for j in 0..<lineSpd.count {
-                                    if lineSpd[i].split(separator: "：").count < 2 { continue }
+                                    if lineSpd[j].split(separator: "：").count < 2 { continue }
                                     let mspd = lineSpd[j].split(separator: "：").map { String($0) }
                                     if mspd[0] == "State" {
                                         st = Int(mspd[1]) ?? 8
