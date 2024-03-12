@@ -136,6 +136,17 @@ struct SettingsView: View {
 //            }
 //            .navigationTitle("密码")
 //            .navigationBarTitleDisplayMode(.inline)
+            if NSLocale.current.languageCode == "zh" {
+                Section {
+                    Button(action: {
+                        
+                    }, label: {
+                        Text("浙ICP备2024071295号-2A")
+                    })
+                } header: {
+                    Text("中国大陆ICP备案号")
+                }
+            }
         }
         .onAppear {
             customSearchEngineList = UserDefaults.standard.stringArray(forKey: "CustomSearchEngineList") ?? [String]()
