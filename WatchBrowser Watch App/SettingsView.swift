@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AuthenticationServices
 
 struct SettingsView: View {
     @AppStorage("Bing_API") var isUsingBingAPI = false
@@ -139,7 +140,14 @@ struct SettingsView: View {
             if NSLocale.current.languageCode == "zh" {
                 Section {
                     Button(action: {
-                        
+                        let session = ASWebAuthenticationSession(
+                            url: URL(string: "https://beian.miit.gov.cn")!,
+                            callbackURLScheme: nil
+                        ) { _, _ in
+                            
+                        }
+                        session.prefersEphemeralWebBrowserSession = !isAllowCookie
+                        session.start()
                     }, label: {
                         Text("浙ICP备2024071295号-2A")
                     })
