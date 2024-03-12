@@ -13,7 +13,7 @@ struct HistoryView: View {
     @AppStorage("AllowCookies") var AllowCookies = false
     @State var isSettingPresented = false
     @State var isStopRecordingPagePresenting = false
-    @State var histories = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
+    @State var histories = [String]()
     var body: some View {
         List {
             Toggle("History.record", isOn: $isHistoryRecording)
@@ -69,6 +69,9 @@ struct HistoryView: View {
                         .foregroundColor(.gray)
                 }
             }
+        }
+        .onAppear {
+            histories = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
         }
     }
 }
