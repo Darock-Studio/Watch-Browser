@@ -40,7 +40,7 @@ struct MainView: View {
     @AppStorage("Bing_API") var isUsingBingAPI = false
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("IsAllowCookie") var isAllowCookie = false
-    @AppStorage("IsRecordHistory") var isRecordHistory = true
+    @AppStorage("isHistoryRecording") var isHistoryRecording = true
     @AppStorage("ModifyKeyboard") var ModifyKeyboard = false
     @AppStorage("IsShowBetaTest1") var isShowBetaTest = true
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
@@ -189,7 +189,7 @@ struct MainView: View {
                             session.start()
                         }
                     }
-                    if isRecordHistory {
+                    if isHistoryRecording {
                         RecordHistory(textOrURL, webSearch: webSearch)
                     }
                 }, label: {
@@ -254,7 +254,7 @@ struct MainView: View {
                             }
                             session.prefersEphemeralWebBrowserSession = !isAllowCookie
                             session.start()
-                            if isRecordHistory {
+                            if isHistoryRecording {
                                 RecordHistory(UserDefaults.standard.string(forKey: "BookmarkLink\(pinnedBookmarkIndexs[i])")!, webSearch: webSearch)
                             }
                         }, label: {
