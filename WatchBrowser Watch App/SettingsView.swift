@@ -146,7 +146,7 @@ struct SettingsView: View {
                         ) { _, _ in
                             
                         }
-                        session.prefersEphemeralWebBrowserSession = !isAllowCookie
+                        session.prefersEphemeralWebBrowserSession = true
                         session.start()
                     }, label: {
                         Text("浙ICP备2024071295号-2A")
