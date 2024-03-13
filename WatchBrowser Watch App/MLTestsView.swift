@@ -31,7 +31,7 @@ struct MLTestsView: View {
                 })
                 NavigationLink(destination: {
                     VStack {
-                        Image(decorative: EFQRCode.generate(for: "https://testflight.apple.com/join/TbuBT6ig")!, scale: 1)
+                        Image(decorative: EFQRCode.generate(for: "https://testflight.apple.com/join/skaCe2L2")!, scale: 1)
                             .resizable()
                             .frame(width: 100, height: 100)
                         Text("Invatation.continue-on-iphone")
