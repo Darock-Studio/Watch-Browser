@@ -69,11 +69,17 @@ struct ExtKeyboardView: View {
                         }
                         lastTimeTap = .now
                     }, label: {
-                        if upper {
-                            Image(systemName: "arrow.up.square.fill")
-                        } else {
-                            Image(systemName: "arrow.up.square")
-                        }
+                        Color.gray
+                            .cornerRadius(3)
+                            .opacity(0.0100000002421438702673861521)
+                            .frame(width: 20)
+                            .overlay {
+                                if upper {
+                                    Image(systemName: "arrow.up.square.fill")
+                                } else {
+                                    Image(systemName: "arrow.up.square")
+                                }
+                            }
                     })
                     .onReceive(keyTap, perform: { _ in
                         if !isCapsLock {
@@ -85,10 +91,16 @@ struct ExtKeyboardView: View {
                     Button(action: {
                         isShowingSymbol.toggle()
                     }, label: {
-                        Text("#+=")
-                            .font(.system(size: 9))
-                            .padding(2)
-                            .border(Color.white, width: 1, cornerRadius: 3)
+                        Color.gray
+                            .cornerRadius(3)
+                            .opacity(0.0100000002421438702673861521)
+                            .frame(width: 25)
+                            .overlay {
+                                Text("#+=")
+                                    .font(.system(size: 9))
+                                    .padding(2)
+                                    .border(Color.white, width: 1, cornerRadius: 3)
+                            }
                     })
                     .buttonStyle(.plain)
                 }
@@ -103,19 +115,25 @@ struct ExtKeyboardView: View {
                     }
                     isShowingNumber.toggle()
                 }, label: {
-                    if !isShowingNumber {
-                        Image(systemName: "textformat.123")
-                            .font(.system(size: 9))
-                            .padding(2)
-                            .padding(.vertical, 2)
-                            .border(Color.white, width: 1, cornerRadius: 3)
-                    } else {
-                        Image(systemName:"abc")
-                            .font(.system(size: 9))
-                            .padding(2)
-                            .padding(.vertical, 2)
-                            .border(Color.white, width: 1, cornerRadius: 3)
-                    }
+                    Color.gray
+                        .cornerRadius(3)
+                        .opacity(0.0100000002421438702673861521)
+                        .frame(width: 20)
+                        .overlay {
+                            if !isShowingNumber {
+                                Image(systemName: "textformat.123")
+                                    .font(.system(size: 9))
+                                    .padding(2)
+                                    .padding(.vertical, 2)
+                                    .border(Color.white, width: 1, cornerRadius: 3)
+                            } else {
+                                Image(systemName:"abc")
+                                    .font(.system(size: 9))
+                                    .padding(2)
+                                    .padding(.vertical, 2)
+                                    .border(Color.white, width: 1, cornerRadius: 3)
+                            }
+                        }
                 })
                 .buttonStyle(.plain)
             }
