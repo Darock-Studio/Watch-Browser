@@ -26,21 +26,32 @@ struct ExtKeyboardView: View {
     let numFirstRow = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
     let numSecondRow = ["-", "/", ":", ";", "(", ")", "$", "&", "@", "\""]
     let numThirdRow = [".", ",", "?", "!", "'"]
+    let symbolFirstRow = ["[", "]", "{", "}", "#", "%", "^", "*", "+", "="]
+    let symbolSecondRow = ["_", "\\", "|", "~", "<", ">", "·"]
     @State var lastTimeTap = Date.distantPast
     @State var fullText = [charater]()
     @State var isShowingNumber = false
+    @State var isShowingSymbol = false
     var body: some View {
         VStack(spacing:0) {
             TextDisplayView(fullText: $fullText, cursor: $cursor)
             if !isShowingNumber {
                 EachRowView(allCharater: firstRow,dect: true,onTap: add)
             } else {
-                EachRowView(allCharater: numFirstRow,dect: true,onTap: add)
+                if isShowingSymbol {
+                    EachRowView(allCharater: symbolFirstRow,dect: true,onTap: add)
+                } else {
+                    EachRowView(allCharater: numFirstRow,dect: true,onTap: add)
+                }
             }
             if !isShowingNumber {
                 EachRowView(allCharater: secondRow,onTap: add)
             } else {
-                EachRowView(allCharater: numSecondRow,onTap: add)
+                if isShowingSymbol {
+                    EachRowView(allCharater: symbolSecondRow,onTap: add, widthFix: 7)
+                } else {
+                    EachRowView(allCharater: numSecondRow,onTap: add)
+                }
             }
             HStack {
                 if !isShowingNumber {
@@ -70,20 +81,40 @@ struct ExtKeyboardView: View {
                         }
                     })
                     .buttonStyle(.plain)
+                } else {
+                    Button(action: {
+                        isShowingSymbol.toggle()
+                    }, label: {
+                        Text("#+=")
+                            .font(.system(size: 9))
+                            .padding(2)
+                            .border(Color.white, width: 1, cornerRadius: 3)
+                    })
+                    .buttonStyle(.plain)
                 }
                 if !isShowingNumber {
                     EachRowView(allCharater: thirdRow,onTap: add)
                 } else {
-                    EachRowView(allCharater: numThirdRow,onTap: add, widthFix: 7)
+                    EachRowView(allCharater: numThirdRow,onTap: add, widthFix: 8)
                 }
                 Button(action: {
-                    isShowingNumber = !isShowingNumber
+                    if isShowingNumber {
+                        isShowingSymbol = false
+                    }
+                    isShowingNumber.toggle()
                 }, label: {
                     if !isShowingNumber {
                         Image(systemName: "textformat.123")
-                            .font(.system(size: 13))
+                            .font(.system(size: 9))
+                            .padding(2)
+                            .padding(.vertical, 2)
+                            .border(Color.white, width: 1, cornerRadius: 3)
                     } else {
                         Image(systemName:"abc")
+                            .font(.system(size: 9))
+                            .padding(2)
+                            .padding(.vertical, 2)
+                            .border(Color.white, width: 1, cornerRadius: 3)
                     }
                 })
                 .buttonStyle(.plain)
@@ -102,7 +133,7 @@ struct ExtKeyboardView: View {
                     if #available(watchOS 10.0, *) {
                         Image(systemName: "checkmark")
                     } else {
-                        Text("Keybord.finish")
+                        Text("完成")
                     }
                 })
             })
@@ -263,30 +294,42 @@ struct EachRowView: View {
     var allCharater:[String]
     var dect = false
     var onTap:(String) -> ()
-    var widthFix: Float = 10
+    var widthFix: CGFloat = 10
+    @State var isKeyPressed = Array<Bool>(repeating: false, count: 20)
     var body: some View {
         HStack(spacing:0) {
-            ForEach(allCharater,id: \.self) { c in
+            ForEach(0..<allCharater.count, id: \.self) { i in
                 Button(action: {
-                    onTap(c)
-                }) {
-                    Color("Color")
-                        .frame(width:fullWidth/CGFloat(widthFix))
+                    onTap(allCharater[i])
+                }, label: {
+                    Color.gray
+                        .cornerRadius(3)
+                        .opacity(isKeyPressed[i] ? 0.8 : 0.0100000002421438702673861521)
+                        .frame(width:fullWidth/widthFix)
                         .overlay {
                             if isCapsLock {
-                                Text(c.uppercased())
+                                Text(allCharater[i].uppercased())
                                     .font(.system(size: 20))
                             } else {
-                                Text(c.lowercased())
+                                Text(allCharater[i].lowercased())
                                     .font(.system(size: 20))
                             }
                         }
-                }
-                .buttonStyle(.plain)
+                })
+                //.buttonStyle(.plain)
+                .buttonStyle(KeyboardKeyButton(isPressed: $isKeyPressed[i]))
             }
-            
         }
-        
+    }
+    
+    struct KeyboardKeyButton: ButtonStyle {
+        @Binding var isPressed: Bool
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+                .onChange(of: configuration.isPressed) { value in
+                    isPressed = value
+                }
+        }
     }
 }
 
@@ -347,9 +390,10 @@ import Combine
 
 let finalWidth = CurrentValueSubject<Double,Never>(999.0)
 
-
-struct ExtKeyboardView_Previews: PreviewProvider {
-    static var previews: some View {
-        ExtKeyboardView()
+extension View {
+    public func border<S>(_ content: S, width: CGFloat = 1, cornerRadius: CGFloat) -> some View where S : ShapeStyle {
+        let roundedRect = RoundedRectangle(cornerRadius: cornerRadius)
+        return clipShape(roundedRect)
+            .overlay(roundedRect.strokeBorder(content, lineWidth: width))
     }
 }

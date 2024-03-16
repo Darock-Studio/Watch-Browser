@@ -1,9 +1,31 @@
 {
   "sourceLanguage" : "zh-Hans",
   "strings" : {
+    "#+=" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
     "0" : {
       "localizations" : {
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -18,12 +40,24 @@
             "state" : "translated",
             "value" : ""
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
         }
       }
     },
     "2" : {
       "localizations" : {
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -38,12 +72,24 @@
             "state" : "translated",
             "value" : ""
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
         }
       }
     },
     "4" : {
       "localizations" : {
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -58,12 +104,24 @@
             "state" : "translated",
             "value" : ""
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
         }
       }
     },
     "6" : {
       "localizations" : {
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -78,6 +136,12 @@
             "state" : "translated",
             "value" : ""
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
         }
       }
     },
@@ -88,12 +152,24 @@
             "state" : "translated",
             "value" : ""
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
         }
       }
     },
     "9" : {
       "localizations" : {
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -114,6 +190,12 @@
             "state" : "translated",
             "value" : "baidu"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
         }
       }
     },
@@ -129,6 +211,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "bing"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
           }
         }
       }
@@ -146,6 +234,12 @@
             "state" : "translated",
             "value" : "添加书签"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "添加書簽"
+          }
         }
       }
     },
@@ -162,6 +256,12 @@
             "state" : "translated",
             "value" : "编辑书签"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯書簽"
+          }
         }
       }
     },
@@ -174,6 +274,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完成"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "完成"
@@ -194,6 +300,12 @@
             "state" : "translated",
             "value" : "书签链接"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書簽連結"
+          }
         }
       }
     },
@@ -210,6 +322,12 @@
             "state" : "translated",
             "value" : "书签名称"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書簽名稱"
+          }
         }
       }
     },
@@ -222,6 +340,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "公告"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "公告"
@@ -242,6 +366,12 @@
             "state" : "translated",
             "value" : "标记为已阅"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標記為已閱"
+          }
         }
       }
     },
@@ -258,6 +388,12 @@
             "state" : "translated",
             "value" : "标记为未阅"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標記為未閱"
+          }
         }
       }
     },
@@ -268,12 +404,24 @@
             "state" : "translated",
             "value" : "Darock will collect necessary diagnostic information for improvement, and the information will not be related to you personally. If you are unwilling to receive information, please do not send it."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock會收集必要的診斷資訊以便進行改進，資訊不會關聯到您個人。 如果您不願意被收集資訊，請勿發送。"
+          }
         }
       }
     },
     "Done" : {
       "localizations" : {
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -294,6 +442,12 @@
             "state" : "translated",
             "value" : "google"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
         }
       }
     },
@@ -309,6 +463,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "清除历史记录"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除歷史記錄"
           }
         }
       }
@@ -326,6 +486,12 @@
             "state" : "translated",
             "value" : "是否同时清除历史记录？"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "是否同時清除歷史記錄？"
+          }
         }
       }
     },
@@ -341,6 +507,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未在记录"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未在記錄"
           }
         }
       }
@@ -358,6 +530,12 @@
             "state" : "translated",
             "value" : "无历史记录"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無歷史記錄"
+          }
         }
       }
     },
@@ -374,6 +552,12 @@
             "state" : "translated",
             "value" : "记录历史"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "記錄歷史"
+          }
         }
       }
     },
@@ -386,6 +570,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "保存"
@@ -406,6 +596,12 @@
             "state" : "translated",
             "value" : "历史记录选项"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "歷史記錄選項"
+          }
         }
       }
     },
@@ -421,6 +617,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "关闭历史记录"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "關閉歷史記錄"
           }
         }
       }
@@ -438,6 +640,12 @@
             "state" : "translated",
             "value" : "书签"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書簽"
+          }
         }
       }
     },
@@ -454,6 +662,12 @@
             "state" : "translated",
             "value" : "已置顶的书签"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已置頂的書簽"
+          }
         }
       }
     },
@@ -466,6 +680,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前往"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "前往"
@@ -486,6 +706,12 @@
             "state" : "translated",
             "value" : "历史记录"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "歷史記錄"
+          }
         }
       }
     },
@@ -501,6 +727,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darock邀请您参加测试"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock邀請您參加測試"
           }
         }
       }
@@ -518,6 +750,12 @@
             "state" : "translated",
             "value" : "搜索"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
         }
       }
     },
@@ -533,6 +771,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "键入关键词或链接"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "鍵入關鍵字或連結"
           }
         }
       }
@@ -550,6 +794,12 @@
             "state" : "translated",
             "value" : "通过百度搜索"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通過百度搜索"
+          }
         }
       }
     },
@@ -565,6 +815,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "通过必应搜索"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通過必應搜索"
           }
         }
       }
@@ -582,6 +838,12 @@
             "state" : "translated",
             "value" : "通过谷歌搜索"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过Google搜索"
+          }
         }
       }
     },
@@ -597,6 +859,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "通过搜狗搜索"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通過搜狗搜索"
           }
         }
       }
@@ -614,6 +882,12 @@
             "state" : "translated",
             "value" : "设置"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定"
+          }
         }
       }
     },
@@ -630,6 +904,12 @@
             "state" : "translated",
             "value" : "暗礁浏览器"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暗礁瀏覽器"
+          }
         }
       }
     },
@@ -639,6 +919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ID: %@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
           }
         }
       }
@@ -656,6 +942,12 @@
             "state" : "translated",
             "value" : "Apple Watch 上的 Bilibili 客户端"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Watch上的Bilibili用戶端"
+          }
         }
       }
     },
@@ -671,6 +963,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "喵哩喵哩"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
           }
         }
       }
@@ -772,6 +1070,7 @@
       }
     },
     "Keybord.finish" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1401,6 +1700,28 @@
             "state" : "translated",
             "value" : "Next"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下一步"
+          }
+        }
+      }
+    },
+    "中国大陆ICP备案号" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ICP Record No. in China Mainland"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中國大陸ICP備案號"
+          }
         }
       }
     },
@@ -1410,6 +1731,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Content"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "內容"
           }
         }
       }
@@ -1421,6 +1748,12 @@
             "state" : "translated",
             "value" : "Feedback Assistant"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "迴響助理"
+          }
         }
       }
     },
@@ -1430,6 +1763,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Feedback Type"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "迴響類型"
           }
         }
       }
@@ -1441,6 +1780,12 @@
             "state" : "translated",
             "value" : "Send"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "發送"
+          }
         }
       }
     },
@@ -1450,6 +1795,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sent Feedbacks"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "發送的迴響"
           }
         }
       }
@@ -1483,6 +1834,12 @@
             "state" : "translated",
             "value" : "Reply"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回復"
+          }
         }
       }
     },
@@ -1492,6 +1849,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reply %lld"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回復 %lld"
           }
         }
       }
@@ -1503,6 +1866,12 @@
             "state" : "translated",
             "value" : "Content"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回復資訊"
+          }
         }
       }
     },
@@ -1513,16 +1882,27 @@
             "state" : "translated",
             "value" : "Reply Content"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回復內容"
+          }
         }
       }
     },
     "完成" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Done"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完成"
           }
         }
       }
@@ -1534,6 +1914,12 @@
             "state" : "translated",
             "value" : "Fixed"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已修復"
+          }
         }
       }
     },
@@ -1544,6 +1930,12 @@
             "state" : "translated",
             "value" : "Fixed in Future Versions"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已在未來版本修復"
+          }
         }
       }
     },
@@ -1553,6 +1945,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Suggest"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "建議"
           }
         }
       }
@@ -1575,6 +1973,12 @@
             "state" : "translated",
             "value" : "Fast Search Engine"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快速搜尋引擎"
+          }
         }
       }
     },
@@ -1585,6 +1989,12 @@
             "state" : "translated",
             "value" : "Work as Intented"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按預期工作"
+          }
         }
       }
     },
@@ -1594,6 +2004,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shelved"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "擱置"
           }
         }
       }
@@ -1616,6 +2032,12 @@
             "state" : "translated",
             "value" : "Search Engine Shortcuts"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜尋引擎快捷方式"
+          }
         }
       }
     },
@@ -1637,6 +2059,12 @@
             "state" : "translated",
             "value" : "New feedback"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新建迴響"
+          }
         }
       }
     },
@@ -1646,6 +2074,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unable to Fix"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法修復"
+          }
+        }
+      }
+    },
+    "无痕浏览" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無痕瀏覽"
           }
         }
       }
@@ -1658,6 +2108,12 @@
             "state" : "translated",
             "value" : "No custom search engine"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無自定搜尋引擎"
+          }
         }
       }
     },
@@ -1667,6 +2123,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unmarked"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未標記"
           }
         }
       }
@@ -1678,6 +2140,12 @@
             "state" : "translated",
             "value" : "Cannot Reappear"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未能複現"
+          }
         }
       }
     },
@@ -1687,6 +2155,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "From"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "來自"
           }
         }
       }
@@ -1698,6 +2172,12 @@
             "state" : "translated",
             "value" : "Title"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標題"
+          }
         }
       }
     },
@@ -1708,6 +2188,12 @@
             "state" : "translated",
             "value" : "Fixing"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在修復"
+          }
         }
       }
     },
@@ -1717,6 +2203,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Loading"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在加載"
+          }
+        }
+      }
+    },
+    "浙ICP备2024071295号-2A" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
           }
         }
       }
@@ -1750,6 +2258,12 @@
             "state" : "translated",
             "value" : "State"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "狀態"
+          }
         }
       }
     },
@@ -1771,6 +2285,12 @@
             "state" : "translated",
             "value" : "Briefly describe the problem"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "簡潔地描述問題"
+          }
         }
       }
     },
@@ -1780,6 +2300,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Type"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "類型"
           }
         }
       }
@@ -1791,6 +2317,12 @@
             "state" : "translated",
             "value" : "Customize Search Engine"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自定搜尋引擎"
+          }
         }
       }
     },
@@ -1800,6 +2332,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Detail"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "詳情"
           }
         }
       }
@@ -1899,6 +2437,12 @@
             "state" : "translated",
             "value" : "Error"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "錯誤/异常行為"
+          }
         }
       }
     },
@@ -1908,6 +2452,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unrelated"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "問題並不與App相關"
           }
         }
       }
@@ -1919,6 +2469,12 @@
             "state" : "translated",
             "value" : "Repeated"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "問題重複"
+          }
         }
       }
     },
@@ -1929,6 +2485,12 @@
             "state" : "translated",
             "value" : "Details Required"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要更多細節"
+          }
         }
       }
     },
@@ -1938,6 +2500,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Default Search Engine"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "默認搜尋引擎"
           }
         }
       }

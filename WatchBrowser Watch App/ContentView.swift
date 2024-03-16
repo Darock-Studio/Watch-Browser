@@ -13,22 +13,33 @@ import SwiftyJSON
 
 struct ContentView: View {
     public static var bingSearchingText = ""
+    @State var mainTabSelection = 2
     var body: some View {
         if #available(watchOS 10.0, *) {
             NavigationStack {
-                MainView()
-                    .containerBackground(Color(hex: 0x13A4FF).gradient, for: .navigation)
-                    .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            NavigationLink(destination: {SettingsView()}, label: {
-                                Image(systemName: "gear")
-                            })
+                TabView(selection: $mainTabSelection) {
+                    PrivateBrowsingView()
+                        .tag(1)
+                    MainView()
+                        .containerBackground(Color(hex: 0x13A4FF).gradient, for: .navigation)
+                        .toolbar {
+                            ToolbarItem(placement: .topBarLeading) {
+                                NavigationLink(destination: {SettingsView()}, label: {
+                                    Image(systemName: "gear")
+                                })
+                            }
                         }
-                    }
+                        .tag(2)
+                }
             }
         } else {
             NavigationView {
-                MainView(withSetting: true)
+                TabView(selection: $mainTabSelection) {
+                    PrivateBrowsingView()
+                        .tag(1)
+                    MainView(withSetting: true)
+                        .tag(2)
+                }
             }
             .navigationViewStyle(.stack)
         }
@@ -37,7 +48,6 @@ struct ContentView: View {
 
 struct MainView: View {
     var withSetting: Bool = false
-    @AppStorage("Bing_API") var isUsingBingAPI = false
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("IsAllowCookie") var isAllowCookie = false
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
@@ -48,7 +58,6 @@ struct MainView: View {
     @State var goToButtonLabelText: LocalizedStringKey = "Home.search"
     @State var isKeyboardPresented = false
     @State var isCookieTipPresented = false
-    @State var isBingSearchPresented = false
     @State var pinnedBookmarkIndexs = [Int]()
     var body: some View {
         List {
@@ -175,19 +184,14 @@ struct MainView: View {
                         session.prefersEphemeralWebBrowserSession = !isAllowCookie
                         session.start()
                     } else {
-                        if isUsingBingAPI {
-                            ContentView.bingSearchingText = textOrURL
-                            isBingSearchPresented = true
-                        } else {
-                            let session = ASWebAuthenticationSession(
-                                url: URL(string: GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled))!,
-                                callbackURLScheme: nil
-                            ) { _, _ in
-                                
-                            }
-                            session.prefersEphemeralWebBrowserSession = !isAllowCookie
-                            session.start()
+                        let session = ASWebAuthenticationSession(
+                            url: URL(string: GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled))!,
+                            callbackURLScheme: nil
+                        ) { _, _ in
+                            
                         }
+                        session.prefersEphemeralWebBrowserSession = !isAllowCookie
+                        session.start()
                     }
                     if isHistoryRecording {
                         RecordHistory(textOrURL, webSearch: webSearch)
@@ -200,7 +204,6 @@ struct MainView: View {
                         Spacer()
                     }
                 })
-                .sheet(isPresented: $isBingSearchPresented, content: {BingSearchView()})
             }
             Section {
                 NavigationLink(destination: {
