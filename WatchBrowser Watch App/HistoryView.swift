@@ -14,6 +14,8 @@ struct HistoryView: View {
     @State var isSettingPresented = false
     @State var isStopRecordingPagePresenting = false
     @State var histories = [String]()
+    @State var isSharePresented = false
+    @State var shareLink = ""
     var body: some View {
         List {
             Toggle("History.record", isOn: $isHistoryRecording)
@@ -59,6 +61,14 @@ struct HistoryView: View {
                                     Image(systemName: "bin.xmark.fill")
                                 })
                             }
+                            .swipeActions(edge: .leading) {
+                                Button(action: {
+                                    shareLink = histories[i].urlDecoded().urlEncoded()
+                                    isSharePresented = true
+                                }, label: {
+                                    Image(systemName: "square.and.arrow.up.fill")
+                                })
+                            }
                         }
                     } else {
                         Text("History.nothing")
@@ -70,6 +80,7 @@ struct HistoryView: View {
                 }
             }
         }
+        .sheet(isPresented: $isSharePresented, content: {ShareView(linkToShare: $shareLink)})
         .onAppear {
             histories = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
         }

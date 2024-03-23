@@ -17,6 +17,8 @@ struct BookmarkView: View {
     @State var isNewMarkPresented = false
     @State var isBookmarkEditPresented = false
     @State var pinnedBookmarkIndexs = [Int]()
+    @State var isShareSheetPresented = false
+    @State var shareLink = ""
     var body: some View {
         let userdefault = UserDefaults.standard
         List {
@@ -92,6 +94,14 @@ struct BookmarkView: View {
                                     }
                                 })
                             }
+                            .swipeActions(edge: .leading) {
+                                Button(action: {
+                                    shareLink = userdefault.string(forKey: "BookmarkLink\(i)")!
+                                    isShareSheetPresented = true
+                                }, label: {
+                                    Image(systemName: "square.and.arrow.up.fill")
+                                })
+                            }
                         }
                     }
                     .sheet(isPresented: $isBookmarkEditPresented, onDismiss: {
@@ -100,6 +110,7 @@ struct BookmarkView: View {
                     }, content: {EditBookmarkView()})
             }
         }
+        .sheet(isPresented: $isShareSheetPresented, content: {ShareView(linkToShare: $shareLink)})
         .onAppear {
             markTotal = UserDefaults.standard.integer(forKey: "BookmarkTotal")
             pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()

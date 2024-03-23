@@ -119,6 +119,7 @@ struct PrivateBrowsingView: View {
                         session.prefersEphemeralWebBrowserSession = true
                         session.start()
                     }
+                    textOrURL = ""
                 }, label: {
                     HStack {
                         Spacer()
