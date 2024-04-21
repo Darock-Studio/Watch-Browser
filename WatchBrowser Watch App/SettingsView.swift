@@ -17,6 +17,7 @@ struct SettingsView: View {
     @AppStorage("UserPassword") var userPassword = ""
     @AppStorage("RequestDesktopWeb") var requestDesktopWeb = false
     @AppStorage("UseBackforwardGesture") var useBackforwardGesture = true
+    @AppStorage("isUseOldWebView") var isUseOldWebView = false
     @State var KeyboardChanged = false
     @State var isKeyboardPresented = false
     @State var isCookieTipPresented = false
@@ -40,6 +41,17 @@ struct SettingsView: View {
             } header: {
                 Text("网页浏览")
             }
+            .navigationTitle("网页浏览")
+            .navigationBarTitleDisplayMode(.inline)
+            Section {
+                Toggle("使用旧版浏览引擎", isOn: $isUseOldWebView)
+            } header: {
+                Text("引擎")
+            } footer: {
+                Text("旧版引擎拥有更好的稳定性，但缺少部分高级功能")
+            }
+            .navigationTitle("引擎")
+            .navigationBarTitleDisplayMode(.inline)
             Section {
                 Picker(selection: $webSearch, label: Text(isSearchEngineShortcutEnabled ? "默认搜索引擎" : "Settings.search.engine")) {
                     ForEach(EngineNames.allCases, id: \.self) { engineNames in
