@@ -36,6 +36,7 @@ struct AdvancedWebView: View {
 class AdvancedWebViewController {
     let menuController = Dynamic.UIViewController()
     let vc = Dynamic.UIViewController()
+    let loadProgressView = Dynamic.UIProgressView().initWithProgressViewStyle(Dynamic.UIProgressViewStyleDefault)
     
     @AppStorage("AllowCookies") var allowCookies = true
     @AppStorage("RequestDesktopWeb") var requestDesktopWeb = false
@@ -64,6 +65,11 @@ class AdvancedWebViewController {
         wkWebView.allowsBackForwardNavigationGestures = useBackforwardGesture
         wkWebView.configuration.websiteDataStore.httpCookieStore.setCookiePolicy(allowCookies && !isInPrivacy ? Dynamic.WKCookiePolicyAllow : Dynamic.WKCookiePolicyDisllow, completionHandler: {} as @convention(block) () -> Void)
         wkWebView.addSubview(moreButton)
+
+        // Load Progress Bar
+        loadProgressView.frame = CGRect(x: 0, y: 0, width: sb.width, height: 20)
+        loadProgressView.progressTintColor = UIColor.blue
+        wkWebView.addSubview(loadProgressView)
         
         vc.view = wkWebView
         
@@ -83,6 +89,7 @@ class AdvancedWebViewController {
                 pMenuShouldDismiss = false
                 dismissController(menuController)
             }
+            loadProgressView.setProgress(Float(wkWebView.estimatedProgress.asDouble ?? 0.0), animated: true)
         }
         videoCheckTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [self] _ in
             if let url = Dynamic(webView).URL.asObject {
