@@ -181,27 +181,26 @@ class AdvancedWebViewController {
         return CGRect(x: (sb.width - (sb.width - 40)) / 2, y: y, width: sb.width - 40, height: height)
     }
     
-    func CheckWebContent(setRetryTimer: Bool = true) {
-        if (Dynamic(webView).isLoading.asBool ?? true) && setRetryTimer {
-            videoCheckRetryTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] _ in
-                videoCheckRetryCount += 1
-                if videoCheckRetryCount <= 60 {
-                    CheckWebContent()
-                } else {
-                    videoCheckRetryTimer?.invalidate()
-                    videoCheckRetryTimer = nil
-                    videoCheckRetryCount = 0
+    func CheckWebContent() {
+        if Dynamic(webView).isLoading.asBool ?? true {
+            if videoCheckRetryTimer == nil {
+                videoCheckRetryTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] _ in
+                    videoCheckRetryCount += 1
+                    if videoCheckRetryCount > 60 {
+                        videoCheckRetryTimer?.invalidate()
+                        videoCheckRetryTimer = nil
+                        videoCheckRetryCount = 0
+                        return
+                    }
+                    if !(Dynamic(webView).isLoading.asBool ?? true) {
+                        videoCheckRetryTimer?.invalidate()
+                        videoCheckRetryTimer = nil
+                        videoCheckRetryCount = 0
+                        CheckWebContent()
+                    }
                 }
             }
             return
-        } else {
-            if Dynamic(webView).isLoading.asBool ?? true {
-                return
-            } else {
-                videoCheckRetryTimer?.invalidate()
-                videoCheckRetryTimer = nil
-                videoCheckRetryCount = 0
-            }
         }
         Dynamic(webView).evaluateJavaScript("document.documentElement.outerHTML", completionHandler: { [self] obj, error in
             DispatchQueue(label: "com.darock.browser.wk.videodetect", qos: .utility).async {
