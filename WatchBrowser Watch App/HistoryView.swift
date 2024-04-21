@@ -82,7 +82,7 @@ struct HistoryView: View {
 
 func RecordHistory(_ inp: String, webSearch: String) {
     var fullHistory = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
-    if let lstf = fullHistory.last {
+    if let lstf = fullHistory.first {
         guard lstf != inp && lstf != GetWebSearchedURL(inp, webSearch: webSearch, isSearchEngineShortcutEnabled: false) else {
             return
         }

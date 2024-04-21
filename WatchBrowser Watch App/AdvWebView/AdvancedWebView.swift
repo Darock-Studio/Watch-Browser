@@ -68,13 +68,7 @@ class AdvancedWebViewController {
         let vc = Dynamic.UIViewController()
         vc.view = wkWebView
         
-        var topController = Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController
-        if topController.asObject != nil {
-            while topController.presentedViewController.asObject != nil {
-                topController = topController.presentedViewController
-            }
-        }
-        topController.presentViewController(vc, animated: true, completion: nil)
+        Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(vc, animated: true, completion: nil)
         webViewParentController = vc.asObject!
         
         wkWebView.loadRequest(URLRequest(url: url))
@@ -200,8 +194,11 @@ class AdvancedWebViewController {
                     if let videos {
                         var srcs = [String]()
                         for video in videos {
-                            let src = try video.attr("src")
+                            var src = try video.attr("src")
                             if src != "" {
+                                if src.hasPrefix("/") {
+                                    src = "http://" + currentUrl.split(separator: "/")[1] + src
+                                }
                                 srcs.append(src)
                             }
                         }
