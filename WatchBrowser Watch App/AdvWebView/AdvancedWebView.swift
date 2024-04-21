@@ -122,7 +122,7 @@ class AdvancedWebViewController {
         }
 
         if !videoLinkLists.isEmpty {
-            let playButton = makeUIButton(title: .text("播放网页视频"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "WKReload")
+            let playButton = makeUIButton(title: .text("播放网页视频"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "PresentVideoList")
             menuView.addSubview(playButton)
             menuButtonYOffset += 60
         }
