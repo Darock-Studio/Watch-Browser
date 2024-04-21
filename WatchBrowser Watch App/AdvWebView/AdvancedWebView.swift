@@ -53,8 +53,8 @@ class AdvancedWebViewController {
         self.isInPrivacy = isInPrivacy
     }
     
-    func present(_ url: String) -> Dynamic {
-        let url = URL(string: url)!
+    func present(_ iurl: String) -> Dynamic {
+        let url = URL(string: iurl)!
 
         if isUseOldWebView {
             let session = ASWebAuthenticationSession(url: url, callbackURLScheme: nil) { _, _ in
@@ -62,6 +62,11 @@ class AdvancedWebViewController {
             }
             session.prefersEphemeralWebBrowserSession = !allowCookies
             session.start()
+
+            if isHistoryRecording && !isInPrivacy {
+                RecordHistory(iurl, webSearch: webSearch)
+            }
+            
             return Dynamic.WKWebView()
         }
         
