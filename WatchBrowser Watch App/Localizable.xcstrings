@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "zh-Hans",
   "strings" : {
+    "" : {
+
+    },
     "#+=" : {
       "localizations" : {
         "en" : {
@@ -1215,6 +1218,7 @@
       }
     },
     "Settings.cookies.pop-up" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1692,6 +1696,9 @@
         }
       }
     },
+    "T" : {
+
+    },
     "下一步" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1726,6 +1733,9 @@
       }
     },
     "二维码" : {
+
+    },
+    "使用手势返回上一页" : {
 
     },
     "共享表单" : {
@@ -2290,6 +2300,12 @@
         }
       }
     },
+    "视频列表" : {
+
+    },
+    "空视频列表" : {
+
+    },
     "简洁地描述问题" : {
       "localizations" : {
         "en" : {
@@ -2322,6 +2338,9 @@
         }
       }
     },
+    "网页浏览" : {
+
+    },
     "自定搜索引擎" : {
       "localizations" : {
         "en" : {
@@ -2353,6 +2372,9 @@
           }
         }
       }
+    },
+    "请求桌面网站" : {
+
     },
     "谷歌" : {
       "extractionState" : "stale",

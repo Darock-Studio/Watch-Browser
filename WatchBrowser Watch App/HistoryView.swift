@@ -31,14 +31,7 @@ struct HistoryView: View {
                     if histories.count != 0 {
                         ForEach(0...histories.count - 1, id: \.self) { i in
                             Button(action: {
-                                let session = ASWebAuthenticationSession(
-                                    url: URL(string: histories[i].urlDecoded().urlEncoded())!,
-                                    callbackURLScheme: nil
-                                ) { _, _ in
-                                    
-                                }
-                                session.prefersEphemeralWebBrowserSession = !AllowCookies
-                                session.start()
+                                webView = AdvancedWebViewController().present(histories[i].urlDecoded().urlEncoded()).asObject!
                             }, label: {
                                 if histories[i].hasPrefix("https://www.bing.com/search?q=") {
                                     Label(String(histories[i].urlDecoded().dropFirst(30)), systemImage: "magnifyingglass")

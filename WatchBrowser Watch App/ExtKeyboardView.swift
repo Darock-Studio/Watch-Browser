@@ -407,11 +407,3 @@ let fullWidth = WKInterfaceDevice.current().screenBounds.size.width
 import Combine
 
 let finalWidth = CurrentValueSubject<Double,Never>(999.0)
-
-extension View {
-    public func border<S>(_ content: S, width: CGFloat = 1, cornerRadius: CGFloat) -> some View where S : ShapeStyle {
-        let roundedRect = RoundedRectangle(cornerRadius: cornerRadius)
-        return clipShape(roundedRect)
-            .overlay(roundedRect.strokeBorder(content, lineWidth: width))
-    }
-}

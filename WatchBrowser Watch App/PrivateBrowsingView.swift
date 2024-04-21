@@ -101,23 +101,9 @@ struct PrivateBrowsingView: View {
                         if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
                             textOrURL = "http://" + textOrURL
                         }
-                        let session = ASWebAuthenticationSession(
-                            url: URL(string: textOrURL.urlEncoded())!,
-                            callbackURLScheme: nil
-                        ) { _, _ in
-                            
-                        }
-                        session.prefersEphemeralWebBrowserSession = true
-                        session.start()
+                        webView = AdvancedWebViewController(isInPrivacy: true).present(textOrURL.urlEncoded()).asObject!
                     } else {
-                        let session = ASWebAuthenticationSession(
-                            url: URL(string: GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled))!,
-                            callbackURLScheme: nil
-                        ) { _, _ in
-                            
-                        }
-                        session.prefersEphemeralWebBrowserSession = true
-                        session.start()
+                        webView = AdvancedWebViewController(isInPrivacy: true).present(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)).asObject!
                     }
                     textOrURL = ""
                 }, label: {

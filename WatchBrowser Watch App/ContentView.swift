@@ -4,44 +4,68 @@
 //
 //  Created by Windows MEMZ on 2023/2/6.
 //
+
+import UIKit
 import SwiftUI
 import WatchKit
 import AuthenticationServices
 import DarockKit
 import Alamofire
 import SwiftyJSON
+import Dynamic
 
 struct ContentView: View {
     public static var bingSearchingText = ""
     @State var mainTabSelection = 2
+    @State var isVideoListPresented = false
     var body: some View {
-        if #available(watchOS 10.0, *) {
-            NavigationStack {
-                TabView(selection: $mainTabSelection) {
-                    PrivateBrowsingView()
-                        .tag(1)
-                    MainView()
-                        .containerBackground(Color(hex: 0x13A4FF).gradient, for: .navigation)
-                        .toolbar {
-                            ToolbarItem(placement: .topBarLeading) {
-                                NavigationLink(destination: {SettingsView()}, label: {
-                                    Image(systemName: "gear")
-                                })
-                            }
+        Group {
+            if #available(watchOS 10.0, *) {
+                NavigationStack {
+                    ZStack {
+                        NavigationLink("", isActive: $isVideoListPresented, destination: {VideoListView()})
+                            .frame(width: 0, height: 0)
+                            .hidden()
+                        TabView(selection: $mainTabSelection) {
+                            PrivateBrowsingView()
+                                .tag(1)
+                            MainView()
+                                .containerBackground(Color(hex: 0x13A4FF).gradient, for: .navigation)
+                                .toolbar {
+                                    ToolbarItem(placement: .topBarLeading) {
+                                        NavigationLink(destination: {SettingsView()}, label: {
+                                            Image(systemName: "gear")
+                                        })
+                                    }
+                                }
+                                .tag(2)
                         }
-                        .tag(2)
+                    }
+                }
+            } else {
+                NavigationView {
+                    ZStack {
+                        NavigationLink("", isActive: $isVideoListPresented, destination: {VideoListView()})
+                            .frame(width: 0, height: 0)
+                            .hidden()
+                        TabView(selection: $mainTabSelection) {
+                            PrivateBrowsingView()
+                                .tag(1)
+                            MainView(withSetting: true)
+                                .tag(2)
+                        }
+                    }
+                }
+                .navigationViewStyle(.stack)
+            }
+        }
+        .onAppear {
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
+                if pShouldPresentVideoList {
+                    pShouldPresentVideoList = false
+                    isVideoListPresented = true
                 }
             }
-        } else {
-            NavigationView {
-                TabView(selection: $mainTabSelection) {
-                    PrivateBrowsingView()
-                        .tag(1)
-                    MainView(withSetting: true)
-                        .tag(2)
-                }
-            }
-            .navigationViewStyle(.stack)
         }
     }
 }
@@ -61,6 +85,11 @@ struct MainView: View {
     @State var pinnedBookmarkIndexs = [Int]()
     var body: some View {
         List {
+//            Section {
+//                NavigationLink(destination: { AdvancedWebView(url: "https://apple.com") }, label: {
+//                    Text("Debug")
+//                })
+//            }
             Section {
                 Group {
                     if !ModifyKeyboard {
@@ -175,23 +204,9 @@ struct MainView: View {
                         if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
                             textOrURL = "http://" + textOrURL
                         }
-                        let session = ASWebAuthenticationSession(
-                            url: URL(string: textOrURL.urlEncoded())!,
-                            callbackURLScheme: nil
-                        ) { _, _ in
-                            
-                        }
-                        session.prefersEphemeralWebBrowserSession = !isAllowCookie
-                        session.start()
+                        webView = AdvancedWebViewController().present(textOrURL.urlEncoded()).asObject!
                     } else {
-                        let session = ASWebAuthenticationSession(
-                            url: URL(string: GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled))!,
-                            callbackURLScheme: nil
-                        ) { _, _ in
-                            
-                        }
-                        session.prefersEphemeralWebBrowserSession = !isAllowCookie
-                        session.start()
+                        webView = AdvancedWebViewController().present(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)).asObject!
                     }
                     if isHistoryRecording {
                         RecordHistory(textOrURL, webSearch: webSearch)
@@ -249,14 +264,7 @@ struct MainView: View {
                 Section {
                     ForEach(0..<pinnedBookmarkIndexs.count, id: \.self) { i in
                         Button(action: {
-                            let session = ASWebAuthenticationSession(
-                                url: URL(string: UserDefaults.standard.string(forKey: "BookmarkLink\(pinnedBookmarkIndexs[i])")!)!,
-                                callbackURLScheme: nil
-                            ) { _, _ in
-                                
-                            }
-                            session.prefersEphemeralWebBrowserSession = !isAllowCookie
-                            session.start()
+                            webView = AdvancedWebViewController().present(UserDefaults.standard.string(forKey: "BookmarkLink\(pinnedBookmarkIndexs[i])")!).asObject!
                             if isHistoryRecording {
                                 RecordHistory(UserDefaults.standard.string(forKey: "BookmarkLink\(pinnedBookmarkIndexs[i])")!, webSearch: webSearch)
                             }

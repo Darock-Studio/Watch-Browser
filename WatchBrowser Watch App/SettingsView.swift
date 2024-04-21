@@ -11,10 +11,12 @@ import AuthenticationServices
 struct SettingsView: View {
     @AppStorage("Bing_API") var isUsingBingAPI = false
     @AppStorage("WebSearch") var webSearch = "必应"
-    @AppStorage("AllowCookies") var AllowCookies = false
+    @AppStorage("AllowCookies") var AllowCookies = true
     @AppStorage("ModifyKeyboard") var ModifyKeyboard = false
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
     @AppStorage("UserPassword") var userPassword = ""
+    @AppStorage("RequestDesktopWeb") var requestDesktopWeb = false
+    @AppStorage("UseBackforwardGesture") var useBackforwardGesture = true
     @State var KeyboardChanged = false
     @State var isKeyboardPresented = false
     @State var isCookieTipPresented = false
@@ -32,6 +34,12 @@ struct SettingsView: View {
     let engineTitle = ["必应": String(localized: "Search.bing"), "百度": String(localized: "Search.baidu"), "谷歌": String(localized: "Search.google"), "搜狗": String(localized: "Search.sougou")]
     var body: some View {
         Form {
+            Section {
+                Toggle("请求桌面网站", isOn: $requestDesktopWeb)
+                Toggle("使用手势返回上一页", isOn: $useBackforwardGesture)
+            } header: {
+                Text("网页浏览")
+            }
             Section {
                 Picker(selection: $webSearch, label: Text(isSearchEngineShortcutEnabled ? "默认搜索引擎" : "Settings.search.engine")) {
                     ForEach(EngineNames.allCases, id: \.self) { engineNames in
@@ -107,10 +115,6 @@ struct SettingsView: View {
                 HStack(alignment: .center) {
                     Image(systemName: "hand.raised.fill")
                     Text("Settings.cookies.privacy")
-                }
-                HStack(alignment: .center) {
-                    Image(systemName: "exclamationmark.triangle")
-                    Text("Settings.cookies.pop-up")
                 }
                 HStack(alignment: .center) {
                     Image(systemName: "minus.diamond")

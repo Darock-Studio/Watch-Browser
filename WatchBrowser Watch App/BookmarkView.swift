@@ -40,14 +40,7 @@ struct BookmarkView: View {
                     Section {
                         ForEach(1...markTotal, id: \.self) { i in
                             Button(action: {
-                                let session = ASWebAuthenticationSession(
-                                    url: URL(string: userdefault.string(forKey: "BookmarkLink\(i)")!)!,
-                                    callbackURLScheme: nil
-                                ) { _, _ in
-                                    
-                                }
-                                session.prefersEphemeralWebBrowserSession = !isAllowCookie
-                                session.start()
+                                webView = AdvancedWebViewController().present(userdefault.string(forKey: "BookmarkLink\(i)")!).asObject!
                                 if isRecordHistory {
                                     RecordHistory(userdefault.string(forKey: "BookmarkLink\(i)")!, webSearch: webSearch)
                                 }
