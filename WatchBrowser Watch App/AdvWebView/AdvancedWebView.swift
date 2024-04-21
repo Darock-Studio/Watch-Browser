@@ -89,15 +89,15 @@ class AdvancedWebViewController {
                 dismissController(menuController)
             }
         }
-        videoCheckTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] _ in
+        videoCheckTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [self] _ in
+            if !isVideoChecking {
+                isVideoChecking = true
+                CheckWebContent()
+            }
             if let url = Dynamic(webView).URL.asObject {
                 let curl = (url as! NSURL).absoluteString!
                 if curl != currentUrl {
                     currentUrl = curl
-                    if !isVideoChecking {
-                        isVideoChecking = true
-                        CheckWebContent()
-                    }
                     if isHistoryRecording && !isInPrivacy {
                         RecordHistory(curl, webSearch: webSearch)
                     }
@@ -182,26 +182,6 @@ class AdvancedWebViewController {
     }
     
     func CheckWebContent() {
-        if Dynamic(webView).isLoading.asBool ?? true {
-            if videoCheckRetryTimer == nil {
-                videoCheckRetryTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] _ in
-                    videoCheckRetryCount += 1
-                    if videoCheckRetryCount > 60 {
-                        videoCheckRetryTimer?.invalidate()
-                        videoCheckRetryTimer = nil
-                        videoCheckRetryCount = 0
-                        return
-                    }
-                    if !(Dynamic(webView).isLoading.asBool ?? true) {
-                        videoCheckRetryTimer?.invalidate()
-                        videoCheckRetryTimer = nil
-                        videoCheckRetryCount = 0
-                        CheckWebContent()
-                    }
-                }
-            }
-            return
-        }
         Dynamic(webView).evaluateJavaScript("document.documentElement.outerHTML", completionHandler: { [self] obj, error in
             DispatchQueue(label: "com.darock.browser.wk.videodetect", qos: .utility).async {
                 if let htmlStr = obj as? String {
