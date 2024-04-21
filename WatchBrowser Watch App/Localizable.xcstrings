@@ -2,7 +2,14 @@
   "sourceLanguage" : "zh-Hans",
   "strings" : {
     "" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "#+=" : {
       "localizations" : {
@@ -1075,12 +1082,6 @@
     "Keybord.finish" : {
       "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Finish"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1220,12 +1221,6 @@
     "Settings.cookies.pop-up" : {
       "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A pop-window may appear if Cookies are allowed"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1253,12 +1248,6 @@
     "Settings.invatation" : {
       "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Welcome to our international community: https://t.me/drkcomu"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1414,12 +1403,6 @@
     "Settings.search.customize" : {
       "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Customize Search Engine"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1607,12 +1590,6 @@
     "Settings.search.engine.default" : {
       "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Default Search Engine"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1640,12 +1617,6 @@
     "Settings.search.shorcut.title" : {
       "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quick Search Engine"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1697,17 +1668,18 @@
       }
     },
     "T" : {
-
-    },
-    "下一步" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Next"
+            "value" : "T"
           }
-        },
+        }
+      }
+    },
+    "下一步" : {
+      "extractionState" : "stale",
+      "localizations" : {
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1733,13 +1705,34 @@
       }
     },
     "二维码" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QR Code"
+          }
+        }
+      }
     },
     "使用手势返回上一页" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use Gestures to go to last page"
+          }
+        }
+      }
     },
     "共享表单" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share sheet"
+          }
+        }
+      }
     },
     "内容" : {
       "localizations" : {
@@ -1758,10 +1751,24 @@
       }
     },
     "分享到 iPhone" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share to iPhone"
+          }
+        }
+      }
     },
     "分享方式" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share Method"
+          }
+        }
+      }
     },
     "反馈助理" : {
       "localizations" : {
@@ -1823,28 +1830,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "發送的迴響"
-          }
-        }
-      }
-    },
-    "启用后, 在搜索内容前加上快捷名即可使用指定引擎搜索." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "After enabling, adding a shortcut name before the search content can use the specified engine for searching"
-          }
-        }
-      }
-    },
-    "启用搜索引擎快捷方式" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enable Search Engine Shortcuts"
           }
         }
       }
@@ -1977,17 +1962,6 @@
         }
       }
     },
-    "必应" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bing"
-          }
-        }
-      }
-    },
     "快速搜索引擎" : {
       "localizations" : {
         "en" : {
@@ -2009,7 +1983,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Work as Intented"
+            "value" : "Work as Expected"
           }
         },
         "zh-Hant" : {
@@ -2036,17 +2010,6 @@
         }
       }
     },
-    "搜狗" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sogou"
-          }
-        }
-      }
-    },
     "搜索引擎快捷方式" : {
       "localizations" : {
         "en" : {
@@ -2059,17 +2022,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "搜尋引擎快捷方式"
-          }
-        }
-      }
-    },
-    "搜索引擎的链接" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Link of Search Engine"
           }
         }
       }
@@ -2125,12 +2077,6 @@
     "无自定搜索引擎" : {
       "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No custom search engine"
-          }
-        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2251,28 +2197,6 @@
         }
       }
     },
-    "添加自定搜索引擎" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add custom search engine"
-          }
-        }
-      }
-    },
-    "滚动数码表冠, 将光标移动到应当插入搜索词的位置." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scroll the digital crown and move the cursor to the position where the search term should be inserted"
-          }
-        }
-      }
-    },
     "状态" : {
       "localizations" : {
         "en" : {
@@ -2289,22 +2213,25 @@
         }
       }
     },
-    "百度" : {
-      "extractionState" : "stale",
+    "视频列表" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Baidu"
+            "value" : "Video List"
           }
         }
       }
     },
-    "视频列表" : {
-
-    },
     "空视频列表" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empty Video List"
+          }
+        }
+      }
     },
     "简洁地描述问题" : {
       "localizations" : {
@@ -2339,7 +2266,14 @@
       }
     },
     "网页浏览" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Website-browsing"
+          }
+        }
+      }
     },
     "自定搜索引擎" : {
       "localizations" : {
@@ -2374,92 +2308,11 @@
       }
     },
     "请求桌面网站" : {
-
-    },
-    "谷歌" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Google"
-          }
-        }
-      }
-    },
-    "输入您要自定的搜索引擎的搜索链接,如“bing.com?q=”.要填充搜索内容的位置请暂时留空" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enter the search link for the search engine you want to customize, such as \"bing.com?q=\". To fill in the search content, please leave it blank temporarily"
-          }
-        }
-      }
-    },
-    "输入链接" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enter Link"
-          }
-        }
-      }
-    },
-    "选取插入位置" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Select insertion position"
-          }
-        }
-      }
-    },
-    "通过必应搜索" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search through Bing"
-          }
-        }
-      }
-    },
-    "通过搜狗搜索" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search through Sogou"
-          }
-        }
-      }
-    },
-    "通过百度搜索" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search through Baidu"
-          }
-        }
-      }
-    },
-    "通过谷歌搜索" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search through Google"
+            "value" : "Request Desktop Website"
           }
         }
       }
