@@ -103,7 +103,7 @@ class AdvancedWebViewController {
             }
             if pMenuShouldDismiss {
                 pMenuShouldDismiss = false
-                dismissController(menuController)
+                dismissControllersOnWebView()
             }
             if (wkWebView.estimatedProgress.asDouble ?? 1.0) == 1.0 {
                 loadProgressView.hidden = true
@@ -200,6 +200,9 @@ class AdvancedWebViewController {
     }
     func dismissController(_ controller: Dynamic, animated: Bool = true) {
         controller.dismissModalViewController(animated: animated)
+    }
+    func dismissControllersOnWebView(animated: Bool = true) {
+        vc.dismissViewControllerAnimated(animated, completion: nil)
     }
     func getMiddleRect(y: CGFloat, height: CGFloat) -> CGRect {
         let sb = WKInterfaceDevice.current().screenBounds
