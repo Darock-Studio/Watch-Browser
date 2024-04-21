@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 import Dynamic
 import SwiftSoup
+import AuthenticationServices
 
 fileprivate var webViewController = AdvancedWebViewController()
 var videoLinkLists = [String]()
@@ -43,6 +44,7 @@ class AdvancedWebViewController {
     @AppStorage("UseBackforwardGesture") var useBackforwardGesture = true
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
+    @AppStorage("isUseOldWebView") var isUseOldWebView = false
     
     var currentUrl = ""
     var isInPrivacy = false
@@ -53,6 +55,15 @@ class AdvancedWebViewController {
     
     func present(_ url: String) -> Dynamic {
         let url = URL(string: url)!
+
+        if isUseOldWebView {
+            let session = ASWebAuthenticationSession(url: url, callbackURLScheme: nil) { _, _ in
+                return
+            }
+            session.prefersEphemeralWebBrowserSession = !allowCookies
+            session.start()
+            return Dynamic.WKWebView()
+        }
         
         let moreButton = makeUIButton(title: .Image(UIImage(systemName: "ellipsis.circle")!), frame: CGRect(x: 10, y: 10, width: 30, height: 30), selector: "menuButtonClicked")
         
@@ -89,7 +100,12 @@ class AdvancedWebViewController {
                 pMenuShouldDismiss = false
                 dismissController(menuController)
             }
-            loadProgressView.setProgress(Float(wkWebView.estimatedProgress.asDouble ?? 0.0), animated: true)
+            if (wkWebView.estimatedProgress.asDouble ?? 1.0) == 1.0 {
+                loadProgressView.hidden = true
+            } else {
+                loadProgressView.hidden = false
+                loadProgressView.setProgress(Float(wkWebView.estimatedProgress.asDouble ?? 0.0), animated: true)
+            }
         }
         videoCheckTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [self] _ in
             if let url = Dynamic(webView).URL.asObject {
