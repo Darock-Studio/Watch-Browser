@@ -88,24 +88,14 @@ class AdvancedWebViewController {
             }
         }
         videoCheckTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] _ in
-            if !isVideoChecking {
-                isVideoChecking = true
-                CheckWebContent()
-                if !videoLinkLists.isEmpty {
-                    if playVideoButton == nil {
-                        let pb = makeUIButton(title: .Image(UIImage(systemName: "play.fill")!), frame: .init(x: 40, y: 10, width: 30, height: 30), selector: "PresentVideoList")
-                        wkWebView.addSubview(pb)
-                        playVideoButton = pb
-                    }
-                } else {
-                    playVideoButton?.removeFromSuperview()
-                    playVideoButton = nil
-                }
-            }
             if let url = Dynamic(webView).URL.asObject {
                 let curl = (url as! NSURL).absoluteString!
                 if curl != currentUrl {
                     currentUrl = curl
+                    if !isVideoChecking {
+                        isVideoChecking = true
+                        CheckWebContent()
+                    }
                     if isHistoryRecording && !isInPrivacy {
                         RecordHistory(curl, webSearch: webSearch)
                     }
@@ -212,6 +202,16 @@ class AdvancedWebViewController {
                     } catch {
                         print(error)
                     }
+                }
+                if !videoLinkLists.isEmpty {
+                    if playVideoButton == nil {
+                        let pb = makeUIButton(title: .Image(UIImage(systemName: "play.fill")!), frame: .init(x: 40, y: 10, width: 30, height: 30), selector: "PresentVideoList")
+                        wkWebView.addSubview(pb)
+                        playVideoButton = pb
+                    }
+                } else {
+                    playVideoButton?.removeFromSuperview()
+                    playVideoButton = nil
                 }
                 isVideoChecking = false
             }
