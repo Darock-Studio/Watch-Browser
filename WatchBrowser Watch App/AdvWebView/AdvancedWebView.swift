@@ -35,6 +35,7 @@ struct AdvancedWebView: View {
 
 class AdvancedWebViewController {
     let menuController = Dynamic.UIViewController()
+    let vc = Dynamic.UIViewController()
     
     @AppStorage("AllowCookies") var allowCookies = true
     @AppStorage("RequestDesktopWeb") var requestDesktopWeb = false
@@ -43,11 +44,7 @@ class AdvancedWebViewController {
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
     
     var currentUrl = ""
-    var playVideoButton: Dynamic?
     var isInPrivacy = false
-    var isVideoChecking = false
-    var videoCheckRetryTimer: Timer?
-    var videoCheckRetryCount = 0
     
     init(isInPrivacy: Bool = false) {
         self.isInPrivacy = isInPrivacy
@@ -68,7 +65,6 @@ class AdvancedWebViewController {
         wkWebView.configuration.websiteDataStore.httpCookieStore.setCookiePolicy(allowCookies && !isInPrivacy ? Dynamic.WKCookiePolicyAllow : Dynamic.WKCookiePolicyDisllow, completionHandler: {} as @convention(block) () -> Void)
         wkWebView.addSubview(moreButton)
         
-        let vc = Dynamic.UIViewController()
         vc.view = wkWebView
         
         Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(vc, animated: true, completion: nil)
@@ -81,8 +77,7 @@ class AdvancedWebViewController {
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [self] _ in
             if pIsMenuButtonDown {
                 pIsMenuButtonDown = false
-                updateMenuController()
-                vc.presentViewController(menuController, animated: true, completion: nil)
+                CheckWebContent()
             }
             if pMenuShouldDismiss {
                 pMenuShouldDismiss = false
@@ -90,10 +85,6 @@ class AdvancedWebViewController {
             }
         }
         videoCheckTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [self] _ in
-            if !isVideoChecking {
-                isVideoChecking = true
-                CheckWebContent()
-            }
             if let url = Dynamic(webView).URL.asObject {
                 let curl = (url as! NSURL).absoluteString!
                 if curl != currentUrl {
@@ -129,6 +120,12 @@ class AdvancedWebViewController {
             menuView.addSubview(urlText)
             menuButtonYOffset += 45
         }
+
+        if !videoLinkLists.isEmpty {
+            let playButton = makeUIButton(title: .text("播放网页视频"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "WKReload")
+            menuView.addSubview(playButton)
+            menuButtonYOffset += 60
+        }
         
         let reloadButton = makeUIButton(title: .text("重新载入"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "WKReload")
         menuView.addSubview(reloadButton)
@@ -145,7 +142,7 @@ class AdvancedWebViewController {
             menuButtonYOffset += 50
         }
         
-        let exitButton = makeUIButton(title: .text("退出"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "DismissWebView")
+        let exitButton = makeUIButton(title: .text("退出"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .red, selector: "DismissWebView")
         menuView.addSubview(exitButton)
         menuButtonYOffset += 50
         
@@ -183,40 +180,29 @@ class AdvancedWebViewController {
     
     func CheckWebContent() {
         Dynamic(webView).evaluateJavaScript("document.documentElement.outerHTML", completionHandler: { [self] obj, error in
-            DispatchQueue(label: "com.darock.browser.wk.videodetect", qos: .utility).async {
-                if let htmlStr = obj as? String {
-                    do {
-                        let doc = try SwiftSoup.parse(htmlStr)
-                        let videos = try doc.body()?.select("video")
-                        if let videos {
-                            var srcs = [String]()
-                            for video in videos {
-                                var src = try video.attr("src")
-                                if src != "" {
-                                    if src.hasPrefix("/") {
-                                        src = "http://" + currentUrl.split(separator: "/")[1] + src
-                                    }
-                                    srcs.append(src)
+            if let htmlStr = obj as? String {
+                do {
+                    let doc = try SwiftSoup.parse(htmlStr)
+                    let videos = try doc.body()?.select("video")
+                    if let videos {
+                        var srcs = [String]()
+                        for video in videos {
+                            var src = try video.attr("src")
+                            if src != "" {
+                                if src.hasPrefix("/") {
+                                    src = "http://" + currentUrl.split(separator: "/")[1] + src
                                 }
+                                srcs.append(src)
                             }
-                            videoLinkLists = srcs
                         }
-                    } catch {
-                        print(error)
+                        videoLinkLists = srcs
                     }
+                } catch {
+                    print(error)
                 }
-                if !videoLinkLists.isEmpty {
-                    if playVideoButton == nil {
-                        let pb = makeUIButton(title: .Image(UIImage(systemName: "play.fill")!), frame: .init(x: 40, y: 10, width: 30, height: 30), selector: "PresentVideoList")
-                        Dynamic(webView).addSubview(pb)
-                        playVideoButton = pb
-                    }
-                } else {
-                    playVideoButton?.removeFromSuperview()
-                    playVideoButton = nil
-                }
-                isVideoChecking = false
             }
+            updateMenuController()
+            vc.presentViewController(menuController, animated: true, completion: nil)
         } as @convention(block) (Any?, (any Error)?) -> Void)
     }
     
