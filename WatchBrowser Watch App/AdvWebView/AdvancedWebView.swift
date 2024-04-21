@@ -206,7 +206,7 @@ class AdvancedWebViewController {
                 if !videoLinkLists.isEmpty {
                     if playVideoButton == nil {
                         let pb = makeUIButton(title: .Image(UIImage(systemName: "play.fill")!), frame: .init(x: 40, y: 10, width: 30, height: 30), selector: "PresentVideoList")
-                        wkWebView.addSubview(pb)
+                        Dynamic(webView).addSubview(pb)
                         playVideoButton = pb
                     }
                 } else {
