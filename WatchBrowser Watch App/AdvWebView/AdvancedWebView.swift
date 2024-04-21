@@ -45,6 +45,7 @@ class AdvancedWebViewController {
     var currentUrl = ""
     var playVideoButton: Dynamic?
     var isInPrivacy = false
+    var isVideoChecking = false
     
     init(isInPrivacy: Bool = false) {
         self.isInPrivacy = isInPrivacy
@@ -87,16 +88,19 @@ class AdvancedWebViewController {
             }
         }
         videoCheckTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] _ in
-            CheckWebContent()
-            if !videoLinkLists.isEmpty {
-                if playVideoButton == nil {
-                    let pb = makeUIButton(title: .Image(UIImage(systemName: "play.fill")!), frame: .init(x: 40, y: 10, width: 30, height: 30), selector: "PresentVideoList")
-                    wkWebView.addSubview(pb)
-                    playVideoButton = pb
+            if !isVideoChecking {
+                isVideoChecking = true
+                CheckWebContent()
+                if !videoLinkLists.isEmpty {
+                    if playVideoButton == nil {
+                        let pb = makeUIButton(title: .Image(UIImage(systemName: "play.fill")!), frame: .init(x: 40, y: 10, width: 30, height: 30), selector: "PresentVideoList")
+                        wkWebView.addSubview(pb)
+                        playVideoButton = pb
+                    }
+                } else {
+                    playVideoButton?.removeFromSuperview()
+                    playVideoButton = nil
                 }
-            } else {
-                playVideoButton?.removeFromSuperview()
-                playVideoButton = nil
             }
             if let url = Dynamic(webView).URL.asObject {
                 let curl = (url as! NSURL).absoluteString!
@@ -187,26 +191,29 @@ class AdvancedWebViewController {
     
     func CheckWebContent() {
         Dynamic(webView).evaluateJavaScript("document.documentElement.outerHTML", completionHandler: { [self] obj, error in
-            if let htmlStr = obj as? String {
-                do {
-                    let doc = try SwiftSoup.parse(htmlStr)
-                    let videos = try doc.body()?.select("video")
-                    if let videos {
-                        var srcs = [String]()
-                        for video in videos {
-                            var src = try video.attr("src")
-                            if src != "" {
-                                if src.hasPrefix("/") {
-                                    src = "http://" + currentUrl.split(separator: "/")[1] + src
+            DispatchQueue(label: "com.darock.browser.wk.videodetect", qos: .utility).async {
+                if let htmlStr = obj as? String {
+                    do {
+                        let doc = try SwiftSoup.parse(htmlStr)
+                        let videos = try doc.body()?.select("video")
+                        if let videos {
+                            var srcs = [String]()
+                            for video in videos {
+                                var src = try video.attr("src")
+                                if src != "" {
+                                    if src.hasPrefix("/") {
+                                        src = "http://" + currentUrl.split(separator: "/")[1] + src
+                                    }
+                                    srcs.append(src)
                                 }
-                                srcs.append(src)
                             }
+                            videoLinkLists = srcs
                         }
-                        videoLinkLists = srcs
+                    } catch {
+                        print(error)
                     }
-                } catch {
-                    print(error)
                 }
+                isVideoChecking = false
             }
         } as @convention(block) (Any?, (any Error)?) -> Void)
     }
