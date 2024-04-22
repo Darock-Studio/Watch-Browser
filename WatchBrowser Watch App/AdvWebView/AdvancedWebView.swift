@@ -36,6 +36,7 @@ struct AdvancedWebView: View {
 
 class AdvancedWebViewController {
     let menuController = Dynamic.UIViewController()
+    let menuView = Dynamic.UIScrollView()
     let vc = Dynamic.UIViewController()
     let loadProgressView = Dynamic.UIProgressView().initWithProgressViewStyle(Dynamic.UIProgressViewStyleDefault)
     
@@ -128,9 +129,9 @@ class AdvancedWebViewController {
         
         return wkWebView
     }
-    func updateMenuController() {
+    func updateMenuController(rebindController: Bool = true) {
         // Action Menu
-        let menuView = Dynamic.UIScrollView()
+        menuView = Dynamic.UIScrollView()
         let sb = WKInterfaceDevice.current().screenBounds
         menuView.contentSize = CGSizeMake(sb.width, sb.height + 100)
         
@@ -180,8 +181,10 @@ class AdvancedWebViewController {
         let exitButton = makeUIButton(title: .text("退出"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .red, selector: "DismissWebView")
         menuView.addSubview(exitButton)
         menuButtonYOffset += 50
-        
-        menuController.view = menuView
+
+        if rebindController {
+            menuController.view = menuView
+        }
     }
     
     func makeUIButton(title: TextOrImage, frame: CGRect, backgroundColor: Color? = nil, tintColor: Color? = nil, cornerRadius: CGFloat = 8, selector: String? = nil) -> Dynamic {
@@ -245,7 +248,7 @@ class AdvancedWebViewController {
                 }
             }
             isVideoChecking = false
-            updateMenuController()
+            updateMenuController(rebindController: false)
         } as @convention(block) (Any?, (any Error)?) -> Void)
     }
     
