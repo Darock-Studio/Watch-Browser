@@ -131,7 +131,9 @@ class AdvancedWebViewController {
     }
     func updateMenuController(rebindController: Bool = true) {
         // Action Menu
-        menuView = Dynamic.UIScrollView()
+        for subview in menuView.subviews.asArray! {
+            subview.removeFromSuperview()
+        }
         let sb = WKInterfaceDevice.current().screenBounds
         menuView.contentSize = CGSizeMake(sb.width, sb.height + 100)
         
