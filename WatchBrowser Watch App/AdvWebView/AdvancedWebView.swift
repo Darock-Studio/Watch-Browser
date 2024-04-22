@@ -48,6 +48,7 @@ class AdvancedWebViewController {
     
     var currentUrl = ""
     var isInPrivacy = false
+    var isVideoChecking = false
     
     init(isInPrivacy: Bool = false) {
         self.isInPrivacy = isInPrivacy
@@ -99,6 +100,7 @@ class AdvancedWebViewController {
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [self] _ in
             if pIsMenuButtonDown {
                 pIsMenuButtonDown = false
+                vc.presentViewController(menuController, animated: true, completion: nil)
                 CheckWebContent()
             }
             if pMenuShouldDismiss {
@@ -152,6 +154,11 @@ class AdvancedWebViewController {
         if !videoLinkLists.isEmpty {
             let playButton = makeUIButton(title: .text("播放网页视频"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "PresentVideoList")
             menuView.addSubview(playButton)
+            menuButtonYOffset += 60
+        } else if isVideoChecking {
+            let checkIndicator = Dynamic.UIActivityIndicatorView().initWithActivityIndicatorStyle(Dynamic.UIActivityIndicatorViewStyleMedium)
+            checkIndicator.frame = getMiddleRect(y: menuButtonYOffset, height: 40)
+            menuView.addSubview(checkIndicator)
             menuButtonYOffset += 60
         }
         
@@ -210,6 +217,11 @@ class AdvancedWebViewController {
     }
     
     func CheckWebContent() {
+        if isVideoChecking {
+            return
+        }
+        isVideoChecking = true
+        updateMenuController()
         Dynamic(webView).evaluateJavaScript("document.documentElement.outerHTML", completionHandler: { [self] obj, error in
             if let htmlStr = obj as? String {
                 do {
@@ -232,8 +244,8 @@ class AdvancedWebViewController {
                     print(error)
                 }
             }
+            isVideoChecking = false
             updateMenuController()
-            vc.presentViewController(menuController, animated: true, completion: nil)
         } as @convention(block) (Any?, (any Error)?) -> Void)
     }
     
