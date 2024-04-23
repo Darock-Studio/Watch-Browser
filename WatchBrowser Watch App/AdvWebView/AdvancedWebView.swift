@@ -162,6 +162,7 @@ class AdvancedWebViewController {
             let checkIndicator = Dynamic.UIActivityIndicatorView().initWithActivityIndicatorStyle(Dynamic.UIActivityIndicatorViewStyleMedium)
             checkIndicator.frame = getMiddleRect(y: menuButtonYOffset, height: 40)
             menuView.addSubview(checkIndicator)
+            checkIndicator.startAnimating()
             menuButtonYOffset += 60
         }
         
@@ -228,29 +229,33 @@ class AdvancedWebViewController {
         isVideoChecking = true
         updateMenuController()
         Dynamic(webView).evaluateJavaScript("document.documentElement.outerHTML", completionHandler: { [self] obj, error in
-            if let htmlStr = obj as? String {
-                do {
-                    let doc = try SwiftSoup.parse(htmlStr)
-                    let videos = try doc.body()?.select("video")
-                    if let videos {
-                        var srcs = [String]()
-                        for video in videos {
-                            var src = try video.attr("src")
-                            if src != "" {
-                                if src.hasPrefix("/") {
-                                    src = "http://" + currentUrl.split(separator: "/")[1] + src
+            DispatchQueue(label: "com.darock.WatchBrowser.wt.video-check", qos: .userInitiated).async {
+                if let htmlStr = obj as? String {
+                    do {
+                        let doc = try SwiftSoup.parse(htmlStr)
+                        let videos = try doc.body()?.select("video")
+                        if let videos {
+                            var srcs = [String]()
+                            for video in videos {
+                                var src = try video.attr("src")
+                                if src != "" {
+                                    if src.hasPrefix("/") {
+                                        src = "http://" + currentUrl.split(separator: "/")[1] + src
+                                    }
+                                    srcs.append(src)
                                 }
-                                srcs.append(src)
                             }
+                            videoLinkLists = srcs
                         }
-                        videoLinkLists = srcs
+                    } catch {
+                        print(error)
                     }
-                } catch {
-                    print(error)
+                }
+                DispatchQueue.main.async {
+                    isVideoChecking = false
+                    updateMenuController(rebindController: false)
                 }
             }
-            isVideoChecking = false
-            updateMenuController(rebindController: false)
         } as @convention(block) (Any?, (any Error)?) -> Void)
     }
     
