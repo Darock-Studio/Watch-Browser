@@ -265,9 +265,7 @@ struct MainView: View {
                     ForEach(0..<pinnedBookmarkIndexs.count, id: \.self) { i in
                         Button(action: {
                             webView = AdvancedWebViewController().present(UserDefaults.standard.string(forKey: "BookmarkLink\(pinnedBookmarkIndexs[i])")!).asObject!
-                            if isHistoryRecording {
-                                RecordHistory(UserDefaults.standard.string(forKey: "BookmarkLink\(pinnedBookmarkIndexs[i])")!, webSearch: webSearch)
-                            }
+                            WebExtension.setWebViewDelegate()
                         }, label: {
                             Text(UserDefaults.standard.string(forKey: "BookmarkName\(pinnedBookmarkIndexs[i])") ?? "")
                                 .privacySensitive()
