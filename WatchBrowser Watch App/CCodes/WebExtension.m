@@ -64,7 +64,7 @@ id webNavigationDelegate;
 @implementation WebExtensionDelegate
 
 - (void)webView:(id)view didFinishNavigation:(id)navigation {
-    [WebExtension PresentVideoList];
+    //[WebExtension PresentVideoList];
 }
 
 @end
