@@ -9,7 +9,7 @@
 #import <objc/runtime.h>
 #import "WebExtension.h"
 
-id<WebExtensionDelegate> webNavigationDelegate;
+id webNavigationDelegate;
 
 @implementation WebExtension : NSObject
 
