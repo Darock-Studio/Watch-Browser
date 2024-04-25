@@ -101,7 +101,7 @@ class AdvancedWebViewController {
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [self] _ in
             if pIsMenuButtonDown {
                 pIsMenuButtonDown = false
-                vc.presentViewController(menuController, animated: true, completion: nil)
+                Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(menuController, animated: true, completion: nil)
                 CheckWebContent()
             }
             if pMenuShouldDismiss {
