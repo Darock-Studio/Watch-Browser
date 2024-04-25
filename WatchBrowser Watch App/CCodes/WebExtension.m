@@ -20,8 +20,8 @@ id webNavigationDelegate;
     return cbtn;
 }
 +(void) setWebViewDelegate {
-    //Protocol *protocol = objc_getProtocol("WKNavigationDelegate");
-    //class_addProtocol([WebExtensionDelegate class], protocol);
+    Protocol *protocol = objc_getProtocol("WKNavigationDelegate");
+    class_addProtocol([WebExtensionDelegate class], protocol);
     webNavigationDelegate = [[WebExtensionDelegate alloc] init];
     [webView performSelector:NSSelectorFromString(@"setNavigationDelegate") withObject:webNavigationDelegate];
 }
