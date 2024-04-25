@@ -23,7 +23,7 @@ id webNavigationDelegate;
     Protocol *protocol = objc_getProtocol("WKNavigationDelegate");
     class_addProtocol([WebExtensionDelegate class], protocol);
     webNavigationDelegate = [[WebExtensionDelegate alloc] init];
-    [webView performSelector:NSSelectorFromString(@"setNavigationDelegate") withObject:webNavigationDelegate];
+    [webView setValue:webNavigationDelegate forKey:navigationDelegate];
 }
 
 // Externald Method Start
