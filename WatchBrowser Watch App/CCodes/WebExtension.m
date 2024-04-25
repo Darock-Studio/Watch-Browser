@@ -9,6 +9,8 @@
 #import <objc/runtime.h>
 #import "WebExtension.h"
 
+id<WebExtensionDelegate> webNavigationDelegate;
+
 @implementation WebExtension : NSObject
 
 +(id) getBindedButtonWithSelector: (NSString *)selector button:(id) button {
@@ -18,9 +20,10 @@
     return cbtn;
 }
 +(void) setWebViewDelegate {
-//    Protocol *protocol = objc_getProtocol("WKNavigationDelegate");
-//    class_addProtocol([WebExtensionDelegate class], protocol);
-//    [webView performSelector:NSSelectorFromString(@"setNavigationDelegate") withObject:[[WebExtensionDelegate alloc] init]];
+    //Protocol *protocol = objc_getProtocol("WKNavigationDelegate");
+    //class_addProtocol([WebExtensionDelegate class], protocol);
+    webNavigationDelegate = [[WebExtensionDelegate alloc] init];
+    [webView performSelector:NSSelectorFromString(@"setNavigationDelegate") withObject:webNavigationDelegate];
 }
 
 // Externald Method Start
@@ -61,7 +64,7 @@
 @implementation WebExtensionDelegate
 
 - (void)webView:(id)view didFinishNavigation:(id)navigation {
-    NSLog(@"Finished Navigation");
+    [WebExtension PresentVideoList];
 }
 
 @end
