@@ -31,7 +31,11 @@ struct HistoryView: View {
                     if histories.count != 0 {
                         ForEach(0...histories.count - 1, id: \.self) { i in
                             Button(action: {
-                                webView = AdvancedWebViewController().present(histories[i].urlDecoded().urlEncoded()).asObject!
+                                if !histories[i].hasPrefix("file://") {
+                                    AdvancedWebViewController.shared.present(histories[i].urlDecoded().urlEncoded())
+                                } else {
+                                    AdvancedWebViewController.shared.present("", archiveUrl: URL(string: histories[i])!)
+                                }
                             }, label: {
                                 if histories[i].hasPrefix("https://www.bing.com/search?q=") {
                                     Label(String(histories[i].urlDecoded().dropFirst(30)), systemImage: "magnifyingglass")
@@ -41,6 +45,8 @@ struct HistoryView: View {
                                     Label(String(histories[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
                                 } else if histories[i].hasPrefix("https://www.sogou.com/web?query=") {
                                     Label(String(histories[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
+                                } else if histories[i].hasPrefix("file://") {
+                                    Label(String(histories[i].split(separator: "/").last!.split(separator: ".")[0]).replacingOccurrences(of: "{slash}", with: "/").base64Decoded() ?? "[解析失败]", systemImage: "archivebox")
                                 } else {
                                     Label(histories[i], systemImage: "globe")
                                 }
@@ -87,8 +93,8 @@ func RecordHistory(_ inp: String, webSearch: String) {
             return
         }
     }
-    if inp.isURL() {
-        fullHistory = [inp.urlEncoded()] + fullHistory
+    if inp.isURL() || inp.hasPrefix("file://") {
+        fullHistory = [inp] + fullHistory
     } else {
         fullHistory = [GetWebSearchedURL(inp, webSearch: webSearch, isSearchEngineShortcutEnabled: false)] + fullHistory
     }

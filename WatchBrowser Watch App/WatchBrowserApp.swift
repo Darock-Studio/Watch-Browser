@@ -15,6 +15,7 @@ var pTipBoxOffset: CGFloat = 80
 @main
 struct WatchBrowser_Watch_AppApp: App {
     let device = WKInterfaceDevice.current()
+    @AppStorage("ShouldTipNewFeatures") var shouldTipNewFeatures = true
     @State var showTipText = ""
     @State var showTipSymbol = ""
     @State var tipBoxOffset: CGFloat = 80
@@ -22,6 +23,7 @@ struct WatchBrowser_Watch_AppApp: App {
         WindowGroup {
             ZStack {
                 ContentView()
+                    .sheet(isPresented: $shouldTipNewFeatures, content: {NewFeaturesView()})
                 VStack {
                     Spacer()
                     if #available(watchOS 10, *) {

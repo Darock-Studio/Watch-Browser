@@ -101,9 +101,9 @@ struct PrivateBrowsingView: View {
                         if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
                             textOrURL = "http://" + textOrURL
                         }
-                        webView = AdvancedWebViewController(isInPrivacy: true).present(textOrURL.urlEncoded()).asObject!
+                        AdvancedWebViewController.sharedPrivacy.present(textOrURL.urlEncoded())
                     } else {
-                        webView = AdvancedWebViewController(isInPrivacy: true).present(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)).asObject!
+                        AdvancedWebViewController.sharedPrivacy.present(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled))
                     }
                     textOrURL = ""
                 }, label: {

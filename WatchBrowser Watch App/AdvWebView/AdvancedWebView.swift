@@ -29,12 +29,16 @@ struct AdvancedWebView: View {
             .tag(2)
         }
         .onAppear {
-            webView = webViewController.present(url).asObject!
+            webViewController.present(url)
         }
     }
 }
 
 class AdvancedWebViewController {
+    public static let shared = AdvancedWebViewController()
+    public static let sharedPrivacy = AdvancedWebViewController(isInPrivacy: true)
+    
+    var webViewHolder = Dynamic.UIView()
     let menuController = Dynamic.UIViewController()
     let menuView = Dynamic.UIScrollView()
     let vc = Dynamic.UIViewController()
@@ -55,8 +59,9 @@ class AdvancedWebViewController {
         self.isInPrivacy = isInPrivacy
     }
     
-    func present(_ iurl: String) -> Dynamic {
-        let url = URL(string: iurl)!
+    @discardableResult
+    func present(_ iurl: String, archiveUrl: URL? = nil) -> Dynamic {
+        let url = URL(string: iurl) ?? archiveUrl!
 
         if isUseOldWebView {
             let session = ASWebAuthenticationSession(url: url, callbackURLScheme: nil) { _, _ in
@@ -77,24 +82,32 @@ class AdvancedWebViewController {
         let sb = WKInterfaceDevice.current().screenBounds
         
         let wkWebView = Dynamic.WKWebView()
+        wkWebView.setFrame(sb)
         if requestDesktopWeb {
-            wkWebView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Safari/605.1.15"
+            wkWebView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+        } else {
+            wkWebView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
         }
         wkWebView.allowsBackForwardNavigationGestures = useBackforwardGesture
         wkWebView.configuration.websiteDataStore.httpCookieStore.setCookiePolicy(allowCookies && !isInPrivacy ? Dynamic.WKCookiePolicyAllow : Dynamic.WKCookiePolicyDisllow, completionHandler: {} as @convention(block) () -> Void)
-        wkWebView.addSubview(moreButton)
 
         // Load Progress Bar
         loadProgressView.frame = CGRect(x: 0, y: 0, width: sb.width, height: 20)
         loadProgressView.progressTintColor = UIColor.blue
-        wkWebView.addSubview(loadProgressView)
         
-        vc.view = wkWebView
+        webViewHolder.addSubview(wkWebView)
+        webViewHolder.addSubview(moreButton)
+        webViewHolder.addSubview(loadProgressView)
+        vc.view = webViewHolder
         
         Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(vc, animated: true, completion: nil)
         webViewParentController = vc.asObject!
         
-        wkWebView.loadRequest(URLRequest(url: url))
+        if let archiveUrl {
+            wkWebView.loadData(NSData(contentsOf: archiveUrl), MIMEType: "application/x-webarchive", characterEncodingName: "utf-8", baseURL: archiveUrl)
+        } else {
+            wkWebView.loadRequest(URLRequest(url: url))
+        }
         
         updateMenuController()
         
@@ -108,7 +121,7 @@ class AdvancedWebViewController {
                 pMenuShouldDismiss = false
                 dismissControllersOnWebView()
             }
-            if (wkWebView.estimatedProgress.asDouble ?? 1.0) == 1.0 {
+            if (wkWebView.estimatedProgress.asDouble ?? 0.0) == 1.0 {
                 loadProgressView.hidden = true
             } else {
                 loadProgressView.hidden = false
@@ -116,7 +129,7 @@ class AdvancedWebViewController {
             }
         }
         videoCheckTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [self] _ in
-            if let url = Dynamic(webView).URL.asObject {
+            if let url = Dynamic(webViewObject).URL.asObject {
                 let curl = (url as! NSURL).absoluteString!
                 if curl != currentUrl {
                     currentUrl = curl
@@ -127,6 +140,8 @@ class AdvancedWebViewController {
             }
         }
         
+        webViewObject = wkWebView.asObject!
+        WebExtension.setWebViewDelegate()
         return wkWebView
     }
     func updateMenuController(rebindController: Bool = true) {
@@ -145,7 +160,7 @@ class AdvancedWebViewController {
         menuView.addSubview(closeButton)
         
         let urlText = Dynamic.UILabel()
-        if let url = Dynamic(webView).URL.asObject {
+        if let url = Dynamic(webViewObject).URL.asObject {
             urlText.text = (url as! NSURL).absoluteString!
             urlText.setFrame(getMiddleRect(y: menuButtonYOffset, height: 60))
             urlText.setFont(UIFont(name: "Helvetica", size: 10))
@@ -170,12 +185,12 @@ class AdvancedWebViewController {
         menuView.addSubview(reloadButton)
         menuButtonYOffset += 60
         
-        if Dynamic(webView).canGoBack.asBool ?? false {
+        if Dynamic(webViewObject).canGoBack.asBool ?? false {
             let previousButton = makeUIButton(title: .text("上一页"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "WKGoBack")
             menuView.addSubview(previousButton)
             menuButtonYOffset += 50
         }
-        if Dynamic(webView).canGoForward.asBool ?? false {
+        if Dynamic(webViewObject).canGoForward.asBool ?? false {
             let forwardButton = makeUIButton(title: .text("下一页"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "WKGoForward")
             menuView.addSubview(forwardButton)
             menuButtonYOffset += 50
@@ -183,7 +198,13 @@ class AdvancedWebViewController {
         
         let exitButton = makeUIButton(title: .text("退出"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .red, selector: "DismissWebView")
         menuView.addSubview(exitButton)
-        menuButtonYOffset += 50
+        menuButtonYOffset += 70
+        
+        if !currentUrl.isEmpty && !currentUrl.hasPrefix("file://") {
+            let archiveButton = makeUIButton(title: .text("存储本页离线归档"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "ArchiveCurrentPage")
+            menuView.addSubview(archiveButton)
+            menuButtonYOffset += 50
+        }
 
         if rebindController {
             menuController.view = menuView
@@ -217,10 +238,6 @@ class AdvancedWebViewController {
     func dismissControllersOnWebView(animated: Bool = true) {
         vc.dismissViewControllerAnimated(animated, completion: nil)
     }
-    func getMiddleRect(y: CGFloat, height: CGFloat) -> CGRect {
-        let sb = WKInterfaceDevice.current().screenBounds
-        return CGRect(x: (sb.width - (sb.width - 40)) / 2, y: y, width: sb.width - 40, height: height)
-    }
     
     func CheckWebContent() {
         if isVideoChecking {
@@ -228,8 +245,8 @@ class AdvancedWebViewController {
         }
         isVideoChecking = true
         updateMenuController()
-        Dynamic(webView).evaluateJavaScript("document.documentElement.outerHTML", completionHandler: { [self] obj, error in
-            DispatchQueue(label: "com.darock.WatchBrowser.wt.video-check", qos: .userInitiated).async {
+        Dynamic(webViewObject).evaluateJavaScript("document.documentElement.outerHTML", completionHandler: { [self] obj, error in
+            DispatchQueue(label: "com.darock.WatchBrowser.wt.video-check", qos: .userInitiated).async { [self] in
                 if let htmlStr = obj as? String {
                     do {
                         let doc = try SwiftSoup.parse(htmlStr)
@@ -251,7 +268,7 @@ class AdvancedWebViewController {
                         print(error)
                     }
                 }
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [self] in
                     isVideoChecking = false
                     updateMenuController(rebindController: false)
                 }
@@ -263,4 +280,9 @@ class AdvancedWebViewController {
         case text(String)
         case Image(UIImage)
     }
+}
+
+func getMiddleRect(y: CGFloat, height: CGFloat) -> CGRect {
+    let sb = WKInterfaceDevice.current().screenBounds
+    return CGRect(x: (sb.width - (sb.width - 40)) / 2, y: y, width: sb.width - 40, height: height)
 }

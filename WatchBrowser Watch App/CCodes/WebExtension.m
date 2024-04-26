@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import "WebExtension.h"
+#import "DarockBrowser-Swift.h"
 
 id webNavigationDelegate;
 
@@ -23,7 +24,7 @@ id webNavigationDelegate;
     Protocol *protocol = objc_getProtocol("WKNavigationDelegate");
     class_addProtocol([WebExtensionDelegate class], protocol);
     webNavigationDelegate = [[WebExtensionDelegate alloc] init];
-    [webView setValue:webNavigationDelegate forKey:@"navigationDelegate"];
+    [webViewObject setValue:webNavigationDelegate forKey:@"navigationDelegate"];
 }
 
 // Externald Method Start
@@ -34,18 +35,20 @@ id webNavigationDelegate;
     pMenuShouldDismiss = true;
 }
 +(void) WKGoBack {
-    [webView performSelector:NSSelectorFromString(@"goBack")];
+    [webViewObject performSelector:NSSelectorFromString(@"goBack")];
     pMenuShouldDismiss = true;
 }
 +(void) WKGoForward {
-    [webView performSelector:NSSelectorFromString(@"goForward")];
+    [webViewObject performSelector:NSSelectorFromString(@"goForward")];
     pMenuShouldDismiss = true;
 }
 +(void) WKReload {
-    [webView performSelector:NSSelectorFromString(@"reload")];
+    [webViewObject performSelector:NSSelectorFromString(@"reload")];
     pMenuShouldDismiss = true;
 }
-
++(void) ArchiveCurrentPage {
+    [WEBackSwift createWebArchive];
+}
 +(void) DismissWebView {
     [webViewParentController performSelector:NSSelectorFromString(@"dismissModalViewControllerAnimated:") withObject:@(true)];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -63,8 +66,17 @@ id webNavigationDelegate;
 
 @implementation WebExtensionDelegate
 
+- (void)webView:(id)view didStartProvisionalNavigation:(id)navigation {
+    [[[WESwiftDelegate alloc] init] webView:view didStartProvisionalNavigation:navigation];
+}
 - (void)webView:(id)view didFinishNavigation:(id)navigation {
-    //[WebExtension PresentVideoList];
+    [[[WESwiftDelegate alloc] init] webView:view didFinishNavigation:navigation];
+}
+- (void)webView:(id)view didFailNavigation:(id)navigation withError:(NSError *)error {
+    [[[WESwiftDelegate alloc] init] webView:view didFailNavigation:navigation withError:error];
+}
+- (void)webView:(id)view didFailProvisionalNavigation:(id)navigation withError:(NSError *)error {
+    [[[WESwiftDelegate alloc] init] webView:view didFailProvisionalNavigation:navigation withError:error];
 }
 
 @end

@@ -37,6 +37,7 @@ struct VideoPlayingView: View {
     var body: some View {
         VideoPlayer(player: AVPlayer(url: URL(string: link)!))
             .ignoresSafeArea()
+            .navigationBarHidden(true)
     }
 }
 

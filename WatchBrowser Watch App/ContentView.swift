@@ -83,6 +83,7 @@ struct MainView: View {
     @State var isKeyboardPresented = false
     @State var isCookieTipPresented = false
     @State var pinnedBookmarkIndexs = [Int]()
+    @State var webArchiveLinks = [String]()
     var body: some View {
         List {
 //            Section {
@@ -204,9 +205,9 @@ struct MainView: View {
                         if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
                             textOrURL = "http://" + textOrURL
                         }
-                        webView = AdvancedWebViewController().present(textOrURL.urlEncoded()).asObject!
+                        AdvancedWebViewController.shared.present(textOrURL.urlEncoded())
                     } else {
-                        webView = AdvancedWebViewController().present(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)).asObject!
+                        AdvancedWebViewController.shared.present(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled))
                     }
                     if isHistoryRecording {
                         RecordHistory(textOrURL, webSearch: webSearch)
@@ -239,6 +240,15 @@ struct MainView: View {
                         Spacer()
                     }
                 })
+                if !webArchiveLinks.isEmpty {
+                    NavigationLink(destination: { WebArchiveListView() }, label: {
+                        HStack {
+                            Spacer()
+                            Label("网页归档", systemImage: "archivebox")
+                            Spacer()
+                        }
+                    })
+                }
                 if withSetting {
                     NavigationLink(destination: {
                         SettingsView()
@@ -264,8 +274,7 @@ struct MainView: View {
                 Section {
                     ForEach(0..<pinnedBookmarkIndexs.count, id: \.self) { i in
                         Button(action: {
-                            webView = AdvancedWebViewController().present(UserDefaults.standard.string(forKey: "BookmarkLink\(pinnedBookmarkIndexs[i])")!).asObject!
-                            WebExtension.setWebViewDelegate()
+                            AdvancedWebViewController.shared.present(UserDefaults.standard.string(forKey: "BookmarkLink\(pinnedBookmarkIndexs[i])")!)
                         }, label: {
                             Text(UserDefaults.standard.string(forKey: "BookmarkName\(pinnedBookmarkIndexs[i])") ?? "")
                                 .privacySensitive()
@@ -285,6 +294,7 @@ struct MainView: View {
         .navigationBarTitleDisplayMode(.large)
         .onAppear {
             pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()
+            webArchiveLinks = UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()
         }
     }
 }

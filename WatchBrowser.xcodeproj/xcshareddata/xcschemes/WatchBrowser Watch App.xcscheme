@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6BF209ED2990E61C00E623FC"
-               BuildableName = "&#x6697;&#x7901;&#x6d4f;&#x89c8;&#x5668;.app"
+               BuildableName = "DarockBrowser.app"
                BlueprintName = "WatchBrowser Watch App"
                ReferencedContainer = "container:WatchBrowser.xcodeproj">
             </BuildableReference>
@@ -58,7 +58,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6BF209ED2990E61C00E623FC"
-            BuildableName = "&#x6697;&#x7901;&#x6d4f;&#x89c8;&#x5668;.app"
+            BuildableName = "DarockBrowser.app"
             BlueprintName = "WatchBrowser Watch App"
             ReferencedContainer = "container:WatchBrowser.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6BF209ED2990E61C00E623FC"
-            BuildableName = "&#x6697;&#x7901;&#x6d4f;&#x89c8;&#x5668;.app"
+            BuildableName = "DarockBrowser.app"
             BlueprintName = "WatchBrowser Watch App"
             ReferencedContainer = "container:WatchBrowser.xcodeproj">
          </BuildableReference>

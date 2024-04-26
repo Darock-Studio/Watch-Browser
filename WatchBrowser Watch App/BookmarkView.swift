@@ -40,7 +40,7 @@ struct BookmarkView: View {
                     Section {
                         ForEach(1...markTotal, id: \.self) { i in
                             Button(action: {
-                                webView = AdvancedWebViewController().present(userdefault.string(forKey: "BookmarkLink\(i)")!).asObject!
+                                AdvancedWebViewController.shared.present(userdefault.string(forKey: "BookmarkLink\(i)")!)
                                 if isRecordHistory {
                                     RecordHistory(userdefault.string(forKey: "BookmarkLink\(i)")!, webSearch: webSearch)
                                 }

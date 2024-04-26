@@ -24,6 +24,7 @@ struct SettingsView: View {
     @State var customSearchEngineList = [String]()
     @State var passwordInputCache = ""
     @State var isPasswordInputPresented = false
+    @State var isNewFeaturesPresented = false
     @Namespace var namespace
     @Environment(\.dismiss) var Dismiss
     enum EngineNames: String, CaseIterable {
@@ -36,14 +37,6 @@ struct SettingsView: View {
     var body: some View {
         Form {
             Section {
-                Toggle("请求桌面网站", isOn: $requestDesktopWeb)
-                Toggle("使用手势返回上一页", isOn: $useBackforwardGesture)
-            } header: {
-                Text("网页浏览")
-            }
-            .navigationTitle("网页浏览")
-            .navigationBarTitleDisplayMode(.inline)
-            Section {
                 Toggle("使用旧版浏览引擎", isOn: $isUseOldWebView)
             } header: {
                 Text("引擎")
@@ -52,6 +45,15 @@ struct SettingsView: View {
             }
             .navigationTitle("引擎")
             .navigationBarTitleDisplayMode(.inline)
+            Section {
+                Toggle("请求桌面网站", isOn: $requestDesktopWeb)
+                Toggle("使用手势返回上一页", isOn: $useBackforwardGesture)
+            } header: {
+                Text("网页浏览")
+            }
+            .navigationTitle("网页浏览")
+            .navigationBarTitleDisplayMode(.inline)
+            .disabled(isUseOldWebView)
             Section {
                 Picker(selection: $webSearch, label: Text(isSearchEngineShortcutEnabled ? "默认搜索引擎" : "Settings.search.engine")) {
                     ForEach(EngineNames.allCases, id: \.self) { engineNames in
@@ -153,6 +155,14 @@ struct SettingsView: View {
 //            }
 //            .navigationTitle("密码")
 //            .navigationBarTitleDisplayMode(.inline)
+            Section {
+                Button(action: {
+                    isNewFeaturesPresented = true
+                }, label: {
+                    Label("新功能", systemImage: "sparkles")
+                })
+                .sheet(isPresented: $isNewFeaturesPresented, content: {NewFeaturesView()})
+            }
             if NSLocale.current.languageCode == "zh" {
                 Section {
                     Button(action: {
