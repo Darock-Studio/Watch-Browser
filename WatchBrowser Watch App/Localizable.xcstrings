@@ -12,14 +12,27 @@
       }
     },
     "“暗礁浏览器”新功能" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browser New Features"
+          }
+        }
+      }
     },
     "#+=" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "#+"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "#+="
           }
         },
         "zh-Hant" : {
@@ -38,6 +51,12 @@
             "value" : ""
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -52,6 +71,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1"
           }
         },
         "zh-Hant" : {
@@ -70,6 +95,12 @@
             "value" : ""
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -84,6 +115,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3"
           }
         },
         "zh-Hant" : {
@@ -102,6 +139,12 @@
             "value" : ""
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -115,7 +158,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "5\n"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5"
           }
         },
         "zh-Hant" : {
@@ -134,6 +183,12 @@
             "value" : ""
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -148,6 +203,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7"
           }
         },
         "zh-Hant" : {
@@ -166,6 +227,12 @@
             "value" : ""
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "8"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -180,6 +247,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "9"
           }
         },
         "zh-Hant" : {
@@ -283,7 +356,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Finsih"
+            "value" : "Finish"
           }
         },
         "zh-Hans" : {
@@ -427,14 +500,27 @@
       }
     },
     "Darock 始终重视您的隐私，所有 Cookie 仅在本地存储" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock always put your privacy at first, all Cookies are stored only in local"
+          }
+        }
+      }
     },
     "Done" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Don"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
           }
         },
         "zh-Hant" : {
@@ -1088,10 +1174,16 @@
     "Keybord.finish" : {
       "extractionState" : "stale",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "完成"
+            "value" : "Done"
           }
         }
       }
@@ -1227,10 +1319,16 @@
     "Settings.cookies.pop-up" : {
       "extractionState" : "stale",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pop-ups may appear before accessing web pages after enabling Cookies"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "启用Cookie后，访问网页前可能会出现弹窗"
+            "value" : ""
           }
         }
       }
@@ -1254,6 +1352,12 @@
     "Settings.invatation" : {
       "extractionState" : "stale",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to QQ Community 248036605"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1409,10 +1513,16 @@
     "Settings.search.customize" : {
       "extractionState" : "stale",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Customize Search Engine"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "自定义搜索引擎"
+            "value" : ""
           }
         }
       }
@@ -1596,6 +1706,12 @@
     "Settings.search.engine.default" : {
       "extractionState" : "stale",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Default Search Engine"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1623,10 +1739,16 @@
     "Settings.search.shorcut.title" : {
       "extractionState" : "stale",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Engine Shortcut"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "快速搜索引擎"
+            "value" : ""
           }
         }
       }
@@ -1668,6 +1790,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Sogou"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : ""
           }
         }
@@ -1686,6 +1814,18 @@
     "下一步" : {
       "extractionState" : "stale",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next Step"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1731,7 +1871,14 @@
       }
     },
     "使用旧版浏览引擎" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use Traditional Browse Engine"
+          }
+        }
+      }
     },
     "共享表单" : {
       "localizations" : {
@@ -1780,13 +1927,34 @@
       }
     },
     "分享网页" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share Websites"
+          }
+        }
+      }
     },
     "创建网页归档" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Web Archive"
+          }
+        }
+      }
     },
     "历史记录现会记录每个导航页" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "History will now record every navigational page"
+          }
+        }
+      }
     },
     "反馈助理" : {
       "localizations" : {
@@ -1853,7 +2021,20 @@
       }
     },
     "可在%@设置中打开“请求桌面网站”" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can be turned on in Request Desktop Websites at %@ settings"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "回复" : {
       "localizations" : {
@@ -1920,13 +2101,40 @@
       }
     },
     "增强的历史记录" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enhanced History Record"
+          }
+        }
+      }
     },
     "增强的浏览引擎" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enhanced Browse Engine"
+          }
+        }
+      }
     },
     "增强的浏览引擎包含更多高级功能" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Improved browse engine contains more advanced features"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "完成" : {
       "localizations" : {
@@ -1993,7 +2201,14 @@
       }
     },
     "引擎" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Engine"
+          }
+        }
+      }
     },
     "快速搜索引擎" : {
       "localizations" : {
@@ -2012,13 +2227,40 @@
       }
     },
     "您可以随时在“设置”中重新打开此页" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can re-enter this page any time in Settings"
+          }
+        }
+      }
     },
     "打开%@浏览菜单" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open %@ Browsing Menu"
+          }
+        }
+      }
     },
     "打开包含视频的网页" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Web Pages That Contains Videos"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "按预期工作" : {
       "localizations" : {
@@ -2069,7 +2311,14 @@
       }
     },
     "新功能" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Features"
+          }
+        }
+      }
     },
     "新建反馈" : {
       "localizations" : {
@@ -2120,11 +2369,30 @@
       }
     },
     "无网页归档" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Webpage Archive"
+          }
+        }
+      }
     },
     "无自定搜索引擎" : {
       "extractionState" : "stale",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None customized search engine"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2134,10 +2402,30 @@
       }
     },
     "旧版引擎拥有更好的稳定性，但缺少部分高级功能" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traditional engine is better at stabling, but is lack of advanced features"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "旧版引擎拥有更好的稳定性，但缺少部分高级功能"
+          }
+        }
+      }
     },
     "更好的 Cookie 支持" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Better Cookie Supports"
+          }
+        }
+      }
     },
     "未标记" : {
       "localizations" : {
@@ -2240,6 +2528,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "E"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : ""
           }
         },
@@ -2268,10 +2562,30 @@
       }
     },
     "现可将网页归档以供离线查看" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Able to archive web page to view offline now"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "现在，更多的 Cookie 可被记录" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Now, more Cookies can be logged"
+          }
+        }
+      }
     },
     "视频列表" : {
       "localizations" : {
@@ -2284,7 +2598,14 @@
       }
     },
     "视频播放 - 步骤" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video Playing - Steps"
+          }
+        }
+      }
     },
     "空视频列表" : {
       "localizations" : {
@@ -2329,7 +2650,14 @@
       }
     },
     "网页归档" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web Archive"
+          }
+        }
+      }
     },
     "网页浏览" : {
       "localizations" : {
@@ -2342,7 +2670,14 @@
       }
     },
     "网页现可被分享至 iPhone 或其他 App" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web pages can now be shared to iPhone or other Apps"
+          }
+        }
+      }
     },
     "自定搜索引擎" : {
       "localizations" : {
@@ -2387,7 +2722,20 @@
       }
     },
     "轻触“播放网页中视频”" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap Play Video In Web Page"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "轻触“播放网页中视频”"
+          }
+        }
+      }
     },
     "错误/异常行为" : {
       "localizations" : {
@@ -2454,7 +2802,14 @@
       }
     },
     "高级功能" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advanced Features"
+          }
+        }
+      }
     },
     "默认搜索引擎" : {
       "localizations" : {
