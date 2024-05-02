@@ -176,7 +176,7 @@ class AdvancedWebViewController {
         }
 
         if !videoLinkLists.isEmpty {
-            let playButton = makeUIButton(title: .text("播放网页视频"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "PresentVideoList")
+            let playButton = makeUIButton(title: .text(String(localized: "播放网页视频")), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "PresentVideoList")
             menuView.addSubview(playButton)
             menuButtonYOffset += 60
         } else if isVideoChecking {
@@ -190,32 +190,32 @@ class AdvancedWebViewController {
             if menuButtonYOffset > 100 {
                 menuButtonYOffset -= 15
             }
-            let imageButton = makeUIButton(title: .text("查看网页图片"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "PresentImageList")
+            let imageButton = makeUIButton(title: .text(String(localized: "查看网页图片")), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "PresentImageList")
             menuView.addSubview(imageButton)
             menuButtonYOffset += 60
         }
         
-        let reloadButton = makeUIButton(title: .text("重新载入"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "WKReload")
+        let reloadButton = makeUIButton(title: .text(String(localized: "重新载入")), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "WKReload")
         menuView.addSubview(reloadButton)
         menuButtonYOffset += 60
         
         if Dynamic(webViewObject).canGoBack.asBool ?? false {
-            let previousButton = makeUIButton(title: .text("上一页"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "WKGoBack")
+            let previousButton = makeUIButton(title: .text(String(localized: "上一页")), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "WKGoBack")
             menuView.addSubview(previousButton)
             menuButtonYOffset += 50
         }
         if Dynamic(webViewObject).canGoForward.asBool ?? false {
-            let forwardButton = makeUIButton(title: .text("下一页"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "WKGoForward")
+            let forwardButton = makeUIButton(title: .text(String(localized: "下一页")), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "WKGoForward")
             menuView.addSubview(forwardButton)
             menuButtonYOffset += 50
         }
         
-        let exitButton = makeUIButton(title: .text("退出"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .red, selector: "DismissWebView")
+        let exitButton = makeUIButton(title: .text(String(localized: "退出")), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .red, selector: "DismissWebView")
         menuView.addSubview(exitButton)
         menuButtonYOffset += 70
         
         if !currentUrl.isEmpty && !currentUrl.hasPrefix("file://") {
-            let archiveButton = makeUIButton(title: .text("存储本页离线归档"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "ArchiveCurrentPage")
+            let archiveButton = makeUIButton(title: .text(String(localized: "存储本页离线归档")), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "ArchiveCurrentPage")
             menuView.addSubview(archiveButton)
             menuButtonYOffset += 50
         }
