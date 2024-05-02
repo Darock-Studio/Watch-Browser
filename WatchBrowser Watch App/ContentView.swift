@@ -18,12 +18,16 @@ struct ContentView: View {
     public static var bingSearchingText = ""
     @State var mainTabSelection = 2
     @State var isVideoListPresented = false
+    @State var isImageListPresented = false
     var body: some View {
         Group {
             if #available(watchOS 10.0, *) {
                 NavigationStack {
                     ZStack {
                         NavigationLink("", isActive: $isVideoListPresented, destination: {VideoListView()})
+                            .frame(width: 0, height: 0)
+                            .hidden()
+                        NavigationLink("", isActive: $isImageListPresented, destination: {ImageListView()})
                             .frame(width: 0, height: 0)
                             .hidden()
                         TabView(selection: $mainTabSelection) {
@@ -48,6 +52,9 @@ struct ContentView: View {
                         NavigationLink("", isActive: $isVideoListPresented, destination: {VideoListView()})
                             .frame(width: 0, height: 0)
                             .hidden()
+                        NavigationLink("", isActive: $isImageListPresented, destination: {ImageListView()})
+                            .frame(width: 0, height: 0)
+                            .hidden()
                         TabView(selection: $mainTabSelection) {
                             PrivateBrowsingView()
                                 .tag(1)
@@ -64,6 +71,10 @@ struct ContentView: View {
                 if pShouldPresentVideoList {
                     pShouldPresentVideoList = false
                     isVideoListPresented = true
+                }
+                if pShouldPresentImageList {
+                    pShouldPresentImageList = false
+                    isImageListPresented = true
                 }
             }
         }
@@ -84,10 +95,14 @@ struct MainView: View {
     @State var isCookieTipPresented = false
     @State var pinnedBookmarkIndexs = [Int]()
     @State var webArchiveLinks = [String]()
+    @State var newFeedbackCount = 0
+    @State var isNewVerAvailable = false
     var body: some View {
         List {
 //            Section {
-//                NavigationLink(destination: { AdvancedWebView(url: "https://apple.com") }, label: {
+//                Button(action: {
+//                    Dynamic.PUICApplication.sharedPUICApplication().setExtendedIdleTime(60.0, disablesSleepGesture: true, wantsAutorotation: false)
+//                }, label: {
 //                    Text("Debug")
 //                })
 //            }
@@ -249,6 +264,13 @@ struct MainView: View {
                         }
                     })
                 }
+                NavigationLink(destination: { UserScriptsView() }, label: {
+                    HStack {
+                        Spacer()
+                        Label("用户脚本", systemImage: "applescript")
+                        Spacer()
+                    }
+                })
                 if withSetting {
                     NavigationLink(destination: {
                         SettingsView()
@@ -286,8 +308,28 @@ struct MainView: View {
             }
             Section {
                 NavigationLink(destination: { FeedbackView() }, label: {
-                    Label("反馈助理", systemImage: "exclamationmark.bubble")
+                    VStack {
+                        HStack {
+                            ZStack(alignment: .topTrailing) {
+                                Image(systemName: "exclamationmark.bubble")
+                                    .font(.system(size: 20))
+                                if newFeedbackCount > 0 {
+                                    Text("\(newFeedbackCount)")
+                                        .font(.system(size: 12, weight: .medium))
+                                        .background(Circle().fill(Color.red).frame(width: 15, height: 15).opacity(1.0))
+                                        .offset(x: 3, y: -5)
+                                }
+                            }
+                            Text("反馈助理")
+                        }
+                        if isNewVerAvailable {
+                            Text("“反馈助理”不可用，因为暗礁浏览器有更新可用")
+                                .font(.system(size: 12))
+                                .multilineTextAlignment(.center)
+                        }
+                    }
                 })
+                .disabled(isNewVerAvailable)
             }
         }
         .navigationTitle("Home.title")
@@ -295,6 +337,40 @@ struct MainView: View {
         .onAppear {
             pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()
             webArchiveLinks = UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()
+            let feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
+            newFeedbackCount = 0
+            for id in feedbackIds {
+                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)") { respStr, isSuccess in
+                    if isSuccess {
+                        let repCount = respStr.apiFixed().components(separatedBy: "---").count - 1
+                        let lastViewCount = UserDefaults.standard.integer(forKey: "RadarFB\(id)ReplyCount")
+                        if repCount > lastViewCount {
+                            newFeedbackCount++
+                        }
+                    }
+                }
+            }
+            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/newver") { respStr, isSuccess in
+                if isSuccess {
+                    let spdVer = respStr.apiFixed().split(separator: ".")
+                    if spdVer.count == 3 {
+                        if let x = Int(spdVer[0]), let y = Int(spdVer[1]), let z = Int(spdVer[2]) {
+                            let currVerSpd = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).split(separator: ".")
+                            if currVerSpd.count == 3 {
+                                if let cx = Int(currVerSpd[0]), let cy = Int(currVerSpd[1]), let cz = Int(currVerSpd[2]) {
+                                    if x > cx {
+                                        isNewVerAvailable = true
+                                    } else if y > cy {
+                                        isNewVerAvailable = true
+                                    } else if z > cz {
+                                        isNewVerAvailable = true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 import AuthenticationServices
 
 struct HistoryView: View {
+    var selectionHandler: ((String) -> Void)?
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
     @AppStorage("AllowCookies") var AllowCookies = false
     @State var isSettingPresented = false
@@ -18,23 +19,32 @@ struct HistoryView: View {
     @State var shareLink = ""
     var body: some View {
         List {
-            Toggle("History.record", isOn: $isHistoryRecording)
-                .onChange(of: isHistoryRecording, perform: { e in
-                    if !e {
-                        isStopRecordingPagePresenting = true
-                    }
-                })
-                .sheet(isPresented: $isStopRecordingPagePresenting, content: {CloseHistoryTipView()})
-
+            if selectionHandler == nil {
+                Section {
+                    Toggle("History.record", isOn: $isHistoryRecording)
+                        .onChange(of: isHistoryRecording, perform: { e in
+                            if !e {
+                                isStopRecordingPagePresenting = true
+                            }
+                        })
+                        .sheet(isPresented: $isStopRecordingPagePresenting, onDismiss: {
+                            histories = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
+                        }, content: {CloseHistoryTipView()})
+                }
+            }
             Section {
                 if isHistoryRecording {
                     if histories.count != 0 {
                         ForEach(0...histories.count - 1, id: \.self) { i in
                             Button(action: {
-                                if !histories[i].hasPrefix("file://") {
-                                    AdvancedWebViewController.shared.present(histories[i].urlDecoded().urlEncoded())
+                                if let selectionHandler {
+                                    selectionHandler(histories[i])
                                 } else {
-                                    AdvancedWebViewController.shared.present("", archiveUrl: URL(string: histories[i])!)
+                                    if !histories[i].hasPrefix("file://") {
+                                        AdvancedWebViewController.shared.present(histories[i].urlDecoded().urlEncoded())
+                                    } else {
+                                        AdvancedWebViewController.shared.present("", archiveUrl: URL(string: histories[i])!)
+                                    }
                                 }
                             }, label: {
                                 if histories[i].hasPrefix("https://www.bing.com/search?q=") {

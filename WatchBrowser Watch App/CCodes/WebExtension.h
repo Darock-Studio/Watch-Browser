@@ -15,6 +15,7 @@
 bool pIsMenuButtonDown;
 bool pMenuShouldDismiss;
 bool pShouldPresentVideoList;
+bool pShouldPresentImageList;
 id webViewObject;
 id webViewParentController;
 NSTimer *videoCheckTimer;
@@ -32,6 +33,7 @@ NSTimer *videoCheckTimer;
 
 +(id) getBindedButtonWithSelector: (NSString *)selector button:(id) button;
 +(void) setWebViewDelegate;
++(void) PresentVideoList;
 
 @end
 
@@ -40,6 +42,7 @@ NSTimer *videoCheckTimer;
 - (void)webView:(id)view didFinishNavigation:(id)navigation;
 - (void)webView:(id)view didFailNavigation:(id)navigation withError:(NSError *)error;
 - (void)webView:(id)view didFailProvisionalNavigation:(id)navigation withError:(NSError *)error;
+- (void)webViewWebContentProcessDidTerminate:(id)webView;
 @end
 
 #endif /* WebExtension_h */

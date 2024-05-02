@@ -17,6 +17,9 @@ struct SettingsView: View {
     @AppStorage("UserPassword") var userPassword = ""
     @AppStorage("RequestDesktopWeb") var requestDesktopWeb = false
     @AppStorage("UseBackforwardGesture") var useBackforwardGesture = true
+    @AppStorage("KeepDigitalTime") var keepDigitalTime = false
+    @AppStorage("ShowFastExitButton") var showFastExitButton = false
+    @AppStorage("AlwaysReloadWebPageAfterCrash") var alwaysReloadWebPageAfterCrash = false
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
     @State var KeyboardChanged = false
     @State var isKeyboardPresented = false
@@ -48,6 +51,9 @@ struct SettingsView: View {
             Section {
                 Toggle("请求桌面网站", isOn: $requestDesktopWeb)
                 Toggle("使用手势返回上一页", isOn: $useBackforwardGesture)
+                Toggle("保持时间可见", isOn: $keepDigitalTime)
+                Toggle("显示“快速退出”按钮", isOn: $showFastExitButton)
+                Toggle("网页崩溃后总是自动重新载入", isOn: $alwaysReloadWebPageAfterCrash)
             } header: {
                 Text("网页浏览")
             }

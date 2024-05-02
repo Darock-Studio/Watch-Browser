@@ -13,6 +13,7 @@ import AuthenticationServices
 
 fileprivate var webViewController = AdvancedWebViewController()
 var videoLinkLists = [String]()
+var imageLinkLists = [String]()
 
 struct AdvancedWebView: View {
     var url: String
@@ -47,6 +48,8 @@ class AdvancedWebViewController {
     @AppStorage("AllowCookies") var allowCookies = true
     @AppStorage("RequestDesktopWeb") var requestDesktopWeb = false
     @AppStorage("UseBackforwardGesture") var useBackforwardGesture = true
+    @AppStorage("KeepDigitalTime") var keepDigitalTime = false
+    @AppStorage("ShowFastExitButton") var showFastExitButton = false
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
@@ -96,8 +99,21 @@ class AdvancedWebViewController {
         loadProgressView.progressTintColor = UIColor.blue
         
         webViewHolder.addSubview(wkWebView)
+        
+        if keepDigitalTime {
+            let timeBackground = Dynamic.UIView()
+            timeBackground.setBackgroundColor(UIColor.black)
+            timeBackground.setFrame(CGRect(x: sb.width - 50, y: 0, width: 70, height: 30))
+            webViewHolder.addSubview(timeBackground)
+        }
+        
+        if showFastExitButton {
+            let fastExitButton = makeUIButton(title: .Image(UIImage(systemName: "escape")!), frame: CGRect(x: 40, y: 10, width: 30, height: 30), tintColor: .red, selector: "DismissWebView")
+            webViewHolder.addSubview(fastExitButton)
+        }
         webViewHolder.addSubview(moreButton)
         webViewHolder.addSubview(loadProgressView)
+        
         vc.view = webViewHolder
         
         Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(vc, animated: true, completion: nil)
@@ -121,24 +137,14 @@ class AdvancedWebViewController {
                 pMenuShouldDismiss = false
                 dismissControllersOnWebView()
             }
-            if (wkWebView.estimatedProgress.asDouble ?? 0.0) == 1.0 {
+            if !(wkWebView.isLoading.asBool ?? !loadProgressView.hidden.asBool!) {
                 loadProgressView.hidden = true
             } else {
                 loadProgressView.hidden = false
                 loadProgressView.setProgress(Float(wkWebView.estimatedProgress.asDouble ?? 0.0), animated: true)
             }
         }
-        videoCheckTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [self] _ in
-            if let url = Dynamic(webViewObject).URL.asObject {
-                let curl = (url as! NSURL).absoluteString!
-                if curl != currentUrl {
-                    currentUrl = curl
-                    if isHistoryRecording && !isInPrivacy {
-                        RecordHistory(curl, webSearch: webSearch)
-                    }
-                }
-            }
-        }
+        registerVideoCheckTimer()
         
         webViewObject = wkWebView.asObject!
         WebExtension.setWebViewDelegate()
@@ -178,6 +184,14 @@ class AdvancedWebViewController {
             checkIndicator.frame = getMiddleRect(y: menuButtonYOffset, height: 40)
             menuView.addSubview(checkIndicator)
             checkIndicator.startAnimating()
+            menuButtonYOffset += 60
+        }
+        if !imageLinkLists.isEmpty {
+            if menuButtonYOffset > 100 {
+                menuButtonYOffset -= 15
+            }
+            let imageButton = makeUIButton(title: .text("查看网页图片"), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "PresentImageList")
+            menuView.addSubview(imageButton)
             menuButtonYOffset += 60
         }
         
@@ -238,6 +252,19 @@ class AdvancedWebViewController {
     func dismissControllersOnWebView(animated: Bool = true) {
         vc.dismissViewControllerAnimated(animated, completion: nil)
     }
+    func registerVideoCheckTimer() {
+        videoCheckTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [self] _ in
+            if let url = Dynamic(webViewObject).URL.asObject {
+                let curl = (url as! NSURL).absoluteString!
+                if curl != currentUrl {
+                    currentUrl = curl
+                    if isHistoryRecording && !isInPrivacy {
+                        RecordHistory(curl, webSearch: webSearch)
+                    }
+                }
+            }
+        }
+    }
     
     func CheckWebContent() {
         if isVideoChecking {
@@ -257,12 +284,32 @@ class AdvancedWebViewController {
                                 var src = try video.attr("src")
                                 if src != "" {
                                     if src.hasPrefix("/") {
+                                        if currentUrl.split(separator: "/").count < 2 {
+                                            continue
+                                        }
                                         src = "http://" + currentUrl.split(separator: "/")[1] + src
                                     }
                                     srcs.append(src)
                                 }
                             }
                             videoLinkLists = srcs
+                        }
+                        let images = try doc.body()?.select("img")
+                        if let images {
+                            var srcs = [String]()
+                            for image in images {
+                                var src = try image.attr("src")
+                                if src != "" {
+                                    if src.hasPrefix("/") {
+                                        if currentUrl.split(separator: "/").count < 2 {
+                                            continue
+                                        }
+                                        src = "http://" + currentUrl.split(separator: "/")[1] + src
+                                    }
+                                    srcs.append(src)
+                                }
+                            }
+                            imageLinkLists = srcs
                         }
                     } catch {
                         print(error)

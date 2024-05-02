@@ -7,6 +7,9 @@
 
 import SwiftUI
 import WatchKit
+import SDWebImage
+import SDWebImageSVGCoder
+import SDWebImageWebPCoder
 
 var pShowTipText = ""
 var pShowTipSymbol = ""
@@ -15,7 +18,8 @@ var pTipBoxOffset: CGFloat = 80
 @main
 struct WatchBrowser_Watch_AppApp: App {
     let device = WKInterfaceDevice.current()
-    @AppStorage("ShouldTipNewFeatures") var shouldTipNewFeatures = true
+    @Environment(\.scenePhase) var scenePhase
+    @AppStorage("ShouldTipNewFeatures1") var shouldTipNewFeatures = true
     @State var showTipText = ""
     @State var showTipSymbol = ""
     @State var tipBoxOffset: CGFloat = 80
@@ -60,6 +64,19 @@ struct WatchBrowser_Watch_AppApp: App {
                         .animation(.easeOut(duration: 0.4), value: tipBoxOffset)
                     }
                 }
+            }
+        }
+        .onChange(of: scenePhase) { value in
+            switch value {
+            case .background:
+                break
+            case .inactive:
+                break
+            case .active:
+                SDImageCodersManager.shared.addCoder(SDImageWebPCoder.shared)
+                SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
+            @unknown default:
+                break
             }
         }
     }

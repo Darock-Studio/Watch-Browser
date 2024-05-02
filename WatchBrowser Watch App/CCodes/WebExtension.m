@@ -12,11 +12,14 @@
 
 id webNavigationDelegate;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+
 @implementation WebExtension : NSObject
 
 +(id) getBindedButtonWithSelector: (NSString *)selector button:(id) button {
     id cbtn = button;
-    [cbtn addTarget:self action:NSSelectorFromString(selector) forControlEvents:1 << 0];
+    [cbtn addTarget:self action:NSSelectorFromString(selector) forControlEvents:1 << 6];
     
     return cbtn;
 }
@@ -60,6 +63,11 @@ id webNavigationDelegate;
     [self DismissWebView];
     pShouldPresentVideoList = true;
 }
++(void) PresentImageList {
+    [videoCheckTimer invalidate];
+    [self DismissWebView];
+    pShouldPresentImageList = true;
+}
 // Externald Method End
 
 @end
@@ -78,5 +86,10 @@ id webNavigationDelegate;
 - (void)webView:(id)view didFailProvisionalNavigation:(id)navigation withError:(NSError *)error {
     [[[WESwiftDelegate alloc] init] webView:view didFailProvisionalNavigation:navigation withError:error];
 }
+- (void)webViewWebContentProcessDidTerminate:(id)webView {
+    [[[WESwiftDelegate alloc] init] webViewWebContentProcessDidTerminate:webView];
+}
 
 @end
+
+#pragma clang diagnostic pop
