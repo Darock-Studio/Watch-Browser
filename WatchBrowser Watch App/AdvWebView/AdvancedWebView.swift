@@ -156,7 +156,7 @@ class AdvancedWebViewController {
             Dynamic(subview).removeFromSuperview()
         }
         let sb = WKInterfaceDevice.current().screenBounds
-        menuView.contentSize = CGSizeMake(sb.width, sb.height + 100)
+        menuView.contentSize = CGSizeMake(sb.width, sb.height + 150)
         
         // Buttons in Menu
         var menuButtonYOffset: CGFloat = 30

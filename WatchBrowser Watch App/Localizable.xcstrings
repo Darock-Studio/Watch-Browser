@@ -12,7 +12,14 @@
       }
     },
     "“反馈助理”不可用，因为暗礁浏览器有更新可用" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feedback Assistant not available, because Darock Browser has an update available"
+          }
+        }
+      }
     },
     "“暗礁浏览器”新功能" : {
       "localizations" : {
@@ -47,10 +54,24 @@
       }
     },
     "%@" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
     },
     "%lld" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
     },
     "0" : {
       "localizations" : {
@@ -97,10 +118,24 @@
       }
     },
     "1.5x" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1.5x"
+          }
+        }
+      }
     },
     "1x" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1x"
+          }
+        }
+      }
     },
     "2" : {
       "localizations" : {
@@ -125,7 +160,14 @@
       }
     },
     "2x" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2x"
+          }
+        }
+      }
     },
     "3" : {
       "localizations" : {
@@ -150,7 +192,14 @@
       }
     },
     "3x" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3x"
+          }
+        }
+      }
     },
     "4" : {
       "localizations" : {
@@ -197,7 +246,14 @@
       }
     },
     "5x" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5x"
+          }
+        }
+      }
     },
     "6" : {
       "localizations" : {
@@ -288,10 +344,24 @@
       }
     },
     "appdiagnose Logs" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "appdiagnose Logs"
+          }
+        }
+      }
     },
     "appdiagnose_%@" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "appdiagnose_%@"
+          }
+        }
+      }
     },
     "baidu" : {
       "localizations" : {
@@ -516,12 +586,6 @@
     "Darock 会收集必要的诊断信息以便进行改进，信息不会关联到您个人。如果您不愿意被收集信息，请勿发送。" : {
       "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock will collect necessary diagnostic information for improvement, and the information will not be related to you personally. If you are unwilling to receive information, please do not send it."
-          }
-        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -541,7 +605,14 @@
       }
     },
     "DarockBrowser Appdiagnose" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DarockBrowser Appdiagnose"
+          }
+        }
+      }
     },
     "Done" : {
       "localizations" : {
@@ -1208,12 +1279,6 @@
     "Keybord.finish" : {
       "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Don"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1223,10 +1288,24 @@
       }
     },
     "NearestHistories.drkdatan" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NearestHistories.drkdatan"
+          }
+        }
+      }
     },
     "OS.drkdatao" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OS.drkdatao"
+          }
+        }
+      }
     },
     "Search.baidu" : {
       "localizations" : {
@@ -1359,12 +1438,6 @@
     "Settings.cookies.pop-up" : {
       "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pop-ups may appear before accessing web pages after enabling Cookies"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1392,12 +1465,6 @@
     "Settings.invatation" : {
       "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Welcome to QQ Community 248036605"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1553,12 +1620,6 @@
     "Settings.search.customize" : {
       "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Customize Search Engine"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1746,12 +1807,6 @@
     "Settings.search.engine.default" : {
       "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Default Search Engine"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1779,12 +1834,6 @@
     "Settings.search.shorcut.title" : {
       "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search Engine Shortcut"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1853,6 +1902,12 @@
     },
     "v%@ Build %@" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "v%1$@ Build %2$@"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
@@ -1862,20 +1917,28 @@
       }
     },
     "Version.drkdatav" : {
-
-    },
-    "上一页" : {
-
-    },
-    "下一步" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Next Step"
+            "value" : "Version.drkdatav"
           }
-        },
+        }
+      }
+    },
+    "上一页" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Page"
+          }
+        }
+      }
+    },
+    "下一步" : {
+      "extractionState" : "stale",
+      "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1891,7 +1954,14 @@
       }
     },
     "下一页" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next Page"
+          }
+        }
+      }
     },
     "中国大陆ICP备案号" : {
       "localizations" : {
@@ -1940,10 +2010,24 @@
       }
     },
     "保持时间可见" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep Time Visible"
+          }
+        }
+      }
     },
     "全屏" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Full-screen"
+          }
+        }
+      }
     },
     "共享表单" : {
       "localizations" : {
@@ -2012,7 +2096,14 @@
       }
     },
     "历史记录" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "History"
+          }
+        }
+      }
     },
     "历史记录现会记录每个导航页" : {
       "localizations" : {
@@ -2059,12 +2150,6 @@
     "发送" : {
       "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Send"
-          }
-        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2090,7 +2175,14 @@
       }
     },
     "取消" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
     },
     "可在%@设置中打开“请求桌面网站”" : {
       "localizations" : {
@@ -2109,7 +2201,14 @@
       }
     },
     "可在脚本商店中获取各类网页脚本" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Now able to get a variety of web scripts at script store"
+          }
+        }
+      }
     },
     "回复" : {
       "localizations" : {
@@ -2176,10 +2275,24 @@
       }
     },
     "图片" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Image"
+          }
+        }
+      }
     },
     "图片列表" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Image List"
+          }
+        }
+      }
     },
     "增强的历史记录" : {
       "localizations" : {
@@ -2218,10 +2331,24 @@
       }
     },
     "存储本页离线归档" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Store Web Archive"
+          }
+        }
+      }
     },
     "安装此脚本" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Install This Script"
+          }
+        }
+      }
     },
     "完成" : {
       "localizations" : {
@@ -2256,7 +2383,14 @@
       }
     },
     "已启用的脚本" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active Scripts"
+          }
+        }
+      }
     },
     "已在未来版本修复" : {
       "localizations" : {
@@ -2275,7 +2409,14 @@
       }
     },
     "应用到" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apply to"
+          }
+        }
+      }
     },
     "建议" : {
       "localizations" : {
@@ -2320,7 +2461,14 @@
       }
     },
     "恢复" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restrore"
+          }
+        }
+      }
     },
     "您可以随时在“设置”中重新打开此页" : {
       "localizations" : {
@@ -2343,7 +2491,14 @@
       }
     },
     "打开包含图片的网页" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Webpages that Contains Images"
+          }
+        }
+      }
     },
     "打开包含视频的网页" : {
       "localizations" : {
@@ -2362,7 +2517,14 @@
       }
     },
     "打开视频直链时，将直接跳转视频" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video will be directly linked when video link is opened."
+          }
+        }
+      }
     },
     "按预期工作" : {
       "localizations" : {
@@ -2381,19 +2543,54 @@
       }
     },
     "换行" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Return"
+          }
+        }
+      }
     },
     "描述" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Description"
+          }
+        }
+      }
     },
     "描述行%lld" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Description Line %lld"
+          }
+        }
+      }
     },
     "提交" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Submit"
+          }
+        }
+      }
     },
     "提交反馈" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Submit Feedback"
+          }
+        }
+      }
     },
     "搁置" : {
       "localizations" : {
@@ -2412,7 +2609,14 @@
       }
     },
     "搜索..." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search..."
+          }
+        }
+      }
     },
     "搜索引擎快捷方式" : {
       "localizations" : {
@@ -2431,16 +2635,44 @@
       }
     },
     "播放" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play"
+          }
+        }
+      }
     },
     "播放倍速" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play Speed"
+          }
+        }
+      }
     },
     "播放网页视频" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play Video"
+          }
+        }
+      }
     },
     "操作" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Action"
+          }
+        }
+      }
     },
     "新功能" : {
       "localizations" : {
@@ -2513,12 +2745,6 @@
     "无自定搜索引擎" : {
       "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "None customized search engine"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2550,7 +2776,14 @@
       }
     },
     "显示“快速退出”按钮" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show Quick Exit Button"
+          }
+        }
+      }
     },
     "更好的 Cookie 支持" : {
       "localizations" : {
@@ -2611,13 +2844,34 @@
       }
     },
     "查看图片" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check Image"
+          }
+        }
+      }
     },
     "查看图片 - 步骤" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check Image - Steps"
+          }
+        }
+      }
     },
     "查看网页图片" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check Images"
+          }
+        }
+      }
     },
     "标题" : {
       "localizations" : {
@@ -2668,10 +2922,24 @@
       }
     },
     "此反馈已关闭，若要重新进行反馈，请创建一个新的反馈" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This feedback had been closed. Create a new feedback if you want to report again."
+          }
+        }
+      }
     },
     "此脚本已安装" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This Script Had Installed"
+          }
+        }
+      }
     },
     "浙ICP备2024071295号-2A" : {
       "localizations" : {
@@ -2696,10 +2964,24 @@
       }
     },
     "添加脚本" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Script"
+          }
+        }
+      }
     },
     "添加附件" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Attachments"
+          }
+        }
+      }
     },
     "状态" : {
       "localizations" : {
@@ -2718,7 +3000,14 @@
       }
     },
     "现可单独放大查看网页中的图片" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Able to zoom in the images in the webpage respectively."
+          }
+        }
+      }
     },
     "现可将网页归档以供离线查看" : {
       "localizations" : {
@@ -2747,16 +3036,44 @@
       }
     },
     "用户脚本" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "User Scripts"
+          }
+        }
+      }
     },
     "由“反馈助理”收集的诊断数据可能包含个人信息。你可以在提交前轻点查看附加数据，或向左轻扫删除。" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The diagnose datas collected by Feedback Assistant may contains personal informations. You can tap to check attached datas before submitting, or swipe left to delete."
+          }
+        }
+      }
     },
     "画面" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Graphics"
+          }
+        }
+      }
     },
     "示例：历史记录缺少最近的浏览数据" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "e.x. History is lack of recent browsing datas"
+          }
+        }
+      }
     },
     "视频列表" : {
       "localizations" : {
@@ -2779,16 +3096,44 @@
       }
     },
     "视频直接跳转" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video Direct Linking"
+          }
+        }
+      }
     },
     "移除诊断信息" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove Diagnose Infos"
+          }
+        }
+      }
     },
     "移除诊断信息会限制 Darock 理解并解决问题的能力。" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Removing diagnose datas will limit Darock's ability of understanding and resolving the issue."
+          }
+        }
+      }
     },
     "空图片列表" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empty Image List"
+          }
+        }
+      }
     },
     "空视频列表" : {
       "localizations" : {
@@ -2803,12 +3148,6 @@
     "简洁地描述问题" : {
       "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Briefly describe the problem"
-          }
-        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2834,7 +3173,14 @@
       }
     },
     "网页崩溃后总是自动重新载入" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Always Refresh After Website Crashes"
+          }
+        }
+      }
     },
     "网页归档" : {
       "localizations" : {
@@ -2867,10 +3213,24 @@
       }
     },
     "脚本均来自greasyfork.org，Darock 无法进行审核，请自行辨别内容" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scripts all from greasyfork.org, Darock cannot check them, please identify by yourself."
+          }
+        }
+      }
     },
     "脚本详情" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Info"
+          }
+        }
+      }
     },
     "自定搜索引擎" : {
       "localizations" : {
@@ -2889,17 +3249,18 @@
       }
     },
     "被删除" : {
-
-    },
-    "详情" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detail"
+            "value" : "Deleted"
           }
-        },
+        }
+      }
+    },
+    "详情" : {
+      "extractionState" : "stale",
+      "localizations" : {
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2909,13 +3270,34 @@
       }
     },
     "请为你的反馈提供描述性的标题：" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please add a descriptive title for your feedback:"
+          }
+        }
+      }
     },
     "请包括：\n- 问题的清晰描述\n- 逐步说明重现问题的详细步骤（如果可能）\n- 期望的结果\n- 当前所示结果" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please Include: \n- A clear description of the issue\n- Step-by-step instruction of how to reproduce the issue (if available)\n- Expected result\n- Current result"
+          }
+        }
+      }
     },
     "请描述该问题以及重现问题的步骤：" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please describe the issue and the steps to reproduce: "
+          }
+        }
+      }
     },
     "请求桌面网站" : {
       "localizations" : {
@@ -2944,16 +3326,44 @@
       }
     },
     "轻触“查看网页中图片”" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap \"Check Images in Webpage\""
+          }
+        }
+      }
     },
     "退出" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leave"
+          }
+        }
+      }
     },
     "选取历史记录" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select History"
+          }
+        }
+      }
     },
     "重新载入" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh"
+          }
+        }
+      }
     },
     "错误/异常行为" : {
       "localizations" : {
@@ -3004,7 +3414,14 @@
       }
     },
     "附件" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attachments"
+          }
+        }
+      }
     },
     "需要更多细节" : {
       "localizations" : {
