@@ -80,7 +80,6 @@ struct WatchBrowser_Watch_AppApp: App {
             }
         }
     }
-
 }
 
 public func tipWithText(_ text: String, symbol: String = "", time: Double = 3.0) {

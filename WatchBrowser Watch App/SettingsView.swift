@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CepheusKeyboardKit
 import AuthenticationServices
 
 struct SettingsView: View {
@@ -67,7 +68,7 @@ struct SettingsView: View {
                     }
                     if customSearchEngineList.count != 0 {
                         ForEach(0..<customSearchEngineList.count, id: \.self) { i in
-                            Text(customSearchEngineList[i].replacingOccurrences(of: "%lld", with: "[搜索内容]")).tag(customSearchEngineList[i])
+                            Text(customSearchEngineList[i].replacingOccurrences(of: "%lld", with: String(localized: "Settings.search.customize.search-content"))).tag(customSearchEngineList[i])
                         }
                     }
                 }
@@ -90,14 +91,18 @@ struct SettingsView: View {
                 Toggle(isOn: $ModifyKeyboard) {
                     Text("Settings.keyboard.third-party")
                 }
-                Button(action: {
-                    isKeyboardPresented = true
-                }, label: {
-                    Label("Settings.keyboard.preview", systemImage: "keyboard.badge.eye")
-                })
-                .sheet(isPresented: $isKeyboardPresented, content: {
-                    ExtKeyboardView(startText: "") { _ in }
-                })
+                if #available(watchOS 10, *) {
+                    CepheusKeyboard(input: .constant(""), prompt: "\(Image(systemName: "keyboard.badge.eye"))Settings.keyboard.preview")
+                } else {
+                    Button(action: {
+                        isKeyboardPresented = true
+                    }, label: {
+                        Label("Settings.keyboard.preview", systemImage: "keyboard.badge.eye")
+                    })
+                    .sheet(isPresented: $isKeyboardPresented, content: {
+                        ExtKeyboardView(startText: "") { _ in }
+                    })
+                }
             } header: {
                 Text("Settings.keyboard")
             } footer: {
@@ -168,6 +173,11 @@ struct SettingsView: View {
                     Label("新功能", systemImage: "sparkles")
                 })
                 .sheet(isPresented: $isNewFeaturesPresented, content: {NewFeaturesView()})
+            }
+            Section {
+                NavigationLink(destination: { OpenSourceView() }, label: {
+                    Text("开源协议许可")
+                })
             }
             if NSLocale.current.languageCode == "zh" {
                 Section {
@@ -394,9 +404,50 @@ struct SearchEngineShortcutSettingsView: View {
     }
 }
 
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView()
+struct OpenSourceView: View {
+    var body: some View {
+        List {
+            SinglePackageBlock(name: "Alamofire", license: "MIT license")
+            VStack {
+                SinglePackageBlock(name: "CepheusKeyboardKit", license: "Apache License 2.0")
+                Text(verbatim: "Code Changes: https://github.com/Serene-Garden/Cepheus/compare/main...WindowsMEMZ:Cepheus:main")
+            }
+            SinglePackageBlock(name: "Dynamic", license: "Apache License 2.0")
+            SinglePackageBlock(name: "EFQRCode", license: "MIT license")
+            SinglePackageBlock(name: "libwebp", license: "BSD-3-Clause license")
+            SinglePackageBlock(name: "EFQRCode", license: "MIT license")
+            SinglePackageBlock(name: "NetworkImage", license: "MIT license")
+            SinglePackageBlock(name: "SDWebImage", license: "MIT license")
+            SinglePackageBlock(name: "SDWebImageSVGCoder", license: "MIT license")
+            SinglePackageBlock(name: "SDWebImageSwiftUI", license: "MIT license")
+            SinglePackageBlock(name: "SDWebImageWebPCoder", license: "MIT license")
+            SinglePackageBlock(name: "swift_qrcodejs", license: "MIT license")
+            SinglePackageBlock(name: "swift-markdown-ui", license: "MIT license")
+            SinglePackageBlock(name: "SwiftDate", license: "MIT license")
+            SinglePackageBlock(name: "SwiftSoup", license: "MIT license")
+            SinglePackageBlock(name: "SwiftyJSON", license: "MIT license")
+        }
+    }
+    
+    struct SinglePackageBlock: View {
+        var name: String
+        var license: String
+        var body: some View {
+            HStack {
+                Image(systemName: "shippingbox.fill")
+                    .foregroundColor(Color(hex: 0xa06f2f))
+                VStack {
+                    HStack {
+                        Text(name)
+                        Spacer()
+                    }
+                    HStack {
+                        Text(license)
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }
+                }
+            }
+        }
     }
 }
-

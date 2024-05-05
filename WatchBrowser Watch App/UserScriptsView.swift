@@ -59,7 +59,7 @@ struct UserScriptsAddView: View {
                     .onSubmit {
                         if !searchInput.isEmpty {
                             isSearching = true
-                            DarockKit.Network.shared.requestString("https://greasyfork.org/zh-CN/scripts?q=\(searchInput)") { respStr, isSuccess in
+                            DarockKit.Network.shared.requestString("https://greasyfork.org/\(NSLocale.current.languageCode == "zh" ? "zh-CN" : "en-US")/scripts?q=\(searchInput)") { respStr, isSuccess in
                                 if isSuccess {
                                     do {
                                         let doc = try SwiftSoup.parse(respStr)

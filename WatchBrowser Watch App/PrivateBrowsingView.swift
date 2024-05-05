@@ -9,6 +9,7 @@ import SwiftUI
 import DarockKit
 import Alamofire
 import SwiftyJSON
+import CepheusKeyboardKit
 import AuthenticationServices
 
 struct PrivateBrowsingView: View {
@@ -49,42 +50,67 @@ struct PrivateBrowsingView: View {
                                 }
                             })
                     } else {
-                        Button(action: {
-                            isKeyboardPresented = true
-                        }, label: {
-                            HStack {
-                                Text(!textOrURL.isEmpty ? textOrURL : String(localized: "Home.search-or-URL"))
-                                    .foregroundColor(textOrURL.isEmpty ? Color.gray : Color.white)
-                                    .privacySensitive()
-                                Spacer()
-                            }
-                        })
-                        .sheet(isPresented: $isKeyboardPresented, content: {
-                            ExtKeyboardView(startText: textOrURL) { ott in
-                                textOrURL = ott
-                            }
-                        })
-                        .onChange(of: textOrURL, perform: { value in
-                            if value.isURL() {
-                                goToButtonLabelText = "Home.go"
-                            } else {
-                                if isSearchEngineShortcutEnabled {
-                                    if value.hasPrefix("bing") {
-                                        goToButtonLabelText = "Home.search.bing"
-                                    } else if value.hasPrefix("baidu") {
-                                        goToButtonLabelText = "Home.search.baidu"
-                                    } else if value.hasPrefix("google") {
-                                        goToButtonLabelText = "Home.search.google"
-                                    } else if value.hasPrefix("sogou") {
-                                        goToButtonLabelText = "Home.search.sogou"
+                        if #available(watchOS 10, *) {
+                            CepheusKeyboard(input: $textOrURL, prompt: "Home.search-or-URL") {
+                                if textOrURL.isURL() {
+                                    goToButtonLabelText = "Home.go"
+                                } else {
+                                    if isSearchEngineShortcutEnabled {
+                                        if textOrURL.hasPrefix("bing") {
+                                            goToButtonLabelText = "Home.search.bing"
+                                        } else if textOrURL.hasPrefix("baidu") {
+                                            goToButtonLabelText = "Home.search.baidu"
+                                        } else if textOrURL.hasPrefix("google") {
+                                            goToButtonLabelText = "Home.search.google"
+                                        } else if textOrURL.hasPrefix("sogou") {
+                                            goToButtonLabelText = "Home.search.sogou"
+                                        } else {
+                                            goToButtonLabelText = "Home.search"
+                                        }
                                     } else {
                                         goToButtonLabelText = "Home.search"
                                     }
-                                } else {
-                                    goToButtonLabelText = "Home.search"
                                 }
                             }
-                        })
+                            .privacySensitive()
+                        } else {
+                            Button(action: {
+                                isKeyboardPresented = true
+                            }, label: {
+                                HStack {
+                                    Text(!textOrURL.isEmpty ? textOrURL : String(localized: "Home.search-or-URL"))
+                                        .foregroundColor(textOrURL.isEmpty ? Color.gray : Color.white)
+                                        .privacySensitive()
+                                    Spacer()
+                                }
+                            })
+                            .sheet(isPresented: $isKeyboardPresented, content: {
+                                ExtKeyboardView(startText: textOrURL) { ott in
+                                    textOrURL = ott
+                                }
+                            })
+                            .onChange(of: textOrURL, perform: { value in
+                                if value.isURL() {
+                                    goToButtonLabelText = "Home.go"
+                                } else {
+                                    if isSearchEngineShortcutEnabled {
+                                        if value.hasPrefix("bing") {
+                                            goToButtonLabelText = "Home.search.bing"
+                                        } else if value.hasPrefix("baidu") {
+                                            goToButtonLabelText = "Home.search.baidu"
+                                        } else if value.hasPrefix("google") {
+                                            goToButtonLabelText = "Home.search.google"
+                                        } else if value.hasPrefix("sogou") {
+                                            goToButtonLabelText = "Home.search.sogou"
+                                        } else {
+                                            goToButtonLabelText = "Home.search"
+                                        }
+                                    } else {
+                                        goToButtonLabelText = "Home.search"
+                                    }
+                                }
+                            })
+                        }
                     }
                 }
                 .swipeActions {

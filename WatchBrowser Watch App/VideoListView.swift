@@ -43,6 +43,7 @@ struct VideoPlayingView: View {
     @State var playbackSpeed = 1.0
     @State var isFullScreen = false
     @State var mainTabViewSelection = 1
+    @State var jumpToInput = ""
     var body: some View {
         TabView(selection: $mainTabViewSelection) {
             VideoPlayer(player: player)
@@ -73,6 +74,13 @@ struct VideoPlayingView: View {
                     .onChange(of: playbackSpeed) { value in
                         player.rate = Float(value)
                     }
+                    TextField("跳转到...(秒)", text: $jumpToInput) // rdar://FB26800207937
+                        .onSubmit {
+                            if let jt = Double(jumpToInput) {
+                                player.seek(to: CMTime(seconds: jt, preferredTimescale: 1))
+                            }
+                            jumpToInput = ""
+                        }
 //                    Button(action: {
 //                        player.seek(to: CMTime(seconds: currentTime + 10, preferredTimescale: 1))
 //                    }, label: {

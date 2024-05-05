@@ -11,15 +11,14 @@ import DarockKit
 import SDWebImageSwiftUI
 
 struct ImageListView: View {
-    @State var willPresentImageLink = ""
     @State var isImageViewerPresented = false
+    @State var tabSelection = 0
     var body: some View {
         if !imageLinkLists.isEmpty {
             List {
                 ForEach(0..<imageLinkLists.count, id: \.self) { i in
                     Button(action: {
-                        willPresentImageLink = imageLinkLists[i]
-                        debugPrint(willPresentImageLink)
+                        tabSelection = i
                         isImageViewerPresented = true
                     }, label: {
                         Text(imageLinkLists[i])
@@ -27,7 +26,14 @@ struct ImageListView: View {
                 }
             }
             .navigationTitle("图片列表")
-            .sheet(isPresented: $isImageViewerPresented, content: { ImageViewerView(url: willPresentImageLink) })
+            .sheet(isPresented: $isImageViewerPresented, content: {
+                TabView(selection: $tabSelection) {
+                    ForEach(0..<imageLinkLists.count, id: \.self) { i in
+                        ImageViewerView(url: imageLinkLists[i])
+                            .tag(i)
+                    }
+                }
+            })
             .onDisappear {
                 Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(AdvancedWebViewController.shared.vc, animated: true, completion: nil)
                 AdvancedWebViewController.shared.registerVideoCheckTimer()

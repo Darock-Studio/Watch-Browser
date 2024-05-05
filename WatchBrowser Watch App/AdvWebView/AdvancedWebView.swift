@@ -137,7 +137,7 @@ class AdvancedWebViewController {
                 pMenuShouldDismiss = false
                 dismissControllersOnWebView()
             }
-            if !(wkWebView.isLoading.asBool ?? !loadProgressView.hidden.asBool!) {
+            if !(wkWebView.isLoading.asBool ?? !loadProgressView.hidden.asBool!) && (wkWebView.estimatedProgress.asDouble ?? 0.0) == 1.0 {
                 loadProgressView.hidden = true
             } else {
                 loadProgressView.hidden = false

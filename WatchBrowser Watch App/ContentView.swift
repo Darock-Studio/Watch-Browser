@@ -7,12 +7,13 @@
 
 import UIKit
 import SwiftUI
+import Dynamic
 import WatchKit
-import AuthenticationServices
 import DarockKit
 import Alamofire
 import SwiftyJSON
-import Dynamic
+import CepheusKeyboardKit
+import AuthenticationServices
 
 struct ContentView: View {
     public static var bingSearchingText = ""
@@ -20,50 +21,45 @@ struct ContentView: View {
     @State var isVideoListPresented = false
     @State var isImageListPresented = false
     var body: some View {
-        Group {
+        NavigationStack {
             if #available(watchOS 10.0, *) {
-                NavigationStack {
-                    ZStack {
-                        NavigationLink("", isActive: $isVideoListPresented, destination: {VideoListView()})
-                            .frame(width: 0, height: 0)
-                            .hidden()
-                        NavigationLink("", isActive: $isImageListPresented, destination: {ImageListView()})
-                            .frame(width: 0, height: 0)
-                            .hidden()
-                        TabView(selection: $mainTabSelection) {
-                            PrivateBrowsingView()
-                                .tag(1)
-                            MainView()
-                                .containerBackground(Color(hex: 0x13A4FF).gradient, for: .navigation)
-                                .toolbar {
-                                    ToolbarItem(placement: .topBarLeading) {
-                                        NavigationLink(destination: {SettingsView()}, label: {
-                                            Image(systemName: "gear")
-                                        })
-                                    }
+                ZStack {
+                    NavigationLink("", isActive: $isVideoListPresented, destination: {VideoListView()})
+                        .frame(width: 0, height: 0)
+                        .hidden()
+                    NavigationLink("", isActive: $isImageListPresented, destination: {ImageListView()})
+                        .frame(width: 0, height: 0)
+                        .hidden()
+                    TabView(selection: $mainTabSelection) {
+                        PrivateBrowsingView()
+                            .tag(1)
+                        MainView()
+                            .containerBackground(Color(hex: 0x13A4FF).gradient, for: .navigation)
+                            .toolbar {
+                                ToolbarItem(placement: .topBarLeading) {
+                                    NavigationLink(destination: {SettingsView()}, label: {
+                                        Image(systemName: "gear")
+                                    })
                                 }
-                                .tag(2)
-                        }
+                            }
+                            .tag(2)
                     }
                 }
             } else {
-                NavigationView {
-                    ZStack {
-                        NavigationLink("", isActive: $isVideoListPresented, destination: {VideoListView()})
-                            .frame(width: 0, height: 0)
-                            .hidden()
-                        NavigationLink("", isActive: $isImageListPresented, destination: {ImageListView()})
-                            .frame(width: 0, height: 0)
-                            .hidden()
-                        TabView(selection: $mainTabSelection) {
-                            PrivateBrowsingView()
-                                .tag(1)
-                            MainView(withSetting: true)
-                                .tag(2)
-                        }
+                ZStack {
+                    NavigationLink("", isActive: $isVideoListPresented, destination: {VideoListView()})
+                        .frame(width: 0, height: 0)
+                        .hidden()
+                    NavigationLink("", isActive: $isImageListPresented, destination: {ImageListView()})
+                        .frame(width: 0, height: 0)
+                        .hidden()
+                    TabView(selection: $mainTabSelection) {
+                        PrivateBrowsingView()
+                            .tag(1)
+                        MainView(withSetting: true)
+                            .tag(2)
                     }
                 }
-                .navigationViewStyle(.stack)
             }
         }
         .onAppear {
@@ -89,6 +85,7 @@ struct MainView: View {
     @AppStorage("ModifyKeyboard") var ModifyKeyboard = false
     @AppStorage("IsShowBetaTest1") var isShowBetaTest = true
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
+    @AppStorage("isUseOldWebView") var isUseOldWebView = false
     @State var textOrURL = ""
     @State var goToButtonLabelText: LocalizedStringKey = "Home.search"
     @State var isKeyboardPresented = false
@@ -135,42 +132,67 @@ struct MainView: View {
                                 }
                             })
                     } else {
-                        Button(action: {
-                            isKeyboardPresented = true
-                        }, label: {
-                            HStack {
-                                Text(!textOrURL.isEmpty ? textOrURL : String(localized: "Home.search-or-URL"))
-                                    .foregroundColor(textOrURL.isEmpty ? Color.gray : Color.white)
-                                    .privacySensitive()
-                                Spacer()
-                            }
-                        })
-                        .sheet(isPresented: $isKeyboardPresented, content: {
-                            ExtKeyboardView(startText: textOrURL) { ott in
-                                textOrURL = ott
-                            }
-                        })
-                        .onChange(of: textOrURL, perform: { value in
-                            if value.isURL() {
-                                goToButtonLabelText = "Home.go"
-                            } else {
-                                if isSearchEngineShortcutEnabled {
-                                    if value.hasPrefix("bing") {
-                                        goToButtonLabelText = "Home.search.bing"
-                                    } else if value.hasPrefix("baidu") {
-                                        goToButtonLabelText = "Home.search.baidu"
-                                    } else if value.hasPrefix("google") {
-                                        goToButtonLabelText = "Home.search.google"
-                                    } else if value.hasPrefix("sogou") {
-                                        goToButtonLabelText = "Home.search.sogou"
+                        if #available(watchOS 10, *) {
+                            CepheusKeyboard(input: $textOrURL, prompt: "Home.search-or-URL") {
+                                if textOrURL.isURL() {
+                                    goToButtonLabelText = "Home.go"
+                                } else {
+                                    if isSearchEngineShortcutEnabled {
+                                        if textOrURL.hasPrefix("bing") {
+                                            goToButtonLabelText = "Home.search.bing"
+                                        } else if textOrURL.hasPrefix("baidu") {
+                                            goToButtonLabelText = "Home.search.baidu"
+                                        } else if textOrURL.hasPrefix("google") {
+                                            goToButtonLabelText = "Home.search.google"
+                                        } else if textOrURL.hasPrefix("sogou") {
+                                            goToButtonLabelText = "Home.search.sogou"
+                                        } else {
+                                            goToButtonLabelText = "Home.search"
+                                        }
                                     } else {
                                         goToButtonLabelText = "Home.search"
                                     }
-                                } else {
-                                    goToButtonLabelText = "Home.search"
                                 }
                             }
-                        })
+                            .privacySensitive()
+                        } else {
+                            Button(action: {
+                                isKeyboardPresented = true
+                            }, label: {
+                                HStack {
+                                    Text(!textOrURL.isEmpty ? textOrURL : String(localized: "Home.search-or-URL"))
+                                        .foregroundColor(textOrURL.isEmpty ? Color.gray : Color.white)
+                                        .privacySensitive()
+                                    Spacer()
+                                }
+                            })
+                            .sheet(isPresented: $isKeyboardPresented, content: {
+                                ExtKeyboardView(startText: textOrURL) { ott in
+                                    textOrURL = ott
+                                }
+                            })
+                            .onChange(of: textOrURL, perform: { value in
+                                if value.isURL() {
+                                    goToButtonLabelText = "Home.go"
+                                } else {
+                                    if isSearchEngineShortcutEnabled {
+                                        if value.hasPrefix("bing") {
+                                            goToButtonLabelText = "Home.search.bing"
+                                        } else if value.hasPrefix("baidu") {
+                                            goToButtonLabelText = "Home.search.baidu"
+                                        } else if value.hasPrefix("google") {
+                                            goToButtonLabelText = "Home.search.google"
+                                        } else if value.hasPrefix("sogou") {
+                                            goToButtonLabelText = "Home.search.sogou"
+                                        } else {
+                                            goToButtonLabelText = "Home.search"
+                                        }
+                                    } else {
+                                        goToButtonLabelText = "Home.search"
+                                    }
+                                }
+                            })
+                        }
                     }
                 }
                 .swipeActions(edge: .leading, allowsFullSwipe: true) {
@@ -257,20 +279,44 @@ struct MainView: View {
                 })
                 if !webArchiveLinks.isEmpty {
                     NavigationLink(destination: { WebArchiveListView() }, label: {
-                        HStack {
-                            Spacer()
-                            Label("网页归档", systemImage: "archivebox")
-                            Spacer()
+                        VStack {
+                            HStack {
+                                Spacer()
+                                Label("网页归档", systemImage: "archivebox")
+                                Spacer()
+                            }
+                            if isUseOldWebView {
+                                HStack {
+                                    Spacer()
+                                    Text("使用旧版引擎时，网页归档不可用")
+                                        .font(.system(size: 12))
+                                        .multilineTextAlignment(.center)
+                                    Spacer()
+                                }
+                            }
                         }
                     })
+                    .disabled(isUseOldWebView)
                 }
                 NavigationLink(destination: { UserScriptsView() }, label: {
-                    HStack {
-                        Spacer()
-                        Label("用户脚本", systemImage: "applescript")
-                        Spacer()
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Label("用户脚本", systemImage: "applescript")
+                            Spacer()
+                        }
+                        if isUseOldWebView {
+                            HStack {
+                                Spacer()
+                                Text("使用旧版引擎时，用户脚本不可用")
+                                    .font(.system(size: 12))
+                                    .multilineTextAlignment(.center)
+                                Spacer()
+                            }
+                        }
                     }
                 })
+                .disabled(isUseOldWebView)
                 if withSetting {
                     NavigationLink(destination: {
                         SettingsView()
@@ -431,23 +477,6 @@ extension String {
         } else {
             return false
         }
-    }
-}
-
-extension Color {
-    init(hex: Int, alpha: Double = 1) {
-        let components = (
-            R: Double((hex >> 16) & 0xff) / 255,
-            G: Double((hex >> 08) & 0xff) / 255,
-            B: Double((hex >> 00) & 0xff) / 255
-        )
-        self.init(
-            .sRGB,
-            red: components.R,
-            green: components.G,
-            blue: components.B,
-            opacity: alpha
-        )
     }
 }
 

@@ -8,6 +8,7 @@
 import SwiftUI
 import DarockKit
 import SwiftDate
+import MarkdownUI
 
 fileprivate let globalStates: [LocalizedStringKey] = ["未标记", "按预期工作", "无法修复", "问题重复", "搁置", "正在修复", "已在未来版本修复", "已修复", "正在加载", "未能复现", "问题并不与App相关", "需要更多细节", "被删除"]
 fileprivate let globalStateColors = [Color.secondary, Color.red, Color.red, Color.red, Color.orange, Color.orange, Color.orange, Color.green, Color.secondary, Color.red, Color.secondary, Color.orange, Color.red]
@@ -22,6 +23,11 @@ struct FeedbackView: View {
                 NavigationLink(destination: { NewFeedbackView() }, label: {
                     Label("新建反馈", systemImage: "exclamationmark.bubble.fill")
                 })
+                NavigationLink(destination: { FAQView() }, label: {
+                    Label("常见问题", systemImage: "sparkles")
+                })
+            } footer: {
+                Text("提交反馈前，请先检查常见问题")
             }
             if feedbackIds.count != 0 {
                 Section {
@@ -351,6 +357,7 @@ struct FeedbackView: View {
         @State var replies = [(status: Int, content: String, sender: String)]()
         @State var isSendReplyPresented = false
         @State var replyInput = ""
+        @State var isReplySubmitted = false
         var body: some View {
             List {
                 Section {
@@ -469,7 +476,9 @@ struct FeedbackView: View {
                                         se = mspd[1]
                                     }
                                 }
-                                replies.append((status: st, content: co, sender: se))
+                                if se == "System" && st == 8 && co.isEmpty { // Radar Internal
+                                    replies.append((status: st, content: co, sender: se))
+                                }
                             }
                         }
                         UserDefaults.standard.set(replies.count, forKey: "RadarFB\(id)ReplyCount")
@@ -482,6 +491,10 @@ struct FeedbackView: View {
             .sheet(isPresented: $isSendReplyPresented) {
                 TextField("回复信息", text: $replyInput)
                     .onSubmit {
+                        if isReplySubmitted {
+                            return
+                        }
+                        isReplySubmitted = true
                         if replyInput != "" {
                             let enced = """
                             Content：\(replyInput)
@@ -505,6 +518,32 @@ struct FeedbackView: View {
     }
 }
 
-#Preview {
-    FeedbackView()
+struct FAQView: View {
+    var body: some View {
+        List {
+            NavigationLink(destination: {
+                ScrollView {
+                    Markdown(String(localized: """
+                    **并非所有网页内的视频均能被解析**
+                    
+                    请**不要**提出〇〇网站视频无法播放之类的反馈
+                    """))
+                }
+            }, label: {
+                Text("关于视频...")
+            })
+            NavigationLink(destination: {
+                ScrollView {
+                    Markdown(String(localized: """
+                    **并非所有网页都能在 Apple Watch 上正常工作**
+                    
+                    请**不要**提出〇〇网站*打不开*、*有问题*之类的反馈
+                    """))
+                }
+            }, label: {
+                Text("关于网页适配...")
+            })
+        }
+        .navigationTitle("常见问题")
+    }
 }

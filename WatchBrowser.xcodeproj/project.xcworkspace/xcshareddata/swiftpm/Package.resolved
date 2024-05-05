@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "cepheus",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/WindowsMEMZ/Cepheus",
+      "state" : {
+        "branch" : "main",
+        "revision" : "73b8735ce8f7e663d3ce73fd58eb5dc41b23f26c"
+      }
+    },
+    {
       "identity" : "darockkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Darock-Studio/DarockKit",
@@ -46,6 +55,15 @@
       }
     },
     {
+      "identity" : "networkimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gonzalezreal/NetworkImage",
+      "state" : {
+        "revision" : "7aff8d1b31148d32c5933d75557d42f6323ee3d1",
+        "version" : "6.0.0"
+      }
+    },
+    {
       "identity" : "sdwebimage",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
@@ -79,6 +97,15 @@
       "state" : {
         "revision" : "f534cfe830a7807ecc3d0332127a502426cfa067",
         "version" : "0.14.6"
+      }
+    },
+    {
+      "identity" : "swift-markdown-ui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gonzalezreal/swift-markdown-ui",
+      "state" : {
+        "revision" : "ae799d015a5374708f7b4c85f3294c05f2a564e2",
+        "version" : "2.3.0"
       }
     },
     {

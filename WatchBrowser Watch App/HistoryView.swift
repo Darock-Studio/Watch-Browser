@@ -17,6 +17,7 @@ struct HistoryView: View {
     @State var histories = [String]()
     @State var isSharePresented = false
     @State var shareLink = ""
+    @State var searchText = ""
     var body: some View {
         List {
             if selectionHandler == nil {
@@ -35,48 +36,51 @@ struct HistoryView: View {
             Section {
                 if isHistoryRecording {
                     if histories.count != 0 {
+                        TextField("\(Image(systemName: "magnifyingglass")) 搜索", text: $searchText)
                         ForEach(0...histories.count - 1, id: \.self) { i in
-                            Button(action: {
-                                if let selectionHandler {
-                                    selectionHandler(histories[i])
-                                } else {
-                                    if !histories[i].hasPrefix("file://") {
-                                        AdvancedWebViewController.shared.present(histories[i].urlDecoded().urlEncoded())
-                                    } else {
-                                        AdvancedWebViewController.shared.present("", archiveUrl: URL(string: histories[i])!)
-                                    }
-                                }
-                            }, label: {
-                                if histories[i].hasPrefix("https://www.bing.com/search?q=") {
-                                    Label(String(histories[i].urlDecoded().dropFirst(30)), systemImage: "magnifyingglass")
-                                } else if histories[i].hasPrefix("https://www.baidu.com/s?wd=") {
-                                    Label(String(histories[i].urlDecoded().dropFirst(27)), systemImage: "magnifyingglass")
-                                } else if histories[i].hasPrefix("https://www.google.com/search?q=") {
-                                    Label(String(histories[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
-                                } else if histories[i].hasPrefix("https://www.sogou.com/web?query=") {
-                                    Label(String(histories[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
-                                } else if histories[i].hasPrefix("file://") {
-                                    Label(String(histories[i].split(separator: "/").last!.split(separator: ".")[0]).replacingOccurrences(of: "{slash}", with: "/").base64Decoded() ?? "[解析失败]", systemImage: "archivebox")
-                                } else {
-                                    Label(histories[i], systemImage: "globe")
-                                }
-                            })
-                            .privacySensitive()
-                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                Button(role: .destructive, action: {
-                                    histories.remove(at: i)
-                                    UserDefaults.standard.set(histories, forKey: "WebHistory")
-                                }, label: {
-                                    Image(systemName: "bin.xmark.fill")
-                                })
-                            }
-                            .swipeActions(edge: .leading) {
+                            if searchText.isEmpty || histories[i].contains(searchText) {
                                 Button(action: {
-                                    shareLink = histories[i].urlDecoded().urlEncoded()
-                                    isSharePresented = true
+                                    if let selectionHandler {
+                                        selectionHandler(histories[i])
+                                    } else {
+                                        if !histories[i].hasPrefix("file://") {
+                                            AdvancedWebViewController.shared.present(histories[i].urlDecoded().urlEncoded())
+                                        } else {
+                                            AdvancedWebViewController.shared.present("", archiveUrl: URL(string: histories[i])!)
+                                        }
+                                    }
                                 }, label: {
-                                    Image(systemName: "square.and.arrow.up.fill")
+                                    if histories[i].hasPrefix("https://www.bing.com/search?q=") {
+                                        Label(String(histories[i].urlDecoded().dropFirst(30)), systemImage: "magnifyingglass")
+                                    } else if histories[i].hasPrefix("https://www.baidu.com/s?wd=") {
+                                        Label(String(histories[i].urlDecoded().dropFirst(27)), systemImage: "magnifyingglass")
+                                    } else if histories[i].hasPrefix("https://www.google.com/search?q=") {
+                                        Label(String(histories[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
+                                    } else if histories[i].hasPrefix("https://www.sogou.com/web?query=") {
+                                        Label(String(histories[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
+                                    } else if histories[i].hasPrefix("file://") {
+                                        Label(String(histories[i].split(separator: "/").last!.split(separator: ".")[0]).replacingOccurrences(of: "{slash}", with: "/").base64Decoded() ?? "[解析失败]", systemImage: "archivebox")
+                                    } else {
+                                        Label(histories[i], systemImage: "globe")
+                                    }
                                 })
+                                .privacySensitive()
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    Button(role: .destructive, action: {
+                                        histories.remove(at: i)
+                                        UserDefaults.standard.set(histories, forKey: "WebHistory")
+                                    }, label: {
+                                        Image(systemName: "bin.xmark.fill")
+                                    })
+                                }
+                                .swipeActions(edge: .leading) {
+                                    Button(action: {
+                                        shareLink = histories[i].urlDecoded().urlEncoded()
+                                        isSharePresented = true
+                                    }, label: {
+                                        Image(systemName: "square.and.arrow.up.fill")
+                                    })
+                                }
                             }
                         }
                     } else {

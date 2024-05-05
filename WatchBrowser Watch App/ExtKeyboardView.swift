@@ -247,7 +247,7 @@ struct TextDisplayView: View {
                             .onTapGesture {
                                 cursor = -1
                             }
-                            
+                        
                     })
                 })
                 .onChange(of: fullText, perform: { f in
