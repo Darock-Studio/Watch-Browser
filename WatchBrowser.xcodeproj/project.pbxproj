@@ -91,7 +91,6 @@
 		6BF209F72990E61E00E623FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6BF209FA2990E61E00E623FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6BF20A09299100AE00E623FC /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
-		8C2195912BA611B900083353 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		8C6E11DC2BDBF464005420C0 /* NewFeaturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFeaturesView.swift; sourceTree = "<group>"; };
 		8C6E11DE2BDC029E005420C0 /* WEBackSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WEBackSwift.swift; sourceTree = "<group>"; };
 		8C6E11E02BDC0638005420C0 /* WebArchiveListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebArchiveListView.swift; sourceTree = "<group>"; };
@@ -296,7 +295,6 @@
 				Base,
 				"zh-Hans",
 				en,
-				"zh-Hant",
 			);
 			mainGroup = 6BF209E12990E61C00E623FC;
 			packageReferences = (
@@ -386,7 +384,6 @@
 			children = (
 				E25EA8392B70ABEF00BFEC6E /* zh-Hans */,
 				E25EA83B2B70ABF000BFEC6E /* en */,
-				8C2195912BA611B900083353 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

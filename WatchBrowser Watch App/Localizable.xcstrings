@@ -32,10 +32,24 @@
       }
     },
     "**并非所有网页内的视频均能被解析**\n\n请**不要**提出〇〇网站视频无法播放之类的反馈" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Not all videos on web pages can be parsed**\n\nPlease **do not** provide feedback such as the inability to play videos on the website"
+          }
+        }
+      }
     },
     "**并非所有网页都能在 Apple Watch 上正常工作**\n\n请**不要**提出〇〇网站*打不开*、*有问题*之类的反馈" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Not all web pages can work properly on Apple Watch**\n\nPlease **do not** provide feedback such as website *not being able to be opened* or *having issues*"
+          }
+        }
+      }
     },
     "#+=" : {
       "localizations" : {
@@ -70,7 +84,14 @@
       }
     },
     "%@ 搜索" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "$@ Search"
+          }
+        }
+      }
     },
     "%@Settings.keyboard.preview" : {
       "localizations" : {
@@ -2025,10 +2046,24 @@
       }
     },
     "使用旧版引擎时，用户脚本不可用" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "User scripts are not available when using traditional engine"
+          }
+        }
+      }
     },
     "使用旧版引擎时，网页归档不可用" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web page archiving is not available when using traditional engine"
+          }
+        }
+      }
     },
     "使用旧版浏览引擎" : {
       "localizations" : {
@@ -2071,10 +2106,24 @@
       }
     },
     "关于视频..." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About videos..."
+          }
+        }
+      }
     },
     "关于网页适配..." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About web pages adaptation..."
+          }
+        }
+      }
     },
     "内容" : {
       "localizations" : {
@@ -2446,7 +2495,14 @@
       }
     },
     "常见问题" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FAQ"
+          }
+        }
+      }
     },
     "应用到" : {
       "localizations" : {
@@ -2475,7 +2531,14 @@
       }
     },
     "开源协议许可" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Source Agreement License"
+          }
+        }
+      }
     },
     "引擎" : {
       "localizations" : {
@@ -2636,7 +2699,14 @@
       }
     },
     "提交反馈前，请先检查常见问题" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Before submitting feedback, please check for common issues"
+          }
+        }
+      }
     },
     "搁置" : {
       "localizations" : {
@@ -3356,7 +3426,14 @@
       }
     },
     "跳转到...(秒)" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jump to... (sec.)"
+          }
+        }
+      }
     },
     "轻触“播放网页中视频”" : {
       "localizations" : {
