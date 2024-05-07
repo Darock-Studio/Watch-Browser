@@ -477,8 +477,9 @@ struct FeedbackView: View {
                                     }
                                 }
                                 if se == "System" && st == 8 && co.isEmpty { // Radar Internal
-                                    replies.append((status: st, content: co, sender: se))
+                                    continue
                                 }
+                                replies.append((status: st, content: co, sender: se))
                             }
                         }
                         UserDefaults.standard.set(replies.count, forKey: "RadarFB\(id)ReplyCount")
