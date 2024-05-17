@@ -26,7 +26,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Darock Browser New Features"
+            "value" : "New Features of Darock Browser"
           }
         }
       }
@@ -36,7 +36,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Not all videos on web pages can be parsed**\n\nPlease **do not** provide feedback such as the inability to play videos on the website"
+            "value" : "**Some videos cannot be parsed**\n\nPlease **do not** submit feedbacks about specific videos."
           }
         }
       }
@@ -46,7 +46,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Not all web pages can work properly on Apple Watch**\n\nPlease **do not** provide feedback such as website *not being able to be opened* or *having issues*"
+            "value" : "**Some webpages may not work properly on Apple Watch**\n\nPlease **do not** submit feedbacks about specific webpages."
           }
         }
       }
@@ -88,7 +88,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "$@ Search"
+            "value" : "%@ Search"
           }
         }
       }
@@ -134,6 +134,26 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "0.5x" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "0.75x" : {
+      "localizations" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -1454,7 +1474,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cookies are used to mark informations such as login information"
+            "value" : "Cookies are website data like login states."
           }
         },
         "zh-Hans" : {
@@ -1470,7 +1490,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cookies may not be all allowed because of watchOS' limitation"
+            "value" : "Some Cookies may not work due to the limitations of watchOS."
           }
         },
         "zh-Hans" : {
@@ -1497,7 +1517,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Darock cannot know or see any website information"
+            "value" : "Darock does not have the access to Cookies."
           }
         },
         "zh-Hans" : {
@@ -1604,7 +1624,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This keyboard allow Watch which do not support full keyboard to type with English full keyboard"
+            "value" : "This enables an unsupported Apple Watch to type with a full keyboard."
           }
         },
         "zh-Hans" : {
@@ -1695,7 +1715,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scroll digital crown to move the cursor to the search content's place."
+            "value" : "Scroll Digital Crown and use the cursor to locate the search query."
           }
         },
         "zh-Hans" : {
@@ -1759,7 +1779,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enter the customized search engine you like, like \"bing.com?q=\", please ignore the search content temporarily"
+            "value" : "Enter the search link and leave the query empty. For example, \"bing.com/search?q=\"."
           }
         },
         "zh-Hans" : {
@@ -1977,7 +1997,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Last Page"
+            "value" : "Previous Page"
           }
         }
       }
@@ -2035,12 +2055,22 @@
         }
       }
     },
+    "你要存储当前的草稿吗？" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do you want to save the draft?"
+          }
+        }
+      }
+    },
     "使用手势返回上一页" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Use Gestures to go to last page"
+            "value" : "Use Gesture to Go Back"
           }
         }
       }
@@ -2050,7 +2080,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "User scripts are not available when using traditional engine"
+            "value" : "Userscripts are not available when using traditional engine"
           }
         }
       }
@@ -2070,7 +2100,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Use Traditional Browse Engine"
+            "value" : "Use Legacy Browsing Engine"
           }
         }
       }
@@ -2080,7 +2110,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keep Time Visible"
+            "value" : "Keep Digital Time Visible"
           }
         }
       }
@@ -2177,6 +2207,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Create Web Archive"
+          }
+        }
+      }
+    },
+    "删除草稿" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Draft"
           }
         }
       }
@@ -2291,7 +2331,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Now able to get a variety of web scripts at script store"
+            "value" : "You can now get a variety of userscripts at the script store."
           }
         }
       }
@@ -2421,7 +2461,17 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Store Web Archive"
+            "value" : "Save Offline Page"
+          }
+        }
+      }
+    },
+    "存储草稿" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save Draft"
           }
         }
       }
@@ -2499,7 +2549,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "FAQ"
+            "value" : "FAQs"
           }
         }
       }
@@ -2535,7 +2585,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open Source Agreement License"
+            "value" : "Acknowledgments"
           }
         }
       }
@@ -2601,7 +2651,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open Webpages that Contains Images"
+            "value" : "Open a webpage with images."
           }
         }
       }
@@ -2611,7 +2661,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open Web Pages That Contains Videos"
+            "value" : "Open a webpage with videos."
           }
         },
         "zh-Hans" : {
@@ -2703,7 +2753,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Before submitting feedback, please check for common issues"
+            "value" : "Please check out the FAQs before submitting a feedback."
           }
         }
       }
@@ -2880,7 +2930,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Traditional engine is better at stabling, but is lack of advanced features"
+            "value" : "The legacy engine is more stable but with less advanced features"
           }
         },
         "zh-Hans" : {
@@ -2907,6 +2957,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Better Cookie Supports"
+          }
+        }
+      }
+    },
+    "未完成的编辑" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unfinished editing"
           }
         }
       }
@@ -2964,7 +3024,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Check Image"
+            "value" : "List Image"
           }
         }
       }
@@ -2974,7 +3034,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Check Image - Steps"
+            "value" : "List Image - Steps"
           }
         }
       }
@@ -2984,7 +3044,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Check Images"
+            "value" : "List Images"
           }
         }
       }
@@ -3120,7 +3180,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Able to zoom in the images in the webpage respectively."
+            "value" : "You can now zoom the single web images in and out."
           }
         }
       }
@@ -3156,7 +3216,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "User Scripts"
+            "value" : "Userscripts"
           }
         }
       }
@@ -3293,7 +3353,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Always Refresh After Website Crashes"
+            "value" : "Always Reload Page After Crashing"
           }
         }
       }
@@ -3333,7 +3393,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scripts all from greasyfork.org, Darock cannot check them, please identify by yourself."
+            "value" : "Scripts are form greasyfork.org which Darock will not scan. Only proceed when you own the risk."
           }
         }
       }
@@ -3415,6 +3475,16 @@
         }
       }
     },
+    "请求实时支持" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Request Chat Support (Chinese, Simplified)"
+          }
+        }
+      }
+    },
     "请求桌面网站" : {
       "localizations" : {
         "en" : {
@@ -3456,7 +3526,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tap \"Check Images in Webpage\""
+            "value" : "Tap \"List Images in Webpage\""
           }
         }
       }
@@ -3466,7 +3536,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leave"
+            "value" : "Exit"
           }
         }
       }
@@ -3486,7 +3556,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Refresh"
+            "value" : "Reload"
           }
         }
       }

@@ -65,6 +65,8 @@ struct VideoPlayingView: View {
                 }
                 Section {
                     Picker("播放倍速", selection: $playbackSpeed) {
+                        Text("0.5x").tag(0.5)
+                        Text("0.75x").tag(0.75)
                         Text("1x").tag(1.0)
                         Text("1.5x").tag(1.5)
                         Text("2x").tag(2.0)

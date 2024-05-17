@@ -137,7 +137,7 @@ class AdvancedWebViewController {
                 pMenuShouldDismiss = false
                 dismissControllersOnWebView()
             }
-            if !(wkWebView.isLoading.asBool ?? !loadProgressView.hidden.asBool!) && (wkWebView.estimatedProgress.asDouble ?? 0.0) == 1.0 {
+            if !wkWebView.isLoading.asBool! {
                 loadProgressView.hidden = true
             } else {
                 loadProgressView.hidden = false
@@ -184,6 +184,13 @@ class AdvancedWebViewController {
             checkIndicator.frame = getMiddleRect(y: menuButtonYOffset, height: 40)
             menuView.addSubview(checkIndicator)
             checkIndicator.startAnimating()
+            menuButtonYOffset += 60
+        } else {
+            let tipText = Dynamic.UILabel()
+            tipText.text = "无可播放的视频"
+            tipText.setFrame(getMiddleRect(y: menuButtonYOffset, height: 60))
+            tipText.setFont(UIFont(name: "Helvetica", size: 12))
+            menuView.addSubview(tipText)
             menuButtonYOffset += 60
         }
         if !imageLinkLists.isEmpty {
@@ -259,7 +266,7 @@ class AdvancedWebViewController {
                 if curl != currentUrl {
                     currentUrl = curl
                     if isHistoryRecording && !isInPrivacy {
-                        RecordHistory(curl, webSearch: webSearch)
+                        RecordHistory(curl, webSearch: webSearch, showName: Dynamic(webViewObject).title.asString)
                     }
                 }
             }

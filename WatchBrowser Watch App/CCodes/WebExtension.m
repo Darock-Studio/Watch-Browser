@@ -11,6 +11,7 @@
 #import "DarockBrowser-Swift.h"
 
 id webNavigationDelegate;
+id webUIDelegate;
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -28,6 +29,10 @@ id webNavigationDelegate;
     class_addProtocol([WebExtensionDelegate class], protocol);
     webNavigationDelegate = [[WebExtensionDelegate alloc] init];
     [webViewObject setValue:webNavigationDelegate forKey:@"navigationDelegate"];
+    protocol = objc_getProtocol("WKUIDelegate");
+    class_addProtocol([WebUIDelegate class], protocol);
+    webUIDelegate = [[WebUIDelegate alloc] init];
+    [webViewObject setValue:webUIDelegate forKey:@"UIDelegate"];
 }
 
 // Externald Method Start
@@ -88,6 +93,14 @@ id webNavigationDelegate;
 }
 - (void)webViewWebContentProcessDidTerminate:(id)webView {
     [[[WESwiftDelegate alloc] init] webViewWebContentProcessDidTerminate:webView];
+}
+
+@end
+
+@implementation WebUIDelegate
+
+- (id)webView:(id)webView createWebViewWithConfiguration:(id)configuration forNavigationAction:(id)navigationAction windowFeatures:(id)windowFeatures {
+    return [[[WESwiftDelegate alloc] init] webView:webView createWebViewWith:configuration for:navigationAction windowFeatures:windowFeatures];
 }
 
 @end

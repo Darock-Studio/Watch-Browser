@@ -65,4 +65,12 @@ public class WESwiftDelegate: NSObject {
             Dynamic(webViewObject).reload()
         }
     }
+    
+    //MARK: UI Delegate
+    public func webView(_ webView: Any, createWebViewWith configuration: Any, for navigationAction: Any, windowFeatures: Any) -> Any? {
+        if Dynamic(navigationAction).targetFrame == nil {
+            Dynamic(webViewObject).loadRequest(Dynamic(navigationAction).request)
+        }
+        return nil
+    }
 }

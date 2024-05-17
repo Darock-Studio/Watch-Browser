@@ -415,7 +415,6 @@ struct OpenSourceView: View {
             SinglePackageBlock(name: "Dynamic", license: "Apache License 2.0")
             SinglePackageBlock(name: "EFQRCode", license: "MIT license")
             SinglePackageBlock(name: "libwebp", license: "BSD-3-Clause license")
-            SinglePackageBlock(name: "EFQRCode", license: "MIT license")
             SinglePackageBlock(name: "NetworkImage", license: "MIT license")
             SinglePackageBlock(name: "SDWebImage", license: "MIT license")
             SinglePackageBlock(name: "SDWebImageSVGCoder", license: "MIT license")

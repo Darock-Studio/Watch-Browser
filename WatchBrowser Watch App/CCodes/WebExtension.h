@@ -44,5 +44,8 @@ NSTimer *videoCheckTimer;
 - (void)webView:(id)view didFailProvisionalNavigation:(id)navigation withError:(NSError *)error;
 - (void)webViewWebContentProcessDidTerminate:(id)webView;
 @end
+@interface WebUIDelegate : NSObject
+- (id)webView:(id)webView createWebViewWithConfiguration:(id)configuration forNavigationAction:(id)navigationAction windowFeatures:(id)windowFeatures;
+@end
 
 #endif /* WebExtension_h */

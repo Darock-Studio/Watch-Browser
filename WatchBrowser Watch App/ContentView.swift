@@ -20,6 +20,7 @@ struct ContentView: View {
     @State var mainTabSelection = 2
     @State var isVideoListPresented = false
     @State var isImageListPresented = false
+    @State var isSettingsPresented = false
     var body: some View {
         NavigationStack {
             if #available(watchOS 10.0, *) {
@@ -30,6 +31,9 @@ struct ContentView: View {
                     NavigationLink("", isActive: $isImageListPresented, destination: {ImageListView()})
                         .frame(width: 0, height: 0)
                         .hidden()
+                    NavigationLink("", isActive: $isSettingsPresented, destination: {SettingsView()})
+                        .frame(width: 0, height: 0)
+                        .hidden()
                     TabView(selection: $mainTabSelection) {
                         PrivateBrowsingView()
                             .tag(1)
@@ -37,7 +41,9 @@ struct ContentView: View {
                             .containerBackground(Color(hex: 0x13A4FF).gradient, for: .navigation)
                             .toolbar {
                                 ToolbarItem(placement: .topBarLeading) {
-                                    NavigationLink(destination: {SettingsView()}, label: {
+                                    Button(action: {
+                                        isSettingsPresented = true
+                                    }, label: {
                                         Image(systemName: "gear")
                                     })
                                 }
@@ -232,6 +238,7 @@ struct MainView: View {
                     if textOrURL != "" {
                         Button(role: .destructive, action: {
                             textOrURL = ""
+                            goToButtonLabelText = "Home.go"
                         }, label: {
                             Image(systemName: "xmark.bin.fill")
                         })
@@ -245,9 +252,6 @@ struct MainView: View {
                         AdvancedWebViewController.shared.present(textOrURL.urlEncoded())
                     } else {
                         AdvancedWebViewController.shared.present(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled))
-                    }
-                    if isHistoryRecording {
-                        RecordHistory(textOrURL, webSearch: webSearch)
                     }
                 }, label: {
                     HStack {
@@ -425,30 +429,30 @@ func GetWebSearchedURL(_ iUrl: String, webSearch: String, isSearchEngineShortcut
     var wisu = ""
     if isSearchEngineShortcutEnabled {
         if iUrl.hasPrefix("bing") {
-            return "https://www.bing.com/search?q=\(iUrl.urlEncoded().dropFirst(4))"
+            return "https://www.bing.com/search?q=\(iUrl.urlEncoded().dropFirst(4).replacingOccurrences(of: "&", with: "%26"))"
         } else if iUrl.hasPrefix("baidu") {
-            return "https://www.baidu.com/s?wd=\(iUrl.urlEncoded().dropFirst(5))"
+            return "https://www.baidu.com/s?wd=\(iUrl.urlEncoded().dropFirst(5).replacingOccurrences(of: "&", with: "%26"))"
         } else if iUrl.hasPrefix("google") {
-            return "https://www.google.com/search?q=\(iUrl.urlEncoded().dropFirst(6))"
+            return "https://www.google.com/search?q=\(iUrl.urlEncoded().dropFirst(6).replacingOccurrences(of: "&", with: "%26"))"
         } else if iUrl.hasPrefix("sogou") {
-            return "https://www.sogou.com/web?query=\(iUrl.urlEncoded().dropFirst(5))"
+            return "https://www.sogou.com/web?query=\(iUrl.urlEncoded().dropFirst(5).replacingOccurrences(of: "&", with: "%26"))"
         }
     }
     switch webSearch {
     case "必应":
-        wisu = "https://www.bing.com/search?q=\(iUrl.urlEncoded())"
+        wisu = "https://www.bing.com/search?q=\(iUrl.urlEncoded().replacingOccurrences(of: "&", with: "%26"))"
         break
     case "百度":
-        wisu = "https://www.baidu.com/s?wd=\(iUrl.urlEncoded())"
+        wisu = "https://www.baidu.com/s?wd=\(iUrl.urlEncoded().replacingOccurrences(of: "&", with: "%26"))"
         break
     case "谷歌":
-        wisu = "https://www.google.com/search?q=\(iUrl.urlEncoded())"
+        wisu = "https://www.google.com/search?q=\(iUrl.urlEncoded().replacingOccurrences(of: "&", with: "%26"))"
         break
     case "搜狗":
-        wisu = "https://www.sogou.com/web?query=\(iUrl.urlEncoded())"
+        wisu = "https://www.sogou.com/web?query=\(iUrl.urlEncoded().replacingOccurrences(of: "&", with: "%26"))"
         break
     default:
-        wisu = webSearch.replacingOccurrences(of: "%lld", with: iUrl.urlEncoded())
+        wisu = webSearch.replacingOccurrences(of: "%lld", with: iUrl.urlEncoded().replacingOccurrences(of: "&", with: "%26"))
         break
     }
     return wisu

@@ -9,6 +9,7 @@ import SwiftUI
 import DarockKit
 import SwiftDate
 import MarkdownUI
+import SupportsUICore
 
 fileprivate let globalStates: [LocalizedStringKey] = ["未标记", "按预期工作", "无法修复", "问题重复", "搁置", "正在修复", "已在未来版本修复", "已修复", "正在加载", "未能复现", "问题并不与App相关", "需要更多细节", "被删除"]
 fileprivate let globalStateColors = [Color.secondary, Color.red, Color.red, Color.red, Color.orange, Color.orange, Color.orange, Color.green, Color.secondary, Color.red, Color.secondary, Color.orange, Color.red]
@@ -16,12 +17,16 @@ fileprivate let globalStateIcons = ["minus", "curlybraces", "xmark", "arrow.tria
 
 struct FeedbackView: View {
     @State var feedbackIds = [String]()
+    @State var supportIds = [String]()
     @State var badgeOnIds = [String]()
     var body: some View {
         List {
             Section {
                 NavigationLink(destination: { NewFeedbackView() }, label: {
                     Label("新建反馈", systemImage: "exclamationmark.bubble.fill")
+                })
+                NavigationLink(destination: { SUICChatSupportView(projName: "Darock Browser") }, label: {
+                    Label("请求实时支持", systemImage: "bubble.left.and.text.bubble.right")
                 })
                 NavigationLink(destination: { FAQView() }, label: {
                     Label("常见问题", systemImage: "sparkles")
@@ -58,6 +63,7 @@ struct FeedbackView: View {
         .navigationTitle("反馈助理")
         .onAppear {
             feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
+            supportIds = UserDefaults.standard.stringArray(forKey: "SupportIDs") ?? [String]()
             badgeOnIds.removeAll()
             for id in feedbackIds {
                 DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)") { respStr, isSuccess in
@@ -83,6 +89,7 @@ struct FeedbackView: View {
         @State var extHistories = [String]()
         @State var dontSendDiagnose = false
         @State var isRemoveDiagAlertPresented = false
+        @State var isDraftAlertPresented = false
         var body: some View {
             Form {
                 List {
@@ -331,6 +338,24 @@ struct FeedbackView: View {
                 }
             }
             .navigationTitle("提交反馈")
+            .navigationBarBackButtonHidden()
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(action: {
+                        if !isSending && !titleInput.isEmpty || contentInputs != [""] {
+                            isDraftAlertPresented = true
+                        } else {
+                            dismiss()
+                        }
+                    }, label: {
+                        Image(systemName: "chevron.backward")
+                    })
+                }
+            }
+            .onAppear {
+                titleInput = UserDefaults.standard.string(forKey: "FeedbackNewDraftTitle") ?? ""
+                contentInputs = UserDefaults.standard.stringArray(forKey: "FeedbackNewDraftContent") ?? [""]
+            }
             .alert("移除诊断信息", isPresented: $isRemoveDiagAlertPresented, actions: {
                 Button(role: .destructive, action: {
                     dontSendDiagnose = true
@@ -345,6 +370,24 @@ struct FeedbackView: View {
                 })
             }, message: {
                 Text("移除诊断信息会限制 Darock 理解并解决问题的能力。")
+            })
+            .alert("未完成的编辑", isPresented: $isDraftAlertPresented, actions: {
+                Button(role: .destructive, action: {
+                    UserDefaults.standard.removeObject(forKey: "FeedbackNewDraftTitle")
+                    UserDefaults.standard.removeObject(forKey: "FeedbackNewDraftContent")
+                    dismiss()
+                }, label: {
+                    Text("删除草稿")
+                })
+                Button(role: .cancel, action: {
+                    UserDefaults.standard.set(titleInput, forKey: "FeedbackNewDraftTitle")
+                    UserDefaults.standard.set(contentInputs, forKey: "FeedbackNewDraftContent")
+                    dismiss()
+                }, label: {
+                    Text("存储草稿")
+                })
+            }, message: {
+                Text("你要存储当前的草稿吗？")
             })
         }
     }
@@ -448,7 +491,17 @@ struct FeedbackView: View {
                             if mspd[0] == "State" {
                                 status = Int(mspd[1]) ?? 8
                             } else if mspd[0] == "Content" {
-                                content = mspd[1]
+                                var cont = mspd[1].dropLast("\\")
+                                var ats = 1
+                                while i + ats < lineSpd.count {
+                                    if !lineSpd[i + ats].contains("：") {
+                                        cont += "\n" + lineSpd[i + ats].dropLast("\\")
+                                        ats++
+                                    } else {
+                                        break
+                                    }
+                                }
+                                content = cont
                             } else if mspd[0] == "Type" {
                                 switch mspd[1] {
                                 case "0":
@@ -471,7 +524,17 @@ struct FeedbackView: View {
                                     if mspd[0] == "State" {
                                         st = Int(mspd[1]) ?? 8
                                     } else if mspd[0] == "Content" {
-                                        co = mspd[1]
+                                        var cont = mspd[1].dropLast("\\")
+                                        var ats = 1
+                                        while i + ats < lineSpd.count {
+                                            if !lineSpd[i + ats].contains("：") {
+                                                cont += "\n" + lineSpd[i + ats].dropLast("\\")
+                                                ats++
+                                            } else {
+                                                break
+                                            }
+                                        }
+                                        co = cont
                                     } else if mspd[0] == "Sender" {
                                         se = mspd[1]
                                     }
@@ -546,5 +609,22 @@ struct FAQView: View {
             })
         }
         .navigationTitle("常见问题")
+    }
+}
+
+extension String {
+    func dropFirst(_ k: Character) -> String {
+        if self.hasPrefix(String(k)) {
+            return String(self.dropFirst())
+        } else {
+            return self
+        }
+    }
+    func dropLast(_ k: Character) -> String {
+        if self.hasSuffix(String(k)) {
+            return String(self.dropLast())
+        } else {
+            return self
+        }
     }
 }

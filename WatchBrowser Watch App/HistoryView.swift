@@ -15,9 +15,12 @@ struct HistoryView: View {
     @State var isSettingPresented = false
     @State var isStopRecordingPagePresenting = false
     @State var histories = [String]()
+    @State var historyTitles = [String: String]()
     @State var isSharePresented = false
+    @State var isNewBookmarkPresented = false
     @State var shareLink = ""
     @State var searchText = ""
+    @State var newBookmarkLink = ""
     var body: some View {
         List {
             if selectionHandler == nil {
@@ -50,18 +53,28 @@ struct HistoryView: View {
                                         }
                                     }
                                 }, label: {
-                                    if histories[i].hasPrefix("https://www.bing.com/search?q=") {
-                                        Label(String(histories[i].urlDecoded().dropFirst(30)), systemImage: "magnifyingglass")
-                                    } else if histories[i].hasPrefix("https://www.baidu.com/s?wd=") {
-                                        Label(String(histories[i].urlDecoded().dropFirst(27)), systemImage: "magnifyingglass")
-                                    } else if histories[i].hasPrefix("https://www.google.com/search?q=") {
-                                        Label(String(histories[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
-                                    } else if histories[i].hasPrefix("https://www.sogou.com/web?query=") {
-                                        Label(String(histories[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
-                                    } else if histories[i].hasPrefix("file://") {
-                                        Label(String(histories[i].split(separator: "/").last!.split(separator: ".")[0]).replacingOccurrences(of: "{slash}", with: "/").base64Decoded() ?? "[解析失败]", systemImage: "archivebox")
+                                    if let showName = historyTitles[histories[i]] {
+                                        if histories[i].hasPrefix("https://www.bing.com/search?q=") || histories[i].hasPrefix("https://www.baidu.com/s?wd=") || histories[i].hasPrefix("https://www.google.com/search?q=") || histories[i].hasPrefix("https://www.sogou.com/web?query=") {
+                                            Label(showName, systemImage: "magnifyingglass")
+                                        } else if histories[i].hasPrefix("file://") {
+                                            Label(showName, systemImage: "archivebox")
+                                        } else {
+                                            Label(showName, systemImage: "globe")
+                                        }
                                     } else {
-                                        Label(histories[i], systemImage: "globe")
+                                        if histories[i].hasPrefix("https://www.bing.com/search?q=") {
+                                            Label(String(histories[i].urlDecoded().dropFirst(30)), systemImage: "magnifyingglass")
+                                        } else if histories[i].hasPrefix("https://www.baidu.com/s?wd=") {
+                                            Label(String(histories[i].urlDecoded().dropFirst(27)), systemImage: "magnifyingglass")
+                                        } else if histories[i].hasPrefix("https://www.google.com/search?q=") {
+                                            Label(String(histories[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
+                                        } else if histories[i].hasPrefix("https://www.sogou.com/web?query=") {
+                                            Label(String(histories[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
+                                        } else if histories[i].hasPrefix("file://") {
+                                            Label(String(histories[i].split(separator: "/").last!.split(separator: ".")[0]).replacingOccurrences(of: "{slash}", with: "/").base64Decoded() ?? "[解析失败]", systemImage: "archivebox")
+                                        } else {
+                                            Label(histories[i], systemImage: "globe")
+                                        }
                                     }
                                 })
                                 .privacySensitive()
@@ -74,6 +87,12 @@ struct HistoryView: View {
                                     })
                                 }
                                 .swipeActions(edge: .leading) {
+                                    Button(action: {
+                                        newBookmarkLink = histories[i].urlDecoded().urlEncoded()
+                                        isNewBookmarkPresented = true
+                                    }, label: {
+                                        Image(systemName: "bookmark")
+                                    })
                                     Button(action: {
                                         shareLink = histories[i].urlDecoded().urlEncoded()
                                         isSharePresented = true
@@ -94,13 +113,15 @@ struct HistoryView: View {
             }
         }
         .sheet(isPresented: $isSharePresented, content: {ShareView(linkToShare: $shareLink)})
+        .sheet(isPresented: $isNewBookmarkPresented, content: {AddBookmarkView(markLink: newBookmarkLink)})
         .onAppear {
             histories = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
+            historyTitles = (UserDefaults.standard.dictionary(forKey: "WebHistoryNames") as? [String: String]) ?? [String: String]()
         }
     }
 }
 
-func RecordHistory(_ inp: String, webSearch: String) {
+func RecordHistory(_ inp: String, webSearch: String, showName: String? = nil) {
     var fullHistory = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
     if let lstf = fullHistory.first {
         guard lstf != inp && lstf != GetWebSearchedURL(inp, webSearch: webSearch, isSearchEngineShortcutEnabled: false) else {
@@ -109,8 +130,19 @@ func RecordHistory(_ inp: String, webSearch: String) {
     }
     if inp.isURL() || inp.hasPrefix("file://") {
         fullHistory = [inp] + fullHistory
+        if let showName {
+            var tmpDic = (UserDefaults.standard.dictionary(forKey: "WebHistoryNames") as? [String: String]) ?? [String: String]()
+            tmpDic.updateValue(showName, forKey: inp)
+            UserDefaults.standard.set(tmpDic, forKey: "WebHistoryNames")
+        }
     } else {
-        fullHistory = [GetWebSearchedURL(inp, webSearch: webSearch, isSearchEngineShortcutEnabled: false)] + fullHistory
+        let rurl = GetWebSearchedURL(inp, webSearch: webSearch, isSearchEngineShortcutEnabled: false)
+        fullHistory = [rurl] + fullHistory
+        if let showName {
+            var tmpDic = (UserDefaults.standard.dictionary(forKey: "WebHistoryNames") as? [String: String]) ?? [String: String]()
+            tmpDic.updateValue(showName, forKey: rurl)
+            UserDefaults.standard.set(tmpDic, forKey: "WebHistoryNames")
+        }
     }
     UserDefaults.standard.set(fullHistory, forKey: "WebHistory")
 }
