@@ -36,7 +36,7 @@ public class WESwiftDelegate: NSObject {
     
     public func webView(_ view: Any, didFinishNavigation navigation: Any) {
         debugPrint("Finish Navigation")
-        AdvancedWebViewController.shared.loadProgressView.hidden = false
+        AdvancedWebViewController.shared.loadProgressView.hidden = true
         let userScriptNames = UserDefaults.standard.stringArray(forKey: "UserScriptNames") ?? [String]()
         DispatchQueue(label: "com.darock.WatchBrowser.wt.run-user-script", qos: .userInitiated).async {
             for userScriptName in userScriptNames {
@@ -57,7 +57,7 @@ public class WESwiftDelegate: NSObject {
     
     public func webView(_ view: Any, didFailProvisionalNavigation navigation: Any, withError error: NSError) {
         debugPrint("Failed Early Navigation")
-        AdvancedWebViewController.shared.loadProgressView.hidden = false
+        AdvancedWebViewController.shared.loadProgressView.hidden = true
         debugPrint(error)
         errorLabel.text = "载入页面时出错\n\(error.localizedDescription)"
         AdvancedWebViewController.shared.webViewHolder.addSubview(errorLabel)
