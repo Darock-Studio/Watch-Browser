@@ -1,68 +1,69 @@
 {
-  "sourceLanguage" : "zh-Hans",
   "strings" : {
-    "" : {
+    "Settings.search.customize" : {
       "localizations" : {
-        "en" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
           }
         }
-      }
+      },
+      "extractionState" : "stale"
     },
-    "“反馈助理”不可用，因为暗礁浏览器有更新可用" : {
+    "简洁地描述问题" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "簡潔地描述問題"
+          }
+        }
+      },
+      "extractionState" : "stale"
+    },
+    "appdiagnose_%@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Feedback Assistant not available, because Darock Browser has an update available"
+            "value" : "appdiagnose_%@"
           }
         }
       }
     },
-    "“暗礁浏览器”新功能" : {
+    "请求桌面网站" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "New Features of Darock Browser"
+            "value" : "Request Desktop Website"
           }
         }
       }
     },
-    "**并非所有网页内的视频均能被解析**\n\n请**不要**提出〇〇网站视频无法播放之类的反馈" : {
+    "应用到" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Some videos cannot be parsed**\n\nPlease **do not** submit feedbacks about specific videos."
+            "value" : "Apply to"
           }
         }
       }
     },
-    "**并非所有网页都能在 Apple Watch 上正常工作**\n\n请**不要**提出〇〇网站*打不开*、*有问题*之类的反馈" : {
+    "6" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**Some webpages may not work properly on Apple Watch**\n\nPlease **do not** submit feedbacks about specific webpages."
-          }
-        }
-      }
-    },
-    "#+=" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "#+="
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "#+="
+            "value" : "6"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
           }
         },
         "zh-Hant" : {
@@ -73,18 +74,350 @@
         }
       }
     },
-    "%@" : {
+    "打开%@浏览菜单" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "打開%@瀏覽菜單",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open %@ Browsing Menu"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开%@浏览菜单"
+          }
+        }
+      }
+    },
+    "7" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "Bookmark.edit" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "编辑书签"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Bookmark"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯書簽"
+          }
+        }
+      }
+    },
+    "使用旧版引擎时，用户脚本不可用" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@"
+            "value" : "Userscripts are not available when using traditional engine"
+          }
+        }
+      }
+    },
+    "Invatation.continue-on-iphone" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在iPhone上继续"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue on iPhone"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "在iPhone上繼續",
+            "state" : "translated"
+          }
+        }
+      }
+    },
+    "Search.baidu" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "百度"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baidu"
+          }
+        }
+      }
+    },
+    "Settings.search.shortcut.discription" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启用后，在搜索内容前加上快捷名即可使用指定引擎搜索。"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Specify search engine by adding shortcut name if enabled."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "啟用後，在搜索內容前加上快捷名即可使用指定引擎搜索",
+            "state" : "translated"
+          }
+        }
+      }
+    },
+    "分享网页" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share Websites"
+          }
+        }
+      }
+    },
+    "无自定搜索引擎" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無自定搜尋引擎"
+          }
+        }
+      },
+      "extractionState" : "stale"
+    },
+    "旧版引擎拥有更好的稳定性，但缺少部分高级功能" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "旧版引擎拥有更好的稳定性，但缺少部分高级功能"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The legacy engine is more stable but with less advanced features"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "舊版引擎擁有更好的穩定性，但缺少部分高級功能",
+            "state" : "translated"
+          }
+        }
+      }
+    },
+    "回复信息" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回復資訊"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Content"
+          }
+        }
+      }
+    },
+    "Home.search-or-URL" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "键入关键词或链接"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keywords or Link"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "鍵入關鍵字或連結"
+          }
+        }
+      }
+    },
+    "Invatation.learn-more" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "了解更多"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Learn More"
+          }
+        }
+      }
+    },
+    "Settings.search.customize.cursor.title" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "插入搜索內容",
+            "state" : "translated"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "value" : "",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insert"
+          }
+        }
+      }
+    },
+    "**并非所有网页内的视频均能被解析**\n\n请**不要**提出〇〇网站视频无法播放之类的反馈" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "**並非所有網頁內的視頻均能被解析**\n\n請**不要**提出〇〇網站視頻無法播放之類的反饋",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Some videos cannot be parsed**\n\nPlease **do not** submit feedbacks about specific videos."
+          }
+        }
+      }
+    },
+    "1.5x" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1.5x"
+          }
+        }
+      }
+    },
+    "请为你的反馈提供描述性的标题：" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please add a descriptive title for your feedback:"
+          }
+        }
+      }
+    },
+    "Settings.search.engine.default" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "默認搜索引擎"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "默认搜索引擎"
+          }
+        }
+      },
+      "extractionState" : "stale"
+    },
+    "轻触“查看网页中图片”" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "輕觸“查看網頁中圖片”",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap \"List Images in Webpage\""
           }
         }
       }
     },
     "%@ 搜索" : {
       "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ sou s"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 搜索"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -93,18 +426,358 @@
         }
       }
     },
-    "%@Settings.keyboard.preview" : {
+    "8" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "8"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "问题并不与App相关" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "問題並不與App相關"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unrelated"
+          }
+        }
+      }
+    },
+    "Settings.keyboard.discription" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "该键盘为不支持系统全键盘的Watch开发了一套全键盘英文输入法"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This enables an unsupported Apple Watch to type with a full keyboard."
+          }
+        }
+      }
+    },
+    "搜索引擎快捷方式" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜尋引擎快捷方式"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Engine Shortcuts"
+          }
+        }
+      }
+    },
+    "Settings.cookies.limitation" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "由于 watchOS 的限制, 可能无法允许所有 Cookie"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some Cookies may not work due to the limitations of watchOS."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "由於watchOS的限制，可能無法允許所有Cookie",
+            "state" : "translated"
+          }
+        }
+      }
+    },
+    "视频直接跳转" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@Preview..."
+            "value" : "Video Direct Linking"
           }
-        },
+        }
+      }
+    },
+    "网页现可被分享至 iPhone 或其他 App" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web pages can now be shared to iPhone or other Apps"
+          }
+        }
+      }
+    },
+    "画面" : {
+      "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@预览…"
+            "value" : "画面"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hua m"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Graphics"
+          }
+        }
+      }
+    },
+    "可在脚本商店中获取各类网页脚本" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can now get a variety of userscripts at the script store."
+          }
+        }
+      }
+    },
+    "未完成的编辑" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "未完成的編輯",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unfinished editing"
+          }
+        }
+      }
+    },
+    "Keyboard.space" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空格"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Space"
+          }
+        }
+      }
+    },
+    "操作" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "value" : "操作",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Action"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "cao zuo"
+          }
+        }
+      }
+    },
+    "0.5x" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "Bookmark.finish" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完成"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finish"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完成"
+          }
+        }
+      }
+    },
+    "2" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "0" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "History.nothing" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无历史记录"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Histoty"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無歷史記錄"
+          }
+        }
+      }
+    },
+    "Home.search.bing" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过必应搜索"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search with Bing"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通過必應搜索"
+          }
+        }
+      }
+    },
+    "Home.settings" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设置"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定"
+          }
+        }
+      }
+    },
+    "你要存储当前的草稿吗？" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你要存儲當前的草稿嗎？"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do you want to save the draft?"
           }
         }
       }
@@ -119,18 +792,272 @@
         }
       }
     },
-    "0" : {
+    "“暗礁浏览器”新功能" : {
       "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "“暗礁瀏覽器”新功能",
+            "state" : "translated"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "New Features of Darock Browser"
+          }
+        }
+      }
+    },
+    "脚本详情" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "腳本詳情"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Info"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "0"
+            "value" : ""
+          }
+        }
+      }
+    },
+    "Settings.search.customize.add" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "添加搜索引擎"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Search Engine"
+          }
+        }
+      }
+    },
+    "中国大陆ICP备案号" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中國大陸ICP備案號"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ICP Record No. in China Mainland"
+          }
+        }
+      }
+    },
+    "新功能" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新功能"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "xin gong n",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Features"
+          }
+        }
+      }
+    },
+    "选取历史记录" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select History"
+          }
+        }
+      }
+    },
+    "示例：历史记录缺少最近的浏览数据" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "示例：歷史紀錄缺少最近的瀏覽數據",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "e.x. History is lack of recent browsing datas"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "value" : "",
+            "state" : "translated"
+          }
+        }
+      }
+    },
+    "描述行%lld" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Description Line %lld"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "描述行 %lld",
+            "state" : "translated"
+          }
+        }
+      }
+    },
+    "可在%@设置中打开“请求桌面网站”" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can be turned on in Request Desktop Websites at %@ settings"
+          }
+        }
+      }
+    },
+    "Home.title" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暗礁浏览器"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browser"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暗礁瀏覽器"
+          }
+        }
+      }
+    },
+    "查看图片 - 步骤" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "List Image - Steps"
+          }
+        }
+      }
+    },
+    "Settings.cookies" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cookies"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cookies"
+          }
+        }
+      }
+    },
+    "Bulletin.unread" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "标记为未阅"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mark as Unread"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標記為未閱"
+          }
+        }
+      }
+    },
+    "Settings.keyboard" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "鍵盤",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keyboard"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "value" : "",
+            "state" : "translated"
+          }
+        }
+      }
+    },
+    "3" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
           }
         },
         "zh-Hant" : {
@@ -141,9 +1068,1591 @@
         }
       }
     },
-    "0.5x" : {
+    "您可以随时在“设置”中重新打开此页" : {
       "localizations" : {
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can re-enter this page any time in Settings"
+          }
+        }
+      }
+    },
+    "Settings.search.shorcut" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "搜索引擎kuai jie fang s",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Engine Shortcut"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜索引擎快捷方式"
+          }
+        }
+      }
+    },
+    "Settings.cookies.pop-up" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      },
+      "extractionState" : "stale"
+    },
+    "搜索..." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜索"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜索…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search..."
+          }
+        }
+      }
+    },
+    "DarockBrowser Appdiagnose" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DarockBrowser Appdiagnose"
+          }
+        }
+      }
+    },
+    "下一步" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下一步"
+          }
+        }
+      },
+      "extractionState" : "stale"
+    },
+    "Settings.search.customize.search-content" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "[搜索內容]",
+            "state" : "translated"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[搜索内容]"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Search Content]"
+          }
+        }
+      }
+    },
+    "打开包含图片的网页" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打開包含圖片的網頁"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open a webpage with images."
+          }
+        }
+      }
+    },
+    "错误\/异常行为" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "錯誤\/异常行為"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        }
+      }
+    },
+    "问题重复" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "問題重複"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repeated"
+          }
+        }
+      }
+    },
+    "用户脚本" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Userscripts"
+          }
+        }
+      }
+    },
+    "网页归档" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "網頁歸檔"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web Archive"
+          }
+        }
+      }
+    },
+    "无法修复" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法修復"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unable to Fix"
+          }
+        }
+      }
+    },
+    "来自" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "來自"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From"
+          }
+        }
+      }
+    },
+    "Bookmark.name" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "书签名称"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bookmark Title"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書簽名稱"
+          }
+        }
+      }
+    },
+    "安装此脚本" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Install This Script"
+          }
+        }
+      }
+    },
+    "下一页" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下一頁"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next Page"
+          }
+        }
+      }
+    },
+    "退出" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exit"
+          }
+        }
+      }
+    },
+    "创建网页归档" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "創建網頁歸檔"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Web Archive"
+          }
+        }
+      }
+    },
+    "Settings.keyboard.alert.details" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您可以選擇現在關閉App，或者稍後自行關閉App。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您可以选择现在关闭App，或者稍后自行关闭App。"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can close App now, or close later manually"
+          }
+        }
+      }
+    },
+    "Settings.cookies.description" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cookie被用来标记登录信息等内容"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "Cookie被用來標記登陸信息等內容",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cookies are website data like login states."
+          }
+        }
+      }
+    },
+    "Home.search.google" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过谷歌搜索"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search with Google"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过Google搜索"
+          }
+        }
+      }
+    },
+    "History.clear-history-at-the-same-time" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "是否同时清除历史记录？"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do you want to clear history at the same time?"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "是否同時清除歷史記錄？"
+          }
+        }
+      }
+    },
+    "详情" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "詳情"
+          }
+        }
+      },
+      "extractionState" : "stale"
+    },
+    "标题" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標題"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Title"
+          }
+        }
+      }
+    },
+    "Version.drkdatav" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version.drkdatav"
+          }
+        }
+      }
+    },
+    "Settings.search.customize.link" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "输入搜索引擎链接"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Search Engine Link"
+          }
+        }
+      }
+    },
+    "快速搜索引擎" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快速搜尋引擎"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast Search Engine"
+          }
+        }
+      }
+    },
+    "1" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "请求实时支持" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "請求在線支持（僅簡體中文）",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Request Chat Support (Chinese, Simplified)"
+          }
+        }
+      }
+    },
+    "增强的浏览引擎" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "增強的瀏覽引擎"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enhanced Browse Engine"
+          }
+        }
+      }
+    },
+    "使用手势返回上一页" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use Gesture to Go Back"
+          }
+        }
+      }
+    },
+    "默认搜索引擎" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "默認搜尋引擎"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Default Search Engine"
+          }
+        }
+      }
+    },
+    "#+=" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "#+="
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "#+="
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "v%@ Build %@" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "v%1$@ Build %2$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "v%1$@ Build %2$@"
+          }
+        }
+      }
+    },
+    "Settings.search.customize.next" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "xia yi b",
+            "state" : "translated"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下一步"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
+          }
+        }
+      }
+    },
+    "新建反馈" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新建迴響"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New feedback"
+          }
+        }
+      }
+    },
+    "Bookmark.link" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "书签链接"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bookmark Link"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書簽連結"
+          }
+        }
+      }
+    },
+    "移除诊断信息" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "移除診斷信息",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove Diagnose Infos"
+          }
+        }
+      }
+    },
+    "Settings.search.customize.link.discription" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "输入您要自定的搜索引擎的搜索链接，如“bing.com?q=”，填充搜索内容的位置请暂时忽略"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the search link and leave the query empty. For example, \"bing.com\/search?q=\"."
+          }
+        }
+      }
+    },
+    "Home.history" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "历史记录"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "History"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "歷史記錄"
+          }
+        }
+      }
+    },
+    "附件" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "fu jian"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attachments"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "附件"
+          }
+        }
+      }
+    },
+    "重新载入" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "重新載入",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reload"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "value" : "重新载入",
+            "state" : "translated"
+          }
+        }
+      }
+    },
+    "完成" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完成"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        }
+      }
+    },
+    "Darock 会收集必要的诊断信息以便进行改进，信息不会关联到您个人。如果您不愿意被收集信息，请勿发送。" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock會收集必要的診斷資訊以便進行改進，資訊不會關聯到您個人。 如果您不願意被收集資訊，請勿發送。"
+          }
+        }
+      },
+      "extractionState" : "stale"
+    },
+    "打开视频直链时，将直接跳转视频" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "打開視頻直連時，將直接跳轉視頻",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video will be directly linked when video link is opened."
+          }
+        }
+      }
+    },
+    "Invatation.leave-and-hide" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "離開並隱藏",
+            "state" : "translated"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "离开并隐藏"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leave and Hide"
+          }
+        }
+      }
+    },
+    "回复 %lld" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回復 %lld"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reply %lld"
+          }
+        }
+      }
+    },
+    "已修复" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已修復"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fixed"
+          }
+        }
+      }
+    },
+    "历史记录" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "歷史紀錄",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "History"
+          }
+        }
+      }
+    },
+    "增强的浏览引擎包含更多高级功能" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "增強的瀏覽引擎包含更多高級功能"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Improved browse engine contains more advanced features"
+          }
+        }
+      }
+    },
+    "baidu" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "baid"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "baidu"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "baidu"
+          }
+        }
+      }
+    },
+    "空视频列表" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empty Video List"
+          }
+        }
+      }
+    },
+    "此脚本已安装" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This Script Had Installed"
+          }
+        }
+      }
+    },
+    "sogou" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sogou"
+          }
+        }
+      }
+    },
+    "上一页" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "上一頁",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Previous Page"
+          }
+        }
+      }
+    },
+    "Settings.search.shorcut.title" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      },
+      "extractionState" : "stale"
+    },
+    "视频播放 - 步骤" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video Playing - Steps"
+          }
+        }
+      }
+    },
+    "Invatation" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "測試邀請"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "测试邀请"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invatation"
+          }
+        }
+      }
+    },
+    "存储本页离线归档" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "存儲本頁離線歸檔"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save Offline Page"
+          }
+        }
+      }
+    },
+    "视频列表" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "視頻列表",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video List"
+          }
+        }
+      }
+    },
+    "Home.search.baidu" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过百度搜索"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search with Baidu"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通過百度搜索"
+          }
+        }
+      }
+    },
+    "恢复" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "恢復"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restrore"
+          }
+        }
+      }
+    },
+    "Settings.keyboard.alert.title" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "键盘更动在重启App前不会生效"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keyboard changes will not apply before restarting App"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "鍵盤更改在重啟 App 前不會生效"
+          }
+        }
+      }
+    },
+    "5x" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5x"
+          }
+        }
+      }
+    },
+    "1x" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1x"
+          }
+        }
+      }
+    },
+    "删除草稿" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "删除cao g",
+            "state" : "translated"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "value" : "删除草稿",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Draft"
+          }
+        }
+      }
+    },
+    "使用旧版引擎时，网页归档不可用" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用舊版引擎時，網頁歸檔不可用"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web page archiving is not available when using traditional engine"
+          }
+        }
+      }
+    },
+    "搁置" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "擱置"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shelved"
+          }
+        }
+      }
+    },
+    "开源协议许可" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開源協議許可"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acknowledgments"
+          }
+        }
+      }
+    },
+    "显示“快速退出”按钮" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show Quick Exit Button"
+          }
+        }
+      }
+    },
+    "已在未来版本修复" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已在未來版本修復"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fixed in Future Versions"
+          }
+        }
+      }
+    },
+    "查看网页图片" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "List Images"
+          }
+        }
+      }
+    },
+    "图片" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "value" : "",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Image"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "圖片",
+            "state" : "translated"
+          }
+        }
+      }
+    },
+    "全屏" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "value" : "全屏",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Full-screen"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "quan ping"
+          }
+        }
+      }
+    },
+    "Keybord.finish" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        }
+      },
+      "extractionState" : "stale"
+    },
+    "高级功能" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "高級功能",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advanced Features"
+          }
+        }
+      }
+    },
+    "提交" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ti j"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "提交"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Submit"
+          }
+        }
+      }
+    },
+    "现可将网页归档以供离线查看" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Able to archive web page to view offline now"
+          }
+        }
+      }
+    },
+    "图片列表" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Image List"
+          }
+        }
+      }
+    },
+    "正在加载" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在加載"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading"
+          }
+        }
+      }
+    },
+    "由“反馈助理”收集的诊断数据可能包含个人信息。你可以在提交前轻点查看附加数据，或向左轻扫删除。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The diagnose datas collected by Feedback Assistant may contains personal informations. You can tap to check attached datas before submitting, or swipe left to delete."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "由“反饋助理”收集的診斷數據可能包含個人信息。你可以在提交前輕點查看附加數據，或向左輕掃刪除。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "value" : "由“反馈助理”收集的诊断数据可能包含个人信息。你可以在提交前轻点查看附加数据，或向左轻扫删除。",
+            "state" : "translated"
+          }
+        }
+      }
+    },
+    "播放网页视频" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "播放網頁視頻"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play Video"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "播放"
+          }
+        }
+      }
+    },
+    "已启用的脚本" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已啟用的腳本"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active Scripts"
+          }
+        }
+      }
+    },
+    "打开包含视频的网页" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "打開包含視頻的網頁",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open a webpage with videos."
+          }
+        }
+      }
+    },
+    "Home.bookmarks.pinned" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已置顶的书签"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pinned Bookmarks"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已置頂的書簽"
+          }
+        }
+      }
+    },
+    "回复" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回復"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reply"
+          }
+        }
+      }
+    },
+    "提交反馈" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Submit Feedback"
+          }
+        }
+      }
+    },
+    "History.not-recording" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未在记录"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not Recording"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未在記錄"
+          }
+        }
+      }
+    },
+    "正在修复" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在修復"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fixing"
+          }
+        }
+      }
+    },
+    "浙ICP备2024071295号-2A" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "关于网页适配..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About web pages adaptation..."
+          }
+        }
+      }
+    },
+    "Home.search.sogou" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过搜狗搜索"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search with Sogou"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通過搜狗搜索"
+          }
+        }
+      }
+    },
+    "无网页归档" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無網頁歸檔"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Webpage Archive"
+          }
+        }
+      }
+    },
+    "google" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "google"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "google"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -161,18 +2670,218 @@
         }
       }
     },
-    "1" : {
+    "Settings.search.customize.cursor" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "滾動數碼錶冠，將光標移動到應當插入搜索詞的位置",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scroll Digital Crown and use the cursor to locate the search query."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "value" : "",
+            "state" : "translated"
+          }
+        }
+      }
+    },
+    "反馈类型" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "迴響類型"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feedback Type"
+          }
+        }
+      }
+    },
+    "现在，更多的 Cookie 可被记录" : {
       "localizations" : {
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Now, more Cookies can be logged"
+          }
+        }
+      }
+    },
+    "Settings.cookies.allow" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允许Cookies"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "允許Cookies",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow Cookies"
+          }
+        }
+      }
+    },
+    "描述" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "miao shu"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Description"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "value" : "描述",
+            "state" : "translated"
+          }
+        }
+      }
+    },
+    "%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "共享表单" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "共享表單",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share sheet"
+          }
+        }
+      }
+    },
+    "历史记录现会记录每个导航页" : {
+      "localizations" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "History will now record every navigational page"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "歷史紀錄現會紀錄每個導航頁",
+            "state" : "translated"
+          }
+        }
+      }
+    },
+    "Settings.search" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "sou s",
+            "state" : "translated"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "1"
+            "value" : "搜索"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        }
+      }
+    },
+    "Settings.search.customize.done" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "wan c"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完成"
+          }
+        }
+      }
+    },
+    "**并非所有网页都能在 Apple Watch 上正常工作**\n\n请**不要**提出〇〇网站*打不开*、*有问题*之类的反馈" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "**並非所有網頁都能在 Apple Watch 上正常工作**\n\n請**不要**提出〇〇網站*打不開*、*有問題*之類的反饋",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Some webpages may not work properly on Apple Watch**\n\nPlease **do not** submit feedbacks about specific webpages."
+          }
+        }
+      }
+    },
+    "bing" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bing"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bing"
           }
         },
         "zh-Hant" : {
@@ -183,38 +2892,148 @@
         }
       }
     },
-    "1.5x" : {
+    "添加附件" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "1.5x"
+            "value" : "Add Attachments"
           }
         }
       }
     },
-    "1x" : {
+    "Settings.search.customize.link.title" : {
       "localizations" : {
-        "en" : {
+        "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "1x"
+            "value" : "輸入連接",
+            "state" : "translated"
           }
-        }
-      }
-    },
-    "2" : {
-      "localizations" : {
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Enter Link"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "2"
+            "value" : "输入链接"
+          }
+        }
+      }
+    },
+    "History.record" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "记录历史"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Record History"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "記錄歷史"
+          }
+        }
+      }
+    },
+    "Invataion.app-discription" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Watch 上的 Bilibili 客户端"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A Bilibili Client on Apple Watch"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Watch上的Bilibili用戶端"
+          }
+        }
+      }
+    },
+    "被删除" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "被刪除",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deleted"
+          }
+        }
+      }
+    },
+    "引擎" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "yin qing",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Engine"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "value" : "引擎",
+            "state" : "translated"
+          }
+        }
+      }
+    },
+    "Settings.keyboard.alert.later" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "稍后"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Later"
+          }
+        }
+      }
+    },
+    "5" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5\n"
           }
         },
         "zh-Hant" : {
@@ -225,31 +3044,219 @@
         }
       }
     },
-    "2x" : {
+    "发送的反馈" : {
       "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "發送的反饋",
+            "state" : "translated"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "2x"
+            "value" : "Sent Feedbacks"
           }
         }
       }
     },
-    "3" : {
+    "appdiagnose Logs" : {
       "localizations" : {
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "appdiagnose Logs"
+          }
+        }
+      }
+    },
+    "Home.go" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前往"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前往"
+          }
+        }
+      }
+    },
+    "Bulletin.read" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "标记为已阅"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mark as Read"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標記為已閱"
+          }
+        }
+      }
+    },
+    "Bulletin" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "公告"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulletin"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "公告"
+          }
+        }
+      }
+    },
+    "History.turn-off" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "关闭历史记录"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close History"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "關閉歷史記錄"
+          }
+        }
+      }
+    },
+    "更好的 Cookie 支持" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Better Cookie Supports"
+          }
+        }
+      }
+    },
+    "ID: %@" : {
+      "localizations" : {
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID: %@"
+          }
+        }
+      }
+    },
+    "轻触“播放网页中视频”" : {
+      "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "3"
+            "value" : "轻触“播放网页中视频”"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap Play Video In Web Page"
+          }
+        }
+      }
+    },
+    "查看图片" : {
+      "localizations" : {
         "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "查看圖片",
+            "state" : "translated"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "value" : "查看图片",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "List Image"
+          }
+        }
+      }
+    },
+    "存储草稿" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "存儲草稿",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save Draft"
+          }
+        }
+      }
+    },
+    "建议" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "建議"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suggest"
+          }
+        }
+      }
+    },
+    "" : {
+      "localizations" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -267,40 +3274,120 @@
         }
       }
     },
-    "4" : {
+    "添加脚本" : {
       "localizations" : {
-        "en" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "添加腳本"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Script"
+          }
+        }
+      }
+    },
+    "提交反馈前，请先检查常见问题" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "提交反饋前，請先檢查常見問題",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please check out the FAQs before submitting a feedback."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "提交"
+          }
+        }
+      }
+    },
+    "Search.bing" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "必应"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bing"
+          }
+        }
+      }
+    },
+    "使用旧版浏览引擎" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用舊版瀏覽引擎"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use Legacy Browsing Engine"
+          }
+        }
+      }
+    },
+    "未标记" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未標記"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unmarked"
+          }
+        }
+      }
+    },
+    "二维码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QR Code"
+          }
+        }
+      }
+    },
+    "4" : {
+      "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "4"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "5" : {
-      "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "5\n"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5"
+            "value" : ""
           }
         },
         "zh-Hant" : {
@@ -311,31 +3398,21 @@
         }
       }
     },
-    "5x" : {
+    "现可单独放大查看网页中的图片" : {
       "localizations" : {
-        "en" : {
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "5x"
+            "value" : "現可單獨放大查看網頁中的圖片"
           }
-        }
-      }
-    },
-    "6" : {
-      "localizations" : {
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "You can now zoom the single web images in and out."
           }
         },
         "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "6"
-          }
-        },
-        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -343,319 +3420,72 @@
         }
       }
     },
-    "7" : {
+    "请描述该问题以及重现问题的步骤：" : {
       "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "請描述該問題以及重現問題的步驟：",
+            "state" : "translated"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Please describe the issue and the steps to reproduce: "
           }
-        },
+        }
+      }
+    },
+    "Home.invatation" : {
+      "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "7"
+            "value" : "Darock邀请您参加测试"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock invites you for a test"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Darock邀請您參加測試"
           }
         }
       }
     },
-    "8" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "8"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "9" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "9"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "appdiagnose Logs" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "appdiagnose Logs"
-          }
-        }
-      }
-    },
-    "appdiagnose_%@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "appdiagnose_%@"
-          }
-        }
-      }
-    },
-    "baidu" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "baidu"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "baidu"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "bing" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "bing"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "bing"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "Bookmark.add" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add a Bookmark"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "添加书签"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "添加書簽"
-          }
-        }
-      }
-    },
-    "Bookmark.edit" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Edit Bookmark"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "编辑书签"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "編輯書簽"
-          }
-        }
-      }
-    },
-    "Bookmark.finish" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Finish"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "完成"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "完成"
-          }
-        }
-      }
-    },
-    "Bookmark.link" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bookmark Link"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "书签链接"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "書簽連結"
-          }
-        }
-      }
-    },
-    "Bookmark.name" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bookmark Title"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "书签名称"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "書簽名稱"
-          }
-        }
-      }
-    },
-    "Bulletin" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bulletin"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "公告"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "公告"
-          }
-        }
-      }
-    },
-    "Bulletin.read" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mark as Read"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "标记为已阅"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "標記為已閱"
-          }
-        }
-      }
-    },
-    "Bulletin.unread" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mark as Unread"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "标记为未阅"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "標記為未閱"
-          }
-        }
-      }
-    },
-    "Darock 会收集必要的诊断信息以便进行改进，信息不会关联到您个人。如果您不愿意被收集信息，请勿发送。" : {
-      "extractionState" : "stale",
+    "自定搜索引擎" : {
       "localizations" : {
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Darock會收集必要的診斷資訊以便進行改進，資訊不會關聯到您個人。 如果您不願意被收集資訊，請勿發送。"
+            "value" : "自定搜尋引擎"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Customize Search Engine"
+          }
+        }
+      }
+    },
+    "移除诊断信息会限制 Darock 理解并解决问题的能力。" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "移除診斷信息會限制 Darock 理解並解決問題的能力",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Removing diagnose datas will limit Darock's ability of understanding and resolving the issue."
           }
         }
       }
@@ -670,28 +3500,72 @@
         }
       }
     },
-    "DarockBrowser Appdiagnose" : {
+    "无痕浏览" : {
       "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無痕瀏覽"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "DarockBrowser Appdiagnose"
+            "value" : "Privacy"
           }
         }
       }
     },
-    "Done" : {
+    "换行" : {
       "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "換行",
+            "state" : "translated"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Don"
+            "value" : "Return"
           }
-        },
+        }
+      }
+    },
+    "Settings.keyboard.third-party" : {
+      "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Done"
+            "value" : "第三方全键盘"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "第三方全鍵盤"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Third-party Full Keyboard"
+          }
+        }
+      }
+    },
+    "Home.search" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜索"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
           }
         },
         "zh-Hant" : {
@@ -702,21 +3576,81 @@
         }
       }
     },
-    "google" : {
+    "Settings.search.shortcut.enable" : {
       "localizations" : {
-        "en" : {
+        "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "google"
+            "value" : "啟用搜索引擎快捷方式",
+            "state" : "translated"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "google"
+            "value" : "启用搜索引擎快捷方式"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable Search Engine Shorcut"
+          }
+        }
+      }
+    },
+    "空图片列表" : {
+      "localizations" : {
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空圖片列表"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empty Image List"
+          }
+        }
+      }
+    },
+    "Settings.keyboard.alert.close-now" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在重啟"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "现在重启"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restart Now"
+          }
+        }
+      }
+    },
+    "反馈助理" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "反饋助理"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feedback Assistant"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -724,150 +3658,88 @@
         }
       }
     },
-    "History.clear" : {
+    "Settings.search.engine" : {
       "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "value" : "搜索引擎",
+            "state" : "translated"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Clar History"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "清除历史记录"
+            "value" : "Search Engine"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "清除歷史記錄"
+            "value" : "搜索yin q"
           }
         }
       }
     },
-    "History.clear-history-at-the-same-time" : {
+    "2x" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Do you want to clear history at the same time?"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "是否同时清除历史记录？"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "是否同時清除歷史記錄？"
+            "value" : "2x"
           }
         }
       }
     },
-    "History.not-recording" : {
+    "Settings.keyboard.preview" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Not Recording"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "未在记录"
+            "value" : "预览…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preview..."
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "未在記錄"
+            "value" : "預覽…",
+            "state" : "translated"
           }
         }
       }
     },
-    "History.nothing" : {
+    "类型" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No Histoty"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "无历史记录"
-          }
-        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無歷史記錄"
+            "value" : "類型"
           }
-        }
-      }
-    },
-    "History.record" : {
-      "localizations" : {
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Record History"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "记录历史"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "記錄歷史"
-          }
-        }
-      }
-    },
-    "History.save" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "保存"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "保存"
+            "value" : "Type"
           }
         }
       }
     },
     "History.settings" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "History Settings"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "历史记录选项"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "History Settings"
           }
         },
         "zh-Hant" : {
@@ -878,408 +3750,46 @@
         }
       }
     },
-    "History.turn-off" : {
+    "播放倍速" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Close History"
+            "value" : "Play Speed"
           }
-        },
+        }
+      }
+    },
+    "Settings.search.customize.nothing" : {
+      "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "关闭历史记录"
+            "value" : "没有自定义搜索引擎"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "關閉歷史記錄"
+            "value" : "沒有自定義搜索引擎",
+            "state" : "translated"
           }
-        }
-      }
-    },
-    "Home.bookmarks" : {
-      "localizations" : {
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bookmarks"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "书签"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "書簽"
-          }
-        }
-      }
-    },
-    "Home.bookmarks.pinned" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pinned Bookmarks"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已置顶的书签"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已置頂的書簽"
-          }
-        }
-      }
-    },
-    "Home.go" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Go"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "前往"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "前往"
-          }
-        }
-      }
-    },
-    "Home.history" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "History"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "历史记录"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "歷史記錄"
-          }
-        }
-      }
-    },
-    "Home.invatation" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock invites you for a test"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock邀请您参加测试"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock邀請您參加測試"
-          }
-        }
-      }
-    },
-    "Home.search" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "搜索"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "Home.search-or-URL" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Keywords or Link"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "键入关键词或链接"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "鍵入關鍵字或連結"
-          }
-        }
-      }
-    },
-    "Home.search.baidu" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search with Baidu"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "通过百度搜索"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "通過百度搜索"
-          }
-        }
-      }
-    },
-    "Home.search.bing" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search with Bing"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "通过必应搜索"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "通過必應搜索"
-          }
-        }
-      }
-    },
-    "Home.search.google" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search with Google"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "通过谷歌搜索"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "通过Google搜索"
-          }
-        }
-      }
-    },
-    "Home.search.sogou" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search with Sogou"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "通过搜狗搜索"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "通過搜狗搜索"
-          }
-        }
-      }
-    },
-    "Home.settings" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Settings"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "设置"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "設定"
-          }
-        }
-      }
-    },
-    "Home.title" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock Browser"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "暗礁浏览器"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "暗礁瀏覽器"
-          }
-        }
-      }
-    },
-    "ID: %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ID: %@"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "Invataion.app-discription" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A Bilibili Client on Apple Watch"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Watch 上的 Bilibili 客户端"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Watch上的Bilibili用戶端"
-          }
-        }
-      }
-    },
-    "Invataion.app-name" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "MeowBili"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "喵哩喵哩"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "Invatation" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Invatation"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "测试邀请"
-          }
-        }
-      }
-    },
-    "Invatation.continue-on-iphone" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Continue on iPhone"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在iPhone上继续"
+            "value" : "No Customized Search Engine"
           }
         }
       }
     },
     "Invatation.download" : {
       "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "下載",
+            "state" : "translated"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1294,119 +3804,14 @@
         }
       }
     },
-    "Invatation.learn-more" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Learn More"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "了解更多"
-          }
-        }
-      }
-    },
-    "Invatation.leave-and-hide" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Leave and Hide"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "离开并隐藏"
-          }
-        }
-      }
-    },
-    "Keyboard.space" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Space"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "空格"
-          }
-        }
-      }
-    },
-    "Keybord.finish" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Done"
-          }
-        }
-      }
-    },
-    "NearestHistories.drkdatan" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "NearestHistories.drkdatan"
-          }
-        }
-      }
-    },
-    "OS.drkdatao" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OS.drkdatao"
-          }
-        }
-      }
-    },
-    "Search.baidu" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Baidu"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "百度"
-          }
-        }
-      }
-    },
-    "Search.bing" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bing"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "必应"
-          }
-        }
-      }
-    },
     "Search.google" : {
       "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "G o o g le"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1421,8 +3826,230 @@
         }
       }
     },
+    "状态" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "狀態"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "State"
+          }
+        }
+      }
+    },
+    "跳转到...(秒)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jump to... (sec.)"
+          }
+        }
+      }
+    },
+    "分享方式" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "value" : "分享方式",
+            "state" : "translated"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "分享fang shi",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share Method"
+          }
+        }
+      }
+    },
+    "保持时间可见" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "保持時間可見",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep Digital Time Visible"
+          }
+        }
+      }
+    },
+    "Home.bookmarks" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "书签"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bookmarks"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書簽"
+          }
+        }
+      }
+    },
+    "9" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "9"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "网页崩溃后总是自动重新载入" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Always Reload Page After Crashing"
+          }
+        }
+      }
+    },
+    "常见问题" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "常見問題",
+            "state" : "translated"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FAQs"
+          }
+        }
+      }
+    },
+    "播放" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bo fang"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "播放"
+          }
+        }
+      }
+    },
+    "Done" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "Settings.cookies.privacy" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock无法知晓或查看任何网页信息"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock does not have the access to Cookies."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock 無法知曉或查看任何網頁信息"
+          }
+        }
+      }
+    },
+    "按预期工作" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按預期工作"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Work as Expected"
+          }
+        }
+      }
+    },
     "Search.sougou" : {
       "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sou gou"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1437,518 +4064,37 @@
         }
       }
     },
-    "Settings.cookies" : {
+    "请包括：\n- 问题的清晰描述\n- 逐步说明重现问题的详细步骤（如果可能）\n- 期望的结果\n- 当前所示结果" : {
       "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "請包括：\n- 問題的清晰描述\n- 逐步說明重現問題的詳細步驟（如果可能）\n- 期望的結果\n- 當前所示結果",
+            "state" : "translated"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cookies"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cookies"
+            "value" : "Please Include: \n- A clear description of the issue\n- Step-by-step instruction of how to reproduce the issue (if available)\n- Expected result\n- Current result"
           }
         }
       }
     },
-    "Settings.cookies.allow" : {
+    "Invataion.app-name" : {
       "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "喵哩喵哩"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Allow Cookies"
+            "value" : "MeowBili"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "允许Cookies"
-          }
-        }
-      }
-    },
-    "Settings.cookies.description" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cookies are website data like login states."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cookie被用来标记登录信息等内容"
-          }
-        }
-      }
-    },
-    "Settings.cookies.limitation" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Some Cookies may not work due to the limitations of watchOS."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "由于 watchOS 的限制, 可能无法允许所有 Cookie"
-          }
-        }
-      }
-    },
-    "Settings.cookies.pop-up" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "Settings.cookies.privacy" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock does not have the access to Cookies."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock无法知晓或查看任何网页信息"
-          }
-        }
-      }
-    },
-    "Settings.invatation" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "欢迎加入QQ交流群 248036605"
-          }
-        }
-      }
-    },
-    "Settings.keyboard" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Keyboard"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "键盘"
-          }
-        }
-      }
-    },
-    "Settings.keyboard.alert.close-now" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Restart Now"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "现在重启"
-          }
-        }
-      }
-    },
-    "Settings.keyboard.alert.details" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You can close App now, or close later manually"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "您可以选择现在关闭App，或者稍后自行关闭App。"
-          }
-        }
-      }
-    },
-    "Settings.keyboard.alert.later" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Later"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "稍后"
-          }
-        }
-      }
-    },
-    "Settings.keyboard.alert.title" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Keyboard changes will not apply before restarting App"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "键盘更动在重启App前不会生效"
-          }
-        }
-      }
-    },
-    "Settings.keyboard.discription" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "This enables an unsupported Apple Watch to type with a full keyboard."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "该键盘为不支持系统全键盘的Watch开发了一套全键盘英文输入法"
-          }
-        }
-      }
-    },
-    "Settings.keyboard.preview" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Preview..."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "预览…"
-          }
-        }
-      }
-    },
-    "Settings.keyboard.third-party" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Third-party Full Keyboard"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "第三方全键盘"
-          }
-        }
-      }
-    },
-    "Settings.search" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "搜索"
-          }
-        }
-      }
-    },
-    "Settings.search.customize" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "Settings.search.customize.add" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add Search Engine"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "添加搜索引擎"
-          }
-        }
-      }
-    },
-    "Settings.search.customize.cursor" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scroll Digital Crown and use the cursor to locate the search query."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "滚动数码表冠，将光标移动到应当插入搜索词的位置。"
-          }
-        }
-      }
-    },
-    "Settings.search.customize.cursor.title" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Insert"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "插入搜索内容"
-          }
-        }
-      }
-    },
-    "Settings.search.customize.done" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Done"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "完成"
-          }
-        }
-      }
-    },
-    "Settings.search.customize.link" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enter Search Engine Link"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "输入搜索引擎链接"
-          }
-        }
-      }
-    },
-    "Settings.search.customize.link.discription" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enter the search link and leave the query empty. For example, \"bing.com/search?q=\"."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "输入您要自定的搜索引擎的搜索链接，如“bing.com?q=”，填充搜索内容的位置请暂时忽略"
-          }
-        }
-      }
-    },
-    "Settings.search.customize.link.title" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enter Link"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "输入链接"
-          }
-        }
-      }
-    },
-    "Settings.search.customize.next" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Next"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "下一步"
-          }
-        }
-      }
-    },
-    "Settings.search.customize.nothing" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No Customized Search Engine"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "没有自定义搜索引擎"
-          }
-        }
-      }
-    },
-    "Settings.search.customize.search-content" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "[Search Content]"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "[搜索内容]"
-          }
-        }
-      }
-    },
-    "Settings.search.engine" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search Engine"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "搜索引擎"
-          }
-        }
-      }
-    },
-    "Settings.search.engine.default" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "默认搜索引擎"
-          }
-        }
-      }
-    },
-    "Settings.search.shorcut" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search Engine Shortcut"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "搜索引擎快捷方式"
-          }
-        }
-      }
-    },
-    "Settings.search.shorcut.title" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "Settings.search.shortcut.discription" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Specify search engine by adding shortcut name if enabled."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "启用后，在搜索内容前加上快捷名即可使用指定引擎搜索。"
-          }
-        }
-      }
-    },
-    "Settings.search.shortcut.enable" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enable Search Engine Shorcut"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "启用搜索引擎快捷方式"
-          }
-        }
-      }
-    },
-    "sogou" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sogou"
-          }
-        },
-        "zh-Hans" : {
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -1966,207 +4112,34 @@
         }
       }
     },
-    "v%@ Build %@" : {
+    "脚本均来自greasyfork.org，Darock 无法进行审核，请自行辨别内容" : {
       "localizations" : {
-        "en" : {
+        "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "v%1$@ Build %2$@"
+            "value" : "腳本均來自greasyfork.org，Darock 無法進行審核，請自行辨別內容",
+            "state" : "translated"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "v%1$@ Build %2$@"
-          }
-        }
-      }
-    },
-    "Version.drkdatav" : {
-      "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Version.drkdatav"
+            "value" : "Scripts are form greasyfork.org which Darock will not scan. Only proceed when you own the risk."
           }
         }
       }
     },
-    "上一页" : {
+    "需要更多细节" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Previous Page"
-          }
-        }
-      }
-    },
-    "下一步" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "下一步"
-          }
-        }
-      }
-    },
-    "下一页" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Next Page"
-          }
-        }
-      }
-    },
-    "中国大陆ICP备案号" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ICP Record No. in China Mainland"
+            "value" : "需要更多細節"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "中國大陸ICP備案號"
-          }
-        }
-      }
-    },
-    "二维码" : {
-      "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "QR Code"
-          }
-        }
-      }
-    },
-    "你要存储当前的草稿吗？" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Do you want to save the draft?"
-          }
-        }
-      }
-    },
-    "使用手势返回上一页" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Use Gesture to Go Back"
-          }
-        }
-      }
-    },
-    "使用旧版引擎时，用户脚本不可用" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Userscripts are not available when using traditional engine"
-          }
-        }
-      }
-    },
-    "使用旧版引擎时，网页归档不可用" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Web page archiving is not available when using traditional engine"
-          }
-        }
-      }
-    },
-    "使用旧版浏览引擎" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Use Legacy Browsing Engine"
-          }
-        }
-      }
-    },
-    "保持时间可见" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Keep Digital Time Visible"
-          }
-        }
-      }
-    },
-    "全屏" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Full-screen"
-          }
-        }
-      }
-    },
-    "共享表单" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Share sheet"
-          }
-        }
-      }
-    },
-    "关于视频..." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "About videos..."
-          }
-        }
-      }
-    },
-    "关于网页适配..." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "About web pages adaptation..."
-          }
-        }
-      }
-    },
-    "内容" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Content"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "內容"
+            "value" : "Details Required"
           }
         }
       }
@@ -2181,121 +4154,82 @@
         }
       }
     },
-    "分享方式" : {
+    "增强的历史记录" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Share Method"
+            "value" : "Enhanced History Record"
           }
         }
       }
     },
-    "分享网页" : {
+    "关于视频..." : {
       "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "關於視頻…"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Share Websites"
+            "value" : "About videos..."
           }
         }
       }
     },
-    "创建网页归档" : {
+    "网页浏览" : {
       "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "value" : "網頁瀏覽",
+            "state" : "translated"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Create Web Archive"
+            "value" : "Website-browsing"
           }
         }
       }
     },
-    "删除草稿" : {
+    "Bookmark.add" : {
       "localizations" : {
-        "en" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Delete Draft"
+            "value" : "添加书签"
           }
-        }
-      }
-    },
-    "历史记录" : {
-      "localizations" : {
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "History"
-          }
-        }
-      }
-    },
-    "历史记录现会记录每个导航页" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "History will now record every navigational page"
-          }
-        }
-      }
-    },
-    "反馈助理" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Feedback Assistant"
+            "value" : "Add a Bookmark"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "迴響助理"
+            "value" : "添加書簽"
           }
         }
       }
     },
-    "反馈类型" : {
+    "“反馈助理”不可用，因为暗礁浏览器有更新可用" : {
       "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“反饋助理”不可用，因為暗礁瀏覽器有更新可用"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Feedback Type"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "迴響類型"
-          }
-        }
-      }
-    },
-    "发送" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "發送"
-          }
-        }
-      }
-    },
-    "发送的反馈" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sent Feedbacks"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "發送的迴響"
+            "value" : "Feedback Assistant not available, because Darock Browser has an update available"
           }
         }
       }
@@ -2310,795 +4244,25 @@
         }
       }
     },
-    "可在%@设置中打开“请求桌面网站”" : {
+    "发送" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Can be turned on in Request Desktop Websites at %@ settings"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "可在脚本商店中获取各类网页脚本" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You can now get a variety of userscripts at the script store."
-          }
-        }
-      }
-    },
-    "回复" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reply"
-          }
-        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "回復"
+            "value" : "發送"
           }
         }
-      }
-    },
-    "回复 %lld" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reply %lld"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "回復 %lld"
-          }
-        }
-      }
-    },
-    "回复信息" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Content"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "回復資訊"
-          }
-        }
-      }
-    },
-    "回复内容" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reply Content"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "回復內容"
-          }
-        }
-      }
-    },
-    "图片" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Image"
-          }
-        }
-      }
-    },
-    "图片列表" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Image List"
-          }
-        }
-      }
-    },
-    "增强的历史记录" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enhanced History Record"
-          }
-        }
-      }
-    },
-    "增强的浏览引擎" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enhanced Browse Engine"
-          }
-        }
-      }
-    },
-    "增强的浏览引擎包含更多高级功能" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Improved browse engine contains more advanced features"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "存储本页离线归档" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save Offline Page"
-          }
-        }
-      }
-    },
-    "存储草稿" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save Draft"
-          }
-        }
-      }
-    },
-    "安装此脚本" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Install This Script"
-          }
-        }
-      }
-    },
-    "完成" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Done"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "完成"
-          }
-        }
-      }
-    },
-    "已修复" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fixed"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已修復"
-          }
-        }
-      }
-    },
-    "已启用的脚本" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Active Scripts"
-          }
-        }
-      }
-    },
-    "已在未来版本修复" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fixed in Future Versions"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已在未來版本修復"
-          }
-        }
-      }
-    },
-    "常见问题" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "FAQs"
-          }
-        }
-      }
-    },
-    "应用到" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apply to"
-          }
-        }
-      }
-    },
-    "建议" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suggest"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "建議"
-          }
-        }
-      }
-    },
-    "开源协议许可" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Acknowledgments"
-          }
-        }
-      }
-    },
-    "引擎" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Engine"
-          }
-        }
-      }
-    },
-    "快速搜索引擎" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fast Search Engine"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "快速搜尋引擎"
-          }
-        }
-      }
-    },
-    "恢复" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Restrore"
-          }
-        }
-      }
-    },
-    "您可以随时在“设置”中重新打开此页" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You can re-enter this page any time in Settings"
-          }
-        }
-      }
-    },
-    "打开%@浏览菜单" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open %@ Browsing Menu"
-          }
-        }
-      }
-    },
-    "打开包含图片的网页" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open a webpage with images."
-          }
-        }
-      }
-    },
-    "打开包含视频的网页" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open a webpage with videos."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "打开视频直链时，将直接跳转视频" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Video will be directly linked when video link is opened."
-          }
-        }
-      }
-    },
-    "按预期工作" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Work as Expected"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "按預期工作"
-          }
-        }
-      }
-    },
-    "换行" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Return"
-          }
-        }
-      }
-    },
-    "描述" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Description"
-          }
-        }
-      }
-    },
-    "描述行%lld" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Description Line %lld"
-          }
-        }
-      }
-    },
-    "提交" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Submit"
-          }
-        }
-      }
-    },
-    "提交反馈" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Submit Feedback"
-          }
-        }
-      }
-    },
-    "提交反馈前，请先检查常见问题" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please check out the FAQs before submitting a feedback."
-          }
-        }
-      }
-    },
-    "搁置" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Shelved"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "擱置"
-          }
-        }
-      }
-    },
-    "搜索..." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search..."
-          }
-        }
-      }
-    },
-    "搜索引擎快捷方式" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search Engine Shortcuts"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "搜尋引擎快捷方式"
-          }
-        }
-      }
-    },
-    "播放" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Play"
-          }
-        }
-      }
-    },
-    "播放倍速" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Play Speed"
-          }
-        }
-      }
-    },
-    "播放网页视频" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Play Video"
-          }
-        }
-      }
-    },
-    "操作" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Action"
-          }
-        }
-      }
-    },
-    "新功能" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New Features"
-          }
-        }
-      }
-    },
-    "新建反馈" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New feedback"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "新建迴響"
-          }
-        }
-      }
-    },
-    "无法修复" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unable to Fix"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "無法修復"
-          }
-        }
-      }
-    },
-    "无痕浏览" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Privacy"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "無痕瀏覽"
-          }
-        }
-      }
-    },
-    "无网页归档" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No Webpage Archive"
-          }
-        }
-      }
-    },
-    "无自定搜索引擎" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "無自定搜尋引擎"
-          }
-        }
-      }
-    },
-    "旧版引擎拥有更好的稳定性，但缺少部分高级功能" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The legacy engine is more stable but with less advanced features"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "旧版引擎拥有更好的稳定性，但缺少部分高级功能"
-          }
-        }
-      }
-    },
-    "显示“快速退出”按钮" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Show Quick Exit Button"
-          }
-        }
-      }
-    },
-    "更好的 Cookie 支持" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Better Cookie Supports"
-          }
-        }
-      }
-    },
-    "未完成的编辑" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unfinished editing"
-          }
-        }
-      }
-    },
-    "未标记" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unmarked"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "未標記"
-          }
-        }
-      }
-    },
-    "未能复现" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cannot Reappear"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "未能複現"
-          }
-        }
-      }
-    },
-    "来自" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "From"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "來自"
-          }
-        }
-      }
-    },
-    "查看图片" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "List Image"
-          }
-        }
-      }
-    },
-    "查看图片 - 步骤" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "List Image - Steps"
-          }
-        }
-      }
-    },
-    "查看网页图片" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "List Images"
-          }
-        }
-      }
-    },
-    "标题" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Title"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "標題"
-          }
-        }
-      }
-    },
-    "正在修复" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fixing"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "正在修復"
-          }
-        }
-      }
-    },
-    "正在加载" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Loading"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "正在加載"
-          }
-        }
-      }
+      },
+      "extractionState" : "stale"
     },
     "此反馈已关闭，若要重新进行反馈，请创建一个新的反馈" : {
       "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此反饋已關閉，若要重新進行反饋，請創建一個新的反饋"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3107,560 +4271,152 @@
         }
       }
     },
-    "此脚本已安装" : {
+    "回复内容" : {
       "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回復內容"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This Script Had Installed"
+            "value" : "Reply Content"
           }
         }
       }
     },
-    "浙ICP备2024071295号-2A" : {
+    "OS.drkdatao" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "E"
+            "value" : "OS.drkdatao"
           }
-        },
+        }
+      }
+    },
+    "%@Settings.keyboard.preview" : {
+      "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "%@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@Preview..."
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "%@預覽"
           }
         }
       }
     },
-    "添加脚本" : {
+    "未能复现" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add Script"
-          }
-        }
-      }
-    },
-    "添加附件" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add Attachments"
-          }
-        }
-      }
-    },
-    "状态" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "State"
-          }
-        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "狀態"
-          }
-        }
-      }
-    },
-    "现可单独放大查看网页中的图片" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You can now zoom the single web images in and out."
-          }
-        }
-      }
-    },
-    "现可将网页归档以供离线查看" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Able to archive web page to view offline now"
+            "value" : "未能複現"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cannot Reappear"
+          }
+        }
+      }
+    },
+    "内容" : {
+      "localizations" : {
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "內容"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Content"
+          }
+        }
+      }
+    },
+    "History.save" : {
+      "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "保存"
           }
-        }
-      }
-    },
-    "现在，更多的 Cookie 可被记录" : {
-      "localizations" : {
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Now, more Cookies can be logged"
-          }
-        }
-      }
-    },
-    "用户脚本" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Userscripts"
-          }
-        }
-      }
-    },
-    "由“反馈助理”收集的诊断数据可能包含个人信息。你可以在提交前轻点查看附加数据，或向左轻扫删除。" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The diagnose datas collected by Feedback Assistant may contains personal informations. You can tap to check attached datas before submitting, or swipe left to delete."
-          }
-        }
-      }
-    },
-    "画面" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Graphics"
-          }
-        }
-      }
-    },
-    "示例：历史记录缺少最近的浏览数据" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "e.x. History is lack of recent browsing datas"
-          }
-        }
-      }
-    },
-    "视频列表" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Video List"
-          }
-        }
-      }
-    },
-    "视频播放 - 步骤" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Video Playing - Steps"
-          }
-        }
-      }
-    },
-    "视频直接跳转" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Video Direct Linking"
-          }
-        }
-      }
-    },
-    "移除诊断信息" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remove Diagnose Infos"
-          }
-        }
-      }
-    },
-    "移除诊断信息会限制 Darock 理解并解决问题的能力。" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Removing diagnose datas will limit Darock's ability of understanding and resolving the issue."
-          }
-        }
-      }
-    },
-    "空图片列表" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Empty Image List"
-          }
-        }
-      }
-    },
-    "空视频列表" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Empty Video List"
-          }
-        }
-      }
-    },
-    "简洁地描述问题" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "簡潔地描述問題"
-          }
-        }
-      }
-    },
-    "类型" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Type"
+            "value" : "Save"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "類型"
+            "value" : "保存"
           }
         }
       }
     },
-    "网页崩溃后总是自动重新载入" : {
+    "NearestHistories.drkdatan" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Always Reload Page After Crashing"
+            "value" : "NearestHistories.drkdatan"
           }
         }
       }
     },
-    "网页归档" : {
+    "History.clear" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Web Archive"
-          }
-        }
-      }
-    },
-    "网页浏览" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Website-browsing"
-          }
-        }
-      }
-    },
-    "网页现可被分享至 iPhone 或其他 App" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Web pages can now be shared to iPhone or other Apps"
-          }
-        }
-      }
-    },
-    "脚本均来自greasyfork.org，Darock 无法进行审核，请自行辨别内容" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scripts are form greasyfork.org which Darock will not scan. Only proceed when you own the risk."
-          }
-        }
-      }
-    },
-    "脚本详情" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Script Info"
-          }
-        }
-      }
-    },
-    "自定搜索引擎" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Customize Search Engine"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自定搜尋引擎"
-          }
-        }
-      }
-    },
-    "被删除" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deleted"
-          }
-        }
-      }
-    },
-    "详情" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "詳情"
-          }
-        }
-      }
-    },
-    "请为你的反馈提供描述性的标题：" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please add a descriptive title for your feedback:"
-          }
-        }
-      }
-    },
-    "请包括：\n- 问题的清晰描述\n- 逐步说明重现问题的详细步骤（如果可能）\n- 期望的结果\n- 当前所示结果" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please Include: \n- A clear description of the issue\n- Step-by-step instruction of how to reproduce the issue (if available)\n- Expected result\n- Current result"
-          }
-        }
-      }
-    },
-    "请描述该问题以及重现问题的步骤：" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please describe the issue and the steps to reproduce: "
-          }
-        }
-      }
-    },
-    "请求实时支持" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Request Chat Support (Chinese, Simplified)"
-          }
-        }
-      }
-    },
-    "请求桌面网站" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Request Desktop Website"
-          }
-        }
-      }
-    },
-    "跳转到...(秒)" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jump to... (sec.)"
-          }
-        }
-      }
-    },
-    "轻触“播放网页中视频”" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tap Play Video In Web Page"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "轻触“播放网页中视频”"
+            "value" : "清除历史记录"
           }
-        }
-      }
-    },
-    "轻触“查看网页中图片”" : {
-      "localizations" : {
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tap \"List Images in Webpage\""
-          }
-        }
-      }
-    },
-    "退出" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Exit"
-          }
-        }
-      }
-    },
-    "选取历史记录" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Select History"
-          }
-        }
-      }
-    },
-    "重新载入" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reload"
-          }
-        }
-      }
-    },
-    "错误/异常行为" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Error"
+            "value" : "Clar History"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "錯誤/异常行為"
+            "value" : "清除歷史記錄"
           }
         }
       }
     },
-    "问题并不与App相关" : {
+    "Settings.invatation" : {
       "localizations" : {
-        "en" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unrelated"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "問題並不與App相關"
+            "value" : "欢迎加入QQ交流群 248036605"
           }
         }
-      }
-    },
-    "问题重复" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Repeated"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "問題重複"
-          }
-        }
-      }
-    },
-    "附件" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Attachments"
-          }
-        }
-      }
-    },
-    "需要更多细节" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Details Required"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "需要更多細節"
-          }
-        }
-      }
-    },
-    "高级功能" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Advanced Features"
-          }
-        }
-      }
-    },
-    "默认搜索引擎" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Default Search Engine"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "默認搜尋引擎"
-          }
-        }
-      }
+      },
+      "extractionState" : "stale"
     }
   },
-  "version" : "1.0"
+  "version" : "1.0",
+  "sourceLanguage" : "zh-Hans"
 }
