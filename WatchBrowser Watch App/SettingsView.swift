@@ -286,6 +286,7 @@ struct CustomSearchEngineSettingsView: View {
                         NavigationLink(destination: {Step2(customUrlInput: customUrlInput, isAddCustomSEPresented: $isAddCustomSEPresented)}, label: {
                             Text("Settings.search.customize.next")
                         })
+                        .disabled(customUrlInput.isEmpty)
                     }
                 }
                 .navigationTitle("Settings.search.customize.link.title")
