@@ -4394,13 +4394,29 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Clar History"
+            "value" : "Clear History"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "清除歷史記錄"
+          }
+        }
+      }
+    },
+    "预载入搜索内容" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preload Search Content"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "預載入搜索內容"
           }
         }
       }
