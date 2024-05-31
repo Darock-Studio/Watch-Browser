@@ -121,7 +121,7 @@ struct MainView: View {
                                 if textOrURL.isURL() {
                                     goToButtonLabelText = "Home.go"
                                     if preloadSearchContent {
-                                        let tmpUrl = textOrUrl
+                                        let tmpUrl = textOrURL
                                         if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
                                             tmpUrl = "http://" + textOrURL
                                         }
@@ -154,7 +154,7 @@ struct MainView: View {
                                 if textOrURL.isURL() {
                                     goToButtonLabelText = "Home.go"
                                     if preloadSearchContent {
-                                        let tmpUrl = textOrUrl
+                                        let tmpUrl = textOrURL
                                         if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
                                             tmpUrl = "http://" + textOrURL
                                         }
