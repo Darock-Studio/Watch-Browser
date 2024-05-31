@@ -56,7 +56,9 @@ struct SettingsView: View {
                 Toggle("保持时间可见", isOn: $keepDigitalTime)
                 Toggle("显示“快速退出”按钮", isOn: $showFastExitButton)
                 Toggle("网页崩溃后总是自动重新载入", isOn: $alwaysReloadWebPageAfterCrash)
-                Toggle("预加载搜索内容", isOn: $preloadSearchContent)
+                if #available(watchOS 10, *) {
+                    Toggle("预载入搜索内容", isOn: $preloadSearchContent)
+                }
             } header: {
                 Text("网页浏览")
             }
