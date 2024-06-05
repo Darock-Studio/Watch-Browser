@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftyStoreKit
 import CepheusKeyboardKit
 import AuthenticationServices
 
@@ -177,6 +178,11 @@ struct SettingsView: View {
                     Label("新功能", systemImage: "sparkles")
                 })
                 .sheet(isPresented: $isNewFeaturesPresented, content: {NewFeaturesView()})
+            }
+            Section {
+                NavigationLink(destination: { LaboratoryView() }, label: {
+                    Label("实验室", systemImage: "flask.fill")
+                })
             }
             Section {
                 NavigationLink(destination: { OpenSourceView() }, label: {

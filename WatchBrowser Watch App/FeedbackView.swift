@@ -90,6 +90,7 @@ struct FeedbackView: View {
         @State var dontSendDiagnose = false
         @State var isRemoveDiagAlertPresented = false
         @State var isDraftAlertPresented = false
+        @State var isDraftLoaded = false
         var body: some View {
             Form {
                 List {
@@ -353,8 +354,11 @@ struct FeedbackView: View {
                 }
             }
             .onAppear {
-                titleInput = UserDefaults.standard.string(forKey: "FeedbackNewDraftTitle") ?? ""
-                contentInputs = UserDefaults.standard.stringArray(forKey: "FeedbackNewDraftContent") ?? [""]
+                if !isDraftLoaded {
+                    titleInput = UserDefaults.standard.string(forKey: "FeedbackNewDraftTitle") ?? ""
+                    contentInputs = UserDefaults.standard.stringArray(forKey: "FeedbackNewDraftContent") ?? [""]
+                    isDraftLoaded = true
+                }
             }
             .alert("移除诊断信息", isPresented: $isRemoveDiagAlertPresented, actions: {
                 Button(role: .destructive, action: {

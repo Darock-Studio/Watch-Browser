@@ -1,4 +1,5 @@
 {
+  "originHash" : "ba2535d2f5116e953d913ff3671f8e2979ee97ff2ade610488836a25a95b3f22",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -152,7 +153,16 @@
         "revision" : "2b6054efa051565954e1d2b9da831680026cd768",
         "version" : "4.3.0"
       }
+    },
+    {
+      "identity" : "swiftystorekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bizz84/SwiftyStoreKit",
+      "state" : {
+        "revision" : "9ce911639680113dac9b554d6243e406a9758ebe",
+        "version" : "0.16.4"
+      }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

@@ -17,10 +17,12 @@ import AuthenticationServices
 
 struct ContentView: View {
     public static var bingSearchingText = ""
+    @AppStorage("LabTabBrowsingEnabled") var labTabBrowsingEnabled = false
     @State var mainTabSelection = 2
     @State var isVideoListPresented = false
     @State var isImageListPresented = false
     @State var isSettingsPresented = false
+    @State var isTabsPresented = false
     var body: some View {
         NavigationStack {
             if #available(watchOS 10.0, *) {
@@ -34,6 +36,9 @@ struct ContentView: View {
                     NavigationLink("", isActive: $isSettingsPresented, destination: {SettingsView()})
                         .frame(width: 0, height: 0)
                         .hidden()
+                    NavigationLink("", isActive: $isTabsPresented, destination: {BrowsingTabsView()})
+                        .frame(width: 0, height: 0)
+                        .hidden()
                     TabView(selection: $mainTabSelection) {
                         PrivateBrowsingView()
                             .tag(1)
@@ -45,6 +50,14 @@ struct ContentView: View {
                                         isSettingsPresented = true
                                     }, label: {
                                         Image(systemName: "gear")
+                                    })
+                                }
+                                ToolbarItem(placement: .topBarTrailing) {
+                                    Button(action: {
+                                        isTabsPresented = true
+                                    }, label: {
+                                        Image(systemName: "rectangle.on.rectangle.angled")
+                                            .foregroundColor(.white)
                                     })
                                 }
                             }
@@ -93,6 +106,7 @@ struct MainView: View {
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
     @AppStorage("PreloadSearchContent") var preloadSearchContent = true
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
+    @AppStorage("LabTabBrowsingEnabled") var labTabBrowsingEnabled = false
     @State var textOrURL = ""
     @State var goToButtonLabelText: LocalizedStringKey = "Home.search"
     @State var isKeyboardPresented = false
@@ -121,7 +135,7 @@ struct MainView: View {
                                 if textOrURL.isURL() {
                                     goToButtonLabelText = "Home.go"
                                     if preloadSearchContent {
-                                        let tmpUrl = textOrURL
+                                        var tmpUrl = textOrURL
                                         if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
                                             tmpUrl = "http://" + textOrURL
                                         }
@@ -154,7 +168,7 @@ struct MainView: View {
                                 if textOrURL.isURL() {
                                     goToButtonLabelText = "Home.go"
                                     if preloadSearchContent {
-                                        let tmpUrl = textOrURL
+                                        var tmpUrl = textOrURL
                                         if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
                                             tmpUrl = "http://" + textOrURL
                                         }
@@ -268,6 +282,7 @@ struct MainView: View {
                 Button(action: {
                     if #available(watchOS 10, *), preloadSearchContent {
                         AdvancedWebViewController.shared.present()
+                        return
                     }
                     if textOrURL.isURL() {
                         if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {

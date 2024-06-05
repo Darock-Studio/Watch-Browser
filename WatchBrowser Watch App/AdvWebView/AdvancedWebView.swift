@@ -35,11 +35,13 @@ class AdvancedWebViewController {
     public static let shared = AdvancedWebViewController()
     public static let sharedPrivacy = AdvancedWebViewController(isInPrivacy: true)
     
+    var currentTabIndex: Int?
+    
     var webViewHolder = Dynamic.UIView()
-    let menuController = Dynamic.UIViewController()
-    let menuView = Dynamic.UIScrollView()
-    let vc = Dynamic.UIViewController()
-    let loadProgressView = Dynamic.UIProgressView().initWithProgressViewStyle(Dynamic.UIProgressViewStyleDefault)
+    var menuController = Dynamic.UIViewController()
+    var menuView = Dynamic.UIScrollView()
+    var vc = Dynamic.UIViewController()
+    var loadProgressView = Dynamic.UIProgressView().initWithProgressViewStyle(Dynamic.UIProgressViewStyleDefault)
     
     @AppStorage("AllowCookies") var allowCookies = true
     @AppStorage("RequestDesktopWeb") var requestDesktopWeb = false
@@ -99,6 +101,7 @@ class AdvancedWebViewController {
         loadProgressView.frame = CGRect(x: 0, y: 0, width: sb.width, height: 20)
         loadProgressView.progressTintColor = UIColor.blue
         
+        webViewHolder = Dynamic.UIView()
         webViewHolder.addSubview(wkWebView)
         
         if keepDigitalTime {
@@ -115,6 +118,7 @@ class AdvancedWebViewController {
         webViewHolder.addSubview(moreButton)
         webViewHolder.addSubview(loadProgressView)
         
+        vc = Dynamic.UIViewController()
         vc.view = webViewHolder
 
         if presentController {
@@ -150,13 +154,47 @@ class AdvancedWebViewController {
         WebExtension.setWebViewDelegate()
         return wkWebView
     }
+    func recover(from ref: TabWebKitReference) {
+        webViewHolder = ref.webViewHolder
+        menuController = ref.menuController
+        menuView = ref.menuView
+        vc = ref.vc
+        loadProgressView = ref.loadProgressView
+        webViewObject = ref.webViewObject
+        webViewParentController = ref.webViewParentController
+        
+        Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(vc, animated: true, completion: nil)
+    }
+    func storeTab(in allTabs: [String], at index: Int? = nil) {
+        let recoverReference = TabWebKitReference(webViewHolder: webViewHolder,
+                                                  menuController: menuController,
+                                                  menuView: menuView,
+                                                  vc: vc,
+                                                  loadProgressView: loadProgressView,
+                                                  webViewObject: webViewObject,
+                                                  webViewParentController: webViewParentController)
+        var updateUrl = currentUrl
+        if let index {
+            updateUrl = allTabs[index]
+        }
+        tabCurrentReferences.updateValue(recoverReference, forKey: updateUrl)
+        var tabsCopy = allTabs
+        if let index {
+            tabsCopy[index] = updateUrl
+        } else {
+            tabsCopy.append(updateUrl)
+        }
+        UserDefaults.standard.set(tabsCopy, forKey: "CurrentTabs")
+        currentTabIndex = nil
+    }
+    
     func updateMenuController(rebindController: Bool = true) {
         // Action Menu
         for subview in menuView.subviews.asArray! {
             Dynamic(subview).removeFromSuperview()
         }
         let sb = WKInterfaceDevice.current().screenBounds
-        menuView.contentSize = CGSizeMake(sb.width, sb.height + 150)
+        menuView.contentSize = CGSizeMake(sb.width, sb.height + 200)
         
         // Buttons in Menu
         var menuButtonYOffset: CGFloat = 30

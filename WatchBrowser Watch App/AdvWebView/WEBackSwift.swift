@@ -31,4 +31,9 @@ public class WEBackSwift: NSObject {
             pMenuShouldDismiss = true
         } as @convention(block) (NSData, NSError?) -> Void)
     }
+    
+    public static func storeWebTab() {
+        AdvancedWebViewController.shared.storeTab(in: UserDefaults.standard.stringArray(forKey: "CurrentTabs") ?? [String](),
+                                                  at: AdvancedWebViewController.shared.currentTabIndex)
+    }
 }
