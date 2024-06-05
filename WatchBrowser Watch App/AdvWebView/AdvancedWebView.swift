@@ -59,7 +59,12 @@ class AdvancedWebViewController {
     }
     
     @discardableResult
-    func present(_ iurl: String, archiveUrl: URL? = nil) -> Dynamic {
+    func present(_ iurl: String = "", archiveUrl: URL? = nil, presentController: Bool = true) -> Dynamic {
+        if iurl.isEmpty && archiveUrl == nil {
+            Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(vc, animated: true, completion: nil)
+            return Dynamic(webViewObject)
+        }
+        
         let url = URL(string: iurl) ?? archiveUrl!
 
         if isUseOldWebView {
@@ -111,8 +116,10 @@ class AdvancedWebViewController {
         webViewHolder.addSubview(loadProgressView)
         
         vc.view = webViewHolder
-        
-        Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(vc, animated: true, completion: nil)
+
+        if presentController {
+            Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(vc, animated: true, completion: nil)
+        }
         webViewParentController = vc.asObject!
         
         if let archiveUrl {
@@ -133,10 +140,7 @@ class AdvancedWebViewController {
                 pMenuShouldDismiss = false
                 dismissControllersOnWebView()
             }
-            if !wkWebView.isLoading.asBool! {
-                loadProgressView.hidden = true
-            } else {
-                loadProgressView.hidden = false
+            if wkWebView.isLoading.asBool ?? false {
                 loadProgressView.setProgress(Float(wkWebView.estimatedProgress.asDouble ?? 0.0), animated: true)
             }
         }

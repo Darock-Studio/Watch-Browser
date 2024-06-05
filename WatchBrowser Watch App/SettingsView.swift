@@ -21,6 +21,7 @@ struct SettingsView: View {
     @AppStorage("KeepDigitalTime") var keepDigitalTime = false
     @AppStorage("ShowFastExitButton") var showFastExitButton = false
     @AppStorage("AlwaysReloadWebPageAfterCrash") var alwaysReloadWebPageAfterCrash = false
+    @AppStorage("PreloadSearchContent") var preloadSearchContent = true
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
     @State var KeyboardChanged = false
     @State var isKeyboardPresented = false
@@ -55,6 +56,9 @@ struct SettingsView: View {
                 Toggle("保持时间可见", isOn: $keepDigitalTime)
                 Toggle("显示“快速退出”按钮", isOn: $showFastExitButton)
                 Toggle("网页崩溃后总是自动重新载入", isOn: $alwaysReloadWebPageAfterCrash)
+                if #available(watchOS 10, *) {
+                    Toggle("预载入搜索内容", isOn: $preloadSearchContent)
+                }
             } header: {
                 Text("网页浏览")
             }
@@ -286,6 +290,7 @@ struct CustomSearchEngineSettingsView: View {
                         NavigationLink(destination: {Step2(customUrlInput: customUrlInput, isAddCustomSEPresented: $isAddCustomSEPresented)}, label: {
                             Text("Settings.search.customize.next")
                         })
+                        .disabled(customUrlInput.isEmpty)
                     }
                 }
                 .navigationTitle("Settings.search.customize.link.title")

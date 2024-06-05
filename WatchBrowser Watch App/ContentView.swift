@@ -91,6 +91,7 @@ struct MainView: View {
     @AppStorage("ModifyKeyboard") var ModifyKeyboard = false
     @AppStorage("IsShowBetaTest1") var isShowBetaTest = true
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
+    @AppStorage("PreloadSearchContent") var preloadSearchContent = true
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
     @State var textOrURL = ""
     @State var goToButtonLabelText: LocalizedStringKey = "Home.search"
@@ -119,6 +120,13 @@ struct MainView: View {
                             .onSubmit({
                                 if textOrURL.isURL() {
                                     goToButtonLabelText = "Home.go"
+                                    if preloadSearchContent {
+                                        let tmpUrl = textOrURL
+                                        if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+                                            tmpUrl = "http://" + textOrURL
+                                        }
+                                        AdvancedWebViewController.shared.present(tmpUrl.urlEncoded(), presentController: false)
+                                    }
                                 } else {
                                     if isSearchEngineShortcutEnabled {
                                         if textOrURL.hasPrefix("bing") {
@@ -135,6 +143,9 @@ struct MainView: View {
                                     } else {
                                         goToButtonLabelText = "Home.search"
                                     }
+                                    if preloadSearchContent {
+                                        AdvancedWebViewController.shared.present(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled), presentController: false)
+                                    }
                                 }
                             })
                     } else {
@@ -142,6 +153,13 @@ struct MainView: View {
                             CepheusKeyboard(input: $textOrURL, prompt: "Home.search-or-URL") {
                                 if textOrURL.isURL() {
                                     goToButtonLabelText = "Home.go"
+                                    if preloadSearchContent {
+                                        let tmpUrl = textOrURL
+                                        if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+                                            tmpUrl = "http://" + textOrURL
+                                        }
+                                        AdvancedWebViewController.shared.present(tmpUrl.urlEncoded(), presentController: false)
+                                    }
                                 } else {
                                     if isSearchEngineShortcutEnabled {
                                         if textOrURL.hasPrefix("bing") {
@@ -157,6 +175,9 @@ struct MainView: View {
                                         }
                                     } else {
                                         goToButtonLabelText = "Home.search"
+                                    }
+                                    if preloadSearchContent {
+                                        AdvancedWebViewController.shared.present(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled), presentController: false)
                                     }
                                 }
                             }
@@ -245,6 +266,9 @@ struct MainView: View {
                     }
                 }
                 Button(action: {
+                    if #available(watchOS 10, *), preloadSearchContent {
+                        AdvancedWebViewController.shared.present()
+                    }
                     if textOrURL.isURL() {
                         if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
                             textOrURL = "http://" + textOrURL
