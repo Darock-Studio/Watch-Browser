@@ -16,7 +16,6 @@ var videoLinkLists = [String]()
 var imageLinkLists = [String]()
 
 struct AdvancedWebView: View {
-    var url: String
     var body: some View {
         TabView {
             ZStack {
@@ -28,9 +27,6 @@ struct AdvancedWebView: View {
                 
             }
             .tag(2)
-        }
-        .onAppear {
-            webViewController.present(url)
         }
     }
 }
