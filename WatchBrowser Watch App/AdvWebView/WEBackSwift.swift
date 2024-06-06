@@ -33,7 +33,9 @@ public class WEBackSwift: NSObject {
     }
     
     public static func storeWebTab() {
-        AdvancedWebViewController.shared.storeTab(in: UserDefaults.standard.stringArray(forKey: "CurrentTabs") ?? [String](),
-                                                  at: AdvancedWebViewController.shared.currentTabIndex)
+        if UserDefaults.standard.bool(forKey: "LabTabBrowsingEnabled") {
+            AdvancedWebViewController.shared.storeTab(in: UserDefaults.standard.stringArray(forKey: "CurrentTabs") ?? [String](),
+                                                      at: AdvancedWebViewController.shared.currentTabIndex)
+        }
     }
 }

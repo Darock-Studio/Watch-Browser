@@ -52,13 +52,15 @@ struct ContentView: View {
                                         Image(systemName: "gear")
                                     })
                                 }
-                                ToolbarItem(placement: .topBarTrailing) {
-                                    Button(action: {
-                                        isTabsPresented = true
-                                    }, label: {
-                                        Image(systemName: "rectangle.on.rectangle.angled")
-                                            .foregroundColor(.white)
-                                    })
+                                if labTabBrowsingEnabled {
+                                    ToolbarItem(placement: .topBarTrailing) {
+                                        Button(action: {
+                                            isTabsPresented = true
+                                        }, label: {
+                                            Image(systemName: "rectangle.on.rectangle.angled")
+                                                .foregroundColor(.white)
+                                        })
+                                    }
                                 }
                             }
                             .tag(2)
@@ -134,7 +136,7 @@ struct MainView: View {
                             .onSubmit({
                                 if textOrURL.isURL() {
                                     goToButtonLabelText = "Home.go"
-                                    if preloadSearchContent {
+                                    if preloadSearchContent && !isUseOldWebView {
                                         var tmpUrl = textOrURL
                                         if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
                                             tmpUrl = "http://" + textOrURL
@@ -157,7 +159,7 @@ struct MainView: View {
                                     } else {
                                         goToButtonLabelText = "Home.search"
                                     }
-                                    if preloadSearchContent {
+                                    if preloadSearchContent && !isUseOldWebView {
                                         AdvancedWebViewController.shared.present(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled), presentController: false)
                                     }
                                 }
@@ -167,7 +169,7 @@ struct MainView: View {
                             CepheusKeyboard(input: $textOrURL, prompt: "Home.search-or-URL") {
                                 if textOrURL.isURL() {
                                     goToButtonLabelText = "Home.go"
-                                    if preloadSearchContent {
+                                    if preloadSearchContent && !isUseOldWebView {
                                         var tmpUrl = textOrURL
                                         if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
                                             tmpUrl = "http://" + textOrURL
@@ -190,7 +192,7 @@ struct MainView: View {
                                     } else {
                                         goToButtonLabelText = "Home.search"
                                     }
-                                    if preloadSearchContent {
+                                    if preloadSearchContent && !isUseOldWebView {
                                         AdvancedWebViewController.shared.present(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled), presentController: false)
                                     }
                                 }
@@ -280,7 +282,7 @@ struct MainView: View {
                     }
                 }
                 Button(action: {
-                    if #available(watchOS 10, *), preloadSearchContent {
+                    if #available(watchOS 10, *), preloadSearchContent && !isUseOldWebView {
                         AdvancedWebViewController.shared.present()
                         return
                     }
@@ -460,6 +462,8 @@ struct MainView: View {
                     }
                 }
             }
+            
+            AdvancedWebViewController.shared.present(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled), presentController: false)
         }
     }
 }
