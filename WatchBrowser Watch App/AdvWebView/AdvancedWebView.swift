@@ -64,6 +64,7 @@ class AdvancedWebViewController {
     func present(_ iurl: String = "", archiveUrl: URL? = nil, presentController: Bool = true) -> Dynamic {
         if iurl.isEmpty && archiveUrl == nil {
             Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(vc, animated: true, completion: nil)
+            registerVideoCheckTimer()
             return Dynamic(webViewObject)
         }
         
@@ -158,7 +159,9 @@ class AdvancedWebViewController {
                 loadProgressView.setProgress(Float(wkWebView.estimatedProgress.asDouble ?? 0.0), animated: true)
             }
         }
-        registerVideoCheckTimer()
+        if presentController {
+            registerVideoCheckTimer()
+        }
         
         webViewObject = wkWebView.asObject!
         WebExtension.setWebViewDelegate()

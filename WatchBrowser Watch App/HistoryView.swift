@@ -46,14 +46,17 @@ struct HistoryView: View {
                                     if let selectionHandler {
                                         selectionHandler(histories[i])
                                     } else {
-                                        if !histories[i].hasPrefix("file://") {
-                                            AdvancedWebViewController.shared.present(histories[i].urlDecoded().urlEncoded())
-                                        } else {
+                                        if histories[i].hasPrefix("file://") {
                                             AdvancedWebViewController.shared.present("", archiveUrl: URL(string: histories[i])!)
+                                        } else if histories[i].hasSuffix(".mp4") {
+                                            videoLinkLists = [histories[i]]
+                                            pShouldPresentVideoList = true
+                                        } else {
+                                            AdvancedWebViewController.shared.present(histories[i].urlDecoded().urlEncoded())
                                         }
                                     }
                                 }, label: {
-                                    if let showName = historyTitles[histories[i]] {
+                                    if let showName = historyTitles[histories[i]], !showName.isEmpty {
                                         if histories[i].hasPrefix("https://www.bing.com/search?q=")
                                             || histories[i].hasPrefix("https://www.baidu.com/s?wd=")
                                             || histories[i].hasPrefix("https://www.google.com/search?q=")
@@ -80,6 +83,8 @@ struct HistoryView: View {
                                                     .base64Decoded() ?? "[解析失败]",
                                                 systemImage: "archivebox"
                                             )
+                                        } else if histories[i].hasSuffix(".mp4") {
+                                            Label(histories[i], systemImage: "film")
                                         } else {
                                             Label(histories[i], systemImage: "globe")
                                         }

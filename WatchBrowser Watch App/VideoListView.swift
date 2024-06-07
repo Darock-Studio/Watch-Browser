@@ -8,11 +8,14 @@
 import AVKit
 import SwiftUI
 import Dynamic
+import Alamofire
 import AVFoundation
 
 struct VideoListView: View {
     @State var willPlayVideoLink = ""
     @State var isPlayerPresented = false
+    @State var willDownloadVideoLink = ""
+    @State var isVideoDownloadPresented = false
     var body: some View {
         if !videoLinkLists.isEmpty {
             List {
@@ -23,10 +26,19 @@ struct VideoListView: View {
                     }, label: {
                         Text(videoLinkLists[i])
                     })
+                    .swipeActions {
+                        Button(action: {
+                            willDownloadVideoLink = videoLinkLists[i]
+                            isVideoDownloadPresented = true
+                        }, label: {
+                            Image(systemName: "square.and.arrow.down")
+                        })
+                    }
                 }
             }
             .navigationTitle("视频列表")
             .sheet(isPresented: $isPlayerPresented, content: { VideoPlayingView(link: $willPlayVideoLink) })
+            .sheet(isPresented: $isVideoDownloadPresented, content: { VideoDownloadView(videoLink: $willDownloadVideoLink) })
             .onDisappear {
                 Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(
                     AdvancedWebViewController.shared.vc,
@@ -59,6 +71,11 @@ struct VideoPlayingView: View {
                 .offset(y: isFullScreen ? 20 : 0)
                 .ignoresSafeArea()
                 .tag(1)
+                .onChange(of: player?.timeControlStatus) { value in
+                    if value == .playing {
+                        player.rate = Float(playbackSpeed)
+                    }
+                }
             List {
                 Section {
                     Button(action: {
@@ -116,6 +133,188 @@ struct VideoPlayingView: View {
     }
 }
 
-#Preview {
-    VideoListView()
+struct VideoDownloadView: View {
+    @Binding var videoLink: String
+    @Environment(\.dismiss) var dismiss
+    @State var downloadProgress = ValuedProgress(completedUnitCount: 0, totalUnitCount: 0)
+    @State var isFinishedDownload = false
+    @State var isTerminateDownloadingAlertPresented = false
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    HStack {
+                        Button(action: {
+                            if !isFinishedDownload {
+                                isTerminateDownloadingAlertPresented = true
+                            } else {
+                                dismiss()
+                            }
+                        }, label: {
+                            Image(systemName: "xmark")
+                                .bold()
+                                .foregroundColor(.white)
+                        })
+                        .buttonStyle(.bordered)
+                        .buttonBorderShape(.roundedRectangle(radius: 100))
+                        .frame(width: 50, height: 50)
+                        Spacer()
+                    }
+                }
+                .listRowBackground(Color.clear)
+                Section {
+                    if !isFinishedDownload {
+                        VStack {
+                            Text("正在下载...")
+                                .font(.system(size: 20, weight: .bold))
+                            ProgressView(value: Double(downloadProgress.completedUnitCount), total: Double(downloadProgress.totalUnitCount))
+                            Text("\(String(format: "%.2f", Double(downloadProgress.completedUnitCount) / Double(downloadProgress.totalUnitCount) * 100))%")
+                            Text("\(String(format: "%.2f", Double(downloadProgress.completedUnitCount) / 1024 / 1024))MB / \(String(format: "%.2f", Double(downloadProgress.totalUnitCount) / 1024 / 1024))MB")
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.1)
+                            if let eta = downloadProgress.estimatedTimeRemaining {
+                                Text("预计时间：\(Int(eta))s")
+                            }
+                        }
+                    } else {
+                        HStack {
+                            Spacer()
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundColor(.green)
+                            Text("下载已完成")
+                            Spacer()
+                        }
+                    }
+                }
+            }
+            .navigationTitle("下载视频")
+            .toolbar(.hidden, for: .navigationBar)
+            .alert("未完成的下载", isPresented: $isTerminateDownloadingAlertPresented, actions: {
+                Button(role: .destructive, action: {
+                    dismiss()
+                }, label: {
+                    Text("退出")
+                })
+                Button(role: .cancel, action: {
+                    
+                }, label: {
+                    Text("取消")
+                })
+            }, message: {
+                Text("退出下载页将中断下载\n确定吗？")
+            })
+        }
+        .onAppear {
+            extendScreenIdleTime(600)
+            do {
+                if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos") {
+                    try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos", withIntermediateDirectories: true)
+                }
+                let destination: DownloadRequest.Destination = { _, _ in
+                    return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/DownloadedVideos/\(String(videoLink.split(separator: "/").last!))"),
+                            [.removePreviousFile, .createIntermediateDirectories])
+                }
+                AF.download(videoLink, to: destination)
+                    .downloadProgress { progress in
+                        downloadProgress = ValuedProgress(completedUnitCount: progress.completedUnitCount,
+                                                          totalUnitCount: progress.totalUnitCount,
+                                                          estimatedTimeRemaining: progress.estimatedTimeRemaining)
+                    }
+                    .response { result in
+                        if result.error == nil, let filePath = result.fileURL?.path {
+                            debugPrint(filePath)
+                            isFinishedDownload = true
+                        } else {
+                            
+                        }
+                    }
+            } catch {
+                print(error)
+            }
+        }
+        .onDisappear {
+            recoverNormalIdleTime()
+        }
+    }
+}
+
+struct LocalVideosView: View {
+    @State var videoNames = [String]()
+    @State var videoHumanNameChart = [String: String]()
+    @State var isPlayerPresented = false
+    @State var willPlayVideoLink = ""
+    @State var isEditNamePresented = false
+    @State var editNameVideoName = ""
+    @State var editNameInput = ""
+    var body: some View {
+        List {
+            Section {
+                if !videoNames.isEmpty {
+                    ForEach(0..<videoNames.count, id: \.self) { i in
+                        Button(action: {
+                            willPlayVideoLink = URL(fileURLWithPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoNames[i]).absoluteString
+                            isPlayerPresented = true
+                        }, label: {
+                            Text(videoHumanNameChart[videoNames[i]] ?? videoNames[i])
+                        })
+                        .swipeActions {
+                            Button(role: .destructive, action: {
+                                do {
+                                    try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoNames[i])
+                                    videoNames.remove(at: i)
+                                } catch {
+                                    print(error)
+                                }
+                            }, label: {
+                                Image(systemName: "xmark.bin.fill")
+                            })
+                            Button(action: {
+                                editNameVideoName = videoNames[i]
+                                isEditNamePresented = true
+                            }, label: {
+                                Image(systemName: "pencil.line")
+                            })
+                        }
+                    }
+                }
+            }
+        }
+        .navigationTitle("本地视频")
+        .sheet(isPresented: $isPlayerPresented, content: { VideoPlayingView(link: $willPlayVideoLink) })
+        .sheet(isPresented: $isEditNamePresented) {
+            NavigationStack {
+                List {
+                    Section {
+                        TextField("名称", text: $editNameInput)
+                        Button(action: {
+                            videoHumanNameChart.updateValue(editNameInput, forKey: editNameVideoName)
+                            UserDefaults.standard.set(videoHumanNameChart, forKey: "VideoHumanNameChart")
+                            isEditNamePresented = false
+                        }, label: {
+                            Label("保存", systemImage: "arrow.down.doc")
+                        })
+                    }
+                }
+                .navigationTitle("自定名称")
+                .navigationBarTitleDisplayMode(.large)
+            }
+            .onDisappear {
+                editNameInput = ""
+            }
+        }
+        .onAppear {
+            do {
+                videoNames = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos")
+                videoHumanNameChart = (UserDefaults.standard.dictionary(forKey: "VideoHumanNameChart") as? [String: String]) ?? [String: String]()
+            } catch {
+                print(error)
+            }
+        }
+    }
+}
+
+struct ValuedProgress {
+    var completedUnitCount: Int64
+    var totalUnitCount: Int64
+    var estimatedTimeRemaining: TimeInterval?
 }

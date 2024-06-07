@@ -10,6 +10,7 @@ import DarockKit
 import SwiftDate
 import MarkdownUI
 import SupportsUICore
+import UserNotifications
 
 fileprivate let globalStates: [LocalizedStringKey] = [
     "未标记",
@@ -354,6 +355,7 @@ struct FeedbackView: View {
                             Type：\(feedbackType)
                             Content：\(contentInputs.joined(separator: "\\n"))
                             Time：\(Date.now.timeIntervalSince1970)\(extDiags)\(!extHistories.isEmpty ? "\nExtHistories：" + extHistories.description : "")
+                            NotificationToken：\(UserDefaults.standard.string(forKey: "UserNotificationToken") ?? "None")
                             Sender: User
                             """
                             DarockKit.Network.shared
@@ -402,6 +404,14 @@ struct FeedbackView: View {
                     titleInput = UserDefaults.standard.string(forKey: "FeedbackNewDraftTitle") ?? ""
                     contentInputs = UserDefaults.standard.stringArray(forKey: "FeedbackNewDraftContent") ?? [""]
                     isDraftLoaded = true
+                }
+                
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.sound]) { isGrand, error in
+                    DispatchQueue.main.async {
+                        if isGrand {
+                            WKExtension.shared().registerForRemoteNotifications()
+                        }
+                    }
                 }
             }
             .alert("移除诊断信息", isPresented: $isRemoveDiagAlertPresented, actions: {
@@ -687,5 +697,11 @@ extension String {
         } else {
             return self
         }
+    }
+}
+extension Data {
+    func hexEncodedString(options: HexEncodingOptions = []) -> String {
+        let format = options.contains(.upperCase) ? "%02hhX" : "%02hhx"
+        return self.map { String(format: format, $0) }.joined()
     }
 }

@@ -149,6 +149,32 @@
         }
       }
     },
+    "%@%%" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "%@MB / %@MB" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@MB / %2$@MB"
+          }
+        }
+      }
+    },
     "%@Settings.keyboard.preview" : {
       "localizations" : {
         "en" : {
@@ -761,9 +787,6 @@
           }
         }
       }
-    },
-    "Debug" : {
-
     },
     "Done" : {
       "localizations" : {
@@ -2300,6 +2323,26 @@
         }
       }
     },
+    "下载已完成" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download Completed"
+          }
+        }
+      }
+    },
+    "下载视频" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download Video"
+          }
+        }
+      }
+    },
     "中国大陆ICP备案号" : {
       "localizations" : {
         "en" : {
@@ -2400,6 +2443,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用舊版瀏覽引擎"
+          }
+        }
+      }
+    },
+    "保存" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
           }
         }
       }
@@ -2715,6 +2768,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "You can now get a variety of userscripts at the script store."
+          }
+        }
+      }
+    },
+    "名称" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
           }
         }
       }
@@ -3404,12 +3467,12 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "播放"
+            "value" : "播放网页视频"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "播放網頁視頻"
           }
         }
@@ -3592,6 +3655,16 @@
         }
       }
     },
+    "未完成的下载" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unfinished Downloading"
+          }
+        }
+      }
+    },
     "未完成的编辑" : {
       "localizations" : {
         "en" : {
@@ -3636,6 +3709,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未能複現"
+          }
+        }
+      }
+    },
+    "本地视频" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Local Videos"
           }
         }
       }
@@ -3730,6 +3813,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "標題"
+          }
+        }
+      }
+    },
+    "正在下载..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Downloading..."
           }
         }
       }
@@ -4207,6 +4300,16 @@
         }
       }
     },
+    "自定名称" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Name"
+          }
+        }
+      }
+    },
     "自定搜索引擎" : {
       "localizations" : {
         "en" : {
@@ -4339,7 +4442,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "轻触“播放网页中视频”"
+            "value" : "轻触“播放网页视频”"
           }
         }
       }
@@ -4366,6 +4469,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exit"
+          }
+        }
+      }
+    },
+    "退出下载页将中断下载\n确定吗？" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exiting the download page will interrupt the download\nAre you sure?"
           }
         }
       }
@@ -4484,6 +4597,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "需要更多細節"
+          }
+        }
+      }
+    },
+    "预计时间：%llds" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estimated Time: %llds"
           }
         }
       }

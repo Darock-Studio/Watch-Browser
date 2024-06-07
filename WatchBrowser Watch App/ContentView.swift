@@ -117,15 +117,9 @@ struct MainView: View {
     @State var webArchiveLinks = [String]()
     @State var newFeedbackCount = 0
     @State var isNewVerAvailable = false
+    @State var isHaveDownloadedVideo = false
     var body: some View {
         List {
-            Section {
-                Button(action: {
-                    Dynamic.PUICApplication.sharedPUICApplication().setExtendedIdleTime(114514.0, disablesSleepGesture: true, wantsAutorotation: false)
-                }, label: {
-                    Text("Debug")
-                })
-            }
             Section {
                 Group {
                     if !ModifyKeyboard {
@@ -299,7 +293,23 @@ struct MainView: View {
                 Button(action: {
                     if #available(watchOS 10, *), preloadSearchContent && !isUseOldWebView {
                         AdvancedWebViewController.shared.present()
+                        if textOrURL.hasSuffix(".mp4") {
+                            if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+                                textOrURL = "http://" + textOrURL
+                            }
+                            RecordHistory(textOrURL, webSearch: webSearch)
+                        }
                         return
+                    } else {
+                        if textOrURL.hasSuffix(".mp4") {
+                            if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+                                textOrURL = "http://" + textOrURL
+                            }
+                            videoLinkLists = [textOrURL]
+                            pShouldPresentVideoList = true
+                            RecordHistory(textOrURL, webSearch: webSearch)
+                            return
+                        }
                     }
                     if textOrURL.isURL() {
                         if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
@@ -379,6 +389,15 @@ struct MainView: View {
                     }
                 })
                 .disabled(isUseOldWebView)
+                if isHaveDownloadedVideo {
+                    NavigationLink(destination: { LocalVideosView() }, label: {
+                        HStack {
+                            Spacer()
+                            Label("本地视频", systemImage: "tray.and.arrow.down")
+                            Spacer()
+                        }
+                    })
+                }
                 if withSetting {
                     NavigationLink(destination: {
                         SettingsView()
@@ -468,9 +487,9 @@ struct MainView: View {
                                 if let cx = Int(currVerSpd[0]), let cy = Int(currVerSpd[1]), let cz = Int(currVerSpd[2]) {
                                     if x > cx {
                                         isNewVerAvailable = true
-                                    } else if y > cy {
+                                    } else if x == cx && y > cy {
                                         isNewVerAvailable = true
-                                    } else if z > cz {
+                                    } else if x == cx && y == cy && z > cz {
                                         isNewVerAvailable = true
                                     }
                                 }
@@ -479,7 +498,13 @@ struct MainView: View {
                     }
                 }
             }
-            
+            do {
+                if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos") {
+                    isHaveDownloadedVideo = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos").isEmpty
+                }
+            } catch {
+                print(error)
+            }
             AdvancedWebViewController.shared.present(
                 GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
                 presentController: false
