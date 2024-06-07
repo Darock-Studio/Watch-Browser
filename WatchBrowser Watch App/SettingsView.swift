@@ -39,7 +39,12 @@ struct SettingsView: View {
         case google = "谷歌"
         case sougou = "搜狗"
     }
-    let engineTitle = ["必应": String(localized: "Search.bing"), "百度": String(localized: "Search.baidu"), "谷歌": String(localized: "Search.google"), "搜狗": String(localized: "Search.sougou")]
+    let engineTitle = [
+        "必应": String(localized: "Search.bing"),
+        "百度": String(localized: "Search.baidu"),
+        "谷歌": String(localized: "Search.google"),
+        "搜狗": String(localized: "Search.sougou")
+    ]
     var body: some View {
         Form {
             Section {
@@ -73,7 +78,11 @@ struct SettingsView: View {
                     }
                     if customSearchEngineList.count != 0 {
                         ForEach(0..<customSearchEngineList.count, id: \.self) { i in
-                            Text(customSearchEngineList[i].replacingOccurrences(of: "%lld", with: String(localized: "Settings.search.customize.search-content"))).tag(customSearchEngineList[i])
+                            Text(
+                                customSearchEngineList[i]
+                                    .replacingOccurrences(of: "%lld", with: String(localized: "Settings.search.customize.search-content"))
+                            )
+                                .tag(customSearchEngineList[i])
                         }
                     }
                 }
@@ -332,7 +341,14 @@ struct CustomSearchEngineSettingsView: View {
                         }
                     }
                     .focusable()
-                    .digitalCrownRotation($cursorPosition, from: 0, through: Double(charas.count - 1), by: 1, sensitivity: .medium, isHapticFeedbackEnabled: true)
+                    .digitalCrownRotation(
+                        $cursorPosition,
+                        from: 0,
+                        through: Double(charas.count - 1),
+                        by: 1,
+                        sensitivity: .medium,
+                        isHapticFeedbackEnabled: true
+                    )
                     Spacer()
                         .frame(height: 15)
                     Text("Settings.search.customize.cursor")

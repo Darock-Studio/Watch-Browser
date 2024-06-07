@@ -59,14 +59,18 @@ struct UserScriptsAddView: View {
                     .onSubmit {
                         if !searchInput.isEmpty {
                             isSearching = true
-                            DarockKit.Network.shared.requestString("https://greasyfork.org/\(NSLocale.current.languageCode == "zh" ? "zh-CN" : "en-US")/scripts?q=\(searchInput)") { respStr, isSuccess in
+                            DarockKit.Network.shared
+                                .requestString("https://greasyfork.org/\(NSLocale.current.languageCode == "zh" ? "zh-CN" : "en-US")/scripts?q=\(searchInput)")
+                            { respStr, isSuccess in
                                 if isSuccess {
                                     do {
                                         let doc = try SwiftSoup.parse(respStr)
                                         let scripts = try doc.body()?.select("a")
                                         if let scripts {
                                             for script in scripts {
-                                                if try script.outerHtml().contains("class=\"script-link\""), let target = try? script.attr("href"), let title = try? script.text() {
+                                                if try script.outerHtml().contains("class=\"script-link\""),
+                                                   let target = try? script.attr("href"),
+                                                   let title = try? script.text() {
                                                     searchResults.append((title, target))
                                                 }
                                             }
@@ -129,8 +133,16 @@ struct UserScriptsAddView: View {
                                     DarockKit.Network.shared.requestString(jsLink) { respStr, isSuccess in
                                         if isSuccess {
                                             do {
-                                                try respStr.write(toFile: NSHomeDirectory() + "/Documents/UserScripts/\(title.replacingOccurrences(of: "/", with: "{slash}")).js", atomically: true, encoding: .utf8)
-                                                UserDefaults.standard.set((UserDefaults.standard.stringArray(forKey: "UserScriptNames") ?? [String]()) + [title], forKey: "UserScriptNames")
+                                                try respStr.write(
+                                                    toFile: NSHomeDirectory()
+                                                    + "/Documents/UserScripts/\(title.replacingOccurrences(of: "/", with: "{slash}")).js",
+                                                    atomically: true,
+                                                    encoding: .utf8
+                                                )
+                                                UserDefaults.standard.set(
+                                                    (UserDefaults.standard.stringArray(forKey: "UserScriptNames") ?? [String]()) + [title],
+                                                    forKey: "UserScriptNames"
+                                                )
                                                 isInstalled = true
                                                 isInstalling = false
                                             } catch {

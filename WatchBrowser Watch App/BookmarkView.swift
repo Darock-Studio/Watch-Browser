@@ -126,7 +126,10 @@ struct AddBookmarkView: View {
                     let userdefault = UserDefaults.standard
                     let total = userdefault.integer(forKey: "BookmarkTotal") + 1
                     userdefault.set(markName, forKey: "BookmarkName\(total)")
-                    userdefault.set(markLink.hasPrefix("https://") || markLink.hasPrefix("http://") ? markLink.urlEncoded() : "http://" + markLink.urlEncoded(), forKey: "BookmarkLink\(total)")
+                    userdefault.set(
+                        markLink.hasPrefix("https://") || markLink.hasPrefix("http://") ? markLink.urlEncoded() : "http://" + markLink.urlEncoded(),
+                        forKey: "BookmarkLink\(total)"
+                    )
                     userdefault.set(total, forKey: "BookmarkTotal")
                     self.presentationMode.wrappedValue.dismiss()
                 }, label: {
@@ -153,7 +156,10 @@ struct EditBookmarkView: View {
                 Button(action: {
                     let userdefault = UserDefaults.standard
                     userdefault.set(markName, forKey: "BookmarkName\(BookmarkView.editingBookmarkIndex)")
-                    userdefault.set(markLink.hasPrefix("https://") || markLink.hasPrefix("http://") ? markLink.urlEncoded() : "http://" + markLink.urlEncoded(), forKey: "BookmarkLink\(BookmarkView.editingBookmarkIndex)")
+                    userdefault.set(
+                        markLink.hasPrefix("https://") || markLink.hasPrefix("http://") ? markLink.urlEncoded() : "http://" + markLink.urlEncoded(),
+                        forKey: "BookmarkLink\(BookmarkView.editingBookmarkIndex)"
+                    )
                     dismiss()
                 }, label: {
                     Label("Bookmark.finish", systemImage: "checkmark")

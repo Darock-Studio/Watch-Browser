@@ -14,14 +14,23 @@ struct WebArchiveListView: View {
             if !archiveLinks.isEmpty {
                 ForEach(0..<archiveLinks.count, id: \.self) { i in
                     Button(action: {
-                        AdvancedWebViewController.shared.present("", archiveUrl: URL(fileURLWithPath: NSHomeDirectory() + "/Documents/WebArchives/\(archiveLinks[i].base64Encoded().replacingOccurrences(of: "/", with: "{slash}")).drkdataw"))
+                        AdvancedWebViewController.shared.present(
+                            "",
+                            archiveUrl: URL(
+                                fileURLWithPath: NSHomeDirectory()
+                                + "/Documents/WebArchives/\(archiveLinks[i].base64Encoded().replacingOccurrences(of: "/", with: "{slash}")).drkdataw"
+                            )
+                        )
                     }, label: {
                         Text(archiveLinks[i])
                     })
                     .swipeActions {
                         Button(role: .destructive, action: {
                             do {
-                                try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/WebArchives/\(archiveLinks[i].base64Encoded().replacingOccurrences(of: "/", with: "{slash}")).drkdataw")
+                                try FileManager.default.removeItem(
+                                    atPath: NSHomeDirectory()
+                                    + "/Documents/WebArchives/\(archiveLinks[i].base64Encoded().replacingOccurrences(of: "/", with: "{slash}")).drkdataw"
+                                )
                             } catch {
                                 print(error)
                             }

@@ -11,9 +11,51 @@ import SwiftDate
 import MarkdownUI
 import SupportsUICore
 
-fileprivate let globalStates: [LocalizedStringKey] = ["未标记", "按预期工作", "无法修复", "问题重复", "搁置", "正在修复", "已在未来版本修复", "已修复", "正在加载", "未能复现", "问题并不与App相关", "需要更多细节", "被删除"]
-fileprivate let globalStateColors = [Color.secondary, Color.red, Color.red, Color.red, Color.orange, Color.orange, Color.orange, Color.green, Color.secondary, Color.red, Color.secondary, Color.orange, Color.red]
-fileprivate let globalStateIcons = ["minus", "curlybraces", "xmark", "arrow.triangle.merge", "books.vertical", "hammer", "clock.badge.checkmark", "checkmark", "ellipsis", "questionmark", "bolt.horizontal", "arrowshape.turn.up.backward.badge.clock", "xmark.square.fill"]
+fileprivate let globalStates: [LocalizedStringKey] = [
+    "未标记",
+    "按预期工作",
+    "无法修复",
+    "问题重复",
+    "搁置",
+    "正在修复",
+    "已在未来版本修复",
+    "已修复",
+    "正在加载",
+    "未能复现",
+    "问题并不与App相关",
+    "需要更多细节",
+    "被删除"
+]
+fileprivate let globalStateColors = [
+    Color.secondary,
+    Color.red,
+    Color.red,
+    Color.red,
+    Color.orange,
+    Color.orange,
+    Color.orange,
+    Color.green,
+    Color.secondary,
+    Color.red,
+    Color.secondary,
+    Color.orange,
+    Color.red
+]
+fileprivate let globalStateIcons = [
+    "minus",
+    "curlybraces",
+    "xmark",
+    "arrow.triangle.merge",
+    "books.vertical",
+    "hammer",
+    "clock.badge.checkmark",
+    "checkmark",
+    "ellipsis",
+    "questionmark",
+    "bolt.horizontal",
+    "arrowshape.turn.up.backward.badge.clock",
+    "xmark.square.fill"
+]
 
 struct FeedbackView: View {
     @State var feedbackIds = [String]()
@@ -314,7 +356,9 @@ struct FeedbackView: View {
                             Time：\(Date.now.timeIntervalSince1970)\(extDiags)\(!extHistories.isEmpty ? "\nExtHistories：" + extHistories.description : "")
                             Sender: User
                             """
-                            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/feedback/submit/anony/Darock Browser/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))") { respStr, isSuccess in
+                            DarockKit.Network.shared
+                                .requestString("https://fapi.darock.top:65535/feedback/submit/anony/Darock Browser/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))")
+                            { respStr, isSuccess in
                                 if isSuccess {
                                     if Int(respStr) != nil {
                                         var arr = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
@@ -470,9 +514,20 @@ struct FeedbackView: View {
                     }, label: {
                         Label("回复", systemImage: "arrowshape.turn.up.left.fill")
                     })
-                    .disabled((replies.last?.status ?? 0) == 1 || (replies.last?.status ?? 0) == 2 || (replies.last?.status ?? 0) == 3 || (replies.last?.status ?? 0) == 7  || (replies.last?.status ?? 0) == 10 || status == 12)
+                    .disabled(
+                        (replies.last?.status ?? 0) == 1
+                        || (replies.last?.status ?? 0) == 2
+                        || (replies.last?.status ?? 0) == 3
+                        || (replies.last?.status ?? 0) == 7
+                        || (replies.last?.status ?? 0) == 10
+                        || status == 12
+                    )
                 } footer: {
-                    if (replies.last?.status ?? 0) == 1 || (replies.last?.status ?? 0) == 2 || (replies.last?.status ?? 0) == 3 || (replies.last?.status ?? 0) == 7 || (replies.last?.status ?? 0) == 10 {
+                    if (replies.last?.status ?? 0) == 1
+                        || (replies.last?.status ?? 0) == 2
+                        || (replies.last?.status ?? 0) == 3
+                        || (replies.last?.status ?? 0) == 7
+                        || (replies.last?.status ?? 0) == 10 {
                         Text("此反馈已关闭，若要重新进行反馈，请创建一个新的反馈")
                     }
                 }
@@ -568,7 +623,9 @@ struct FeedbackView: View {
                             Content：\(replyInput)
                             Sender：User
                             """.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
-                            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/reply/Darock Browser/\(id)/\(enced)") { respStr, isSuccess in
+                            DarockKit.Network.shared
+                                .requestString("https://fapi.darock.top:65535/radar/reply/Darock Browser/\(id)/\(enced)")
+                            { respStr, isSuccess in
                                 if isSuccess {
                                     if respStr.apiFixed() == "Success" {
                                         replies.append((status: 8, content: replyInput, sender: "User"))

@@ -35,7 +35,11 @@ struct ImageListView: View {
                 }
             })
             .onDisappear {
-                Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(AdvancedWebViewController.shared.vc, animated: true, completion: nil)
+                Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(
+                    AdvancedWebViewController.shared.vc,
+                    animated: true,
+                    completion: nil
+                )
                 AdvancedWebViewController.shared.registerVideoCheckTimer()
             }
         } else {

@@ -83,7 +83,9 @@ class AdvancedWebViewController {
             return Dynamic.WKWebView()
         }
         
-        let moreButton = makeUIButton(title: .Image(UIImage(systemName: "ellipsis.circle")!), frame: CGRect(x: 10, y: 10, width: 30, height: 30), selector: "menuButtonClicked")
+        let moreButton = makeUIButton(title: .Image(UIImage(systemName: "ellipsis.circle")!),
+                                      frame: CGRect(x: 10, y: 10, width: 30, height: 30),
+                                      selector: "menuButtonClicked")
         
         let sb = WKInterfaceDevice.current().screenBounds
         
@@ -95,7 +97,12 @@ class AdvancedWebViewController {
             wkWebView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
         }
         wkWebView.allowsBackForwardNavigationGestures = useBackforwardGesture
-        wkWebView.configuration.websiteDataStore.httpCookieStore.setCookiePolicy(allowCookies && !isInPrivacy ? Dynamic.WKCookiePolicyAllow : Dynamic.WKCookiePolicyDisllow, completionHandler: {} as @convention(block) () -> Void)
+        wkWebView.configuration.websiteDataStore.httpCookieStore.setCookiePolicy(
+            allowCookies && !isInPrivacy
+            ? Dynamic.WKCookiePolicyAllow
+            : Dynamic.WKCookiePolicyDisllow,
+            completionHandler: {} as @convention(block) () -> Void
+        )
 
         // Load Progress Bar
         loadProgressView.frame = CGRect(x: 0, y: 0, width: sb.width, height: 20)
@@ -112,7 +119,10 @@ class AdvancedWebViewController {
         }
         
         if showFastExitButton {
-            let fastExitButton = makeUIButton(title: .Image(UIImage(systemName: "escape")!), frame: CGRect(x: 40, y: 10, width: 30, height: 30), tintColor: .red, selector: "DismissWebView")
+            let fastExitButton = makeUIButton(title: .Image(UIImage(systemName: "escape")!),
+                                              frame: CGRect(x: 40, y: 10, width: 30, height: 30),
+                                              tintColor: .red,
+                                              selector: "DismissWebView")
             webViewHolder.addSubview(fastExitButton)
         }
         webViewHolder.addSubview(moreButton)
@@ -200,7 +210,11 @@ class AdvancedWebViewController {
         var menuButtonYOffset: CGFloat = 30
         
         // Close Button
-        let closeButton = makeUIButton(title: .Image(UIImage(systemName: "xmark")!), frame: .init(x: 20, y: 20, width: 25, height: 25), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "DismissMenu")
+        let closeButton = makeUIButton(title: .Image(UIImage(systemName: "xmark")!),
+                                       frame: .init(x: 20, y: 20, width: 25, height: 25),
+                                       backgroundColor: .gray.opacity(0.5),
+                                       tintColor: .white,
+                                       selector: "DismissMenu")
         menuView.addSubview(closeButton)
         
         let urlText = Dynamic.UILabel()
@@ -214,7 +228,11 @@ class AdvancedWebViewController {
         }
 
         if !videoLinkLists.isEmpty {
-            let playButton = makeUIButton(title: .text(String(localized: "播放网页视频")), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "PresentVideoList")
+            let playButton = makeUIButton(title: .text(String(localized: "播放网页视频")),
+                                          frame: getMiddleRect(y: menuButtonYOffset, height: 40),
+                                          backgroundColor: .gray.opacity(0.5),
+                                          tintColor: .white,
+                                          selector: "PresentVideoList")
             menuView.addSubview(playButton)
             menuButtonYOffset += 60
         } else if isVideoChecking {
@@ -235,32 +253,56 @@ class AdvancedWebViewController {
             if menuButtonYOffset > 100 {
                 menuButtonYOffset -= 15
             }
-            let imageButton = makeUIButton(title: .text(String(localized: "查看网页图片")), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "PresentImageList")
+            let imageButton = makeUIButton(title: .text(String(localized: "查看网页图片")),
+                                           frame: getMiddleRect(y: menuButtonYOffset, height: 40),
+                                           backgroundColor: .gray.opacity(0.5),
+                                           tintColor: .white,
+                                           selector: "PresentImageList")
             menuView.addSubview(imageButton)
             menuButtonYOffset += 60
         }
         
-        let reloadButton = makeUIButton(title: .text(String(localized: "重新载入")), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "WKReload")
+        let reloadButton = makeUIButton(title: .text(String(localized: "重新载入")),
+                                        frame: getMiddleRect(y: menuButtonYOffset, height: 40),
+                                        backgroundColor: .gray.opacity(0.5),
+                                        tintColor: .white,
+                                        selector: "WKReload")
         menuView.addSubview(reloadButton)
         menuButtonYOffset += 60
         
         if Dynamic(webViewObject).canGoBack.asBool ?? false {
-            let previousButton = makeUIButton(title: .text(String(localized: "上一页")), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "WKGoBack")
+            let previousButton = makeUIButton(title: .text(String(localized: "上一页")),
+                                              frame: getMiddleRect(y: menuButtonYOffset, height: 40),
+                                              backgroundColor: .gray.opacity(0.5),
+                                              tintColor: .white,
+                                              selector: "WKGoBack")
             menuView.addSubview(previousButton)
             menuButtonYOffset += 50
         }
         if Dynamic(webViewObject).canGoForward.asBool ?? false {
-            let forwardButton = makeUIButton(title: .text(String(localized: "下一页")), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "WKGoForward")
+            let forwardButton = makeUIButton(title: .text(String(localized: "下一页")),
+                                             frame: getMiddleRect(y: menuButtonYOffset, height: 40),
+                                             backgroundColor: .gray.opacity(0.5),
+                                             tintColor: .white,
+                                             selector: "WKGoForward")
             menuView.addSubview(forwardButton)
             menuButtonYOffset += 50
         }
         
-        let exitButton = makeUIButton(title: .text(String(localized: "退出")), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .red, selector: "DismissWebView")
+        let exitButton = makeUIButton(title: .text(String(localized: "退出")),
+                                      frame: getMiddleRect(y: menuButtonYOffset, height: 40),
+                                      backgroundColor: .gray.opacity(0.5),
+                                      tintColor: .red,
+                                      selector: "DismissWebView")
         menuView.addSubview(exitButton)
         menuButtonYOffset += 70
         
         if !currentUrl.isEmpty && !currentUrl.hasPrefix("file://") {
-            let archiveButton = makeUIButton(title: .text(String(localized: "存储本页离线归档")), frame: getMiddleRect(y: menuButtonYOffset, height: 40), backgroundColor: .gray.opacity(0.5), tintColor: .white, selector: "ArchiveCurrentPage")
+            let archiveButton = makeUIButton(title: .text(String(localized: "存储本页离线归档")),
+                                             frame: getMiddleRect(y: menuButtonYOffset, height: 40),
+                                             backgroundColor: .gray.opacity(0.5),
+                                             tintColor: .white,
+                                             selector: "ArchiveCurrentPage")
             menuView.addSubview(archiveButton)
             menuButtonYOffset += 50
         }
@@ -270,7 +312,14 @@ class AdvancedWebViewController {
         }
     }
     
-    func makeUIButton(title: TextOrImage, frame: CGRect, backgroundColor: Color? = nil, tintColor: Color? = nil, cornerRadius: CGFloat = 8, selector: String? = nil) -> Dynamic {
+    func makeUIButton(
+        title: TextOrImage,
+        frame: CGRect,
+        backgroundColor: Color? = nil,
+        tintColor: Color? = nil,
+        cornerRadius: CGFloat = 8,
+        selector: String? = nil
+    ) -> Dynamic {
         var resultButton = Dynamic.UIButton.buttonWithType(1)
         switch title {
         case .text(let text):

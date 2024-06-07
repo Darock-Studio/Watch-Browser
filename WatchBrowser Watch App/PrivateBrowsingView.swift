@@ -129,7 +129,9 @@ struct PrivateBrowsingView: View {
                         }
                         AdvancedWebViewController.sharedPrivacy.present(textOrURL.urlEncoded())
                     } else {
-                        AdvancedWebViewController.sharedPrivacy.present(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled))
+                        AdvancedWebViewController.sharedPrivacy.present(
+                            GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)
+                        )
                     }
                     textOrURL = ""
                 }, label: {

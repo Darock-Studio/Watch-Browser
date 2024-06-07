@@ -119,13 +119,13 @@ struct MainView: View {
     @State var isNewVerAvailable = false
     var body: some View {
         List {
-//            Section {
-//                Button(action: {
-//                    Dynamic.PUICApplication.sharedPUICApplication().setExtendedIdleTime(60.0, disablesSleepGesture: true, wantsAutorotation: false)
-//                }, label: {
-//                    Text("Debug")
-//                })
-//            }
+            Section {
+                Button(action: {
+                    Dynamic.PUICApplication.sharedPUICApplication().setExtendedIdleTime(114514.0, disablesSleepGesture: true, wantsAutorotation: false)
+                }, label: {
+                    Text("Debug")
+                })
+            }
             Section {
                 Group {
                     if !ModifyKeyboard {
@@ -160,7 +160,10 @@ struct MainView: View {
                                         goToButtonLabelText = "Home.search"
                                     }
                                     if preloadSearchContent && !isUseOldWebView {
-                                        AdvancedWebViewController.shared.present(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled), presentController: false)
+                                        AdvancedWebViewController.shared.present(
+                                            GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
+                                            presentController: false
+                                        )
                                     }
                                 }
                             })
@@ -193,7 +196,10 @@ struct MainView: View {
                                         goToButtonLabelText = "Home.search"
                                     }
                                     if preloadSearchContent && !isUseOldWebView {
-                                        AdvancedWebViewController.shared.present(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled), presentController: false)
+                                        AdvancedWebViewController.shared.present(
+                                            GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
+                                            presentController: false
+                                        )
                                     }
                                 }
                             }
@@ -261,9 +267,18 @@ struct MainView: View {
                             }()
                             userdefault.set(markName, forKey: "BookmarkName\(total)")
                             if textOrURL.isURL() {
-                                userdefault.set((textOrURL.hasPrefix("https://") || textOrURL.hasPrefix("http://")) ? textOrURL.urlEncoded() : "http://" + textOrURL.urlEncoded(), forKey: "BookmarkLink\(total)")
+                                userdefault.set(
+                                    (textOrURL.hasPrefix("https://") || textOrURL.hasPrefix("http://"))
+                                    ? textOrURL.urlEncoded()
+                                    : "http://" + textOrURL.urlEncoded(),
+                                    forKey: "BookmarkLink\(total)"
+                                )
                             } else {
-                                userdefault.set(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled).urlEncoded(), forKey: "BookmarkLink\(total)")
+                                userdefault.set(
+                                    GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)
+                                        .urlEncoded(),
+                                    forKey: "BookmarkLink\(total)"
+                                )
                             }
                             userdefault.set(total, forKey: "BookmarkTotal")
                         }, label: {
@@ -292,7 +307,9 @@ struct MainView: View {
                         }
                         AdvancedWebViewController.shared.present(textOrURL.urlEncoded())
                     } else {
-                        AdvancedWebViewController.shared.present(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled))
+                        AdvancedWebViewController.shared.present(
+                            GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)
+                        )
                     }
                 }, label: {
                     HStack {
@@ -463,7 +480,10 @@ struct MainView: View {
                 }
             }
             
-            AdvancedWebViewController.shared.present(GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled), presentController: false)
+            AdvancedWebViewController.shared.present(
+                GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
+                presentController: false
+            )
         }
     }
 }

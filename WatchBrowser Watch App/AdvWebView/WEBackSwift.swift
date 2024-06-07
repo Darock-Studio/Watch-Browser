@@ -19,8 +19,14 @@ public class WEBackSwift: NSObject {
                         if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/WebArchives") {
                             try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/WebArchives", withIntermediateDirectories: false)
                         }
-                        try data.write(toFile: NSHomeDirectory() + "/Documents/WebArchives/\(curl.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")).drkdataw")
-                        UserDefaults.standard.set([curl] + (UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()), forKey: "WebArchiveList")
+                        try data.write(
+                            toFile: NSHomeDirectory()
+                            + "/Documents/WebArchives/\(curl.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")).drkdataw"
+                        )
+                        UserDefaults.standard.set(
+                            [curl] + (UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()),
+                            forKey: "WebArchiveList"
+                        )
                     } catch {
                         print(error)
                     }

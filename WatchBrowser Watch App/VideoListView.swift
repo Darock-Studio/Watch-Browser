@@ -28,7 +28,11 @@ struct VideoListView: View {
             .navigationTitle("视频列表")
             .sheet(isPresented: $isPlayerPresented, content: { VideoPlayingView(link: $willPlayVideoLink) })
             .onDisappear {
-                Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(AdvancedWebViewController.shared.vc, animated: true, completion: nil)
+                Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(
+                    AdvancedWebViewController.shared.vc,
+                    animated: true,
+                    completion: nil
+                )
                 AdvancedWebViewController.shared.registerVideoCheckTimer()
             }
         } else {
@@ -48,7 +52,10 @@ struct VideoPlayingView: View {
         TabView(selection: $mainTabViewSelection) {
             VideoPlayer(player: player)
                 .rotationEffect(.degrees(isFullScreen ? 90 : 0))
-                .frame(width: isFullScreen ? WKInterfaceDevice.current().screenBounds.height : nil, height: isFullScreen ? WKInterfaceDevice.current().screenBounds.width : nil)
+                .frame(
+                    width: isFullScreen ? WKInterfaceDevice.current().screenBounds.height : nil,
+                    height: isFullScreen ? WKInterfaceDevice.current().screenBounds.width : nil
+                )
                 .offset(y: isFullScreen ? 20 : 0)
                 .ignoresSafeArea()
                 .tag(1)
@@ -58,7 +65,10 @@ struct VideoPlayingView: View {
                         isFullScreen.toggle()
                         mainTabViewSelection = 1
                     }, label: {
-                        Label(isFullScreen ? "恢复" : "全屏", systemImage: isFullScreen ? "arrow.down.right.and.arrow.up.left" : "arrow.down.left.and.arrow.up.right")
+                        Label(
+                            isFullScreen ? "恢复" : "全屏",
+                            systemImage: isFullScreen ? "arrow.down.right.and.arrow.up.left" : "arrow.down.left.and.arrow.up.right"
+                        )
                     })
                 } header: {
                     Text("画面")

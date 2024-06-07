@@ -41,7 +41,15 @@ public class WESwiftDelegate: NSObject {
         DispatchQueue(label: "com.darock.WatchBrowser.wt.run-user-script", qos: .userInitiated).async {
             for userScriptName in userScriptNames {
                 do {
-                    let jsStr = String(data: try Data(contentsOf: URL(fileURLWithPath: NSHomeDirectory() + "/Documents/UserScripts/\(userScriptName.replacingOccurrences(of: "/", with: "{slash}")).js")), encoding: .utf8) ?? ""
+                    let jsStr = String(
+                        data: try Data(
+                            contentsOf: URL(
+                                fileURLWithPath: NSHomeDirectory()
+                                + "/Documents/UserScripts/\(userScriptName.replacingOccurrences(of: "/", with: "{slash}")).js"
+                            )
+                        ),
+                        encoding: .utf8
+                    ) ?? ""
                     Dynamic(webViewObject).evaluateJavaScript(jsStr, completionHandler: { _, _ in } as @convention(block) (Any?, (any Error)?) -> Void)
                 } catch {
                     print(error)

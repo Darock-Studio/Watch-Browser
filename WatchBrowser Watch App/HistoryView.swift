@@ -54,7 +54,10 @@ struct HistoryView: View {
                                     }
                                 }, label: {
                                     if let showName = historyTitles[histories[i]] {
-                                        if histories[i].hasPrefix("https://www.bing.com/search?q=") || histories[i].hasPrefix("https://www.baidu.com/s?wd=") || histories[i].hasPrefix("https://www.google.com/search?q=") || histories[i].hasPrefix("https://www.sogou.com/web?query=") {
+                                        if histories[i].hasPrefix("https://www.bing.com/search?q=")
+                                            || histories[i].hasPrefix("https://www.baidu.com/s?wd=")
+                                            || histories[i].hasPrefix("https://www.google.com/search?q=")
+                                            || histories[i].hasPrefix("https://www.sogou.com/web?query=") {
                                             Label(showName, systemImage: "magnifyingglass")
                                         } else if histories[i].hasPrefix("file://") {
                                             Label(showName, systemImage: "archivebox")
@@ -71,7 +74,12 @@ struct HistoryView: View {
                                         } else if histories[i].hasPrefix("https://www.sogou.com/web?query=") {
                                             Label(String(histories[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
                                         } else if histories[i].hasPrefix("file://") {
-                                            Label(String(histories[i].split(separator: "/").last!.split(separator: ".")[0]).replacingOccurrences(of: "{slash}", with: "/").base64Decoded() ?? "[解析失败]", systemImage: "archivebox")
+                                            Label(
+                                                String(histories[i].split(separator: "/").last!.split(separator: ".")[0])
+                                                    .replacingOccurrences(of: "{slash}", with: "/")
+                                                    .base64Decoded() ?? "[解析失败]",
+                                                systemImage: "archivebox"
+                                            )
                                         } else {
                                             Label(histories[i], systemImage: "globe")
                                         }
