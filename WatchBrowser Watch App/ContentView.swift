@@ -118,6 +118,14 @@ struct MainView: View {
     @State var newFeedbackCount = 0
     @State var isNewVerAvailable = false
     @State var isHaveDownloadedVideo = false
+    init(withSetting: Bool) {
+        self.withSetting = withSetting
+        
+        AdvancedWebViewController.shared.present(
+            GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
+            presentController: false
+        )
+    }
     var body: some View {
         List {
             Section {
@@ -505,10 +513,6 @@ struct MainView: View {
             } catch {
                 print(error)
             }
-            AdvancedWebViewController.shared.present(
-                GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
-                presentController: false
-            )
         }
     }
 }
