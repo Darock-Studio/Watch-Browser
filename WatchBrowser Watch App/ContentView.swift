@@ -118,7 +118,7 @@ struct MainView: View {
     @State var newFeedbackCount = 0
     @State var isNewVerAvailable = false
     @State var isHaveDownloadedVideo = false
-    init(withSetting: Bool) {
+    init(withSetting: Bool = false) {
         self.withSetting = withSetting
         
         AdvancedWebViewController.shared.present(
