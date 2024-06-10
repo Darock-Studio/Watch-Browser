@@ -1,0 +1,27 @@
+{
+  "configurations" : [
+    {
+      "id" : "7A527AB3-A3E1-495E-A193-08C85577DF21",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "areLocalizationScreenshotsEnabled" : true,
+    "testTimeoutsEnabled" : true,
+    "uiTestingScreenshotsLifetime" : "keepAlways",
+    "userAttachmentLifetime" : "keepAlways"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:WatchBrowser.xcodeproj",
+        "identifier" : "8CA1E0BC2C13DD620092DFCA",
+        "name" : "DarockBrowserUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

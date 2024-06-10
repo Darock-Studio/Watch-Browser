@@ -68,6 +68,7 @@ struct FeedbackView: View {
                 NavigationLink(destination: { NewFeedbackView() }, label: {
                     Label("新建反馈", systemImage: "exclamationmark.bubble.fill")
                 })
+                .accessibilityIdentifier("NewFeedbackButton")
                 NavigationLink(destination: { SUICChatSupportView(projName: "Darock Browser") }, label: {
                     Label("请求实时支持", systemImage: "bubble.left.and.text.bubble.right")
                 })

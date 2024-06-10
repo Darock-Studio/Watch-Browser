@@ -25,12 +25,8 @@ id webUIDelegate;
     return cbtn;
 }
 +(void) setWebViewDelegate {
-    Protocol *protocol = objc_getProtocol("WKNavigationDelegate");
-    class_addProtocol([WebExtensionDelegate class], protocol);
     webNavigationDelegate = [[WebExtensionDelegate alloc] init];
     [webViewObject setValue:webNavigationDelegate forKey:@"navigationDelegate"];
-    protocol = objc_getProtocol("WKUIDelegate");
-    class_addProtocol([WebUIDelegate class], protocol);
     webUIDelegate = [[WebUIDelegate alloc] init];
     [webViewObject setValue:webUIDelegate forKey:@"UIDelegate"];
 }

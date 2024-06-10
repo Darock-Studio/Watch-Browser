@@ -71,14 +71,17 @@ class AdvancedWebViewController {
         let url = URL(string: iurl) ?? archiveUrl!
 
         if isUseOldWebView {
-            let session = ASWebAuthenticationSession(url: url, callbackURLScheme: nil) { _, _ in
-                return
-            }
-            session.prefersEphemeralWebBrowserSession = !allowCookies
-            session.start()
-
-            if isHistoryRecording && !isInPrivacy {
-                RecordHistory(iurl, webSearch: webSearch)
+            // rdar://FB268002071845
+            if presentController {
+                let session = ASWebAuthenticationSession(url: url, callbackURLScheme: nil) { _, _ in
+                    return
+                }
+                session.prefersEphemeralWebBrowserSession = !allowCookies
+                session.start()
+                
+                if isHistoryRecording && !isInPrivacy {
+                    RecordHistory(iurl, webSearch: webSearch)
+                }
             }
             
             return Dynamic.WKWebView()
@@ -86,7 +89,8 @@ class AdvancedWebViewController {
         
         let moreButton = makeUIButton(title: .Image(UIImage(systemName: "ellipsis.circle")!),
                                       frame: CGRect(x: 10, y: 10, width: 30, height: 30),
-                                      selector: "menuButtonClicked")
+                                      selector: "menuButtonClicked",
+                                      accessibilityIdentifier: "WebMenuButton")
         
         let sb = WKInterfaceDevice.current().screenBounds
         
@@ -296,7 +300,8 @@ class AdvancedWebViewController {
                                       frame: getMiddleRect(y: menuButtonYOffset, height: 40),
                                       backgroundColor: .gray.opacity(0.5),
                                       tintColor: .red,
-                                      selector: "DismissWebView")
+                                      selector: "DismissWebView",
+                                      accessibilityIdentifier: "WebViewDismissButton")
         menuView.addSubview(exitButton)
         menuButtonYOffset += 70
         
@@ -321,7 +326,8 @@ class AdvancedWebViewController {
         backgroundColor: Color? = nil,
         tintColor: Color? = nil,
         cornerRadius: CGFloat = 8,
-        selector: String? = nil
+        selector: String? = nil,
+        accessibilityIdentifier: String? = nil
     ) -> Dynamic {
         var resultButton = Dynamic.UIButton.buttonWithType(1)
         switch title {
@@ -340,6 +346,9 @@ class AdvancedWebViewController {
         resultButton.layer.cornerRadius = cornerRadius
         if let selector {
             resultButton = Dynamic(WebExtension.getBindedButton(withSelector: selector, button: resultButton.asObject!))
+        }
+        if let accessibilityIdentifier {
+            resultButton.accessibilityIdentifier = accessibilityIdentifier
         }
         return resultButton
     }

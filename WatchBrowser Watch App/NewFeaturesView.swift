@@ -14,6 +14,7 @@ struct NewFeaturesView: View {
                 VStack {
                     Text("“暗礁浏览器”新功能")
                         .font(.system(size: 18, weight: .bold))
+                        .accessibilityIdentifier("NewFeaturesTitle")
                     SingleFeatureRow(symbol: "applescript", mainText: "用户脚本", detailText: "可在脚本商店中获取各类网页脚本")
                     SingleFeatureRow(symbol: "photo", mainText: "查看图片", detailText: "现可单独放大查看网页中的图片", navigateTo: { AnyView(
                         List {

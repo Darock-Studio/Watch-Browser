@@ -31,6 +31,7 @@ struct BookmarkView: View {
                         Spacer()
                     }
                 })
+                .accessibilityIdentifier("AddBookmarkButton")
                 .sheet(isPresented: $isNewMarkPresented, onDismiss: {
                     markTotal = UserDefaults.standard.integer(forKey: "BookmarkTotal")
                 }, content: {
@@ -112,6 +113,8 @@ struct BookmarkView: View {
 }
 
 struct AddBookmarkView: View {
+    var initMarkName: Binding<String>?
+    var initMarkLink: Binding<String>?
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var markName = ""
     @State var markLink = ""
@@ -135,6 +138,13 @@ struct AddBookmarkView: View {
                 }, label: {
                     Label("Bookmark.add", systemImage: "plus")
                 })
+            }
+        }
+        .onAppear {
+            // rdar://FB268002071827
+            if let initMarkName, let initMarkLink {
+                markName = initMarkName.wrappedValue
+                markLink = initMarkLink.wrappedValue
             }
         }
     }

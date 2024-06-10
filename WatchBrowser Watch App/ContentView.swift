@@ -51,13 +51,15 @@ struct ContentView: View {
                                     }, label: {
                                         Image(systemName: "gear")
                                     })
+                                    .accessibilityIdentifier("MainSettingsButton")
                                 }
                                 if labTabBrowsingEnabled {
                                     ToolbarItem(placement: .topBarTrailing) {
                                         Button(action: {
                                             isTabsPresented = true
                                         }, label: {
-                                            Image(systemName: "rectangle.on.rectangle.angled")
+                                            Image(systemName: "square.on.square.dashed")
+                                                .symbolRenderingMode(.hierarchical)
                                                 .foregroundColor(.white)
                                         })
                                     }
@@ -105,6 +107,7 @@ struct MainView: View {
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
     @AppStorage("ModifyKeyboard") var ModifyKeyboard = false
     @AppStorage("IsShowBetaTest1") var isShowBetaTest = true
+    @AppStorage("IsShowDAssistantAd") var isShowDAssistantAd = true
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
     @AppStorage("PreloadSearchContent") var preloadSearchContent = true
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
@@ -118,14 +121,7 @@ struct MainView: View {
     @State var newFeedbackCount = 0
     @State var isNewVerAvailable = false
     @State var isHaveDownloadedVideo = false
-    init(withSetting: Bool = false) {
-        self.withSetting = withSetting
-        
-        AdvancedWebViewController.shared.present(
-            GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
-            presentController: false
-        )
-    }
+    @State var isPreloadedInitialSearchWeb = false
     var body: some View {
         List {
             Section {
@@ -337,6 +333,7 @@ struct MainView: View {
                         Spacer()
                     }
                 })
+                .accessibilityIdentifier("MainSearchButton")
             }
             Section {
                 NavigationLink(destination: {
@@ -348,6 +345,7 @@ struct MainView: View {
                         Spacer()
                     }
                 })
+                .accessibilityIdentifier("MainBookmarkButton")
                 NavigationLink(destination: {
                     HistoryView()
                 }, label: {
@@ -357,6 +355,7 @@ struct MainView: View {
                         Spacer()
                     }
                 })
+                .accessibilityIdentifier("MainHistoryButton")
                 if !webArchiveLinks.isEmpty {
                     NavigationLink(destination: { WebArchiveListView() }, label: {
                         VStack {
@@ -397,6 +396,7 @@ struct MainView: View {
                     }
                 })
                 .disabled(isUseOldWebView)
+                .accessibilityIdentifier("MainUserScriptButton")
                 if isHaveDownloadedVideo {
                     NavigationLink(destination: { LocalVideosView() }, label: {
                         HStack {
@@ -417,8 +417,17 @@ struct MainView: View {
                         }
                     })
                 }
+                if #available(watchOS 10, *), isShowDAssistantAd {
+                    NavigationLink(destination: { DAssistAdView() }, label: {
+                        HStack {
+                            Spacer()
+                            Label("推荐 - 暗礁助手", systemImage: "sparkles")
+                            Spacer()
+                        }
+                    })
+                }
                 if isShowBetaTest {
-                    NavigationLink(destination: {MLTestsView()}, label: {
+                    NavigationLink(destination: { MLTestsView() }, label: {
                         HStack {
                             Spacer()
                             Label("Home.invatation", systemImage: "megaphone")
@@ -465,6 +474,7 @@ struct MainView: View {
                     }
                 })
                 .disabled(isNewVerAvailable)
+                .accessibilityIdentifier("MainFeedbackButton")
             }
         }
         .navigationTitle("Home.title")
@@ -512,6 +522,14 @@ struct MainView: View {
                 }
             } catch {
                 print(error)
+            }
+            
+            if !isPreloadedInitialSearchWeb {
+                AdvancedWebViewController.shared.present(
+                    GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
+                    presentController: false
+                )
+                isPreloadedInitialSearchWeb = true
             }
         }
     }

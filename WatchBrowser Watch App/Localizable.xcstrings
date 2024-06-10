@@ -345,6 +345,16 @@
         }
       }
     },
+    "3.5 订阅免费试用兑换" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3.5 Subscription Free Trial Redemption"
+          }
+        }
+      }
+    },
     "3x" : {
       "localizations" : {
         "en" : {
@@ -373,6 +383,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "4.0 订阅免费试用兑换" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4.0 Subscription Free Trial Redemption"
           }
         }
       }
@@ -757,13 +777,12 @@
         }
       }
     },
-    "Darock 会收集必要的诊断信息以便进行改进，信息不会关联到您个人。如果您不愿意被收集信息，请勿发送。" : {
-      "extractionState" : "stale",
+    "Darock 为暗礁浏览器用户准备了暗礁助手的订阅免费试用" : {
       "localizations" : {
-        "zh-Hant" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Darock會收集必要的診斷資訊以便進行改進，資訊不會關聯到您個人。 如果您不願意被收集資訊，請勿發送。"
+            "value" : "Darock provides a subscription free trial of the Darock Assistant for users of the Darock Browser"
           }
         }
       }
@@ -1474,17 +1493,6 @@
         }
       }
     },
-    "Keybord.finish" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Done"
-          }
-        }
-      }
-    },
     "NearestHistories.drkdatan" : {
       "localizations" : {
         "en" : {
@@ -1663,17 +1671,6 @@
         }
       }
     },
-    "Settings.cookies.pop-up" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
     "Settings.cookies.privacy" : {
       "localizations" : {
         "en" : {
@@ -1692,17 +1689,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darock 無法知曉或查看任何網頁信息"
-          }
-        }
-      }
-    },
-    "Settings.invatation" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "欢迎加入QQ交流群 248036605"
           }
         }
       }
@@ -1889,17 +1875,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "sou s"
-          }
-        }
-      }
-    },
-    "Settings.search.customize" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
           }
         }
       }
@@ -2128,23 +2103,6 @@
         }
       }
     },
-    "Settings.search.engine.default" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "默认搜索引擎"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "默認搜索引擎"
-          }
-        }
-      }
-    },
     "Settings.search.shorcut" : {
       "localizations" : {
         "en" : {
@@ -2163,17 +2121,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "搜索引擎kuai jie fang s"
-          }
-        }
-      }
-    },
-    "Settings.search.shorcut.title" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
           }
         }
       }
@@ -2274,6 +2221,16 @@
         }
       }
     },
+    "上一小时" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last hour"
+          }
+        }
+      }
+    },
     "上一页" : {
       "localizations" : {
         "en" : {
@@ -2286,23 +2243,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "上一頁"
-          }
-        }
-      }
-    },
-    "下一步" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "下一步"
           }
         }
       }
@@ -2329,6 +2269,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Download Completed"
+          }
+        }
+      }
+    },
+    "下载时出错：" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An error occurred when downloading: "
           }
         }
       }
@@ -2365,6 +2315,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "QR Code"
+          }
+        }
+      }
+    },
+    "今天" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today"
           }
         }
       }
@@ -2537,6 +2497,16 @@
         }
       }
     },
+    "关闭所有标签页" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close all tabs"
+          }
+        }
+      }
+    },
     "内容" : {
       "localizations" : {
         "en" : {
@@ -2633,6 +2603,16 @@
         }
       }
     },
+    "前往 App Store 下载" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download on the App Store"
+          }
+        }
+      }
+    },
     "历史记录" : {
       "localizations" : {
         "en" : {
@@ -2705,17 +2685,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "迴響類型"
-          }
-        }
-      }
-    },
-    "发送" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "發送"
           }
         }
       }
@@ -2874,6 +2843,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Image List"
+          }
+        }
+      }
+    },
+    "在 iPhone 上继续" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue on iPhone"
           }
         }
       }
@@ -3164,6 +3143,26 @@
         }
       }
     },
+    "或在 iPhone 上的 App Store 继续" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "or continue on the App Store on iPhone"
+          }
+        }
+      }
+    },
+    "所有历史记录" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All history"
+          }
+        }
+      }
+    },
     "打开%@浏览菜单" : {
       "localizations" : {
         "en" : {
@@ -3272,6 +3271,16 @@
         }
       }
     },
+    "推荐 - 暗礁助手" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suggestion - Darock Assistant"
+          }
+        }
+      }
+    },
     "描述" : {
       "localizations" : {
         "en" : {
@@ -3359,12 +3368,12 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "提交"
+            "value" : "提交反馈前，请先检查常见问题"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "提交反饋前，請先檢查常見問題"
           }
         }
@@ -3596,23 +3605,6 @@
         }
       }
     },
-    "无自定搜索引擎" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "無自定搜尋引擎"
-          }
-        }
-      }
-    },
     "旧版引擎拥有更好的稳定性，但缺少部分高级功能" : {
       "localizations" : {
         "en" : {
@@ -3631,6 +3623,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "舊版引擎擁有更好的穩定性，但缺少部分高級功能"
+          }
+        }
+      }
+    },
+    "昨天和今天" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today and yesterday"
           }
         }
       }
@@ -3949,6 +3951,26 @@
         }
       }
     },
+    "清除历史记录" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear Histories"
+          }
+        }
+      }
+    },
+    "清除时间段" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear Timeframe"
+          }
+        }
+      }
+    },
     "状态" : {
       "localizations" : {
         "en" : {
@@ -4023,6 +4045,16 @@
         }
       }
     },
+    "由 Darock 开发的暗礁助手让您能够在 iPhone 和 Apple Watch 上与 AI 对话并获取帮助" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Darock Assistant developed by Darock allows you to converse with AI and get help on your iPhone and Apple Watch"
+          }
+        }
+      }
+    },
     "由“反馈助理”收集的诊断数据可能包含个人信息。你可以在提交前轻点查看附加数据，或向左轻扫删除。" : {
       "localizations" : {
         "en" : {
@@ -4063,6 +4095,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "hua m"
+          }
+        }
+      }
+    },
+    "确定" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm"
+          }
+        }
+      }
+    },
+    "确定吗？" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure?"
           }
         }
       }
@@ -4179,17 +4231,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Empty Video List"
-          }
-        }
-      }
-    },
-    "简洁地描述问题" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "簡潔地描述問題"
           }
         }
       }
@@ -4342,17 +4383,6 @@
         }
       }
     },
-    "详情" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "詳情"
-          }
-        }
-      }
-    },
     "请为你的反馈提供描述性的标题：" : {
       "localizations" : {
         "en" : {
@@ -4483,6 +4513,16 @@
         }
       }
     },
+    "退出并不再显示" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exit and don‘t show again"
+          }
+        }
+      }
+    },
     "选取历史记录" : {
       "localizations" : {
         "en" : {
@@ -4581,6 +4621,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "fu jian"
+          }
+        }
+      }
+    },
+    "附加选项" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Additional Options"
           }
         }
       }

@@ -12,20 +12,26 @@ struct HistoryView: View {
     var selectionHandler: ((String) -> Void)?
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
     @AppStorage("AllowCookies") var AllowCookies = false
+    @AppStorage("LabTabBrowsingEnabled") var labTabBrowsingEnabled = false
     @State var isSettingPresented = false
     @State var isStopRecordingPagePresenting = false
     @State var histories = [String]()
     @State var historyTitles = [String: String]()
     @State var isSharePresented = false
     @State var isNewBookmarkPresented = false
+    @State var isClearOptionsPresented = false
     @State var shareLink = ""
     @State var searchText = ""
+    @State var newBookmarkName = ""
     @State var newBookmarkLink = ""
+    @State var selectedEmptyAction = 0
+    @State var isAdditionalCloseAllTabs = false
     var body: some View {
         List {
             if selectionHandler == nil {
                 Section {
                     Toggle("History.record", isOn: $isHistoryRecording)
+                        .accessibilityIdentifier("RecordHistoryToggle")
                         .onChange(of: isHistoryRecording, perform: { e in
                             if !e {
                                 isStopRecordingPagePresenting = true
@@ -101,6 +107,11 @@ struct HistoryView: View {
                                 }
                                 .swipeActions(edge: .leading) {
                                     Button(action: {
+                                        if let showName = historyTitles[histories[i]], !showName.isEmpty {
+                                            newBookmarkName = showName
+                                        } else {
+                                            newBookmarkName = ""
+                                        }
                                         newBookmarkLink = histories[i].urlDecoded().urlEncoded()
                                         isNewBookmarkPresented = true
                                     }, label: {
@@ -126,7 +137,136 @@ struct HistoryView: View {
             }
         }
         .sheet(isPresented: $isSharePresented, content: {ShareView(linkToShare: $shareLink)})
-        .sheet(isPresented: $isNewBookmarkPresented, content: {AddBookmarkView(markLink: newBookmarkLink)})
+        .sheet(isPresented: $isNewBookmarkPresented, content: {AddBookmarkView(initMarkName: $newBookmarkName, initMarkLink: $newBookmarkLink)})
+        .sheet(isPresented: $isClearOptionsPresented) {
+            NavigationStack {
+                List {
+                    Section {
+                        Button(action: {
+                            selectedEmptyAction = 0
+                        }, label: {
+                            HStack {
+                                Text("上一小时")
+                                    .foregroundStyle(Color.white)
+                                Spacer()
+                                if selectedEmptyAction == 0 {
+                                    Image(systemName: "checkmark")
+                                        .foregroundStyle(Color.blue)
+                                }
+                            }
+                        })
+                        Button(action: {
+                            selectedEmptyAction = 1
+                        }, label: {
+                            HStack {
+                                Text("今天")
+                                    .foregroundStyle(Color.white)
+                                Spacer()
+                                if selectedEmptyAction == 1 {
+                                    Image(systemName: "checkmark")
+                                        .foregroundStyle(Color.blue)
+                                }
+                            }
+                        })
+                        Button(action: {
+                            selectedEmptyAction = 2
+                        }, label: {
+                            HStack {
+                                Text("昨天和今天")
+                                    .foregroundStyle(Color.white)
+                                Spacer()
+                                if selectedEmptyAction == 2 {
+                                    Image(systemName: "checkmark")
+                                        .foregroundStyle(Color.blue)
+                                }
+                            }
+                        })
+                        Button(action: {
+                            selectedEmptyAction = 3
+                        }, label: {
+                            HStack {
+                                Text("所有历史记录")
+                                    .foregroundStyle(Color.white)
+                                Spacer()
+                                if selectedEmptyAction == 3 {
+                                    Image(systemName: "checkmark")
+                                        .foregroundStyle(Color.blue)
+                                }
+                            }
+                        })
+                    } header: {
+                        Text("清除时间段")
+                            .textCase(nil)
+                    }
+                    if labTabBrowsingEnabled && !(UserDefaults.standard.stringArray(forKey: "CurrentTabs") ?? [String]()).isEmpty {
+                        Section {
+                            Toggle("关闭所有标签页", isOn: $isAdditionalCloseAllTabs)
+                        } header: {
+                            Text("附加选项")
+                                .textCase(nil)
+                        }
+                    }
+                    Section {
+                        Button(role: .destructive, action: {
+                            if isAdditionalCloseAllTabs {
+                                UserDefaults.standard.set([String](), forKey: "CurrentTabs")
+                            }
+                            if selectedEmptyAction == 3 {
+                                histories.removeAll()
+                                historyTitles.removeAll()
+                                UserDefaults.standard.set(histories, forKey: "WebHistory")
+                                UserDefaults.standard.set(historyTitles, forKey: "WebHistoryNames")
+                                isClearOptionsPresented = false
+                                return
+                            }
+                            if let recordTimePair = UserDefaults.standard.dictionary(forKey: "WebHistoryRecordTimes") as? [String: Double] {
+                                let currentTime = Date.now.timeIntervalSince1970
+                                var maxTimeDiff = 0.0
+                                switch selectedEmptyAction {
+                                case 0:
+                                    maxTimeDiff = 3600
+                                case 1:
+                                    maxTimeDiff = 86400
+                                case 2:
+                                    maxTimeDiff = 172800
+                                default:
+                                    break
+                                }
+                                for i in 0..<histories.count {
+                                    if let time = recordTimePair[histories[i]], currentTime - time <= maxTimeDiff {
+                                        histories[i] = "[History Remove Token]"
+                                    }
+                                }
+                                histories.removeAll(where: { element in
+                                    if element == "[History Remove Token]" {
+                                        return true
+                                    }
+                                    return false
+                                })
+                            }
+                            UserDefaults.standard.set(histories, forKey: "WebHistory")
+                            isClearOptionsPresented = false
+                        }, label: {
+                            Text("清除历史记录")
+                                .bold()
+                        })
+                    }
+                }
+                .navigationTitle("清除历史记录")
+            }
+        }
+        .toolbar {
+            if #available(watchOS 10, *), !histories.isEmpty && isHistoryRecording {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(role: .destructive, action: {
+                        isClearOptionsPresented = true
+                    }, label: {
+                        Image(systemName: "arrow.up.trash.fill")
+                            .foregroundColor(.red)
+                    })
+                }
+            }
+        }
         .onAppear {
             histories = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
             historyTitles = (UserDefaults.standard.dictionary(forKey: "WebHistoryNames") as? [String: String]) ?? [String: String]()
@@ -148,6 +288,9 @@ func RecordHistory(_ inp: String, webSearch: String, showName: String? = nil) {
             tmpDic.updateValue(showName, forKey: inp)
             UserDefaults.standard.set(tmpDic, forKey: "WebHistoryNames")
         }
+        var tmpDic = (UserDefaults.standard.dictionary(forKey: "WebHistoryRecordTimes") as? [String: Double]) ?? [String: Double]()
+        tmpDic.updateValue(Date.now.timeIntervalSince1970, forKey: inp)
+        UserDefaults.standard.set(tmpDic, forKey: "WebHistoryRecordTimes")
     } else {
         let rurl = GetWebSearchedURL(inp, webSearch: webSearch, isSearchEngineShortcutEnabled: false)
         fullHistory = [rurl] + fullHistory
@@ -156,6 +299,9 @@ func RecordHistory(_ inp: String, webSearch: String, showName: String? = nil) {
             tmpDic.updateValue(showName, forKey: rurl)
             UserDefaults.standard.set(tmpDic, forKey: "WebHistoryNames")
         }
+        var tmpDic = (UserDefaults.standard.dictionary(forKey: "WebHistoryRecordTimes") as? [String: Double]) ?? [String: Double]()
+        tmpDic.updateValue(Date.now.timeIntervalSince1970, forKey: inp)
+        UserDefaults.standard.set(tmpDic, forKey: "WebHistoryRecordTimes")
     }
     UserDefaults.standard.set(fullHistory, forKey: "WebHistory")
 }

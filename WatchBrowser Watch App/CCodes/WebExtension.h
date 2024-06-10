@@ -34,6 +34,7 @@ NSTimer *videoCheckTimer;
 +(id) getBindedButtonWithSelector: (NSString *)selector button:(id) button;
 +(void) setWebViewDelegate;
 +(void) PresentVideoList;
++(void) DismissWebView;
 
 @end
 

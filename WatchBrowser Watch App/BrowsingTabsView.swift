@@ -10,9 +10,11 @@ import Dynamic
 
 var tabCurrentReferences = [String: TabWebKitReference]()
 
+@available(watchOS 10.0, *)
 struct BrowsingTabsView: View {
     @State var tabs = [String]()
     @State var convertTitles = [String: String]()
+    @State var isClearWarningPresented = false
     var body: some View {
         List {
             Section {
@@ -44,6 +46,35 @@ struct BrowsingTabsView: View {
             }
         }
         .navigationTitle("标签页")
+        .alert("关闭所有标签页", isPresented: $isClearWarningPresented, actions: {
+            Button(role: .destructive, action: {
+                tabs.removeAll()
+                convertTitles.removeAll()
+                UserDefaults.standard.set(tabs, forKey: "CurrentTabs")
+                UserDefaults.standard.set(convertTitles, forKey: "WebHistoryNames")
+            }, label: {
+                Text("确定")
+            })
+            Button(role: .cancel, action: {
+                
+            }, label: {
+                Text("取消")
+            })
+        }, message: {
+            Text("确定吗？")
+        })
+        .toolbar {
+            if !tabs.isEmpty {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(role: .destructive, action: {
+                        isClearWarningPresented = true
+                    }, label: {
+                        Image(systemName: "trash.fill")
+                            .foregroundColor(.red)
+                    })
+                }
+            }
+        }
         .onAppear {
             tabs = UserDefaults.standard.stringArray(forKey: "CurrentTabs") ?? [String]()
             convertTitles = (UserDefaults.standard.dictionary(forKey: "WebHistoryNames") as? [String: String]) ?? [String: String]()

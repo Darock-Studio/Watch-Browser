@@ -139,6 +139,7 @@ struct VideoDownloadView: View {
     @State var downloadProgress = ValuedProgress(completedUnitCount: 0, totalUnitCount: 0)
     @State var isFinishedDownload = false
     @State var isTerminateDownloadingAlertPresented = false
+    @State var errorText = ""
     var body: some View {
         NavigationStack {
             List {
@@ -186,6 +187,12 @@ struct VideoDownloadView: View {
                         }
                     }
                 }
+                if !errorText.isEmpty {
+                    Section {
+                        Text(errorText)
+                            .foregroundColor(.red)
+                    }
+                }
             }
             .navigationTitle("下载视频")
             .toolbar(.hidden, for: .navigationBar)
@@ -211,7 +218,7 @@ struct VideoDownloadView: View {
                     try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos", withIntermediateDirectories: true)
                 }
                 let destination: DownloadRequest.Destination = { _, _ in
-                    return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/DownloadedVideos/\(String(videoLink.split(separator: "/").last!))"),
+                    return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/DownloadedVideos/\(String(videoLink.split(separator: "/").last!.split(separator: ".mp4?")[0])).mp4"),
                             [.removePreviousFile, .createIntermediateDirectories])
                 }
                 AF.download(videoLink, to: destination)
@@ -225,7 +232,9 @@ struct VideoDownloadView: View {
                             debugPrint(filePath)
                             isFinishedDownload = true
                         } else {
-                            
+                            if let et = result.error?.localizedDescription {
+                                errorText = String(localized: "下载时出错：") + et
+                            }
                         }
                     }
             } catch {

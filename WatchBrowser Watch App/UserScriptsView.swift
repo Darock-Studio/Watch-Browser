@@ -17,6 +17,7 @@ struct UserScriptsView: View {
                 NavigationLink(destination: { UserScriptsAddView() }, label: {
                     Label("添加脚本", systemImage: "plus")
                 })
+                .accessibilityIdentifier("AddUserScriptButton")
             }
             Section {
                 if !scriptNames.isEmpty {
