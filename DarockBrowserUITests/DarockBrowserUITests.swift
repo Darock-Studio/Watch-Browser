@@ -27,7 +27,7 @@ final class DarockBrowserUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        if _slowPath(app.staticTexts["NewFeaturesTitle"].exists) {
+        if _slowPath(app.textViews["NewFeaturesTitle"].exists) {
             app.navigationBars.buttons.element(boundBy: 0).tap()
         }
         // Main Page
