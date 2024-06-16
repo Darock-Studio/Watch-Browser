@@ -19,13 +19,14 @@
 		6BF209FB2990E61E00E623FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BF209FA2990E61E00E623FC /* Preview Assets.xcassets */; };
 		6BF20A0A299100AE00E623FC /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF20A09299100AE00E623FC /* BookmarkView.swift */; };
 		6BFFCC562A8A6CF3001175EE /* DarockKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6BFFCC552A8A6CF3001175EE /* DarockKit */; };
-		8C6D86772C10C59C0089CE67 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C6D86762C10C59C0089CE67 /* SwiftyStoreKit */; };
+		8C5D647D2C1D9D0D008E591B /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C6D86762C10C59C0089CE67 /* SwiftyStoreKit */; };
+		8C5D64802C1D9D7C008E591B /* Cepheus in Frameworks */ = {isa = PBXBuildFile; productRef = 8C5D647F2C1D9D7C008E591B /* Cepheus */; };
+		8C5D64832C1D9D9C008E591B /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8C5D64822C1D9D9C008E591B /* MarkdownUI */; };
 		8C6D86792C10C6A70089CE67 /* LaboratoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D86782C10C6A70089CE67 /* LaboratoryView.swift */; };
 		8C6D867B2C10CA680089CE67 /* BrowsingTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D867A2C10CA680089CE67 /* BrowsingTabsView.swift */; };
 		8C6E11DD2BDBF464005420C0 /* NewFeaturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E11DC2BDBF464005420C0 /* NewFeaturesView.swift */; };
 		8C6E11DF2BDC029E005420C0 /* WEBackSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E11DE2BDC029E005420C0 /* WEBackSwift.swift */; };
 		8C6E11E12BDC0638005420C0 /* WebArchiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E11E02BDC0638005420C0 /* WebArchiveListView.swift */; };
-		8C894B202BE7527200768B59 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8C894B1F2BE7527200768B59 /* MarkdownUI */; };
 		8C894B222BE7569300768B59 /* ExtKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C894B212BE7569300768B59 /* ExtKeyboardView.swift */; };
 		8C96E34B2C15901400751FAF /* DAssistAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C96E34A2C15901400751FAF /* DAssistAdView.swift */; };
 		8CA1E0C02C13DD620092DFCA /* DarockBrowserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1E0BF2C13DD620092DFCA /* DarockBrowserUITests.swift */; };
@@ -45,7 +46,6 @@
 		8CB803CC2BD3D776009B2FAC /* Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 8CB803CB2BD3D776009B2FAC /* Dynamic */; };
 		8CB803D02BD3DCE4009B2FAC /* WebExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB803CF2BD3DCE4009B2FAC /* WebExtension.m */; };
 		8CB803D42BD3E6D1009B2FAC /* AdvancedWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB803D32BD3E6D1009B2FAC /* AdvancedWebView.swift */; };
-		8CBCBAF22BE555DD00DF017E /* CepheusKeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8CBCBAF12BE555DD00DF017E /* CepheusKeyboardKit */; };
 		8CF5DC4F2BAE04D5007F9974 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF5DC4E2BAE04D5007F9974 /* ShareView.swift */; };
 		E25EA8382B70ABEF00BFEC6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E25EA83A2B70ABEF00BFEC6E /* InfoPlist.strings */; };
 		E296FE022A459C5D00331BD4 /* BulletinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E296FE012A459C5D00331BD4 /* BulletinView.swift */; };
@@ -137,18 +137,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C5D647D2C1D9D0D008E591B /* SwiftyStoreKit in Frameworks */,
 				8CA7B84F2BE3E053004643FE /* SDWebImageWebPCoder in Frameworks */,
 				8CA7B84C2BE3E025004643FE /* SDWebImageSwiftUI in Frameworks */,
+				8C5D64832C1D9D9C008E591B /* MarkdownUI in Frameworks */,
 				8CB803CC2BD3D776009B2FAC /* Dynamic in Frameworks */,
 				8CAC41BB2BEFF32300CE9278 /* SupportsUICore in Frameworks */,
 				6B0253D82A4EFB0100567986 /* DarockKit in Frameworks */,
 				6BFFCC562A8A6CF3001175EE /* DarockKit in Frameworks */,
 				8CA4537B2AE3C5F600138CE4 /* EFQRCode in Frameworks */,
 				8CAF38F72BD4F960006B9B16 /* SwiftSoup in Frameworks */,
-				8CBCBAF22BE555DD00DF017E /* CepheusKeyboardKit in Frameworks */,
-				8C6D86772C10C59C0089CE67 /* SwiftyStoreKit in Frameworks */,
 				8CA7B8522BE3E078004643FE /* SDWebImageSVGCoder in Frameworks */,
-				8C894B202BE7527200768B59 /* MarkdownUI in Frameworks */,
+				8C5D64802C1D9D7C008E591B /* Cepheus in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,10 +311,10 @@
 				8CA7B84B2BE3E025004643FE /* SDWebImageSwiftUI */,
 				8CA7B84E2BE3E053004643FE /* SDWebImageWebPCoder */,
 				8CA7B8512BE3E078004643FE /* SDWebImageSVGCoder */,
-				8CBCBAF12BE555DD00DF017E /* CepheusKeyboardKit */,
-				8C894B1F2BE7527200768B59 /* MarkdownUI */,
 				8CAC41BA2BEFF32300CE9278 /* SupportsUICore */,
 				8C6D86762C10C59C0089CE67 /* SwiftyStoreKit */,
+				8C5D647F2C1D9D7C008E591B /* Cepheus */,
+				8C5D64822C1D9D9C008E591B /* MarkdownUI */,
 			);
 			productName = "WatchBrowser Watch App";
 			productReference = 6BF209EE2990E61C00E623FC /* DarockBrowser.app */;
@@ -381,10 +381,10 @@
 				8CA7B84A2BE3E025004643FE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				8CA7B84D2BE3E053004643FE /* XCRemoteSwiftPackageReference "SDWebImageWebPCoder" */,
 				8CA7B8502BE3E078004643FE /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */,
-				8CBCBAF02BE555DC00DF017E /* XCRemoteSwiftPackageReference "Cepheus" */,
-				8C894B1E2BE7527200768B59 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 				8CAC41B92BEFF32200CE9278 /* XCRemoteSwiftPackageReference "SupportsUICore" */,
 				8C6D86752C10C59C0089CE67 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
+				8C5D647E2C1D9D7C008E591B /* XCRemoteSwiftPackageReference "Cepheus" */,
+				8C5D64812C1D9D9C008E591B /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 			);
 			productRefGroup = 6BF209E92990E61C00E623FC /* Products */;
 			projectDirPath = "";
@@ -629,13 +629,14 @@
 				IBSC_OTHER_FLAGS = "--target-device iphone";
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "暗礁浏览器需要获取您的位置信息以提供基于位置的“安全延时”功能，您的位置信息仅保存在您的本地设备上。";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5.2;
+				MARKETING_VERSION = 4.6.0;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -643,7 +644,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "WatchBrowser Watch App/CCodes/WatchBrowser Watch App-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 9.0;
@@ -662,18 +662,20 @@
 				DEVELOPMENT_ASSET_PATHS = "\"WatchBrowser Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = B57D8PP775;
 				ENABLE_PREVIEWS = YES;
+				GCC_OPTIMIZATION_LEVEL = z;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_ERRORS = YES;
 				IBSC_OTHER_FLAGS = "--target-device iphone";
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "暗礁浏览器需要获取您的位置信息以提供基于位置的“安全延时”功能，您的位置信息仅保存在您的本地设备上。";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5.2;
+				MARKETING_VERSION = 4.6.0;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -681,6 +683,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "WatchBrowser Watch App/CCodes/WatchBrowser Watch App-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
@@ -696,8 +699,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B57D8PP775;
-				INFOPLIST_KEY_CFBundleDisplayName = WatchBrowser;
-				MARKETING_VERSION = 4.5.2;
+				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
+				MARKETING_VERSION = 4.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -713,11 +716,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B57D8PP775;
-				INFOPLIST_KEY_CFBundleDisplayName = WatchBrowser;
-				MARKETING_VERSION = 4.5.2;
+				GCC_OPTIMIZATION_LEVEL = z;
+				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
+				MARKETING_VERSION = 4.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -819,20 +824,28 @@
 				kind = branch;
 			};
 		};
+		8C5D647E2C1D9D7C008E591B /* XCRemoteSwiftPackageReference "Cepheus" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Serene-Garden/Cepheus";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.1;
+			};
+		};
+		8C5D64812C1D9D9C008E591B /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/electricsidecar-dev/swift-markdown-ui";
+			requirement = {
+				branch = recursive;
+				kind = branch;
+			};
+		};
 		8C6D86752C10C59C0089CE67 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.16.4;
-			};
-		};
-		8C894B1E2BE7527200768B59 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.3.0;
 			};
 		};
 		8CA453792AE3C5F600138CE4 /* XCRemoteSwiftPackageReference "EFQRCode" */ = {
@@ -891,14 +904,6 @@
 				minimumVersion = 1.2.0;
 			};
 		};
-		8CBCBAF02BE555DC00DF017E /* XCRemoteSwiftPackageReference "Cepheus" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/WindowsMEMZ/Cepheus";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -911,15 +916,20 @@
 			package = 6BFFCC542A8A6CF3001175EE /* XCRemoteSwiftPackageReference "DarockKit" */;
 			productName = DarockKit;
 		};
+		8C5D647F2C1D9D7C008E591B /* Cepheus */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C5D647E2C1D9D7C008E591B /* XCRemoteSwiftPackageReference "Cepheus" */;
+			productName = Cepheus;
+		};
+		8C5D64822C1D9D9C008E591B /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C5D64812C1D9D9C008E591B /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
 		8C6D86762C10C59C0089CE67 /* SwiftyStoreKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8C6D86752C10C59C0089CE67 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
 			productName = SwiftyStoreKit;
-		};
-		8C894B1F2BE7527200768B59 /* MarkdownUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8C894B1E2BE7527200768B59 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
-			productName = MarkdownUI;
 		};
 		8CA4537A2AE3C5F600138CE4 /* EFQRCode */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -955,11 +965,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8CB803CA2BD3D776009B2FAC /* XCRemoteSwiftPackageReference "Dynamic" */;
 			productName = Dynamic;
-		};
-		8CBCBAF12BE555DD00DF017E /* CepheusKeyboardKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8CBCBAF02BE555DC00DF017E /* XCRemoteSwiftPackageReference "Cepheus" */;
-			productName = CepheusKeyboardKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

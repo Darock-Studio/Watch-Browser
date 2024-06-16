@@ -1,5 +1,5 @@
 {
-  "originHash" : "ba2535d2f5116e953d913ff3671f8e2979ee97ff2ade610488836a25a95b3f22",
+  "originHash" : "1160e0ffdac6f39e10f8dccce5fb9ced1c04b9d084f0a978fdf44e1321ee4fd1",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -13,10 +13,10 @@
     {
       "identity" : "cepheus",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/WindowsMEMZ/Cepheus",
+      "location" : "https://github.com/Serene-Garden/Cepheus",
       "state" : {
-        "branch" : "main",
-        "revision" : "73b8735ce8f7e663d3ce73fd58eb5dc41b23f26c"
+        "revision" : "38adeadadc1b52a61db4078a80aac98af3311890",
+        "version" : "2.0.2"
       }
     },
     {
@@ -25,7 +25,7 @@
       "location" : "https://github.com/Darock-Studio/DarockKit",
       "state" : {
         "branch" : "main",
-        "revision" : "0735d98596b3fe5280a3d287264150d4ae202076"
+        "revision" : "41a80cde6aca2756133a25b7fc3e8c11d8f27a3e"
       }
     },
     {
@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "5642d1ffe3dbe628592443bd14154e31929727b4",
-        "version" : "5.19.2"
+        "revision" : "b8523c1642f3c142b06dd98443ea7c48343a4dfd",
+        "version" : "5.19.3"
       }
     },
     {
@@ -112,10 +112,10 @@
     {
       "identity" : "swift-markdown-ui",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/gonzalezreal/swift-markdown-ui",
+      "location" : "https://github.com/electricsidecar-dev/swift-markdown-ui",
       "state" : {
-        "revision" : "ae799d015a5374708f7b4c85f3294c05f2a564e2",
-        "version" : "2.3.0"
+        "branch" : "recursive",
+        "revision" : "f0d1b7fe722e6eda41db2e56f75529956ffa42fa"
       }
     },
     {

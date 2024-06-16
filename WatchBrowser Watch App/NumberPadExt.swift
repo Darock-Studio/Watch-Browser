@@ -5,268 +5,169 @@
 //  Created by memz233 on 2024/2/19.
 //
 
-// From GitHub repo: https://github.com/ApplebaumIan/SwiftUI-Apple-Watch-Decimal-Pad
+// From GitHub repo: https://github.com/ApplebaumIan/SwiftUI-Apple-Watch-Decimal-Pad. Edited
 
 import SwiftUI
 
-public struct DigiTextView: View {
-    private var locale: Locale
-    var style: KeyboardStyle
-    var placeholder: String
-    @Binding public var text: String
-    @State public var presentingModal: Bool
-    
-    var align: TextViewAlignment
-    public init( placeholder: String, text: Binding<String>, presentingModal:Bool, alignment: TextViewAlignment = .center,style: KeyboardStyle = .numbers, locale: Locale = .current){
-        _text = text
-        _presentingModal = State(initialValue: presentingModal)
-        self.align = alignment
-        self.placeholder = placeholder
-        self.style = style
-        self.locale = locale
-    }
-    
-    public var body: some View {
-        Button(action: {
-            presentingModal.toggle()
-        }) {
-            if text != ""{
-                Text(text)
-            }
-            else{
-                Text(placeholder)
-                    .lineLimit(1)
-                    .opacity(0.5)
-            }
-        }.buttonStyle(TextViewStyle(alignment: align))
-        .sheet(isPresented: $presentingModal, content: {
-            EnteredText(text: $text, presentedAsModal: $presentingModal, style: self.style, locale: locale)
-        })
-    }
-}
-
-public struct EnteredText: View {
-    @Binding var text:String
-    @Binding var presentedAsModal: Bool
-    var style: KeyboardStyle
-    var watchOSDimensions: CGRect?
-    private var locale: Locale
-    
-    public init(text: Binding<String>, presentedAsModal:
-                Binding<Bool>, style: KeyboardStyle, locale: Locale = .current){
-        _text = text
-        _presentedAsModal = presentedAsModal
-        self.style = style
-        self.locale = locale
-        let device = WKInterfaceDevice.current()
-        watchOSDimensions = device.screenBounds
-    }
-    public var body: some View{
-        VStack(alignment: .trailing) {
-                Button(action:{
-                    presentedAsModal.toggle()
-                }){
-                    ZStack(content: {
-                        Text("1")
-                            .font(.title2)
-                            .foregroundColor(.clear
-                            )
-                    })
-                    Text(text)
-                        .font(.title2)
-                        .frame(height: watchOSDimensions!.height * 0.15, alignment: .trailing)
+struct PasswordInputView: View {
+    @Binding var text: String
+    var placeholder: LocalizedStringKey
+    var hideCancelButton: Bool = false
+    var dismissAfterComplete = true
+    var completion: ((String) -> Void)?
+    @Environment(\.dismiss) var dismiss
+    var body: some View {
+        VStack {
+            Spacer()
+                .frame(height: 26)
+            Group {
+                if !text.isEmpty {
+                    HStack(spacing: 5) {
+                        ForEach(1...6, id: \.self) { i in
+                            Circle()
+                                .fill(Color.white)
+                                .frame(width: 10, height: 10)
+                                .opacity(text.count >= i ? 1.0 : 0.4)
+                        }
+                    }
+                } else {
+                    Text(placeholder)
+                        .font(.system(size: 13))
                 }
-                .buttonStyle(PlainButtonStyle())
-                .multilineTextAlignment(.trailing)
-                .lineLimit(1)
-                
-                DigetPadView(text: $text, style: style, locale: locale)
-                    .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+            }
+            .frame(height: 12)
+            DigitPadView(text: $text)
+            if !hideCancelButton {
+                ZStack {
+                    Capsule()
+                        .fill(Color.red)
+                        .frame(width: WKInterfaceDevice.current().screenBounds.width - 28, height: 28)
+                    Text("取消")
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                }
+                .onTapGesture {
+                    dismiss()
+                }
+            }
+            Spacer()
+                .frame(height: 5)
         }
-        .toolbar(content: {
-            ToolbarItem(placement: .cancellationAction){
-                Button {
-                    presentedAsModal.toggle()
-                } label: {
-                    Label("Done", systemImage: "xmark")
+        .ignoresSafeArea()
+        .onChange(of: text) { value in
+            if value.count == 6 {
+                completion?(value)
+                if dismissAfterComplete {
+                    dismiss()
                 }
             }
-        })
-        
+        }
     }
 }
 
- public struct DigetPadView: View {
-    public var widthSpace: CGFloat = 1.0
-    @Binding var text:String
-    var style: KeyboardStyle
-    private var decimalSeparator: String
-    public init(text: Binding<String>, style: KeyboardStyle, locale: Locale = .current) {
-        _text = text
-        self.style = style
-
-        let numberFormatter = NumberFormatter()
-        numberFormatter.locale = locale
-        decimalSeparator = numberFormatter.decimalSeparator
-    }
-     public var body: some View {
-        VStack(spacing: 1) {
-            HStack(spacing: widthSpace){
+struct DigitPadView: View {
+    @Binding var text: String
+    var body: some View {
+        VStack(spacing: 2) {
+            HStack(spacing: 2){
                 Button(action: {
                     text.append("1")
                 }) {
                     Text("1")
                         .padding(0)
                 }
-                .digitKeyFrame()
+                .buttonStyle(DigitPadStyle(scaleAnchor: .topLeading))
                 Button(action: {
                     text.append("2")
                 }) {
                     Text("2")
-                }.digitKeyFrame()
-                
+                }
+                .buttonStyle(DigitPadStyle(scaleAnchor: .top))
                 Button(action: {
                     text.append("3")
                 }) {
-                            Text("3")
-                        }.digitKeyFrame()
+                    Text("3")
+                }
+                .buttonStyle(DigitPadStyle(scaleAnchor: .topTrailing))
             }
-            HStack(spacing:widthSpace){
+            HStack(spacing: 2){
                 Button(action: {
                     text.append("4")
                 }) {
                     Text("4")
-                }.digitKeyFrame()
+                }
+                .buttonStyle(DigitPadStyle(scaleAnchor: .leading))
                 Button(action: {
                     text.append("5")
                 }) {
                     Text("5")
-                }.digitKeyFrame()
-                
+                }
+                .buttonStyle(DigitPadStyle())
                 Button(action: {
                     text.append("6")
                 }) {
                     Text("6")
-                }.digitKeyFrame()
+                }
+                .buttonStyle(DigitPadStyle(scaleAnchor: .trailing))
             }
-            
-            HStack(spacing:widthSpace){
+            HStack(spacing: 2) {
                 Button(action: {
                     text.append("7")
                 }) {
                     Text("7")
-                }.digitKeyFrame()
+                }
+                .buttonStyle(DigitPadStyle(scaleAnchor: .bottomLeading))
                 Button(action: {
                     text.append("8")
                 }) {
                     Text("8")
-                }.digitKeyFrame()
-                
+                }
+                .buttonStyle(DigitPadStyle())
                 Button(action: {
                     text.append("9")
                 }) {
                     Text("9")
                 }
-                .digitKeyFrame()
+                .buttonStyle(DigitPadStyle(scaleAnchor: .bottomTrailing))
             }
-            HStack(spacing:widthSpace) {
-                if style == .decimal {
-                    Button(action: {
-                        if !(text.contains(decimalSeparator)){
-                            if text == ""{
-                                text.append("0\(decimalSeparator)")
-                            }else{
-                                text.append(decimalSeparator)
-                            }
-                        }
-                    }) {
-                        Text(decimalSeparator)
-                    }
-                    .digitKeyFrame()
-                } else {
-                    Spacer()
-                        .padding(1)
-                }
+            HStack(spacing: 2) {
+                Spacer()
+                    .padding(1)
                 Button(action: {
                     text.append("0")
                 }) {
                     Text("0")
                 }
-                .digitKeyFrame()
-                
-                Button(action: {
-                    if let last = text.indices.last{
-                        text.remove(at: last)
+                .buttonStyle(DigitPadStyle(scaleAnchor: .bottom))
+                if !text.isEmpty {
+                    Button(action: {
+                        if let last = text.indices.last{
+                            text.remove(at: last)
+                        }
+                    }) {
+                        Image(systemName: "delete.left")
+                            .foregroundColor(.red)
                     }
-                }) {
-                    Image(systemName: "delete.left")
+                    .buttonStyle(DigitPadStyle(scaleAnchor: .bottomTrailing, isUnpressNoBackground: true))
+                } else {
+                    Spacer()
+                        .padding(1)
                 }
-                .digitKeyFrame()
             }
         }
         .font(.title2)
     }
 }
 
-struct TextViewStyle: ButtonStyle {
-    init(alignment: TextViewAlignment = .center) {
-        self.align = alignment
-    }
-    
-    
-    var align: TextViewAlignment
+struct DigitPadStyle: ButtonStyle {
+    var scaleAnchor: UnitPoint = .center
+    var isUnpressNoBackground: Bool = false
     func makeBody(configuration: Configuration) -> some View {
-            HStack {
-                if align == .center || align == .trailing{
-                Spacer()
-                }
-                configuration.label
-                    .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
-                    .padding(.vertical, 11.0)
-                    .padding(.horizontal)
-                if align == .center || align == .leading{
-                Spacer()
-                }
-            }
-            .background(
-                GeometryReader { geometry in
-                    ZStack{
-                RoundedRectangle(cornerRadius: 7, style: .continuous)
-                    .fill(configuration.isPressed ? Color.gray.opacity(0.1): Color.gray.opacity(0.2))
-                    }
-            })
-            
-    }
-}
-
-public struct DigitButtonModifier: ViewModifier {
-    public func body(content: Content) -> some View {
-        return content
-            .buttonStyle(DigitPadStyle())
-
-    }
-}
-
-public extension Button {
-    func digitKeyFrame() -> some View {
-        self.modifier(DigitButtonModifier())
-    }
-}
-
-public struct DigitPadStyle: ButtonStyle {
-    public func makeBody(configuration: Configuration) -> some View {
-        GeometryReader(content: { geometry in
-            configuration.isPressed ?
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                .fill(Color.gray.opacity(0.7))
+        GeometryReader { geometry in
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                .fill(!configuration.isPressed && isUnpressNoBackground ? Color.clear : Color.gray.opacity(configuration.isPressed ? 0.3 : 0.2))
                 .frame(width: geometry.size.width, height: geometry.size.height)
-                .scaleEffect(1.5)
-                :
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                .fill(Color.gray.opacity(0.5))
-                .frame(width:  geometry.size.width, height:  geometry.size.height)
-                .scaleEffect(1)
-            
+                .scaleEffect(configuration.isPressed ? 1.2 : 1, anchor: scaleAnchor)
+                .animation(.easeOut(duration: 0.1), value: configuration.isPressed)
             configuration.label
                 .background(
                     ZStack {
@@ -274,36 +175,18 @@ public struct DigitPadStyle: ButtonStyle {
                             RoundedRectangle(cornerRadius: 10, style: .continuous)
                                 .fill(Color.clear)
                                 .frame(width: configuration.isPressed ? geometry.size.width/0.75 : geometry.size.width, height: configuration.isPressed ? geometry.size.height/0.8 : geometry.size.height)
-                                
                         })
-                        
-                        
                     }
                 )
                 .frame(width: geometry.size.width, height: geometry.size.height)
-                .scaleEffect(configuration.isPressed ? 1.2 : 1)
-        })
-            .onChange(of: configuration.isPressed, perform: { value in
-                if configuration.isPressed{
-                    DispatchQueue.main.async {
-                        #if os(watchOS)
-                        WKInterfaceDevice().play(.click)
-                        #endif
-                        
-                    }
+                .scaleEffect(configuration.isPressed ? 1.2 : 1, anchor: scaleAnchor)
+        }
+        .onChange(of: configuration.isPressed) { value in
+            if value {
+                DispatchQueue.main.async {
+                    WKInterfaceDevice().play(.click)
                 }
-            })
-        
+            }
+        }
     }
-}
-
-public enum TextViewAlignment {
-    case trailing
-    case leading
-    case center
-}
-
-public enum KeyboardStyle {
-    case decimal
-    case numbers
 }

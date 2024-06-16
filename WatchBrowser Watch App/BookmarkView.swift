@@ -14,14 +14,29 @@ struct BookmarkView: View {
     @AppStorage("IsAllowCookie") var isAllowCookie = false
     @AppStorage("IsRecordHistory") var isRecordHistory = true
     @AppStorage("WebSearch") var webSearch = "必应"
+    @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
+    @AppStorage("UsePasscodeForLockBookmarks") var usePasscodeForLockBookmarks = false
+    @State var isLocked = true
+    @State var passcodeInputCache = ""
     @State var isNewMarkPresented = false
     @State var isBookmarkEditPresented = false
     @State var pinnedBookmarkIndexs = [Int]()
     @State var isShareSheetPresented = false
     @State var shareLink = ""
     var body: some View {
-        let userdefault = UserDefaults.standard
-        List {
+        if isLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockBookmarks {
+            PasswordInputView(text: $passcodeInputCache, placeholder: "输入密码", dismissAfterComplete: false) { pwd in
+                if pwd.md5 == userPasscodeEncrypted {
+                    isLocked = false
+                } else {
+                    tipWithText("密码错误", symbol: "xmark.circle.fill")
+                }
+                passcodeInputCache = ""
+            }
+            .navigationBarBackButtonHidden()
+        } else {
+            let userdefault = UserDefaults.standard
+            List {
                 Button(action: {
                     isNewMarkPresented = true
                 }, label: {
@@ -98,16 +113,17 @@ struct BookmarkView: View {
                             }
                         }
                     }
-                    .sheet(isPresented: $isBookmarkEditPresented, onDismiss: {
-                        markTotal = 0
-                        markTotal = UserDefaults.standard.integer(forKey: "BookmarkTotal")
-                    }, content: {EditBookmarkView()})
+                }
             }
-        }
-        .sheet(isPresented: $isShareSheetPresented, content: {ShareView(linkToShare: $shareLink)})
-        .onAppear {
-            markTotal = UserDefaults.standard.integer(forKey: "BookmarkTotal")
-            pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()
+            .sheet(isPresented: $isShareSheetPresented, content: {ShareView(linkToShare: $shareLink)})
+            .sheet(isPresented: $isBookmarkEditPresented, onDismiss: {
+                markTotal = 0
+                markTotal = UserDefaults.standard.integer(forKey: "BookmarkTotal")
+            }, content: {EditBookmarkView()})
+            .onAppear {
+                markTotal = UserDefaults.standard.integer(forKey: "BookmarkTotal")
+                pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()
+            }
         }
     }
 }

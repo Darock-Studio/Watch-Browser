@@ -14,7 +14,7 @@ import SDWebImageWebPCoder
 
 var pShowTipText = ""
 var pShowTipSymbol = ""
-var pTipBoxOffset: CGFloat = 80
+var pIsShowingTip = false
 
 @main
 struct WatchBrowser_Watch_AppApp: App {
@@ -22,48 +22,85 @@ struct WatchBrowser_Watch_AppApp: App {
     @WKApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) var scenePhase
     @AppStorage("ShouldTipNewFeatures1") var shouldTipNewFeatures = true
+    @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
+    @AppStorage("UsePasscodeForLockDarockBrowser") var usePasscodeForLockDarockBrowser = false
     @State var showTipText = ""
     @State var showTipSymbol = ""
-    @State var tipBoxOffset: CGFloat = 80
+    @State var isShowingTip = false
+    @State var isBrowserLocked = true
+    @State var passcodeInputCache = ""
     var body: some Scene {
         WindowGroup {
             ZStack {
-                ContentView()
-                    .sheet(isPresented: $shouldTipNewFeatures, content: {NewFeaturesView()})
+                if isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser {
+                    PasswordInputView(text: $passcodeInputCache, placeholder: "输入密码", hideCancelButton: true, dismissAfterComplete: false) { pwd in
+                        if pwd.md5 == userPasscodeEncrypted {
+                            isBrowserLocked = false
+                        } else {
+                            tipWithText("密码错误", symbol: "xmark.circle.fill")
+                        }
+                        passcodeInputCache = ""
+                    }
+                } else {
+                    ContentView()
+                        .sheet(isPresented: $shouldTipNewFeatures, content: { NewFeaturesView() })
+                        .onAppear {
+                            isBrowserLocked = false
+                        }
+                }
                 VStack {
                     Spacer()
-                    if #available(watchOS 10, *) {
-                        HStack {
-                            Image(systemName: showTipSymbol)
-                            Text(showTipText)
+                    if isShowingTip {
+                        Group {
+                            if #available(watchOS 10, *) {
+                                HStack {
+                                    Image(systemName: showTipSymbol)
+                                    Text(showTipText)
+                                }
+                                .font(.system(size: 14, weight: .bold))
+                                .frame(width: WKInterfaceDevice.current().screenBounds.width - 20, height: 50)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.1)
+                                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                            } else {
+                                HStack {
+                                    Image(systemName: showTipSymbol)
+                                    Text(showTipText)
+                                }
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(.black)
+                                .frame(width: WKInterfaceDevice.current().screenBounds.width - 20, height: 50)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.1)
+                                .background {
+                                    Color.white
+                                        .ignoresSafeArea()
+                                        .frame(width: WKInterfaceDevice.current().screenBounds.width - 20, height: 40)
+                                        .cornerRadius(14)
+                                        .foregroundColor(Color(hex: 0xF5F5F5))
+                                        .opacity(0.95)
+                                }
+                            }
                         }
-                        .font(.system(size: 14, weight: .bold))
-                        .frame(width: 110, height: 40)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.1)
-                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
-                        .offset(y: tipBoxOffset)
-                        .animation(.easeOut(duration: 0.4), value: tipBoxOffset)
-                    } else {
-                        HStack {
-                            Image(systemName: showTipSymbol)
-                            Text(showTipText)
-                        }
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(.black)
-                        .frame(width: 110, height: 40)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.1)
-                        .background {
-                            Color.white
-                                .ignoresSafeArea()
-                                .frame(width: 120, height: 40)
-                                .cornerRadius(8)
-                                .foregroundColor(Color(hex: 0xF5F5F5))
-                                .opacity(0.95)
-                        }
-                        .offset(y: tipBoxOffset)
-                        .animation(.easeOut(duration: 0.4), value: tipBoxOffset)
+                        .transition(
+                            AnyTransition
+                                .opacity
+                                .combined(with: .scale)
+                                .animation(.bouncy(duration: 0.35))
+                        )
+                    }
+                    Spacer()
+                        .frame(height: 15)
+                }
+                .ignoresSafeArea()
+                .allowsHitTesting(false)
+            }
+            .onAppear {
+                Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { _ in
+                    showTipText = pShowTipText
+                    showTipSymbol = pShowTipSymbol
+                    Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { _ in
+                        isShowingTip = pIsShowingTip
                     }
                 }
             }
@@ -71,7 +108,9 @@ struct WatchBrowser_Watch_AppApp: App {
         .onChange(of: scenePhase) { value in
             switch value {
             case .background:
-                break
+                if !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser {
+                    isBrowserLocked = true
+                }
             case .inactive:
                 break
             case .active:
@@ -90,15 +129,21 @@ class AppDelegate: NSObject, WKApplicationDelegate {
         debugPrint(tokenString)
         UserDefaults.standard.set(tokenString, forKey: "UserNotificationToken")
     }
+    
+//    func handle(_ userActivity: NSUserActivity) {
+//        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+//              let incomingURL = userActivity.webpageURL else { return }
+//        
+//        debugPrint(incomingURL)
+//    }
 }
 
 public func tipWithText(_ text: String, symbol: String = "", time: Double = 3.0) {
     pShowTipText = text
     pShowTipSymbol = symbol
-    pTipBoxOffset = 7
-    Timer.scheduledTimer(withTimeInterval: time, repeats: false) { timer in
-        pTipBoxOffset = 80
-        timer.invalidate()
+    pIsShowingTip = true
+    Timer.scheduledTimer(withTimeInterval: time, repeats: false) { _ in
+        pIsShowingTip = false
     }
 }
 

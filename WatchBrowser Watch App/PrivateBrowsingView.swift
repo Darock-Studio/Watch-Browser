@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
+import Cepheus
 import DarockKit
 import Alamofire
 import SwiftyJSON
-import CepheusKeyboardKit
 import AuthenticationServices
 
 struct PrivateBrowsingView: View {

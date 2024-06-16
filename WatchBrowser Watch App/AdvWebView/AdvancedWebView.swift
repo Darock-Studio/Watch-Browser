@@ -41,7 +41,7 @@ class AdvancedWebViewController {
     var menuController = Dynamic.UIViewController()
     var menuView = Dynamic.UIScrollView()
     var vc = Dynamic.UIViewController()
-    var loadProgressView = Dynamic.UIProgressView().initWithProgressViewStyle(Dynamic.UIProgressViewStyleDefault)
+    var loadProgressView = Dynamic.UIProgressView()
     
     @AppStorage("AllowCookies") var allowCookies = true
     @AppStorage("RequestDesktopWeb") var requestDesktopWeb = false
@@ -169,6 +169,7 @@ class AdvancedWebViewController {
         
         webViewObject = wkWebView.asObject!
         WebExtension.setWebViewDelegate()
+        
         return wkWebView
     }
     func recover(from ref: TabWebKitReference) {
@@ -243,7 +244,7 @@ class AdvancedWebViewController {
             menuView.addSubview(playButton)
             menuButtonYOffset += 60
         } else if isVideoChecking {
-            let checkIndicator = Dynamic.UIActivityIndicatorView().initWithActivityIndicatorStyle(Dynamic.UIActivityIndicatorViewStyleMedium)
+            let checkIndicator = Dynamic.UIActivityIndicatorView()
             checkIndicator.frame = getMiddleRect(y: menuButtonYOffset, height: 40)
             menuView.addSubview(checkIndicator)
             checkIndicator.startAnimating()

@@ -56,6 +56,13 @@ public class WESwiftDelegate: NSObject {
                 }
             }
         }
+        
+        // User Activity
+        let nsActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
+        nsActivity.title = Dynamic(webViewObject).title.asString
+        nsActivity.isEligibleForHandoff = true
+        nsActivity.webpageURL = Dynamic(webViewObject).URL.asObject as? URL
+        nsActivity.becomeCurrent()
     }
     
     public func webView(_ view: Any, didFailNavigation navigation: Any, withError error: NSError) {

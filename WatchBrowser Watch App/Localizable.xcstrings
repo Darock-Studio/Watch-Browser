@@ -63,6 +63,22 @@
         }
       }
     },
+    "(%@, %@)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(%1$@, %2$@)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "(%1$@, %2$@)"
+          }
+        }
+      }
+    },
     "**并非所有网页内的视频均能被解析**\n\n请**不要**提出〇〇网站视频无法播放之类的反馈" : {
       "localizations" : {
         "en" : {
@@ -127,6 +143,16 @@
         }
       }
     },
+    "%@ MB" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ MB"
+          }
+        }
+      }
+    },
     "%@ 搜索" : {
       "localizations" : {
         "en" : {
@@ -159,6 +185,22 @@
         }
       }
     },
+    "%@%lld:%@%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@%2$lld:%3$@%4$lld"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@%2$lld:%3$@%4$lld"
+          }
+        }
+      }
+    },
     "%@MB / %@MB" : {
       "localizations" : {
         "en" : {
@@ -171,28 +213,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "%1$@MB / %2$@MB"
-          }
-        }
-      }
-    },
-    "%@Settings.keyboard.preview" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@Preview..."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ 预览..."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%@預覽"
           }
         }
       }
@@ -527,6 +547,16 @@
         }
       }
     },
+    "App 版本" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Version"
+          }
+        }
+      }
+    },
     "appdiagnose Logs" : {
       "localizations" : {
         "en" : {
@@ -777,6 +807,20 @@
         }
       }
     },
+    "Cookie" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cookie"
+          }
+        }
+      },
+      "shouldTranslate" : false
+    },
+    "Darock Studio" : {
+      "shouldTranslate" : false
+    },
     "Darock 为暗礁浏览器用户准备了暗礁助手的订阅免费试用" : {
       "localizations" : {
         "en" : {
@@ -803,28 +847,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "DarockBrowser Appdiagnose"
-          }
-        }
-      }
-    },
-    "Done" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Don"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Done"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
           }
         }
       }
@@ -1513,6 +1535,9 @@
         }
       }
     },
+    "Powered by Cepheus Keyboard" : {
+      "shouldTranslate" : false
+    },
     "Search.baidu" : {
       "localizations" : {
         "en" : {
@@ -1589,22 +1614,6 @@
         }
       }
     },
-    "Settings.cookies" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cookies"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cookies"
-          }
-        }
-      }
-    },
     "Settings.cookies.allow" : {
       "localizations" : {
         "en" : {
@@ -1671,28 +1680,6 @@
         }
       }
     },
-    "Settings.cookies.privacy" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock does not have the access to Cookies."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock无法知晓或查看任何网页信息"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock 無法知曉或查看任何網頁信息"
-          }
-        }
-      }
-    },
     "Settings.keyboard" : {
       "localizations" : {
         "en" : {
@@ -1711,88 +1698,6 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "鍵盤"
-          }
-        }
-      }
-    },
-    "Settings.keyboard.alert.close-now" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Restart Now"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "现在重启"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "現在重啟"
-          }
-        }
-      }
-    },
-    "Settings.keyboard.alert.details" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You can close App now, or close later manually"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "您可以选择现在关闭App，或者稍后自行关闭App。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "您可以選擇現在關閉App，或者稍後自行關閉App。"
-          }
-        }
-      }
-    },
-    "Settings.keyboard.alert.later" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Later"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "稍后"
-          }
-        }
-      }
-    },
-    "Settings.keyboard.alert.title" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Keyboard changes will not apply before restarting App"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "键盘更动在重启App前不会生效"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "鍵盤更改在重啟 App 前不會生效"
           }
         }
       }
@@ -1853,28 +1758,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "第三方全鍵盤"
-          }
-        }
-      }
-    },
-    "Settings.search" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "搜索"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "sou s"
           }
         }
       }
@@ -2195,6 +2078,16 @@
         }
       }
     },
+    "v%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "v%@"
+          }
+        }
+      }
+    },
     "v%@ Build %@" : {
       "localizations" : {
         "en" : {
@@ -2355,6 +2248,16 @@
         }
       }
     },
+    "使用定位服务" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use Location Services"
+          }
+        }
+      }
+    },
     "使用手势返回上一页" : {
       "localizations" : {
         "en" : {
@@ -2433,6 +2336,16 @@
         }
       }
     },
+    "储存空间" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Storage"
+          }
+        }
+      }
+    },
     "全屏" : {
       "localizations" : {
         "en" : {
@@ -2471,6 +2384,16 @@
         }
       }
     },
+    "关于" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About"
+          }
+        }
+      }
+    },
     "关于视频..." : {
       "localizations" : {
         "en" : {
@@ -2493,6 +2416,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "About web pages adaptation..."
+          }
+        }
+      }
+    },
+    "关闭密码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn Passcode Off"
           }
         }
       }
@@ -2613,6 +2546,26 @@
         }
       }
     },
+    "前往更新" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to Update"
+          }
+        }
+      }
+    },
+    "剩余时间" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time Remaining"
+          }
+        }
+      }
+    },
     "历史记录" : {
       "localizations" : {
         "en" : {
@@ -2715,6 +2668,16 @@
         }
       }
     },
+    "受信任的位置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trusted Locations"
+          }
+        }
+      }
+    },
     "可在%@设置中打开“请求桌面网站”" : {
       "localizations" : {
         "en" : {
@@ -2747,6 +2710,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Name"
+          }
+        }
+      }
+    },
+    "启用安全延时" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable Security Delay"
           }
         }
       }
@@ -2857,6 +2830,46 @@
         }
       }
     },
+    "在受信任的位置时，暗礁浏览器将不会要求安全延时。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When in a trusted location, Darock Browser will not require a Security Delay."
+          }
+        }
+      }
+    },
+    "在安全延时期间您仍然可以使用暗礁浏览器。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can still use Darock Browser during the Security Delay."
+          }
+        }
+      }
+    },
+    "在安全延时结束后，您可以继续之前的操作" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After the Security Delay ends, you can resume your previous actions."
+          }
+        }
+      }
+    },
+    "基于位置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Based on Location"
+          }
+        }
+      }
+    },
     "增强的历史记录" : {
       "localizations" : {
         "en" : {
@@ -2905,6 +2918,16 @@
         }
       }
     },
+    "媒体" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Media"
+          }
+        }
+      }
+    },
     "存储本页离线归档" : {
       "localizations" : {
         "en" : {
@@ -2937,6 +2960,46 @@
         }
       }
     },
+    "安全延时" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Security Delay"
+          }
+        }
+      }
+    },
+    "安全延时会进行一个小时。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Security Delay will last for one hour."
+          }
+        }
+      }
+    },
+    "安全延时在您进行更改密码等敏感操作时要求额外的等待时间，以保护您的隐私安全。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Security Delay requires additional wait time when performing sensitive operations like changing your password to protect your privacy."
+          }
+        }
+      }
+    },
+    "安全延时正在进行中" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Security Delay is in progress"
+          }
+        }
+      }
+    },
     "安装此脚本" : {
       "localizations" : {
         "en" : {
@@ -2963,12 +3026,62 @@
         }
       }
     },
+    "定位服务权限" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location Services Permission"
+          }
+        }
+      }
+    },
     "实验室" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Laboratory"
+          }
+        }
+      }
+    },
+    "密码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passcode"
+          }
+        }
+      }
+    },
+    "将密码用于：" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use password for:"
+          }
+        }
+      }
+    },
+    "将当前位置添加为受信任位置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add current location as a trusted location"
+          }
+        }
+      }
+    },
+    "已使用 %@ MB" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ MB used"
           }
         }
       }
@@ -2985,6 +3098,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已修復"
+          }
+        }
+      }
+    },
+    "已启用" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enabled"
           }
         }
       }
@@ -3063,6 +3186,26 @@
         }
       }
     },
+    "开启密码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable Passcode"
+          }
+        }
+      }
+    },
+    "开始安全延时" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start Security Delay"
+          }
+        }
+      }
+    },
     "开源协议许可" : {
       "localizations" : {
         "en" : {
@@ -3079,40 +3222,22 @@
         }
       }
     },
-    "引擎" : {
+    "总是" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Engine"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "引擎"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "yin qing"
+            "value" : "Always"
           }
         }
       }
     },
-    "快速搜索引擎" : {
+    "总空间" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fast Search Engine"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "快速搜尋引擎"
+            "value" : "Total Size"
           }
         }
       }
@@ -3159,6 +3284,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "All history"
+          }
+        }
+      }
+    },
+    "所有定位信息仅保存在本地，不会与包括 Darock 在内的任何第三方共享。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All location information is stored locally and not shared with any third parties, including Darock."
           }
         }
       }
@@ -3395,6 +3530,16 @@
         }
       }
     },
+    "搜索" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        }
+      }
+    },
     "搜索..." : {
       "localizations" : {
         "en" : {
@@ -3417,18 +3562,12 @@
         }
       }
     },
-    "搜索引擎快捷方式" : {
+    "搜索引擎快捷方式..." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Search Engine Shortcuts"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "搜尋引擎快捷方式"
+            "value" : "Search Engine Shortcuts…"
           }
         }
       }
@@ -3605,28 +3744,6 @@
         }
       }
     },
-    "旧版引擎拥有更好的稳定性，但缺少部分高级功能" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The legacy engine is more stable but with less advanced features"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "旧版引擎拥有更好的稳定性，但缺少部分高级功能"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "舊版引擎擁有更好的穩定性，但缺少部分高級功能"
-          }
-        }
-      }
-    },
     "昨天和今天" : {
       "localizations" : {
         "en" : {
@@ -3647,12 +3764,72 @@
         }
       }
     },
+    "暗礁浏览器" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browser"
+          }
+        }
+      }
+    },
+    "暗礁浏览器 (%@)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browser (%@)"
+          }
+        }
+      }
+    },
+    "暗礁浏览器已是最新版本" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browser is up to date."
+          }
+        }
+      }
+    },
+    "暗礁浏览器致力于保护您的隐私，Darock 不会未经同意收集任何信息。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browser is committed to protecting your privacy; Darock will not collect any information without consent."
+          }
+        }
+      }
+    },
     "更好的 Cookie 支持" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Better Cookie Supports"
+          }
+        }
+      }
+    },
+    "更改密码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change Passcode"
+          }
+        }
+      }
+    },
+    "未启用" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not Enabled"
           }
         }
       }
@@ -3819,6 +3996,16 @@
         }
       }
     },
+    "检查更新时出错" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error occurred when checking for update."
+          }
+        }
+      }
+    },
     "正在下载..." : {
       "localizations" : {
         "en" : {
@@ -3861,6 +4048,36 @@
         }
       }
     },
+    "正在检查更新..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checking for update…"
+          }
+        }
+      }
+    },
+    "正在获取位置..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Getting location..."
+          }
+        }
+      }
+    },
+    "正在载入" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading"
+          }
+        }
+      }
+    },
     "此反馈已关闭，若要重新进行反馈，请创建一个新的反馈" : {
       "localizations" : {
         "en" : {
@@ -3897,14 +4114,28 @@
         }
       }
     },
-    "浙ICP备2024071295号-2A" : {
+    "法律与监管" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "E"
+            "value" : "Legal & Regulatory"
           }
-        },
+        }
+      }
+    },
+    "浏览引擎" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Browsing Engine"
+          }
+        }
+      }
+    },
+    "浙ICP备2024071295号-2A" : {
+      "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3917,7 +4148,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "添加脚本" : {
       "localizations" : {
@@ -3967,6 +4199,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Clear Timeframe"
+          }
+        }
+      }
+    },
+    "清除缓存" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear Cache"
+          }
+        }
+      }
+    },
+    "版本：%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version: %@"
           }
         }
       }
@@ -4119,6 +4371,16 @@
         }
       }
     },
+    "确认密码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm Passcode"
+          }
+        }
+      }
+    },
     "示例：历史记录缺少最近的浏览数据" : {
       "localizations" : {
         "en" : {
@@ -4235,6 +4497,16 @@
         }
       }
     },
+    "管理自定搜索引擎..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manage custom search engines..."
+          }
+        }
+      }
+    },
     "类型" : {
       "localizations" : {
         "en" : {
@@ -4247,6 +4519,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "類型"
+          }
+        }
+      }
+    },
+    "缓存数据" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cache Data"
           }
         }
       }
@@ -4273,22 +4555,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "網頁歸檔"
-          }
-        }
-      }
-    },
-    "网页浏览" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Website-browsing"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "網頁瀏覽"
           }
         }
       }
@@ -4351,22 +4617,6 @@
         }
       }
     },
-    "自定搜索引擎" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Customize Search Engine"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自定搜尋引擎"
-          }
-        }
-      }
-    },
     "被删除" : {
       "localizations" : {
         "en" : {
@@ -4379,6 +4629,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "被刪除"
+          }
+        }
+      }
+    },
+    "要求安全延时" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Require Security Delay"
+          }
+        }
+      }
+    },
+    "许可证" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "License"
+          }
+        }
+      }
+    },
+    "设置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
           }
         }
       }
@@ -4461,6 +4741,16 @@
         }
       }
     },
+    "软件更新" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Software Update"
+          }
+        }
+      }
+    },
     "轻触“播放网页中视频”" : {
       "localizations" : {
         "en" : {
@@ -4489,6 +4779,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "輕觸“查看網頁中圖片”"
+          }
+        }
+      }
+    },
+    "输入你的密码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Your Passcode"
+          }
+        }
+      }
+    },
+    "输入密码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Passcode"
+          }
+        }
+      }
+    },
+    "输入当前密码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Current Passcode"
+          }
+        }
+      }
+    },
+    "输入新密码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter New Passcode"
           }
         }
       }
@@ -4533,6 +4863,16 @@
         }
       }
     },
+    "通用" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "General"
+          }
+        }
+      }
+    },
     "重新载入" : {
       "localizations" : {
         "en" : {
@@ -4555,6 +4895,46 @@
         }
       }
     },
+    "锁定书签" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lock Bookmark"
+          }
+        }
+      }
+    },
+    "锁定历史记录" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lock History"
+          }
+        }
+      }
+    },
+    "锁定暗礁浏览器" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lock Darock Browser"
+          }
+        }
+      }
+    },
+    "锁定本地视频" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lock Local Videos"
+          }
+        }
+      }
+    },
     "错误/异常行为" : {
       "localizations" : {
         "en" : {
@@ -4567,6 +4947,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "錯誤/异常行為"
+          }
+        }
+      }
+    },
+    "键盘" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keyboard"
+          }
+        }
+      }
+    },
+    "键盘设置..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keyboard Settings…"
           }
         }
       }
@@ -4635,6 +5035,86 @@
         }
       }
     },
+    "隐私与安全性" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy & Security"
+          }
+        }
+      }
+    },
+    "需要安全延时" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Security Delay Required"
+          }
+        }
+      }
+    },
+    "需要安全延时以关闭安全延时" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Security Delay Required to Disable Security Delay"
+          }
+        }
+      }
+    },
+    "需要安全延时以关闭密码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Security Delay Required to Disable Passcode"
+          }
+        }
+      }
+    },
+    "需要安全延时以切换为“基于位置”" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Security Delay Required to Switch to \"Based on Location\""
+          }
+        }
+      }
+    },
+    "需要安全延时以更改密码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Security Delay Required to Change Passcode"
+          }
+        }
+      }
+    },
+    "需要安全延时以添加受信任位置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Security Delay Required to Add Trusted Location"
+          }
+        }
+      }
+    },
+    "需要定位服务权限以使用基于位置的安全延时" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location Services Permission Required to Use Location-based Security Delay"
+          }
+        }
+      }
+    },
     "需要更多细节" : {
       "localizations" : {
         "en" : {
@@ -4647,6 +5127,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "需要更多細節"
+          }
+        }
+      }
+    },
+    "需要进行安全延时以执行此操作，因为安全延时已启用，且 Apple Watch 不在设定的允许位置。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Security Delay is required to perform this action because the Security Delay is enabled and the Apple Watch is not in the set allowed location."
+          }
+        }
+      }
+    },
+    "需要进行安全延时以执行此操作，因为安全延时已启用。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Security Delay is required to perform this action because the Security Delay is enabled."
           }
         }
       }

@@ -248,6 +248,10 @@ struct VideoDownloadView: View {
 }
 
 struct LocalVideosView: View {
+    @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
+    @AppStorage("UsePasscodeForLocalVideos") var usePasscodeForLocalVideos = false
+    @State var isLocked = true
+    @State var passcodeInputCache = ""
     @State var videoNames = [String]()
     @State var videoHumanNameChart = [String: String]()
     @State var isPlayerPresented = false
@@ -256,67 +260,79 @@ struct LocalVideosView: View {
     @State var editNameVideoName = ""
     @State var editNameInput = ""
     var body: some View {
-        List {
-            Section {
-                if !videoNames.isEmpty {
-                    ForEach(0..<videoNames.count, id: \.self) { i in
-                        Button(action: {
-                            willPlayVideoLink = URL(fileURLWithPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoNames[i]).absoluteString
-                            isPlayerPresented = true
-                        }, label: {
-                            Text(videoHumanNameChart[videoNames[i]] ?? videoNames[i])
-                        })
-                        .swipeActions {
-                            Button(role: .destructive, action: {
-                                do {
-                                    try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoNames[i])
-                                    videoNames.remove(at: i)
-                                } catch {
-                                    print(error)
-                                }
-                            }, label: {
-                                Image(systemName: "xmark.bin.fill")
-                            })
+        if isLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLocalVideos {
+            PasswordInputView(text: $passcodeInputCache, placeholder: "输入密码", dismissAfterComplete: false) { pwd in
+                if pwd.md5 == userPasscodeEncrypted {
+                    isLocked = false
+                } else {
+                    tipWithText("密码错误", symbol: "xmark.circle.fill")
+                }
+                passcodeInputCache = ""
+            }
+            .navigationBarBackButtonHidden()
+        } else {
+            List {
+                Section {
+                    if !videoNames.isEmpty {
+                        ForEach(0..<videoNames.count, id: \.self) { i in
                             Button(action: {
-                                editNameVideoName = videoNames[i]
-                                isEditNamePresented = true
+                                willPlayVideoLink = URL(fileURLWithPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoNames[i]).absoluteString
+                                isPlayerPresented = true
                             }, label: {
-                                Image(systemName: "pencil.line")
+                                Text(videoHumanNameChart[videoNames[i]] ?? videoNames[i])
                             })
+                            .swipeActions {
+                                Button(role: .destructive, action: {
+                                    do {
+                                        try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoNames[i])
+                                        videoNames.remove(at: i)
+                                    } catch {
+                                        print(error)
+                                    }
+                                }, label: {
+                                    Image(systemName: "xmark.bin.fill")
+                                })
+                                Button(action: {
+                                    editNameVideoName = videoNames[i]
+                                    isEditNamePresented = true
+                                }, label: {
+                                    Image(systemName: "pencil.line")
+                                })
+                            }
                         }
                     }
                 }
             }
-        }
-        .navigationTitle("本地视频")
-        .sheet(isPresented: $isPlayerPresented, content: { VideoPlayingView(link: $willPlayVideoLink) })
-        .sheet(isPresented: $isEditNamePresented) {
-            NavigationStack {
-                List {
-                    Section {
-                        TextField("名称", text: $editNameInput)
-                        Button(action: {
-                            videoHumanNameChart.updateValue(editNameInput, forKey: editNameVideoName)
-                            UserDefaults.standard.set(videoHumanNameChart, forKey: "VideoHumanNameChart")
-                            isEditNamePresented = false
-                        }, label: {
-                            Label("保存", systemImage: "arrow.down.doc")
-                        })
+            .navigationTitle("本地视频")
+            .sheet(isPresented: $isPlayerPresented, content: { VideoPlayingView(link: $willPlayVideoLink) })
+            .sheet(isPresented: $isEditNamePresented) {
+                NavigationStack {
+                    List {
+                        Section {
+                            TextField("名称", text: $editNameInput)
+                            Button(action: {
+                                videoHumanNameChart.updateValue(editNameInput, forKey: editNameVideoName)
+                                UserDefaults.standard.set(videoHumanNameChart, forKey: "VideoHumanNameChart")
+                                isEditNamePresented = false
+                            }, label: {
+                                Label("保存", systemImage: "arrow.down.doc")
+                            })
+                        }
                     }
+                    .navigationTitle("自定名称")
+                    .navigationBarTitleDisplayMode(.large)
                 }
-                .navigationTitle("自定名称")
-                .navigationBarTitleDisplayMode(.large)
+                .onDisappear {
+                    editNameInput = ""
+                }
             }
-            .onDisappear {
-                editNameInput = ""
-            }
-        }
-        .onAppear {
-            do {
-                videoNames = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos")
-                videoHumanNameChart = (UserDefaults.standard.dictionary(forKey: "VideoHumanNameChart") as? [String: String]) ?? [String: String]()
-            } catch {
-                print(error)
+            .onAppear {
+                do {
+                    videoNames = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos")
+                    videoHumanNameChart = (UserDefaults.standard.dictionary(forKey: "VideoHumanNameChart") as? [String: String]) ?? [String: String]()
+                } catch {
+                    print(error)
+                }
             }
         }
     }

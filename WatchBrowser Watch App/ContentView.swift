@@ -8,11 +8,11 @@
 import UIKit
 import SwiftUI
 import Dynamic
+import Cepheus
 import WatchKit
 import DarockKit
 import Alamofire
 import SwiftyJSON
-import CepheusKeyboardKit
 import AuthenticationServices
 
 struct ContentView: View {
@@ -39,34 +39,29 @@ struct ContentView: View {
                     NavigationLink("", isActive: $isTabsPresented, destination: {BrowsingTabsView()})
                         .frame(width: 0, height: 0)
                         .hidden()
-                    TabView(selection: $mainTabSelection) {
-                        PrivateBrowsingView()
-                            .tag(1)
-                        MainView()
-                            .containerBackground(Color(hex: 0x13A4FF).gradient, for: .navigation)
-                            .toolbar {
-                                ToolbarItem(placement: .topBarLeading) {
+                    MainView()
+                        .containerBackground(Color(hex: 0x13A4FF).gradient, for: .navigation)
+                        .toolbar {
+                            ToolbarItem(placement: .topBarLeading) {
+                                Button(action: {
+                                    isSettingsPresented = true
+                                }, label: {
+                                    Image(systemName: "gear")
+                                })
+                                .accessibilityIdentifier("MainSettingsButton")
+                            }
+                            if labTabBrowsingEnabled {
+                                ToolbarItem(placement: .topBarTrailing) {
                                     Button(action: {
-                                        isSettingsPresented = true
+                                        isTabsPresented = true
                                     }, label: {
-                                        Image(systemName: "gear")
+                                        Image(systemName: "square.on.square.dashed")
+                                            .symbolRenderingMode(.hierarchical)
+                                            .foregroundColor(.white)
                                     })
-                                    .accessibilityIdentifier("MainSettingsButton")
-                                }
-                                if labTabBrowsingEnabled {
-                                    ToolbarItem(placement: .topBarTrailing) {
-                                        Button(action: {
-                                            isTabsPresented = true
-                                        }, label: {
-                                            Image(systemName: "square.on.square.dashed")
-                                                .symbolRenderingMode(.hierarchical)
-                                                .foregroundColor(.white)
-                                        })
-                                    }
                                 }
                             }
-                            .tag(2)
-                    }
+                        }
                 }
             } else {
                 ZStack {
@@ -76,12 +71,7 @@ struct ContentView: View {
                     NavigationLink("", isActive: $isImageListPresented, destination: {ImageListView()})
                         .frame(width: 0, height: 0)
                         .hidden()
-                    TabView(selection: $mainTabSelection) {
-                        PrivateBrowsingView()
-                            .tag(1)
-                        MainView(withSetting: true)
-                            .tag(2)
-                    }
+                    MainView(withSetting: true)
                 }
             }
         }
@@ -479,6 +469,14 @@ struct MainView: View {
         }
         .navigationTitle("Home.title")
         .navigationBarTitleDisplayMode(.large)
+        .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
+            if let url = userActivity.webpageURL, var openUrl = url.absoluteString.split(separator: "darock.top/darockbrowser/open/", maxSplits: 1)[from: 1] {
+                if !openUrl.hasPrefix("http://") && !openUrl.hasPrefix("https://") {
+                    openUrl = "http://" + openUrl
+                }
+                AdvancedWebViewController.shared.present(String(openUrl).urlEncoded())
+            }
+        }
         .onAppear {
             pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()
             webArchiveLinks = UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()
