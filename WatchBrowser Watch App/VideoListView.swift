@@ -238,7 +238,7 @@ struct VideoDownloadView: View {
                         }
                     }
             } catch {
-                print(error)
+                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
             }
         }
         .onDisappear {
@@ -287,7 +287,7 @@ struct LocalVideosView: View {
                                         try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoNames[i])
                                         videoNames.remove(at: i)
                                     } catch {
-                                        print(error)
+                                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
                                     }
                                 }, label: {
                                     Image(systemName: "xmark.bin.fill")
@@ -331,7 +331,7 @@ struct LocalVideosView: View {
                     videoNames = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos")
                     videoHumanNameChart = (UserDefaults.standard.dictionary(forKey: "VideoHumanNameChart") as? [String: String]) ?? [String: String]()
                 } catch {
-                    print(error)
+                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
                 }
             }
         }

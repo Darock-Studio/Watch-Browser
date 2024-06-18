@@ -11,5 +11,9 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>HYWenHei.ttf</string>
+	</array>
 </dict>
 </plist>

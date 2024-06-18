@@ -52,7 +52,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "New Features of Darock Browser"
+            "value" : "What’s New in Darock Browser"
           }
         },
         "zh-Hant" : {
@@ -537,6 +537,9 @@
         }
       }
     },
+    "All data will be lost!" : {
+      "shouldTranslate" : false
+    },
     "ALPHA" : {
       "localizations" : {
         "en" : {
@@ -807,6 +810,12 @@
         }
       }
     },
+    "Cancel" : {
+      "shouldTranslate" : false
+    },
+    "Continue" : {
+      "shouldTranslate" : false
+    },
     "Cookie" : {
       "localizations" : {
         "en" : {
@@ -816,6 +825,15 @@
           }
         }
       },
+      "shouldTranslate" : false
+    },
+    "Crash This App" : {
+      "shouldTranslate" : false
+    },
+    "D" : {
+      "shouldTranslate" : false
+    },
+    "Danger Zone" : {
       "shouldTranslate" : false
     },
     "Darock Studio" : {
@@ -841,6 +859,26 @@
         }
       }
     },
+    "Darock 账户" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Account"
+          }
+        }
+      }
+    },
+    "Darock 账户以及更多" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Account and more"
+          }
+        }
+      }
+    },
     "DarockBrowser Appdiagnose" : {
       "localizations" : {
         "en" : {
@@ -850,6 +888,12 @@
           }
         }
       }
+    },
+    "Debugging" : {
+      "shouldTranslate" : false
+    },
+    "Error Handler" : {
+      "shouldTranslate" : false
     },
     "google" : {
       "localizations" : {
@@ -1538,6 +1582,21 @@
     "Powered by Cepheus Keyboard" : {
       "shouldTranslate" : false
     },
+    "Present Check Status" : {
+      "shouldTranslate" : false
+    },
+    "Present Start Time" : {
+      "shouldTranslate" : false
+    },
+    "Reset All What's New Screen State" : {
+      "shouldTranslate" : false
+    },
+    "Run App Removal Service" : {
+      "shouldTranslate" : false
+    },
+    "Runtime Error" : {
+      "shouldTranslate" : false
+    },
     "Search.baidu" : {
       "localizations" : {
         "en" : {
@@ -1613,6 +1672,9 @@
           }
         }
       }
+    },
+    "Security Delay" : {
+      "shouldTranslate" : false
     },
     "Settings.cookies.allow" : {
       "localizations" : {
@@ -2078,6 +2140,18 @@
         }
       }
     },
+    "Tap-to-Radar" : {
+      "shouldTranslate" : false
+    },
+    "Test Browser App Removal" : {
+      "shouldTranslate" : false
+    },
+    "This will delete all Darock Browser app data." : {
+      "shouldTranslate" : false
+    },
+    "Toggle an Internal Error" : {
+      "shouldTranslate" : false
+    },
     "v%@" : {
       "localizations" : {
         "en" : {
@@ -2110,6 +2184,19 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Version.drkdatav"
+          }
+        }
+      }
+    },
+    "What's New Screen" : {
+      "shouldTranslate" : false
+    },
+    "一个账户尽享 Darock 所有服务" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One account for everything Darock"
           }
         }
       }
@@ -2182,6 +2269,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Download Video"
+          }
+        }
+      }
+    },
+    "两次密码不一致" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passwords do not match"
+          }
+        }
+      }
+    },
+    "个人信息" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personal Information"
           }
         }
       }
@@ -2332,6 +2439,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "保持時間可見"
+          }
+        }
+      }
+    },
+    "信息" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Information"
           }
         }
       }
@@ -2536,12 +2653,42 @@
         }
       }
     },
+    "删除账户" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete account"
+          }
+        }
+      }
+    },
+    "删除账户后，暗礁浏览器将关闭以应用更改，您需要手动重启暗礁浏览器。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After deleting the account, Darock Browser will close to apply the changes. You will need to manually restart Darock Browser."
+          }
+        }
+      }
+    },
     "前往 App Store 下载" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Download on the App Store"
+          }
+        }
+      }
+    },
+    "前往“隐私与安全性”设置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to “Privacy & Security” Settings"
           }
         }
       }
@@ -2562,6 +2709,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Time Remaining"
+          }
+        }
+      }
+    },
+    "危险区域" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Danger Zone"
           }
         }
       }
@@ -2600,6 +2757,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "歷史紀錄現會紀錄每個導航頁"
+          }
+        }
+      }
+    },
+    "原密码错误" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incorrect original password"
           }
         }
       }
@@ -2704,12 +2871,32 @@
         }
       }
     },
+    "可能需要允许 Cookies 以使“谷歌”搜索引擎正常工作" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You may need to allow Cookies to make “Google” work normally."
+          }
+        }
+      }
+    },
     "名称" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Name"
+          }
+        }
+      }
+    },
+    "名称不能为空" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name cannot be empty"
           }
         }
       }
@@ -3056,6 +3243,66 @@
         }
       }
     },
+    "密码不能为空" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password cannot be empty"
+          }
+        }
+      }
+    },
+    "密码已关闭" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password is disabled"
+          }
+        }
+      }
+    },
+    "密码已更改" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password has been changed"
+          }
+        }
+      }
+    },
+    "密码已设置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password has been set"
+          }
+        }
+      }
+    },
+    "密码错误" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incorrect password"
+          }
+        }
+      }
+    },
+    "密码长度不能小于8位" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password length must be at least 8 characters"
+          }
+        }
+      }
+    },
     "将密码用于：" : {
       "localizations" : {
         "en" : {
@@ -3098,6 +3345,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已修復"
+          }
+        }
+      }
+    },
+    "已发送" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sent"
+          }
+        }
+      }
+    },
+    "已同步（未实装）的数据将会被保留。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synced (not implemented) data will be retained."
           }
         }
       }
@@ -3218,6 +3485,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "開源協議許可"
+          }
+        }
+      }
+    },
+    "当前密码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current Password"
           }
         }
       }
@@ -3824,6 +4101,16 @@
         }
       }
     },
+    "服务器错误" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server Error"
+          }
+        }
+      }
+    },
     "未启用" : {
       "localizations" : {
         "en" : {
@@ -3872,6 +4159,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未標記"
+          }
+        }
+      }
+    },
+    "未知错误" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown Error"
           }
         }
       }
@@ -3996,6 +4293,16 @@
         }
       }
     },
+    "标题不能为空" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Title cannot be empty"
+          }
+        }
+      }
+    },
     "检查更新时出错" : {
       "localizations" : {
         "en" : {
@@ -4078,6 +4385,16 @@
         }
       }
     },
+    "此 %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This %@"
+          }
+        }
+      }
+    },
     "此反馈已关闭，若要重新进行反馈，请创建一个新的反馈" : {
       "localizations" : {
         "en" : {
@@ -4120,6 +4437,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Legal & Regulatory"
+          }
+        }
+      }
+    },
+    "注册" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register"
+          }
+        }
+      }
+    },
+    "注册 Darock 账户" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register Darock Account"
           }
         }
       }
@@ -4287,6 +4624,26 @@
         }
       }
     },
+    "用户名" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Username"
+          }
+        }
+      }
+    },
+    "用户名不能为空" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Username cannot be empty"
+          }
+        }
+      }
+    },
     "用户脚本" : {
       "localizations" : {
         "en" : {
@@ -4329,6 +4686,46 @@
         }
       }
     },
+    "电子邮件" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email"
+          }
+        }
+      }
+    },
+    "电子邮件可用于登录。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email can be used to log in"
+          }
+        }
+      }
+    },
+    "电子邮件地址" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email address"
+          }
+        }
+      }
+    },
+    "电子邮件地址无效" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid email address"
+          }
+        }
+      }
+    },
     "画面" : {
       "localizations" : {
         "en" : {
@@ -4347,6 +4744,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "hua m"
+          }
+        }
+      }
+    },
+    "登录" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log in"
+          }
+        }
+      }
+    },
+    "登录与安全性" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign-In & Security"
+          }
+        }
+      }
+    },
+    "登录以为今后账户相关功能做好准备。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log in to prepare for future account-related functions."
           }
         }
       }
@@ -4371,6 +4798,16 @@
         }
       }
     },
+    "确认" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm"
+          }
+        }
+      }
+    },
     "确认密码" : {
       "localizations" : {
         "en" : {
@@ -4381,12 +4818,22 @@
         }
       }
     },
+    "确认文本不匹配" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirmation text does not match"
+          }
+        }
+      }
+    },
     "示例：历史记录缺少最近的浏览数据" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "e.x. History is lack of recent browsing datas"
+            "value" : "e.g. History is lack of recent browsing datas"
           }
         },
         "zh-Hans" : {
@@ -4607,12 +5054,32 @@
         }
       }
     },
+    "自定义名称" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom Name"
+          }
+        }
+      }
+    },
     "自定名称" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Edit Name"
+          }
+        }
+      }
+    },
+    "若要确认删除，请在上方输入“%@”" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To confirm deletion, please enter \"%@\" above."
           }
         }
       }
@@ -4649,6 +5116,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "License"
+          }
+        }
+      }
+    },
+    "设备信息" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Device Info"
           }
         }
       }
@@ -4727,6 +5204,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Request Desktop Website"
+          }
+        }
+      }
+    },
+    "账户密码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Account password"
           }
         }
       }
@@ -4823,6 +5310,36 @@
         }
       }
     },
+    "输入确认文本" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter confirmation text"
+          }
+        }
+      }
+    },
+    "输入锁定密码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter lock password"
+          }
+        }
+      }
+    },
+    "这将删除账户下的所有数据！" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This will delete all data under the account!"
+          }
+        }
+      }
+    },
     "退出" : {
       "localizations" : {
         "en" : {
@@ -4849,6 +5366,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exit and don‘t show again"
+          }
+        }
+      }
+    },
+    "退出登录" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign Out"
+          }
+        }
+      }
+    },
+    "退出登录？" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign Out?"
           }
         }
       }
@@ -5081,6 +5618,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Security Delay Required to Switch to \"Based on Location\""
+          }
+        }
+      }
+    },
+    "需要安全延时以删除 Darock 账户" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Security Delay required to delete Darock Account"
+          }
+        }
+      }
+    },
+    "需要安全延时以更改 Darock 账户密码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Security Delay required to change Darock Account password"
           }
         }
       }

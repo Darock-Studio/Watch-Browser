@@ -419,7 +419,7 @@ class AdvancedWebViewController {
                             imageLinkLists = srcs
                         }
                     } catch {
-                        print(error)
+                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
                     }
                 }
                 DispatchQueue.main.async { [self] in

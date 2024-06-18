@@ -8,5 +8,9 @@
 	<array>
 		<string>applinks:darock.top</string>
 	</array>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.darockst</string>
+	</array>
 </dict>
 </plist>

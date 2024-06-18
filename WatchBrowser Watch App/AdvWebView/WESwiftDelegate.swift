@@ -52,17 +52,20 @@ public class WESwiftDelegate: NSObject {
                     ) ?? ""
                     Dynamic(webViewObject).evaluateJavaScript(jsStr, completionHandler: { _, _ in } as @convention(block) (Any?, (any Error)?) -> Void)
                 } catch {
-                    print(error)
+                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
                 }
             }
         }
         
-        // User Activity
-        let nsActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
-        nsActivity.title = Dynamic(webViewObject).title.asString
-        nsActivity.isEligibleForHandoff = true
-        nsActivity.webpageURL = Dynamic(webViewObject).URL.asObject as? URL
-        nsActivity.becomeCurrent()
+        let curl = Dynamic(webViewObject).URL.asObject as? URL
+        if curl?.absoluteString.hasPrefix("http") ?? false || curl?.absoluteString.hasPrefix("https") ?? false {
+            // User Activity
+            let nsActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
+            nsActivity.title = Dynamic(webViewObject).title.asString
+            nsActivity.isEligibleForHandoff = true
+            nsActivity.webpageURL = Dynamic(webViewObject).URL.asObject as? URL
+            nsActivity.becomeCurrent()
+        }
     }
     
     public func webView(_ view: Any, didFailNavigation navigation: Any, withError error: NSError) {

@@ -11,10 +11,14 @@ import WatchKit
 import SDWebImage
 import SDWebImageSVGCoder
 import SDWebImageWebPCoder
+import AuthenticationServices
 
-var pShowTipText = ""
+var pShowTipText: LocalizedStringKey = ""
 var pShowTipSymbol = ""
 var pIsShowingTip = false
+var pTapToRadarAlertContent = ""
+var pTapToRadarAttachText = ""
+var pIsTapToRadarAlertPresented = false
 
 @main
 struct WatchBrowser_Watch_AppApp: App {
@@ -24,14 +28,25 @@ struct WatchBrowser_Watch_AppApp: App {
     @AppStorage("ShouldTipNewFeatures1") var shouldTipNewFeatures = true
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockDarockBrowser") var usePasscodeForLockDarockBrowser = false
-    @State var showTipText = ""
+    @State var showTipText: LocalizedStringKey = ""
     @State var showTipSymbol = ""
     @State var isShowingTip = false
     @State var isBrowserLocked = true
     @State var passcodeInputCache = ""
+    @State var tapToRadarAlertContent = ""
+    @State var isTapToRadarAlertPresented = false
     var body: some Scene {
         WindowGroup {
             ZStack {
+                ContentView()
+                    .blur(radius: isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser ? 12 : 0)
+                    .allowsHitTesting(!(isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser))
+                    .sheet(isPresented: $shouldTipNewFeatures, content: { NewFeaturesView() })
+                    .onAppear {
+                        if userPasscodeEncrypted.isEmpty || !usePasscodeForLockDarockBrowser {
+                            isBrowserLocked = false
+                        }
+                    }
                 if isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser {
                     PasswordInputView(text: $passcodeInputCache, placeholder: "输入密码", hideCancelButton: true, dismissAfterComplete: false) { pwd in
                         if pwd.md5 == userPasscodeEncrypted {
@@ -41,12 +56,6 @@ struct WatchBrowser_Watch_AppApp: App {
                         }
                         passcodeInputCache = ""
                     }
-                } else {
-                    ContentView()
-                        .sheet(isPresented: $shouldTipNewFeatures, content: { NewFeaturesView() })
-                        .onAppear {
-                            isBrowserLocked = false
-                        }
                 }
                 VStack {
                     Spacer()
@@ -95,12 +104,32 @@ struct WatchBrowser_Watch_AppApp: App {
                 .ignoresSafeArea()
                 .allowsHitTesting(false)
             }
+            .alert("Runtime Error", isPresented: $isTapToRadarAlertPresented, actions: {
+                Button(role: .cancel, action: {
+                    
+                }, label: {
+                    Text("Cancel")
+                })
+                Button(action: {
+                    UserDefaults(suiteName: "group.darockst")!.set(pTapToRadarAttachText, forKey: "InternalTapToRadarAttachText")
+                }, label: {
+                    Text("Tap-to-Radar")
+                })
+            }, message: {
+                Text(tapToRadarAlertContent)
+            })
             .onAppear {
                 Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { _ in
                     showTipText = pShowTipText
                     showTipSymbol = pShowTipSymbol
                     Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { _ in
                         isShowingTip = pIsShowingTip
+                    }
+                    
+                    tapToRadarAlertContent = pTapToRadarAlertContent
+                    if pIsTapToRadarAlertPresented {
+                        isTapToRadarAlertPresented = true
+                        pIsTapToRadarAlertPresented = false
                     }
                 }
             }
@@ -129,21 +158,24 @@ class AppDelegate: NSObject, WKApplicationDelegate {
         debugPrint(tokenString)
         UserDefaults.standard.set(tokenString, forKey: "UserNotificationToken")
     }
-    
-//    func handle(_ userActivity: NSUserActivity) {
-//        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
-//              let incomingURL = userActivity.webpageURL else { return }
-//        
-//        debugPrint(incomingURL)
-//    }
 }
 
-public func tipWithText(_ text: String, symbol: String = "", time: Double = 3.0) {
+public func tipWithText(_ text: LocalizedStringKey, symbol: String = "", time: Double = 3.0) {
     pShowTipText = text
     pShowTipSymbol = symbol
     pIsShowingTip = true
     Timer.scheduledTimer(withTimeInterval: time, repeats: false) { _ in
         pIsShowingTip = false
+    }
+}
+public func globalErrorHandler(_ error: Error, at: String = "Not Provided") {
+    print(error)
+    if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "IsDarockInternalTap-to-RadarAvailable") {
+        pTapToRadarAlertContent = "Swift has catched an internal error.\nPlease help us make Darock Browser better by logging a bug. Thanks. (\(at))"
+        pTapToRadarAttachText = "Auto-attachd DarockBrowser(\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)). At \(at). LocdStr: \(error.localizedDescription). Add more infomation here: "
+            .replacingOccurrences(of: "\n", with: "{LineBreak}")
+            .replacingOccurrences(of: "/", with: "{slash}")
+        pIsTapToRadarAlertPresented = true
     }
 }
 

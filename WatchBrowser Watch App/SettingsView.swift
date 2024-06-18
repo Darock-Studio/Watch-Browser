@@ -14,17 +14,75 @@ import CoreLocation
 import AuthenticationServices
 
 struct SettingsView: View {
+    @AppStorage("DarockAccount") var darockAccount = ""
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @State var isNewFeaturesPresented = false
     @State var isPasscodeViewPresented = false
     @State var isEnterPasscodeViewInputPresented = false
     @State var passcodeInputTmp = ""
+    @State var isDarockAccountLoginPresented = false
+    @State var accountUsername = ""
     var body: some View {
         ZStack {
             NavigationLink("", isActive: $isPasscodeViewPresented, destination: { PasswordSettingsView() })
                 .frame(width: 0, height: 0)
                 .hidden()
             List {
+                Section {
+                    if darockAccount.isEmpty {
+                        Button(action: {
+                            isDarockAccountLoginPresented = true
+                        }, label: {
+                            HStack {
+                                ZStack {
+                                    Image(systemName: "circle.dotted")
+                                        .font(.system(size: 40, weight: .bold))
+                                        .foregroundColor(.init(hex: 0x144683))
+                                    Image(systemName: "circle.dotted")
+                                        .font(.system(size: 30, weight: .light))
+                                        .rotationEffect(.degrees(8))
+                                        .foregroundColor(.init(hex: 0x144683))
+                                    Text("D")
+                                        .font(.custom("HYWenHei", size: 14))
+                                        .foregroundColor(.init(hex: 0x0c79ff))
+                                        .scaleEffect(1.2)
+                                }
+                                VStack(alignment: .leading) {
+                                    Text("Darock 账户")
+                                        .font(.system(size: 15, weight: .semibold))
+                                    Text("登录以为今后账户相关功能做好准备。")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                        })
+                        .sheet(isPresented: $isDarockAccountLoginPresented, content: { DarockAccountLogin() })
+                    } else {
+                        NavigationLink(destination: { DarockAccountManagementMain(username: accountUsername) }, label: {
+                            HStack {
+                                Image(systemName: "person.crop.circle")
+                                    .font(.system(size: 32))
+                                    .foregroundColor(.blue)
+                                VStack(alignment: .leading) {
+                                    Group {
+                                        if !accountUsername.isEmpty {
+                                            Text(accountUsername)
+                                                .lineLimit(1)
+                                                .minimumScaleFactor(accountUsername.count <= 20 ? 0.1 : 0.5)
+                                        } else {
+                                            Text(verbatim: "loading")
+                                                .redacted(reason: .placeholder)
+                                        }
+                                    }
+                                    .font(.system(size: 16, weight: .semibold))
+                                    Text("Darock 账户以及更多")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                        })
+                    }
+                }
                 Section {
                     NavigationLink(destination: { GeneralSettingsView() }, label: { SettingItemLabel(title: "通用", image: "gear", color: .gray) })
                     NavigationLink(destination: { BrowsingEngineSettingsView() }, label: { SettingItemLabel(title: "浏览引擎", image: "globe", color: .blue) })
@@ -65,10 +123,24 @@ struct SettingsView: View {
                     NavigationLink(destination: { LaboratoryView() }, label: {
                         SettingItemLabel(title: "实验室", image: "flask.fill", color: .blue)
                     })
+                    if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "IsDarockInternalTap-to-RadarAvailable") {
+                        NavigationLink(destination: { InternalDebuggingView() }, label: {
+                            SettingItemLabel(title: "Debugging", image: "ant.fill", color: .purple)
+                        })
+                    }
                 }
             }
         }
         .navigationTitle("设置")
+        .onAppear {
+            if !darockAccount.isEmpty {
+                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)") { respStr, isSuccess in
+                    if isSuccess {
+                        accountUsername = respStr.apiFixed()
+                    }
+                }
+            }
+        }
     }
     
     struct SettingItemLabel: View {
@@ -347,8 +419,12 @@ struct SettingsView: View {
                                         }
                                         .swipeActions {
                                             Button(role: .destructive, action: {
-                                                try! FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoMetadatas[i]["Title"]!)
-                                                videoMetadatas.remove(at: i)
+                                                do {
+                                                    try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoMetadatas[i]["Title"]!)
+                                                    videoMetadatas.remove(at: i)
+                                                } catch {
+                                                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                                }
                                             }, label: {
                                                 Image(systemName: "xmark.bin.fill")
                                             })
@@ -452,9 +528,17 @@ struct SettingsView: View {
                                                 if !isClearingCache {
                                                     Button(action: {
                                                         DispatchQueue(label: "com.darock.WatchBrowser.storage-clear-cache", qos: .userInitiated).async {
-                                                            isClearingCache = true
-                                                            try? FileManager.default.removeItem(atPath: NSTemporaryDirectory())
-                                                            isClearingCache = false
+                                                            do {
+                                                                isClearingCache = true
+                                                                let filePaths = try FileManager.default.contentsOfDirectory(atPath: NSTemporaryDirectory())
+                                                                for filePath in filePaths {
+                                                                    let fullPath = (NSTemporaryDirectory() as NSString).appendingPathComponent(filePath)
+                                                                    try FileManager.default.removeItem(atPath: fullPath)
+                                                                }
+                                                                isClearingCache = false
+                                                            } catch {
+                                                                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                                            }
                                                         }
                                                     }, label: {
                                                         Text("清除缓存")
@@ -526,7 +610,7 @@ struct SettingsView: View {
                                                 dicV.updateValue(String(fileSize), forKey: "Size")
                                             }
                                         } catch {
-                                            print("Error: \(error)")
+                                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
                                         }
                                         if let vn = videoHumanNameChart[file] {
                                             dicV.updateValue(vn, forKey: "Title")
@@ -539,7 +623,7 @@ struct SettingsView: View {
                                 }
                                 isLoading = false
                             } catch {
-                                print(error)
+                                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
                             }
                         }
                     }
@@ -562,7 +646,7 @@ struct SettingsView: View {
                             totalSize += fileSize
                         }
                     } catch {
-                        print("Error: \(error)")
+                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
                     }
                 }
                 
@@ -1391,6 +1475,7 @@ struct SettingsView: View {
     }
     struct SearchSettingsView: View {
         @AppStorage("WebSearch") var webSearch = "必应"
+        @AppStorage("AllowCookies") var allowCookies = true
         @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
         @State var customSearchEngineList = [String]()
         let engineTitle = [
@@ -1415,6 +1500,22 @@ struct SettingsView: View {
                                 .tag(customSearchEngineList[i])
                             }
                         }
+                    }
+                    if webSearch == "谷歌" && !allowCookies {
+                        NavigationLink(destination: { PrivacySettingsView() }, label: {
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text("可能需要允许 Cookies 以使“谷歌”搜索引擎正常工作")
+                                        .font(.system(size: 14))
+                                    Text("前往“隐私与安全性”设置")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(.gray)
+                                }
+                                Spacer()
+                                Image(systemName: "chevron.forward")
+                                    .foregroundColor(.gray)
+                            }
+                        })
                     }
                     NavigationLink(destination: { CustomSearchEngineSettingsView() }, label: {
                         Text("管理自定搜索引擎...")
@@ -1796,9 +1897,11 @@ struct SettingsView: View {
                         Toggle("启用安全延时", isOn: $isSecurityDelayEnabled)
                             .onChange(of: isSecurityDelayEnabled) { value in
                                 if !value {
+                                    isSecurityDelayEnabled = true
                                     if !CheckSecurityDelay() {
-                                        isSecurityDelayEnabled = true
                                         isTurnOffDelayPresented = true
+                                    } else {
+                                        isSecurityDelayEnabled = false
                                     }
                                 }
                             }
@@ -1971,6 +2074,95 @@ struct SettingsView: View {
                 }
                 .navigationTitle("Cookie")
             }
+        }
+    }
+    
+    struct InternalDebuggingView: View {
+        @Environment(\.openURL) private var openURL
+        @AppStorage("SecurityDelayStartTime") var securityDelayStartTime = -1.0
+        @State var isTestAppRemovalWarningPresented = false
+        var body: some View {
+            List {
+                Section {
+                    Button(action: {
+                        tipWithText("\(String(format: "%.2f", securityDelayStartTime))", symbol: "hammer.circle.fill")
+                    }, label: {
+                        Text("Present Start Time")
+                    })
+                    Button(action: {
+                        tipWithText("\(String(CheckSecurityDelay()))", symbol: "hammer.circle.fill")
+                    }, label: {
+                        Text("Present Check Status")
+                    })
+                } header: {
+                    Text("Security Delay")
+                }
+                Section {
+                    Button(action: {
+                        do {
+                            throw NSError(domain: "com.darock.DarockBrowser.TestError", code: 1)
+                        } catch {
+                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                        }
+                    }, label: {
+                        Text("Toggle an Internal Error")
+                    })
+                } header: {
+                    Text("Error Handler")
+                }
+                Section {
+                    Button(action: {
+                        UserDefaults.standard.removeObject(forKey: "ShouldTipNewFeatures")
+                        for i in 1...50 {
+                            UserDefaults.standard.removeObject(forKey: "ShouldTipNewFeatures\(i)")
+                        }
+                    }, label: {
+                        Text("Reset All What's New Screen State")
+                    })
+                } header: {
+                    Text("What's New Screen")
+                }
+                Section {
+                    Button(role: .destructive, action: {
+                        fatalError("Internal Debugging Crash")
+                    }, label: {
+                        Text("Crash This App")
+                    })
+                    Button(role: .destructive, action: {
+                        isTestAppRemovalWarningPresented = true
+                    }, label: {
+                        HStack {
+                            Text("Run App Removal Service")
+                            Spacer()
+                            Image(systemName: "chevron.forward")
+                                .foregroundColor(.gray)
+                        }
+                    })
+                } header: {
+                    Text("Danger Zone")
+                }
+            }
+            .navigationTitle("Debugging")
+            .alert("Test Browser App Removal", isPresented: $isTestAppRemovalWarningPresented, actions: {
+                Button(role: .cancel, action: {
+                    
+                }, label: {
+                    Text("Cancel")
+                        .bold()
+                })
+                Button(role: .destructive, action: {
+                    UserDefaults.standard.removeObject(forKey: "*")
+                    try! FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/*")
+                    exit(0)
+                }, label: {
+                    Text("Continue")
+                })
+            }, message: {
+                VStack {
+                    Text("This will delete all Darock Browser app data.")
+                    Text("All data will be lost!")
+                }
+            })
         }
     }
 }

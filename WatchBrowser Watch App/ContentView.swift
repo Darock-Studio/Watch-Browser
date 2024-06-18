@@ -519,7 +519,7 @@ struct MainView: View {
                     isHaveDownloadedVideo = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos").isEmpty
                 }
             } catch {
-                print(error)
+                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
             }
             
             if !isPreloadedInitialSearchWeb {

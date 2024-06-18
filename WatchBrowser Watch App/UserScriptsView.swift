@@ -42,7 +42,11 @@ struct UserScriptsView: View {
         .onAppear {
             scriptNames = UserDefaults.standard.stringArray(forKey: "UserScriptNames") ?? [String]()
             if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/UserScripts/") {
-                try? FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/UserScripts/", withIntermediateDirectories: false)
+                do {
+                    try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/UserScripts/", withIntermediateDirectories: false)
+                } catch {
+                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                }
             }
         }
     }
@@ -78,7 +82,7 @@ struct UserScriptsAddView: View {
                                         }
                                         isSearching = false
                                     } catch {
-                                        print(error)
+                                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
                                     }
                                 }
                             }
@@ -147,7 +151,7 @@ struct UserScriptsAddView: View {
                                                 isInstalled = true
                                                 isInstalling = false
                                             } catch {
-                                                print(error)
+                                                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
                                             }
                                         }
                                     }
@@ -190,7 +194,7 @@ struct UserScriptsAddView: View {
                                 jsLink = try installArea.select("a").first()!.attr("href")
                             }
                         } catch {
-                            print(error)
+                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
                         }
                     }
                 }
