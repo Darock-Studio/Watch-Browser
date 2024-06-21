@@ -11,11 +11,13 @@ import Cepheus
 import DarockKit
 import SwiftDate
 import CoreLocation
+import TripleQuestionmarkCore
 import AuthenticationServices
 
 struct SettingsView: View {
     @AppStorage("DarockAccount") var darockAccount = ""
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
+    @AppStorage("IsDeveloperModeEnabled") var isDeveloperModeEnabled = false
     @State var isNewFeaturesPresented = false
     @State var isPasscodeViewPresented = false
     @State var isEnterPasscodeViewInputPresented = false
@@ -98,28 +100,14 @@ struct SettingsView: View {
                     }, label: {
                         SettingItemLabel(title: "密码", image: "lock.fill", color: .red)
                     })
-                    .sheet(isPresented: $isEnterPasscodeViewInputPresented) {
-                        PasswordInputView(text: $passcodeInputTmp, placeholder: "输入你的密码") { pwd in
-                            if pwd.md5 == userPasscodeEncrypted {
-                                isPasscodeViewPresented = true
-                            } else {
-                                tipWithText("密码错误", symbol: "xmark.circle.fill")
-                            }
-                            passcodeInputTmp = ""
-                        }
-                        .toolbar(.hidden, for: .navigationBar)
-                    }
                     NavigationLink(destination: { PrivacySettingsView() }, label: { SettingItemLabel(title: "隐私与安全性", image: "hand.raised.fill", color: .blue) })
                 }
                 Section {
-                    Button(action: {
-                        isNewFeaturesPresented = true
-                    }, label: {
-                        SettingItemLabel(title: "新功能", image: "sparkles", color: .orange)
-                    })
-                    .sheet(isPresented: $isNewFeaturesPresented, content: {NewFeaturesView()})
-                }
-                Section {
+                    if isDeveloperModeEnabled {
+                        NavigationLink(destination: { DeveloperSettingsView() }, label: {
+                            SettingItemLabel(title: "开发者", image: "hammer.fill", color: .blue, symbolFontSize: 10)
+                        })
+                    }
                     NavigationLink(destination: { LaboratoryView() }, label: {
                         SettingItemLabel(title: "实验室", image: "flask.fill", color: .blue)
                     })
@@ -132,6 +120,17 @@ struct SettingsView: View {
             }
         }
         .navigationTitle("设置")
+        .sheet(isPresented: $isEnterPasscodeViewInputPresented) {
+            PasswordInputView(text: $passcodeInputTmp, placeholder: "输入你的密码") { pwd in
+                if pwd.md5 == userPasscodeEncrypted {
+                    isPasscodeViewPresented = true
+                } else {
+                    tipWithText("密码错误", symbol: "xmark.circle.fill")
+                }
+                passcodeInputTmp = ""
+            }
+            .toolbar(.hidden, for: .navigationBar)
+        }
         .onAppear {
             if !darockAccount.isEmpty {
                 DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)") { respStr, isSuccess in
@@ -1400,6 +1399,7 @@ struct SettingsView: View {
             }
             
             struct OpenSourceView: View {
+                @State var isTQCView1Presented = false
                 var body: some View {
                     List {
                         SinglePackageBlock(name: "Alamofire", license: "MIT license")
@@ -1417,8 +1417,13 @@ struct SettingsView: View {
                         SinglePackageBlock(name: "SwiftDate", license: "MIT license")
                         SinglePackageBlock(name: "SwiftSoup", license: "MIT license")
                         SinglePackageBlock(name: "SwiftyJSON", license: "MIT license")
+                        SinglePackageBlock(name: "???Core", license: "???")
+                            .onTapGesture {
+                                isTQCView1Presented = true
+                            }
                     }
                     .navigationTitle("开源协议许可")
+                    .sheet(isPresented: $isTQCView1Presented, content: { TQCOnaniiView() })
                 }
                 
                 struct SinglePackageBlock: View {
@@ -1453,19 +1458,62 @@ struct SettingsView: View {
         @AppStorage("ShowFastExitButton") var showFastExitButton = false
         @AppStorage("AlwaysReloadWebPageAfterCrash") var alwaysReloadWebPageAfterCrash = false
         @AppStorage("PreloadSearchContent") var preloadSearchContent = true
+        @AppStorage("ForceApplyDarkMode") var forceApplyDarkMode = false
         var body: some View {
             List {
                 Section {
                     Toggle("使用旧版浏览引擎", isOn: $isUseOldWebView)
                 }
                 Section {
-                    Toggle("请求桌面网站", isOn: $requestDesktopWeb)
-                    Toggle("使用手势返回上一页", isOn: $useBackforwardGesture)
-                    Toggle("保持时间可见", isOn: $keepDigitalTime)
-                    Toggle("显示“快速退出”按钮", isOn: $showFastExitButton)
-                    Toggle("网页崩溃后总是自动重新载入", isOn: $alwaysReloadWebPageAfterCrash)
+                    Toggle(isOn: $requestDesktopWeb) {
+                        HStack {
+                            Image(systemName: "desktopcomputer")
+                                .foregroundStyle(Color.blue.gradient)
+                            Text("请求桌面网站")
+                        }
+                    }
+                    Toggle(isOn: $useBackforwardGesture) {
+                        HStack {
+                            Image(systemName: "hand.draw")
+                                .foregroundStyle(Color.purple.gradient)
+                            Text("使用手势返回上一页")
+                        }
+                    }
+                    Toggle(isOn: $keepDigitalTime) {
+                        HStack {
+                            Image(systemName: "clock")
+                            Text("保持时间可见")
+                        }
+                    }
+                    Toggle(isOn: $showFastExitButton) {
+                        HStack {
+                            Image(systemName: "escape")
+                                .foregroundStyle(Color.red.gradient)
+                            Text("显示“快速退出”按钮")
+                        }
+                    }
+                    Toggle(isOn: $alwaysReloadWebPageAfterCrash) {
+                        HStack {
+                            Image(systemName: "arrow.counterclockwise")
+                                .foregroundStyle(Color.blue.gradient)
+                            Text("网页崩溃后总是自动重新载入")
+                        }
+                    }
                     if #available(watchOS 10, *) {
-                        Toggle("预载入搜索内容", isOn: $preloadSearchContent)
+                        Toggle(isOn: $preloadSearchContent) {
+                            HStack {
+                                Image(systemName: "sparkle.magnifyingglass")
+                                    .foregroundStyle(Color.orange.gradient)
+                                Text("预载入搜索内容")
+                            }
+                        }
+                    }
+                    Toggle(isOn: $forceApplyDarkMode) {
+                        HStack {
+                            Image(systemName: "rectangle.inset.filled")
+                                .foregroundStyle(Color.gray.gradient)
+                            Text("强制深色模式")
+                        }
                     }
                 }
                 .disabled(isUseOldWebView)
@@ -2049,6 +2097,13 @@ struct SettingsView: View {
                 Section {
                     NavigationLink(destination: { CookieView() }, label: { SettingItemLabel(title: "Cookie", image: "doc.fill", color: .gray) })
                 }
+                Section {
+                    NavigationLink(destination: { DeveloperModeView() }, label: {
+                        SettingItemLabel(title: "开发者模式", image: "hammer.fill", color: .gray, symbolFontSize: 10)
+                    })
+                } header: {
+                    Text("安全性")
+                }
             }
             .navigationTitle("隐私与安全性")
         }
@@ -2075,8 +2130,66 @@ struct SettingsView: View {
                 .navigationTitle("Cookie")
             }
         }
+        struct DeveloperModeView: View {
+            @AppStorage("IsDeveloperModeEnabled") var isDeveloperModeEnabled = false
+            var body: some View {
+                List {
+                    Section {
+                        Toggle("开发者模式", isOn: $isDeveloperModeEnabled)
+                    } footer: {
+                        Text("如果你正在进行网页开发，开发者模式允许你使用开发所需的功能。")
+                    }
+                }
+                .navigationTitle("开发者模式")
+            }
+        }
     }
     
+    struct DeveloperSettingsView: View {
+        @AppStorage("CustomUserAgent") var customUserAgent = ""
+        var body: some View {
+            List {
+                Section {
+                    Picker("User Agent", selection: $customUserAgent) {
+                        Section {
+                            Text("默认")
+                                .tag("")
+                        }
+                        Section {
+                            Text("Safari 18.0")
+                                .tag("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15")
+                            Text("Safari - iOS 17.4 - iPhone")
+                                .tag("Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1")
+                            Text("Safari - iPadOS 17.4 - iPad mini")
+                                .tag("Mozilla/5.0 (iPad; CPU OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1")
+                            Text("Safari - iPadOS 17.4 - iPad")
+                                .tag("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15")
+                        }
+                        Section {
+                            Text("Microsoft Edge - macOS")
+                                .tag("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0")
+                            Text("Microsoft Edge - Windows")
+                                .tag("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0")
+                        }
+                        Section {
+                            Text("Google Chrome - macOS")
+                                .tag("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+                            Text("Google Chrome - Windows")
+                                .tag("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+                        }
+                        Section {
+                            Text("Firefox - macOS")
+                                .tag("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0")
+                            Text("Firefox - Windows")
+                                .tag("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0")
+                        }
+                    }
+                } footer: {
+                    Text("除非设置为默认，此处设置的值将覆盖\(Text("浏览引擎->请求桌面网站").bold().foregroundColor(.blue))设置")
+                }
+            }
+        }
+    }
     struct InternalDebuggingView: View {
         @Environment(\.openURL) private var openURL
         @AppStorage("SecurityDelayStartTime") var securityDelayStartTime = -1.0

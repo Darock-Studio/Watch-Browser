@@ -453,7 +453,7 @@ struct FeedbackView: View {
     struct FeedbackDetailView: View {
         var id: String
         @State var title = ""
-        @State var typeText = ""
+        @State var typeText: LocalizedStringKey = ""
         @State var content = ""
         @State var status = 8
         @State var replies = [(status: Int, content: String, sender: String)]()
@@ -678,6 +678,19 @@ struct FAQView: View {
                 }
             }, label: {
                 Text("关于网页适配...")
+            })
+            NavigationLink(destination: {
+                ScrollView {
+                    Markdown(String(localized: """
+                    单独为特定的网页优化根本**不可行**。
+                    
+                    想想今天让为网站A进行优化，明天另一个用户反馈想为网站B进行优化。不仅工作量大大提升，还会使代码及其难维护，这就是个无底洞。
+                    
+                    请**不要**提出为**特定网站**进行优化之类的反馈。
+                    """))
+                }
+            }, label: {
+                Text("关于特定网页优化...")
             })
         }
         .navigationTitle("常见问题")

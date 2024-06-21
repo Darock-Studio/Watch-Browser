@@ -47,6 +47,26 @@
         }
       }
     },
+    "“快速书签”可让你快速将搜索框中的内容添加到书签" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Quick Bookmark\" allows you to quickly add the content in the search box to bookmarks."
+          }
+        }
+      }
+    },
+    "“快速清除”可让你快速清除搜索框中的内容" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Quick Clear\" allows you to quickly clear the content in the search box."
+          }
+        }
+      }
+    },
     "“暗礁浏览器”新功能" : {
       "localizations" : {
         "en" : {
@@ -422,7 +442,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "5\n"
+            "value" : "5"
           }
         },
         "zh-Hans" : {
@@ -895,6 +915,12 @@
     "Error Handler" : {
       "shouldTranslate" : false
     },
+    "Firefox - macOS" : {
+      "shouldTranslate" : false
+    },
+    "Firefox - Windows" : {
+      "shouldTranslate" : false
+    },
     "google" : {
       "localizations" : {
         "en" : {
@@ -916,6 +942,12 @@
           }
         }
       }
+    },
+    "Google Chrome - macOS" : {
+      "shouldTranslate" : false
+    },
+    "Google Chrome - Windows" : {
+      "shouldTranslate" : false
     },
     "History.clear" : {
       "localizations" : {
@@ -1559,6 +1591,12 @@
         }
       }
     },
+    "Microsoft Edge - macOS" : {
+      "shouldTranslate" : false
+    },
+    "Microsoft Edge - Windows" : {
+      "shouldTranslate" : false
+    },
     "NearestHistories.drkdatan" : {
       "localizations" : {
         "en" : {
@@ -1595,6 +1633,18 @@
       "shouldTranslate" : false
     },
     "Runtime Error" : {
+      "shouldTranslate" : false
+    },
+    "Safari - iOS 17.4 - iPhone" : {
+      "shouldTranslate" : false
+    },
+    "Safari - iPadOS 17.4 - iPad" : {
+      "shouldTranslate" : false
+    },
+    "Safari - iPadOS 17.4 - iPad mini" : {
+      "shouldTranslate" : false
+    },
+    "Safari 18.0" : {
       "shouldTranslate" : false
     },
     "Search.baidu" : {
@@ -2152,6 +2202,9 @@
     "Toggle an Internal Error" : {
       "shouldTranslate" : false
     },
+    "User Agent" : {
+      "shouldTranslate" : false
+    },
     "v%@" : {
       "localizations" : {
         "en" : {
@@ -2319,12 +2372,52 @@
         }
       }
     },
+    "仅作示例，此处的操作不会真的添加书签。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For demonstration purposes only, this action will not actually add a bookmark."
+          }
+        }
+      }
+    },
     "今天" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Today"
+          }
+        }
+      }
+    },
+    "从此处开始设置你的暗礁浏览器。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start here to set up your Darock Browser."
+          }
+        }
+      }
+    },
+    "从边缘\n向右滑动" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swipe right from the edge."
+          }
+        }
+      }
+    },
+    "你已登录" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You’re signed in."
           }
         }
       }
@@ -2511,6 +2604,16 @@
         }
       }
     },
+    "关于特定网页优化..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About specific webpage optimizations..."
+          }
+        }
+      }
+    },
     "关于视频..." : {
       "localizations" : {
         "en" : {
@@ -2693,6 +2796,16 @@
         }
       }
     },
+    "前往密码设置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to password settings"
+          }
+        }
+      }
+    },
     "前往更新" : {
       "localizations" : {
         "en" : {
@@ -2703,12 +2816,32 @@
         }
       }
     },
+    "前往登录 Darock 账户" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to log in to Darock Account"
+          }
+        }
+      }
+    },
     "剩余时间" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Time Remaining"
+          }
+        }
+      }
+    },
+    "单独为特定的网页优化根本**不可行**。\n\n想想今天让为网站A进行优化，明天另一个用户反馈想为网站B进行优化。不仅工作量大大提升，还会使代码及其难维护，这就是个无底洞。\n\n请**不要**提出为**特定网站**进行优化之类的反馈。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It is simply **impossible** to optimize for specific web pages individually.\n\nImagine optimizing for Website A today and then receiving feedback to optimize for Website B tomorrow. Not only would this greatly increase the workload, but it would also make the code extremely difficult to maintain. It's a bottomless pit.\n\nPlease **DO NOT** suggest optimizations for **specific websites**."
           }
         }
       }
@@ -2809,6 +2942,16 @@
         }
       }
     },
+    "发现更多" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discover More"
+          }
+        }
+      }
+    },
     "发送的反馈" : {
       "localizations" : {
         "en" : {
@@ -2897,6 +3040,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Name cannot be empty"
+          }
+        }
+      }
+    },
+    "向右滑动输入框" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swipe right on the input box"
+          }
+        }
+      }
+    },
+    "向左滑动输入框" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swipe left on the input box"
           }
         }
       }
@@ -3105,6 +3268,16 @@
         }
       }
     },
+    "如果你正在进行网页开发，开发者模式允许你使用开发所需的功能。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you are developing web pages, Developer Mode allows you to use the necessary functions for development."
+          }
+        }
+      }
+    },
     "媒体" : {
       "localizations" : {
         "en" : {
@@ -3187,6 +3360,16 @@
         }
       }
     },
+    "安全性" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Security"
+          }
+        }
+      }
+    },
     "安装此脚本" : {
       "localizations" : {
         "en" : {
@@ -3209,6 +3392,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "完成"
+          }
+        }
+      }
+    },
+    "完成！" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done!"
           }
         }
       }
@@ -3303,6 +3496,16 @@
         }
       }
     },
+    "导航手势" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navigation Gestures"
+          }
+        }
+      }
+    },
     "将密码用于：" : {
       "localizations" : {
         "en" : {
@@ -3319,6 +3522,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Add current location as a trusted location"
+          }
+        }
+      }
+    },
+    "尝试一下？" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Have a try?"
           }
         }
       }
@@ -3453,12 +3666,42 @@
         }
       }
     },
+    "开发者" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Developer"
+          }
+        }
+      }
+    },
+    "开发者模式" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Developer Mode"
+          }
+        }
+      }
+    },
     "开启密码" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enable Passcode"
+          }
+        }
+      }
+    },
+    "开始" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get Started"
           }
         }
       }
@@ -3489,12 +3732,42 @@
         }
       }
     },
+    "强制深色模式" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Force Dark Mode"
+          }
+        }
+      }
+    },
     "当前密码" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Current Password"
+          }
+        }
+      }
+    },
+    "快速书签" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick Bookmark"
+          }
+        }
+      }
+    },
+    "快速清除" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick Clear"
           }
         }
       }
@@ -3791,6 +4064,16 @@
         }
       }
     },
+    "提示" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tips"
+          }
+        }
+      }
+    },
     "搁置" : {
       "localizations" : {
         "en" : {
@@ -3985,22 +4268,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法修復"
-          }
-        }
-      }
-    },
-    "无痕浏览" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Privacy"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "無痕瀏覽"
           }
         }
       }
@@ -4471,6 +4738,16 @@
         }
       }
     },
+    "浏览引擎->请求桌面网站" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Browsing Engine -> Request Desktop Website"
+          }
+        }
+      }
+    },
     "浙ICP备2024071295号-2A" : {
       "localizations" : {
         "zh-Hans" : {
@@ -4546,6 +4823,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Clear Cache"
+          }
+        }
+      }
+    },
+    "滑动以返回" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swipe to go back"
           }
         }
       }
@@ -4970,6 +5257,16 @@
         }
       }
     },
+    "练习主要手势" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Practice key gestures"
+          }
+        }
+      }
+    },
     "缓存数据" : {
       "localizations" : {
         "en" : {
@@ -5002,6 +5299,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "網頁歸檔"
+          }
+        }
+      }
+    },
+    "网页浏览中可用的手势" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestures available in web browsing"
           }
         }
       }
@@ -5136,6 +5443,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Settings"
+          }
+        }
+      }
+    },
+    "设置清单" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setup checklist"
           }
         }
       }
@@ -5336,6 +5653,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "This will delete all data under the account!"
+          }
+        }
+      }
+    },
+    "进阶技巧" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beyond the basics"
           }
         }
       }
@@ -5572,6 +5899,16 @@
         }
       }
     },
+    "除非设置为默认，此处设置的值将覆盖%@设置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unless set as default, the value set here will override the %@ settings."
+          }
+        }
+      }
+    },
     "隐私与安全性" : {
       "localizations" : {
         "en" : {
@@ -5746,6 +6083,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "高級功能"
+          }
+        }
+      }
+    },
+    "默认" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Default"
           }
         }
       }

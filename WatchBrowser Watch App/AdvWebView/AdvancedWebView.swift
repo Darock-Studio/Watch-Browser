@@ -33,7 +33,6 @@ struct AdvancedWebView: View {
 
 class AdvancedWebViewController {
     public static let shared = AdvancedWebViewController()
-    public static let sharedPrivacy = AdvancedWebViewController(isInPrivacy: true)
     
     var currentTabIndex: Int?
     
@@ -51,14 +50,10 @@ class AdvancedWebViewController {
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
+    @AppStorage("CustomUserAgent") var customUserAgent = ""
     
     var currentUrl = ""
-    var isInPrivacy = false
     var isVideoChecking = false
-    
-    init(isInPrivacy: Bool = false) {
-        self.isInPrivacy = isInPrivacy
-    }
     
     @discardableResult
     func present(_ iurl: String = "", archiveUrl: URL? = nil, presentController: Bool = true) -> Dynamic {
@@ -79,7 +74,7 @@ class AdvancedWebViewController {
                 session.prefersEphemeralWebBrowserSession = !allowCookies
                 session.start()
                 
-                if isHistoryRecording && !isInPrivacy {
+                if isHistoryRecording {
                     RecordHistory(iurl, webSearch: webSearch)
                 }
             }
@@ -96,14 +91,18 @@ class AdvancedWebViewController {
         
         let wkWebView = Dynamic.WKWebView()
         wkWebView.setFrame(sb)
-        if requestDesktopWeb {
-            wkWebView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+        if customUserAgent.isEmpty {
+            if requestDesktopWeb {
+                wkWebView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+            } else {
+                wkWebView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+            }
         } else {
-            wkWebView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+            wkWebView.customUserAgent = customUserAgent
         }
         wkWebView.allowsBackForwardNavigationGestures = useBackforwardGesture
         wkWebView.configuration.websiteDataStore.httpCookieStore.setCookiePolicy(
-            allowCookies && !isInPrivacy
+            allowCookies
             ? Dynamic.WKCookiePolicyAllow
             : Dynamic.WKCookiePolicyDisllow,
             completionHandler: {} as @convention(block) () -> Void
@@ -365,7 +364,7 @@ class AdvancedWebViewController {
                 let curl = (url as! NSURL).absoluteString!
                 if curl != currentUrl {
                     currentUrl = curl
-                    if isHistoryRecording && !isInPrivacy {
+                    if isHistoryRecording {
                         RecordHistory(curl, webSearch: webSearch, showName: Dynamic(webViewObject).title.asString)
                     }
                 }

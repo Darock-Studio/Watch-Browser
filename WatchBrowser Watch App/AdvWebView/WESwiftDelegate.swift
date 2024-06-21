@@ -37,6 +37,40 @@ public class WESwiftDelegate: NSObject {
     public func webView(_ view: Any, didFinishNavigation navigation: Any) {
         debugPrint("Finish Navigation")
         AdvancedWebViewController.shared.loadProgressView.hidden = true
+        // Dark Mode
+        if UserDefaults.standard.bool(forKey: "ForceApplyDarkMode") {
+            DispatchQueue(label: "com.darock.WatchBrowser.wt.run-fit-dark-mode", qos: .userInitiated).async {
+                Dynamic(webViewObject).evaluateJavaScript("""
+                const allElements = document.querySelectorAll('*');
+                function applyDarkMode(element) {
+                    element.style.backgroundColor = '#121212';
+                    element.style.color = '#ffffff';
+                }
+                allElements.forEach(applyDarkMode);
+                const observer = new MutationObserver(mutations => {
+                    mutations.forEach(mutation => {
+                        if (mutation.type === 'childList') {
+                            mutation.addedNodes.forEach(node => {
+                                if (node.nodeType === Node.ELEMENT_NODE) {
+                                    applyDarkMode(node);
+                                    node.querySelectorAll('*').forEach(applyDarkMode);
+                                }
+                            });
+                        }
+                    });
+                });
+                observer.observe(document.documentElement, { childList: true, subtree: true });
+                """, completionHandler: nil)
+            }
+        }
+        // Fix lazy imgs
+//        DispatchQueue(label: "com.darock.WatchBrowser.wt.run-lazy-imgs-fix", qos: .userInitiated).async {
+//            Dynamic(webViewObject).evaluateJavaScript("""
+//            return console.log
+//            """, completionHandler: { resp, _ in
+//                debugPrint(resp as! [String])
+//            } as @convention(block) (Any?, (any Error)?) -> Void)
+//        }
         let userScriptNames = UserDefaults.standard.stringArray(forKey: "UserScriptNames") ?? [String]()
         DispatchQueue(label: "com.darock.WatchBrowser.wt.run-user-script", qos: .userInitiated).async {
             for userScriptName in userScriptNames {
@@ -50,7 +84,7 @@ public class WESwiftDelegate: NSObject {
                         ),
                         encoding: .utf8
                     ) ?? ""
-                    Dynamic(webViewObject).evaluateJavaScript(jsStr, completionHandler: { _, _ in } as @convention(block) (Any?, (any Error)?) -> Void)
+                    Dynamic(webViewObject).evaluateJavaScript(jsStr, completionHandler: nil)
                 } catch {
                     globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
                 }

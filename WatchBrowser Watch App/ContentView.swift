@@ -465,6 +465,9 @@ struct MainView: View {
                 })
                 .disabled(isNewVerAvailable)
                 .accessibilityIdentifier("MainFeedbackButton")
+                NavigationLink(destination: { TipsView() }, label: {
+                    Label("提示", systemImage: "lightbulb")
+                })
             }
         }
         .navigationTitle("Home.title")
