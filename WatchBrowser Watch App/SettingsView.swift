@@ -1423,7 +1423,12 @@ struct SettingsView: View {
                             }
                     }
                     .navigationTitle("开源协议许可")
-                    .sheet(isPresented: $isTQCView1Presented, content: { TQCOnaniiView() })
+                    .sheet(isPresented: $isTQCView1Presented, content: {
+                        TQCOnaniiView()
+                            .onAppear {
+                                DarockKit.Network.shared.requestString("https://fapi.darock.top/num/add/DBTQCOnanii") { _, _ in }
+                            }
+                    })
                 }
                 
                 struct SinglePackageBlock: View {

@@ -405,6 +405,8 @@
 			dependencies = (
 			);
 			name = TripleQuestionmarkCore;
+			packageProductDependencies = (
+			);
 			productName = TripleQuestionmarkCore;
 			productReference = 8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */;
 			productType = "com.apple.product-type.framework";
