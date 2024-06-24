@@ -33,6 +33,7 @@ NSTimer *videoCheckTimer;
 
 +(id) getBindedButtonWithSelector: (NSString *)selector button:(id) button;
 +(void) setWebViewDelegate;
++(void) setUserScriptDelegateWithController: (id)controller;
 +(void) PresentVideoList;
 +(void) DismissWebView;
 
@@ -47,6 +48,9 @@ NSTimer *videoCheckTimer;
 @end
 @interface WebUIDelegate : NSObject
 - (id)webView:(id)webView createWebViewWithConfiguration:(id)configuration forNavigationAction:(id)navigationAction windowFeatures:(id)windowFeatures;
+@end
+@interface WebScriptMessageHandler : NSObject
+- (void)userContentController:(id)userContentController didReceiveScriptMessage:(id)message;
 @end
 
 #endif /* WebExtension_h */

@@ -63,14 +63,6 @@ public class WESwiftDelegate: NSObject {
                 """, completionHandler: nil)
             }
         }
-        // Fix lazy imgs
-//        DispatchQueue(label: "com.darock.WatchBrowser.wt.run-lazy-imgs-fix", qos: .userInitiated).async {
-//            Dynamic(webViewObject).evaluateJavaScript("""
-//            return console.log
-//            """, completionHandler: { resp, _ in
-//                debugPrint(resp as! [String])
-//            } as @convention(block) (Any?, (any Error)?) -> Void)
-//        }
         let userScriptNames = UserDefaults.standard.stringArray(forKey: "UserScriptNames") ?? [String]()
         DispatchQueue(label: "com.darock.WatchBrowser.wt.run-user-script", qos: .userInitiated).async {
             for userScriptName in userScriptNames {
@@ -121,11 +113,18 @@ public class WESwiftDelegate: NSObject {
         }
     }
     
-    //MARK: UI Delegate
+    // MARK: UI Delegate
     public func webView(_ webView: Any, createWebViewWith configuration: Any, for navigationAction: Any, windowFeatures: Any) -> Any? {
         if Dynamic(navigationAction).targetFrame == nil {
             Dynamic(webViewObject).loadRequest(Dynamic(navigationAction).request)
         }
         return nil
+    }
+    
+    // MARK: ScriptMessageHandler
+    public func userContentController(_ userContentController: Any, didReceive message: Any) {
+        if _fastPath(Dynamic(message).name == "logHandler") {
+            print("LOG: \(Dynamic(message).body.asString!)")
+        }
     }
 }

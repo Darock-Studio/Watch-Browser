@@ -11,6 +11,7 @@ import SwiftUI
 public struct TQCOnaniiView: View {
     @State var numInput = ""
     @State var result = ""
+    @State var navigationTitle = "???"
     
     public init() { }
     
@@ -21,6 +22,7 @@ public struct TQCOnaniiView: View {
                     TextField("输入一个自然数", text: $numInput)
                         .onSubmit {
                             result = to0721(from: numInput)
+                            navigationTitle = "Ciallo~"
                         }
                 }
                 Section {
@@ -28,7 +30,7 @@ public struct TQCOnaniiView: View {
                 }
                 .listRowBackground(Color.clear)
             }
-            .navigationTitle("???")
+            .navigationTitle(navigationTitle)
             .navigationBarTitleDisplayMode(.inline)
         }
     }
@@ -93,7 +95,6 @@ public struct TQCOnaniiView: View {
             var result = ""
             if s == 721 {
                 result = "0721"
-                // 打开 Snackbar 的代码需要在实际的 iOS 应用程序中实现
             } else {
                 while s > 50 {
                     let digi = Int(floor(log10(Double(s)) / 1.6989700043360188047862611052755))

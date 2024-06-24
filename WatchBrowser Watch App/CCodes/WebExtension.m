@@ -12,6 +12,7 @@
 
 id webNavigationDelegate;
 id webUIDelegate;
+id webScriptDelegate;
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -29,6 +30,10 @@ id webUIDelegate;
     [webViewObject setValue:webNavigationDelegate forKey:@"navigationDelegate"];
     webUIDelegate = [[WebUIDelegate alloc] init];
     [webViewObject setValue:webUIDelegate forKey:@"UIDelegate"];
+}
++(void) setUserScriptDelegateWithController: (id)controller {
+    webScriptDelegate = [[WebScriptMessageHandler alloc] init];
+    [controller performSelector:NSSelectorFromString(@"addScriptMessageHandler:name:") withObject:webScriptDelegate withObject:@"logHandler"];
 }
 
 // Externald Method Start
@@ -72,6 +77,10 @@ id webUIDelegate;
 }
 // Externald Method End
 
++ (BOOL)hooked_handlesURLScheme:(NSString *)urlScheme {
+    return NO;
+}
+
 @end
 
 @implementation WebExtensionDelegate
@@ -98,6 +107,14 @@ id webUIDelegate;
 
 - (id)webView:(id)webView createWebViewWithConfiguration:(id)configuration forNavigationAction:(id)navigationAction windowFeatures:(id)windowFeatures {
     return [[[WESwiftDelegate alloc] init] webView:webView createWebViewWith:configuration for:navigationAction windowFeatures:windowFeatures];
+}
+
+@end
+
+@implementation WebScriptMessageHandler
+
+- (void)userContentController:(id)userContentController didReceiveScriptMessage:(id)message {
+    [[[WESwiftDelegate alloc] init] userContentController:userContentController didReceive:message];
 }
 
 @end

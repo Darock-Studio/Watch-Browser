@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 import AuthenticationServices
 
 struct HistoryView: View {
@@ -15,12 +16,12 @@ struct HistoryView: View {
     @AppStorage("LabTabBrowsingEnabled") var labTabBrowsingEnabled = false
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockHistories") var usePasscodeForLockHistories = false
+    @AppStorage("IsHistoryTransferNeeded") var isHistoryTransferNeeded = true
     @State var isLocked = true
     @State var passcodeInputCache = ""
     @State var isSettingPresented = false
     @State var isStopRecordingPagePresenting = false
-    @State var histories = [String]()
-    @State var historyTitles = [String: String]()
+    @State var histories = [SingleHistoryItem]()
     @State var isSharePresented = false
     @State var isNewBookmarkPresented = false
     @State var isClearOptionsPresented = false
@@ -44,6 +45,33 @@ struct HistoryView: View {
         } else {
             List {
                 if selectionHandler == nil {
+                    if isHistoryTransferNeeded {
+                        NavigationLink(destination: { HistoryTransferView() }, label: {
+                            VStack {
+                                HStack {
+                                    Image(systemName: "shippingbox.and.arrow.backward.fill")
+                                        .foregroundColor(.green)
+                                    VStack(alignment: .leading) {
+                                        Text("需要迁移")
+                                            .font(.system(size: 16, weight: .bold))
+                                        Text("由于一些已知问题，历史记录架构需要更新。完成迁移前，历史记录将暂时不可用，暗礁浏览器也不会记录新的历史记录。")
+                                            .font(.system(size: 12))
+                                            .foregroundColor(.gray)
+                                        Spacer()
+                                    }
+                                }
+                                HStack {
+                                    Spacer()
+                                    Group {
+                                        Text("开始迁移 ")
+                                        Image(systemName: "chevron.forward")
+                                    }
+                                    .font(.system(size: 14))
+                                    .foregroundColor(.blue)
+                                }
+                            }
+                        })
+                    }
                     Section {
                         Toggle("History.record", isOn: $isHistoryRecording)
                             .accessibilityIdentifier("RecordHistoryToggle")
@@ -53,7 +81,7 @@ struct HistoryView: View {
                                 }
                             })
                             .sheet(isPresented: $isStopRecordingPagePresenting, onDismiss: {
-                                histories = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
+                                histories = GetWebHistory()
                             }, content: {CloseHistoryTipView()})
                     }
                 }
@@ -61,53 +89,53 @@ struct HistoryView: View {
                     if isHistoryRecording {
                         if histories.count != 0 {
                             TextField("\(Image(systemName: "magnifyingglass")) 搜索", text: $searchText)
-                            ForEach(0...histories.count - 1, id: \.self) { i in
-                                if searchText.isEmpty || histories[i].contains(searchText) {
+                            ForEach(0..<histories.count, id: \.self) { i in
+                                if searchText.isEmpty || histories[i].url.contains(searchText) || (histories[i].title?.contains(searchText) ?? false) {
                                     Button(action: {
                                         if let selectionHandler {
-                                            selectionHandler(histories[i])
+                                            selectionHandler(histories[i].url)
                                         } else {
-                                            if histories[i].hasPrefix("file://") {
-                                                AdvancedWebViewController.shared.present("", archiveUrl: URL(string: histories[i])!)
-                                            } else if histories[i].hasSuffix(".mp4") {
-                                                videoLinkLists = [histories[i]]
+                                            if histories[i].url.hasPrefix("file://") {
+                                                AdvancedWebViewController.shared.present("", archiveUrl: URL(string: histories[i].url)!)
+                                            } else if histories[i].url.hasSuffix(".mp4") {
+                                                videoLinkLists = [histories[i].url]
                                                 pShouldPresentVideoList = true
                                             } else {
-                                                AdvancedWebViewController.shared.present(histories[i].urlDecoded().urlEncoded())
+                                                AdvancedWebViewController.shared.present(histories[i].url.urlDecoded().urlEncoded())
                                             }
                                         }
                                     }, label: {
-                                        if let showName = historyTitles[histories[i]], !showName.isEmpty {
-                                            if histories[i].hasPrefix("https://www.bing.com/search?q=")
-                                                || histories[i].hasPrefix("https://www.baidu.com/s?wd=")
-                                                || histories[i].hasPrefix("https://www.google.com/search?q=")
-                                                || histories[i].hasPrefix("https://www.sogou.com/web?query=") {
+                                        if let showName = histories[i].title, !showName.isEmpty {
+                                            if histories[i].url.hasPrefix("https://www.bing.com/search?q=")
+                                                || histories[i].url.hasPrefix("https://www.baidu.com/s?wd=")
+                                                || histories[i].url.hasPrefix("https://www.google.com/search?q=")
+                                                || histories[i].url.hasPrefix("https://www.sogou.com/web?query=") {
                                                 Label(showName, systemImage: "magnifyingglass")
-                                            } else if histories[i].hasPrefix("file://") {
+                                            } else if histories[i].url.hasPrefix("file://") {
                                                 Label(showName, systemImage: "archivebox")
                                             } else {
                                                 Label(showName, systemImage: "globe")
                                             }
                                         } else {
-                                            if histories[i].hasPrefix("https://www.bing.com/search?q=") {
-                                                Label(String(histories[i].urlDecoded().dropFirst(30)), systemImage: "magnifyingglass")
-                                            } else if histories[i].hasPrefix("https://www.baidu.com/s?wd=") {
-                                                Label(String(histories[i].urlDecoded().dropFirst(27)), systemImage: "magnifyingglass")
-                                            } else if histories[i].hasPrefix("https://www.google.com/search?q=") {
-                                                Label(String(histories[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
-                                            } else if histories[i].hasPrefix("https://www.sogou.com/web?query=") {
-                                                Label(String(histories[i].urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
-                                            } else if histories[i].hasPrefix("file://") {
+                                            if histories[i].url.hasPrefix("https://www.bing.com/search?q=") {
+                                                Label(String(histories[i].url.urlDecoded().dropFirst(30)), systemImage: "magnifyingglass")
+                                            } else if histories[i].url.hasPrefix("https://www.baidu.com/s?wd=") {
+                                                Label(String(histories[i].url.urlDecoded().dropFirst(27)), systemImage: "magnifyingglass")
+                                            } else if histories[i].url.hasPrefix("https://www.google.com/search?q=") {
+                                                Label(String(histories[i].url.urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
+                                            } else if histories[i].url.hasPrefix("https://www.sogou.com/web?query=") {
+                                                Label(String(histories[i].url.urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
+                                            } else if histories[i].url.hasPrefix("file://") {
                                                 Label(
-                                                    String(histories[i].split(separator: "/").last!.split(separator: ".")[0])
+                                                    String(histories[i].url.split(separator: "/").last!.split(separator: ".")[0])
                                                         .replacingOccurrences(of: "{slash}", with: "/")
                                                         .base64Decoded() ?? "[解析失败]",
                                                     systemImage: "archivebox"
                                                 )
-                                            } else if histories[i].hasSuffix(".mp4") {
-                                                Label(histories[i], systemImage: "film")
+                                            } else if histories[i].url.hasSuffix(".mp4") {
+                                                Label(histories[i].url, systemImage: "film")
                                             } else {
-                                                Label(histories[i], systemImage: "globe")
+                                                Label(histories[i].url, systemImage: "globe")
                                             }
                                         }
                                     })
@@ -115,25 +143,25 @@ struct HistoryView: View {
                                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                         Button(role: .destructive, action: {
                                             histories.remove(at: i)
-                                            UserDefaults.standard.set(histories, forKey: "WebHistory")
+                                            WriteWebHistory(from: histories)
                                         }, label: {
                                             Image(systemName: "bin.xmark.fill")
                                         })
                                     }
                                     .swipeActions(edge: .leading) {
                                         Button(action: {
-                                            if let showName = historyTitles[histories[i]], !showName.isEmpty {
+                                            if let showName = histories[i].title {
                                                 newBookmarkName = showName
                                             } else {
                                                 newBookmarkName = ""
                                             }
-                                            newBookmarkLink = histories[i].urlDecoded().urlEncoded()
+                                            newBookmarkLink = histories[i].url.urlDecoded().urlEncoded()
                                             isNewBookmarkPresented = true
                                         }, label: {
                                             Image(systemName: "bookmark")
                                         })
                                         Button(action: {
-                                            shareLink = histories[i].urlDecoded().urlEncoded()
+                                            shareLink = histories[i].url.urlDecoded().urlEncoded()
                                             isSharePresented = true
                                         }, label: {
                                             Image(systemName: "square.and.arrow.up.fill")
@@ -228,9 +256,7 @@ struct HistoryView: View {
                                 }
                                 if selectedEmptyAction == 3 {
                                     histories.removeAll()
-                                    historyTitles.removeAll()
-                                    UserDefaults.standard.set(histories, forKey: "WebHistory")
-                                    UserDefaults.standard.set(historyTitles, forKey: "WebHistoryNames")
+                                    WriteWebHistory(from: histories)
                                     isClearOptionsPresented = false
                                     return
                                 }
@@ -248,18 +274,19 @@ struct HistoryView: View {
                                         break
                                     }
                                     for i in 0..<histories.count {
-                                        if let time = recordTimePair[histories[i]], currentTime - time <= maxTimeDiff {
-                                            histories[i] = "[History Remove Token]"
+                                        let time = histories[i].time
+                                        if currentTime - time <= maxTimeDiff {
+                                            histories[i].url = "[History Remove Token]"
                                         }
                                     }
                                     histories.removeAll(where: { element in
-                                        if element == "[History Remove Token]" {
+                                        if element.url == "[History Remove Token]" {
                                             return true
                                         }
                                         return false
                                     })
                                 }
-                                UserDefaults.standard.set(histories, forKey: "WebHistory")
+                                WriteWebHistory(from: histories)
                                 isClearOptionsPresented = false
                             }, label: {
                                 Text("清除历史记录")
@@ -283,70 +310,51 @@ struct HistoryView: View {
                 }
             }
             .onAppear {
-                histories = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
-                historyTitles = (UserDefaults.standard.dictionary(forKey: "WebHistoryNames") as? [String: String]) ?? [String: String]()
+                histories = GetWebHistory()
             }
         }
     }
 }
 
 func RecordHistory(_ inp: String, webSearch: String, showName: String? = nil) {
-    var fullHistory = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
+    if (UserDefaults.standard.object(forKey: "IsHistoryTransferNeeded") as? Bool) ?? true {
+        return
+    }
+    var fullHistory = GetWebHistory()
     if let lstf = fullHistory.first {
-        guard lstf != inp && lstf != GetWebSearchedURL(inp, webSearch: webSearch, isSearchEngineShortcutEnabled: false) else {
+        guard lstf.url != inp && lstf.url != GetWebSearchedURL(inp, webSearch: webSearch, isSearchEngineShortcutEnabled: false) else {
             return
         }
     }
     if inp.isURL() || inp.hasPrefix("file://") {
-        fullHistory = [inp] + fullHistory
-        if let showName {
-            var tmpDic = (UserDefaults.standard.dictionary(forKey: "WebHistoryNames") as? [String: String]) ?? [String: String]()
-            tmpDic.updateValue(showName, forKey: inp)
-            UserDefaults.standard.set(tmpDic, forKey: "WebHistoryNames")
-        }
-        var tmpDic = (UserDefaults.standard.dictionary(forKey: "WebHistoryRecordTimes") as? [String: Double]) ?? [String: Double]()
-        tmpDic.updateValue(Date.now.timeIntervalSince1970, forKey: inp)
-        UserDefaults.standard.set(tmpDic, forKey: "WebHistoryRecordTimes")
+        fullHistory.insert(.init(url: inp, title: showName, time: Date.now.timeIntervalSince1970), at: 0)
     } else {
         let rurl = GetWebSearchedURL(inp, webSearch: webSearch, isSearchEngineShortcutEnabled: false)
-        fullHistory = [rurl] + fullHistory
-        if let showName {
-            var tmpDic = (UserDefaults.standard.dictionary(forKey: "WebHistoryNames") as? [String: String]) ?? [String: String]()
-            tmpDic.updateValue(showName, forKey: rurl)
-            UserDefaults.standard.set(tmpDic, forKey: "WebHistoryNames")
-        }
-        var tmpDic = (UserDefaults.standard.dictionary(forKey: "WebHistoryRecordTimes") as? [String: Double]) ?? [String: Double]()
-        tmpDic.updateValue(Date.now.timeIntervalSince1970, forKey: inp)
-        UserDefaults.standard.set(tmpDic, forKey: "WebHistoryRecordTimes")
+        fullHistory.insert(.init(url: rurl, title: showName, time: Date.now.timeIntervalSince1970), at: 0)
     }
-    UserDefaults.standard.set(fullHistory, forKey: "WebHistory")
+    WriteWebHistory(from: fullHistory)
 }
-
-struct historiesettingView: View {
-    @AppStorage("isHistoryRecording") var isHistoryRecording = true
-    @State var isClosePagePresented = false
-    var body: some View {
-        List {
-            Text("History.settings")
-                .fontWeight(.bold)
-                .font(.system(size: 20))
-            Section {
-                Toggle("History.record", isOn: $isHistoryRecording)
-                    .onChange(of: isHistoryRecording, perform: { e in
-                        if !e {
-                            isClosePagePresented = true
-                        }
-                    })
-                    .sheet(isPresented: $isClosePagePresented, content: {CloseHistoryTipView()})
-            }
-            Section {
-                Button(role: .destructive, action: {
-                    UserDefaults.standard.set([String](), forKey: "WebHistory")
-                }, label: {
-                    Text("History.clear")
-                })
-            }
+func GetWebHistory() -> [SingleHistoryItem] {
+    do {
+        let jsonSource: String
+        if _fastPath(FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/WebHistories.drkdataw")) {
+            jsonSource = try String(contentsOfFile: NSHomeDirectory() + "/Documents/WebHistories.drkdataw", encoding: .utf8)
+        } else {
+            jsonSource = "[]"
         }
+        return getJsonData([SingleHistoryItem].self, from: jsonSource) ?? [SingleHistoryItem]()
+    } catch {
+        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+    }
+    return [SingleHistoryItem]()
+}
+func WriteWebHistory(from histories: [SingleHistoryItem]) {
+    do {
+        if let json = jsonString(from: histories) {
+            try json.write(toFile: NSHomeDirectory() + "/Documents/WebHistories.drkdataw", atomically: true, encoding: .utf8)
+        }
+    } catch {
+        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
     }
 }
 
@@ -373,8 +381,88 @@ struct CloseHistoryTipView: View {
     }
 }
 
-struct HistoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        HistoryView()
+struct HistoryTransferView: View {
+    @Environment(\.dismiss) var dismiss
+    @AppStorage("IsHistoryTransferNeeded") var isHistoryTransferNeeded = true
+    var body: some View {
+        List {
+            Section {
+                Button(action: {
+                    let histories = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
+                    let historyTitles = (UserDefaults.standard.dictionary(forKey: "WebHistoryNames") as? [String: String]) ?? [String: String]()
+                    let recordTimePair = (UserDefaults.standard.dictionary(forKey: "WebHistoryRecordTimes") as? [String: Double]) ?? [String: Double]()
+                    var newHistoriesTmp = [SingleHistoryItem]()
+                    for history in histories {
+                        newHistoriesTmp.append(.init(url: history, title: historyTitles[history], time: recordTimePair[history] ?? 1689895260))
+                    }
+                    if let targetStr = jsonString(from: newHistoriesTmp) {
+                        do {
+                            try targetStr.write(toFile: NSHomeDirectory() + "/Documents/WebHistories.drkdataw", atomically: true, encoding: .utf8)
+                            UserDefaults.standard.removeObject(forKey: "WebHistory")
+                            UserDefaults.standard.removeObject(forKey: "WebHistoryNames")
+                            UserDefaults.standard.removeObject(forKey: "WebHistoryRecordTimes")
+                            isHistoryTransferNeeded = false
+                            dismiss()
+                            tipWithText("迁移已完成", symbol: "checkmark.circle.fill")
+                        } catch {
+                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                        }
+                    } else {
+                        tipWithText("迁移出错，请提交反馈", symbol: "xmark.circle.fill")
+                    }
+                }, label: {
+                    Text("将所有历史记录转换为新架构")
+                })
+            } header: {
+                Text("迁移方式 1")
+            } footer: {
+                Text("转换时暗礁浏览器可能无响应，请耐心等待转换完成。")
+            }
+            Section {
+                Button(role: .destructive, action: {
+                    UserDefaults.standard.removeObject(forKey: "WebHistory")
+                    UserDefaults.standard.removeObject(forKey: "WebHistoryNames")
+                    UserDefaults.standard.removeObject(forKey: "WebHistoryRecordTimes")
+                    isHistoryTransferNeeded = false
+                    dismiss()
+                    tipWithText("迁移已完成", symbol: "checkmark.circle.fill")
+                }, label: {
+                    Text("清空历史记录并在今后使用新架构")
+                        .foregroundColor(.red)
+                })
+            } header: {
+                Text("迁移方式 2")
+            }
+        }
+        .navigationTitle("迁移历史记录")
     }
+}
+
+struct SingleHistoryItem: Codable {
+    var url: String
+    var title: String?
+    var time: TimeInterval
+}
+
+func jsonString<T>(from value: T) -> String? where T: Encodable {
+    do {
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try jsonEncoder.encode(value)
+        if let jsonString = String(data: jsonData, encoding: .utf8) {
+            return jsonString
+        }
+    } catch {
+        print("Error encoding data to JSON: \(error)")
+    }
+    return nil
+}
+func getJsonData<T>(_ type: T.Type, from json: String) -> T? where T: Decodable {
+    do {
+        let jsonData = json.data(using: .utf8)!
+        let jsonDecoder = JSONDecoder()
+        return try jsonDecoder.decode(type, from: jsonData)
+    } catch {
+        print("Error decoding JSON to data: \(error)")
+    }
+    return nil
 }

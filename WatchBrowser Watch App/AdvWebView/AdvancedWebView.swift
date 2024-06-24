@@ -15,22 +15,6 @@ fileprivate var webViewController = AdvancedWebViewController()
 var videoLinkLists = [String]()
 var imageLinkLists = [String]()
 
-struct AdvancedWebView: View {
-    var body: some View {
-        TabView {
-            ZStack {
-                Text("T")
-                    .zIndex(999)
-            }
-            .tag(1)
-            List {
-                
-            }
-            .tag(2)
-        }
-    }
-}
-
 class AdvancedWebViewController {
     public static let shared = AdvancedWebViewController()
     
@@ -51,6 +35,11 @@ class AdvancedWebViewController {
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
     @AppStorage("CustomUserAgent") var customUserAgent = ""
+    @AppStorage("DTIsAllowWebInspector") var isAllowWebInspector = false
+    @AppStorage("IsWebMinFontSizeStricted") var isWebMinFontSizeStricted = false
+    @AppStorage("WebMinFontSize") var webMinFontSize = 10.0
+    @AppStorage("IsShowFraudulentWebsiteWarning") var isShowFraudulentWebsiteWarning = true
+    @AppStorage("WKJavaScriptEnabled") var isJavaScriptEnabled = true
     
     var currentUrl = ""
     var isVideoChecking = false
@@ -65,16 +54,16 @@ class AdvancedWebViewController {
         
         let url = URL(string: iurl) ?? archiveUrl!
 
-        if isUseOldWebView {
+        if _slowPath(isUseOldWebView) {
             // rdar://FB268002071845
-            if presentController {
+            if _fastPath(presentController) {
                 let session = ASWebAuthenticationSession(url: url, callbackURLScheme: nil) { _, _ in
                     return
                 }
                 session.prefersEphemeralWebBrowserSession = !allowCookies
                 session.start()
                 
-                if isHistoryRecording {
+                if _fastPath(isHistoryRecording) {
                     RecordHistory(iurl, webSearch: webSearch)
                 }
             }
@@ -91,8 +80,8 @@ class AdvancedWebViewController {
         
         let wkWebView = Dynamic.WKWebView()
         wkWebView.setFrame(sb)
-        if customUserAgent.isEmpty {
-            if requestDesktopWeb {
+        if _fastPath(customUserAgent.isEmpty) {
+            if _slowPath(requestDesktopWeb) {
                 wkWebView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
             } else {
                 wkWebView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
@@ -107,7 +96,12 @@ class AdvancedWebViewController {
             : Dynamic.WKCookiePolicyDisllow,
             completionHandler: {} as @convention(block) () -> Void
         )
-
+        if isWebMinFontSizeStricted {
+            wkWebView.configuration.preferences.minimumFontSize = CGFloat(webMinFontSize)
+        }
+        wkWebView.configuration.preferences.javaScriptEnabled = isJavaScriptEnabled
+        wkWebView.configuration.preferences.fraudulentWebsiteWarningEnabled = isShowFraudulentWebsiteWarning
+        
         // Load Progress Bar
         loadProgressView.frame = CGRect(x: 0, y: 0, width: sb.width, height: 20)
         loadProgressView.progressTintColor = UIColor.blue
@@ -115,14 +109,14 @@ class AdvancedWebViewController {
         webViewHolder = Dynamic.UIView()
         webViewHolder.addSubview(wkWebView)
         
-        if keepDigitalTime {
+        if _slowPath(keepDigitalTime) {
             let timeBackground = Dynamic.UIView()
             timeBackground.setBackgroundColor(UIColor.black)
             timeBackground.setFrame(CGRect(x: sb.width - 50, y: 0, width: 70, height: 30))
             webViewHolder.addSubview(timeBackground)
         }
         
-        if showFastExitButton {
+        if _slowPath(showFastExitButton) {
             let fastExitButton = makeUIButton(title: .Image(UIImage(systemName: "escape")!),
                                               frame: CGRect(x: 40, y: 10, width: 30, height: 30),
                                               tintColor: .red,
@@ -135,7 +129,7 @@ class AdvancedWebViewController {
         vc = Dynamic.UIViewController()
         vc.view = webViewHolder
 
-        if presentController {
+        if _fastPath(presentController) {
             Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(vc, animated: true, completion: nil)
         }
         webViewParentController = vc.asObject!
@@ -149,12 +143,12 @@ class AdvancedWebViewController {
         updateMenuController()
         
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [self] _ in
-            if pIsMenuButtonDown {
+            if _slowPath(pIsMenuButtonDown) {
                 pIsMenuButtonDown = false
                 vc.presentViewController(menuController, animated: true, completion: nil)
                 CheckWebContent()
             }
-            if pMenuShouldDismiss {
+            if _slowPath(pMenuShouldDismiss) {
                 pMenuShouldDismiss = false
                 dismissControllersOnWebView()
             }
@@ -162,12 +156,21 @@ class AdvancedWebViewController {
                 loadProgressView.setProgress(Float(wkWebView.estimatedProgress.asDouble ?? 0.0), animated: true)
             }
         }
-        if presentController {
+        if _fastPath(presentController) {
             registerVideoCheckTimer()
         }
         
         webViewObject = wkWebView.asObject!
         WebExtension.setWebViewDelegate()
+        
+        let source = "function captureLog(msg) { window.webkit.messageHandlers.logHandler.postMessage(msg); } window.console.log = captureLog; window.console.warn = captureLog; window.console.error = captureLog;"
+        let script = Dynamic.WKUserScript(source: source, injectionTime: Dynamic.WKUserScriptInjectionTimeAtDocumentStart, forMainFrameOnly: false)
+        wkWebView.configuration.userContentController.addUserScript(script)
+        WebExtension.setUserScriptDelegateWithController(wkWebView.configuration.userContentController)
+        
+        if isAllowWebInspector {
+            wkWebView.inspectable = true
+        }
         
         return wkWebView
     }
@@ -364,7 +367,7 @@ class AdvancedWebViewController {
                 let curl = (url as! NSURL).absoluteString!
                 if curl != currentUrl {
                     currentUrl = curl
-                    if isHistoryRecording {
+                    if _fastPath(isHistoryRecording) {
                         RecordHistory(curl, webSearch: webSearch, showName: Dynamic(webViewObject).title.asString)
                     }
                 }

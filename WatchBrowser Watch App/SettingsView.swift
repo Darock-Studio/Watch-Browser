@@ -86,7 +86,11 @@ struct SettingsView: View {
                     }
                 }
                 Section {
+                    NavigationLink(destination: { NetworkSettingsView() }, label: { SettingItemLabel(title: "网络", image: "network", color: .blue) })
+                }
+                Section {
                     NavigationLink(destination: { GeneralSettingsView() }, label: { SettingItemLabel(title: "通用", image: "gear", color: .gray) })
+                    NavigationLink(destination: { AccessibilitySettingsView() }, label: { SettingItemLabel(title: "辅助功能", image: "accessibility", color: .blue, symbolFontSize: 18) })
                     NavigationLink(destination: { BrowsingEngineSettingsView() }, label: { SettingItemLabel(title: "浏览引擎", image: "globe", color: .blue) })
                     NavigationLink(destination: { SearchSettingsView() }, label: { SettingItemLabel(title: "搜索", image: "magnifyingglass", color: .gray) })
                 }
@@ -184,6 +188,17 @@ struct SettingsView: View {
                 Spacer()
                     .frame(height: 6)
             }
+        }
+    }
+    
+    struct NetworkSettingsView: View {
+        var body: some View {
+            List {
+                Section {
+                    NavigationLink(destination: { NetworkCheckView() }, label: { SettingItemLabel(title: "网络检查", image: "checkmark.circle", color: .green) })
+                }
+            }
+            .navigationTitle("网络")
         }
     }
     
@@ -1455,6 +1470,25 @@ struct SettingsView: View {
             }
         }
     }
+    struct AccessibilitySettingsView: View {
+        @AppStorage("IsWebMinFontSizeStricted") var isWebMinFontSizeStricted = false
+        @AppStorage("WebMinFontSize") var webMinFontSize = 10.0
+        var body: some View {
+            List {
+                Section {
+                    Toggle("限制最小字体大小", isOn: $isWebMinFontSizeStricted)
+                    VStack {
+                        Slider(value: $webMinFontSize, in: 10...50, step: 1) {
+                            Text("字体大小")
+                        }
+                        Text(String(format: "%.0f", webMinFontSize))
+                    }
+                    .disabled(!isWebMinFontSizeStricted)
+                }
+            }
+            .navigationTitle("辅助功能")
+        }
+    }
     struct BrowsingEngineSettingsView: View {
         @AppStorage("isUseOldWebView") var isUseOldWebView = false
         @AppStorage("RequestDesktopWeb") var requestDesktopWeb = false
@@ -2101,6 +2135,7 @@ struct SettingsView: View {
                 }
                 Section {
                     NavigationLink(destination: { CookieView() }, label: { SettingItemLabel(title: "Cookie", image: "doc.fill", color: .gray) })
+                    NavigationLink(destination: { WebsiteSecurityView() }, label: { SettingItemLabel(title: "站点安全", image: "macwindow.on.rectangle", color: .gray) })
                 }
                 Section {
                     NavigationLink(destination: { DeveloperModeView() }, label: {
@@ -2135,6 +2170,20 @@ struct SettingsView: View {
                 .navigationTitle("Cookie")
             }
         }
+        struct WebsiteSecurityView: View {
+            @AppStorage("IsShowFraudulentWebsiteWarning") var isShowFraudulentWebsiteWarning = true
+            @AppStorage("WKJavaScriptEnabled") var isJavaScriptEnabled = true
+            var body: some View {
+                List {
+                    Section {
+                        Toggle("显示欺诈性网站警告", isOn: $isShowFraudulentWebsiteWarning)
+                        Toggle("JavaScript", isOn: $isJavaScriptEnabled)
+                    }
+                }
+                .navigationTitle("站点安全")
+            }
+        }
+        
         struct DeveloperModeView: View {
             @AppStorage("IsDeveloperModeEnabled") var isDeveloperModeEnabled = false
             var body: some View {
@@ -2152,6 +2201,7 @@ struct SettingsView: View {
     
     struct DeveloperSettingsView: View {
         @AppStorage("CustomUserAgent") var customUserAgent = ""
+        @AppStorage("DTIsAllowWebInspector") var isAllowWebInspector = false
         var body: some View {
             List {
                 Section {
@@ -2192,7 +2242,13 @@ struct SettingsView: View {
                 } footer: {
                     Text("除非设置为默认，此处设置的值将覆盖\(Text("浏览引擎->请求桌面网站").bold().foregroundColor(.blue))设置")
                 }
+                Section {
+                    Toggle("网页检查器", isOn: $isAllowWebInspector)
+                } footer: {
+                    Text("若要使用网页检查器，通过线缆将此 Apple Watch 配对的 iPhone 与 Mac 连接，在 Safari 的“开发”菜单中访问此 Apple Watch。你可以在 Safari 设置中的“高级”选项卡中打开开发菜单。")
+                }
             }
+            .navigationTitle("开发者")
         }
     }
     struct InternalDebuggingView: View {
@@ -2201,6 +2257,15 @@ struct SettingsView: View {
         @State var isTestAppRemovalWarningPresented = false
         var body: some View {
             List {
+                Section {
+                    Button(action: {
+                        tipWithText("\(String(isDebuggerAttached()))", symbol: "hammer.circle.fill")
+                    }, label: {
+                        Text("Present Debugger Attach Status")
+                    })
+                } header: {
+                    Text("Debugger")
+                }
                 Section {
                     Button(action: {
                         tipWithText("\(String(format: "%.2f", securityDelayStartTime))", symbol: "hammer.circle.fill")
@@ -2281,6 +2346,20 @@ struct SettingsView: View {
                     Text("All data will be lost!")
                 }
             })
+        }
+        
+        func isDebuggerAttached() -> Bool {
+            var name = [CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid()]
+            var info = kinfo_proc()
+            var infoSize = MemoryLayout<kinfo_proc>.stride
+            
+            let result = name.withUnsafeMutableBytes {
+                sysctl($0.baseAddress!.assumingMemoryBound(to: Int32.self), 4, &info, &infoSize, nil, 0)
+            }
+            
+            assert(result == 0, "sysctl failed")
+            
+            return (info.kp_proc.p_flag & P_TRACED) != 0
         }
     }
 }

@@ -18,6 +18,8 @@
 		6BF209FB2990E61E00E623FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BF209FA2990E61E00E623FC /* Preview Assets.xcassets */; };
 		6BF20A0A299100AE00E623FC /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF20A09299100AE00E623FC /* BookmarkView.swift */; };
 		6BFFCC562A8A6CF3001175EE /* DarockKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6BFFCC552A8A6CF3001175EE /* DarockKit */; };
+		8C03B6E02C296338000770B4 /* NetworkCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C03B6DF2C296338000770B4 /* NetworkCheckView.swift */; };
+		8C03B70E2C29B2CE000770B4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8C03B70D2C29B2CE000770B4 /* Localizable.xcstrings */; };
 		8C52811C2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */; };
 		8C52811D2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C5281252C22FA5600392315 /* ___KawaiiChieriChan.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8C5281232C22FA5600392315 /* ___KawaiiChieriChan.drkdatau */; };
@@ -130,6 +132,10 @@
 		6BF209F72990E61E00E623FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6BF209FA2990E61E00E623FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6BF20A09299100AE00E623FC /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
+		8C03B6DF2C296338000770B4 /* NetworkCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheckView.swift; sourceTree = "<group>"; };
+		8C03B70B2C29B201000770B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8C03B70C2C29B20B000770B4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		8C03B70D2C29B2CE000770B4 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		8C41F7E62C14363A0052A635 /* MainUITestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MainUITestPlan.xctestplan; sourceTree = "<group>"; };
 		8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TripleQuestionmarkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5281222C22FA5600392315 /* ___0721NeneChan.drkdatau */ = {isa = PBXFileReference; lastKnownFileType = text; path = "___0721NeneChan.drkdatau"; sourceTree = "<group>"; };
@@ -263,6 +269,7 @@
 				8CA7B8382BE397D1004643FE /* UserScriptsView.swift */,
 				8C6D86782C10C6A70089CE67 /* LaboratoryView.swift */,
 				8C6D867A2C10CA680089CE67 /* BrowsingTabsView.swift */,
+				8C03B6DF2C296338000770B4 /* NetworkCheckView.swift */,
 				6BF209F72990E61E00E623FC /* Assets.xcassets */,
 				E25EA83A2B70ABEF00BFEC6E /* InfoPlist.strings */,
 				6BF209F92990E61E00E623FC /* Preview Content */,
@@ -291,6 +298,7 @@
 				8C5281222C22FA5600392315 /* ___0721NeneChan.drkdatau */,
 				8C5281232C22FA5600392315 /* ___KawaiiChieriChan.drkdatau */,
 				8C5281242C22FA5600392315 /* TripleQuestionmarkCore.h */,
+				8C03B70D2C29B2CE000770B4 /* Localizable.xcstrings */,
 				8C52812A2C25A07A00392315 /* TQCViews.swift */,
 			);
 			path = TripleQuestionmarkCore;
@@ -439,7 +447,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					6BF209E72990E61C00E623FC = {
 						CreatedOnToolsVersion = 14.2;
@@ -466,6 +474,8 @@
 				Base,
 				"zh-Hans",
 				en,
+				ja,
+				"zh-Hant",
 			);
 			mainGroup = 6BF209E12990E61C00E623FC;
 			packageReferences = (
@@ -519,6 +529,7 @@
 			files = (
 				8C5281252C22FA5600392315 /* ___KawaiiChieriChan.drkdatau in Resources */,
 				8C5281262C22FA5600392315 /* ___0721NeneChan.drkdatau in Resources */,
+				8C03B70E2C29B2CE000770B4 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +565,7 @@
 				8CB803D42BD3E6D1009B2FAC /* AdvancedWebView.swift in Sources */,
 				8C96E34B2C15901400751FAF /* DAssistAdView.swift in Sources */,
 				8C5281292C23457F00392315 /* TipsView.swift in Sources */,
+				8C03B6E02C296338000770B4 /* NetworkCheckView.swift in Sources */,
 				8C6E11DD2BDBF464005420C0 /* NewFeaturesView.swift in Sources */,
 				8CA4537D2AE3C63900138CE4 /* MLTestsView.swift in Sources */,
 				8C894B222BE7569300768B59 /* ExtKeyboardView.swift in Sources */,
@@ -606,6 +618,8 @@
 			children = (
 				E25EA8392B70ABEF00BFEC6E /* zh-Hans */,
 				E25EA83B2B70ABF000BFEC6E /* en */,
+				8C03B70B2C29B201000770B4 /* ja */,
+				8C03B70C2C29B20B000770B4 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -617,6 +631,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -671,6 +686,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WATCHOS_DEPLOYMENT_TARGET = 8.4;
 			};
@@ -680,6 +696,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -727,6 +744,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				WATCHOS_DEPLOYMENT_TARGET = 8.4;
 			};
@@ -757,7 +775,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.8.0;
+				MARKETING_VERSION = 4.8.1;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -797,7 +815,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.8.0;
+				MARKETING_VERSION = 4.8.1;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -816,14 +834,13 @@
 		6BF20A032990E61E00E623FC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B57D8PP775;
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
-				MARKETING_VERSION = 4.8.0;
+				MARKETING_VERSION = 4.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -834,7 +851,6 @@
 		6BF20A042990E61E00E623FC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -842,7 +858,7 @@
 				GCC_OPTIMIZATION_LEVEL = z;
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
-				MARKETING_VERSION = 4.8.0;
+				MARKETING_VERSION = 4.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -858,6 +874,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -901,6 +918,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

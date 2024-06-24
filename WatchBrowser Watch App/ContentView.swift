@@ -18,6 +18,7 @@ import AuthenticationServices
 struct ContentView: View {
     public static var bingSearchingText = ""
     @AppStorage("LabTabBrowsingEnabled") var labTabBrowsingEnabled = false
+    @AppStorage("IsHistoryTransferNeeded") var isHistoryTransferNeeded = true
     @State var mainTabSelection = 2
     @State var isVideoListPresented = false
     @State var isImageListPresented = false
@@ -76,12 +77,18 @@ struct ContentView: View {
             }
         }
         .onAppear {
+            if _slowPath(isHistoryTransferNeeded) {
+                if (UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()).isEmpty {
+                    isHistoryTransferNeeded = false
+                }
+            }
+            
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
-                if pShouldPresentVideoList {
+                if _slowPath(pShouldPresentVideoList) {
                     pShouldPresentVideoList = false
                     isVideoListPresented = true
                 }
-                if pShouldPresentImageList {
+                if _slowPath(pShouldPresentImageList) {
                     pShouldPresentImageList = false
                     isImageListPresented = true
                 }
