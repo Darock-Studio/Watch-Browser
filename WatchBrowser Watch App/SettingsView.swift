@@ -45,7 +45,7 @@ struct SettingsView: View {
                                         .rotationEffect(.degrees(8))
                                         .foregroundColor(.init(hex: 0x144683))
                                     Text("D")
-                                        .font(.custom("HYWenHei", size: 14))
+                                        .font(.custom("HYWenHei-85W", size: 14))
                                         .foregroundColor(.init(hex: 0x0c79ff))
                                         .scaleEffect(1.2)
                                 }

@@ -163,10 +163,10 @@ class AdvancedWebViewController {
         webViewObject = wkWebView.asObject!
         WebExtension.setWebViewDelegate()
         
-        let source = "function captureLog(msg) { window.webkit.messageHandlers.logHandler.postMessage(msg); } window.console.log = captureLog; window.console.warn = captureLog; window.console.error = captureLog;"
-        let script = Dynamic.WKUserScript(source: source, injectionTime: Dynamic.WKUserScriptInjectionTimeAtDocumentStart, forMainFrameOnly: false)
-        wkWebView.configuration.userContentController.addUserScript(script)
-        WebExtension.setUserScriptDelegateWithController(wkWebView.configuration.userContentController)
+//        let source = "function captureLog(msg) { window.webkit.messageHandlers.logHandler.postMessage(msg); } window.console.log = captureLog; window.console.warn = captureLog; window.console.error = captureLog;"
+//        let script = Dynamic.WKUserScript(source: source, injectionTime: Dynamic.WKUserScriptInjectionTimeAtDocumentStart, forMainFrameOnly: false)
+//        wkWebView.configuration.userContentController.addUserScript(script)
+//        WebExtension.setUserScriptDelegateWithController(wkWebView.configuration.userContentController)
         
         if isAllowWebInspector {
             wkWebView.inspectable = true
@@ -441,4 +441,12 @@ class AdvancedWebViewController {
 func getMiddleRect(y: CGFloat, height: CGFloat) -> CGRect {
     let sb = WKInterfaceDevice.current().screenBounds
     return CGRect(x: (sb.width - (sb.width - 40)) / 2, y: y, width: sb.width - 40, height: height)
+}
+
+private struct TestWKHoster: View {
+    var body: some View {
+        List {
+            
+        }
+    }
 }

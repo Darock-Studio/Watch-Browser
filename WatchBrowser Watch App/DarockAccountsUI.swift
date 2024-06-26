@@ -230,6 +230,20 @@ struct DarockAccountManagementMain: View {
                     }
                 })
             }
+//            Section {
+//                NavigationLink(destination: { DarockCloudView() }, label: {
+//                    HStack {
+//                        ZStack {
+//                            Color.cyan
+//                                .frame(width: 20, height: 20)
+//                                .clipShape(Circle())
+//                            Image(systemName: "cloud")
+//                                .font(.system(size: 12))
+//                        }
+//                        Text("Darock Cloud")
+//                    }
+//                })
+//            }
             Section {
                 NavigationLink(destination: { DeviceInfoView() }, label: {
                     HStack {
@@ -584,6 +598,37 @@ struct DarockAccountManagementMain: View {
                                 }
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
+    
+    struct DarockCloudView: View {
+        @AppStorage("DarockAccount") var darockAccount = ""
+        var body: some View {
+            List {
+                Section {
+                    NavigationLink(destination: { SavedToDarockCloudView() }, label: {
+                        HStack {
+                            Text("存储至 Darock Cloud")
+                            Spacer()
+                            Image(systemName: "chevron.forward")
+                                .foregroundColor(.gray)
+                        }
+                    })
+                }
+            }
+            .navigationTitle("Darock Cloud")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+        
+        struct SavedToDarockCloudView: View {
+            @AppStorage("DarockAccount") var darockAccount = ""
+            var body: some View {
+                List {
+                    Section {
+                        
                     }
                 }
             }

@@ -615,7 +615,7 @@ struct FeedbackView: View {
                                 replies.append((status: st, content: co, sender: se))
                             }
                         }
-                        UserDefaults.standard.set(replies.count, forKey: "RadarFB\(id)ReplyCount")
+                        UserDefaults.standard.set(repSpd.count - 1, forKey: "RadarFB\(id)ReplyCount")
                     }
                 }
             }

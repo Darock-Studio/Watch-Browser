@@ -193,12 +193,13 @@ struct TipsView: View {
                             .autocorrectionDisabled()
                             .textInputAutocapitalization(.never)
                             .swipeActions {
-                                Button(role: .destructive, action: {
+                                Button(action: {
                                     tmpInput = ""
                                     tipWithText("完成！", symbol: "checkmark.circle.fill")
                                 }, label: {
                                     Image(systemName: "xmark.bin.fill")
                                 })
+                                .tint(.red)
                             }
                         HStack {
                             Image(systemName: "arrow.left")

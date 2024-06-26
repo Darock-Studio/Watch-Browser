@@ -15,6 +15,12 @@
             "value" : ""
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35,6 +41,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "「ALPHA」は未成熟な機能を示し、この関連のフィードバックは受け付けません"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"ALPHA\" представляет собой в настоящее время незрелую функцию, и мы не принимаем отзывы, связанные с этим."
           }
         },
         "zh-Hant" : {
@@ -59,6 +71,12 @@
             "value" : "「BETA」はほぼ完成していますが、検証が必要な機能を示しており、この種のプロジェクトに対するフィードバックを歓迎します"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"BETA\" представляет собой функции, которые в настоящее время относительно завершены, но все еще нуждаются в проверке. Вы можете отправить отзыв о таких проектах."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -79,6 +97,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "「フィードバックアシスタント」はDarockブラウザに更新があるため利用できません"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Помощник по обратной связи\" недоступен, потому что обновления доступны в браузере Reef."
           }
         },
         "zh-Hant" : {
@@ -103,6 +127,12 @@
             "value" : "「クイックブックマーク」は検索ボックスの内容をすばやくブックマークに追加できます"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Быстрые закладки\" позволяет быстро добавить содержимое поля поиска в закладки."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -123,6 +153,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "「クイッククリア」は検索ボックスの内容をすばやくクリアできます"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Быстрая очистка\" позволяет быстро очистить содержимое поля поиска."
           }
         },
         "zh-Hant" : {
@@ -147,6 +183,12 @@
             "value" : "「暗礁ブラウザ」の新機能"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новые функции \"Reef Browser\""
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -164,6 +206,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(%@, %@)"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "(%@, %@)"
@@ -197,6 +245,12 @@
             "value" : "**すべてのウェブページの動画が解析できるわけではありません**\n\n**〇〇サイトの動画が再生できない**などのフィードバックは**お控えください**"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Не все видео на веб-странице могут быть разобраны **\n\nПожалуйста ** Не ** выдвигайте отзыв о том, что видео не может быть воспроизведено на веб-сайте."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -219,6 +273,12 @@
             "value" : "**すべてのウェブページがApple Watchで正常に動作するわけではありません**\n\n**〇〇サイト*が開かない*、*問題がある*などのフィードバックは**お控えください**"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Не все веб-страницы могут нормально работать на Apple Watch**\n\nПожалуйста**не пересылайте отзывы, такие как 〇〇 веб-сайт*не может быть открыт*, *проблема*"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -236,6 +296,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "#+="
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "#+="
@@ -269,6 +335,12 @@
             "value" : "%@"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -291,6 +363,12 @@
             "value" : "%@ MB"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ МБ"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -311,6 +389,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ 検索"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Поиск"
           }
         },
         "zh-Hans" : {
@@ -341,6 +425,12 @@
             "value" : "%@%%"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@%%"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -361,6 +451,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@%lld:%@%lld"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@%2$lld:%2$lld%3$@"
           }
         },
         "zh-Hans" : {
@@ -386,6 +482,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@MB / %@MB"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@MB / %@MB"
@@ -419,6 +521,12 @@
             "value" : "%lld"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%Ллд"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -436,6 +544,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "0"
@@ -469,6 +583,12 @@
             "value" : "0.5x"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0,5 раза"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -491,6 +611,12 @@
             "value" : "0.75x"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0,75 раза"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -508,6 +634,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1"
@@ -541,6 +673,12 @@
             "value" : "1.5x"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1,5 раза"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -563,6 +701,12 @@
             "value" : "1x"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 раз"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -580,6 +724,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "2"
@@ -613,6 +763,12 @@
             "value" : "2x"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2x"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -630,6 +786,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "3"
@@ -663,6 +825,12 @@
             "value" : "3.5 無料試用サブスクリプションを利用"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3.5 Подписка Бесплатная пробная биржа"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -685,6 +853,12 @@
             "value" : "3x"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 раза"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -702,6 +876,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "4"
@@ -735,6 +915,12 @@
             "value" : "4.0 無料試用サブスクリプションを利用"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4.0 Подписка Бесплатная Пробная Версия Погасление"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -752,6 +938,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "5"
@@ -785,6 +977,12 @@
             "value" : "5x"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5 раз"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -802,6 +1000,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "6"
@@ -835,6 +1039,12 @@
             "value" : "7"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -863,6 +1073,12 @@
             "value" : "8"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "8"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -886,6 +1102,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "9"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "9"
@@ -933,6 +1155,12 @@
             "value" : "アプリバージョン"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия приложения"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -977,6 +1205,12 @@
             "value" : "Apple Watchは現在インターネットに接続できません"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В настоящее время Apple Watch не могут подключиться к Интернету."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -997,6 +1231,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "baidu"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Байду"
           }
         },
         "zh-Hans" : {
@@ -1038,6 +1278,12 @@
             "value" : "bing"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бинг"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1064,6 +1310,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ブックマークを追加"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить закладку"
           }
         },
         "zh-Hans" : {
@@ -1094,6 +1346,12 @@
             "value" : "ブックマークを編集"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактировать закладки"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1120,6 +1378,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "完了"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выполнять, выполнить"
           }
         },
         "zh-Hans" : {
@@ -1150,6 +1414,12 @@
             "value" : "ブックマークリンク"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ссылка на закладку"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1176,6 +1446,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ブックマーク名"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Название закладки"
           }
         },
         "zh-Hans" : {
@@ -1206,6 +1482,12 @@
             "value" : "お知らせ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предоставьте публичное уведомление"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1234,6 +1516,12 @@
             "value" : "既読にする"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отметить как прочитано"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1260,6 +1548,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未読にする"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отметить как непрочитанное"
           }
         },
         "zh-Hans" : {
@@ -1316,6 +1610,12 @@
             "value" : "Darock API"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock API"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1336,6 +1636,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darock APIサーバーに問題が発生しました、これはあなたのせいではありません"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Есть проблема с сервером Darock API. Это не ваша вина."
           }
         },
         "zh-Hant" : {
@@ -1360,6 +1666,12 @@
             "value" : "Darock API問題"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проблема с Darock API"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1380,6 +1692,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darock API：利用不可"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock API: Недоступен"
           }
         },
         "zh-Hant" : {
@@ -1404,6 +1722,12 @@
             "value" : "Darock API：利用可能"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock API: Доступно"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1426,6 +1750,12 @@
             "value" : "Darock API：無効な応答"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock API: Неверный возврат"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1446,6 +1776,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darock API：チェック中"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock API: Проверка"
           }
         },
         "zh-Hant" : {
@@ -1473,6 +1809,12 @@
             "value" : "DarockはDarockブラウザユーザーのためにDarockアシスタントの無料試用を提供します"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock подготовил бесплатную пробную версию Reef Assistant для пользователей Reef Browser."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1493,6 +1835,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darockは常にプライバシーを重視し、すべてのCookieはローカルに保存されます"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock всегда ценит вашу конфиденциальность, и все файлы cookie хранятся только локально."
           }
         },
         "zh-Hant" : {
@@ -1517,6 +1865,12 @@
             "value" : "Darockアカウント"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Учетная запись Darock"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1537,6 +1891,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darockアカウントおよびその他"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Аккаунт Darock и многое другое"
           }
         },
         "zh-Hant" : {
@@ -1587,6 +1947,12 @@
             "value" : "google"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искать в интернете"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1621,6 +1987,12 @@
             "value" : "履歴を消去"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очистить историю"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1647,6 +2019,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "履歴も同時にクリアしますか？"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы хотите очистить историю одновременно?"
           }
         },
         "zh-Hans" : {
@@ -1677,6 +2055,12 @@
             "value" : "記録されていません"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не в протоколе"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1703,6 +2087,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "履歴なし"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Никаких исторических записей"
           }
         },
         "zh-Hans" : {
@@ -1733,6 +2123,12 @@
             "value" : "履歴を記録"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "История записей"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1759,6 +2155,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "保存"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заповедник"
           }
         },
         "zh-Hans" : {
@@ -1789,6 +2191,12 @@
             "value" : "履歴を閉じる"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрыть историю"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1815,6 +2223,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ブックマーク"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закладка"
           }
         },
         "zh-Hans" : {
@@ -1845,6 +2259,12 @@
             "value" : "固定されたブックマーク"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Топ-закладки"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1871,6 +2291,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "前へ"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейти к"
           }
         },
         "zh-Hans" : {
@@ -1901,6 +2327,12 @@
             "value" : "履歴"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Историческая запись"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1927,6 +2359,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darockはテストに参加するよう招待しています"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дарок приглашает вас на тест."
           }
         },
         "zh-Hans" : {
@@ -1957,6 +2395,12 @@
             "value" : "検索"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искать"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1983,6 +2427,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "キーワードまたはリンクを入力"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите ключевые слова или ссылки"
           }
         },
         "zh-Hans" : {
@@ -2013,6 +2463,12 @@
             "value" : "baiduで検索"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск по Baidu"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2039,6 +2495,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "bingで検索"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск через Bing"
           }
         },
         "zh-Hans" : {
@@ -2069,6 +2531,12 @@
             "value" : "googleで検索"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск в Google"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2095,6 +2563,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "sogouで検索"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск через Sogou"
           }
         },
         "zh-Hans" : {
@@ -2125,6 +2599,12 @@
             "value" : "設定"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройка"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2151,6 +2631,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darockブラウザ"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Риф-браузер"
           }
         },
         "zh-Hans" : {
@@ -2196,6 +2682,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apple Watch用のBilibiliクライアント"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клиент Bilibili на Apple Watch"
           }
         },
         "zh-Hans" : {
@@ -2249,6 +2741,12 @@
             "value" : "テスト招待"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тестовое приглашение"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2275,6 +2773,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iPhoneで続行"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжить на iPhone"
           }
         },
         "zh-Hans" : {
@@ -2305,6 +2809,12 @@
             "value" : "ダウンロード"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Загружать, загрузить"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2333,6 +2843,12 @@
             "value" : "もっと詳しく"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Узнать больше"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2359,6 +2875,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "離れて非表示"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уйти и спрятаться"
           }
         },
         "zh-Hans" : {
@@ -2390,6 +2912,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スペース"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пустое пространство"
           }
         },
         "zh-Hans" : {
@@ -2481,6 +3009,12 @@
             "value" : "baidu"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Байду"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2507,6 +3041,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "bing"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бинг"
           }
         },
         "zh-Hans" : {
@@ -2537,6 +3077,12 @@
             "value" : "google"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искать в интернете"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2563,6 +3109,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "sogou"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Согу"
           }
         },
         "zh-Hans" : {
@@ -2596,6 +3148,12 @@
             "value" : "Cookieを許可"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешить файлы cookie"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2622,6 +3180,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cookieはログイン情報などを記録するために使用されます"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлы cookie используются для маркировки информации для входа в систему и другого содержимого."
           }
         },
         "zh-Hans" : {
@@ -2652,6 +3216,12 @@
             "value" : "watchOSの制限により、すべてのCookieを許可することはできないかもしれません"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Из-за ограничений watchOS все файлы cookie могут быть запрещены."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2678,6 +3248,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "キーボード"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клавиатура"
           }
         },
         "zh-Hans" : {
@@ -2708,6 +3284,12 @@
             "value" : "このキーボードは、システム全体のキーボードをサポートしないWatch用に英語入力の全キーボードを開発しました"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клавиатура разработала метод ввода на английском языке с полной клавиатурой для часов, который не поддерживает полную клавиатуру системы."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2734,6 +3316,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "プレビュー..."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предварительный просмотр..."
           }
         },
         "zh-Hans" : {
@@ -2764,6 +3352,12 @@
             "value" : "サードパーティ全キーボード"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сторонняя полная клавиатура"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2790,6 +3384,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "検索エンジンを追加"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить поисковую систему"
           }
         },
         "zh-Hans" : {
@@ -2820,6 +3420,12 @@
             "value" : "デジタルクラウンを回して、検索語句を挿入する位置にカーソルを移動します"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прокрутите цифровую коронку и переместите курсор в положение, куда должен быть вставлен поисковый запрос."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2846,6 +3452,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "検索内容を挿入"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставьте содержимое поиска"
           }
         },
         "zh-Hans" : {
@@ -2876,6 +3488,12 @@
             "value" : "完了"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выполнять, выполнить"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2902,6 +3520,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "検索エンジンリンクを入力"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите ссылку в поисковой системе"
           }
         },
         "zh-Hans" : {
@@ -2932,6 +3556,12 @@
             "value" : "カスタム検索エンジンの検索リンクを入力してください。例えば「bing.com?q=」のように、検索内容を埋める位置は一時的に無視してください。"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите ссылку поиска поисковой системы, которую вы хотите настроить, например, \"bing.com?\" Q=, пожалуйста, пока игнорируйте местоположение поискового контента."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2958,6 +3588,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "リンクを入力"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите ссылку"
           }
         },
         "zh-Hans" : {
@@ -2988,6 +3624,12 @@
             "value" : "次へ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Следующий шаг"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3014,6 +3656,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "カスタム検索エンジンなし"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет пользовательской поисковой системы"
           }
         },
         "zh-Hans" : {
@@ -3044,6 +3692,12 @@
             "value" : "[検索内容]"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Поиск контента]"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3070,6 +3724,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "検索エンジン"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поисковая система"
           }
         },
         "zh-Hans" : {
@@ -3100,6 +3760,12 @@
             "value" : "検索エンジンショートカット"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ярлыки поисковых систем"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3126,6 +3792,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "有効化すると、ショートカット名を検索内容の前に付けるだけで指定したエンジンで検索できます。"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "После включения добавьте имя ярлыка перед содержимым поиска, чтобы использовать указанную систему для поиска."
           }
         },
         "zh-Hans" : {
@@ -3156,6 +3828,12 @@
             "value" : "検索エンジンショートカットを有効にする"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включить ярлыки поисковых систем"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3182,6 +3860,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "sogou"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Согу"
           }
         },
         "zh-Hans" : {
@@ -3269,6 +3953,12 @@
             "value" : "アカウント1つでDarockの全サービスを利用"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Наслаждайтесь всеми услугами Darock с одной учетной записью"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3289,6 +3979,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "すべて良好"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все хорошо."
           }
         },
         "zh-Hant" : {
@@ -3313,6 +4009,12 @@
             "value" : "過去1時間"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последний час"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3333,6 +4035,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "前のページ"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предыдущая страница"
           }
         },
         "zh-Hant" : {
@@ -3357,6 +4065,12 @@
             "value" : "次のページ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Следующая страница"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3377,6 +4091,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ダウンロードが完了しました"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Загрузка завершена."
           }
         },
         "zh-Hant" : {
@@ -3401,6 +4121,12 @@
             "value" : "ダウンロード時にエラー："
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка при загрузке:"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3421,6 +4147,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "動画をダウンロード"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скачать видео"
           }
         },
         "zh-Hant" : {
@@ -3445,6 +4177,12 @@
             "value" : "パスワードが一致しません"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пароль дважды несовместим."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3465,6 +4203,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "個人情報"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Личная информация"
           }
         },
         "zh-Hant" : {
@@ -3489,6 +4233,12 @@
             "value" : "中国大陸ICP登録番号"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рекордный номер ICP в материковом Китае"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3509,6 +4259,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "QRコード"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QR-код"
           }
         },
         "zh-Hant" : {
@@ -3533,6 +4289,12 @@
             "value" : "インターネット"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интернет"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3553,6 +4315,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "インターネット：オンライン"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интернет: Онлайн"
           }
         },
         "zh-Hant" : {
@@ -3577,6 +4345,12 @@
             "value" : "インターネット：チェック中"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интернет: Проверка"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3597,6 +4371,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "インターネット：オフライン"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интернет: Оффлайн"
           }
         },
         "zh-Hant" : {
@@ -3621,6 +4401,12 @@
             "value" : "例として、ここでの操作はブックマークを実際に追加しません。"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Например, операция здесь на самом деле не будет добавлять закладки."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3641,6 +4427,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "今日"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сегодня"
           }
         },
         "zh-Hant" : {
@@ -3665,6 +4457,12 @@
             "value" : "まだ問題がある？"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все еще есть проблемы?"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3685,6 +4483,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ここからDarockブラウザを設定してください。"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начните настраивать свой браузер Reef здесь."
           }
         },
         "zh-Hant" : {
@@ -3709,6 +4513,12 @@
             "value" : "端から\n右にスワイプ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проведите пальцем от края\n вправо"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3729,6 +4539,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ログインしました"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы вошли в систему."
           }
         },
         "zh-Hant" : {
@@ -3753,6 +4569,12 @@
             "value" : "現在の下書きを保存しますか？"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы хотите сохранить текущий черновик?"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3773,6 +4595,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用前のヒント"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Советы перед использованием"
           }
         },
         "zh-Hant" : {
@@ -3797,6 +4625,12 @@
             "value" : "位置情報サービスを使用"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Используйте службы определения местоположения"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3817,6 +4651,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ジェスチャーで前のページに戻る"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Используйте жесты, чтобы вернуться на предыдущую страницу"
           }
         },
         "zh-Hant" : {
@@ -3841,6 +4681,12 @@
             "value" : "旧エンジン使用時は、ユーザースクリプトは利用できません"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пользовательские скрипты недоступны при использовании старого движка."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3861,6 +4707,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "旧エンジン使用時はウェブアーカイブは利用できません"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "При использовании старого движка веб-архивирование недоступно."
           }
         },
         "zh-Hant" : {
@@ -3885,6 +4737,12 @@
             "value" : "旧ブラウジングエンジンを使用"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Используйте старую версию движка просмотра"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3905,6 +4763,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "保存"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заповедник"
           }
         },
         "zh-Hant" : {
@@ -3929,6 +4793,12 @@
             "value" : "時間を表示する"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Держите время видимым."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3949,6 +4819,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "情報"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Информация"
           }
         },
         "zh-Hant" : {
@@ -3973,6 +4849,12 @@
             "value" : "ストレージ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Место для хранения"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3993,6 +4875,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "フルスクリーン"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Полный экран"
           }
         },
         "zh-Hans" : {
@@ -4023,6 +4911,12 @@
             "value" : "共有フォーム"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Общая форма"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4043,6 +4937,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "概要"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "О"
           }
         },
         "zh-Hant" : {
@@ -4067,6 +4967,12 @@
             "value" : "特定のウェブページ最適化について..."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Об оптимизации конкретной веб-страницы..."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4087,6 +4993,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "動画に関して..."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "О видео..."
           }
         },
         "zh-Hant" : {
@@ -4111,6 +5023,12 @@
             "value" : "ウェブページ適応について..."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Об адаптации веб-страницы..."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4131,6 +5049,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "パスワードを無効にする"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отключите пароль"
           }
         },
         "zh-Hant" : {
@@ -4155,6 +5079,12 @@
             "value" : "すべてのタブを閉じる"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрыть все вкладки"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4175,6 +5105,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "内容"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Содержание"
           }
         },
         "zh-Hant" : {
@@ -4199,6 +5135,12 @@
             "value" : "iPhoneに共有"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поделиться на iPhone"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4219,6 +5161,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "共有方法"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Способы поделиться"
           }
         },
         "zh-Hans" : {
@@ -4249,6 +5197,12 @@
             "value" : "ウェブページを共有"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поделиться веб-страницей"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4271,6 +5225,12 @@
             "value" : "ウェブページアーカイブを作成"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создать веб-архив"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4291,6 +5251,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "草稿を削除"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить черновик"
           }
         },
         "zh-Hans" : {
@@ -4321,6 +5287,12 @@
             "value" : "アカウント削除"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить учетную запись"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4341,6 +5313,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "アカウント削除後、Darockブラウザが閉じ、変更を適用するために再起動が必要です。"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "После удаления учетной записи Reef Browser будет закрыт для применения изменений. Вам необходимо вручную перезапустить Reef Browser."
           }
         },
         "zh-Hant" : {
@@ -4365,6 +5343,12 @@
             "value" : "App Storeに行く"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейдите в App Store, чтобы скачать"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4385,6 +5369,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "「プライバシーとセキュリティ」設定に進む"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейдите в раздел \"Конфиденциальность и безопасность\""
           }
         },
         "zh-Hant" : {
@@ -4409,6 +5399,12 @@
             "value" : "パスワード設定に進む"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейдите в настройки пароля"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4429,6 +5425,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "更新に進む"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейти к обновлению"
           }
         },
         "zh-Hant" : {
@@ -4453,6 +5455,12 @@
             "value" : "Darockアカウントにログイン"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейдите к Войти в учетную запись Darock"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4473,6 +5481,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "残り時間"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оставшееся время"
           }
         },
         "zh-Hant" : {
@@ -4497,6 +5511,12 @@
             "value" : "特定のウェブページのみを最適化することは**不可能**です。\n\n今日ウェブサイトAのために最適化し、明日別のユーザーがウェブサイトBのために最適化するようにフィードバックを提供するのは考え物です。作業量が大幅に増加するだけでなく、コードの保守が非常に難しくなります。これは無限の作業です。\n\n特定のウェブサイトのための最適化を**お控えください**。"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невозможно оптимизировать конкретную веб-страницу в одиночку. \n\nПодумайте о том, как оптимизировать веб-сайт A сегодня, а завтра еще один отзыв пользователей о том, что вы хотите оптимизировать веб-сайт B. Не только рабочая нагрузка будет значительно увеличена, но и затруднит обслуживание кода, что является бездонной дырой. \\N\nПожалуйста, не **пересылайте отзывы, такие как оптимизация для **конкретного веб-сайта**."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4517,6 +5537,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "危険区域"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Опасные зоны"
           }
         },
         "zh-Hant" : {
@@ -4541,6 +5567,12 @@
             "value" : "履歴"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Историческая запись"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4561,6 +5593,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "履歴は各ナビゲーションページを記録します"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Теперь история будет записывать каждую страницу навигации."
           }
         },
         "zh-Hans" : {
@@ -4591,6 +5629,12 @@
             "value" : "古いパスワードが間違っています"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оригинальный пароль неправильный"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4611,6 +5655,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "フィードバックアシスタント"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Помощник по обратной связи"
           }
         },
         "zh-Hans" : {
@@ -4641,6 +5691,12 @@
             "value" : "フィードバックタイプ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тип обратной связи"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4661,6 +5717,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "フィードバック問題"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вопросы обратной связи"
           }
         },
         "zh-Hant" : {
@@ -4685,6 +5747,12 @@
             "value" : "もっと発見する"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Узнайте больше"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4705,6 +5773,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "送信されたフィードバック"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обратная связь отправлена"
           }
         },
         "zh-Hant" : {
@@ -4729,6 +5803,12 @@
             "value" : "キャンセル"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4751,6 +5831,12 @@
             "value" : "信頼できる場所"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доверенная позиция"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4771,6 +5857,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@設定で「デスクトップサイトをリクエスト」を有効にできます"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы можете открыть \"Запросить веб-сайт рабочего стола\" в настройках %@."
           }
         },
         "zh-Hans" : {
@@ -4801,6 +5893,12 @@
             "value" : "スクリプトストアで様々なウェブスクリプトが入手可能"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все виды веб-скриптов можно получить в хранилище сценариев."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4821,6 +5919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "可能な問題："
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Возможные проблемы:"
           }
         },
         "zh-Hant" : {
@@ -4845,6 +5949,12 @@
             "value" : "「Google」検索エンジンが正常に機能するためには、Cookieを許可する必要があるかもしれません"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Возможно, потребуется разрешить использование файлов cookie для правильной работы поисковой системы \"Google\"."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4865,6 +5975,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名前"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя"
           }
         },
         "zh-Hant" : {
@@ -4889,6 +6005,12 @@
             "value" : "名前は空にできません"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя не может быть пустым."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4909,6 +6031,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "入力フィールドを右にスワイプ"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проведите пальцем по полю ввода вправо"
           }
         },
         "zh-Hant" : {
@@ -4933,6 +6061,12 @@
             "value" : "入力フィールドを左にスワイプ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проведите пальцем по полю ввода влево"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4953,6 +6087,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "セキュリティ待機を有効にする"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включить задержку безопасности"
           }
         },
         "zh-Hant" : {
@@ -4977,6 +6117,12 @@
             "value" : "返信"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ответ"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4997,6 +6143,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "返信 %lld"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ответить %lld"
           }
         },
         "zh-Hant" : {
@@ -5021,6 +6173,12 @@
             "value" : "返信情報"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ответить на сообщение"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5043,6 +6201,12 @@
             "value" : "返信内容"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ответить на контент"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5063,6 +6227,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "画像"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Картинка"
           }
         },
         "zh-Hans" : {
@@ -5093,6 +6263,12 @@
             "value" : "画像リスト"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Список фотографий"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5113,6 +6289,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iPhoneで続行"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжить на iPhone"
           }
         },
         "zh-Hant" : {
@@ -5137,6 +6319,12 @@
             "value" : "信頼できる場所では、Darockブラウザはセキュリティ待機を要求しません。"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Находясь в надежном месте, браузер Reef не потребует задержки безопасности."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5157,6 +6345,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "セキュリティ待機中でもDarockブラウザを使用できます。"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы все еще можете использовать Reef Browser в течение периода задержки безопасности."
           }
         },
         "zh-Hant" : {
@@ -5181,6 +6375,12 @@
             "value" : "セキュリティ待機が終了したら、前の操作を続行できます"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "После окончания задержки безопасности вы можете продолжить предыдущую операцию."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5201,6 +6401,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "位置情報に基づく"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На основе местоположения"
           }
         },
         "zh-Hant" : {
@@ -5225,6 +6431,12 @@
             "value" : "強化された履歴"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Улучшенные исторические записи"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5247,6 +6459,12 @@
             "value" : "強化されたブラウジングエンジン"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Усовершенствованный движок просмотра"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5267,6 +6485,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "強化されたブラウジングエンジンにはより多くの高度な機能が含まれます"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенный механизм просмотра включает в себя более продвинутые функции."
           }
         },
         "zh-Hans" : {
@@ -5297,6 +6521,12 @@
             "value" : "ウェブ開発を行っている場合、デベロッパーモードを使用すると必要な機能が利用できます。"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Если вы занимаетесь веб-разработкой, модель разработчика позволяет вам использовать функции, необходимые для разработки."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5317,6 +6547,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "メディア"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Средний"
           }
         },
         "zh-Hant" : {
@@ -5341,6 +6577,12 @@
             "value" : "フォントサイズ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер шрифта"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5361,6 +6603,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "このページをオフラインアーカイブとして保存"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохраните эту страницу в автономном режиме в архиве"
           }
         },
         "zh-Hant" : {
@@ -5385,6 +6633,12 @@
             "value" : "草稿を保存"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить черновик"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5405,6 +6659,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "セキュリティ待機"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Задержка безопасности"
           }
         },
         "zh-Hant" : {
@@ -5429,6 +6689,12 @@
             "value" : "セキュリティ待機は1時間続きます。"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Задержка безопасности займет один час."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5449,6 +6715,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "セキュリティ待機は、パスワード変更などの敏感な操作を行う際に、プライバシーとセキュリティを保護するために追加の待機時間を要求します。"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Задержка безопасности требует дополнительного времени ожидания при выполнении конфиденциальных операций, таких как изменение пароля для защиты вашей конфиденциальности."
           }
         },
         "zh-Hant" : {
@@ -5473,6 +6745,12 @@
             "value" : "セキュリティ待機中"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Задержка безопасности продолжается."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5493,6 +6771,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "セキュリティ"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Безопасность"
           }
         },
         "zh-Hant" : {
@@ -5517,6 +6801,12 @@
             "value" : "このスクリプトをインストール"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Установите этот скрипт"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5537,6 +6827,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "完了"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выполнять, выполнить"
           }
         },
         "zh-Hant" : {
@@ -5561,6 +6857,12 @@
             "value" : "完了！"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готово!"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5581,6 +6883,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "位置情報サービスの許可"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешения службы определения местоположения"
           }
         },
         "zh-Hant" : {
@@ -5605,6 +6913,12 @@
             "value" : "ラボ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лаборатория"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5625,6 +6939,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "パスワード"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Секретный код"
           }
         },
         "zh-Hant" : {
@@ -5649,6 +6969,12 @@
             "value" : "パスワードは空にできません"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пароль не может быть пустым."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5669,6 +6995,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "パスワードが無効になりました"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пароль был закрыт."
           }
         },
         "zh-Hant" : {
@@ -5693,6 +7025,12 @@
             "value" : "パスワードが変更されました"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пароль был изменен"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5713,6 +7051,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "パスワードが設定されました"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пароль установлен"
           }
         },
         "zh-Hant" : {
@@ -5737,6 +7081,12 @@
             "value" : "パスワードが間違っています"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неправильный пароль"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5757,6 +7107,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "パスワードは8文字以上でなければなりません"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Длина пароля не может быть меньше 8 цифр."
           }
         },
         "zh-Hant" : {
@@ -5781,6 +7137,12 @@
             "value" : "ナビゲーションジェスチャー"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Навигационные жесты"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5801,6 +7163,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "パスワードの用途："
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Используйте пароль для:"
           }
         },
         "zh-Hant" : {
@@ -5825,6 +7193,12 @@
             "value" : "現在の場所を信頼できる場所に追加"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавьте текущее местоположение в качестве доверенного местоположения"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5845,6 +7219,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "すべての履歴を新しいアーキテクチャに変換"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преобразуйте всю историю в новую архитектуру"
           }
         },
         "zh-Hant" : {
@@ -5869,6 +7249,12 @@
             "value" : "試してみますか？"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Попробовать?"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5889,6 +7275,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iPhoneの設定でWi-FiとBluetoothをオフにしてみてください"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Попробуйте отключить Wi-Fi и Bluetooth в настройках iPhone"
           }
         },
         "zh-Hant" : {
@@ -5913,6 +7305,12 @@
             "value" : "使用済み %@ MB"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Используется %@ MB"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5933,6 +7331,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "修正済み"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Постоянный"
           }
         },
         "zh-Hant" : {
@@ -5957,6 +7361,12 @@
             "value" : "送信済み"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отправлено"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5977,6 +7387,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "同期されていないデータは保存されます。"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синхронизированные (удаленные) данные будут сохранены."
           }
         },
         "zh-Hant" : {
@@ -6001,6 +7417,12 @@
             "value" : "有効化済み"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включено"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6021,6 +7443,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "有効化されたスクリプト"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включенные скрипты"
           }
         },
         "zh-Hant" : {
@@ -6045,6 +7473,12 @@
             "value" : "次回バージョンで修正済み"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Это было исправлено в будущих версиях."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6065,6 +7499,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "よくある質問"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Часто задаваемый вопрос"
           }
         },
         "zh-Hant" : {
@@ -6089,6 +7529,12 @@
             "value" : "適用対象"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Применяется к"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6109,6 +7555,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "提案"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предлагать, предложить"
           }
         },
         "zh-Hant" : {
@@ -6133,6 +7585,12 @@
             "value" : "開発者"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Застройщик"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6153,6 +7611,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "デベロッパーモード"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режим разработчика"
           }
         },
         "zh-Hant" : {
@@ -6177,6 +7641,12 @@
             "value" : "パスワードを有効にする"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включите пароль"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6197,6 +7667,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "開始"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начинать, начать"
           }
         },
         "zh-Hant" : {
@@ -6221,6 +7697,12 @@
             "value" : "セキュリティ待機を開始"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начать задержку безопасности"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6241,6 +7723,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "移行開始"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начать миграцию"
           }
         },
         "zh-Hant" : {
@@ -6265,6 +7753,12 @@
             "value" : "オープンソースライセンス"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лицензия на соглашение с открытым исходным кодом"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6285,6 +7779,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ダークモードを強制"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Принудительный темный режим"
           }
         },
         "zh-Hant" : {
@@ -6309,6 +7809,12 @@
             "value" : "現在のパスワード"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущий пароль"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6329,6 +7835,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "クイックブックマーク"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Быстрые закладки"
           }
         },
         "zh-Hant" : {
@@ -6353,6 +7865,12 @@
             "value" : "クイッククリア"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Быстрое оформление"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6373,6 +7891,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "常に"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Всегда"
           }
         },
         "zh-Hant" : {
@@ -6397,6 +7921,12 @@
             "value" : "全体の空間"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Общее пространство"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6417,6 +7947,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "復元"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Резюме"
           }
         },
         "zh-Hant" : {
@@ -6441,6 +7977,12 @@
             "value" : "「設定」でこのページを再度開くことができます"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы можете снова открыть эту страницу в настройках в любое время."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6461,6 +8003,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "どうすればいい？"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что мне делать?"
           }
         },
         "zh-Hant" : {
@@ -6485,6 +8033,12 @@
             "value" : "またはiPhoneのApp Storeで続行"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Или продолжить в App Store на iPhone."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6505,6 +8059,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "すべての履歴"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все исторические записи"
           }
         },
         "zh-Hant" : {
@@ -6529,6 +8089,12 @@
             "value" : "すべての位置情報はローカルにのみ保存され、Darockを含む第三者と共有されることはありません。"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вся информация о местоположении хранится только локально и не будет передана третьим лицам, включая Darock."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6549,6 +8115,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ブラウズメニューを開く"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Откройте меню %@browsing"
           }
         },
         "zh-Hans" : {
@@ -6579,6 +8151,12 @@
             "value" : "画像を含むウェブページを開く"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Откройте веб-страницу с картинками"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6599,6 +8177,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "動画を含むウェブページを開く"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Откройте веб-страницу, содержащую видео"
           }
         },
         "zh-Hans" : {
@@ -6629,6 +8213,12 @@
             "value" : "動画直リンクを開くと、直接動画に移動します"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Когда вы откроете цепочку видео, она перейдете непосредственно к видео."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6649,6 +8239,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "期待通りに動作します"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Работайте так, как ожидалось"
           }
         },
         "zh-Hant" : {
@@ -6673,6 +8269,12 @@
             "value" : "改行"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменение линии"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6695,6 +8297,12 @@
             "value" : "おすすめ - Darockアシスタント"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рекомендуется - Помощник По Рифу"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6715,6 +8323,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "説明"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описывать, описать"
           }
         },
         "zh-Hans" : {
@@ -6745,6 +8359,12 @@
             "value" : "説明行%lld"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание строки %lld"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6771,6 +8391,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "送信"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Представлять, представить"
           }
         },
         "zh-Hans" : {
@@ -6801,6 +8427,12 @@
             "value" : "フィードバックを送信"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отправить отзыв"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6821,6 +8453,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "フィードバック送信前にFAQを確認してください"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пожалуйста, проверьте часто задаваемые вопросы перед отправкой отзыва."
           }
         },
         "zh-Hans" : {
@@ -6851,6 +8489,12 @@
             "value" : "ヒント"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подсказка"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6871,6 +8515,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "一時停止"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ставить на полку/поставить на полку"
           }
         },
         "zh-Hant" : {
@@ -6895,6 +8545,12 @@
             "value" : "検索"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искать"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6915,6 +8571,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "検索"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искать"
           }
         },
         "zh-Hans" : {
@@ -6945,6 +8607,12 @@
             "value" : "検索エンジンショートカット..."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ярлыки поисковых систем..."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6965,6 +8633,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "再生"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Играть"
           }
         },
         "zh-Hans" : {
@@ -6995,6 +8669,12 @@
             "value" : "再生速度"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Играйте на двойной скорости"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7015,6 +8695,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ウェブ動画を再生"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Воспроизвести веб-видео"
           }
         },
         "zh-Hans" : {
@@ -7045,6 +8731,12 @@
             "value" : "操作"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оперировать"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7073,6 +8765,12 @@
             "value" : "Apple WatchとiPhoneの接続を解除"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отключите Apple Watch от iPhone"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7093,6 +8791,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新機能"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новые функции"
           }
         },
         "zh-Hans" : {
@@ -7123,6 +8827,12 @@
             "value" : "新しいフィードバック"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новая обратная связь"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7143,6 +8853,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "開いているタブはありません"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет открытых вкладок"
           }
         },
         "zh-Hant" : {
@@ -7167,6 +8883,12 @@
             "value" : "修正不可能"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не в состоянии отремонтировать"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7187,6 +8909,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "インターネットに接続できません"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удается подключиться к Интернету"
           }
         },
         "zh-Hant" : {
@@ -7211,6 +8939,12 @@
             "value" : "ウェブアーカイブなし"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет веб-архива"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7231,6 +8965,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "昨日と今日"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вчера и сегодня"
           }
         },
         "zh-Hant" : {
@@ -7255,6 +8995,12 @@
             "value" : "「クイック終了」ボタンを表示"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать кнопку \"Быстрый выход\""
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7275,6 +9021,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "詐欺サイト警告を表示"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать мошеннические предупреждения на веб-сайте"
           }
         },
         "zh-Hant" : {
@@ -7299,6 +9051,12 @@
             "value" : "Darockブラウザ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Риф-браузер"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7319,6 +9077,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darockブラウザ (%@)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reef Browser (%@)"
           }
         },
         "zh-Hant" : {
@@ -7343,6 +9107,12 @@
             "value" : "Darockブラウザは最新バージョンです"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reef Browser - это последняя версия."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7363,6 +9133,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darockブラウザはプライバシー保護に努めており、Darockは同意なしに情報を収集しません。"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reef Browser обязуется защищать вашу конфиденциальность, и Darock не будет собирать какую-либо информацию без согласия."
           }
         },
         "zh-Hant" : {
@@ -7387,6 +9163,12 @@
             "value" : "より良いCookieサポート"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лучшая поддержка файлов cookie"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7407,6 +9189,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "パスワードを変更"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменить пароль"
           }
         },
         "zh-Hant" : {
@@ -7431,6 +9219,12 @@
             "value" : "サーバーエラー"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка сервера"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7451,6 +9245,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無効化"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не включено"
           }
         },
         "zh-Hant" : {
@@ -7475,6 +9275,12 @@
             "value" : "未完了のダウンロード"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Незавершенная загрузка"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7495,6 +9301,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未完成の編集"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Незаконченное редактирование"
           }
         },
         "zh-Hant" : {
@@ -7519,6 +9331,12 @@
             "value" : "未読"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неотмеченный"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7539,6 +9357,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "不明なエラー"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неизвестная ошибка"
           }
         },
         "zh-Hant" : {
@@ -7563,6 +9387,12 @@
             "value" : "再現できませんでした"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось воспроизвести"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7583,6 +9413,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ローカル動画"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Местное видео"
           }
         },
         "zh-Hant" : {
@@ -7607,6 +9443,12 @@
             "value" : "から"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Происходит из"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7627,6 +9469,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "画像を表示"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Посмотреть картинку"
           }
         },
         "zh-Hans" : {
@@ -7657,6 +9505,12 @@
             "value" : "画像を表示 - ステップ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Просмотр изображений - Шаги"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7677,6 +9531,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ウェブページ画像を表示"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Посмотреть веб-фотографии"
           }
         },
         "zh-Hant" : {
@@ -7701,6 +9561,12 @@
             "value" : "タブ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вкладки"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7721,6 +9587,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "タブブラウズ"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Просмотр вкладок"
           }
         },
         "zh-Hant" : {
@@ -7745,6 +9617,12 @@
             "value" : "タイトル"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заголовок"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7765,6 +9643,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "タイトルは空にできません"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заголовок не может быть пустым."
           }
         },
         "zh-Hant" : {
@@ -7789,6 +9673,12 @@
             "value" : "更新チェック中にエラーが発生しました"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Произошла ошибка при проверке обновлений."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7809,6 +9699,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ダウンロード中..."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Загрузка..."
           }
         },
         "zh-Hant" : {
@@ -7833,6 +9729,12 @@
             "value" : "修正中"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ремонт"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7853,6 +9755,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "読み込み中"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Загрузка"
           }
         },
         "zh-Hant" : {
@@ -7877,6 +9785,12 @@
             "value" : "チェック中..."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверяю..."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7897,6 +9811,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "更新チェック中..."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверка обновлений..."
           }
         },
         "zh-Hant" : {
@@ -7921,6 +9841,12 @@
             "value" : "位置情報を取得中..."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Получение местоположения..."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7941,6 +9867,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "読み込み中"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Загрузка"
           }
         },
         "zh-Hant" : {
@@ -7965,6 +9897,12 @@
             "value" : "この %@"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Это %@"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7985,6 +9923,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "このフィードバックは閉じられています。新しいフィードバックを作成してください"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этот отзыв был закрыт. Если вы хотите оставить отзыв еще раз, пожалуйста, создайте новый отзыв."
           }
         },
         "zh-Hant" : {
@@ -8009,6 +9953,12 @@
             "value" : "このスクリプトはインストールされています"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этот скрипт был установлен"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8029,6 +9979,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "各実験プロジェクトには以下のラベルの1つが付いています："
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каждый экспериментальный проект будет иметь одну из следующих меток:"
           }
         },
         "zh-Hant" : {
@@ -8053,6 +10009,12 @@
             "value" : "法律および規制"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закон и регулирование"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8073,6 +10035,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "登録"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Регистр"
           }
         },
         "zh-Hant" : {
@@ -8097,6 +10065,12 @@
             "value" : "Darockアカウントを登録"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зарегистрируйте учетную запись Darock"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8119,6 +10093,12 @@
             "value" : "ブラウジングエンジン"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Просмотрите двигатель"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8139,6 +10119,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ブラウジングエンジン->デスクトップサイトをリクエスト"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Просмотр двигателя -> Запросить веб-сайт для настольных компьютеров"
           }
         },
         "zh-Hant" : {
@@ -8180,6 +10166,12 @@
             "value" : "スクリプトを追加"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить сценарий"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8208,6 +10200,12 @@
             "value" : "添付ファイルを追加"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить вложение"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8228,6 +10226,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "すべての履歴をクリアして、今後は新しいアーキテクチャを使用"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очистите историю и используйте новую архитектуру в будущем."
           }
         },
         "zh-Hant" : {
@@ -8252,6 +10256,12 @@
             "value" : "履歴を消去"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очистить историю"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8272,6 +10282,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "期間を消去"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очистить период времени"
           }
         },
         "zh-Hant" : {
@@ -8296,6 +10312,12 @@
             "value" : "キャッシュをクリア"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очистить кэш"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8316,6 +10338,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スワイプして戻る"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сдвиньте, чтобы вернуться"
           }
         },
         "zh-Hant" : {
@@ -8340,6 +10368,12 @@
             "value" : "バージョン：%@"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия: %@"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8362,6 +10396,12 @@
             "value" : "ステータス"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Государство"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8382,6 +10422,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "今はウェブページの画像を個別に拡大して表示できます"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Теперь вы можете увеличить фотографии на веб-странице отдельно."
           }
         },
         "zh-Hans" : {
@@ -8412,6 +10458,12 @@
             "value" : "ウェブページをアーカイブしてオフラインで表示できるようになりました"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Веб-страницу теперь можно архивировать для просмотра в автономном режиме."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8440,6 +10492,12 @@
             "value" : "今、より多くのCookieが記録可能になりました"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Теперь можно записывать больше файлов cookie."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8460,6 +10518,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ユーザー名"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя пользователя"
           }
         },
         "zh-Hant" : {
@@ -8484,6 +10548,12 @@
             "value" : "ユーザー名は空にできません"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя пользователя не может быть пустым."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8504,6 +10574,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ユーザースクリプト"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пользовательский скрипт"
           }
         },
         "zh-Hant" : {
@@ -8528,6 +10604,12 @@
             "value" : "Darockが開発したDarockアシスタントを使用して、iPhoneやApple WatchでAIと対話し、支援を受けることができます"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reef Assistant, разработанный Darock, позволяет вам разговаривать с ИИ и получать помощь на iPhone и Apple Watch."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8548,6 +10630,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "「フィードバックアシスタント」によって収集された診断データには個人情報が含まれる場合があります。送信前に追加データを確認するか、左にスワイプして削除できます。"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Диагностические данные, собранные помощником по обратной связи, могут содержать личную информацию. Вы можете нажать, чтобы просмотреть дополнительные данные перед отправкой, или провести пальцем влево, чтобы удалить."
           }
         },
         "zh-Hans" : {
@@ -8578,6 +10666,12 @@
             "value" : "いくつかの既知の問題のため、履歴アーキテクチャの更新が必要です。移行が完了するまで、履歴は一時的に利用できません。また、Darockブラウザは新しい履歴を記録しません。"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Из-за некоторых известных проблем историческая архитектура нуждается в обновлении. До завершения миграции история будет временно недоступна, и браузер Reef не будет записывать новую историю."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8598,6 +10692,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "メール"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Электронная почта"
           }
         },
         "zh-Hant" : {
@@ -8622,6 +10722,12 @@
             "value" : "メールアドレスはログインに使用できます。"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Электронная почта может быть использована для входа в систему."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8642,6 +10748,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "メールアドレス"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Электронный адрес"
           }
         },
         "zh-Hant" : {
@@ -8666,6 +10778,12 @@
             "value" : "無効なメールアドレス"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неверный адрес электронной почты"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8686,6 +10804,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "画面"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Живая картинка"
           }
         },
         "zh-Hans" : {
@@ -8716,6 +10840,12 @@
             "value" : "ログイン"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Входить в, войти в"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8736,6 +10866,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ログインとセキュリティ"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вход и безопасность"
           }
         },
         "zh-Hant" : {
@@ -8760,6 +10896,12 @@
             "value" : "今後のアカウント関連機能の準備のためにログインしてください。"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Войдите в систему, чтобы подготовиться к будущим функциям, связанным с учетной записью."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8780,6 +10922,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "確認"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Некоторый"
           }
         },
         "zh-Hant" : {
@@ -8804,6 +10952,12 @@
             "value" : "よろしいですか？"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ты уверен?"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8824,6 +10978,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "確認"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Утверждать, утвердить"
           }
         },
         "zh-Hant" : {
@@ -8848,6 +11008,12 @@
             "value" : "Apple Watchがインターネットに接続されていることを確認してください"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подтвердите, что Apple Watch подключены к Интернету"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8868,6 +11034,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "パスワード確認"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подтвердите пароль"
           }
         },
         "zh-Hant" : {
@@ -8892,6 +11064,12 @@
             "value" : "確認テキストが一致しません"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подтвердите, что текст не совпадает"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8912,6 +11090,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "例：履歴に最近の閲覧データがない"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пример: в истории отсутствуют недавние данные о просмотре."
           }
         },
         "zh-Hans" : {
@@ -8942,6 +11126,12 @@
             "value" : "動画リスト"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Список видео"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8962,6 +11152,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "動画再生 - ステップ"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Воспроизведение видео - Шаги"
           }
         },
         "zh-Hant" : {
@@ -8986,6 +11182,12 @@
             "value" : "動画への直接リンク"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Видео прыгает прямо."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9006,6 +11208,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "診断情報を削除"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить диагностическую информацию"
           }
         },
         "zh-Hant" : {
@@ -9030,6 +11238,12 @@
             "value" : "診断情報を削除すると、Darockが問題を理解し解決する能力が制限されます。"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удаление диагностической информации ограничит способность Дарока понимать и решать проблемы."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9050,6 +11264,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "空の画像リスト"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Список пустых фотографий"
           }
         },
         "zh-Hant" : {
@@ -9074,6 +11294,12 @@
             "value" : "空の動画リスト"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пустой список видео"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9094,6 +11320,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "サイトの安全性"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Безопасность сайта"
           }
         },
         "zh-Hant" : {
@@ -9118,6 +11350,12 @@
             "value" : "Darockの修正を待つ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Жду, когда Дарок починит"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9138,6 +11376,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "カスタム検索エンジンを管理..."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Управляйте пользовательскими поисковыми системами..."
           }
         },
         "zh-Hant" : {
@@ -9162,6 +11406,12 @@
             "value" : "タイプ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тип"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9182,6 +11432,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "主要なジェスチャーを練習"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Практикуйте основные жесты"
           }
         },
         "zh-Hant" : {
@@ -9206,6 +11462,12 @@
             "value" : "キャッシュデータ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кэш данных"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9226,6 +11488,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ネットワーク"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сеть"
           }
         },
         "zh-Hant" : {
@@ -9250,6 +11518,12 @@
             "value" : "ネットワークチェック"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверка сети"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9270,6 +11544,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ネットワーク問題"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проблемы с сетью"
           }
         },
         "zh-Hant" : {
@@ -9294,6 +11574,12 @@
             "value" : "クラッシュ後は常に自動再読み込み"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Веб-страница всегда автоматически перезагружается после сбоя."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9314,6 +11600,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ウェブページアーカイブ"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Веб-архив"
           }
         },
         "zh-Hant" : {
@@ -9338,6 +11630,12 @@
             "value" : "ウェブインスペクタ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверка веб-страницы"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9358,6 +11656,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ウェブブラウジングで利用可能なジェスチャー"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Жесты, доступные при просмотре веб-страниц"
           }
         },
         "zh-Hant" : {
@@ -9382,6 +11686,12 @@
             "value" : "ウェブページはiPhoneや他のアプリに共有可能になりました"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Веб-страницами теперь можно делиться с iPhone или другими приложениями."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9404,6 +11714,12 @@
             "value" : "スクリプトは全てgreasyfork.orgから来ており、Darockは内容を監査できませんので、自身で判断してください"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все сценарии с greasyfork.org. Darock не может быть просмотрен. Пожалуйста, определите контент самостоятельно."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9424,6 +11740,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スクリプト詳細"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подробности сценария"
           }
         },
         "zh-Hans" : {
@@ -9454,6 +11776,12 @@
             "value" : "カスタム名"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пользовательское имя"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9474,6 +11802,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "カスタム名"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пользовательское имя"
           }
         },
         "zh-Hant" : {
@@ -9498,6 +11832,12 @@
             "value" : "ウェブインスペクタを使用するには、Apple WatchとペアリングされたiPhoneをMacにケーブルで接続し、Safariの「開発」メニューからApple Watchにアクセスします。Safariの設定で「開発」メニューを有効にできます。"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтобы использовать веб-инспектор, подключите iPhone в паре с Apple Watch к Mac через кабель и получите доступ к Apple Watch в меню разработки Safari. Вы можете открыть меню разработки на вкладке \"Дополнительно\" в настройках Safari."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9518,6 +11858,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "削除を確認するには、上に「%@」と入力してください"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтобы подтвердить удаление, пожалуйста, введите \"%@\" выше."
           }
         },
         "zh-Hant" : {
@@ -9542,6 +11888,12 @@
             "value" : "削除されました"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалено"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9562,6 +11914,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "セキュリティ待機を要求"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Требуется задержка безопасности"
           }
         },
         "zh-Hant" : {
@@ -9586,6 +11944,12 @@
             "value" : "ライセンス"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешение"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9606,6 +11970,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "デバイス情報"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Информация об оборудовании"
           }
         },
         "zh-Hant" : {
@@ -9630,6 +12000,12 @@
             "value" : "設定"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройка"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9650,6 +12026,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "設定リスト"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройте список"
           }
         },
         "zh-Hant" : {
@@ -9674,6 +12056,12 @@
             "value" : "フィードバックの説明的なタイトルを入力してください："
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пожалуйста, предоставьте описательное название для вашего отзыва:"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9694,6 +12082,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "次を含むことをお勧めします：\n- 問題の明確な説明\n- 問題を再現するための手順（可能であれば）\n- 期待される結果\n- 現在の結果"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пожалуйста, включите:\n- четкое описание проблемы\n- Пошаговые шаги для воспроизведения проблемы (если это возможно)\n- Ожидаемый результат\n- Текущие результаты"
           }
         },
         "zh-Hant" : {
@@ -9718,6 +12112,12 @@
             "value" : "問題の説明と再現手順を入力してください："
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пожалуйста, опишите проблему и шаги по ее воспроизведению:"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9738,6 +12138,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "リアルタイムサポートをリクエスト"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запросить поддержку в режиме реального времени"
           }
         },
         "zh-Hant" : {
@@ -9762,6 +12168,12 @@
             "value" : "デスクトップサイトをリクエスト"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запросить веб-сайт для настольных компьютеров"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9782,6 +12194,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "アカウントパスワード"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пароль учетной записи"
           }
         },
         "zh-Hant" : {
@@ -9806,6 +12224,12 @@
             "value" : "...(秒)にジャンプ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейти к...( Секунды)"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9826,6 +12250,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "変換時、Darockブラウザが応答しない場合がありますので、変換が完了するまでお待ちください。"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Браузер рифа может не реагировать при преобразовании. Пожалуйста, терпеливо дождитесь завершения преобразования."
           }
         },
         "zh-Hant" : {
@@ -9850,6 +12280,12 @@
             "value" : "ソフトウェア更新"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обновление программного обеспечения"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9872,6 +12308,12 @@
             "value" : "詳細を見るにはタップ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажмите, чтобы увидеть подробности"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9892,6 +12334,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "轻触“播放网页视频”"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажмите \"Воспроизвести веб-видео\""
           }
         },
         "zh-Hans" : {
@@ -9922,6 +12370,12 @@
             "value" : "「ウェブページ中の画像を見る」をタップ"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажмите \"Просмотреть фотографии на веб-странице\""
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9942,6 +12396,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "アクセシビリティ"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Функции доступности"
           }
         },
         "zh-Hant" : {
@@ -9966,6 +12426,12 @@
             "value" : "パスワードを入力"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите свой пароль."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9986,6 +12452,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "パスワードを入力"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите пароль"
           }
         },
         "zh-Hant" : {
@@ -10010,6 +12482,12 @@
             "value" : "現在のパスワードを入力"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите текущий пароль"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10030,6 +12508,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新しいパスワードを入力"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите новый пароль"
           }
         },
         "zh-Hant" : {
@@ -10054,6 +12538,12 @@
             "value" : "確認テキストを入力"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите текст подтверждения"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10074,6 +12564,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ロックパスワードを入力"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите пароль блокировки"
           }
         },
         "zh-Hant" : {
@@ -10098,6 +12594,12 @@
             "value" : "移行に失敗しました、フィードバックを送信してください"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Произошла ошибка при миграции, пожалуйста, отправьте отзыв."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10118,6 +12620,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "履歴を移行"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "История миграции"
           }
         },
         "zh-Hant" : {
@@ -10142,6 +12650,12 @@
             "value" : "移行完了"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Миграция завершена"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10162,6 +12676,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "移行方法 1"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Метод миграции 1"
           }
         },
         "zh-Hant" : {
@@ -10186,6 +12706,12 @@
             "value" : "移行方法 2"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Метод миграции 2"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10206,6 +12732,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "まだダメ？"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Или нет?"
           }
         },
         "zh-Hant" : {
@@ -10230,6 +12762,12 @@
             "value" : "これはどういう意味ですか？"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что это значит?"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10250,6 +12788,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "これにより、アカウントのすべてのデータが削除されます！"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Это удалит все данные под учетной записью!"
           }
         },
         "zh-Hant" : {
@@ -10274,6 +12818,12 @@
             "value" : "高度なテクニック"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продвинутые навыки"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10294,6 +12844,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "接続状態"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Статус подключения"
           }
         },
         "zh-Hant" : {
@@ -10318,6 +12874,12 @@
             "value" : "終了"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отпуск"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10338,6 +12900,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ダウンロードページを離れるとダウンロードが中断されます\nよろしいですか？"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выход из страницы загрузки прервет загрузку\n Вы уверены?"
           }
         },
         "zh-Hant" : {
@@ -10362,6 +12930,12 @@
             "value" : "終了して非表示にする"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выйти и больше не показывать"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10382,6 +12956,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ログアウト"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выйти"
           }
         },
         "zh-Hant" : {
@@ -10406,6 +12986,12 @@
             "value" : "ログアウトしますか？"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выйти из системы?"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10426,6 +13012,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "履歴を選択"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите историю"
           }
         },
         "zh-Hant" : {
@@ -10450,6 +13042,12 @@
             "value" : "一般"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Быть общепринятым"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10472,6 +13070,12 @@
             "value" : "再チェック"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пересматривать, пересмотреть"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10492,6 +13096,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "再読み込み"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перезаряжать, перезарядить"
           }
         },
         "zh-Hans" : {
@@ -10522,6 +13132,12 @@
             "value" : "ブックマークをロック"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заблокируйте закладку"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10542,6 +13158,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "履歴をロック"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "История блокировки"
           }
         },
         "zh-Hant" : {
@@ -10566,6 +13188,12 @@
             "value" : "Darockブラウザをロック"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заблокировать браузер Reef"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10586,6 +13214,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ローカル動画をロック"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заблокируйте местное видео"
           }
         },
         "zh-Hant" : {
@@ -10610,6 +13244,12 @@
             "value" : "エラー/異常動作"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка/аномальное поведение"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10630,6 +13270,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "キーボード"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клавиатура"
           }
         },
         "zh-Hant" : {
@@ -10654,6 +13300,12 @@
             "value" : "キーボード設定..."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки клавиатуры..."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10674,6 +13326,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "アプリに関係ない問題"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проблема не связана с приложением."
           }
         },
         "zh-Hant" : {
@@ -10698,6 +13356,12 @@
             "value" : "問題の重複"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторяющиеся вопросы"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10718,6 +13382,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "添付ファイル"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вложение"
           }
         },
         "zh-Hans" : {
@@ -10748,6 +13418,12 @@
             "value" : "追加オプション"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительные опции"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10768,6 +13444,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最小フォントサイズを制限"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ограничить минимальный размер шрифта"
           }
         },
         "zh-Hant" : {
@@ -10792,6 +13474,12 @@
             "value" : "デフォルトに設定しない限り、ここで設定した値は%@設定を上書きします"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Если установлено значение по умолчанию, значение, установленное здесь, переопределит настройку %@."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10812,6 +13500,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "プライバシーとセキュリティ"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конфиденциальность и безопасность"
           }
         },
         "zh-Hant" : {
@@ -10836,6 +13530,12 @@
             "value" : "セキュリティ待機が必要です"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Требуется задержка безопасности."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10856,6 +13556,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "セキュリティ待機を無効にするにはセキュリティ待機が必要です"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для отключения задержки безопасности требуется задержка безопасности."
           }
         },
         "zh-Hant" : {
@@ -10880,6 +13586,12 @@
             "value" : "パスワードを無効にするにはセキュリティ待機が必要です"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для отключения пароля требуется задержка безопасности."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10900,6 +13612,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "「基于位置」への切り替えにはセキュリティ待機が必要です"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для перехода на \"основу местоположения\" требуется задержка безопасности"
           }
         },
         "zh-Hant" : {
@@ -10924,6 +13642,12 @@
             "value" : "Darockアカウントを削除するにはセキュリティ待機が必要です"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для удаления учетной записи Darock требуется задержка безопасности"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10944,6 +13668,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darockアカウントパスワードを変更するにはセキュリティ待機が必要です"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для изменения пароля учетной записи Darock требуется задержка безопасности."
           }
         },
         "zh-Hant" : {
@@ -10968,6 +13698,12 @@
             "value" : "パスワード変更にはセキュリティ待機が必要です"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для изменения пароля требуется задержка безопасности."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10988,6 +13724,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "信頼できる場所を追加するにはセキュリティ待機が必要です"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для добавления доверенных местоположений требуется задержка безопасности"
           }
         },
         "zh-Hant" : {
@@ -11012,6 +13754,12 @@
             "value" : "位置情報サービスの許可が必要です"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для использования задержки безопасности на основе местоположения требуются разрешения службы определения местоположения"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11032,6 +13780,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "詳細が必要"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Требуется больше деталей."
           }
         },
         "zh-Hant" : {
@@ -11056,6 +13810,12 @@
             "value" : "移行が必要"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нужно мигрировать"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11076,6 +13836,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "セキュリティ待機が有効で、Apple Watchが許可された場所にないため、この操作を実行するにはセキュリティ待機が必要です。"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для выполнения этой операции требуется задержка безопасности, потому что задержка безопасности включена, а Apple Watch не находится в разрешенном месте."
           }
         },
         "zh-Hant" : {
@@ -11100,6 +13866,12 @@
             "value" : "この操作を実行するにはセキュリティ待機が必要です。"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для выполнения этой операции требуется задержка безопасности, потому что задержка безопасности включена."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11120,6 +13892,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "推定時間：%llds"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предполагаемое время: %llds"
           }
         },
         "zh-Hant" : {
@@ -11144,6 +13922,12 @@
             "value" : "検索内容をプリロード"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предварительно загрузите контент поиска"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11164,6 +13948,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "高度な機能"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширенные функции"
           }
         },
         "zh-Hant" : {
@@ -11188,6 +13978,12 @@
             "value" : "デフォルト"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Талвно одобрять"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11208,6 +14004,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "デフォルト検索エンジン"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поисковая система по умолчанию"
           }
         },
         "zh-Hant" : {

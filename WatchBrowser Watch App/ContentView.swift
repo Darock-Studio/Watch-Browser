@@ -283,12 +283,13 @@ struct MainView: View {
                 }
                 .swipeActions {
                     if textOrURL != "" {
-                        Button(role: .destructive, action: {
+                        Button(action: {
                             textOrURL = ""
                             goToButtonLabelText = "Home.go"
                         }, label: {
                             Image(systemName: "xmark.bin.fill")
                         })
+                        .tint(.red)
                     }
                 }
                 Button(action: {
