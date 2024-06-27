@@ -452,177 +452,42 @@ struct FeedbackView: View {
     }
     struct FeedbackDetailView: View {
         var id: String
-        @State var title = ""
-        @State var typeText: LocalizedStringKey = ""
-        @State var content = ""
-        @State var status = 8
-        @State var replies = [(status: Int, content: String, sender: String)]()
-        @State var isSendReplyPresented = false
+        private let projName = "Darock Browser"
+        @Environment(\.dismiss) var dismiss
+        @State var feedbackText = ""
+        @State var formattedTexts = [String]()
+        @State var replies = [[String]]()
+        @State var isNoReply = true
+        @State var isReplyPresented = false
         @State var replyInput = ""
         @State var isReplySubmitted = false
+        @State var isReplyDisabled = false
         var body: some View {
             List {
-                Section {
-                    Text(title)
-                } header: {
-                    Text("标题")
+                if formattedTexts.count != 0 {
+                    GetView(from: formattedTexts)
                 }
-                Section {
-                    Text(typeText)
-                } header: {
-                    Text("类型")
-                }
-                Section {
-                    Text(content)
-                } header: {
-                    Text("内容")
-                }
-                Section {
-                    HStack {
-                        Image(systemName: globalStateIcons[status])
-                            .foregroundStyle(globalStateColors[status])
-                        Text(globalStates[status])
-                    }
-                } header: {
-                    Text("状态")
-                }
-                if replies.count != 0 {
+                if !isNoReply {
                     ForEach(0..<replies.count, id: \.self) { i in
-                        Section {
-                            Divider()
-                        } footer: {
-                            Text("回复 \(i + 1)")
-                        }
-                        .listRowBackground(Color.clear)
-                        Section {
-                            Text(replies[i].sender)
-                        } header: {
-                            Text("来自")
-                        }
-                        if replies[i].sender != "User" && replies[i].status != 8 {
-                            Section {
-                                HStack {
-                                    Image(systemName: globalStateIcons[replies[i].status])
-                                        .foregroundStyle(globalStateColors[replies[i].status])
-                                    Text(globalStates[replies[i].status])
-                                }
-                            } header: {
-                                Text("状态")
-                            }
-                        }
-                        if replies[i].content != "" {
-                            Section {
-                                Text(replies[i].content)
-                            } header: {
-                                Text("回复内容")
-                            }
-                        }
+                        GetView(from: replies[i], isReply: true)
                     }
                 }
                 Section {
                     Button(action: {
-                        isSendReplyPresented = true
+                        isReplyPresented = true
                     }, label: {
-                        Label("回复", systemImage: "arrowshape.turn.up.left.fill")
+                        Label("回复", systemImage: "arrowshape.turn.up.left.2")
                     })
-                    .disabled(
-                        (replies.last?.status ?? 0) == 1
-                        || (replies.last?.status ?? 0) == 2
-                        || (replies.last?.status ?? 0) == 3
-                        || (replies.last?.status ?? 0) == 7
-                        || (replies.last?.status ?? 0) == 10
-                        || status == 12
-                    )
+                    .disabled(isReplyDisabled)
                 } footer: {
-                    if (replies.last?.status ?? 0) == 1
-                        || (replies.last?.status ?? 0) == 2
-                        || (replies.last?.status ?? 0) == 3
-                        || (replies.last?.status ?? 0) == 7
-                        || (replies.last?.status ?? 0) == 10 {
+                    if isReplyDisabled {
                         Text("此反馈已关闭，若要重新进行反馈，请创建一个新的反馈")
                     }
                 }
             }
-            .navigationTitle(id)
-            .onAppear {
-                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)") { respStr, isSuccess in
-                    if isSuccess {
-                        let lineSpd = respStr.apiFixed().components(separatedBy: "\\n").map { String($0) }
-                        if lineSpd[0] == "nternal Server Erro" {
-                            title = "本反馈已被删除"
-                            status = 12
-                            return
-                        }
-                        title = lineSpd[0]
-                        for i in 1..<lineSpd.count {
-                            if lineSpd[i] == "---" { break }
-                            if lineSpd[i].split(separator: "：").count < 2 { continue }
-                            let mspd = lineSpd[i].split(separator: "：").map { String($0) }
-                            if mspd[0] == "State" {
-                                status = Int(mspd[1]) ?? 8
-                            } else if mspd[0] == "Content" {
-                                var cont = mspd[1].dropLast("\\")
-                                var ats = 1
-                                while i + ats < lineSpd.count {
-                                    if !lineSpd[i + ats].contains("：") {
-                                        cont += "\n" + lineSpd[i + ats].dropLast("\\")
-                                        ats++
-                                    } else {
-                                        break
-                                    }
-                                }
-                                content = cont
-                            } else if mspd[0] == "Type" {
-                                switch mspd[1] {
-                                case "0":
-                                    typeText = "错误/异常行为"
-                                default:
-                                    typeText = "建议"
-                                }
-                            }
-                        }
-                        let repSpd = respStr.apiFixed().components(separatedBy: "---").map { String($0) }
-                        if repSpd.count > 1 {
-                            for i in 1..<repSpd.count {
-                                let lineSpd = repSpd[i].components(separatedBy: "\\n").map { String($0) }
-                                var st = 8
-                                var co = ""
-                                var se = ""
-                                for j in 0..<lineSpd.count {
-                                    if lineSpd[j].split(separator: "：").count < 2 { continue }
-                                    let mspd = lineSpd[j].split(separator: "：").map { String($0) }
-                                    if mspd[0] == "State" {
-                                        st = Int(mspd[1]) ?? 8
-                                    } else if mspd[0] == "Content" {
-                                        var cont = mspd[1].dropLast("\\")
-                                        var ats = 1
-                                        while i + ats < lineSpd.count {
-                                            if !lineSpd[i + ats].contains("：") {
-                                                cont += "\n" + lineSpd[i + ats].dropLast("\\")
-                                                ats++
-                                            } else {
-                                                break
-                                            }
-                                        }
-                                        co = cont
-                                    } else if mspd[0] == "Sender" {
-                                        se = mspd[1]
-                                    }
-                                }
-                                if se == "System" && st == 8 && co.isEmpty { // Radar Internal
-                                    continue
-                                }
-                                replies.append((status: st, content: co, sender: se))
-                            }
-                        }
-                        UserDefaults.standard.set(repSpd.count - 1, forKey: "RadarFB\(id)ReplyCount")
-                    }
-                }
-            }
-            .onDisappear {
-                UserDefaults.standard.set(replies.count, forKey: "RadarFB\(id)ReplyCount")
-            }
-            .sheet(isPresented: $isSendReplyPresented) {
+            .sheet(isPresented: $isReplyPresented, onDismiss: {
+                Refresh()
+            }, content: { 
                 TextField("回复信息", text: $replyInput)
                     .onSubmit {
                         if isReplySubmitted {
@@ -639,16 +504,153 @@ struct FeedbackView: View {
                             { respStr, isSuccess in
                                 if isSuccess {
                                     if respStr.apiFixed() == "Success" {
-                                        replies.append((status: 8, content: replyInput, sender: "User"))
+                                        Refresh()
                                         replyInput = ""
-                                        isSendReplyPresented = false
+                                        isReplyPresented = false
                                     } else {
                                         tipWithText("未知错误", symbol: "xmark.circle.fill")
                                     }
+                                    isReplySubmitted = false
                                 }
                             }
                         }
                     }
+            })
+            .navigationTitle(id)
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                Refresh()
+            }
+        }
+        
+        @inline(__always)
+        func Refresh() {
+            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/\(projName)/\(id)") { respStr, isSuccess in
+                if isSuccess {
+                    formattedTexts.removeAll()
+                    replies.removeAll()
+                    feedbackText = respStr.apiFixed().replacingOccurrences(of: "\\n", with: "\n").replacingOccurrences(of: "\\\"", with: "\"")
+                    let spd = feedbackText.split(separator: "\n")
+                    for text in spd {
+                        if text == "---" { break }
+                        formattedTexts.append(String(text))
+                    }
+                    debugPrint(formattedTexts)
+                    if feedbackText.split(separator: "---").count > 1 {
+                        let repliesText = Array(feedbackText.split(separator: "---").dropFirst()).map { String($0) }
+                        for text in repliesText {
+                            let spd = text.split(separator: "\n").map { String($0) }
+                            var tar = [String]()
+                            for lt in spd {
+                                tar.append(lt)
+                                if _slowPath(lt.hasPrefix("State：")) {
+                                    if let st = Int(String(lt.dropFirst(6))) {
+                                        isReplyDisabled = st == 1 || st == 2 || st == 3 || st == 7 || st == 10
+                                    }
+                                }
+                            }
+                            replies.append(tar)
+                        }
+                        
+                        isNoReply = false
+                    }
+                    UserDefaults.standard.set(feedbackText.split(separator: "---").count, forKey: "RadarFB\(id)ReplyCount")
+                }
+            }
+        }
+        
+        @ViewBuilder func GetView(from: [String], isReply: Bool = false) -> some View {
+            VStack {
+                ForEach(0..<from.count, id: \.self) { j in
+                    if from[j].hasPrefix("Sender") {
+                        HStack {
+                            Text(from[j].dropFirst(7))
+                                .font(.system(size: 18))
+                                .bold()
+                            Spacer()
+                        }
+                    }
+                }
+                ForEach(0..<from.count, id: \.self) { j in
+                    if from[j].hasPrefix("Time") {
+                        if let intt = Double(String(from[j].dropFirst(5))) {
+                            HStack {
+                                Text({ () -> String in
+                                    let df = DateFormatter()
+                                    df.dateFormat = "yyyy-MM-dd hh:mm:ss"
+                                    return df.string(from: Date(timeIntervalSince1970: intt))
+                                }())
+                                .font(.system(size: 13))
+                                .foregroundStyle(Color.gray)
+                                Spacer()
+                            }
+                        }
+                    }
+                }
+                Divider()
+                if !isReply {
+                    HStack {
+                        Text(from[0])
+                            .font(.system(size: 18))
+                            .bold()
+                            .multilineTextAlignment(.leading)
+                        Spacer()
+                    }
+                    Divider()
+                }
+                ForEach(0...from.count - 1, id: \.self) { i in
+                    if !(!from[i].contains("：") && !from[i].contains(":") && i == 0) && (!from[i].hasPrefix("Sender")) && (!from[i].hasPrefix("Time")) {
+                        // ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+                        //                     Not Title                                          Not Sender                         Not Time
+                        if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") != "" {
+                            HStack {
+                                Text(from[i].contains("：") && from[i] != "：" ? String(from[i].split(separator: "：")[0]).titleReadable() : "")
+                                    .font(.system(size: 17))
+                                    .bold()
+                                Spacer()
+                            }
+                        }
+                        HStack {
+                            if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") == "State" {
+                                if let index = Int(from[i].split(separator: "：").count > 1 ? String(from[i].split(separator: "：")[1]) : from[i]) {
+                                    HStack {
+                                        Group {
+                                            Image(systemName: globalStateIcons[index])
+                                            Text(globalStates[index])
+                                        }
+                                        .foregroundStyle(globalStateColors[index])
+                                        .font(.system(size: 14))
+                                    }
+                                } else {
+                                    Text(from[i].split(separator: "：").count > 1 ? String(from[i].split(separator: "：")[1]) : from[i])
+                                        .font(.system(size: 14))
+                                }
+                            } else if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") == "NotificationToken" {
+                                Text("[Hex Data]")
+                                    .font(.system(size: 14))
+                            } else if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") == "NearestHistories" {
+                                Text("[Privacy Hidden]")
+                                    .font(.system(size: 14))
+                            } else if (from[i].contains("：") && from[i] != "："
+                                       ? from[i].split(separator: "：")[0]
+                                       : "") == "AddDuplicateDelete"
+                                        || (from[i].contains("：") && from[i] != "："
+                                            ? from[i].split(separator: "：")[0]
+                                            : "") == "DuplicateTo",
+                                      let goId = Int(from[i].split(separator: "：")[1]) {
+                                Text("FB\(projName.projNameLinked())\(String(goId))")
+                            } else {
+                                Text(from[i].split(separator: "：").count > 1 ? String(from[i].split(separator: "：")[1]).dropLast("\\") : from[i].dropLast("\\"))
+                                    .font(.system(size: 14))
+                            }
+                            Spacer()
+                        }
+                        if i != from.count - 1 {
+                            Spacer()
+                                .frame(height: 10)
+                        }
+                    }
+                }
             }
         }
     }
@@ -710,6 +712,45 @@ extension String {
             return String(self.dropLast())
         } else {
             return self
+        }
+    }
+    func projNameLinked() -> Self {
+        let shortMd5d = String(self.md5.prefix(8)).lowercased()
+        let a2nchart: [Character: Int] = ["a": 0, "b": 1, "c": 2, "d": 3, "e": 4, "f": 5, "g": 6, "h": 7, "i": 8, "j": 9, "k": 0, "l": 1, "m": 2, "n": 3, "o": 4, "p": 5, "q": 6, "r": 7, "s": 8, "t": 9, "u": 0, "v": 1, "w": 2, "x": 3, "y": 4, "z": 5]
+        var ced = ""
+        for c in shortMd5d {
+            if Int(String(c)) == nil {
+                ced += String(a2nchart[c]!)
+            } else {
+                ced += String(c)
+            }
+        }
+        return ced
+    }
+    func titleReadable() -> LocalizedStringKey {
+        switch self {
+        case "State":
+            return "状态"
+        case "Type":
+            return "类型"
+        case "Content":
+            return "描述"
+        case "Version":
+            return "App 版本"
+        case "OS":
+            return "系统版本"
+        case "NearestHistories":
+            return "最近的历史记录"
+        case "ExtHistories":
+            return "额外历史记录"
+        case "DuplicateTo":
+            return "与此反馈重复"
+        case "AddDuplicateDelete":
+            return "关联反馈"
+        case "NotificationToken":
+            return "通知令牌"
+        default:
+            return LocalizedStringKey(self)
         }
     }
 }

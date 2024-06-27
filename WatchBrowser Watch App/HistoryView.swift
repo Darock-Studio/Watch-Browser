@@ -260,32 +260,30 @@ struct HistoryView: View {
                                     isClearOptionsPresented = false
                                     return
                                 }
-                                if let recordTimePair = UserDefaults.standard.dictionary(forKey: "WebHistoryRecordTimes") as? [String: Double] {
-                                    let currentTime = Date.now.timeIntervalSince1970
-                                    var maxTimeDiff = 0.0
-                                    switch selectedEmptyAction {
-                                    case 0:
-                                        maxTimeDiff = 3600
-                                    case 1:
-                                        maxTimeDiff = 86400
-                                    case 2:
-                                        maxTimeDiff = 172800
-                                    default:
-                                        break
-                                    }
-                                    for i in 0..<histories.count {
-                                        let time = histories[i].time
-                                        if currentTime - time <= maxTimeDiff {
-                                            histories[i].url = "[History Remove Token]"
-                                        }
-                                    }
-                                    histories.removeAll(where: { element in
-                                        if element.url == "[History Remove Token]" {
-                                            return true
-                                        }
-                                        return false
-                                    })
+                                let currentTime = Date.now.timeIntervalSince1970
+                                var maxTimeDiff = 0.0
+                                switch selectedEmptyAction {
+                                case 0:
+                                    maxTimeDiff = 3600
+                                case 1:
+                                    maxTimeDiff = 86400
+                                case 2:
+                                    maxTimeDiff = 172800
+                                default:
+                                    break
                                 }
+                                for i in 0..<histories.count {
+                                    let time = histories[i].time
+                                    if currentTime - time <= maxTimeDiff {
+                                        histories[i].url = "[History Remove Token]"
+                                    }
+                                }
+                                histories.removeAll(where: { element in
+                                    if element.url == "[History Remove Token]" {
+                                        return true
+                                    }
+                                    return false
+                                })
                                 WriteWebHistory(from: histories)
                                 isClearOptionsPresented = false
                             }, label: {

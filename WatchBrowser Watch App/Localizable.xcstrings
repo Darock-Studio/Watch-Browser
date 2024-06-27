@@ -231,6 +231,12 @@
         }
       }
     },
+    "[Hex Data]" : {
+      "shouldTranslate" : false
+    },
+    "[Privacy Hidden]" : {
+      "shouldTranslate" : false
+    },
     "**并非所有网页内的视频均能被解析**\n\n请**不要**提出〇〇网站视频无法播放之类的反馈" : {
       "localizations" : {
         "en" : {
@@ -1792,6 +1798,9 @@
         }
       }
     },
+    "Darock Cloud" : {
+
+    },
     "Darock Studio" : {
       "shouldTranslate" : false
     },
@@ -1925,6 +1934,17 @@
       "shouldTranslate" : false
     },
     "Error Handler" : {
+      "shouldTranslate" : false
+    },
+    "FB%@%@" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "FB%1$@%2$@"
+          }
+        }
+      },
       "shouldTranslate" : false
     },
     "Firefox - macOS" : {
@@ -4163,6 +4183,16 @@
         }
       }
     },
+    "与此反馈重复" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duplicate to"
+          }
+        }
+      }
+    },
     "两次密码不一致" : {
       "localizations" : {
         "en" : {
@@ -5037,6 +5067,16 @@
         }
       }
     },
+    "关联反馈" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Related Feedback"
+          }
+        }
+      }
+    },
     "关闭密码" : {
       "localizations" : {
         "en" : {
@@ -5093,30 +5133,12 @@
         }
       }
     },
-    "内容" : {
+    "最近的历史记录" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Content"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "内容"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Содержание"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "內容"
+            "value" : "Recent History"
           }
         }
       }
@@ -6131,34 +6153,6 @@
         }
       }
     },
-    "回复 %lld" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reply %lld"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "返信 %lld"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ответить %lld"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "回复 %lld"
-          }
-        }
-      }
-    },
     "回复信息" : {
       "localizations" : {
         "en" : {
@@ -6183,34 +6177,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "回复信息"
-          }
-        }
-      }
-    },
-    "回复内容" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reply Content"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "返信内容"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ответить на контент"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "回复內容"
           }
         }
       }
@@ -6618,6 +6584,9 @@
           }
         }
       }
+    },
+    "存储至 Darock Cloud" : {
+
     },
     "存储草稿" : {
       "localizations" : {
@@ -9429,34 +9398,6 @@
         }
       }
     },
-    "来自" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "From"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "から"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Происходит из"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "來自"
-          }
-        }
-      }
-    },
     "查看图片" : {
       "localizations" : {
         "en" : {
@@ -11420,6 +11361,16 @@
         }
       }
     },
+    "系统版本" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System Version"
+          }
+        }
+      }
+    },
     "练习主要手势" : {
       "localizations" : {
         "en" : {
@@ -13056,6 +13007,16 @@
         }
       }
     },
+    "通知令牌" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notification Token"
+          }
+        }
+      }
+    },
     "重新检查" : {
       "localizations" : {
         "en" : {
@@ -13932,6 +13893,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "預載入搜索內容"
+          }
+        }
+      }
+    },
+    "额外历史记录" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Additional History"
           }
         }
       }
