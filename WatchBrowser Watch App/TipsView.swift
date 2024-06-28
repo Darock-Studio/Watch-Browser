@@ -48,6 +48,24 @@ struct TipsView: View {
             } header: {
                 Text("发现更多")
             }
+            Section {
+                NavigationLink(destination: { BooksView() }, label: {
+                    HStack {
+                        Image(systemName: "book")
+                            .foregroundColor(.green)
+                        Text("图书")
+                    }
+                })
+                NavigationLink(destination: { VideosView() }, label: {
+                    HStack {
+                        Image(systemName: "film.stack")
+                            .foregroundColor(.mint)
+                        Text("视频")
+                    }
+                })
+            } header: {
+                Text("媒体")
+            }
         }
         .navigationTitle("提示")
         .navigationBarTitleDisplayMode(.large)
@@ -158,6 +176,7 @@ struct TipsView: View {
             }
         }
     }
+    
     struct BeyondTheBasicsView: View {
         var body: some View {
             List {
@@ -173,6 +192,13 @@ struct TipsView: View {
                         HStack {
                             Image(systemName: "bookmark.fill")
                             Text("快速书签")
+                        }
+                    })
+                    NavigationLink(destination: { DownloadVideoView() }, label: {
+                        HStack {
+                            Image(systemName: "arrow.down.doc.fill")
+                                .foregroundColor(.green)
+                            Text("下载视频")
                         }
                     })
                 }
@@ -247,6 +273,84 @@ struct TipsView: View {
                 }
                 .navigationTitle("快速书签")
             }
+        }
+        struct DownloadVideoView: View {
+            var body: some View {
+                List {
+                    Section {
+                        Text("在视频列表页向左滑动视频即可下载")
+                    }
+                    Section {
+                        Text(verbatim: "https://darock.top/Shiroko.mp4")
+                            .swipeActions {
+                                Button(action: {
+                                    tipWithText("完成！", symbol: "checkmark.circle.fill")
+                                }, label: {
+                                    Image(systemName: "square.and.arrow.down")
+                                })
+                            }
+                        HStack {
+                            Image(systemName: "arrow.left")
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundColor(.blue)
+                            Text("向左滑动视频链接")
+                        }
+                    } header: {
+                        Text("尝试一下？")
+                    } footer: {
+                        Text("仅作示例，此处的操作不会真的下载视频。")
+                    }
+                }
+            }
+        }
+    }
+    
+    struct BooksView: View {
+        var body: some View {
+            List {
+                Section {
+                    Text("在网页中寻找或直接在搜索框中输入.epub链接")
+                }
+                Section {
+                    Button(action: {
+                        bookLinkLists = ["https://darock.storage.linecom.net.cn/darockbrowser/example/ThreeBody.epub"]
+                        pShouldPresentBookList = true
+                        dismissListsShouldRepresentWebView = false
+                    }, label: {
+                        Text("查看示例图书 [《三体》(1.83 MB)]")
+                    })
+                } header: {
+                    Text("示例图书")
+                } footer: {
+                    Text("仅作示例，请支持正版图书。")
+                }
+            }
+            .navigationTitle("图书")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+    struct VideosView: View {
+        var body: some View {
+            List {
+                Section {
+                    Text("轻触浏览菜单“播放网页视频”、在网页中寻找或直接在搜索框中输入视频链接")
+                }
+                Section {
+                    Button(action: {
+                        videoLinkLists = ["https://darock.storage.linecom.net.cn/darockbrowser/example/Shiroko.mp4"]
+                        pShouldPresentVideoList = true
+                        dismissListsShouldRepresentWebView = false
+                    }, label: {
+                        Text("查看示例视频 (41.4 MB)")
+                    })
+                } header: {
+                    Text("示例视频")
+                } footer: {
+                    Text("仅作示例\n©2020 NAT GAMES Co., Ltd. All Rights Reserved.\n©2020 Yostar, Inc. All Rights Reserved.")
+                }
+            }
+            .navigationTitle("视频")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

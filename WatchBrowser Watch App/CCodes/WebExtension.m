@@ -69,11 +69,19 @@ id webScriptDelegate;
     [videoCheckTimer invalidate];
     [self DismissWebView];
     pShouldPresentVideoList = true;
+    dismissListsShouldRepresentWebView = true;
 }
 +(void) PresentImageList {
     [videoCheckTimer invalidate];
     [self DismissWebView];
     pShouldPresentImageList = true;
+    dismissListsShouldRepresentWebView = true;
+}
++(void) PresentBookList {
+    [videoCheckTimer invalidate];
+    [self DismissWebView];
+    pShouldPresentBookList = true;
+    dismissListsShouldRepresentWebView = true;
 }
 // Externald Method End
 

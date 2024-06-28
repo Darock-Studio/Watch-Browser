@@ -40,12 +40,14 @@ struct VideoListView: View {
             .sheet(isPresented: $isPlayerPresented, content: { VideoPlayingView(link: $willPlayVideoLink) })
             .sheet(isPresented: $isVideoDownloadPresented, content: { VideoDownloadView(videoLink: $willDownloadVideoLink) })
             .onDisappear {
-                Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(
-                    AdvancedWebViewController.shared.vc,
-                    animated: true,
-                    completion: nil
-                )
-                AdvancedWebViewController.shared.registerVideoCheckTimer()
+                if dismissListsShouldRepresentWebView {
+                    Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(
+                        AdvancedWebViewController.shared.vc,
+                        animated: true,
+                        completion: nil
+                    )
+                    AdvancedWebViewController.shared.registerVideoCheckTimer()
+                }
             }
         } else {
             Text("空视频列表")
@@ -127,8 +129,12 @@ struct VideoPlayingView: View {
             .tag(2)
         }
         .navigationBarHidden(true)
+        .scrollIndicators(.never)
         .onAppear {
             player = AVPlayer(url: URL(string: link)!)
+        }
+        .onDisappear {
+            player.pause()
         }
     }
 }

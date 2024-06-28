@@ -15,21 +15,8 @@ struct NewFeaturesView: View {
                     Text("“暗礁浏览器”新功能")
                         .font(.system(size: 18, weight: .bold))
                         .accessibilityIdentifier("NewFeaturesTitle")
-                    SingleFeatureRow(symbol: "applescript", mainText: "用户脚本", detailText: "可在脚本商店中获取各类网页脚本")
-                    SingleFeatureRow(symbol: "photo", mainText: "查看图片", detailText: "现可单独放大查看网页中的图片", navigateTo: { AnyView(
-                        List {
-                            Section {
-                                Label("打开包含图片的网页", systemImage: "1.circle.fill")
-                                Label("打开\(Image(systemName: "ellipsis.circle"))浏览菜单", systemImage: "2.circle.fill")
-                                Label("轻触“查看网页中图片”", systemImage: "3.circle.fill")
-                            } header: {
-                                Text("查看图片 - 步骤")
-                            }
-                        }
-                        .navigationTitle("图片")
-                    )})
-                    SingleFeatureRow(symbol: "arrow.uturn.up", mainText: "视频直接跳转", detailText: "打开视频直链时，将直接跳转视频")
-                    Text("您可以随时在“设置”中重新打开此页")
+                    SingleFeatureRow(symbol: "book", mainText: "图书解析", detailText: "直接在搜索框输入或在网页中轻触.epub链接以开始")
+                    Text("您可以随时在“提示->新功能”中重新打开此页")
                         .multilineTextAlignment(.center)
                         .opacity(0.7)
                 }
@@ -83,6 +70,36 @@ struct SingleFeatureRow: View {
 }
 
 // MARK: ArchivedNewFeatures
+private struct _NewFeaturesViewArchived240628: View {
+    var body: some View {
+        NavigationView {
+            ScrollView {
+                VStack {
+                    Text("“暗礁浏览器”新功能")
+                        .font(.system(size: 18, weight: .bold))
+                        .accessibilityIdentifier("NewFeaturesTitle")
+                    SingleFeatureRow(symbol: "applescript", mainText: "用户脚本", detailText: "可在脚本商店中获取各类网页脚本")
+                    SingleFeatureRow(symbol: "photo", mainText: "查看图片", detailText: "现可单独放大查看网页中的图片", navigateTo: { AnyView(
+                        List {
+                            Section {
+                                Label("打开包含图片的网页", systemImage: "1.circle.fill")
+                                Label("打开\(Image(systemName: "ellipsis.circle"))浏览菜单", systemImage: "2.circle.fill")
+                                Label("轻触“查看网页中图片”", systemImage: "3.circle.fill")
+                            } header: {
+                                Text("查看图片 - 步骤")
+                            }
+                        }
+                            .navigationTitle("图片")
+                    )})
+                    SingleFeatureRow(symbol: "arrow.uturn.up", mainText: "视频直接跳转", detailText: "打开视频直链时，将直接跳转视频")
+                    Text("您可以随时在“设置”中重新打开此页")
+                        .multilineTextAlignment(.center)
+                        .opacity(0.7)
+                }
+            }
+        }
+    }
+}
 private struct _NewFeaturesArchived240502: View {
     var body: some View {
         NavigationView {
@@ -127,8 +144,4 @@ private struct _NewFeaturesArchived240502: View {
             }
         }
     }
-}
-
-#Preview {
-    NewFeaturesView()
 }

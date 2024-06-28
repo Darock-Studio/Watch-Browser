@@ -35,7 +35,6 @@ struct BookmarkView: View {
             }
             .navigationBarBackButtonHidden()
         } else {
-            let userdefault = UserDefaults.standard
             List {
                 Button(action: {
                     isNewMarkPresented = true
@@ -56,21 +55,21 @@ struct BookmarkView: View {
                     Section {
                         ForEach(1...markTotal, id: \.self) { i in
                             Button(action: {
-                                AdvancedWebViewController.shared.present(userdefault.string(forKey: "BookmarkLink\(i)")!)
+                                AdvancedWebViewController.shared.present(UserDefaults.standard.string(forKey: "BookmarkLink\(i)")!)
                                 if isRecordHistory {
-                                    RecordHistory(userdefault.string(forKey: "BookmarkLink\(i)")!, webSearch: webSearch)
+                                    RecordHistory(UserDefaults.standard.string(forKey: "BookmarkLink\(i)")!, webSearch: webSearch)
                                 }
                             }, label: {
-                                Text(userdefault.string(forKey: "BookmarkName\(i)") ?? "")
+                                Text(UserDefaults.standard.string(forKey: "BookmarkName\(i)") ?? "")
                             })
                             .privacySensitive()
                             .swipeActions(edge: .trailing, allowsFullSwipe: true, content: {
                                 Button(role: .destructive, action: {
                                     for i2 in i...markTotal {
-                                        userdefault.set(userdefault.string(forKey: "BookmarkName\(i2 + 1)"), forKey: "BookmarkName\(i2)")
-                                        userdefault.set(userdefault.string(forKey: "BookmarkLink\(i2 + 1)"), forKey: "BookmarkLink\(i2)")
+                                        UserDefaults.standard.set(UserDefaults.standard.string(forKey: "BookmarkName\(i2 + 1)"), forKey: "BookmarkName\(i2)")
+                                        UserDefaults.standard.set(UserDefaults.standard.string(forKey: "BookmarkLink\(i2 + 1)"), forKey: "BookmarkLink\(i2)")
                                     }
-                                    userdefault.set(markTotal - 1, forKey: "BookmarkTotal")
+                                    UserDefaults.standard.set(markTotal - 1, forKey: "BookmarkTotal")
                                     markTotal -= 1
                                 }, label: {
                                     Image(systemName: "bin.xmark.fill")
@@ -105,7 +104,7 @@ struct BookmarkView: View {
                             }
                             .swipeActions(edge: .leading) {
                                 Button(action: {
-                                    shareLink = userdefault.string(forKey: "BookmarkLink\(i)")!
+                                    shareLink = UserDefaults.standard.string(forKey: "BookmarkLink\(i)")!
                                     isShareSheetPresented = true
                                 }, label: {
                                     Image(systemName: "square.and.arrow.up.fill")

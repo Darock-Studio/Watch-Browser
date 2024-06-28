@@ -25,7 +25,7 @@ struct WatchBrowser_Watch_AppApp: App {
     let device = WKInterfaceDevice.current()
     @WKApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) var scenePhase
-    @AppStorage("ShouldTipNewFeatures1") var shouldTipNewFeatures = true
+    @AppStorage("ShouldTipNewFeatures2") var shouldTipNewFeatures = true
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockDarockBrowser") var usePasscodeForLockDarockBrowser = false
     @State var showTipText: LocalizedStringKey = ""

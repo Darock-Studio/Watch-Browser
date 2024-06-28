@@ -14,6 +14,7 @@ import AuthenticationServices
 fileprivate var webViewController = AdvancedWebViewController()
 var videoLinkLists = [String]()
 var imageLinkLists = [String]()
+var bookLinkLists = [String]()
 
 class AdvancedWebViewController {
     public static let shared = AdvancedWebViewController()
@@ -45,7 +46,7 @@ class AdvancedWebViewController {
     var isVideoChecking = false
     
     @discardableResult
-    func present(_ iurl: String = "", archiveUrl: URL? = nil, presentController: Bool = true) -> Dynamic {
+    func present(_ iurl: String = "", archiveUrl: URL? = nil, presentController: Bool = true, loadMimeType: String = "application/x-webarchive") -> Dynamic {
         if iurl.isEmpty && archiveUrl == nil {
             Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(vc, animated: true, completion: nil)
             registerVideoCheckTimer()
@@ -135,7 +136,7 @@ class AdvancedWebViewController {
         webViewParentController = vc.asObject!
         
         if let archiveUrl {
-            wkWebView.loadData(NSData(contentsOf: archiveUrl), MIMEType: "application/x-webarchive", characterEncodingName: "utf-8", baseURL: archiveUrl)
+            wkWebView.loadData(NSData(contentsOf: archiveUrl), MIMEType: loadMimeType, characterEncodingName: "utf-8", baseURL: archiveUrl)
         } else {
             wkWebView.loadRequest(URLRequest(url: url))
         }
@@ -308,7 +309,7 @@ class AdvancedWebViewController {
         menuView.addSubview(exitButton)
         menuButtonYOffset += 70
         
-        if !currentUrl.isEmpty && !currentUrl.hasPrefix("file://") {
+        if !currentUrl.isEmpty && !currentUrl.hasPrefix("file://") && !(UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()).contains(currentUrl) {
             let archiveButton = makeUIButton(title: .text(String(localized: "存储本页离线归档")),
                                              frame: getMiddleRect(y: menuButtonYOffset, height: 40),
                                              backgroundColor: .gray.opacity(0.5),
@@ -441,12 +442,4 @@ class AdvancedWebViewController {
 func getMiddleRect(y: CGFloat, height: CGFloat) -> CGRect {
     let sb = WKInterfaceDevice.current().screenBounds
     return CGRect(x: (sb.width - (sb.width - 40)) / 2, y: y, width: sb.width - 40, height: height)
-}
-
-private struct TestWKHoster: View {
-    var body: some View {
-        List {
-            
-        }
-    }
 }

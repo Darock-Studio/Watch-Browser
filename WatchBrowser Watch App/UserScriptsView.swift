@@ -65,7 +65,7 @@ struct UserScriptsAddView: View {
                         if !searchInput.isEmpty {
                             isSearching = true
                             DarockKit.Network.shared
-                                .requestString("https://greasyfork.org/\(NSLocale.current.languageCode == "zh" ? "zh-CN" : "en-US")/scripts?q=\(searchInput)")
+                                .requestString("https://greasyfork.org/\(NSLocale.current.languageCode == "zh" ? "zh-CN" : "en")/scripts?q=\(searchInput)")
                             { respStr, isSuccess in
                                 if isSuccess {
                                     do {

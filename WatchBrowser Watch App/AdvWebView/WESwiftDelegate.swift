@@ -31,6 +31,11 @@ public class WESwiftDelegate: NSObject {
                 WebExtension.presentVideoList()
                 return
             }
+            if curl.hasSuffix(".epub") {
+                bookLinkLists = [curl]
+                WebExtension.presentBookList()
+                return
+            }
         }
     }
     

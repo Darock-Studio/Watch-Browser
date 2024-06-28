@@ -16,6 +16,8 @@ bool pIsMenuButtonDown;
 bool pMenuShouldDismiss;
 bool pShouldPresentVideoList;
 bool pShouldPresentImageList;
+bool pShouldPresentBookList;
+bool dismissListsShouldRepresentWebView;
 id webViewObject;
 id webViewParentController;
 NSTimer *videoCheckTimer;
@@ -35,6 +37,7 @@ NSTimer *videoCheckTimer;
 +(void) setWebViewDelegate;
 +(void) setUserScriptDelegateWithController: (id)controller;
 +(void) PresentVideoList;
++(void) PresentBookList;
 +(void) DismissWebView;
 
 @end

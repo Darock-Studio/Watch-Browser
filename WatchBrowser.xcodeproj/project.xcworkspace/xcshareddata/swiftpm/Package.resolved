@@ -1,6 +1,15 @@
 {
-  "originHash" : "1160e0ffdac6f39e10f8dccce5fb9ced1c04b9d084f0a978fdf44e1321ee4fd1",
+  "originHash" : "30a5249676dded967361a44a4012ccefeedf27122394e3e287c09357f6aefcb3",
   "pins" : [
+    {
+      "identity" : "aexml",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tadija/AEXML",
+      "state" : {
+        "revision" : "db806756c989760b35108146381535aec231092b",
+        "version" : "4.7.0"
+      }
+    },
     {
       "identity" : "alamofire",
       "kind" : "remoteSourceControl",
@@ -44,6 +53,15 @@
       "state" : {
         "revision" : "2991c2f318ad9529d93b2a73a382a3f9c72c64ce",
         "version" : "6.2.2"
+      }
+    },
+    {
+      "identity" : "epubkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/witekbobrowski/EPUBKit",
+      "state" : {
+        "revision" : "c8148577adc407ab1d4fcd45ceb58b54fb96b344",
+        "version" : "0.4.0"
       }
     },
     {
@@ -155,12 +173,12 @@
       }
     },
     {
-      "identity" : "swiftystorekit",
+      "identity" : "zip",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/bizz84/SwiftyStoreKit",
+      "location" : "https://github.com/marmelroy/Zip",
       "state" : {
-        "revision" : "9ce911639680113dac9b554d6243e406a9758ebe",
-        "version" : "0.16.4"
+        "revision" : "67fa55813b9e7b3b9acee9c0ae501def28746d76",
+        "version" : "2.1.2"
       }
     }
   ],

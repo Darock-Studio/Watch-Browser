@@ -8,72 +8,94 @@
 import SwiftUI
 
 struct WebArchiveListView: View {
+    @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
+    @AppStorage("UsePasscodeForWebArchives") var usePasscodeForWebArchives = false
+    @State var isLocked = true
+    @State var passcodeInputCache = ""
     @State var archiveLinks = [String]()
     @State var archiveCustomNameChart = [String: String]()
     @State var customingNameKey = ""
     @State var isArchiveCustomNamePresented = false
     @State var customNameInputCache = ""
     var body: some View {
-        List {
-            if !archiveLinks.isEmpty {
-                ForEach(0..<archiveLinks.count, id: \.self) { i in
-                    Button(action: {
-                        AdvancedWebViewController.shared.present(
-                            "",
-                            archiveUrl: URL(
-                                fileURLWithPath: NSHomeDirectory()
-                                + "/Documents/WebArchives/\(archiveLinks[i].base64Encoded().replacingOccurrences(of: "/", with: "{slash}")).drkdataw"
-                            )
-                        )
-                    }, label: {
-                        Text(archiveCustomNameChart[archiveLinks[i]] ?? archiveLinks[i])
-                    })
-                    .swipeActions {
-                        Button(role: .destructive, action: {
-                            do {
-                                try FileManager.default.removeItem(
-                                    atPath: NSHomeDirectory()
-                                    + "/Documents/WebArchives/\(archiveLinks[i].base64Encoded().replacingOccurrences(of: "/", with: "{slash}")).drkdataw"
-                                )
-                            } catch {
-                                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
-                            }
-                            archiveLinks.remove(at: i)
-                            UserDefaults.standard.set(archiveLinks, forKey: "WebArchiveList")
-                        }, label: {
-                            Image(systemName: "xmark.bin.fill")
-                        })
-                        Button(action: {
-                            customingNameKey = archiveLinks[i]
-                            customNameInputCache = archiveCustomNameChart[archiveLinks[i]] ?? ""
-                            isArchiveCustomNamePresented = true
-                        }, label: {
-                            Image(systemName: "pencil.line")
-                        })
-                    }
+        if isLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForWebArchives {
+            PasswordInputView(text: $passcodeInputCache, placeholder: "输入密码", dismissAfterComplete: false) { pwd in
+                if pwd.md5 == userPasscodeEncrypted {
+                    isLocked = false
+                } else {
+                    tipWithText("密码错误", symbol: "xmark.circle.fill")
                 }
-            } else {
-                Text("无网页归档")
+                passcodeInputCache = ""
             }
-        }
-        .navigationTitle("网页归档")
-        .sheet(isPresented: $isArchiveCustomNamePresented) {
-            VStack {
-                Text("自定义名称")
-                    .font(.system(size: 20, weight: .bold))
-                TextField("名称", text: $customNameInputCache)
-                Button(action: {
-                    archiveCustomNameChart.updateValue(customNameInputCache, forKey: customingNameKey)
-                    isArchiveCustomNamePresented = false
-                    UserDefaults.standard.set(archiveCustomNameChart, forKey: "WebArchiveCustomNameChart")
-                }, label: {
-                    Label("完成", systemImage: "checkmark")
-                })
+            .navigationBarBackButtonHidden()
+        } else {
+            List {
+                if !archiveLinks.isEmpty {
+                    Section {
+                        ForEach(0..<archiveLinks.count, id: \.self) { i in
+                            Button(action: {
+                                AdvancedWebViewController.shared.present(
+                                    "",
+                                    archiveUrl: URL(
+                                        fileURLWithPath: NSHomeDirectory()
+                                        + "/Documents/WebArchives/\(archiveLinks[i].base64Encoded().replacingOccurrences(of: "/", with: "{slash}")).drkdataw"
+                                    )
+                                )
+                            }, label: {
+                                Text(archiveCustomNameChart[archiveLinks[i]] ?? archiveLinks[i])
+                            })
+                            .swipeActions {
+                                Button(role: .destructive, action: {
+                                    do {
+                                        try FileManager.default.removeItem(
+                                            atPath: NSHomeDirectory()
+                                            + "/Documents/WebArchives/\(archiveLinks[i].base64Encoded().replacingOccurrences(of: "/", with: "{slash}")).drkdataw"
+                                        )
+                                    } catch {
+                                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                    }
+                                    archiveLinks.remove(at: i)
+                                    UserDefaults.standard.set(archiveLinks, forKey: "WebArchiveList")
+                                }, label: {
+                                    Image(systemName: "xmark.bin.fill")
+                                })
+                                Button(action: {
+                                    customingNameKey = archiveLinks[i]
+                                    customNameInputCache = archiveCustomNameChart[archiveLinks[i]] ?? ""
+                                    isArchiveCustomNamePresented = true
+                                }, label: {
+                                    Image(systemName: "pencil.line")
+                                })
+                            }
+                        }
+                        .onMove { source, destination in
+                            archiveLinks.move(fromOffsets: source, toOffset: destination)
+                            UserDefaults.standard.set(archiveLinks, forKey: "WebArchiveList")
+                        }
+                    }
+                } else {
+                    Text("无网页归档")
+                }
             }
-        }
-        .onAppear {
-            archiveLinks = UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()
-            archiveCustomNameChart = (UserDefaults.standard.dictionary(forKey: "WebArchiveCustomNameChart") as? [String: String]) ?? [String: String]()
+            .navigationTitle("网页归档")
+            .sheet(isPresented: $isArchiveCustomNamePresented) {
+                VStack {
+                    Text("自定义名称")
+                        .font(.system(size: 20, weight: .bold))
+                    TextField("名称", text: $customNameInputCache)
+                    Button(action: {
+                        archiveCustomNameChart.updateValue(customNameInputCache, forKey: customingNameKey)
+                        isArchiveCustomNamePresented = false
+                        UserDefaults.standard.set(archiveCustomNameChart, forKey: "WebArchiveCustomNameChart")
+                    }, label: {
+                        Label("完成", systemImage: "checkmark")
+                    })
+                }
+            }
+            .onAppear {
+                archiveLinks = UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()
+                archiveCustomNameChart = (UserDefaults.standard.dictionary(forKey: "WebArchiveCustomNameChart") as? [String: String]) ?? [String: String]()
+            }
         }
     }
 }

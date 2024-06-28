@@ -212,6 +212,7 @@ struct SettingsView: View {
                 }
                 Section {
                     NavigationLink(destination: { KeyboardView() }, label: { SettingItemLabel(title: "键盘", image: "keyboard.fill", color: .gray) })
+                    NavigationLink(destination: { ImageViewerView() }, label: { SettingItemLabel(title: "图像查看器", image: "photo.fill.on.rectangle.fill", color: .blue) })
                 }
                 Section {
                     NavigationLink(destination: { LegalView() }, label: { SettingItemLabel(title: "法律与监管", image: "text.justify.left", color: .gray) })
@@ -335,10 +336,12 @@ struct SettingsView: View {
             @State var isLoading = true
             @State var mediaSize: UInt64 = 0
             @State var webArchiveSize: UInt64 = 0
+            @State var bookSize: UInt64 = 0
             @State var tmpSize: UInt64 = 0
             @State var bundleSize: UInt64 = 0
             @State var isClearingCache = false
             @State var videoMetadatas = [[String: String]]()
+            @State var bookMetadatas = [[String: String]]()
             var body: some View {
                 Form {
                     List {
@@ -346,7 +349,7 @@ struct SettingsView: View {
                             Section {
                                 VStack {
                                     HStack {
-                                        Text("已使用 \(bytesToMegabytes(bytes: mediaSize + webArchiveSize + tmpSize + bundleSize) ~ 2) MB")
+                                        Text("已使用 \(bytesToMegabytes(bytes: mediaSize + webArchiveSize + bookSize + tmpSize + bundleSize) ~ 2) MB")
                                             .font(.system(size: 13))
                                             .foregroundColor(.gray)
                                         Spacer()
@@ -358,10 +361,12 @@ struct SettingsView: View {
                                             .foregroundStyle(by: .value("", "Purple"))
                                         BarMark(x: .value("", webArchiveSize))
                                             .foregroundStyle(by: .value("", "Orange"))
+                                        BarMark(x: .value("", bookSize))
+                                            .foregroundStyle(by: .value("", "Green"))
                                         BarMark(x: .value("", tmpSize))
                                             .foregroundStyle(by: .value("", "Primary"))
                                     }
-                                    .chartForegroundStyleScale(["Gray": .gray, "Purple": .purple, "Orange": .orange, "Primary": .primary, "Secondary": Color(hex: 0x333333)])
+                                    .chartForegroundStyleScale(["Gray": .gray, "Purple": .purple, "Orange": .orange, "Green": .green, "Primary": .primary, "Secondary": Color(hex: 0x333333)])
                                     .chartXAxis(.hidden)
                                     .chartLegend(.hidden)
                                     .cornerRadius(2)
@@ -446,6 +451,42 @@ struct SettingsView: View {
                                     }
                                 } header: {
                                     Text("媒体")
+                                }
+                            }
+                            if !bookMetadatas.isEmpty {
+                                Section {
+                                    ForEach(0..<bookMetadatas.count, id: \.self) { i in
+                                        if let name = bookMetadatas[i]["Name"], let sizeStr = bookMetadatas[i]["Size"], let size = UInt64(sizeStr) {
+                                            VStack {
+                                                HStack {
+                                                    Text(name)
+                                                        .font(.system(size: 13, weight: .bold))
+                                                        .lineLimit(2)
+                                                    Spacer()
+                                                }
+                                                HStack {
+                                                    Text("\(bytesToMegabytes(bytes: size) ~ 2) MB")
+                                                        .font(.system(size: 15))
+                                                        .foregroundColor(.gray)
+                                                    Spacer()
+                                                }
+                                            }
+                                            .swipeActions {
+                                                Button(role: .destructive, action: {
+                                                    do {
+                                                        try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/" + bookMetadatas[i]["Folder"]!)
+                                                        bookMetadatas.remove(at: i)
+                                                    } catch {
+                                                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                                    }
+                                                }, label: {
+                                                    Image(systemName: "xmark.bin.fill")
+                                                })
+                                            }
+                                        }
+                                    }
+                                } header: {
+                                    Text("图书")
                                 }
                             }
                             Section {
@@ -615,7 +656,6 @@ struct SettingsView: View {
                                     let files = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos")
                                     let videoHumanNameChart = (UserDefaults.standard.dictionary(forKey: "VideoHumanNameChart") as? [String: String]) ?? [String: String]()
                                     for file in files {
-                                        debugPrint(file)
                                         var dicV = [String: String]()
                                         dicV.updateValue(NSHomeDirectory() + "/Documents/DownloadedVideos/\(file)", forKey: "Path")
                                         do {
@@ -635,6 +675,22 @@ struct SettingsView: View {
                                     }
                                     videoMetadatas.sort { UInt64($0["Size"] ?? "0")! > UInt64($1["Size"] ?? "0")! }
                                 }
+                                let allDocumentFiles = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents")
+                                let bookNameChart = (UserDefaults.standard.dictionary(forKey: "EPUBFileNameChart") as? [String: String]) ?? [String: String]()
+                                for file in allDocumentFiles where file.hasPrefix("EPUB") {
+                                    // Books
+                                    var metadata = [String: String]()
+                                    metadata.updateValue(file, forKey: "Folder")
+                                    if let fileSize = folderSize(atPath: NSHomeDirectory() + "/Documents/\(file)") {
+                                        bookSize += fileSize
+                                        metadata.updateValue(String(fileSize), forKey: "Size")
+                                    }
+                                    if let name = bookNameChart[file] {
+                                        metadata.updateValue(name, forKey: "Name")
+                                    }
+                                    bookMetadatas.append(metadata)
+                                }
+                                bookMetadatas.sort { UInt64($0["Size"] ?? "0")! > UInt64($1["Size"] ?? "0")! }
                                 isLoading = false
                             } catch {
                                 globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
@@ -708,6 +764,32 @@ struct SettingsView: View {
                     }
                 }
                 .navigationTitle("Settings.keyboard")
+            }
+        }
+        struct ImageViewerView: View {
+            @AppStorage("IVUseDigitalCrownFor") var useDigitalCrownFor = "zoom"
+            @AppStorage("MaxmiumScale") var maxmiumScale = 6.0
+            var body: some View {
+                List {
+                    Section {
+                        Picker("将数码表冠用作", selection: $useDigitalCrownFor) {
+                            Text("缩放")
+                                .tag("zoom")
+                            Text("切换")
+                                .tag("switch")
+                        }
+                        if useDigitalCrownFor == "zoom" {
+                            VStack {
+                                Text("最大缩放倍数")
+                                Slider(value: $maxmiumScale, in: 6.0...50.0, step: 0.5) {
+                                    EmptyView()
+                                }
+                                Text("\(String(format: "%.1f", maxmiumScale))x")
+                            }
+                        }
+                    }
+                }
+                .navigationTitle("图像查看器")
             }
         }
         
@@ -1417,10 +1499,12 @@ struct SettingsView: View {
                 @State var isTQCView1Presented = false
                 var body: some View {
                     List {
+                        SinglePackageBlock(name: "AEXML", license: "MIT license")
                         SinglePackageBlock(name: "Alamofire", license: "MIT license")
-                        SinglePackageBlock(name: "CepheusKeyboardKit", license: "Apache License 2.0")
+                        SinglePackageBlock(name: "Cepheus", license: "Apache License 2.0")
                         SinglePackageBlock(name: "Dynamic", license: "Apache License 2.0")
                         SinglePackageBlock(name: "EFQRCode", license: "MIT license")
+                        SinglePackageBlock(name: "EPUBKit", license: "MIT license")
                         SinglePackageBlock(name: "libwebp", license: "BSD-3-Clause license")
                         SinglePackageBlock(name: "NetworkImage", license: "MIT license")
                         SinglePackageBlock(name: "SDWebImage", license: "MIT license")
@@ -1432,6 +1516,7 @@ struct SettingsView: View {
                         SinglePackageBlock(name: "SwiftDate", license: "MIT license")
                         SinglePackageBlock(name: "SwiftSoup", license: "MIT license")
                         SinglePackageBlock(name: "SwiftyJSON", license: "MIT license")
+                        SinglePackageBlock(name: "Zip", license: "MIT license")
                         SinglePackageBlock(name: "???Core", license: "???")
                             .onTapGesture {
                                 isTQCView1Presented = true
@@ -1441,7 +1526,7 @@ struct SettingsView: View {
                     .sheet(isPresented: $isTQCView1Presented, content: {
                         TQCOnaniiView()
                             .onAppear {
-                                DarockKit.Network.shared.requestString("https://fapi.darock.top/num/add/DBTQCOnanii") { _, _ in }
+                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/num/add/DBTQCOnanii") { _, _ in }
                             }
                     })
                 }
@@ -1838,6 +1923,8 @@ struct SettingsView: View {
         @AppStorage("UsePasscodeForLockBookmarks") var usePasscodeForLockBookmarks = false
         @AppStorage("UsePasscodeForLockHistories") var usePasscodeForLockHistories = false
         @AppStorage("UsePasscodeForLocalVideos") var usePasscodeForLocalVideos = false
+        @AppStorage("UsePasscodeForWebArchives") var usePasscodeForWebArchives = false
+        @AppStorage("UsePasscodeForLocalBooks") var usePasscodeForLocalBooks = false
         @AppStorage("IsSecurityDelayEnabled") var isSecurityDelayEnabled = false
         @State var isSetPasswordInputPresented = false
         @State var isSetPasswordConfirmInputPresented = false
@@ -1855,6 +1942,8 @@ struct SettingsView: View {
                         Toggle("锁定书签", isOn: $usePasscodeForLockBookmarks)
                         Toggle("锁定历史记录", isOn: $usePasscodeForLockHistories)
                         Toggle("锁定本地视频", isOn: $usePasscodeForLocalVideos)
+                        Toggle("锁定网页归档", isOn: $usePasscodeForWebArchives)
+                        Toggle("锁定本地图书", isOn: $usePasscodeForLocalBooks)
                     } header: {
                         Text("将密码用于：")
                     }

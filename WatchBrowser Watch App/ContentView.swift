@@ -22,22 +22,26 @@ struct ContentView: View {
     @State var mainTabSelection = 2
     @State var isVideoListPresented = false
     @State var isImageListPresented = false
+    @State var isBookListPresented = false
     @State var isSettingsPresented = false
     @State var isTabsPresented = false
     var body: some View {
         NavigationStack {
             if #available(watchOS 10.0, *) {
                 ZStack {
-                    NavigationLink("", isActive: $isVideoListPresented, destination: {VideoListView()})
+                    NavigationLink("", isActive: $isVideoListPresented, destination: { VideoListView() })
                         .frame(width: 0, height: 0)
                         .hidden()
-                    NavigationLink("", isActive: $isImageListPresented, destination: {ImageListView()})
+                    NavigationLink("", isActive: $isImageListPresented, destination: { ImageListView() })
                         .frame(width: 0, height: 0)
                         .hidden()
-                    NavigationLink("", isActive: $isSettingsPresented, destination: {SettingsView()})
+                    NavigationLink("", isActive: $isBookListPresented, destination: { BookListView() })
                         .frame(width: 0, height: 0)
                         .hidden()
-                    NavigationLink("", isActive: $isTabsPresented, destination: {BrowsingTabsView()})
+                    NavigationLink("", isActive: $isSettingsPresented, destination: { SettingsView() })
+                        .frame(width: 0, height: 0)
+                        .hidden()
+                    NavigationLink("", isActive: $isTabsPresented, destination: { BrowsingTabsView() })
                         .frame(width: 0, height: 0)
                         .hidden()
                     MainView()
@@ -66,10 +70,13 @@ struct ContentView: View {
                 }
             } else {
                 ZStack {
-                    NavigationLink("", isActive: $isVideoListPresented, destination: {VideoListView()})
+                    NavigationLink("", isActive: $isVideoListPresented, destination: { VideoListView() })
                         .frame(width: 0, height: 0)
                         .hidden()
-                    NavigationLink("", isActive: $isImageListPresented, destination: {ImageListView()})
+                    NavigationLink("", isActive: $isImageListPresented, destination: { ImageListView() })
+                        .frame(width: 0, height: 0)
+                        .hidden()
+                    NavigationLink("", isActive: $isBookListPresented, destination: { BookListView() })
                         .frame(width: 0, height: 0)
                         .hidden()
                     MainView(withSetting: true)
@@ -91,6 +98,10 @@ struct ContentView: View {
                 if _slowPath(pShouldPresentImageList) {
                     pShouldPresentImageList = false
                     isImageListPresented = true
+                }
+                if _slowPath(pShouldPresentBookList) {
+                    pShouldPresentBookList = false
+                    isBookListPresented = true
                 }
             }
         }
@@ -118,7 +129,8 @@ struct MainView: View {
     @State var newFeedbackCount = 0
     @State var isNewVerAvailable = false
     @State var isHaveDownloadedVideo = false
-    @State var isPreloadedInitialSearchWeb = false
+    @State var isPreloadedSearchWeb = false
+    @State var isOfflineBooksAvailable = false
     var body: some View {
         List {
             Section {
@@ -137,6 +149,7 @@ struct MainView: View {
                                             tmpUrl = "http://" + textOrURL
                                         }
                                         AdvancedWebViewController.shared.present(tmpUrl.urlEncoded(), presentController: false)
+                                        isPreloadedSearchWeb = true
                                     }
                                 } else {
                                     if isSearchEngineShortcutEnabled {
@@ -159,6 +172,7 @@ struct MainView: View {
                                             GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
                                             presentController: false
                                         )
+                                        isPreloadedSearchWeb = true
                                     }
                                 }
                             })
@@ -173,6 +187,7 @@ struct MainView: View {
                                             tmpUrl = "http://" + textOrURL
                                         }
                                         AdvancedWebViewController.shared.present(tmpUrl.urlEncoded(), presentController: false)
+                                        isPreloadedSearchWeb = true
                                     }
                                 } else {
                                     if isSearchEngineShortcutEnabled {
@@ -195,6 +210,7 @@ struct MainView: View {
                                             GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
                                             presentController: false
                                         )
+                                        isPreloadedSearchWeb = true
                                     }
                                 }
                             }
@@ -293,25 +309,38 @@ struct MainView: View {
                     }
                 }
                 Button(action: {
-                    if #available(watchOS 10, *), preloadSearchContent && !isUseOldWebView {
-                        AdvancedWebViewController.shared.present()
-                        if textOrURL.hasSuffix(".mp4") {
-                            if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                                textOrURL = "http://" + textOrURL
-                            }
-                            RecordHistory(textOrURL, webSearch: webSearch)
+                    if textOrURL.hasSuffix(".mp4") {
+                        if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+                            textOrURL = "http://" + textOrURL
                         }
+                        videoLinkLists = [textOrURL]
+                        pShouldPresentVideoList = true
+                        dismissListsShouldRepresentWebView = false
+                        RecordHistory(textOrURL, webSearch: webSearch)
                         return
-                    } else {
-                        if textOrURL.hasSuffix(".mp4") {
-                            if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                                textOrURL = "http://" + textOrURL
-                            }
-                            videoLinkLists = [textOrURL]
-                            pShouldPresentVideoList = true
-                            RecordHistory(textOrURL, webSearch: webSearch)
-                            return
+                    } else if textOrURL.hasSuffix(".png") || textOrURL.hasSuffix(".jpg") || textOrURL.hasSuffix(".webp") {
+                        if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+                            textOrURL = "http://" + textOrURL
                         }
+                        imageLinkLists = [textOrURL]
+                        pShouldPresentImageList = true
+                        dismissListsShouldRepresentWebView = false
+                        RecordHistory(textOrURL, webSearch: webSearch)
+                        return
+                    } else if textOrURL.hasSuffix(".epub") {
+                        if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+                            textOrURL = "http://" + textOrURL
+                        }
+                        bookLinkLists = [textOrURL]
+                        pShouldPresentBookList = true
+                        dismissListsShouldRepresentWebView = false
+                        RecordHistory(textOrURL, webSearch: webSearch)
+                        return
+                    }
+                    if #available(watchOS 10, *), preloadSearchContent && !isUseOldWebView && isPreloadedSearchWeb {
+                        AdvancedWebViewController.shared.present()
+                        isPreloadedSearchWeb = false
+                        return
                     }
                     if textOrURL.isURL() {
                         if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
@@ -395,6 +424,15 @@ struct MainView: View {
                 })
                 .disabled(isUseOldWebView)
                 .accessibilityIdentifier("MainUserScriptButton")
+                if isOfflineBooksAvailable {
+                    NavigationLink(destination: { LocalBooksView() }, label: {
+                        HStack {
+                            Spacer()
+                            Label("本地图书", systemImage: "book.pages")
+                            Spacer()
+                        }
+                    })
+                }
                 if isHaveDownloadedVideo {
                     NavigationLink(destination: { LocalVideosView() }, label: {
                         HStack {
@@ -532,14 +570,7 @@ struct MainView: View {
             } catch {
                 globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
             }
-            
-            if !isPreloadedInitialSearchWeb {
-                AdvancedWebViewController.shared.present(
-                    GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
-                    presentController: false
-                )
-                isPreloadedInitialSearchWeb = true
-            }
+            isOfflineBooksAvailable = !(UserDefaults.standard.stringArray(forKey: "EPUBFlieFolders") ?? [String]()).isEmpty
         }
     }
 }

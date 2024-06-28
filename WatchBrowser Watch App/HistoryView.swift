@@ -100,6 +100,12 @@ struct HistoryView: View {
                                             } else if histories[i].url.hasSuffix(".mp4") {
                                                 videoLinkLists = [histories[i].url]
                                                 pShouldPresentVideoList = true
+                                            } else if histories[i].url.hasSuffix(".png") || histories[i].url.hasSuffix(".jpg") || histories[i].url.hasSuffix(".webp") {
+                                                imageLinkLists = [histories[i].url]
+                                                pShouldPresentImageList = true
+                                            } else if histories[i].url.hasSuffix(".epub") {
+                                                bookLinkLists = [histories[i].url]
+                                                pShouldPresentBookList = true
                                             } else {
                                                 AdvancedWebViewController.shared.present(histories[i].url.urlDecoded().urlEncoded())
                                             }
@@ -134,6 +140,10 @@ struct HistoryView: View {
                                                 )
                                             } else if histories[i].url.hasSuffix(".mp4") {
                                                 Label(histories[i].url, systemImage: "film")
+                                            } else if histories[i].url.hasSuffix(".png") || histories[i].url.hasSuffix(".jpg") || histories[i].url.hasSuffix(".webp") {
+                                                Label(histories[i].url, systemImage: "photo")
+                                            } else if histories[i].url.hasSuffix(".epub") {
+                                                Label(histories[i].url, systemImage: "book")
                                             } else {
                                                 Label(histories[i].url, systemImage: "globe")
                                             }
