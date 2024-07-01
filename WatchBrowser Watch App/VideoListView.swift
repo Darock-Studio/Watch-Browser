@@ -46,7 +46,6 @@ struct VideoListView: View {
                         animated: true,
                         completion: nil
                     )
-                    AdvancedWebViewController.shared.registerVideoCheckTimer()
                 }
             }
         } else {
@@ -105,13 +104,13 @@ struct VideoPlayingView: View {
                     .onChange(of: playbackSpeed) { value in
                         player.rate = Float(value)
                     }
-                    TextField("跳转到...(秒)", text: $jumpToInput) // rdar://FB26800207937
-                        .onSubmit {
-                            if let jt = Double(jumpToInput) {
-                                player.seek(to: CMTime(seconds: jt, preferredTimescale: 1))
-                            }
-                            jumpToInput = ""
+                    // rdar://FB26800207937
+                    TextField("跳转到...(秒)", text: $jumpToInput) {
+                        if let jt = Double(jumpToInput) {
+                            player.seek(to: CMTime(seconds: jt, preferredTimescale: 1))
                         }
+                        jumpToInput = ""
+                    }
 //                    Button(action: {
 //                        player.seek(to: CMTime(seconds: currentTime + 10, preferredTimescale: 1))
 //                    }, label: {

@@ -54,6 +54,17 @@
                ReferencedContainer = "container:WatchBrowser.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8C547AFD2C3296D40093D592"
+               BuildableName = "DarockBrowserUnitTests.xctest"
+               BlueprintName = "DarockBrowserUnitTests"
+               ReferencedContainer = "container:WatchBrowser.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

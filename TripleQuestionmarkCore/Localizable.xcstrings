@@ -1,6 +1,29 @@
 {
   "sourceLanguage" : "zh-Hans",
   "strings" : {
+    "???" : {
+      "shouldTranslate" : false
+    },
+    "当前：" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current: "
+          }
+        }
+      }
+    },
+    "更改主题色" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change Accent Color"
+          }
+        }
+      }
+    },
     "输入一个自然数" : {
       "localizations" : {
         "en" : {
@@ -19,6 +42,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "輸入一個自然數"
+          }
+        }
+      }
+    },
+    "还原为默认值..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore to Default"
+          }
+        }
+      }
+    },
+    "选择颜色..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose Color…"
           }
         }
       }

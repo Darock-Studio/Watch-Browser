@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Dynamic
+import Intents
 import WatchKit
 import SDWebImage
 import SDWebImageSVGCoder
@@ -153,6 +154,27 @@ struct WatchBrowser_Watch_AppApp: App {
 }
 
 class AppDelegate: NSObject, WKApplicationDelegate {
+    func applicationDidFinishLaunching() {
+//        INPreferences.requestSiriAuthorization { status in
+//            switch status {
+//            case .notDetermined:
+//                debugPrint("Siri Not Determined")
+//            case .restricted:
+//                debugPrint("Siri Restricted")
+//            case .denied:
+//                debugPrint("Siri Denied")
+//            case .authorized:
+//                debugPrint("Siri Authorized")
+//                let intent = SearchIntent()
+//                intent.content = "Test"
+//                let interaction = INInteraction(intent: intent, response: nil)
+//                interaction.donate()
+//            @unknown default:
+//                break
+//            }
+//        }
+    }
+    
     func didRegisterForRemoteNotifications(withDeviceToken deviceToken: Data) {
         let tokenString = deviceToken.hexEncodedString()
         debugPrint(tokenString)
@@ -162,6 +184,15 @@ class AppDelegate: NSObject, WKApplicationDelegate {
 
 public func tipWithText(_ text: LocalizedStringKey, symbol: String = "", time: Double = 3.0) {
     pShowTipText = text
+    pShowTipSymbol = symbol
+    pIsShowingTip = true
+    Timer.scheduledTimer(withTimeInterval: time, repeats: false) { _ in
+        pIsShowingTip = false
+    }
+}
+@_disfavoredOverload
+public func tipWithText(_ text: String, symbol: String = "", time: Double = 3.0) {
+    pShowTipText = "\(text)"
     pShowTipSymbol = symbol
     pIsShowingTip = true
     Timer.scheduledTimer(withTimeInterval: time, repeats: false) { _ in

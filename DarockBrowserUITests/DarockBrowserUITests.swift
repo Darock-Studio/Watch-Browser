@@ -27,8 +27,9 @@ final class DarockBrowserUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        if _slowPath(app.textViews["NewFeaturesTitle"].exists) {
-            app.navigationBars.buttons.element(boundBy: 0).tap()
+        if app.staticTexts["NewFeaturesTitle"].exists {
+            print(app.debugDescription)
+            app.navigationBars.buttons["close-sheet"].firstMatch.tap()
         }
         // Main Page
         app.navigationBars.buttons["MainSettingsButton"].firstMatch.tap()
@@ -46,13 +47,5 @@ final class DarockBrowserUITests: XCTestCase {
         sleep(3)
         // Main Page
         XCTAssertTrue(app.buttons["MainSearchButton"].exists, "WebView not dismiss after tap dismiss button in web menu.")
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            measure(metrics: [XCTApplicationLaunchMetric(waitUntilResponsive: true)]) {
-                XCUIApplication().launch()
-            }
-        }
     }
 }

@@ -52,7 +52,6 @@ struct ImageListView: View {
                         animated: true,
                         completion: nil
                     )
-                    AdvancedWebViewController.shared.registerVideoCheckTimer()
                 }
             }
         } else {

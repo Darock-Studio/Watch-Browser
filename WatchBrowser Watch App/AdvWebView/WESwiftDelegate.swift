@@ -5,6 +5,7 @@
 //  Created by memz233 on 2024/4/26.
 //
 
+import SwiftUI
 import Dynamic
 import Foundation
 
@@ -20,12 +21,18 @@ fileprivate var errorLabel = { () -> Dynamic in
 
 @objcMembers
 public class WESwiftDelegate: NSObject {
+    @AppStorage("isHistoryRecording") var isHistoryRecording = true
+    @AppStorage("WebSearch") var webSearch = "必应"
+    
     public func webView(_ view: Any, didStartProvisionalNavigation navigation: Any) {
         debugPrint("Start Navigation")
         errorLabel.removeFromSuperview()
         AdvancedWebViewController.shared.loadProgressView.hidden = false
         if let url = Dynamic(webViewObject).URL.asObject {
             let curl = (url as! NSURL).absoluteString!
+            if _fastPath(isHistoryRecording) {
+                RecordHistory(curl, webSearch: webSearch, showName: Dynamic(webViewObject).title.asString)
+            }
             if curl.hasSuffix(".mp4") {
                 videoLinkLists = [curl]
                 WebExtension.presentVideoList()

@@ -16,6 +16,14 @@
   },
   "testTargets" : [
     {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:WatchBrowser.xcodeproj",
+        "identifier" : "8C547AFD2C3296D40093D592",
+        "name" : "DarockBrowserUnitTests"
+      }
+    },
+    {
       "target" : {
         "containerPath" : "container:WatchBrowser.xcodeproj",
         "identifier" : "8CA1E0BC2C13DD620092DFCA",

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import SwiftData
+import DarockKit
 import AuthenticationServices
 
 struct HistoryView: View {
@@ -17,6 +17,8 @@ struct HistoryView: View {
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockHistories") var usePasscodeForLockHistories = false
     @AppStorage("IsHistoryTransferNeeded") var isHistoryTransferNeeded = true
+    @AppStorage("DarockAccount") var darockAccount = ""
+    @AppStorage("DCSaveHistory") var isSaveHistoryToCloud = false
     @State var isLocked = true
     @State var passcodeInputCache = ""
     @State var isSettingPresented = false
@@ -319,11 +321,24 @@ struct HistoryView: View {
             }
             .onAppear {
                 histories = GetWebHistory()
+                // Cloud
+                if !darockAccount.isEmpty && isSaveHistoryToCloud {
+                    Task {
+                        if let cloudHistories = await GetWebHistoryFromCloud(with: darockAccount) {
+                            let mergedHistories = MergeWebHistoriesBetween(primary: histories, secondary: cloudHistories)
+                            if mergedHistories != histories {
+                                histories = mergedHistories
+                                WriteWebHistory(from: histories)
+                            }
+                        }
+                    }
+                }
             }
         }
     }
 }
 
+// MARK: History Related Functions
 func RecordHistory(_ inp: String, webSearch: String, showName: String? = nil) {
     if (UserDefaults.standard.object(forKey: "IsHistoryTransferNeeded") as? Bool) ?? true {
         return
@@ -341,6 +356,17 @@ func RecordHistory(_ inp: String, webSearch: String, showName: String? = nil) {
         fullHistory.insert(.init(url: rurl, title: showName, time: Date.now.timeIntervalSince1970), at: 0)
     }
     WriteWebHistory(from: fullHistory)
+    if UserDefaults.standard.bool(forKey: "DCSaveHistory"),
+       let account = UserDefaults.standard.string(forKey: "DarockAccount"),
+       !account.isEmpty {
+        // Darock Cloud Upload
+        let historiesToUpload = Array<SingleHistoryItem>(fullHistory.prefix(50))
+        if let uploadData = jsonString(from: historiesToUpload) {
+            _onFastPath()
+            let encodedData = uploadData.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
+            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/cloud/update/\(account)/WebHistory.drkdataw/\(encodedData)") { _, _ in }
+        }
+    }
 }
 func GetWebHistory() -> [SingleHistoryItem] {
     do {
@@ -364,6 +390,39 @@ func WriteWebHistory(from histories: [SingleHistoryItem]) {
     } catch {
         globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
     }
+}
+func GetWebHistoryFromCloud(with account: String) async -> [SingleHistoryItem]? {
+    await withCheckedContinuation { continuation in
+        DarockKit.Network.shared.requestJSON("https://fapi.darock.top:65535/drkbs/cloud/get/\(account)/WebHistory.drkdataw") { respJson, isSuccess in
+            if isSuccess {
+                if let rawString = respJson.rawString(), let jsonData = getJsonData([SingleHistoryItem].self, from: rawString) {
+                    _onFastPath()
+                    continuation.resume(returning: jsonData)
+                    return
+                }
+                continuation.resume(returning: nil)
+            } else {
+                continuation.resume(returning: nil)
+            }
+        }
+    }
+}
+func MergeWebHistoriesBetween(primary: [SingleHistoryItem], secondary: [SingleHistoryItem]) -> [SingleHistoryItem] {
+    var primCopy = primary
+    for single in secondary where !primary.contains(where: { $0.time == single.time }) {
+        var inserted = false
+        for (index, item) in primCopy.enumerated() {
+            if single.time > item.time {
+                primCopy.insert(single, at: index)
+                inserted = true
+                break
+            }
+        }
+        if _slowPath(!inserted) {
+            primCopy.append(single)
+        }
+    }
+    return primCopy
 }
 
 struct CloseHistoryTipView: View {
@@ -446,7 +505,7 @@ struct HistoryTransferView: View {
     }
 }
 
-struct SingleHistoryItem: Codable {
+struct SingleHistoryItem: Codable, Equatable {
     var url: String
     var title: String?
     var time: TimeInterval

@@ -5,6 +5,7 @@
 //  Created by memz233 on 6/21/24.
 //
 
+import Vela
 import SwiftUI
 
 /// Get a view which can convert any natural number to 0, 7, 2 and 1. 😋
@@ -120,5 +121,99 @@ public struct TQCOnaniiView: View {
         }
         
         return calculateOnanii(userInput: num)
+    }
+}
+
+/// Get a button that can change the accent color of Darock Browser. 😇
+/// This button should be put in List.
+public struct TQCAccentColorHiddenButton: View {
+    var unlockHandler: () -> Void
+    @AppStorage("TQCIsColorChangeButtonUnlocked") private var isColorChangeButtonUnlocked = false
+    @AppStorage("TQCIsColorChangeButtonEntered") private var isColorChangeButtonEntered = false
+    @State private var buttonOpacity = 0.0100000002421438702673861521
+    
+    public init(unlockHandler: @escaping () -> Void = { }) {
+        self.unlockHandler = unlockHandler
+    }
+    
+    public var body: some View {
+        NavigationLink(destination: { AccentColorChangeView() }, label: {
+            HStack {
+                if isColorChangeButtonEntered {
+                    Text("更改主题色")
+                } else {
+                    Text("???")
+                }
+                Spacer()
+            }
+        })
+        .disabled(!isColorChangeButtonUnlocked && buttonOpacity < 1.0)
+        .opacity(isColorChangeButtonUnlocked ? 1.0 : buttonOpacity)
+        .listRowBackground(Color(red: 31 / 255, green: 31 / 255, blue: 32 / 255, opacity: isColorChangeButtonUnlocked ? 1.0 : buttonOpacity).cornerRadius(10))
+        .contentShape(Rectangle())
+        .gesture(
+            DragGesture()
+                .onChanged { value in
+                    buttonOpacity += abs(value.translation.width) / 5000.0
+                }
+        )
+        .onChange(of: buttonOpacity) { value in
+            if value >= 1.0 {
+                isColorChangeButtonUnlocked = true
+                unlockHandler()
+            }
+        }
+    }
+    
+    struct AccentColorChangeView: View {
+        @AppStorage("TQCIsColorChangeButtonEntered") var isColorChangeButtonEntered = false
+        @AppStorage("TQCIsOverrideAccentColor") var isOverrideAccentColor = false
+        @AppStorage("TQCOverrideAccentColorRed") var overrideAccentColorRed = 0.0
+        @AppStorage("TQCOverrideAccentColorGreen") var overrideAccentColorGreen = 0.0
+        @AppStorage("TQCOverrideAccentColorBlue") var overrideAccentColorBlue = 0.0
+        @State var inputColor = Color(red: 0, green: 0, blue: 0)
+        var body: some View {
+            List {
+                Section {
+                    VelaPicker(color: $inputColor, allowOpacity: false, label: {
+                        HStack {
+                            Text("选择颜色...")
+                            Spacer()
+                        }
+                        .frame(width: WKInterfaceDevice.current().screenBounds.width)
+                    }, onSubmit: {
+                        debugPrint("Submit")
+                        var red = CGFloat.zero
+                        var green = CGFloat.zero
+                        var blue = CGFloat.zero
+                        UIColor(inputColor).getRed(&red, green: &green, blue: &blue, alpha: nil)
+                        overrideAccentColorRed = red
+                        overrideAccentColorGreen = green
+                        overrideAccentColorBlue = blue
+                        isOverrideAccentColor = true
+                    })
+                    HStack {
+                        Text("当前：")
+                        (isOverrideAccentColor ? inputColor : Color.accentColor)
+                            .frame(width: 30, height: 30)
+                            .clipShape(Circle())
+                        Spacer()
+                    }
+                }
+                Section {
+                    Button(action: {
+                        isOverrideAccentColor = false
+                    }, label: {
+                        Text("还原为默认值...")
+                    })
+                }
+            }
+            .navigationTitle("更改主题色")
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                inputColor = Color(red: overrideAccentColorRed, green: overrideAccentColorGreen, blue: overrideAccentColorBlue)
+                isColorChangeButtonEntered = true
+            }
+        }
     }
 }

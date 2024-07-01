@@ -38,7 +38,6 @@ struct BookListView: View {
                         animated: true,
                         completion: nil
                     )
-                    AdvancedWebViewController.shared.registerVideoCheckTimer()
                 }
             }
         } else {

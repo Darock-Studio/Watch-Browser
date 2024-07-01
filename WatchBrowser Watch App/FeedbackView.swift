@@ -69,9 +69,6 @@ struct FeedbackView: View {
                     Label("新建反馈", systemImage: "exclamationmark.bubble.fill")
                 })
                 .accessibilityIdentifier("NewFeedbackButton")
-                NavigationLink(destination: { SUICChatSupportView(projName: "Darock Browser") }, label: {
-                    Label("请求实时支持", systemImage: "bubble.left.and.text.bubble.right")
-                })
                 NavigationLink(destination: { FAQView() }, label: {
                     Label("常见问题", systemImage: "sparkles")
                 })
@@ -488,33 +485,32 @@ struct FeedbackView: View {
             .sheet(isPresented: $isReplyPresented, onDismiss: {
                 Refresh()
             }, content: { 
-                TextField("回复信息", text: $replyInput)
-                    .onSubmit {
-                        if isReplySubmitted {
-                            return
-                        }
-                        isReplySubmitted = true
-                        if replyInput != "" {
-                            let enced = """
+                TextField("回复信息", text: $replyInput) {
+                    if isReplySubmitted {
+                        return
+                    }
+                    isReplySubmitted = true
+                    if replyInput != "" {
+                        let enced = """
                             Content：\(replyInput)
                             Sender：User
                             """.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
-                            DarockKit.Network.shared
-                                .requestString("https://fapi.darock.top:65535/radar/reply/Darock Browser/\(id)/\(enced)")
-                            { respStr, isSuccess in
-                                if isSuccess {
-                                    if respStr.apiFixed() == "Success" {
-                                        Refresh()
-                                        replyInput = ""
-                                        isReplyPresented = false
-                                    } else {
-                                        tipWithText("未知错误", symbol: "xmark.circle.fill")
-                                    }
-                                    isReplySubmitted = false
+                        DarockKit.Network.shared
+                            .requestString("https://fapi.darock.top:65535/radar/reply/Darock Browser/\(id)/\(enced)")
+                        { respStr, isSuccess in
+                            if isSuccess {
+                                if respStr.apiFixed() == "Success" {
+                                    Refresh()
+                                    replyInput = ""
+                                    isReplyPresented = false
+                                } else {
+                                    tipWithText("未知错误", symbol: "xmark.circle.fill")
                                 }
+                                isReplySubmitted = false
                             }
                         }
                     }
+                }
             })
             .navigationTitle(id)
             .navigationBarTitleDisplayMode(.inline)

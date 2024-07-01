@@ -42,14 +42,20 @@ class AdvancedWebViewController {
     @AppStorage("IsShowFraudulentWebsiteWarning") var isShowFraudulentWebsiteWarning = true
     @AppStorage("WKJavaScriptEnabled") var isJavaScriptEnabled = true
     
-    var currentUrl = ""
+    var currentUrl: String {
+        if let url = Dynamic(webViewObject).URL.asObject {
+            _onFastPath()
+            return (url as! NSURL).absoluteString!
+        } else {
+            return ""
+        }
+    }
     var isVideoChecking = false
     
     @discardableResult
     func present(_ iurl: String = "", archiveUrl: URL? = nil, presentController: Bool = true, loadMimeType: String = "application/x-webarchive") -> Dynamic {
         if iurl.isEmpty && archiveUrl == nil {
             Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(vc, animated: true, completion: nil)
-            registerVideoCheckTimer()
             return Dynamic(webViewObject)
         }
         
@@ -83,9 +89,9 @@ class AdvancedWebViewController {
         wkWebView.setFrame(sb)
         if _fastPath(customUserAgent.isEmpty) {
             if _slowPath(requestDesktopWeb) {
-                wkWebView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+                wkWebView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
             } else {
-                wkWebView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+                wkWebView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
             }
         } else {
             wkWebView.customUserAgent = customUserAgent
@@ -97,7 +103,7 @@ class AdvancedWebViewController {
             : Dynamic.WKCookiePolicyDisllow,
             completionHandler: {} as @convention(block) () -> Void
         )
-        if isWebMinFontSizeStricted {
+        if _slowPath(isWebMinFontSizeStricted) {
             wkWebView.configuration.preferences.minimumFontSize = CGFloat(webMinFontSize)
         }
         wkWebView.configuration.preferences.javaScriptEnabled = isJavaScriptEnabled
@@ -138,6 +144,7 @@ class AdvancedWebViewController {
         if let archiveUrl {
             wkWebView.loadData(NSData(contentsOf: archiveUrl), MIMEType: loadMimeType, characterEncodingName: "utf-8", baseURL: archiveUrl)
         } else {
+            _onFastPath()
             wkWebView.loadRequest(URLRequest(url: url))
         }
         
@@ -153,12 +160,9 @@ class AdvancedWebViewController {
                 pMenuShouldDismiss = false
                 dismissControllersOnWebView()
             }
-            if wkWebView.isLoading.asBool ?? false {
+            if _slowPath(wkWebView.isLoading.asBool ?? false) {
                 loadProgressView.setProgress(Float(wkWebView.estimatedProgress.asDouble ?? 0.0), animated: true)
             }
-        }
-        if _fastPath(presentController) {
-            registerVideoCheckTimer()
         }
         
         webViewObject = wkWebView.asObject!
@@ -169,7 +173,7 @@ class AdvancedWebViewController {
 //        wkWebView.configuration.userContentController.addUserScript(script)
 //        WebExtension.setUserScriptDelegateWithController(wkWebView.configuration.userContentController)
         
-        if isAllowWebInspector {
+        if _slowPath(isAllowWebInspector) {
             wkWebView.inspectable = true
         }
         
@@ -361,19 +365,6 @@ class AdvancedWebViewController {
     }
     func dismissControllersOnWebView(animated: Bool = true) {
         vc.dismissViewControllerAnimated(animated, completion: nil)
-    }
-    func registerVideoCheckTimer() {
-        videoCheckTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [self] _ in
-            if let url = Dynamic(webViewObject).URL.asObject {
-                let curl = (url as! NSURL).absoluteString!
-                if curl != currentUrl {
-                    currentUrl = curl
-                    if _fastPath(isHistoryRecording) {
-                        RecordHistory(curl, webSearch: webSearch, showName: Dynamic(webViewObject).title.asString)
-                    }
-                }
-            }
-        }
     }
     
     func CheckWebContent() {

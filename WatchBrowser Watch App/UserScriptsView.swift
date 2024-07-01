@@ -59,35 +59,34 @@ struct UserScriptsAddView: View {
     var body: some View {
         List {
             Section {
-                TextField("搜索...", text: $searchInput)
-                    .submitLabel(.search)
-                    .onSubmit {
-                        if !searchInput.isEmpty {
-                            isSearching = true
-                            DarockKit.Network.shared
-                                .requestString("https://greasyfork.org/\(NSLocale.current.languageCode == "zh" ? "zh-CN" : "en")/scripts?q=\(searchInput)")
-                            { respStr, isSuccess in
-                                if isSuccess {
-                                    do {
-                                        let doc = try SwiftSoup.parse(respStr)
-                                        let scripts = try doc.body()?.select("a")
-                                        if let scripts {
-                                            for script in scripts {
-                                                if try script.outerHtml().contains("class=\"script-link\""),
-                                                   let target = try? script.attr("href"),
-                                                   let title = try? script.text() {
-                                                    searchResults.append((title, target))
-                                                }
+                TextField("搜索...", text: $searchInput) {
+                    if !searchInput.isEmpty {
+                        isSearching = true
+                        DarockKit.Network.shared
+                            .requestString("https://greasyfork.org/\(NSLocale.current.languageCode == "zh" ? "zh-CN" : "en")/scripts?q=\(searchInput)")
+                        { respStr, isSuccess in
+                            if isSuccess {
+                                do {
+                                    let doc = try SwiftSoup.parse(respStr)
+                                    let scripts = try doc.body()?.select("a")
+                                    if let scripts {
+                                        for script in scripts {
+                                            if try script.outerHtml().contains("class=\"script-link\""),
+                                               let target = try? script.attr("href"),
+                                               let title = try? script.text() {
+                                                searchResults.append((title, target))
                                             }
                                         }
-                                        isSearching = false
-                                    } catch {
-                                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
                                     }
+                                    isSearching = false
+                                } catch {
+                                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
                                 }
                             }
                         }
                     }
+                }
+                .submitLabel(.search)
             } footer: {
                 Text("脚本均来自greasyfork.org，Darock 无法进行审核，请自行辨别内容")
             }

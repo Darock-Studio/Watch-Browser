@@ -19,6 +19,12 @@ struct ContentView: View {
     public static var bingSearchingText = ""
     @AppStorage("LabTabBrowsingEnabled") var labTabBrowsingEnabled = false
     @AppStorage("IsHistoryTransferNeeded") var isHistoryTransferNeeded = true
+    @AppStorage("DarockAccount") var darockAccount = ""
+    @AppStorage("DCSaveHistory") var isSaveHistoryToCloud = false
+    @AppStorage("TQCIsOverrideAccentColor") var isOverrideAccentColor = false
+    @AppStorage("TQCOverrideAccentColorRed") var overrideAccentColorRed = 0.0
+    @AppStorage("TQCOverrideAccentColorGreen") var overrideAccentColorGreen = 0.0
+    @AppStorage("TQCOverrideAccentColorBlue") var overrideAccentColorBlue = 0.0
     @State var mainTabSelection = 2
     @State var isVideoListPresented = false
     @State var isImageListPresented = false
@@ -45,7 +51,7 @@ struct ContentView: View {
                         .frame(width: 0, height: 0)
                         .hidden()
                     MainView()
-                        .containerBackground(Color(hex: 0x13A4FF).gradient, for: .navigation)
+                        .containerBackground(isOverrideAccentColor ? Color(red: overrideAccentColorRed, green: overrideAccentColorGreen, blue: overrideAccentColorBlue).gradient : Color(hex: 0x13A4FF).gradient, for: .navigation)
                         .toolbar {
                             ToolbarItem(placement: .topBarLeading) {
                                 Button(action: {
@@ -104,6 +110,19 @@ struct ContentView: View {
                     isBookListPresented = true
                 }
             }
+            
+            // Cloud
+            if !darockAccount.isEmpty && isSaveHistoryToCloud {
+                Task {
+                    if let cloudHistories = await GetWebHistoryFromCloud(with: darockAccount) {
+                        let currentHistories = GetWebHistory()
+                        let mergedHistories = MergeWebHistoriesBetween(primary: currentHistories, secondary: cloudHistories)
+                        if mergedHistories != currentHistories {
+                            WriteWebHistory(from: mergedHistories)
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -113,7 +132,6 @@ struct MainView: View {
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("IsAllowCookie") var isAllowCookie = false
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
-    @AppStorage("ModifyKeyboard") var ModifyKeyboard = false
     @AppStorage("IsShowBetaTest1") var isShowBetaTest = true
     @AppStorage("IsShowDAssistantAd") var isShowDAssistantAd = true
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
@@ -134,127 +152,45 @@ struct MainView: View {
     var body: some View {
         List {
             Section {
-                Group {
-                    if !ModifyKeyboard {
-                        TextField("Home.search-or-URL", text: $textOrURL)
-                            .autocorrectionDisabled()
-                            .textInputAutocapitalization(.never)
-                            .privacySensitive()
-                            .onSubmit({
-                                if textOrURL.isURL() {
-                                    goToButtonLabelText = "Home.go"
-                                    if preloadSearchContent && !isUseOldWebView {
-                                        var tmpUrl = textOrURL
-                                        if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                                            tmpUrl = "http://" + textOrURL
-                                        }
-                                        AdvancedWebViewController.shared.present(tmpUrl.urlEncoded(), presentController: false)
-                                        isPreloadedSearchWeb = true
-                                    }
-                                } else {
-                                    if isSearchEngineShortcutEnabled {
-                                        if textOrURL.hasPrefix("bing") {
-                                            goToButtonLabelText = "Home.search.bing"
-                                        } else if textOrURL.hasPrefix("baidu") {
-                                            goToButtonLabelText = "Home.search.baidu"
-                                        } else if textOrURL.hasPrefix("google") {
-                                            goToButtonLabelText = "Home.search.google"
-                                        } else if textOrURL.hasPrefix("sogou") {
-                                            goToButtonLabelText = "Home.search.sogou"
-                                        } else {
-                                            goToButtonLabelText = "Home.search"
-                                        }
-                                    } else {
-                                        goToButtonLabelText = "Home.search"
-                                    }
-                                    if preloadSearchContent && !isUseOldWebView {
-                                        AdvancedWebViewController.shared.present(
-                                            GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
-                                            presentController: false
-                                        )
-                                        isPreloadedSearchWeb = true
-                                    }
-                                }
-                            })
-                    } else {
-                        if #available(watchOS 10, *) {
-                            CepheusKeyboard(input: $textOrURL, prompt: "Home.search-or-URL") {
-                                if textOrURL.isURL() {
-                                    goToButtonLabelText = "Home.go"
-                                    if preloadSearchContent && !isUseOldWebView {
-                                        var tmpUrl = textOrURL
-                                        if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                                            tmpUrl = "http://" + textOrURL
-                                        }
-                                        AdvancedWebViewController.shared.present(tmpUrl.urlEncoded(), presentController: false)
-                                        isPreloadedSearchWeb = true
-                                    }
-                                } else {
-                                    if isSearchEngineShortcutEnabled {
-                                        if textOrURL.hasPrefix("bing") {
-                                            goToButtonLabelText = "Home.search.bing"
-                                        } else if textOrURL.hasPrefix("baidu") {
-                                            goToButtonLabelText = "Home.search.baidu"
-                                        } else if textOrURL.hasPrefix("google") {
-                                            goToButtonLabelText = "Home.search.google"
-                                        } else if textOrURL.hasPrefix("sogou") {
-                                            goToButtonLabelText = "Home.search.sogou"
-                                        } else {
-                                            goToButtonLabelText = "Home.search"
-                                        }
-                                    } else {
-                                        goToButtonLabelText = "Home.search"
-                                    }
-                                    if preloadSearchContent && !isUseOldWebView {
-                                        AdvancedWebViewController.shared.present(
-                                            GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
-                                            presentController: false
-                                        )
-                                        isPreloadedSearchWeb = true
-                                    }
-                                }
+                TextField("Home.search-or-URL", text: $textOrURL) {
+                    if textOrURL.isURL() {
+                        goToButtonLabelText = "Home.go"
+                        if preloadSearchContent && !isUseOldWebView {
+                            var tmpUrl = textOrURL
+                            if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+                                tmpUrl = "http://" + textOrURL
                             }
-                            .privacySensitive()
+                            AdvancedWebViewController.shared.present(tmpUrl.urlEncoded(), presentController: false)
+                            isPreloadedSearchWeb = true
+                        }
+                    } else {
+                        if isSearchEngineShortcutEnabled {
+                            if textOrURL.hasPrefix("bing") {
+                                goToButtonLabelText = "Home.search.bing"
+                            } else if textOrURL.hasPrefix("baidu") {
+                                goToButtonLabelText = "Home.search.baidu"
+                            } else if textOrURL.hasPrefix("google") {
+                                goToButtonLabelText = "Home.search.google"
+                            } else if textOrURL.hasPrefix("sogou") {
+                                goToButtonLabelText = "Home.search.sogou"
+                            } else {
+                                goToButtonLabelText = "Home.search"
+                            }
                         } else {
-                            Button(action: {
-                                isKeyboardPresented = true
-                            }, label: {
-                                HStack {
-                                    Text(!textOrURL.isEmpty ? textOrURL : String(localized: "Home.search-or-URL"))
-                                        .foregroundColor(textOrURL.isEmpty ? Color.gray : Color.white)
-                                        .privacySensitive()
-                                    Spacer()
-                                }
-                            })
-                            .sheet(isPresented: $isKeyboardPresented, content: {
-                                ExtKeyboardView(startText: textOrURL) { ott in
-                                    textOrURL = ott
-                                }
-                            })
-                            .onChange(of: textOrURL, perform: { value in
-                                if value.isURL() {
-                                    goToButtonLabelText = "Home.go"
-                                } else {
-                                    if isSearchEngineShortcutEnabled {
-                                        if value.hasPrefix("bing") {
-                                            goToButtonLabelText = "Home.search.bing"
-                                        } else if value.hasPrefix("baidu") {
-                                            goToButtonLabelText = "Home.search.baidu"
-                                        } else if value.hasPrefix("google") {
-                                            goToButtonLabelText = "Home.search.google"
-                                        } else if value.hasPrefix("sogou") {
-                                            goToButtonLabelText = "Home.search.sogou"
-                                        } else {
-                                            goToButtonLabelText = "Home.search"
-                                        }
-                                    } else {
-                                        goToButtonLabelText = "Home.search"
-                                    }
-                                }
-                            })
+                            goToButtonLabelText = "Home.search"
+                        }
+                        if preloadSearchContent && !isUseOldWebView {
+                            AdvancedWebViewController.shared.present(
+                                GetWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
+                                presentController: false
+                            )
+                            isPreloadedSearchWeb = true
                         }
                     }
                 }
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
+                .privacySensitive()
                 .swipeActions(edge: .leading, allowsFullSwipe: true) {
                     if #available(watchOS 9, *), textOrURL != "" {
                         Button(action: {
@@ -299,13 +235,13 @@ struct MainView: View {
                 }
                 .swipeActions {
                     if textOrURL != "" {
-                        Button(action: {
+                        Button(role: .destructive, action: {
                             textOrURL = ""
                             goToButtonLabelText = "Home.go"
                         }, label: {
                             Image(systemName: "xmark.bin.fill")
+                                .tint(.red)
                         })
-                        .tint(.red)
                     }
                 }
                 Button(action: {
@@ -525,6 +461,9 @@ struct MainView: View {
                 }
                 AdvancedWebViewController.shared.present(String(openUrl).urlEncoded())
             }
+        }
+        .onContinueUserActivity(NSStringFromClass(SearchIntent.self)) { userActivity in
+            debugPrint(userActivity)
         }
         .onAppear {
             pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()

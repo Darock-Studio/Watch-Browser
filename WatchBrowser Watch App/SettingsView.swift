@@ -11,6 +11,7 @@ import Cepheus
 import DarockKit
 import SwiftDate
 import CoreLocation
+import NetworkExtension
 import TripleQuestionmarkCore
 import AuthenticationServices
 
@@ -58,7 +59,15 @@ struct SettingsView: View {
                                 }
                             }
                         })
-                        .sheet(isPresented: $isDarockAccountLoginPresented, content: { DarockAccountLogin() })
+                        .sheet(isPresented: $isDarockAccountLoginPresented, onDismiss: {
+                            if !darockAccount.isEmpty {
+                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)") { respStr, isSuccess in
+                                    if isSuccess {
+                                        accountUsername = respStr.apiFixed()
+                                    }
+                                }
+                            }
+                        }, content: { DarockAccountLogin() })
                     } else {
                         NavigationLink(destination: { DarockAccountManagementMain(username: accountUsername) }, label: {
                             HStack {
@@ -195,7 +204,7 @@ struct SettingsView: View {
         var body: some View {
             List {
                 Section {
-                    NavigationLink(destination: { NetworkCheckView() }, label: { SettingItemLabel(title: "网络检查", image: "checkmark.circle", color: .green) })
+                    NavigationLink(destination: { NetworkCheckView() }, label: { SettingItemLabel(title: "网络检查", image: "checkmark", color: .green) })
                 }
             }
             .navigationTitle("网络")
@@ -230,6 +239,11 @@ struct SettingsView: View {
                             Spacer()
                             Text(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)
                                 .foregroundColor(.gray)
+                        }
+                        if #available(watchOS 10, *) {
+                            TQCAccentColorHiddenButton {
+                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/num/add/DBTQCAccentColor") { _, _ in }
+                            }
                         }
                     }
                 }
@@ -474,6 +488,10 @@ struct SettingsView: View {
                                             .swipeActions {
                                                 Button(role: .destructive, action: {
                                                     do {
+                                                        var names = UserDefaults.standard.stringArray(forKey: "EPUBFlieFolders") ?? [String]()
+                                                        names.removeAll(where: { element in
+                                                            return if element == bookMetadatas[i]["Folder"]! { true } else { false }
+                                                        })
                                                         try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/" + bookMetadatas[i]["Folder"]!)
                                                         bookMetadatas.remove(at: i)
                                                     } catch {
@@ -1516,6 +1534,7 @@ struct SettingsView: View {
                         SinglePackageBlock(name: "SwiftDate", license: "MIT license")
                         SinglePackageBlock(name: "SwiftSoup", license: "MIT license")
                         SinglePackageBlock(name: "SwiftyJSON", license: "MIT license")
+                        SinglePackageBlock(name: "Vela", license: "Apache License 2.0")
                         SinglePackageBlock(name: "Zip", license: "MIT license")
                         SinglePackageBlock(name: "???Core", license: "???")
                             .onTapGesture {
@@ -2343,6 +2362,8 @@ struct SettingsView: View {
     struct InternalDebuggingView: View {
         @Environment(\.openURL) private var openURL
         @AppStorage("SecurityDelayStartTime") var securityDelayStartTime = -1.0
+        @AppStorage("TQCIsColorChangeButtonUnlocked") var isColorChangeButtonUnlocked = false
+        @AppStorage("TQCIsColorChangeButtonEntered") var isColorChangeButtonEntered = false
         @State var isTestAppRemovalWarningPresented = false
         var body: some View {
             List {
@@ -2357,6 +2378,15 @@ struct SettingsView: View {
                 }
                 Section {
                     Button(action: {
+                        print(NSHomeDirectory())
+                    }, label: {
+                        Text("Print NSHomeDirectory")
+                    })
+                } header: {
+                    Text("LLDB")
+                }
+                Section {
+                    Button(action: {
                         tipWithText("\(String(format: "%.2f", securityDelayStartTime))", symbol: "hammer.circle.fill")
                     }, label: {
                         Text("Present Start Time")
@@ -2368,6 +2398,15 @@ struct SettingsView: View {
                     })
                 } header: {
                     Text("Security Delay")
+                }
+                Section {
+                    Button(action: {
+                        tipWithText(String(GetWebHistory().count), symbol: "hammer.circle.fill")
+                    }, label: {
+                        Text("Present History Count")
+                    })
+                } header: {
+                    Text("Data & Cloud")
                 }
                 Section {
                     Button(action: {
@@ -2391,8 +2430,14 @@ struct SettingsView: View {
                     }, label: {
                         Text("Reset All What's New Screen State")
                     })
+                    Button(action: {
+                        isColorChangeButtonUnlocked = false
+                        isColorChangeButtonEntered = false
+                    }, label: {
+                        Text("Reset TQCAccentColorHiddenButton")
+                    })
                 } header: {
-                    Text("What's New Screen")
+                    Text("What's New Screen & TQC")
                 }
                 Section {
                     Button(role: .destructive, action: {

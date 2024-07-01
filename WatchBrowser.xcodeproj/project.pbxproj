@@ -20,6 +20,7 @@
 		6BFFCC562A8A6CF3001175EE /* DarockKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6BFFCC552A8A6CF3001175EE /* DarockKit */; };
 		8C03B6E02C296338000770B4 /* NetworkCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C03B6DF2C296338000770B4 /* NetworkCheckView.swift */; };
 		8C03B70E2C29B2CE000770B4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8C03B70D2C29B2CE000770B4 /* Localizable.xcstrings */; };
+		8C1DED022C32AEBB0048A32A /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1DED012C32AEB00048A32A /* General.swift */; };
 		8C52811C2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */; };
 		8C52811D2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C5281252C22FA5600392315 /* ___KawaiiChieriChan.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8C5281232C22FA5600392315 /* ___KawaiiChieriChan.drkdatau */; };
@@ -27,6 +28,13 @@
 		8C5281272C22FA5600392315 /* TripleQuestionmarkCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C5281242C22FA5600392315 /* TripleQuestionmarkCore.h */; };
 		8C5281292C23457F00392315 /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5281282C23457F00392315 /* TipsView.swift */; };
 		8C52812B2C25A07A00392315 /* TQCViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C52812A2C25A07A00392315 /* TQCViews.swift */; };
+		8C547AF92C31E11E0093D592 /* ___YoutouMurasameChan.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8C547AF82C31E0FD0093D592 /* ___YoutouMurasameChan.drkdatau */; };
+		8C547B012C3296D40093D592 /* DarockBrowserUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C547B002C3296D40093D592 /* DarockBrowserUnitTests.swift */; };
+		8C5869C82C3165E400A18923 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8C5869C72C3165E400A18923 /* Intents.intentdefinition */; };
+		8C5869CF2C316A2100A18923 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5869CE2C316A2100A18923 /* Intents.framework */; };
+		8C5869D22C316A2100A18923 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5869D12C316A2100A18923 /* IntentHandler.swift */; };
+		8C5869D62C316A2100A18923 /* DarockBrowser Intents.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8C5869CD2C316A2100A18923 /* DarockBrowser Intents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8C5869DA2C316C3E00A18923 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8C5869C72C3165E400A18923 /* Intents.intentdefinition */; };
 		8C5D64802C1D9D7C008E591B /* Cepheus in Frameworks */ = {isa = PBXBuildFile; productRef = 8C5D647F2C1D9D7C008E591B /* Cepheus */; };
 		8C5D64832C1D9D9C008E591B /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8C5D64822C1D9D9C008E591B /* MarkdownUI */; };
 		8C6D86792C10C6A70089CE67 /* LaboratoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D86782C10C6A70089CE67 /* LaboratoryView.swift */; };
@@ -53,6 +61,7 @@
 		8CAF38F92BD4FC95006B9B16 /* VideoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAF38F82BD4FC95006B9B16 /* VideoListView.swift */; };
 		8CB0189A2BDBC5C500982644 /* WESwiftDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB018992BDBC5C500982644 /* WESwiftDelegate.swift */; };
 		8CB0D0202B889F3D0057EF1C /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB0D01F2B889F3D0057EF1C /* FeedbackView.swift */; };
+		8CB349F52C32BF5100CB6AC3 /* Vela in Frameworks */ = {isa = PBXBuildFile; productRef = 8CB349F42C32BF5100CB6AC3 /* Vela */; };
 		8CB803CC2BD3D776009B2FAC /* Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 8CB803CB2BD3D776009B2FAC /* Dynamic */; };
 		8CB803D02BD3DCE4009B2FAC /* WebExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB803CF2BD3DCE4009B2FAC /* WebExtension.m */; };
 		8CB803D42BD3E6D1009B2FAC /* AdvancedWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB803D32BD3E6D1009B2FAC /* AdvancedWebView.swift */; };
@@ -76,6 +85,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8C5281152C22FA3C00392315;
 			remoteInfo = TripleQuestionmarkCore;
+		};
+		8C547B022C3296D40093D592 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6BF209E22990E61C00E623FC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6BF209ED2990E61C00E623FC;
+			remoteInfo = "WatchBrowser Watch App";
+		};
+		8C5869D42C316A2100A18923 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6BF209E22990E61C00E623FC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C5869CC2C316A2100A18923;
+			remoteInfo = "DarockBrowser Intents";
 		};
 		8CA1E0C32C13DD620092DFCA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -104,6 +127,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				8C5869D62C316A2100A18923 /* DarockBrowser Intents.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,13 +161,21 @@
 		8C03B70B2C29B201000770B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8C03B70C2C29B20B000770B4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		8C03B70D2C29B2CE000770B4 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		8C41F7E62C14363A0052A635 /* MainUITestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MainUITestPlan.xctestplan; sourceTree = "<group>"; };
+		8C1DED012C32AEB00048A32A /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TripleQuestionmarkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5281222C22FA5600392315 /* ___0721NeneChan.drkdatau */ = {isa = PBXFileReference; lastKnownFileType = text; path = "___0721NeneChan.drkdatau"; sourceTree = "<group>"; };
 		8C5281232C22FA5600392315 /* ___KawaiiChieriChan.drkdatau */ = {isa = PBXFileReference; lastKnownFileType = text; path = "___KawaiiChieriChan.drkdatau"; sourceTree = "<group>"; };
 		8C5281242C22FA5600392315 /* TripleQuestionmarkCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripleQuestionmarkCore.h; sourceTree = "<group>"; };
 		8C5281282C23457F00392315 /* TipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsView.swift; sourceTree = "<group>"; };
 		8C52812A2C25A07A00392315 /* TQCViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQCViews.swift; sourceTree = "<group>"; };
+		8C547AF82C31E0FD0093D592 /* ___YoutouMurasameChan.drkdatau */ = {isa = PBXFileReference; lastKnownFileType = text; path = "___YoutouMurasameChan.drkdatau"; sourceTree = "<group>"; };
+		8C547AFE2C3296D40093D592 /* DarockBrowserUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DarockBrowserUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C547B002C3296D40093D592 /* DarockBrowserUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarockBrowserUnitTests.swift; sourceTree = "<group>"; };
+		8C5869C72C3165E400A18923 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
+		8C5869CD2C316A2100A18923 /* DarockBrowser Intents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "DarockBrowser Intents.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C5869CE2C316A2100A18923 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		8C5869D12C316A2100A18923 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		8C5869D32C316A2100A18923 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C6D86782C10C6A70089CE67 /* LaboratoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaboratoryView.swift; sourceTree = "<group>"; };
 		8C6D867A2C10CA680089CE67 /* BrowsingTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowsingTabsView.swift; sourceTree = "<group>"; };
 		8C6E11DC2BDBF464005420C0 /* NewFeaturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFeaturesView.swift; sourceTree = "<group>"; };
@@ -199,6 +231,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CB349F52C32BF5100CB6AC3 /* Vela in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C547AFB2C3296D40093D592 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C5869CA2C316A2100A18923 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C5869CF2C316A2100A18923 /* Intents.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,9 +270,12 @@
 		6BF209E12990E61C00E623FC = {
 			isa = PBXGroup;
 			children = (
+				8C5869C72C3165E400A18923 /* Intents.intentdefinition */,
 				6BF209F22990E61C00E623FC /* WatchBrowser Watch App */,
-				8CA1E0BE2C13DD620092DFCA /* DarockBrowserUITests */,
 				8C5281172C22FA3C00392315 /* TripleQuestionmarkCore */,
+				8C5869D02C316A2100A18923 /* DarockBrowser Intents */,
+				8CA1E0BE2C13DD620092DFCA /* DarockBrowserUITests */,
+				8C547AFF2C3296D40093D592 /* DarockBrowserUnitTests */,
 				6BF209E92990E61C00E623FC /* Products */,
 				8C41F7E72C1439C90052A635 /* Frameworks */,
 			);
@@ -237,6 +288,8 @@
 				6BF209EE2990E61C00E623FC /* DarockBrowser.app */,
 				8CA1E0BD2C13DD620092DFCA /* DarockBrowserUITests.xctest */,
 				8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */,
+				8C5869CD2C316A2100A18923 /* DarockBrowser Intents.appex */,
+				8C547AFE2C3296D40093D592 /* DarockBrowserUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -246,6 +299,7 @@
 			children = (
 				8CB803DE2BD44879009B2FAC /* WatchBrowser Watch App.entitlements */,
 				8CCF13F32C20B31700F5E0D7 /* HYWenHei.ttf */,
+				8C1DED012C32AEB00048A32A /* General.swift */,
 				8CB803D22BD3E6C0009B2FAC /* AdvWebView */,
 				8CB803CD2BD3DCD1009B2FAC /* CCodes */,
 				6B7CA9042ABE7C05006FDCDA /* Localizable.xcstrings */,
@@ -291,6 +345,7 @@
 		8C41F7E72C1439C90052A635 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C5869CE2C316A2100A18923 /* Intents.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -298,6 +353,7 @@
 		8C5281172C22FA3C00392315 /* TripleQuestionmarkCore */ = {
 			isa = PBXGroup;
 			children = (
+				8C547AF82C31E0FD0093D592 /* ___YoutouMurasameChan.drkdatau */,
 				8C5281222C22FA5600392315 /* ___0721NeneChan.drkdatau */,
 				8C5281232C22FA5600392315 /* ___KawaiiChieriChan.drkdatau */,
 				8C5281242C22FA5600392315 /* TripleQuestionmarkCore.h */,
@@ -307,10 +363,26 @@
 			path = TripleQuestionmarkCore;
 			sourceTree = "<group>";
 		};
+		8C547AFF2C3296D40093D592 /* DarockBrowserUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				8C547B002C3296D40093D592 /* DarockBrowserUnitTests.swift */,
+			);
+			path = DarockBrowserUnitTests;
+			sourceTree = "<group>";
+		};
+		8C5869D02C316A2100A18923 /* DarockBrowser Intents */ = {
+			isa = PBXGroup;
+			children = (
+				8C5869D12C316A2100A18923 /* IntentHandler.swift */,
+				8C5869D32C316A2100A18923 /* Info.plist */,
+			);
+			path = "DarockBrowser Intents";
+			sourceTree = "<group>";
+		};
 		8CA1E0BE2C13DD620092DFCA /* DarockBrowserUITests */ = {
 			isa = PBXGroup;
 			children = (
-				8C41F7E62C14363A0052A635 /* MainUITestPlan.xctestplan */,
 				8CA1E0BF2C13DD620092DFCA /* DarockBrowserUITests.swift */,
 			);
 			path = DarockBrowserUITests;
@@ -382,6 +454,7 @@
 			);
 			dependencies = (
 				8C52811B2C22FA3C00392315 /* PBXTargetDependency */,
+				8C5869D52C316A2100A18923 /* PBXTargetDependency */,
 			);
 			name = "WatchBrowser Watch App";
 			packageProductDependencies = (
@@ -417,10 +490,46 @@
 			);
 			name = TripleQuestionmarkCore;
 			packageProductDependencies = (
+				8CB349F42C32BF5100CB6AC3 /* Vela */,
 			);
 			productName = TripleQuestionmarkCore;
 			productReference = 8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		8C547AFD2C3296D40093D592 /* DarockBrowserUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C547B042C3296D40093D592 /* Build configuration list for PBXNativeTarget "DarockBrowserUnitTests" */;
+			buildPhases = (
+				8C547AFA2C3296D40093D592 /* Sources */,
+				8C547AFB2C3296D40093D592 /* Frameworks */,
+				8C547AFC2C3296D40093D592 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C547B032C3296D40093D592 /* PBXTargetDependency */,
+			);
+			name = DarockBrowserUnitTests;
+			productName = DarockBrowserUnitTests;
+			productReference = 8C547AFE2C3296D40093D592 /* DarockBrowserUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8C5869CC2C316A2100A18923 /* DarockBrowser Intents */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C5869D72C316A2100A18923 /* Build configuration list for PBXNativeTarget "DarockBrowser Intents" */;
+			buildPhases = (
+				8C5869C92C316A2100A18923 /* Sources */,
+				8C5869CA2C316A2100A18923 /* Frameworks */,
+				8C5869CB2C316A2100A18923 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DarockBrowser Intents";
+			productName = "DarockBrowser Intents";
+			productReference = 8C5869CD2C316A2100A18923 /* DarockBrowser Intents.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 		8CA1E0BC2C13DD620092DFCA /* DarockBrowserUITests */ = {
 			isa = PBXNativeTarget;
@@ -449,7 +558,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1540;
+				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					6BF209E72990E61C00E623FC = {
@@ -462,6 +571,13 @@
 					8C5281152C22FA3C00392315 = {
 						CreatedOnToolsVersion = 16.0;
 						LastSwiftMigration = 1600;
+					};
+					8C547AFD2C3296D40093D592 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 6BF209ED2990E61C00E623FC;
+					};
+					8C5869CC2C316A2100A18923 = {
+						CreatedOnToolsVersion = 16.0;
 					};
 					8CA1E0BC2C13DD620092DFCA = {
 						CreatedOnToolsVersion = 15.4;
@@ -495,6 +611,7 @@
 				8C5D647E2C1D9D7C008E591B /* XCRemoteSwiftPackageReference "Cepheus" */,
 				8C5D64812C1D9D9C008E591B /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 				8C7C4D3F2C2D87B200FD282B /* XCRemoteSwiftPackageReference "EPUBKit" */,
+				8CB349F12C32B87700CB6AC3 /* XCRemoteSwiftPackageReference "Vela" */,
 			);
 			productRefGroup = 6BF209E92990E61C00E623FC /* Products */;
 			projectDirPath = "";
@@ -502,8 +619,10 @@
 			targets = (
 				6BF209E72990E61C00E623FC /* WatchBrowser */,
 				6BF209ED2990E61C00E623FC /* WatchBrowser Watch App */,
-				8CA1E0BC2C13DD620092DFCA /* DarockBrowserUITests */,
+				8C5869CC2C316A2100A18923 /* DarockBrowser Intents */,
 				8C5281152C22FA3C00392315 /* TripleQuestionmarkCore */,
+				8CA1E0BC2C13DD620092DFCA /* DarockBrowserUITests */,
+				8C547AFD2C3296D40093D592 /* DarockBrowserUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -535,6 +654,21 @@
 				8C5281252C22FA5600392315 /* ___KawaiiChieriChan.drkdatau in Resources */,
 				8C5281262C22FA5600392315 /* ___0721NeneChan.drkdatau in Resources */,
 				8C03B70E2C29B2CE000770B4 /* Localizable.xcstrings in Resources */,
+				8C547AF92C31E11E0093D592 /* ___YoutouMurasameChan.drkdatau in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C547AFC2C3296D40093D592 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C5869CB2C316A2100A18923 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,6 +691,7 @@
 				8C6D867B2C10CA680089CE67 /* BrowsingTabsView.swift in Sources */,
 				8CA7B8392BE397D1004643FE /* UserScriptsView.swift in Sources */,
 				6BA7F7A02A2F6FC600FFEED0 /* SettingsView.swift in Sources */,
+				8C1DED022C32AEBB0048A32A /* General.swift in Sources */,
 				8CB803D02BD3DCE4009B2FAC /* WebExtension.m in Sources */,
 				8CB0189A2BDBC5C500982644 /* WESwiftDelegate.swift in Sources */,
 				8C7C4D432C2D898700FD282B /* BookListView.swift in Sources */,
@@ -566,6 +701,7 @@
 				8CA7B8492BE3DF47004643FE /* ImageListView.swift in Sources */,
 				8C6E11DF2BDC029E005420C0 /* WEBackSwift.swift in Sources */,
 				6BF20A0A299100AE00E623FC /* BookmarkView.swift in Sources */,
+				8C5869C82C3165E400A18923 /* Intents.intentdefinition in Sources */,
 				8CA370E32B835AAD00CE0E9E /* NumberPadExt.swift in Sources */,
 				6BF209F62990E61C00E623FC /* ContentView.swift in Sources */,
 				8CB803D42BD3E6D1009B2FAC /* AdvancedWebView.swift in Sources */,
@@ -590,6 +726,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C547AFA2C3296D40093D592 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C547B012C3296D40093D592 /* DarockBrowserUnitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C5869C92C316A2100A18923 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C5869D22C316A2100A18923 /* IntentHandler.swift in Sources */,
+				8C5869DA2C316C3E00A18923 /* Intents.intentdefinition in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8CA1E0B92C13DD620092DFCA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -610,6 +763,16 @@
 			isa = PBXTargetDependency;
 			target = 8C5281152C22FA3C00392315 /* TripleQuestionmarkCore */;
 			targetProxy = 8C52811A2C22FA3C00392315 /* PBXContainerItemProxy */;
+		};
+		8C547B032C3296D40093D592 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6BF209ED2990E61C00E623FC /* WatchBrowser Watch App */;
+			targetProxy = 8C547B022C3296D40093D592 /* PBXContainerItemProxy */;
+		};
+		8C5869D52C316A2100A18923 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C5869CC2C316A2100A18923 /* DarockBrowser Intents */;
+			targetProxy = 8C5869D42C316A2100A18923 /* PBXContainerItemProxy */;
 		};
 		8CA1E0C42C13DD620092DFCA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -775,13 +938,14 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "暗礁浏览器需要获取您的位置信息以提供基于位置的“安全延时”功能，您的位置信息仅保存在您的本地设备上。";
+				INFOPLIST_KEY_NSSiriUsageDescription = "暗礁浏览器请求Siri权限使您能够通过Siri使用暗礁浏览器的一些便捷功能";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.9.0;
+				MARKETING_VERSION = 4.10.0;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -815,13 +979,14 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "暗礁浏览器需要获取您的位置信息以提供基于位置的“安全延时”功能，您的位置信息仅保存在您的本地设备上。";
+				INFOPLIST_KEY_NSSiriUsageDescription = "暗礁浏览器请求Siri权限使您能够通过Siri使用暗礁浏览器的一些便捷功能";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.9.0;
+				MARKETING_VERSION = 4.10.0;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -846,7 +1011,7 @@
 				DEVELOPMENT_TEAM = B57D8PP775;
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
-				MARKETING_VERSION = 4.9.0;
+				MARKETING_VERSION = 4.10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -864,7 +1029,7 @@
 				GCC_OPTIMIZATION_LEVEL = z;
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
-				MARKETING_VERSION = 4.9.0;
+				MARKETING_VERSION = 4.10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -961,6 +1126,114 @@
 			};
 			name = Release;
 		};
+		8C547B052C3296D40093D592 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.darock.DarockBrowserUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DarockBrowser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DarockBrowser";
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		8C547B062C3296D40093D592 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.darock.DarockBrowserUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DarockBrowser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DarockBrowser";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		8C5869D82C316A2100A18923 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "DarockBrowser Intents/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "DarockBrowser Intents";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "2023-2024 Darock Studio";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.darock.WatchBrowser.watchkitapp.DarockBrowser-Intents";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		8C5869D92C316A2100A18923 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "DarockBrowser Intents/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "DarockBrowser Intents";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "2023-2024 Darock Studio";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.darock.WatchBrowser.watchkitapp.DarockBrowser-Intents";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
 		8CA1E0C62C13DD620092DFCA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1042,6 +1315,24 @@
 			buildConfigurations = (
 				8C52811F2C22FA3C00392315 /* Debug */,
 				8C5281202C22FA3C00392315 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C547B042C3296D40093D592 /* Build configuration list for PBXNativeTarget "DarockBrowserUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C547B052C3296D40093D592 /* Debug */,
+				8C547B062C3296D40093D592 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C5869D72C316A2100A18923 /* Build configuration list for PBXNativeTarget "DarockBrowser Intents" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C5869D82C316A2100A18923 /* Debug */,
+				8C5869D92C316A2100A18923 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1138,6 +1429,14 @@
 				minimumVersion = 2.7.2;
 			};
 		};
+		8CB349F12C32B87700CB6AC3 /* XCRemoteSwiftPackageReference "Vela" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Serene-Garden/Vela";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.1;
+			};
+		};
 		8CB803CA2BD3D776009B2FAC /* XCRemoteSwiftPackageReference "Dynamic" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mhdhejazi/Dynamic";
@@ -1202,6 +1501,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8CAF38F52BD4F960006B9B16 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
+		};
+		8CB349F42C32BF5100CB6AC3 /* Vela */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CB349F12C32B87700CB6AC3 /* XCRemoteSwiftPackageReference "Vela" */;
+			productName = Vela;
 		};
 		8CB803CB2BD3D776009B2FAC /* Dynamic */ = {
 			isa = XCSwiftPackageProductDependency;

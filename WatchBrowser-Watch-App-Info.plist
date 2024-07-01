@@ -11,6 +11,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>SearchIntent</string>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>HYWenHei.ttf</string>

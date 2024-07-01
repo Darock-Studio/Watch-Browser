@@ -230,20 +230,20 @@ struct DarockAccountManagementMain: View {
                     }
                 })
             }
-//            Section {
-//                NavigationLink(destination: { DarockCloudView() }, label: {
-//                    HStack {
-//                        ZStack {
-//                            Color.cyan
-//                                .frame(width: 20, height: 20)
-//                                .clipShape(Circle())
-//                            Image(systemName: "cloud")
-//                                .font(.system(size: 12))
-//                        }
-//                        Text("Darock Cloud")
-//                    }
-//                })
-//            }
+            Section {
+                NavigationLink(destination: { DarockCloudView() }, label: {
+                    HStack {
+                        ZStack {
+                            Color.cyan
+                                .frame(width: 20, height: 20)
+                                .clipShape(Circle())
+                            Image(systemName: "cloud")
+                                .font(.system(size: 12, weight: .bold))
+                        }
+                        Text("Darock Cloud")
+                    }
+                })
+            }
             Section {
                 NavigationLink(destination: { DeviceInfoView() }, label: {
                     HStack {
@@ -625,12 +625,22 @@ struct DarockAccountManagementMain: View {
         
         struct SavedToDarockCloudView: View {
             @AppStorage("DarockAccount") var darockAccount = ""
+            @AppStorage("DCSaveHistory") var isSaveHistoryToCloud = false
             var body: some View {
                 List {
                     Section {
-                        
+                        Toggle(isOn: $isSaveHistoryToCloud) {
+                            HStack {
+                                Image(systemName: "clock")
+                                    .foregroundStyle(Color.blue.gradient)
+                                Text("历史记录")
+                            }
+                        }
+                    } footer: {
+                        Text("当在多设备登录账号，或是重新安装暗礁浏览器后，存储至 Darock Cloud 的数据将会自动同步。")
                     }
                 }
+                .navigationTitle("存储至 Darock Cloud")
             }
         }
     }
