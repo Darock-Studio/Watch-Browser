@@ -23,12 +23,9 @@
 		8C1DED022C32AEBB0048A32A /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1DED012C32AEB00048A32A /* General.swift */; };
 		8C52811C2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */; };
 		8C52811D2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8C5281252C22FA5600392315 /* ___KawaiiChieriChan.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8C5281232C22FA5600392315 /* ___KawaiiChieriChan.drkdatau */; };
-		8C5281262C22FA5600392315 /* ___0721NeneChan.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8C5281222C22FA5600392315 /* ___0721NeneChan.drkdatau */; };
 		8C5281272C22FA5600392315 /* TripleQuestionmarkCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C5281242C22FA5600392315 /* TripleQuestionmarkCore.h */; };
 		8C5281292C23457F00392315 /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5281282C23457F00392315 /* TipsView.swift */; };
 		8C52812B2C25A07A00392315 /* TQCViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C52812A2C25A07A00392315 /* TQCViews.swift */; };
-		8C547AF92C31E11E0093D592 /* ___YoutouMurasameChan.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8C547AF82C31E0FD0093D592 /* ___YoutouMurasameChan.drkdatau */; };
 		8C547B012C3296D40093D592 /* DarockBrowserUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C547B002C3296D40093D592 /* DarockBrowserUnitTests.swift */; };
 		8C5869C82C3165E400A18923 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8C5869C72C3165E400A18923 /* Intents.intentdefinition */; };
 		8C5869CF2C316A2100A18923 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5869CE2C316A2100A18923 /* Intents.framework */; };
@@ -62,6 +59,9 @@
 		8CB0189A2BDBC5C500982644 /* WESwiftDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB018992BDBC5C500982644 /* WESwiftDelegate.swift */; };
 		8CB0D0202B889F3D0057EF1C /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB0D01F2B889F3D0057EF1C /* FeedbackView.swift */; };
 		8CB349F52C32BF5100CB6AC3 /* Vela in Frameworks */ = {isa = PBXBuildFile; productRef = 8CB349F42C32BF5100CB6AC3 /* Vela */; };
+		8CB349F92C32E05300CB6AC3 /* ___KawaiiChieriChan.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8CB349F72C32E05300CB6AC3 /* ___KawaiiChieriChan.drkdatau */; };
+		8CB349FA2C32E05300CB6AC3 /* ___YoutouMurasameChan.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8CB349F82C32E05300CB6AC3 /* ___YoutouMurasameChan.drkdatau */; };
+		8CB349FB2C32E05300CB6AC3 /* ___0721NeneChan.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8CB349F62C32E05300CB6AC3 /* ___0721NeneChan.drkdatau */; };
 		8CB803CC2BD3D776009B2FAC /* Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 8CB803CB2BD3D776009B2FAC /* Dynamic */; };
 		8CB803D02BD3DCE4009B2FAC /* WebExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB803CF2BD3DCE4009B2FAC /* WebExtension.m */; };
 		8CB803D42BD3E6D1009B2FAC /* AdvancedWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB803D32BD3E6D1009B2FAC /* AdvancedWebView.swift */; };
@@ -163,12 +163,9 @@
 		8C03B70D2C29B2CE000770B4 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		8C1DED012C32AEB00048A32A /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TripleQuestionmarkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C5281222C22FA5600392315 /* ___0721NeneChan.drkdatau */ = {isa = PBXFileReference; lastKnownFileType = text; path = "___0721NeneChan.drkdatau"; sourceTree = "<group>"; };
-		8C5281232C22FA5600392315 /* ___KawaiiChieriChan.drkdatau */ = {isa = PBXFileReference; lastKnownFileType = text; path = "___KawaiiChieriChan.drkdatau"; sourceTree = "<group>"; };
 		8C5281242C22FA5600392315 /* TripleQuestionmarkCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripleQuestionmarkCore.h; sourceTree = "<group>"; };
 		8C5281282C23457F00392315 /* TipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsView.swift; sourceTree = "<group>"; };
 		8C52812A2C25A07A00392315 /* TQCViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQCViews.swift; sourceTree = "<group>"; };
-		8C547AF82C31E0FD0093D592 /* ___YoutouMurasameChan.drkdatau */ = {isa = PBXFileReference; lastKnownFileType = text; path = "___YoutouMurasameChan.drkdatau"; sourceTree = "<group>"; };
 		8C547AFE2C3296D40093D592 /* DarockBrowserUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DarockBrowserUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C547B002C3296D40093D592 /* DarockBrowserUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarockBrowserUnitTests.swift; sourceTree = "<group>"; };
 		8C5869C72C3165E400A18923 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
@@ -193,6 +190,9 @@
 		8CAF38F82BD4FC95006B9B16 /* VideoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListView.swift; sourceTree = "<group>"; };
 		8CB018992BDBC5C500982644 /* WESwiftDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WESwiftDelegate.swift; sourceTree = "<group>"; };
 		8CB0D01F2B889F3D0057EF1C /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
+		8CB349F62C32E05300CB6AC3 /* ___0721NeneChan.drkdatau */ = {isa = PBXFileReference; lastKnownFileType = file; path = "___0721NeneChan.drkdatau"; sourceTree = "<group>"; };
+		8CB349F72C32E05300CB6AC3 /* ___KawaiiChieriChan.drkdatau */ = {isa = PBXFileReference; lastKnownFileType = file; path = "___KawaiiChieriChan.drkdatau"; sourceTree = "<group>"; };
+		8CB349F82C32E05300CB6AC3 /* ___YoutouMurasameChan.drkdatau */ = {isa = PBXFileReference; lastKnownFileType = file; path = "___YoutouMurasameChan.drkdatau"; sourceTree = "<group>"; };
 		8CB803CE2BD3DCE4009B2FAC /* WatchBrowser Watch App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WatchBrowser Watch App-Bridging-Header.h"; sourceTree = "<group>"; };
 		8CB803CF2BD3DCE4009B2FAC /* WebExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebExtension.m; sourceTree = "<group>"; };
 		8CB803D12BD3DCEE009B2FAC /* WebExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebExtension.h; sourceTree = "<group>"; };
@@ -353,9 +353,9 @@
 		8C5281172C22FA3C00392315 /* TripleQuestionmarkCore */ = {
 			isa = PBXGroup;
 			children = (
-				8C547AF82C31E0FD0093D592 /* ___YoutouMurasameChan.drkdatau */,
-				8C5281222C22FA5600392315 /* ___0721NeneChan.drkdatau */,
-				8C5281232C22FA5600392315 /* ___KawaiiChieriChan.drkdatau */,
+				8CB349F82C32E05300CB6AC3 /* ___YoutouMurasameChan.drkdatau */,
+				8CB349F62C32E05300CB6AC3 /* ___0721NeneChan.drkdatau */,
+				8CB349F72C32E05300CB6AC3 /* ___KawaiiChieriChan.drkdatau */,
 				8C5281242C22FA5600392315 /* TripleQuestionmarkCore.h */,
 				8C03B70D2C29B2CE000770B4 /* Localizable.xcstrings */,
 				8C52812A2C25A07A00392315 /* TQCViews.swift */,
@@ -651,10 +651,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C5281252C22FA5600392315 /* ___KawaiiChieriChan.drkdatau in Resources */,
-				8C5281262C22FA5600392315 /* ___0721NeneChan.drkdatau in Resources */,
 				8C03B70E2C29B2CE000770B4 /* Localizable.xcstrings in Resources */,
-				8C547AF92C31E11E0093D592 /* ___YoutouMurasameChan.drkdatau in Resources */,
+				8CB349F92C32E05300CB6AC3 /* ___KawaiiChieriChan.drkdatau in Resources */,
+				8CB349FA2C32E05300CB6AC3 /* ___YoutouMurasameChan.drkdatau in Resources */,
+				8CB349FB2C32E05300CB6AC3 /* ___0721NeneChan.drkdatau in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1191,7 +1191,7 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.darock.WatchBrowser.watchkitapp.DarockBrowser-Intents";
+				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.Intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1222,7 +1222,7 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.darock.WatchBrowser.watchkitapp.DarockBrowser-Intents";
+				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.Intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
