@@ -8,6 +8,7 @@
 import Charts
 import SwiftUI
 import Cepheus
+import EFQRCode
 import DarockKit
 import SwiftDate
 import CoreLocation
@@ -220,11 +221,15 @@ struct SettingsView: View {
                     NavigationLink(destination: { StorageView() }, label: { SettingItemLabel(title: "储存空间", image: "externaldrive.fill", color: .gray) })
                 }
                 Section {
+                    NavigationLink(destination: { ContinuityView() }, label: { SettingItemLabel(title: "连续互通", image: "point.3.filled.connected.trianglepath.dotted", color: .blue) })
+                }
+                Section {
                     NavigationLink(destination: { KeyboardView() }, label: { SettingItemLabel(title: "键盘", image: "keyboard.fill", color: .gray) })
                     NavigationLink(destination: { ImageViewerView() }, label: { SettingItemLabel(title: "图像查看器", image: "photo.fill.on.rectangle.fill", color: .blue) })
                 }
                 Section {
                     NavigationLink(destination: { LegalView() }, label: { SettingItemLabel(title: "法律与监管", image: "text.justify.left", color: .gray) })
+                    NavigationLink(destination: { ContactView() }, label: { SettingItemLabel(title: "联系我们", image: "bubble.right", color: .green) })
                 }
             }
             .navigationTitle("通用")
@@ -242,7 +247,7 @@ struct SettingsView: View {
                         }
                         if #available(watchOS 10, *) {
                             TQCAccentColorHiddenButton {
-                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/num/add/DBTQCAccentColor") { _, _ in }
+                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/analyze/add/DBTQCAccentColor/\(Date.now.timeIntervalSince1970)") { _, _ in }
                             }
                         }
                     }
@@ -603,7 +608,12 @@ struct SettingsView: View {
                                                         DispatchQueue(label: "com.darock.WatchBrowser.storage-clear-cache", qos: .userInitiated).async {
                                                             do {
                                                                 isClearingCache = true
-                                                                let filePaths = try FileManager.default.contentsOfDirectory(atPath: NSTemporaryDirectory())
+                                                                var filePaths = try FileManager.default.contentsOfDirectory(atPath: NSTemporaryDirectory())
+                                                                for filePath in filePaths {
+                                                                    let fullPath = (NSTemporaryDirectory() as NSString).appendingPathComponent(filePath)
+                                                                    try FileManager.default.removeItem(atPath: fullPath)
+                                                                }
+                                                                filePaths = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Library/Caches/")
                                                                 for filePath in filePaths {
                                                                     let fullPath = (NSTemporaryDirectory() as NSString).appendingPathComponent(filePath)
                                                                     try FileManager.default.removeItem(atPath: fullPath)
@@ -667,7 +677,7 @@ struct SettingsView: View {
                                 // Size counting
                                 mediaSize = folderSize(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos") ?? 0
                                 webArchiveSize = folderSize(atPath: NSHomeDirectory() + "/Documents/WebArchives") ?? 0
-                                tmpSize = folderSize(atPath: NSTemporaryDirectory()) ?? 0
+                                tmpSize = (folderSize(atPath: NSTemporaryDirectory()) ?? 0) + (folderSize(atPath: NSHomeDirectory() + "/Library/Caches/") ?? 0)
                                 bundleSize = folderSize(atPath: Bundle.main.bundlePath) ?? 0
                                 if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos") {
                                     // Video sizes
@@ -743,6 +753,26 @@ struct SettingsView: View {
             func bytesToMegabytes(bytes: UInt64) -> Double {
                 let megabytes = Double(bytes) / (1024 * 1024)
                 return megabytes
+            }
+        }
+        
+        struct ContinuityView: View {
+            @AppStorage("CCIsHandoffEnabled") var isHandoffEnabled = true
+            @AppStorage("CCIsContinuityMediaEnabled") var isContinuityMediaEnabled = true
+            var body: some View {
+                List {
+                    Section {
+                        Toggle("接力", isOn: $isHandoffEnabled)
+                    } footer: {
+                        Text("接力让你能够快速在另一设备上继续浏览暗礁浏览器中的网页。在暗礁浏览器浏览网页时，带有 Apple Watch 角标的 Safari 图标会出现在 iPhone 的 App 切换器或 iPad 和 Mac 的 Dock 栏中。")
+                    }
+                    Section {
+                        Toggle("连续互通媒体", isOn: $isContinuityMediaEnabled)
+                    } footer: {
+                        Text("在使用暗礁浏览器查看媒体时，可在其他设备上继续查看媒体。")
+                    }
+                }
+                .navigationTitle("连续互通")
             }
         }
         
@@ -1525,7 +1555,9 @@ struct SettingsView: View {
                         SinglePackageBlock(name: "EPUBKit", license: "MIT license")
                         SinglePackageBlock(name: "libwebp", license: "BSD-3-Clause license")
                         SinglePackageBlock(name: "NetworkImage", license: "MIT license")
+                        SinglePackageBlock(name: "Punycode", license: "MIT license")
                         SinglePackageBlock(name: "SDWebImage", license: "MIT license")
+                        SinglePackageBlock(name: "SDWebImagePDFCoder", license: "MIT license")
                         SinglePackageBlock(name: "SDWebImageSVGCoder", license: "MIT license")
                         SinglePackageBlock(name: "SDWebImageSwiftUI", license: "MIT license")
                         SinglePackageBlock(name: "SDWebImageWebPCoder", license: "MIT license")
@@ -1545,7 +1577,7 @@ struct SettingsView: View {
                     .sheet(isPresented: $isTQCView1Presented, content: {
                         TQCOnaniiView()
                             .onAppear {
-                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/num/add/DBTQCOnanii") { _, _ in }
+                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/analyze/add/DBTQCOnanii/\(Date.now.timeIntervalSince1970)") { _, _ in }
                             }
                     })
                 }
@@ -1571,6 +1603,58 @@ struct SettingsView: View {
                         }
                     }
                 }
+            }
+        }
+        struct ContactView: View {
+            var body: some View {
+                List {
+                    Section {
+                        if NSLocale.current.languageCode == "zh" {
+                            NavigationLink(destination: {
+                                VStack {
+                                    Image(decorative: EFQRCode.generate(for: "https://qm.qq.com/q/1q943WQLAo")!, scale: 1)
+                                        .resizable()
+                                        .frame(width: 120, height: 120)
+                                    Text("在 iPhone 上继续")
+                                }
+                                .navigationTitle("加入群聊")
+                                .navigationBarTitleDisplayMode(.inline)
+                            }, label: {
+                                Text("群号：248036605")
+                            })
+                        } else {
+                            NavigationLink(destination: {
+                                VStack {
+                                    Image(decorative: EFQRCode.generate(for: "https://t.me/drkcomu")!, scale: 1)
+                                        .resizable()
+                                        .frame(width: 120, height: 120)
+                                    Text("在 iPhone 上继续")
+                                }
+                                .navigationTitle("加入群聊")
+                                .navigationBarTitleDisplayMode(.inline)
+                            }, label: {
+                                VStack(alignment: .leading) {
+                                    Text("@DRKCOMU")
+                                    Text("轻触以查看二维码")
+                                        .font(.system(size: 13))
+                                        .foregroundStyle(Color.gray)
+                                }
+                            })
+                        }
+                    } header: {
+                        if NSLocale.current.languageCode == "zh" {
+                            Text("QQ")
+                        } else {
+                            Text("Telegram")
+                        }
+                    } footer: {
+                        NavigationLink(destination: { FeedbackView() }, label: {
+                            Text("仅聊天，若要反馈 App 问题，请前往\(Text("反馈助理").bold().foregroundColor(.blue))")
+                        })
+                        .buttonStyle(.plain)
+                    }
+                }
+                .navigationTitle("联系我们")
             }
         }
     }
@@ -2480,6 +2564,17 @@ struct SettingsView: View {
                     Text("All data will be lost!")
                 }
             })
+            .toolbar {
+                if #available(watchOS 10.5, *) {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(action: {
+                            WKExtension.shared().openSystemURL(URL(string: "https://darock.top/internal/tap-to-radar/new?ProductName=Darock Browser")!)
+                        }, label: {
+                            Image(systemName: "ant.fill")
+                        })
+                    }
+                }
+            }
         }
         
         func isDebuggerAttached() -> Bool {

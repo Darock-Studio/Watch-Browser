@@ -237,58 +237,25 @@
     "[Privacy Hidden]" : {
       "shouldTranslate" : false
     },
-    "**并非所有网页内的视频均能被解析**\n\n请**不要**提出〇〇网站视频无法播放之类的反馈" : {
+    "@DRKCOMU" : {
+      "shouldTranslate" : false
+    },
+    "**并非所有网页内的视频均能被解析**\n\n请**不要**提出网站视频无法播放之类的反馈" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "**Some videos cannot be parsed**\n\nPlease **do not** submit feedbacks about specific videos."
           }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**すべてのウェブページの動画が解析できるわけではありません**\n\n**〇〇サイトの動画が再生できない**などのフィードバックは**お控えください**"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**Не все видео на веб-странице могут быть разобраны **\n\nПожалуйста ** Не ** выдвигайте отзыв о том, что видео не может быть воспроизведено на веб-сайте."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**並非所有網頁內的視頻均能被解析**\n\n請**不要**提出〇〇網站視頻無法播放之類的反饋"
-          }
         }
       }
     },
-    "**并非所有网页都能在 Apple Watch 上正常工作**\n\n请**不要**提出〇〇网站*打不开*、*有问题*之类的反馈" : {
+    "**并非所有网页都能在 Apple Watch 上正常工作**\n\n请**不要**提出网站*打不开*、*有问题*之类的反馈" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "**Some webpages may not work properly on Apple Watch**\n\nPlease **do not** submit feedbacks about specific webpages."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**すべてのウェブページがApple Watchで正常に動作するわけではありません**\n\n**〇〇サイト*が開かない*、*問題がある*などのフィードバックは**お控えください**"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**Не все веб-страницы могут нормально работать на Apple Watch**\n\nПожалуйста**не пересылайте отзывы, такие как 〇〇 веб-сайт*не может быть открыт*, *проблема*"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**並非所有網頁都能在 Apple Watch 上正常工作**\n\n請**不要**提出〇〇網站*打不開*、*有問題*之類的反饋"
           }
         }
       }
@@ -2989,6 +2956,16 @@
     "Print NSHomeDirectory" : {
       "shouldTranslate" : false
     },
+    "QQ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QQ"
+          }
+        }
+      }
+    },
     "Reset All What's New Screen State" : {
       "shouldTranslate" : false
     },
@@ -3253,6 +3230,9 @@
           }
         }
       }
+    },
+    "Settings.drkdatas" : {
+      "shouldTranslate" : false
     },
     "Settings.keyboard" : {
       "localizations" : {
@@ -3903,6 +3883,17 @@
     "Tap-to-Radar" : {
       "shouldTranslate" : false
     },
+    "Telegram" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telegram"
+          }
+        }
+      },
+      "shouldTranslate" : false
+    },
     "Test Browser App Removal" : {
       "shouldTranslate" : false
     },
@@ -4469,6 +4460,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "For demonstration purposes only, please support legitimate books."
+          }
+        }
+      }
+    },
+    "仅聊天，若要反馈 App 问题，请前往%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chat only. To provide feedback on app issues, please go to%@."
           }
         }
       }
@@ -5567,6 +5568,16 @@
         }
       }
     },
+    "加入群聊" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join Group"
+          }
+        }
+      }
+    },
     "单独为特定的网页优化根本**不可行**。\n\n想想今天让为网站A进行优化，明天另一个用户反馈想为网站B进行优化。不仅工作量大大提升，还会使代码及其难维护，这就是个无底洞。\n\n请**不要**提出为**特定网站**进行优化之类的反馈。" : {
       "localizations" : {
         "en" : {
@@ -6375,6 +6386,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在 iPhone 上繼續"
+          }
+        }
+      }
+    },
+    "在使用暗礁浏览器查看媒体时，可在其他设备上继续查看媒体。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When using Darock Browser to view media, you can continue viewing the media on other devices."
           }
         }
       }
@@ -8427,6 +8448,26 @@
         }
       }
     },
+    "接力" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handoff"
+          }
+        }
+      }
+    },
+    "接力让你能够快速在另一设备上继续浏览暗礁浏览器中的网页。在暗礁浏览器浏览网页时，带有 Apple Watch 角标的 Safari 图标会出现在 iPhone 的 App 切换器或 iPad 和 Mac 的 Dock 栏中。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handoff allows you to quickly continue browsing web pages from Darock Browser on another device. When browsing with Darock Browser, a Safari icon with an Apple Watch badge will appear in the app switcher on iPhone and in the Dock on iPad and Mac."
+          }
+        }
+      }
+    },
     "推荐 - 暗礁助手" : {
       "localizations" : {
         "en" : {
@@ -8499,25 +8540,25 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "説明行%lld"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Описание строки %lld"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "描述行 %lld"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "描述行 %lld"
           }
         }
@@ -11936,6 +11977,26 @@
         }
       }
     },
+    "群号：248036605" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Group ID: 248036605"
+          }
+        }
+      }
+    },
+    "联系我们" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contact Us"
+          }
+        }
+      }
+    },
     "脚本均来自greasyfork.org，Darock 无法进行审核，请自行辨别内容" : {
       "localizations" : {
         "en" : {
@@ -12592,6 +12653,16 @@
         }
       }
     },
+    "轻触以查看二维码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap for QR Code"
+          }
+        }
+      }
+    },
     "轻触浏览菜单“播放网页视频”、在网页中寻找或直接在搜索框中输入视频链接" : {
       "localizations" : {
         "en" : {
@@ -13084,6 +13155,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "連接狀態"
+          }
+        }
+      }
+    },
+    "连续互通" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuity"
+          }
+        }
+      }
+    },
+    "连续互通媒体" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuity Media"
           }
         }
       }

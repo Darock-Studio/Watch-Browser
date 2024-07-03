@@ -33,11 +33,13 @@ struct BookListView: View {
             .navigationTitle("图书列表")
             .onDisappear {
                 if dismissListsShouldRepresentWebView {
-                    Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(
-                        AdvancedWebViewController.shared.vc,
-                        animated: true,
-                        completion: nil
-                    )
+                    DispatchQueue.main.async {
+                        Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(
+                            AdvancedWebViewController.shared.vc,
+                            animated: true,
+                            completion: nil
+                        )
+                    }
                 }
             }
         } else {
@@ -200,7 +202,8 @@ struct BookViewerView: View {
                 .listRowBackground(Color.clear)
                 Section {
                     Button(action: {
-                        AdvancedWebViewController.shared.present(archiveUrl: rootLink.appending(path: content.item!), loadMimeType: "text/html")
+                        pWebDelegateStartNavigationAutoViewport = true
+                        AdvancedWebViewController.shared.present(archiveUrl: rootLink.appending(path: content.item!), loadMimeType: "text/html", overrideOldWebView: true)
                     }, label: {
                         Text("开始阅读")
                     })
@@ -233,29 +236,31 @@ struct LocalBooksView: View {
                 if !bookFolderNames.isEmpty {
                     Section {
                         ForEach(0..<bookFolderNames.count, id: \.self) { i in
-                            NavigationLink(destination: {
-                                List {
-                                    BookViewerView.BookDetailView(document: EPUBDocument(url: URL(filePath: NSHomeDirectory() + "/Documents/\(bookFolderNames[i])"))!)
-                                }
-                                .modifier(BlurBackground(imageUrl: EPUBDocument(url: URL(filePath: NSHomeDirectory() + "/Documents/\(bookFolderNames[i])"))!.cover))
-                                .navigationTitle(EPUBDocument(url: URL(filePath: NSHomeDirectory() + "/Documents/\(bookFolderNames[i])"))!.title ?? "")
-                            }, label: {
-                                Text(nameChart[bookFolderNames[i]] ?? bookFolderNames[i])
-                            })
-                            .swipeActions {
-                                Button(role: .destructive, action: {
-                                    do {
-                                        try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/\(bookFolderNames[i])")
-                                        nameChart.removeValue(forKey: bookFolderNames[i])
-                                        bookFolderNames.remove(at: i)
-                                        UserDefaults.standard.set(bookFolderNames, forKey: "EPUBFlieFolders")
-                                        UserDefaults.standard.set(nameChart, forKey: "EPUBFileNameChart")
-                                    } catch {
-                                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                            if let epubDoc = EPUBDocument(url: URL(filePath: NSHomeDirectory() + "/Documents/\(bookFolderNames[i])")) {
+                                NavigationLink(destination: {
+                                    List {
+                                        BookViewerView.BookDetailView(document: epubDoc)
                                     }
+                                    .modifier(BlurBackground(imageUrl: epubDoc.cover))
+                                    .navigationTitle(EPUBDocument(url: URL(filePath: NSHomeDirectory() + "/Documents/\(bookFolderNames[i])"))!.title ?? "")
                                 }, label: {
-                                    Image(systemName: "xmark.bin.fill")
+                                    Text(nameChart[bookFolderNames[i]] ?? bookFolderNames[i])
                                 })
+                                .swipeActions {
+                                    Button(role: .destructive, action: {
+                                        do {
+                                            try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/\(bookFolderNames[i])")
+                                            nameChart.removeValue(forKey: bookFolderNames[i])
+                                            bookFolderNames.remove(at: i)
+                                            UserDefaults.standard.set(bookFolderNames, forKey: "EPUBFlieFolders")
+                                            UserDefaults.standard.set(nameChart, forKey: "EPUBFileNameChart")
+                                        } catch {
+                                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                        }
+                                    }, label: {
+                                        Image(systemName: "xmark.bin.fill")
+                                    })
+                                }
                             }
                         }
                     }

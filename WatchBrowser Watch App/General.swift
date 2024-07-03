@@ -8,6 +8,8 @@
 import SwiftUI
 import Cepheus
 
+var globalMediaUserActivity: NSUserActivity?
+
 // Ext Keyboard
 struct TextField: View {
     var titleKey: LocalizedStringResource?

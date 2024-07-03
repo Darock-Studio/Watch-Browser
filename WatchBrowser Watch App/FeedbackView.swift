@@ -46,7 +46,7 @@ fileprivate let globalStateIcons = [
     "minus",
     "curlybraces",
     "xmark",
-    "arrow.triangle.merge",
+    "arrow.trianglehead.pull",
     "books.vertical",
     "hammer",
     "clock.badge.checkmark",
@@ -187,7 +187,7 @@ struct FeedbackView: View {
                                                 ScrollView {
                                                     HStack {
                                                         Text("v\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) Build \(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)")
-                                                            .font(.system(size: 13))
+                                                            .font(.system(size: 13, design: .monospaced))
                                                             .multilineTextAlignment(.leading)
                                                         Spacer()
                                                     }
@@ -205,7 +205,7 @@ struct FeedbackView: View {
                                                 ScrollView {
                                                     HStack {
                                                         Text("\(WKInterfaceDevice.current().systemVersion)")
-                                                            .font(.system(size: 13))
+                                                            .font(.system(size: 13, design: .monospaced))
                                                             .multilineTextAlignment(.leading)
                                                         Spacer()
                                                     }
@@ -234,7 +234,7 @@ struct FeedbackView: View {
                                                             }
                                                             return String(sendHistories.description.prefix(300))
                                                         }())
-                                                        .font(.system(size: 13))
+                                                        .font(.system(size: 13, design: .monospaced))
                                                         .multilineTextAlignment(.leading)
                                                         Spacer()
                                                     }
@@ -248,6 +248,26 @@ struct FeedbackView: View {
                                                         .lineLimit(1)
                                                 }
                                             })
+                                            if let settings = GetAllSettingsForAppdiagnose() {
+                                                NavigationLink(destination: {
+                                                    ScrollView {
+                                                        HStack {
+                                                            Text(settings)
+                                                                .font(.system(size: 13, design: .monospaced))
+                                                                .multilineTextAlignment(.leading)
+                                                            Spacer()
+                                                        }
+                                                    }
+                                                }, label: {
+                                                    HStack {
+                                                        Image(systemName: "doc")
+                                                            .foregroundColor(.purple)
+                                                        Text("Settings.drkdatas")
+                                                            .font(.system(size: 12))
+                                                            .lineLimit(1)
+                                                    }
+                                                })
+                                            }
                                         }
                                         .navigationTitle("appdiagnose_\(Date.now.toString(.custom("yyyy.MM.dd_HH-mm-ssZZZZ")))")
                                     }, label: {
@@ -336,13 +356,18 @@ struct FeedbackView: View {
                                 sendHistories = [String]()
                             }
                             let extDiags = { () -> String in
-                                if !dontSendDiagnose {
-                                    return """
+                                if _fastPath(!dontSendDiagnose) {
+                                    var extData = """
                                     
                                     Version：v\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) Build \(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)
                                     NearestHistories：\(sendHistories.description.prefix(300))
                                     OS：\(WKInterfaceDevice.current().systemVersion)
                                     """
+                                    if let settings = GetAllSettingsForAppdiagnose() {
+                                        _onFastPath()
+                                        extData += "\nSettings：\(settings)"
+                                    }
+                                    return extData
                                 } else {
                                     return ""
                                 }
@@ -494,6 +519,7 @@ struct FeedbackView: View {
                         let enced = """
                             Content：\(replyInput)
                             Sender：User
+                            Time：\(Date.now.timeIntervalSince1970)
                             """.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
                         DarockKit.Network.shared
                             .requestString("https://fapi.darock.top:65535/radar/reply/Darock Browser/\(id)/\(enced)")
@@ -627,6 +653,9 @@ struct FeedbackView: View {
                             } else if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") == "NearestHistories" {
                                 Text("[Privacy Hidden]")
                                     .font(.system(size: 14))
+                            } else if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") == "Settings" {
+                                Text("[Privacy Hidden]")
+                                    .font(.system(size: 14))
                             } else if (from[i].contains("：") && from[i] != "："
                                        ? from[i].split(separator: "：")[0]
                                        : "") == "AddDuplicateDelete"
@@ -660,7 +689,7 @@ struct FAQView: View {
                     Markdown(String(localized: """
                     **并非所有网页内的视频均能被解析**
                     
-                    请**不要**提出〇〇网站视频无法播放之类的反馈
+                    请**不要**提出网站视频无法播放之类的反馈
                     """))
                 }
             }, label: {
@@ -671,7 +700,7 @@ struct FAQView: View {
                     Markdown(String(localized: """
                     **并非所有网页都能在 Apple Watch 上正常工作**
                     
-                    请**不要**提出〇〇网站*打不开*、*有问题*之类的反馈
+                    请**不要**提出网站*打不开*、*有问题*之类的反馈
                     """))
                 }
             }, label: {
@@ -745,6 +774,8 @@ extension String {
             return "关联反馈"
         case "NotificationToken":
             return "通知令牌"
+        case "Settings":
+            return "设置"
         default:
             return LocalizedStringKey(self)
         }
@@ -760,4 +791,22 @@ extension Data {
         let format = options.contains(.upperCase) ? "%02hhX" : "%02hhx"
         return self.map { String(format: format, $0) }.joined()
     }
+}
+
+func GetAllSettingsForAppdiagnose() -> String? {
+    let prefPath = NSHomeDirectory() + "/Library/Preferences/com.darock.WatchBrowser.watchkitapp.plist"
+    if let plistData = FileManager.default.contents(atPath: prefPath) {
+        do {
+            if let plistObject = try PropertyListSerialization.propertyList(from: plistData, options: [], format: nil) as? [String: Any] {
+                let jsonData = try JSONSerialization.data(withJSONObject: plistObject)
+                if let jsonString = String(data: jsonData, encoding: .utf8) {
+                    _onFastPath()
+                    return jsonString
+                }
+            }
+        } catch {
+            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+        }
+    }
+    return nil
 }

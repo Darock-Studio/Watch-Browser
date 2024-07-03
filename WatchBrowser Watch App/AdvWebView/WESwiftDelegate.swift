@@ -9,6 +9,8 @@ import SwiftUI
 import Dynamic
 import Foundation
 
+var pWebDelegateStartNavigationAutoViewport = false
+
 fileprivate var errorLabel = { () -> Dynamic in
     let errorLabel = Dynamic.UILabel()
     errorLabel.setFrame(getMiddleRect(y: 30, height: 60))
@@ -28,17 +30,28 @@ public class WESwiftDelegate: NSObject {
         debugPrint("Start Navigation")
         errorLabel.removeFromSuperview()
         AdvancedWebViewController.shared.loadProgressView.hidden = false
+        if _slowPath(pWebDelegateStartNavigationAutoViewport) {
+            pWebDelegateStartNavigationAutoViewport = false
+            DispatchQueue(label: "com.darock.WatchBrowser.wt.run-auto-viewport", qos: .userInitiated).async {
+                Dynamic(webViewObject).evaluateJavaScript("""
+                var meta = document.createElement('meta');
+                meta.name = "viewport";
+                meta.content = "width=device-width, initial-scale=1.0";
+                document.getElementsByTagName('head')[0].appendChild(meta);
+                """, completionHandler: nil)
+            }
+        }
         if let url = Dynamic(webViewObject).URL.asObject {
             let curl = (url as! NSURL).absoluteString!
             if _fastPath(isHistoryRecording) {
                 RecordHistory(curl, webSearch: webSearch, showName: Dynamic(webViewObject).title.asString)
             }
-            if curl.hasSuffix(".mp4") {
+            if _slowPath(curl.hasSuffix(".mp4")) {
                 videoLinkLists = [curl]
                 WebExtension.presentVideoList()
                 return
             }
-            if curl.hasSuffix(".epub") {
+            if _slowPath(curl.hasSuffix(".epub")) {
                 bookLinkLists = [curl]
                 WebExtension.presentBookList()
                 return
@@ -96,13 +109,15 @@ public class WESwiftDelegate: NSObject {
         }
         
         let curl = Dynamic(webViewObject).URL.asObject as? URL
-        if curl?.absoluteString.hasPrefix("http") ?? false || curl?.absoluteString.hasPrefix("https") ?? false {
-            // User Activity
-            let nsActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
-            nsActivity.title = Dynamic(webViewObject).title.asString
-            nsActivity.isEligibleForHandoff = true
-            nsActivity.webpageURL = Dynamic(webViewObject).URL.asObject as? URL
-            nsActivity.becomeCurrent()
+        if (UserDefaults.standard.object(forKey: "CCIsHandoffEnabled") as? Bool) ?? true {
+            if _fastPath(curl?.absoluteString.hasPrefix("http") ?? false || curl?.absoluteString.hasPrefix("https") ?? false) {
+                // User Activity
+                globalWebBrowsingUserActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
+                globalWebBrowsingUserActivity.title = Dynamic(webViewObject).title.asString
+                globalWebBrowsingUserActivity.isEligibleForHandoff = true
+                globalWebBrowsingUserActivity.webpageURL = Dynamic(webViewObject).URL.asObject as? URL
+                globalWebBrowsingUserActivity.becomeCurrent()
+            }
         }
     }
     

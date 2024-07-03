@@ -29,10 +29,12 @@ struct DarockAccountLogin: View {
                     Spacer()
                         .frame(height: 20)
                     TextField("Darock 账户", text: $accountCache)
+                        .textContentType(.username)
                         .submitLabel(.continue)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                     SecureField("密码", text: $passwdCache)
+                        .textContentType(.password)
                     Button(action: {
                         isLoading = true
                         DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/login/\(accountCache)/\(passwdCache)") { respStr, isSuccess in
@@ -85,10 +87,13 @@ struct DarockAccountLogin: View {
                 .listRowBackground(Color.clear)
                 Section {
                     TextField("电子邮件地址", text: $mailInput)
+                        .textContentType(.emailAddress)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                     SecureField("密码", text: $passwordInput)
+                        .textContentType(.newPassword)
                     SecureField("确认密码", text: $passwordConfirmInput)
+                        .textContentType(.newPassword)
                 }
                 Section {
                     TextField("用户名", text: $usernameInput)

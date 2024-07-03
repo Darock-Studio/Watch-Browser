@@ -11,6 +11,7 @@ import Intents
 import WatchKit
 import SDWebImage
 import SDWebImageSVGCoder
+import SDWebImagePDFCoder
 import SDWebImageWebPCoder
 import AuthenticationServices
 
@@ -112,7 +113,7 @@ struct WatchBrowser_Watch_AppApp: App {
                     Text("Cancel")
                 })
                 Button(action: {
-                    UserDefaults(suiteName: "group.darockst")!.set(pTapToRadarAttachText, forKey: "InternalTapToRadarAttachText")
+                    WKExtension.shared().openSystemURL(URL(string: "https://darock.top/internal/tap-to-radar/new?ProductName=Darock Browser&Title=Internal autoattachd Error&Description=\(pTapToRadarAttachText)")!)
                 }, label: {
                     Text("Tap-to-Radar")
                 })
@@ -128,7 +129,7 @@ struct WatchBrowser_Watch_AppApp: App {
                     }
                     
                     tapToRadarAlertContent = pTapToRadarAlertContent
-                    if pIsTapToRadarAlertPresented {
+                    if _slowPath(pIsTapToRadarAlertPresented) {
                         isTapToRadarAlertPresented = true
                         pIsTapToRadarAlertPresented = false
                     }
@@ -146,6 +147,7 @@ struct WatchBrowser_Watch_AppApp: App {
             case .active:
                 SDImageCodersManager.shared.addCoder(SDImageWebPCoder.shared)
                 SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
+                SDImageCodersManager.shared.addCoder(SDImagePDFCoder.shared)
             @unknown default:
                 break
             }
@@ -206,6 +208,9 @@ public func globalErrorHandler(_ error: Error, at: String = "Not Provided") {
         pTapToRadarAttachText = "Auto-attachd DarockBrowser(\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)). At \(at). LocdStr: \(error.localizedDescription). Add more infomation here: "
             .replacingOccurrences(of: "\n", with: "{LineBreak}")
             .replacingOccurrences(of: "/", with: "{slash}")
+            .replacingOccurrences(of: "?", with: "{questionmark}")
+            .replacingOccurrences(of: "=", with: "{equal}")
+            .replacingOccurrences(of: "&", with: "{and}")
         pIsTapToRadarAlertPresented = true
     }
 }

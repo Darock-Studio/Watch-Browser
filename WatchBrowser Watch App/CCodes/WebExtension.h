@@ -20,6 +20,7 @@ bool pShouldPresentBookList;
 bool dismissListsShouldRepresentWebView;
 id webViewObject;
 id webViewParentController;
+NSUserActivity* globalWebBrowsingUserActivity;
 
 @interface UIView : NSObject
 - (void)setTintColor:(id)color;

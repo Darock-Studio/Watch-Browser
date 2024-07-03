@@ -53,15 +53,21 @@ class AdvancedWebViewController {
     var isVideoChecking = false
     
     @discardableResult
-    func present(_ iurl: String = "", archiveUrl: URL? = nil, presentController: Bool = true, loadMimeType: String = "application/x-webarchive") -> Dynamic {
+    func present(_ iurl: String = "",
+                 archiveUrl: URL? = nil,
+                 presentController: Bool = true,
+                 loadMimeType: String = "application/x-webarchive",
+                 overrideOldWebView: Bool = false) -> Dynamic {
         if iurl.isEmpty && archiveUrl == nil {
-            Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(vc, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(self.vc, animated: true, completion: nil)
+            }
             return Dynamic(webViewObject)
         }
         
         let url = URL(string: iurl) ?? archiveUrl!
 
-        if _slowPath(isUseOldWebView) {
+        if _slowPath(isUseOldWebView && !overrideOldWebView) {
             // rdar://FB268002071845
             if _fastPath(presentController) {
                 let session = ASWebAuthenticationSession(url: url, callbackURLScheme: nil) { _, _ in
@@ -137,7 +143,9 @@ class AdvancedWebViewController {
         vc.view = webViewHolder
 
         if _fastPath(presentController) {
-            Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(vc, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(self.vc, animated: true, completion: nil)
+            }
         }
         webViewParentController = vc.asObject!
         
@@ -153,7 +161,9 @@ class AdvancedWebViewController {
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [self] _ in
             if _slowPath(pIsMenuButtonDown) {
                 pIsMenuButtonDown = false
-                vc.presentViewController(menuController, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.vc.presentViewController(self.menuController, animated: true, completion: nil)
+                }
                 CheckWebContent()
             }
             if _slowPath(pMenuShouldDismiss) {
@@ -187,8 +197,9 @@ class AdvancedWebViewController {
         loadProgressView = ref.loadProgressView
         webViewObject = ref.webViewObject
         webViewParentController = ref.webViewParentController
-        
-        Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(vc, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(self.vc, animated: true, completion: nil)
+        }
     }
     func storeTab(in allTabs: [String], at index: Int? = nil) {
         let recoverReference = TabWebKitReference(webViewHolder: webViewHolder,

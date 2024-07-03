@@ -5,8 +5,8 @@
 //  Created by memz233 on 6/21/24.
 //
 
-import Vela
 import SwiftUI
+internal import Vela
 
 /// Get a view which can convert any natural number to 0, 7, 2 and 1. 😋
 public struct TQCOnaniiView: View {
@@ -159,8 +159,10 @@ public struct TQCAccentColorHiddenButton: View {
         )
         .onChange(of: buttonOpacity) { value in
             if value >= 1.0 {
-                isColorChangeButtonUnlocked = true
-                unlockHandler()
+                if !isColorChangeButtonUnlocked {
+                    unlockHandler()
+                    isColorChangeButtonUnlocked = true
+                }
             }
         }
     }
@@ -175,14 +177,13 @@ public struct TQCAccentColorHiddenButton: View {
         var body: some View {
             List {
                 Section {
-                    VelaPicker(color: $inputColor, allowOpacity: false, label: {
+                    VelaPicker(color: $inputColor, defaultColor: .accentColor, allowOpacity: false, label: {
                         HStack {
                             Text("选择颜色...")
                             Spacer()
                         }
                         .frame(width: WKInterfaceDevice.current().screenBounds.width)
                     }, onSubmit: {
-                        debugPrint("Submit")
                         var red = CGFloat.zero
                         var green = CGFloat.zero
                         var blue = CGFloat.zero

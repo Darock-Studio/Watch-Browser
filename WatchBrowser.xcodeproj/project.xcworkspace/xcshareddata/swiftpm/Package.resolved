@@ -1,5 +1,5 @@
 {
-  "originHash" : "67304047ea05edbe0069bf265206cf8a087361be906fa01aed27a42374faed5b",
+  "originHash" : "a0f00800cff38efe9dd01d415913883d6e9516e4f2d833357a0f97cc635763a2",
   "pins" : [
     {
       "identity" : "aexml",
@@ -83,12 +83,30 @@
       }
     },
     {
+      "identity" : "punycodeswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gumob/PunycodeSwift",
+      "state" : {
+        "revision" : "4356ec54e073741449640d3d50a1fd24fd1e1b8b",
+        "version" : "2.1.0"
+      }
+    },
+    {
       "identity" : "sdwebimage",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
         "revision" : "be0bcd7823ce56629948491f2eaeaa19979514f7",
         "version" : "5.19.4"
+      }
+    },
+    {
+      "identity" : "sdwebimagepdfcoder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImagePDFCoder",
+      "state" : {
+        "revision" : "2aecb0a16e4d054c7f36a140f7feef6e1ede7bb6",
+        "version" : "1.0.1"
       }
     },
     {
@@ -105,8 +123,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI",
       "state" : {
-        "revision" : "02b2579a93aaa8ac0146a46f18d9056253c03096",
-        "version" : "3.1.0"
+        "revision" : "5d462f7530677ae0c2b9510c26383aa25ba48751",
+        "version" : "3.1.1"
       }
     },
     {
@@ -177,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Serene-Garden/Vela",
       "state" : {
-        "revision" : "6e2565cdf5483120ac3244e0cc321c7738a70151",
-        "version" : "2.1.3"
+        "revision" : "5daaae5f8d31a3e851bfbcb5a4ed906b44c90ddb",
+        "version" : "2.1.5"
       }
     },
     {

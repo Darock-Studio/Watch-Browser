@@ -41,11 +41,13 @@ struct VideoListView: View {
             .sheet(isPresented: $isVideoDownloadPresented, content: { VideoDownloadView(videoLink: $willDownloadVideoLink) })
             .onDisappear {
                 if dismissListsShouldRepresentWebView {
-                    Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(
-                        AdvancedWebViewController.shared.vc,
-                        animated: true,
-                        completion: nil
-                    )
+                    DispatchQueue.main.async {
+                        Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(
+                            AdvancedWebViewController.shared.vc,
+                            animated: true,
+                            completion: nil
+                        )
+                    }
                 }
             }
         } else {
@@ -131,9 +133,18 @@ struct VideoPlayingView: View {
         .scrollIndicators(.never)
         .onAppear {
             player = AVPlayer(url: URL(string: link)!)
+            if ((UserDefaults.standard.object(forKey: "CCIsContinuityMediaEnabled") as? Bool) ?? true) && (link.hasPrefix("http://") || link.hasPrefix("https://")) {
+                globalMediaUserActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
+                globalMediaUserActivity?.isEligibleForHandoff = true
+                globalMediaUserActivity?.webpageURL = URL(string: link)!
+                globalMediaUserActivity?.becomeCurrent()
+            }
         }
         .onDisappear {
             player.pause()
+            if (UserDefaults.standard.object(forKey: "CCIsContinuityMediaEnabled") as? Bool) ?? true {
+                globalMediaUserActivity?.invalidate()
+            }
         }
     }
 }

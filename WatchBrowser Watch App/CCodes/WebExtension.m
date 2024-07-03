@@ -64,6 +64,9 @@ id webScriptDelegate;
         [webViewParentController performSelector:NSSelectorFromString(@"dismissModalViewControllerAnimated:") withObject:@(true)];
     });
     [WEBackSwift storeWebTab];
+    if (globalWebBrowsingUserActivity) {
+        [globalWebBrowsingUserActivity invalidate];
+    }
 }
 +(void) PresentVideoList {
     [self DismissWebView];
@@ -81,10 +84,6 @@ id webScriptDelegate;
     dismissListsShouldRepresentWebView = true;
 }
 // Externald Method End
-
-+ (BOOL)hooked_handlesURLScheme:(NSString *)urlScheme {
-    return NO;
-}
 
 @end
 

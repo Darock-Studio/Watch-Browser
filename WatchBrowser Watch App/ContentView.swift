@@ -10,6 +10,7 @@ import SwiftUI
 import Dynamic
 import Cepheus
 import WatchKit
+import Punycode
 import DarockKit
 import Alamofire
 import SwiftyJSON
@@ -240,7 +241,6 @@ struct MainView: View {
                             goToButtonLabelText = "Home.go"
                         }, label: {
                             Image(systemName: "xmark.bin.fill")
-                                .tint(.red)
                         })
                     }
                 }
@@ -254,7 +254,7 @@ struct MainView: View {
                         dismissListsShouldRepresentWebView = false
                         RecordHistory(textOrURL, webSearch: webSearch)
                         return
-                    } else if textOrURL.hasSuffix(".png") || textOrURL.hasSuffix(".jpg") || textOrURL.hasSuffix(".webp") {
+                    } else if textOrURL.hasSuffix(".png") || textOrURL.hasSuffix(".jpg") || textOrURL.hasSuffix(".webp") || textOrURL.hasSuffix(".pdf") {
                         if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
                             textOrURL = "http://" + textOrURL
                         }
@@ -547,6 +547,29 @@ func GetWebSearchedURL(_ iUrl: String, webSearch: String, isSearchEngineShortcut
     return wisu
 }
 
+func GetTopLevel(from url: String) -> String? {
+    if !url.contains(".") {
+        return nil
+    }
+    let noScheme: String
+    if url.hasPrefix("http://")
+        || url.hasPrefix("https://")
+        || url.hasPrefix("file://"),
+       let spd = url.split(separator: "://")[from: 1] {
+        noScheme = String(spd)
+    } else {
+        noScheme = url
+    }
+    if let dotSpd = noScheme.split(separator: "/").first {
+        let specialCharacters: [Character] = ["/", "."]
+        if let splashSpd = dotSpd.split(separator: ".").last, let colonSpd = splashSpd.split(separator: ":").first {
+            if !colonSpd.contains(specialCharacters) {
+                return String(colonSpd)
+            }
+        }
+    }
+    return nil
+}
 
 extension String {
     //将原始的url编码为合法的url
@@ -563,7 +586,11 @@ extension String {
     
     //是否为URL
     func isURL() -> Bool {
-        if self.contains(".com") || self.contains(".org") || self.contains(".net") || self.contains(".int") || self.contains(".edu") || self.contains(".gov") || self.contains(".mil") || self.contains(".arpa") || self.contains(".ac") || self.contains(".ae") || self.contains(".af") || self.contains(".ag") || self.contains(".ai") || self.contains(".al") || self.contains(".am") || self.contains(".ao") || self.contains(".aq") || self.contains(".ar") || self.contains(".as") || self.contains(".at") || self.contains(".au") || self.contains(".aw") || self.contains(".ax") || self.contains(".az") || self.contains(".ba") || self.contains(".bb") || self.contains(".bd") || self.contains(".be") || self.contains(".bf") || self.contains(".bg") || self.contains(".bh") || self.contains(".bi") || self.contains(".bj") || self.contains(".bm") || self.contains(".bn") || self.contains(".bo") || self.contains(".br") || self.contains(".bs") || self.contains(".bt") || self.contains(".bw") || self.contains(".by") || self.contains(".bz") || self.contains(".ca") || self.contains(".cc") || self.contains(".cd") || self.contains(".cf") || self.contains(".cg") || self.contains(".ch") || self.contains(".ci") || self.contains(".ck") || self.contains(".cl") || self.contains(".cm") || self.contains(".cn") || self.contains(".co") || self.contains(".cr") || self.contains(".cu") || self.contains(".cv") || self.contains(".cw") || self.contains(".cx") || self.contains(".cy") || self.contains(".cz") || self.contains(".de") || self.contains(".dj") || self.contains(".dk") || self.contains(".dm") || self.contains(".do") || self.contains(".dz") || self.contains(".ec") || self.contains(".ee") || self.contains(".eg") || self.contains(".er") || self.contains(".es") || self.contains(".et") || self.contains(".eu") || self.contains(".fi") || self.contains(".fk") || self.contains(".fm") || self.contains(".fo") || self.contains(".fr") || self.contains(".ga") || self.contains(".gd") || self.contains(".ge") || self.contains(".gf") || self.contains(".gg") || self.contains(".gh") || self.contains(".gi") || self.contains(".gl") || self.contains(".gm") || self.contains(".gn") || self.contains(".gp") || self.contains(".gq") || self.contains(".gr") || self.contains(".gs") || self.contains(".gt") || self.contains(".gu") || self.contains(".gw") || self.contains(".gy") || self.contains(".hk") || self.contains(".hm") || self.contains(".hn") || self.contains(".hr") || self.contains(".ht") || self.contains(".hu") || self.contains(".id") || self.contains(".ie") || self.contains(".il") || self.contains(".im") || self.contains(".in") || self.contains(".io") || self.contains(".iq") || self.contains(".ir") || self.contains(".is") || self.contains(".it") || self.contains(".je") || self.contains(".jm") || self.contains(".jo") || self.contains(".jp") || self.contains(".ke") || self.contains(".kg") || self.contains(".kh") || self.contains(".ki") || self.contains(".km") || self.contains(".kn") || self.contains(".kp") || self.contains(".kr") || self.contains(".kw") || self.contains(".ky") || self.contains(".kz") || self.contains(".la") || self.contains(".lb") || self.contains(".lc") || self.contains(".li") || self.contains(".lk") || self.contains(".lr") || self.contains(".ls") || self.contains(".lt") || self.contains(".lu") || self.contains(".lv") || self.contains(".ly") || self.contains(".ma") || self.contains(".mc") || self.contains(".md") || self.contains(".me") || self.contains(".mg") || self.contains(".mh") || self.contains(".mk") || self.contains(".ml") || self.contains(".mm") || self.contains(".mn") || self.contains(".mo") || self.contains(".mp") || self.contains(".mq") || self.contains(".mr") || self.contains(".ms") || self.contains(".mt") || self.contains(".mu") || self.contains(".mv") || self.contains(".mw") || self.contains(".mx") || self.contains(".my") || self.contains(".mz") || self.contains(".na") || self.contains(".mil") || self.contains(".gov") || self.contains(".mil") || self.contains(".gov") || self.contains(".mil") || self.contains(".gov") || self.contains(".nc") || self.contains(".ne") || self.contains(".nf") || self.contains(".ng") || self.contains(".ni") || self.contains(".nl") || self.contains(".no") || self.contains(".np") || self.contains(".nr") || self.contains(".nu") || self.contains(".nz") || self.contains(".om") || self.contains(".pa") || self.contains(".pe") || self.contains(".pf") || self.contains(".pg") || self.contains(".ph") || self.contains(".pk") || self.contains(".pl") || self.contains(".pm") || self.contains(".pn") || self.contains(".pr") || self.contains(".ps") || self.contains(".pt") || self.contains(".pw") || self.contains(".py") || self.contains(".qa") || self.contains(".re") || self.contains(".ro") || self.contains(".rs") || self.contains(".ru") || self.contains(".rw") || self.contains(".sa") || self.contains(".sb") || self.contains(".sc") || self.contains(".sd") || self.contains(".se") || self.contains(".sg") || self.contains(".sh") || self.contains(".si") || self.contains(".sk") || self.contains(".sl") || self.contains(".sm") || self.contains(".sn") || self.contains(".so") || self.contains(".sr") || self.contains(".ss") || self.contains(".st") || self.contains(".su") || self.contains(".sv") || self.contains(".sx") || self.contains(".sy") || self.contains(".sz") || self.contains(".tc") || self.contains(".td") || self.contains(".tf") || self.contains(".tg") || self.contains(".th") || self.contains(".tj") || self.contains(".tk") || self.contains(".tl") || self.contains(".tm") || self.contains(".tn") || self.contains(".to") || self.contains(".tr") || self.contains(".tt") || self.contains(".tv") || self.contains(".tw") || self.contains(".tz") || self.contains(".ua") || self.contains(".ug") || self.contains(".uk") || self.contains(".us") || self.contains(".uy") || self.contains(".uz") || self.contains(".va") || self.contains(".vc") || self.contains(".ve") || self.contains(".vg") || self.contains(".vi") || self.contains(".vn") || self.contains(".vu") || self.contains(".wf") || self.contains(".ws") || self.contains(".ye") || self.contains(".yt") || self.contains(".za") || self.contains(".zm") || self.contains(".zw") || self.contains(".xyz") || self.contains(".ltd") || self.contains(".top") || self.contains(".cc") || self.contains(".group") || self.contains(".shop") || self.contains(".vip") || self.contains(".site") || self.contains(".art") || self.contains(".club") || self.contains(".wiki") || self.contains(".online") || self.contains(".cloud") || self.contains(".fun") || self.contains(".store") || self.contains(".wang") || self.contains(".tech") || self.contains(".pro") || self.contains(".biz") || self.contains(".space") || self.contains(".link") || self.contains(".info") || self.contains(".team") || self.contains(".mobi") || self.contains(".city") || self.contains(".life") || self.contains(".life") || self.contains(".zone") || self.contains(".asia") || self.contains(".host") || self.contains(".website") || self.contains(".world") || self.contains(".center") || self.contains(".cool") || self.contains(".ren") || self.contains(".company") || self.contains(".plus") || self.contains(".video") || self.contains(".pub") || self.contains(".email") || self.contains(".live") || self.contains(".run") || self.contains(".love") || self.contains(".show") || self.contains(".work") || self.contains(".ink") || self.contains(".fund") || self.contains(".red") || self.contains(".chat") || self.contains(".today") || self.contains(".press") || self.contains(".social") || self.contains(".gold") || self.contains(".design") || self.contains(".auto") || self.contains(".guru") || self.contains(".black") || self.contains(".blue") || self.contains(".green") || self.contains(".pink") || self.contains(".poker") || self.contains(".news") {
+        var topLevelDomainList = (try! String(contentsOf: Bundle.main.url(forResource: "TopLevelDomainList", withExtension: "drkdatat")!, encoding: .utf8))
+            .split(separator: "\n")
+            .map { String($0) }
+        topLevelDomainList.removeAll(where: { str in str.hasPrefix("#") || str.isEmpty })
+        if let topLevel = GetTopLevel(from: self)?.idnaEncoded, topLevelDomainList.contains(topLevel.uppercased()) {
             return true
         } else if self.hasPrefix("http://") || self.hasPrefix("https://") {
             return true
