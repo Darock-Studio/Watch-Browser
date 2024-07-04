@@ -4469,7 +4469,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chat only. To provide feedback on app issues, please go to%@."
+            "value" : "Chat only. To provide feedback on app issues, please go to %@."
           }
         }
       }

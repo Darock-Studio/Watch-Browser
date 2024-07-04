@@ -20,11 +20,13 @@ public struct TQCOnaniiView: View {
         NavigationStack {
             List {
                 Section {
-                    TextField("输入一个自然数", text: $numInput)
-                        .onSubmit {
-                            result = to0721(from: numInput)
-                            navigationTitle = "Ciallo~"
-                        }
+                    TextField(text: $numInput) {
+                        Text("输入一个自然数")
+                    }
+                    .onSubmit {
+                        result = to0721(from: numInput)
+                        navigationTitle = "Ciallo~"
+                    }
                 }
                 Section {
                     Text(result)
@@ -217,4 +219,9 @@ public struct TQCAccentColorHiddenButton: View {
             }
         }
     }
+}
+
+@ViewBuilder
+internal func Text(_ key: LocalizedStringKey) -> some View {
+    Text(key, bundle: Bundle(url: Bundle.main.privateFrameworksURL!.appending(path: "TripleQuestionmarkCore.framework")))
 }

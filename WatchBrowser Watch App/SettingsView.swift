@@ -412,6 +412,17 @@ struct SettingsView: View {
                                                 Spacer()
                                             }
                                         }
+                                        if bookSize > 0 {
+                                            HStack {
+                                                Circle()
+                                                    .fill(Color.green)
+                                                    .frame(width: 10, height: 10)
+                                                Text("图书")
+                                                    .font(.system(size: 14))
+                                                    .foregroundColor(.gray)
+                                                Spacer()
+                                            }
+                                        }
                                         if webArchiveSize > 0 {
                                             HStack {
                                                 Circle()
@@ -423,14 +434,16 @@ struct SettingsView: View {
                                                 Spacer()
                                             }
                                         }
-                                        HStack {
-                                            Circle()
-                                                .fill(Color.primary)
-                                                .frame(width: 10, height: 10)
-                                            Text("缓存数据")
-                                                .font(.system(size: 14))
-                                                .foregroundColor(.gray)
-                                            Spacer()
+                                        if tmpSize > 0 {
+                                            HStack {
+                                                Circle()
+                                                    .fill(Color.primary)
+                                                    .frame(width: 10, height: 10)
+                                                Text("缓存数据")
+                                                    .font(.system(size: 14))
+                                                    .foregroundColor(.gray)
+                                                Spacer()
+                                            }
                                         }
                                     }
                                     .padding(.vertical, -1)
@@ -638,7 +651,7 @@ struct SettingsView: View {
                                                 Color.gray
                                                     .frame(width: 20, height: 20)
                                                     .clipShape(Circle())
-                                                Image(systemName: "ellipsis.circle")
+                                                Image(systemName: "ellipsis")
                                                     .font(.system(size: 12))
                                             }
                                             Spacer()
