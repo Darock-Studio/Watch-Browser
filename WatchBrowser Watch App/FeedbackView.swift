@@ -248,7 +248,7 @@ struct FeedbackView: View {
                                                         .lineLimit(1)
                                                 }
                                             })
-                                            if let settings = GetAllSettingsForAppdiagnose() {
+                                            if let settings = getAllSettingsForAppdiagnose() {
                                                 NavigationLink(destination: {
                                                     ScrollView {
                                                         HStack {
@@ -363,7 +363,7 @@ struct FeedbackView: View {
                                     NearestHistories：\(sendHistories.description.prefix(300))
                                     OS：\(WKInterfaceDevice.current().systemVersion)
                                     """
-                                    if let settings = GetAllSettingsForAppdiagnose() {
+                                    if let settings = getAllSettingsForAppdiagnose() {
                                         _onFastPath()
                                         extData += "\nSettings：\(settings)"
                                     }
@@ -382,20 +382,19 @@ struct FeedbackView: View {
                             Sender: User
                             """
                             DarockKit.Network.shared
-                                .requestString("https://fapi.darock.top:65535/feedback/submit/anony/Darock Browser/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))")
-                            { respStr, isSuccess in
-                                if isSuccess {
-                                    if Int(respStr) != nil {
-                                        var arr = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
-                                        arr.insert(respStr, at: 0)
-                                        UserDefaults.standard.set(arr, forKey: "RadarFBIDs")
-                                        tipWithText("已发送", symbol: "paperplane.fill")
-                                        dismiss()
-                                    } else {
-                                        tipWithText("服务器错误", symbol: "xmark.circle.fill")
+                                .requestString("https://fapi.darock.top:65535/feedback/submit/anony/Darock Browser/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))") { respStr, isSuccess in
+                                    if isSuccess {
+                                        if Int(respStr) != nil {
+                                            var arr = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
+                                            arr.insert(respStr, at: 0)
+                                            UserDefaults.standard.set(arr, forKey: "RadarFBIDs")
+                                            tipWithText("已发送", symbol: "paperplane.fill")
+                                            dismiss()
+                                        } else {
+                                            tipWithText("服务器错误", symbol: "xmark.circle.fill")
+                                        }
                                     }
                                 }
-                            }
                         }, label: {
                             if !isSending {
                                 Text("提交")
@@ -429,7 +428,7 @@ struct FeedbackView: View {
                     isDraftLoaded = true
                 }
                 
-                UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.sound]) { isGrand, error in
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { isGrand, _ in
                     DispatchQueue.main.async {
                         if isGrand {
                             WKExtension.shared().registerForRemoteNotifications()
@@ -487,11 +486,11 @@ struct FeedbackView: View {
         var body: some View {
             List {
                 if formattedTexts.count != 0 {
-                    GetView(from: formattedTexts)
+                    getView(from: formattedTexts)
                 }
                 if !isNoReply {
                     ForEach(0..<replies.count, id: \.self) { i in
-                        GetView(from: replies[i], isReply: true)
+                        getView(from: replies[i], isReply: true)
                     }
                 }
                 Section {
@@ -508,8 +507,8 @@ struct FeedbackView: View {
                 }
             }
             .sheet(isPresented: $isReplyPresented, onDismiss: {
-                Refresh()
-            }, content: { 
+                refresh()
+            }, content: {
                 TextField("回复信息", text: $replyInput) {
                     if isReplySubmitted {
                         return
@@ -517,36 +516,35 @@ struct FeedbackView: View {
                     isReplySubmitted = true
                     if replyInput != "" {
                         let enced = """
-                            Content：\(replyInput)
-                            Sender：User
-                            Time：\(Date.now.timeIntervalSince1970)
-                            """.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
+                        Content：\(replyInput)
+                        Sender：User
+                        Time：\(Date.now.timeIntervalSince1970)
+                        """.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
                         DarockKit.Network.shared
-                            .requestString("https://fapi.darock.top:65535/radar/reply/Darock Browser/\(id)/\(enced)")
-                        { respStr, isSuccess in
-                            if isSuccess {
-                                if respStr.apiFixed() == "Success" {
-                                    Refresh()
-                                    replyInput = ""
-                                    isReplyPresented = false
-                                } else {
-                                    tipWithText("未知错误", symbol: "xmark.circle.fill")
+                            .requestString("https://fapi.darock.top:65535/radar/reply/Darock Browser/\(id)/\(enced)") { respStr, isSuccess in
+                                if isSuccess {
+                                    if respStr.apiFixed() == "Success" {
+                                        refresh()
+                                        replyInput = ""
+                                        isReplyPresented = false
+                                    } else {
+                                        tipWithText("未知错误", symbol: "xmark.circle.fill")
+                                    }
+                                    isReplySubmitted = false
                                 }
-                                isReplySubmitted = false
                             }
-                        }
                     }
                 }
             })
             .navigationTitle(id)
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
-                Refresh()
+                refresh()
             }
         }
         
         @inline(__always)
-        func Refresh() {
+        func refresh() {
             DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/\(projName)/\(id)") { respStr, isSuccess in
                 if isSuccess {
                     formattedTexts.removeAll()
@@ -581,7 +579,8 @@ struct FeedbackView: View {
             }
         }
         
-        @ViewBuilder func GetView(from: [String], isReply: Bool = false) -> some View {
+        @ViewBuilder
+        func getView(from: [String], isReply: Bool = false) -> some View {
             VStack {
                 ForEach(0..<from.count, id: \.self) { j in
                     if from[j].hasPrefix("Sender") {
@@ -741,7 +740,7 @@ extension String {
     }
     func projNameLinked() -> Self {
         let shortMd5d = String(self.md5.prefix(8)).lowercased()
-        let a2nchart: [Character: Int] = ["a": 0, "b": 1, "c": 2, "d": 3, "e": 4, "f": 5, "g": 6, "h": 7, "i": 8, "j": 9, "k": 0, "l": 1, "m": 2, "n": 3, "o": 4, "p": 5, "q": 6, "r": 7, "s": 8, "t": 9, "u": 0, "v": 1, "w": 2, "x": 3, "y": 4, "z": 5]
+        let a2nchart: [Character: Int] = ["a": 0, "b": 1, "c": 2, "d": 3, "e": 4, "f": 5, "g": 6, "h": 7, "i": 8, "j": 9, "k": 0, "l": 1, "m": 2, "n": 3, "o": 4, "p": 5, "q": 6, "r": 7, "s": 8, "t": 9, "u": 0, "v": 1, "w": 2, "x": 3, "y": 4, "z": 5] // swiftlint:disable:this line_length
         var ced = ""
         for c in shortMd5d {
             if Int(String(c)) == nil {
@@ -793,16 +792,13 @@ extension Data {
     }
 }
 
-func GetAllSettingsForAppdiagnose() -> String? {
+func getAllSettingsForAppdiagnose() -> String? {
     let prefPath = NSHomeDirectory() + "/Library/Preferences/com.darock.WatchBrowser.watchkitapp.plist"
     if let plistData = FileManager.default.contents(atPath: prefPath) {
         do {
             if let plistObject = try PropertyListSerialization.propertyList(from: plistData, options: [], format: nil) as? [String: Any] {
                 let jsonData = try JSONSerialization.data(withJSONObject: plistObject)
-                if let jsonString = String(data: jsonData, encoding: .utf8) {
-                    _onFastPath()
-                    return jsonString
-                }
+                return String(decoding: jsonData, as: UTF8.self)
             }
         } catch {
             globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")

@@ -12,7 +12,6 @@ import AuthenticationServices
 struct HistoryView: View {
     var selectionHandler: ((String) -> Void)?
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
-    @AppStorage("AllowCookies") var AllowCookies = false
     @AppStorage("LabTabBrowsingEnabled") var labTabBrowsingEnabled = false
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockHistories") var usePasscodeForLockHistories = false
@@ -83,14 +82,14 @@ struct HistoryView: View {
                                 }
                             })
                             .sheet(isPresented: $isStopRecordingPagePresenting, onDismiss: {
-                                histories = GetWebHistory()
-                            }, content: {CloseHistoryTipView()})
+                                histories = getWebHistory()
+                            }, content: { CloseHistoryTipView() })
                     }
                 }
                 Section {
                     if isHistoryRecording {
                         if histories.count != 0 {
-                            TextField("\(Image(systemName: "magnifyingglass")) 搜索", text: $searchText)
+                            TextField("搜索", text: $searchText)
                             ForEach(0..<histories.count, id: \.self) { i in
                                 if searchText.isEmpty || histories[i].url.contains(searchText) || (histories[i].title?.contains(searchText) ?? false) {
                                     Button(action: {
@@ -102,7 +101,9 @@ struct HistoryView: View {
                                             } else if histories[i].url.hasSuffix(".mp4") {
                                                 videoLinkLists = [histories[i].url]
                                                 pShouldPresentVideoList = true
-                                            } else if histories[i].url.hasSuffix(".png") || histories[i].url.hasSuffix(".jpg") || histories[i].url.hasSuffix(".webp") {
+                                            } else if histories[i].url.hasSuffix(".png")
+                                                        || histories[i].url.hasSuffix(".jpg")
+                                                        || histories[i].url.hasSuffix(".webp") {
                                                 imageLinkLists = [histories[i].url]
                                                 pShouldPresentImageList = true
                                             } else if histories[i].url.hasSuffix(".epub") {
@@ -142,7 +143,9 @@ struct HistoryView: View {
                                                 )
                                             } else if histories[i].url.hasSuffix(".mp4") {
                                                 Label(histories[i].url, systemImage: "film")
-                                            } else if histories[i].url.hasSuffix(".png") || histories[i].url.hasSuffix(".jpg") || histories[i].url.hasSuffix(".webp") {
+                                            } else if histories[i].url.hasSuffix(".png")
+                                                        || histories[i].url.hasSuffix(".jpg")
+                                                        || histories[i].url.hasSuffix(".webp") {
                                                 Label(histories[i].url, systemImage: "photo")
                                             } else if histories[i].url.hasSuffix(".epub") {
                                                 Label(histories[i].url, systemImage: "book")
@@ -155,7 +158,7 @@ struct HistoryView: View {
                                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                         Button(role: .destructive, action: {
                                             histories.remove(at: i)
-                                            WriteWebHistory(from: histories)
+                                            writeWebHistory(from: histories)
                                         }, label: {
                                             Image(systemName: "bin.xmark.fill")
                                         })
@@ -191,8 +194,8 @@ struct HistoryView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isSharePresented, content: {ShareView(linkToShare: $shareLink)})
-            .sheet(isPresented: $isNewBookmarkPresented, content: {AddBookmarkView(initMarkName: $newBookmarkName, initMarkLink: $newBookmarkLink)})
+            .sheet(isPresented: $isSharePresented, content: { ShareView(linkToShare: $shareLink) })
+            .sheet(isPresented: $isNewBookmarkPresented, content: { AddBookmarkView(initMarkName: $newBookmarkName, initMarkLink: $newBookmarkLink) })
             .sheet(isPresented: $isClearOptionsPresented) {
                 NavigationStack {
                     List {
@@ -268,7 +271,7 @@ struct HistoryView: View {
                                 }
                                 if selectedEmptyAction == 3 {
                                     histories.removeAll()
-                                    WriteWebHistory(from: histories)
+                                    writeWebHistory(from: histories)
                                     isClearOptionsPresented = false
                                     return
                                 }
@@ -296,7 +299,7 @@ struct HistoryView: View {
                                     }
                                     return false
                                 })
-                                WriteWebHistory(from: histories)
+                                writeWebHistory(from: histories)
                                 isClearOptionsPresented = false
                             }, label: {
                                 Text("清除历史记录")
@@ -308,7 +311,7 @@ struct HistoryView: View {
                 }
             }
             .toolbar {
-                if #available(watchOS 10, *), !histories.isEmpty && isHistoryRecording {
+                if #available(watchOS 10.5, *), !histories.isEmpty && isHistoryRecording {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button(role: .destructive, action: {
                             isClearOptionsPresented = true
@@ -320,15 +323,15 @@ struct HistoryView: View {
                 }
             }
             .onAppear {
-                histories = GetWebHistory()
+                histories = getWebHistory()
                 // Cloud
                 if !darockAccount.isEmpty && isSaveHistoryToCloud {
                     Task {
-                        if let cloudHistories = await GetWebHistoryFromCloud(with: darockAccount) {
-                            let mergedHistories = MergeWebHistoriesBetween(primary: histories, secondary: cloudHistories)
+                        if let cloudHistories = await getWebHistoryFromCloud(with: darockAccount) {
+                            let mergedHistories = mergeWebHistoriesBetween(primary: histories, secondary: cloudHistories)
                             if mergedHistories != histories {
                                 histories = mergedHistories
-                                WriteWebHistory(from: histories)
+                                writeWebHistory(from: histories)
                             }
                         }
                     }
@@ -339,23 +342,23 @@ struct HistoryView: View {
 }
 
 // MARK: History Related Functions
-func RecordHistory(_ inp: String, webSearch: String, showName: String? = nil) {
+func recordHistory(_ inp: String, webSearch: String, showName: String? = nil) {
     if (UserDefaults.standard.object(forKey: "IsHistoryTransferNeeded") as? Bool) ?? true {
         return
     }
-    var fullHistory = GetWebHistory()
+    var fullHistory = getWebHistory()
     if let lstf = fullHistory.first {
-        guard lstf.url != inp && lstf.url != GetWebSearchedURL(inp, webSearch: webSearch, isSearchEngineShortcutEnabled: false) else {
+        guard lstf.url != inp && lstf.url != getWebSearchedURL(inp, webSearch: webSearch, isSearchEngineShortcutEnabled: false) else {
             return
         }
     }
     if inp.isURL() || inp.hasPrefix("file://") {
         fullHistory.insert(.init(url: inp, title: showName, time: Date.now.timeIntervalSince1970), at: 0)
     } else {
-        let rurl = GetWebSearchedURL(inp, webSearch: webSearch, isSearchEngineShortcutEnabled: false)
+        let rurl = getWebSearchedURL(inp, webSearch: webSearch, isSearchEngineShortcutEnabled: false)
         fullHistory.insert(.init(url: rurl, title: showName, time: Date.now.timeIntervalSince1970), at: 0)
     }
-    WriteWebHistory(from: fullHistory)
+    writeWebHistory(from: fullHistory)
     if UserDefaults.standard.bool(forKey: "DCSaveHistory"),
        let account = UserDefaults.standard.string(forKey: "DarockAccount"),
        !account.isEmpty {
@@ -368,7 +371,7 @@ func RecordHistory(_ inp: String, webSearch: String, showName: String? = nil) {
         }
     }
 }
-func GetWebHistory() -> [SingleHistoryItem] {
+func getWebHistory() -> [SingleHistoryItem] {
     do {
         let jsonSource: String
         if _fastPath(FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/WebHistories.drkdataw")) {
@@ -382,7 +385,7 @@ func GetWebHistory() -> [SingleHistoryItem] {
     }
     return [SingleHistoryItem]()
 }
-func WriteWebHistory(from histories: [SingleHistoryItem]) {
+func writeWebHistory(from histories: [SingleHistoryItem]) {
     do {
         if let json = jsonString(from: histories) {
             try json.write(toFile: NSHomeDirectory() + "/Documents/WebHistories.drkdataw", atomically: true, encoding: .utf8)
@@ -391,7 +394,7 @@ func WriteWebHistory(from histories: [SingleHistoryItem]) {
         globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
     }
 }
-func GetWebHistoryFromCloud(with account: String) async -> [SingleHistoryItem]? {
+func getWebHistoryFromCloud(with account: String) async -> [SingleHistoryItem]? {
     await withCheckedContinuation { continuation in
         DarockKit.Network.shared.requestJSON("https://fapi.darock.top:65535/drkbs/cloud/get/\(account)/WebHistory.drkdataw") { respJson, isSuccess in
             if isSuccess {
@@ -407,16 +410,14 @@ func GetWebHistoryFromCloud(with account: String) async -> [SingleHistoryItem]? 
         }
     }
 }
-func MergeWebHistoriesBetween(primary: [SingleHistoryItem], secondary: [SingleHistoryItem]) -> [SingleHistoryItem] {
+func mergeWebHistoriesBetween(primary: [SingleHistoryItem], secondary: [SingleHistoryItem]) -> [SingleHistoryItem] {
     var primCopy = primary
     for single in secondary where !primary.contains(where: { $0.time == single.time }) {
         var inserted = false
-        for (index, item) in primCopy.enumerated() {
-            if single.time > item.time {
-                primCopy.insert(single, at: index)
-                inserted = true
-                break
-            }
+        for (index, item) in primCopy.enumerated() where single.time > item.time {
+            primCopy.insert(single, at: index)
+            inserted = true
+            break
         }
         if _slowPath(!inserted) {
             primCopy.append(single)
@@ -515,9 +516,7 @@ func jsonString<T>(from value: T) -> String? where T: Encodable {
     do {
         let jsonEncoder = JSONEncoder()
         let jsonData = try jsonEncoder.encode(value)
-        if let jsonString = String(data: jsonData, encoding: .utf8) {
-            return jsonString
-        }
+        return String(decoding: jsonData, as: UTF8.self)
     } catch {
         print("Error encoding data to JSON: \(error)")
     }

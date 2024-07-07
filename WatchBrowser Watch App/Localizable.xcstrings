@@ -2218,40 +2218,6 @@
         }
       }
     },
-    "Home.bookmarks.pinned" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pinned Bookmarks"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "固定されたブックマーク"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Топ-закладки"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已置顶的书签"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已置頂的書籤"
-          }
-        }
-      }
-    },
     "Home.go" : {
       "localizations" : {
         "en" : {
@@ -4266,6 +4232,16 @@
         }
       }
     },
+    "主屏幕" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home Screen"
+          }
+        }
+      }
+    },
     "二维码" : {
       "localizations" : {
         "en" : {
@@ -4460,6 +4436,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "For demonstration purposes only, please support legitimate books."
+          }
+        }
+      }
+    },
+    "仅作示例。\n%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For demonstration purposes only.\n%@"
           }
         }
       }
@@ -5568,6 +5554,16 @@
         }
       }
     },
+    "功能不可用时，项目可能仍然不会在主屏幕的对应位置显示。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When the feature is unavailable, the item may still not appear in the corresponding position on the home screen."
+          }
+        }
+      }
+    },
     "加入群聊" : {
       "localizations" : {
         "en" : {
@@ -6246,6 +6242,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "回复信息"
+          }
+        }
+      }
+    },
+    "固定的书签" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pinned Bookmarks"
           }
         }
       }
@@ -7248,6 +7254,16 @@
         }
       }
     },
+    "导航到" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navigate to"
+          }
+        }
+      }
+    },
     "导航手势" : {
       "localizations" : {
         "en" : {
@@ -7422,6 +7438,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "嘗試在 iPhone 設置中關閉無線局域網與藍牙"
+          }
+        }
+      }
+    },
+    "工具栏" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toolbar"
           }
         }
       }
@@ -8392,6 +8418,16 @@
         }
       }
     },
+    "拖动以重新排序" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drag to Reorder"
+          }
+        }
+      }
+    },
     "按预期工作" : {
       "localizations" : {
         "en" : {
@@ -8806,6 +8842,26 @@
         }
       }
     },
+    "搜索按钮" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Button"
+          }
+        }
+      }
+    },
+    "搜索输入框" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Input"
+          }
+        }
+      }
+    },
     "播放" : {
       "localizations" : {
         "en" : {
@@ -9022,6 +9078,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新建反饋"
+          }
+        }
+      }
+    },
+    "无" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None"
           }
         }
       }
@@ -9400,6 +9466,16 @@
         }
       }
     },
+    "更改工具" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change Tool"
+          }
+        }
+      }
+    },
     "服务器错误" : {
       "localizations" : {
         "en" : {
@@ -9634,6 +9710,16 @@
         }
       }
     },
+    "杂项" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Miscellaneous"
+          }
+        }
+      }
+    },
     "查看图片" : {
       "localizations" : {
         "en" : {
@@ -9702,6 +9788,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "View sample book [The Three-Body Problem (1.83 MB)]"
+          }
+        }
+      }
+    },
+    "查看示例图片" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View sample image"
           }
         }
       }
@@ -10358,6 +10454,16 @@
         }
       },
       "shouldTranslate" : false
+    },
+    "添加控件" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a Control"
+          }
+        }
+      }
     },
     "添加脚本" : {
       "localizations" : {
@@ -11339,6 +11445,16 @@
         }
       }
     },
+    "示例图片" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sample Image"
+          }
+        }
+      }
+    },
     "示例视频" : {
       "localizations" : {
         "en" : {
@@ -11715,6 +11831,16 @@
         }
       }
     },
+    "组件" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Controls"
+          }
+        }
+      }
+    },
     "缓存数据" : {
       "localizations" : {
         "en" : {
@@ -12083,6 +12209,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "自定義名稱"
+          }
+        }
+      }
+    },
+    "自定义文本" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom Text"
           }
         }
       }
@@ -12663,12 +12799,32 @@
         }
       }
     },
+    "轻触以编辑" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to Edit"
+          }
+        }
+      }
+    },
     "轻触浏览菜单“播放网页视频”、在网页中寻找或直接在搜索框中输入视频链接" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tap \"Play web video\" in the browse menu, find or enter video links directly in the search box on the webpage."
+          }
+        }
+      }
+    },
+    "轻触浏览菜单“查看网页图片”、在网页中寻找或直接在搜索框中输入图片链接" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap “List Images” in the browse menu, find or directly enter image links in the search box on the webpage."
           }
         }
       }
@@ -13015,6 +13171,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "遷移方式 2"
+          }
+        }
+      }
+    },
+    "返回" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
           }
         }
       }
@@ -13715,6 +13881,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "問題重複"
+          }
+        }
+      }
+    },
+    "间隔" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spacer"
           }
         }
       }

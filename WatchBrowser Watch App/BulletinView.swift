@@ -10,13 +10,13 @@ import SwiftUI
 struct BulletinView: View {
     @AppStorage("isBulletinPresenting") var isBulletinPresenting = true
     @AppStorage("isNewBulletinUnread") var isNewBulletinUnread = true
-    @AppStorage("BulletinTitle") var BulletinTitle = ""
-    @AppStorage("BulletinContent") var BulletinContent = ""
+    @AppStorage("BulletinTitle") var bulletinTitle = ""
+    @AppStorage("BulletinContent") var bulletinContent = ""
     var body: some View {
         if #available(watchOS 9.0, *) {
             NavigationStack {
                 List {
-                    Text(BulletinContent)
+                    Text(bulletinContent)
                     Button(action: {
                         isNewBulletinUnread.toggle()
                     }, label: {
@@ -24,17 +24,17 @@ struct BulletinView: View {
                     })
                 }
             }
-            .navigationTitle(BulletinTitle.isEmpty ? String(localized: "Bulletin") : BulletinTitle)
+            .navigationTitle(bulletinTitle.isEmpty ? String(localized: "Bulletin") : bulletinTitle)
             .onAppear(perform: {
                 isNewBulletinUnread = false
             })
         } else {
             NavigationView {
                 ScrollView {
-                    Text(BulletinContent)
+                    Text(bulletinContent)
                 }
             }
-            .navigationTitle(BulletinTitle.isEmpty ? String(localized: "Bulletin") : BulletinTitle)
+            .navigationTitle(bulletinTitle.isEmpty ? String(localized: "Bulletin") : bulletinTitle)
             .onAppear(perform: {
                 isNewBulletinUnread = true
             })

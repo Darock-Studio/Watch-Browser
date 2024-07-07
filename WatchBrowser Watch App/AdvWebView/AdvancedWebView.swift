@@ -77,14 +77,14 @@ class AdvancedWebViewController {
                 session.start()
                 
                 if _fastPath(isHistoryRecording) {
-                    RecordHistory(iurl, webSearch: webSearch)
+                    recordHistory(iurl, webSearch: webSearch)
                 }
             }
             
             return Dynamic.WKWebView()
         }
         
-        let moreButton = makeUIButton(title: .Image(UIImage(systemName: "ellipsis.circle")!),
+        let moreButton = makeUIButton(title: .image(UIImage(systemName: "ellipsis.circle")!),
                                       frame: CGRect(x: 10, y: 10, width: 30, height: 30),
                                       selector: "menuButtonClicked",
                                       accessibilityIdentifier: "WebMenuButton")
@@ -130,7 +130,7 @@ class AdvancedWebViewController {
         }
         
         if _slowPath(showFastExitButton) {
-            let fastExitButton = makeUIButton(title: .Image(UIImage(systemName: "escape")!),
+            let fastExitButton = makeUIButton(title: .image(UIImage(systemName: "escape")!),
                                               frame: CGRect(x: 40, y: 10, width: 30, height: 30),
                                               tintColor: .red,
                                               selector: "DismissWebView")
@@ -164,7 +164,7 @@ class AdvancedWebViewController {
                 DispatchQueue.main.async {
                     self.vc.presentViewController(self.menuController, animated: true, completion: nil)
                 }
-                CheckWebContent()
+                checkWebContent()
             }
             if _slowPath(pMenuShouldDismiss) {
                 pMenuShouldDismiss = false
@@ -236,7 +236,7 @@ class AdvancedWebViewController {
         var menuButtonYOffset: CGFloat = 30
         
         // Close Button
-        let closeButton = makeUIButton(title: .Image(UIImage(systemName: "xmark")!),
+        let closeButton = makeUIButton(title: .image(UIImage(systemName: "xmark")!),
                                        frame: .init(x: 20, y: 20, width: 25, height: 25),
                                        backgroundColor: .gray.opacity(0.5),
                                        tintColor: .white,
@@ -324,7 +324,9 @@ class AdvancedWebViewController {
         menuView.addSubview(exitButton)
         menuButtonYOffset += 70
         
-        if !currentUrl.isEmpty && !currentUrl.hasPrefix("file://") && !(UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()).contains(currentUrl) {
+        if !currentUrl.isEmpty
+            && !currentUrl.hasPrefix("file://")
+            && !(UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()).contains(currentUrl) {
             let archiveButton = makeUIButton(title: .text(String(localized: "存储本页离线归档")),
                                              frame: getMiddleRect(y: menuButtonYOffset, height: 40),
                                              backgroundColor: .gray.opacity(0.5),
@@ -352,7 +354,7 @@ class AdvancedWebViewController {
         switch title {
         case .text(let text):
             resultButton.setTitle(text, forState: 0)
-        case .Image(let image):
+        case .image(let image):
             resultButton.setImage(image, forState: 0)
         }
         resultButton.setFrame(frame)
@@ -378,7 +380,7 @@ class AdvancedWebViewController {
         vc.dismissViewControllerAnimated(animated, completion: nil)
     }
     
-    func CheckWebContent() {
+    func checkWebContent() {
         if isVideoChecking {
             return
         }
@@ -437,7 +439,7 @@ class AdvancedWebViewController {
     
     enum TextOrImage {
         case text(String)
-        case Image(UIImage)
+        case image(UIImage)
     }
 }
 

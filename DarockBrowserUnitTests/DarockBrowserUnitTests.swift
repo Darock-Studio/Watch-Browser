@@ -34,8 +34,9 @@ struct HistoryTests {
         HistoryMergeTestItem(primary: [.init(url: "1", time: 1000), .init(url: "2", time: 500), .init(url: "3", time: 100)],
                              secondary: [.init(url: "4", time: 1000), .init(url: "5", time: 150)],
                              expectedResult: ["1", "2", "5", "3"])
-    ]) func testHistoryMerge(by item: HistoryMergeTestItem) async throws {
-        let result = MergeWebHistoriesBetween(primary: item.primary, secondary: item.secondary)
+    ])
+    func testHistoryMerge(by item: HistoryMergeTestItem) async throws {
+        let result = mergeWebHistoriesBetween(primary: item.primary, secondary: item.secondary)
         let zippedResults = zip(result, item.expectedResult)
         #expect(zippedResults.allSatisfy { lhs, rhs in lhs.url == rhs }, .init(stringLiteral: result.description))
     }
@@ -90,8 +91,9 @@ struct URLProcessorTests {
         GeneralTestArgument(input: "https://darock.top:65535/", expectedOutput: "top"),
         GeneralTestArgument(input: "https://fapi.darock.top:65535/", expectedOutput: "top"),
         GeneralTestArgument(input: "https://fapi.darock.top:65535", expectedOutput: "top")
-    ]) func testGetUrlTopLevel(by arg: GeneralTestArgument<String, String?>) async throws {
-        #expect(GetTopLevel(from: arg.input) == arg.expectedOutput, .init(stringLiteral: arg.input))
+    ])
+    func testGetUrlTopLevel(by arg: GeneralTestArgument<String, String?>) async throws {
+        #expect(getTopLevel(from: arg.input) == arg.expectedOutput, .init(stringLiteral: arg.input))
     }
     
     @Test(arguments: [
@@ -130,7 +132,8 @@ struct URLProcessorTests {
         GeneralTestArgument(input: "test.逆天/", expectedOutput: false),
         GeneralTestArgument(input: "特朗普.中国", expectedOutput: true),
         GeneralTestArgument(input: "特朗普.中国/", expectedOutput: true)
-    ]) func testStringIsUrl(by arg: GeneralTestArgument<String, Bool>) async throws {
+    ])
+    func testStringIsUrl(by arg: GeneralTestArgument<String, Bool>) async throws {
         #expect(arg.input.isURL() == arg.expectedOutput)
     }
 }

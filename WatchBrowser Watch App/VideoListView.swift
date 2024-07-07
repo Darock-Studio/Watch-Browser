@@ -133,7 +133,8 @@ struct VideoPlayingView: View {
         .scrollIndicators(.never)
         .onAppear {
             player = AVPlayer(url: URL(string: link)!)
-            if ((UserDefaults.standard.object(forKey: "CCIsContinuityMediaEnabled") as? Bool) ?? true) && (link.hasPrefix("http://") || link.hasPrefix("https://")) {
+            if ((UserDefaults.standard.object(forKey: "CCIsContinuityMediaEnabled") as? Bool) ?? true)
+                && (link.hasPrefix("http://") || link.hasPrefix("https://")) {
                 globalMediaUserActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
                 globalMediaUserActivity?.isEligibleForHandoff = true
                 globalMediaUserActivity?.webpageURL = URL(string: link)!
@@ -325,7 +326,7 @@ struct LocalVideosView: View {
                 NavigationStack {
                     List {
                         Section {
-                            TextField("名称", text: $editNameInput)
+                            TextField("名称", text: $editNameInput, style: "field-page")
                             Button(action: {
                                 videoHumanNameChart.updateValue(editNameInput, forKey: editNameVideoName)
                                 UserDefaults.standard.set(videoHumanNameChart, forKey: "VideoHumanNameChart")

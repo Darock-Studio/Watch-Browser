@@ -57,7 +57,7 @@ struct BookmarkView: View {
                             Button(action: {
                                 AdvancedWebViewController.shared.present(UserDefaults.standard.string(forKey: "BookmarkLink\(i)")!)
                                 if isRecordHistory {
-                                    RecordHistory(UserDefaults.standard.string(forKey: "BookmarkLink\(i)")!, webSearch: webSearch)
+                                    recordHistory(UserDefaults.standard.string(forKey: "BookmarkLink\(i)")!, webSearch: webSearch)
                                 }
                             }, label: {
                                 Text(UserDefaults.standard.string(forKey: "BookmarkName\(i)") ?? "")
@@ -84,11 +84,9 @@ struct BookmarkView: View {
                             .swipeActions(edge: .leading, allowsFullSwipe: true) {
                                 Button(action: {
                                     if pinnedBookmarkIndexs.contains(i) {
-                                        for j in 0..<pinnedBookmarkIndexs.count {
-                                            if pinnedBookmarkIndexs[j] == i {
-                                                pinnedBookmarkIndexs.remove(at: j)
-                                                break
-                                            }
+                                        for j in 0..<pinnedBookmarkIndexs.count where pinnedBookmarkIndexs[j] == i {
+                                            pinnedBookmarkIndexs.remove(at: j)
+                                            break
                                         }
                                     } else {
                                         pinnedBookmarkIndexs.append(i)
@@ -114,11 +112,11 @@ struct BookmarkView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isShareSheetPresented, content: {ShareView(linkToShare: $shareLink)})
+            .sheet(isPresented: $isShareSheetPresented, content: { ShareView(linkToShare: $shareLink) })
             .sheet(isPresented: $isBookmarkEditPresented, onDismiss: {
                 markTotal = 0
                 markTotal = UserDefaults.standard.integer(forKey: "BookmarkTotal")
-            }, content: {EditBookmarkView()})
+            }, content: { EditBookmarkView() })
             .onAppear {
                 markTotal = UserDefaults.standard.integer(forKey: "BookmarkTotal")
                 pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()
@@ -170,10 +168,15 @@ struct EditBookmarkView: View {
     @State var markName = ""
     @State var markLink = ""
     var body: some View {
-        ScrollView {
-            VStack {
-                Text("Bookmark.edit")
-                    .font(.system(size: 18, weight: .bold))
+        NavigationStack {
+            List {
+                HStack {
+                    Spacer()
+                    Text("Bookmark.edit")
+                        .font(.system(size: 18, weight: .bold))
+                    Spacer()
+                }
+                .listRowBackground(Color.clear)
                 TextField("Bookmark.name", text: $markName)
                 TextField("Bookmark.link", text: $markLink)
                     .autocorrectionDisabled()
@@ -187,7 +190,11 @@ struct EditBookmarkView: View {
                     )
                     dismiss()
                 }, label: {
-                    Label("Bookmark.finish", systemImage: "checkmark")
+                    HStack {
+                        Spacer()
+                        Label("Bookmark.finish", systemImage: "checkmark")
+                        Spacer()
+                    }
                 })
             }
         }

@@ -10,11 +10,14 @@ import SwiftUI
 import Combine
 
 //有按钮点击的通知
-let keyTap = PassthroughSubject<Void,Never>()
+let keyTap = PassthroughSubject<Void, Never>()
+var h = 0.0
+let fullWidth = WKInterfaceDevice.current().screenBounds.size.width
+let finalWidth = CurrentValueSubject<Double, Never>(999.0)
 
 //用来表明输入的字符
-struct charater:Identifiable,Equatable {
-    var value:String
+struct Charater: Identifiable, Equatable {
+    var value: String
     var id = UUID()
 }
 
@@ -28,29 +31,33 @@ struct ExtKeyboardView: View {
     let numThirdRow = [".", ",", "?", "!", "'"]
     let symbolFirstRow = ["[", "]", "{", "}", "#", "%", "^", "*", "+", "="]
     let symbolSecondRow = ["_", "\\", "|", "~", "<", ">", "·"]
+    @Environment(\.dismiss) var dismiss
     @State var lastTimeTap = Date.distantPast
-    @State var fullText = [charater]()
+    @State var fullText = [Charater]()
     @State var isShowingNumber = false
     @State var isShowingSymbol = false
+    @State var upper = false // 是否大写
+    @State var cursor = -1 // 光标的位置
+    var onFinished: (String) -> Void = { _ in }
     var body: some View {
-        VStack(spacing:0) {
+        VStack(spacing: 0) {
             TextDisplayView(fullText: $fullText, cursor: $cursor)
             if !isShowingNumber {
-                EachRowView(allCharater: firstRow,dect: true,onTap: add)
+                EachRowView(allCharater: firstRow, dect: true, onTap: add)
             } else {
                 if isShowingSymbol {
-                    EachRowView(allCharater: symbolFirstRow,dect: true,onTap: add)
+                    EachRowView(allCharater: symbolFirstRow, dect: true, onTap: add)
                 } else {
-                    EachRowView(allCharater: numFirstRow,dect: true,onTap: add)
+                    EachRowView(allCharater: numFirstRow, dect: true, onTap: add)
                 }
             }
             if !isShowingNumber {
-                EachRowView(allCharater: secondRow,onTap: add)
+                EachRowView(allCharater: secondRow, onTap: add)
             } else {
                 if isShowingSymbol {
-                    EachRowView(allCharater: symbolSecondRow,onTap: add, widthFix: 7)
+                    EachRowView(allCharater: symbolSecondRow, onTap: add, widthFix: 7)
                 } else {
-                    EachRowView(allCharater: numSecondRow,onTap: add)
+                    EachRowView(allCharater: numSecondRow, onTap: add)
                 }
             }
             HStack {
@@ -105,9 +112,9 @@ struct ExtKeyboardView: View {
                     .buttonStyle(.plain)
                 }
                 if !isShowingNumber {
-                    EachRowView(allCharater: thirdRow,onTap: add)
+                    EachRowView(allCharater: thirdRow, onTap: add)
                 } else {
-                    EachRowView(allCharater: numThirdRow,onTap: add, widthFix: 8)
+                    EachRowView(allCharater: numThirdRow, onTap: add, widthFix: 8)
                 }
                 Button(action: {
                     if isShowingNumber {
@@ -127,7 +134,7 @@ struct ExtKeyboardView: View {
                                     .padding(.vertical, 2)
                                     .border(Color.white, width: 1, cornerRadius: 3)
                             } else {
-                                Image(systemName:"abc")
+                                Image(systemName: "abc")
                                     .font(.system(size: 9))
                                     .padding(2)
                                     .padding(.vertical, 2)
@@ -146,7 +153,7 @@ struct ExtKeyboardView: View {
             ToolbarItem(placement: .confirmationAction, content: {
                 Button(action: {
                     dismiss()
-                    onFinished(Combine())
+                    onFinished(combine())
                 }, label: {
                     if #available(watchOS 10.0, *) {
                         Image(systemName: "checkmark")
@@ -156,19 +163,19 @@ struct ExtKeyboardView: View {
                 })
             })
         }
-        .edgesIgnoringSafeArea([.horizontal,.bottom])
-        //允许从已有内容继续编辑
-        .onAppear(perform: {
+        .edgesIgnoringSafeArea([.horizontal, .bottom])
+        // 允许从已有内容继续编辑
+        .onAppear {
             startText.forEach { e in
                 fullText.append(.init(value: String(e)))
             }
-        })
-        .onChange(of: fullText, perform: { value in
-            //自动滚动（当用户把光标滑到屏幕外后，继续编辑时跳转回光标位置）
+        }
+        .onChange(of: fullText, perform: { _ in
+            // 自动滚动（当用户把光标滑到屏幕外后，继续编辑时跳转回光标位置）
         })
     }
-    //有按钮点击
-    func add(_ t:String) {
+    // 有按钮点击
+    func add(t: String) {
         keyTap.send()
         var t = t
         if upper {
@@ -188,26 +195,22 @@ struct ExtKeyboardView: View {
             cursor += 1
         }
     }
-    func Combine() -> String {
+    func combine() -> String {
         var back = ""
         fullText.forEach { e in
             back += e.value
         }
         return back
     }
-    @State var upper = false//是否大写
-    @State var cursor = -1//光标的位置
-    @Environment(\.dismiss) var dismiss
-    var onFinished:(String) -> () = { _ in }
 }
 
 struct TextDisplayView: View {
-    @Binding var fullText : [charater]
-    @Binding var cursor:Int
+    @Binding var fullText: [Charater]
+    @Binding var cursor: Int
     @Namespace private var MYcursor
     @GestureState var isDetectingLongPress = false
     @State var completedLongPress = false
-    @State var TriggerTime = Date.now
+    @State var triggerTime = Date.now
     @State var isGestureTriggered = false
     @State var crownRatation = 0.0
     let timer = Timer.publish(every: 0.1, on: .main, in: .default).autoconnect()
@@ -243,21 +246,21 @@ struct TextDisplayView: View {
                         }
                         Color.black
                             .opacity(0.001)
-                            .frame(width: fullWidth/2)
+                            .frame(width: fullWidth / 2)
                             .onTapGesture {
                                 cursor = -1
                             }
                         
                     })
                 })
-                .onChange(of: fullText, perform: { f in
+                .onChange(of: fullText, perform: { _ in
                     withAnimation(.easeOut) {
                         p.scrollTo("光标", anchor: .trailing)
                     }
                 })
             })
             Button(action: {
-                DeleteOneCha()
+                deleteOneCharacter()
             }, label: {
                 Image(systemName: "delete.left.fill")
             })
@@ -271,20 +274,20 @@ struct TextDisplayView: View {
             .onChange(of: isDetectingLongPress, perform: { i in
                 isGestureTriggered = i
                 if i {
-                    TriggerTime = .now
+                    triggerTime = .now
                 }
             })
-            .onReceive(timer, perform: { i in
+            .onReceive(timer, perform: { _ in
                 if isGestureTriggered {
-                    if TriggerTime.distance(to: .now) > 0.3 {
-                        DeleteOneCha()
+                    if triggerTime.distance(to: .now) > 0.3 {
+                        deleteOneCharacter()
                     }
                 }
             })
         }
         .focusable()
         .digitalCrownRotation($crownRatation, from: 0, through: Double(fullText.count), by: 1, sensitivity: .low)
-        .onChange(of: crownRatation, perform: { value in
+        .onChange(of: crownRatation, perform: { _ in
             if Int(crownRatation) <= fullText.count - 1 {
                 cursor = Int(crownRatation)
             } else {
@@ -292,11 +295,11 @@ struct TextDisplayView: View {
             }
         })
     }
-    fileprivate func DeleteOneCha() {
+    func deleteOneCharacter() {
         if cursor == -1 {
             fullText = fullText.dropLast()
         } else {
-            let index = cursor-1
+            let index = cursor - 1
             if index >= fullText.startIndex && index <= fullText.endIndex {
                 fullText.remove(at: index)
                 cursor -= 1
@@ -309,13 +312,13 @@ struct TextDisplayView: View {
 }
 var isCapsLock = false
 struct EachRowView: View {
-    var allCharater:[String]
+    var allCharater: [String]
     var dect = false
-    var onTap:(String) -> ()
+    var onTap: (String) -> Void
     var widthFix: CGFloat = 10
     @State var isKeyPressed = Array<Bool>(repeating: false, count: 20)
     var body: some View {
-        HStack(spacing:0) {
+        HStack(spacing: 0) {
             ForEach(0..<allCharater.count, id: \.self) { i in
                 Button(action: {
                     onTap(allCharater[i])
@@ -323,7 +326,7 @@ struct EachRowView: View {
                     Color.gray
                         .cornerRadius(3)
                         .opacity(isKeyPressed[i] ? 0.8 : 0.0100000002421438702673861521)
-                        .frame(width:fullWidth/widthFix)
+                        .frame(width: fullWidth / widthFix)
                         .overlay {
                             if isCapsLock {
                                 Text(allCharater[i].uppercased())
@@ -352,48 +355,48 @@ struct EachRowView: View {
 }
 
 struct BottomLine: View {
-    @Binding var cursor:Int
-    @Binding var fullText: [charater]
-    @Binding var upper:Bool
-    var onTap:(String) -> ()
+    @Binding var cursor: Int
+    @Binding var fullText: [Charater]
+    @Binding var upper: Bool
+    var onTap: (String) -> Void
     @GestureState var isDetectingLongPress = false
     @State var completedLongPress = false
     @State var lastTimeTap = Date.distantPast
+    @State var triggerTime = Date.now
+    @State var isGestureTriggered = false
     let timer = Timer.publish(every: 0.1, on: .main, in: .default).autoconnect()
-    fileprivate func DeleteOneCha() {
-        if cursor == -1 {
-            fullText = fullText.dropLast()
-        } else {
-            let index = cursor-1
-            if index >= fullText.startIndex && index <= fullText.endIndex {
-                fullText.remove(at: index)
-                cursor -= 1
-            } else {
-                //Drop Once
-            }
-            
-        }
-    }
-    
     var body: some View {
-        HStack(spacing:0) {
+        HStack(spacing: 0) {
             Button(action: {
                 onTap(" ")
             }, label: {
                 Text("Keyboard.space")
             })
             //支持长按
-        }      .buttonStyle(.plain)
-            .onReceive(timer, perform: { i in
-                if isGestureTriggered {
-                    if TriggerTime.distance(to: .now) > 0.3 {
-                        DeleteOneCha()
-                    }
+        }
+        .buttonStyle(.plain)
+        .onReceive(timer, perform: { _ in
+            if isGestureTriggered {
+                if triggerTime.distance(to: .now) > 0.3 {
+                    deleteOneCharacter()
                 }
-            })
+            }
+        })
     }
-    @State var TriggerTime = Date.now
-    @State var isGestureTriggered = false
+    
+    func deleteOneCharacter() {
+        if cursor == -1 {
+            fullText = fullText.dropLast()
+        } else {
+            let index = cursor - 1
+            if index >= fullText.startIndex && index <= fullText.endIndex {
+                fullText.remove(at: index)
+                cursor -= 1
+            } else {
+                //Drop Once
+            }
+        }
+    }
 }
 
 
@@ -401,9 +404,3 @@ private struct SizePreferenceKey: PreferenceKey {
     static var defaultValue: CGSize = .zero
     static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
 }
-var h = 0.0
-let fullWidth = WKInterfaceDevice.current().screenBounds.size.width
-
-import Combine
-
-let finalWidth = CurrentValueSubject<Double,Never>(999.0)

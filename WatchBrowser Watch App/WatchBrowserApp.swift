@@ -205,7 +205,7 @@ public func globalErrorHandler(_ error: Error, at: String = "Not Provided") {
     print(error)
     if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "IsDarockInternalTap-to-RadarAvailable") {
         pTapToRadarAlertContent = "Swift has catched an internal error.\nPlease help us make Darock Browser better by logging a bug. Thanks. (\(at))"
-        pTapToRadarAttachText = "Auto-attachd DarockBrowser(\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)). At \(at). LocdStr: \(error.localizedDescription). Add more infomation here: "
+        pTapToRadarAttachText = "Auto-attachd DarockBrowser(\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)). At \(at). LocdStr: \(error.localizedDescription) Add more infomation here: "
             .replacingOccurrences(of: "\n", with: "{LineBreak}")
             .replacingOccurrences(of: "/", with: "{slash}")
             .replacingOccurrences(of: "?", with: "{questionmark}")

@@ -79,17 +79,28 @@ struct WebArchiveListView: View {
             }
             .navigationTitle("网页归档")
             .sheet(isPresented: $isArchiveCustomNamePresented) {
-                VStack {
-                    Text("自定义名称")
-                        .font(.system(size: 20, weight: .bold))
-                    TextField("名称", text: $customNameInputCache)
-                    Button(action: {
-                        archiveCustomNameChart.updateValue(customNameInputCache, forKey: customingNameKey)
-                        isArchiveCustomNamePresented = false
-                        UserDefaults.standard.set(archiveCustomNameChart, forKey: "WebArchiveCustomNameChart")
-                    }, label: {
-                        Label("完成", systemImage: "checkmark")
-                    })
+                NavigationStack {
+                    List {
+                        HStack {
+                            Spacer()
+                            Text("自定义名称")
+                                .font(.system(size: 20, weight: .bold))
+                            Spacer()
+                        }
+                        .listRowBackground(Color.clear)
+                        TextField("名称", text: $customNameInputCache)
+                        Button(action: {
+                            archiveCustomNameChart.updateValue(customNameInputCache, forKey: customingNameKey)
+                            isArchiveCustomNamePresented = false
+                            UserDefaults.standard.set(archiveCustomNameChart, forKey: "WebArchiveCustomNameChart")
+                        }, label: {
+                            HStack {
+                                Spacer()
+                                Label("完成", systemImage: "checkmark")
+                                Spacer()
+                            }
+                        })
+                    }
                 }
             }
             .onAppear {

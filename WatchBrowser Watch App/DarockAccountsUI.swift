@@ -103,9 +103,9 @@ struct DarockAccountLogin: View {
                 Section {
                     Button(action: {
                         isRegistering = true
-                        DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/reg/\(mailInput)/\(passwordInput)") { respStr, isSuccess in
+                        DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/reg/\(mailInput)/\(passwordInput)") { _, isSuccess in
                             if isSuccess {
-                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/set/\(mailInput)/\(usernameInput)") { respStr, isSuccess in
+                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/set/\(mailInput)/\(usernameInput)") { _, isSuccess in
                                     if isSuccess {
                                         isRegistering = false
                                         dismiss()
@@ -350,7 +350,7 @@ struct DarockAccountManagementMain: View {
                     ToolbarItem(placement: .confirmationAction) {
                         Button(action: {
                             isApplying = true
-                            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/set/\(darockAccount)/\(nameInput)") { respStr, isSuccess in
+                            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/set/\(darockAccount)/\(nameInput)") { _, isSuccess in
                                 if isSuccess {
                                     username = nameInput
                                     dismiss()
@@ -397,7 +397,7 @@ struct DarockAccountManagementMain: View {
                 Section {
                     Button(action: {
                         if !userPasscodeEncrypted.isEmpty {
-                            if !CheckSecurityDelay() {
+                            if !checkSecurityDelay() {
                                 isChangePasswordDelayPresented = true
                                 return
                             }
@@ -425,7 +425,7 @@ struct DarockAccountManagementMain: View {
                 Section {
                     Button(role: .destructive, action: {
                         if !userPasscodeEncrypted.isEmpty {
-                            if !CheckSecurityDelay() {
+                            if !checkSecurityDelay() {
                                 isDeleteAccountDelayPresented = true
                                 return
                             }
@@ -651,7 +651,7 @@ struct DarockAccountManagementMain: View {
     }
     
     struct DeviceInfoView: View {
-        var deviceName: String? = nil
+        var deviceName: String?
         var body: some View {
             List {
                 Section {

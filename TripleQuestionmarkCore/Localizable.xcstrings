@@ -4,6 +4,26 @@
     "???" : {
       "shouldTranslate" : false
     },
+    "主屏幕背景" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home Screen Background"
+          }
+        }
+      }
+    },
+    "图片" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Image"
+          }
+        }
+      }
+    },
     "当前：" : {
       "localizations" : {
         "en" : {
@@ -14,12 +34,52 @@
         }
       }
     },
-    "更改主题色" : {
+    "新颜色" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Change Accent Color"
+            "value" : "New Color"
+          }
+        }
+      }
+    },
+    "更改为..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change to…"
+          }
+        }
+      }
+    },
+    "更改主屏幕背景" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change Home Screen Background"
+          }
+        }
+      }
+    },
+    "更改默认背景" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change Default Background"
+          }
+        }
+      }
+    },
+    "模糊背景图" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blur Background Image"
           }
         }
       }
@@ -46,12 +106,12 @@
         }
       }
     },
-    "还原为默认值..." : {
+    "选择图片..." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Restore to Default"
+            "value" : "Choose Image…"
           }
         }
       }

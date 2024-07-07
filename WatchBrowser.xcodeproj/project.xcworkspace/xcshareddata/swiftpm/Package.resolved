@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Serene-Garden/Cepheus",
       "state" : {
-        "revision" : "38adeadadc1b52a61db4078a80aac98af3311890",
-        "version" : "2.0.2"
+        "revision" : "89b0b7d0cfa642bd68f26601a43ae3e38d4771f6",
+        "version" : "2.1.2"
       }
     },
     {
@@ -34,7 +34,7 @@
       "location" : "https://github.com/Darock-Studio/DarockKit",
       "state" : {
         "branch" : "main",
-        "revision" : "41a80cde6aca2756133a25b7fc3e8c11d8f27a3e"
+        "revision" : "4afcdeba8f3c6ca4dbd7ba2886924bdcbadec262"
       }
     },
     {
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Serene-Garden/Vela",
       "state" : {
-        "revision" : "5daaae5f8d31a3e851bfbcb5a4ed906b44c90ddb",
-        "version" : "2.1.6"
+        "revision" : "38ff8e470da52f0fd8ccc6ef2f6b1abcaa34e618",
+        "version" : "2.1.7"
       }
     },
     {

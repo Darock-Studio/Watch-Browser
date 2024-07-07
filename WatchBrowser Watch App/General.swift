@@ -15,19 +15,22 @@ struct TextField: View {
     var titleKey: LocalizedStringResource?
     var titleKeyString: String?
     var text: Binding<String>
+    var style: String
     var _onSubmit: () -> Void
     @AppStorage("ModifyKeyboard") private var _modifyKeyboard = false
     @State private var _isOldModifyKeyboardPresented = false
     
-    init(_ titleKey: LocalizedStringResource, text: Binding<String>, onSubmit: @escaping () -> Void = {}) {
+    init(_ titleKey: LocalizedStringResource, text: Binding<String>, style: String = "field", onSubmit: @escaping () -> Void = {}) {
         self.titleKey = titleKey
         self.text = text
+        self.style = style
         self._onSubmit = onSubmit
     }
     @_disfavoredOverload
-    init(_ titleKey: String, text: Binding<String>, onSubmit: @escaping () -> Void = {}) {
+    init(_ titleKey: String, text: Binding<String>, style: String = "field", onSubmit: @escaping () -> Void = {}) {
         self.titleKeyString = titleKey
         self.text = text
+        self.style = style
         self._onSubmit = onSubmit
     }
     
@@ -35,9 +38,9 @@ struct TextField: View {
         if _modifyKeyboard {
             if #available(watchOS 10, *) {
                 if let titleKey {
-                    CepheusKeyboard(input: text, prompt: titleKey, onSubmit: _onSubmit)
+                    CepheusKeyboard(input: text, prompt: titleKey, style: style, onSubmit: _onSubmit)
                 } else if let titleKeyString {
-                    CepheusKeyboard(input: text, prompt: LocalizedStringResource(stringLiteral: titleKeyString), onSubmit: _onSubmit)
+                    CepheusKeyboard(input: text, prompt: LocalizedStringResource(stringLiteral: titleKeyString), style: style, onSubmit: _onSubmit)
                 }
             } else {
                 Button(action: {

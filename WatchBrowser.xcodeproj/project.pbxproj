@@ -69,6 +69,8 @@
 		8CB803D02BD3DCE4009B2FAC /* WebExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB803CF2BD3DCE4009B2FAC /* WebExtension.m */; };
 		8CB803D42BD3E6D1009B2FAC /* AdvancedWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB803D32BD3E6D1009B2FAC /* AdvancedWebView.swift */; };
 		8CCF13F22C20A4FF00F5E0D7 /* DarockAccountsUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCF13F12C20A4FF00F5E0D7 /* DarockAccountsUI.swift */; };
+		8CDE9B922C3AACDA0083B09E /* ___MesugakiAmane.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8CDE9B912C3AACDA0083B09E /* ___MesugakiAmane.drkdatau */; };
+		8CDE9B942C3AE1610083B09E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE9B932C3AE15D0083B09E /* Extensions.swift */; };
 		8CF5DC4F2BAE04D5007F9974 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF5DC4E2BAE04D5007F9974 /* ShareView.swift */; };
 		E25EA8382B70ABEF00BFEC6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E25EA83A2B70ABEF00BFEC6E /* InfoPlist.strings */; };
 		E296FE022A459C5D00331BD4 /* BulletinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E296FE012A459C5D00331BD4 /* BulletinView.swift */; };
@@ -149,7 +151,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6B0253D92A4F02A500567986 /* PrivateBrowsingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateBrowsingView.swift; sourceTree = "<group>"; };
 		6B6DA6B62A0149EF00BBE6CA /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		6B7CA9042ABE7C05006FDCDA /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		6BA7F79F2A2F6FC600FFEED0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -204,6 +205,9 @@
 		8CB803DE2BD44879009B2FAC /* WatchBrowser Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WatchBrowser Watch App.entitlements"; sourceTree = "<group>"; };
 		8CCF13F12C20A4FF00F5E0D7 /* DarockAccountsUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarockAccountsUI.swift; sourceTree = "<group>"; };
 		8CCF13F32C20B31700F5E0D7 /* HYWenHei.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HYWenHei.ttf; sourceTree = "<group>"; };
+		8CDE9B8E2C3959DE0083B09E /* .swiftlint.yml */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; tabWidth = 2; };
+		8CDE9B912C3AACDA0083B09E /* ___MesugakiAmane.drkdatau */ = {isa = PBXFileReference; lastKnownFileType = file; path = "___MesugakiAmane.drkdatau"; sourceTree = "<group>"; };
+		8CDE9B932C3AE15D0083B09E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8CF5DC4E2BAE04D5007F9974 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		E25EA8392B70ABEF00BFEC6E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E25EA83B2B70ABF000BFEC6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -277,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				8C5869C72C3165E400A18923 /* Intents.intentdefinition */,
+				8CDE9B8E2C3959DE0083B09E /* .swiftlint.yml */,
 				6BF209F22990E61C00E623FC /* WatchBrowser Watch App */,
 				8C5281172C22FA3C00392315 /* TripleQuestionmarkCore */,
 				8C5869D02C316A2100A18923 /* DarockBrowser Intents */,
@@ -312,7 +317,6 @@
 				6B7CA9042ABE7C05006FDCDA /* Localizable.xcstrings */,
 				6BF209F32990E61C00E623FC /* WatchBrowserApp.swift */,
 				6BF209F52990E61C00E623FC /* ContentView.swift */,
-				6B0253D92A4F02A500567986 /* PrivateBrowsingView.swift */,
 				8C894B212BE7569300768B59 /* ExtKeyboardView.swift */,
 				6BF20A09299100AE00E623FC /* BookmarkView.swift */,
 				E296FE012A459C5D00331BD4 /* BulletinView.swift */,
@@ -360,11 +364,13 @@
 		8C5281172C22FA3C00392315 /* TripleQuestionmarkCore */ = {
 			isa = PBXGroup;
 			children = (
+				8CDE9B912C3AACDA0083B09E /* ___MesugakiAmane.drkdatau */,
 				8CB349F82C32E05300CB6AC3 /* ___YoutouMurasameChan.drkdatau */,
 				8CB349F62C32E05300CB6AC3 /* ___0721NeneChan.drkdatau */,
 				8CB349F72C32E05300CB6AC3 /* ___KawaiiChieriChan.drkdatau */,
 				8C5281242C22FA5600392315 /* TripleQuestionmarkCore.h */,
 				8C03B70D2C29B2CE000770B4 /* Localizable.xcstrings */,
+				8CDE9B932C3AE15D0083B09E /* Extensions.swift */,
 				8C52812A2C25A07A00392315 /* TQCViews.swift */,
 			);
 			path = TripleQuestionmarkCore;
@@ -452,6 +458,7 @@
 			buildConfigurationList = 6BF209FE2990E61E00E623FC /* Build configuration list for PBXNativeTarget "WatchBrowser Watch App" */;
 			buildPhases = (
 				6BF209EA2990E61C00E623FC /* Sources */,
+				8CDE9B8D2C3959330083B09E /* Run SwiftLint */,
 				6BF209EB2990E61C00E623FC /* Frameworks */,
 				6BF209EC2990E61C00E623FC /* Resources */,
 				6BFD15A52A305A4800CB9A1D /* Embed Foundation Extensions */,
@@ -667,6 +674,7 @@
 				8CB349F92C32E05300CB6AC3 /* ___KawaiiChieriChan.drkdatau in Resources */,
 				8CB349FA2C32E05300CB6AC3 /* ___YoutouMurasameChan.drkdatau in Resources */,
 				8CB349FB2C32E05300CB6AC3 /* ___0721NeneChan.drkdatau in Resources */,
+				8CDE9B922C3AACDA0083B09E /* ___MesugakiAmane.drkdatau in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,6 +700,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8CDE9B8D2C3959330083B09E /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  echo \"warning: To edit codes for Darock Browser project, you need SwiftLint to keep our coding style\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6BF209EA2990E61C00E623FC /* Sources */ = {
@@ -735,6 +765,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C52812B2C25A07A00392315 /* TQCViews.swift in Sources */,
+				8CDE9B942C3AE1610083B09E /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -944,6 +975,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"WatchBrowser Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = B57D8PP775;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_ERRORS = YES;
 				IBSC_OTHER_FLAGS = "--target-device iphone";
@@ -957,7 +989,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.11.0;
+				MARKETING_VERSION = 4.12.0;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -984,6 +1016,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"WatchBrowser Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = B57D8PP775;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_OPTIMIZATION_LEVEL = z;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_ERRORS = YES;
@@ -998,7 +1031,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.11.0;
+				MARKETING_VERSION = 4.12.0;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -1023,7 +1056,7 @@
 				DEVELOPMENT_TEAM = B57D8PP775;
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
-				MARKETING_VERSION = 4.11.0;
+				MARKETING_VERSION = 4.12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -1041,7 +1074,7 @@
 				GCC_OPTIMIZATION_LEVEL = z;
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
-				MARKETING_VERSION = 4.11.0;
+				MARKETING_VERSION = 4.12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -1060,7 +1093,6 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B57D8PP775;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1106,7 +1138,6 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B57D8PP775;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1206,7 +1237,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 4.12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.Intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1237,7 +1268,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 4.12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.Intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;

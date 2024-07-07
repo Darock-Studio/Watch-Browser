@@ -49,6 +49,13 @@ struct TipsView: View {
                 Text("发现更多")
             }
             Section {
+                NavigationLink(destination: { PhotosView() }, label: {
+                    HStack {
+                        Image(systemName: "photo")
+                            .foregroundColor(.orange)
+                        Text("图片")
+                    }
+                })
                 NavigationLink(destination: { BooksView() }, label: {
                     HStack {
                         Image(systemName: "book")
@@ -94,7 +101,9 @@ struct TipsView: View {
                 }
                 .listRowBackground(Color.clear)
                 Section {
-                    NavigationLink(destination: { userPasscodeEncrypted.isEmpty ? SettingsView(isPasscodeViewPresented: true) : SettingsView(isEnterPasscodeViewInputPresented: true) }, label: {
+                    NavigationLink(destination: {
+                        userPasscodeEncrypted.isEmpty ? SettingsView(isPasscodeViewPresented: true) : SettingsView(isEnterPasscodeViewInputPresented: true)
+                    }, label: {
                         HStack {
                             Image(systemName: userPasscodeEncrypted.isEmpty ? "lock.open.fill" : "lock.fill")
                                 .font(.system(size: 30))
@@ -305,6 +314,52 @@ struct TipsView: View {
         }
     }
     
+    struct PhotosView: View {
+        @State var randomIndex = 0
+        var body: some View {
+            List {
+                Section {
+                    Text("轻触浏览菜单“查看网页图片”、在网页中寻找或直接在搜索框中输入图片链接")
+                }
+                Section {
+                    Button(action: {
+                        imageLinkLists = [
+                            Bundle.main.privateFrameworksURL!
+                                .appending(path: "TripleQuestionmarkCore.framework/\(tqcImageNameList[randomIndex])")
+                                .absoluteString
+                        ]
+                        pShouldPresentImageList = true
+                        dismissListsShouldRepresentWebView = false
+                    }, label: {
+                        Text("查看示例图片")
+                    })
+                } header: {
+                    Text("示例图片")
+                } footer: {
+                    Text("仅作示例。\n\(tqcCopyrightList[randomIndex])")
+                }
+            }
+            .navigationTitle("图片")
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                randomIndex = Int.random(in: 0..<tqcImageNameList.count)
+                debugPrint(randomIndex)
+            }
+        }
+        
+        let tqcImageNameList = [
+            "___MesugakiAmane.drkdatau",
+            "___YoutouMurasameChan.drkdatau",
+            "___0721NeneChan.drkdatau",
+            "___KawaiiChieriChan.drkdatau"
+        ]
+        let tqcCopyrightList = [
+            "© 2024 YUZUSOFT/JUNOS Inc. All Rights Reserved.",
+            "© 2024 YUZUSOFT/JUNOS Inc. All Rights Reserved.",
+            "© 2024 YUZUSOFT/JUNOS Inc. All Rights Reserved.",
+            "© 2024 きゃべつそふと All Rights Reserved."
+        ]
+    }
     struct BooksView: View {
         var body: some View {
             List {

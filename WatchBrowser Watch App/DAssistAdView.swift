@@ -18,7 +18,10 @@ struct DAssistAdView: View {
             Section {
                 Text("由 Darock 开发的暗礁助手让您能够在 iPhone 和 Apple Watch 上与 AI 对话并获取帮助")
                 Button(action: {
-                    let session = ASWebAuthenticationSession(url: URL(string: "https://apps.apple.com/cn/app/%E6%9A%97%E7%A4%81%E5%8A%A9%E6%89%8B/id6496372036")!, callbackURLScheme: nil) { _, _ in
+                    let session = ASWebAuthenticationSession(
+                        url: URL(string: "https://apps.apple.com/cn/app/%E6%9A%97%E7%A4%81%E5%8A%A9%E6%89%8B/id6496372036")!,
+                        callbackURLScheme: nil
+                    ) { _, _ in
                         return
                     }
                     session.prefersEphemeralWebBrowserSession = true
@@ -30,7 +33,8 @@ struct DAssistAdView: View {
                 NavigationLink(destination: {
                     VStack {
                         VStack {
-                            Image(decorative: EFQRCode.generate(for: "https://apps.apple.com/cn/app/%E6%9A%97%E7%A4%81%E5%8A%A9%E6%89%8B/id6496372036")!, scale: 1)
+                            Image(decorative: EFQRCode.generate(for: "https://apps.apple.com/cn/app/%E6%9A%97%E7%A4%81%E5%8A%A9%E6%89%8B/id6496372036")!,
+                                  scale: 1)
                                 .resizable()
                                 .frame(width: 100, height: 100)
                             Text("在 iPhone 上继续")
@@ -46,7 +50,8 @@ struct DAssistAdView: View {
                 NavigationLink(destination: {
                     VStack {
                         VStack {
-                            Image(decorative: EFQRCode.generate(for: "https://apps.apple.com/redeem?ctx=offercodes&id=6496372036&code=DRKBROWSERASSISTANT35")!, scale: 1)
+                            Image(decorative: EFQRCode.generate(for: "https://apps.apple.com/redeem?ctx=offercodes&id=6496372036&code=DRKBROWSERASSISTANT35")!,
+                                  scale: 1)
                                 .resizable()
                                 .frame(width: 100, height: 100)
                             Text("在 iPhone 上继续")
@@ -59,7 +64,8 @@ struct DAssistAdView: View {
                 NavigationLink(destination: {
                     VStack {
                         VStack {
-                            Image(decorative: EFQRCode.generate(for: "https://apps.apple.com/redeem?ctx=offercodes&id=6496372036&code=DRKBROWSERASSISTANT40")!, scale: 1)
+                            Image(decorative: EFQRCode.generate(for: "https://apps.apple.com/redeem?ctx=offercodes&id=6496372036&code=DRKBROWSERASSISTANT40")!,
+                                  scale: 1)
                                 .resizable()
                                 .frame(width: 100, height: 100)
                             Text("在 iPhone 上继续")

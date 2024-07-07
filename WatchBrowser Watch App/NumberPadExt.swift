@@ -68,7 +68,7 @@ struct DigitPadView: View {
     @Binding var text: String
     var body: some View {
         VStack(spacing: 2) {
-            HStack(spacing: 2){
+            HStack(spacing: 2) {
                 Button(action: {
                     text.append("1")
                 }) {
@@ -89,7 +89,7 @@ struct DigitPadView: View {
                 }
                 .buttonStyle(DigitPadStyle(scaleAnchor: .topTrailing))
             }
-            HStack(spacing: 2){
+            HStack(spacing: 2) {
                 Button(action: {
                     text.append("4")
                 }) {
@@ -140,13 +140,13 @@ struct DigitPadView: View {
                 .buttonStyle(DigitPadStyle(scaleAnchor: .bottom))
                 if !text.isEmpty {
                     Button(action: {
-                        if let last = text.indices.last{
+                        if let last = text.indices.last {
                             text.remove(at: last)
                         }
-                    }) {
+                    }, label: {
                         Image(systemName: "delete.left")
                             .foregroundColor(.red)
-                    }
+                    })
                     .buttonStyle(DigitPadStyle(scaleAnchor: .bottomTrailing, isUnpressNoBackground: true))
                 } else {
                     Spacer()
@@ -174,7 +174,8 @@ struct DigitPadStyle: ButtonStyle {
                         GeometryReader(content: { geometry in
                             RoundedRectangle(cornerRadius: 10, style: .continuous)
                                 .fill(Color.clear)
-                                .frame(width: configuration.isPressed ? geometry.size.width/0.75 : geometry.size.width, height: configuration.isPressed ? geometry.size.height/0.8 : geometry.size.height)
+                                .frame(width: configuration.isPressed ? geometry.size.width / 0.75 : geometry.size.width,
+                                       height: configuration.isPressed ? geometry.size.height / 0.8 : geometry.size.height)
                         })
                     }
                 )

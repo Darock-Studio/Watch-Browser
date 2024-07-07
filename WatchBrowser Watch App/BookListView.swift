@@ -100,7 +100,10 @@ struct BookViewerView: View {
                         return
                     }
                     bookDocument = document
-                    UserDefaults.standard.set([document.directory.lastPathComponent] + (UserDefaults.standard.stringArray(forKey: "EPUBFlieFolders") ?? [String]()), forKey: "EPUBFlieFolders")
+                    UserDefaults.standard.set(
+                        [document.directory.lastPathComponent] + (UserDefaults.standard.stringArray(forKey: "EPUBFlieFolders") ?? [String]()),
+                        forKey: "EPUBFlieFolders"
+                    )
                     if let title = document.title {
                         var nChart = (UserDefaults.standard.dictionary(forKey: "EPUBFileNameChart") as? [String: String]) ?? [String: String]()
                         nChart.updateValue(title, forKey: document.directory.lastPathComponent)
@@ -156,7 +159,7 @@ struct BookViewerView: View {
                     NavigationLink(destination: {
                         if !(contents[i].subTable ?? [EPUBTableOfContents]()).isEmpty {
                             List {
-                                if let item = contents[i].item {
+                                if contents[i].item != nil {
                                     Section {
                                         NavigationLink(destination: { SingleContentPreviewView(content: contents[i], rootLink: rootLink) }, label: {
                                             Text(contents[i].label)
@@ -203,7 +206,9 @@ struct BookViewerView: View {
                 Section {
                     Button(action: {
                         pWebDelegateStartNavigationAutoViewport = true
-                        AdvancedWebViewController.shared.present(archiveUrl: rootLink.appending(path: content.item!), loadMimeType: "text/html", overrideOldWebView: true)
+                        AdvancedWebViewController.shared.present(archiveUrl: rootLink.appending(path: content.item!),
+                                                                 loadMimeType: "text/html",
+                                                                 overrideOldWebView: true)
                     }, label: {
                         Text("开始阅读")
                     })

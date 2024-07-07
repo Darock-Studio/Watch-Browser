@@ -87,7 +87,8 @@ struct ImageViewerView: View {
             }
         }
         .onAppear {
-            if ((UserDefaults.standard.object(forKey: "CCIsContinuityMediaEnabled") as? Bool) ?? true) && (url.hasPrefix("http://") || url.hasPrefix("https://")) {
+            if ((UserDefaults.standard.object(forKey: "CCIsContinuityMediaEnabled") as? Bool) ?? true)
+                && (url.hasPrefix("http://") || url.hasPrefix("https://")) {
                 globalMediaUserActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
                 globalMediaUserActivity?.isEligibleForHandoff = true
                 globalMediaUserActivity?.webpageURL = URL(string: url)!

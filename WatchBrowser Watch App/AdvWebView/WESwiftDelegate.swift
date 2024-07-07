@@ -44,7 +44,7 @@ public class WESwiftDelegate: NSObject {
         if let url = Dynamic(webViewObject).URL.asObject {
             let curl = (url as! NSURL).absoluteString!
             if _fastPath(isHistoryRecording) {
-                RecordHistory(curl, webSearch: webSearch, showName: Dynamic(webViewObject).title.asString)
+                recordHistory(curl, webSearch: webSearch, showName: Dynamic(webViewObject).title.asString)
             }
             if _slowPath(curl.hasSuffix(".mp4")) {
                 videoLinkLists = [curl]
@@ -93,14 +93,14 @@ public class WESwiftDelegate: NSObject {
             for userScriptName in userScriptNames {
                 do {
                     let jsStr = String(
-                        data: try Data(
+                        decoding: try Data(
                             contentsOf: URL(
                                 fileURLWithPath: NSHomeDirectory()
                                 + "/Documents/UserScripts/\(userScriptName.replacingOccurrences(of: "/", with: "{slash}")).js"
                             )
                         ),
-                        encoding: .utf8
-                    ) ?? ""
+                        as: UTF8.self
+                    )
                     Dynamic(webViewObject).evaluateJavaScript(jsStr, completionHandler: nil)
                 } catch {
                     globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")

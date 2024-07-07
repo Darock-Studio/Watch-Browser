@@ -27,113 +27,115 @@ struct SettingsView: View {
     @State var isDarockAccountLoginPresented = false
     @State var accountUsername = ""
     var body: some View {
-        ZStack {
-            NavigationLink("", isActive: $isPasscodeViewPresented, destination: { PasswordSettingsView() })
-                .frame(width: 0, height: 0)
-                .hidden()
-            List {
-                Section {
-                    if darockAccount.isEmpty {
-                        Button(action: {
-                            isDarockAccountLoginPresented = true
-                        }, label: {
-                            HStack {
-                                ZStack {
-                                    Image(systemName: "circle.dotted")
-                                        .font(.system(size: 40, weight: .bold))
-                                        .foregroundColor(.init(hex: 0x144683))
-                                    Image(systemName: "circle.dotted")
-                                        .font(.system(size: 30, weight: .light))
-                                        .rotationEffect(.degrees(8))
-                                        .foregroundColor(.init(hex: 0x144683))
-                                    Text("D")
-                                        .font(.custom("HYWenHei-85W", size: 14))
-                                        .foregroundColor(.init(hex: 0x0c79ff))
-                                        .scaleEffect(1.2)
-                                }
-                                VStack(alignment: .leading) {
-                                    Text("Darock 账户")
-                                        .font(.system(size: 15, weight: .semibold))
-                                    Text("登录以为今后账户相关功能做好准备。")
-                                        .font(.system(size: 12))
-                                        .foregroundColor(.gray)
-                                }
-                            }
-                        })
-                        .sheet(isPresented: $isDarockAccountLoginPresented, onDismiss: {
-                            if !darockAccount.isEmpty {
-                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)") { respStr, isSuccess in
-                                    if isSuccess {
-                                        accountUsername = respStr.apiFixed()
-                                    }
-                                }
-                            }
-                        }, content: { DarockAccountLogin() })
-                    } else {
-                        NavigationLink(destination: { DarockAccountManagementMain(username: accountUsername) }, label: {
-                            HStack {
-                                Image(systemName: "person.crop.circle")
-                                    .font(.system(size: 32))
-                                    .foregroundColor(.blue)
-                                VStack(alignment: .leading) {
-                                    Group {
-                                        if !accountUsername.isEmpty {
-                                            Text(accountUsername)
-                                                .lineLimit(1)
-                                                .minimumScaleFactor(accountUsername.count <= 20 ? 0.1 : 0.5)
-                                        } else {
-                                            Text(verbatim: "loading")
-                                                .redacted(reason: .placeholder)
-                                        }
-                                    }
-                                    .font(.system(size: 16, weight: .semibold))
-                                    Text("Darock 账户以及更多")
-                                        .font(.system(size: 12))
-                                        .foregroundColor(.gray)
-                                }
-                            }
-                        })
-                    }
-                }
-                Section {
-                    NavigationLink(destination: { NetworkSettingsView() }, label: { SettingItemLabel(title: "网络", image: "network", color: .blue) })
-                }
-                Section {
-                    NavigationLink(destination: { GeneralSettingsView() }, label: { SettingItemLabel(title: "通用", image: "gear", color: .gray) })
-                    NavigationLink(destination: { AccessibilitySettingsView() }, label: { SettingItemLabel(title: "辅助功能", image: "accessibility", color: .blue, symbolFontSize: 18) })
-                    NavigationLink(destination: { BrowsingEngineSettingsView() }, label: { SettingItemLabel(title: "浏览引擎", image: "globe", color: .blue) })
-                    NavigationLink(destination: { SearchSettingsView() }, label: { SettingItemLabel(title: "搜索", image: "magnifyingglass", color: .gray) })
-                }
-                Section {
+        List {
+            Section {
+                if darockAccount.isEmpty {
                     Button(action: {
-                        if userPasscodeEncrypted.isEmpty {
-                            isPasscodeViewPresented = true
-                        } else {
-                            isEnterPasscodeViewInputPresented = true
-                        }
+                        isDarockAccountLoginPresented = true
                     }, label: {
-                        SettingItemLabel(title: "密码", image: "lock.fill", color: .red)
+                        HStack {
+                            ZStack {
+                                Image(systemName: "circle.dotted")
+                                    .font(.system(size: 40, weight: .bold))
+                                    .foregroundColor(.init(hex: 0x144683))
+                                Image(systemName: "circle.dotted")
+                                    .font(.system(size: 30, weight: .light))
+                                    .rotationEffect(.degrees(8))
+                                    .foregroundColor(.init(hex: 0x144683))
+                                Text("D")
+                                    .font(.custom("HYWenHei-85W", size: 14))
+                                    .foregroundColor(.init(hex: 0x0c79ff))
+                                    .scaleEffect(1.2)
+                            }
+                            VStack(alignment: .leading) {
+                                Text("Darock 账户")
+                                    .font(.system(size: 15, weight: .semibold))
+                                Text("登录以为今后账户相关功能做好准备。")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.gray)
+                            }
+                        }
                     })
-                    NavigationLink(destination: { PrivacySettingsView() }, label: { SettingItemLabel(title: "隐私与安全性", image: "hand.raised.fill", color: .blue) })
+                    .sheet(isPresented: $isDarockAccountLoginPresented, onDismiss: {
+                        if !darockAccount.isEmpty {
+                            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)") { respStr, isSuccess in
+                                if isSuccess {
+                                    accountUsername = respStr.apiFixed()
+                                }
+                            }
+                        }
+                    }, content: { DarockAccountLogin() })
+                } else {
+                    NavigationLink(destination: { DarockAccountManagementMain(username: accountUsername) }, label: {
+                        HStack {
+                            Image(systemName: "person.crop.circle")
+                                .font(.system(size: 32))
+                                .foregroundColor(.blue)
+                            VStack(alignment: .leading) {
+                                Group {
+                                    if !accountUsername.isEmpty {
+                                        Text(accountUsername)
+                                            .lineLimit(1)
+                                            .minimumScaleFactor(accountUsername.count <= 20 ? 0.1 : 0.5)
+                                    } else {
+                                        Text(verbatim: "loading")
+                                            .redacted(reason: .placeholder)
+                                    }
+                                }
+                                .font(.system(size: 16, weight: .semibold))
+                                Text("Darock 账户以及更多")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.gray)
+                            }
+                        }
+                    })
                 }
-                Section {
-                    if isDeveloperModeEnabled {
-                        NavigationLink(destination: { DeveloperSettingsView() }, label: {
-                            SettingItemLabel(title: "开发者", image: "hammer.fill", color: .blue, symbolFontSize: 10)
-                        })
+            }
+            Section {
+                NavigationLink(destination: { NetworkSettingsView() }, label: { SettingItemLabel(title: "网络", image: "network", color: .blue) })
+            }
+            Section {
+                NavigationLink(destination: { GeneralSettingsView() },
+                               label: { SettingItemLabel(title: "通用", image: "gear", color: .gray) })
+                NavigationLink(destination: { AccessibilitySettingsView() },
+                               label: { SettingItemLabel(title: "辅助功能", image: "accessibility", color: .blue, symbolFontSize: 18) })
+                NavigationLink(destination: { BrowsingEngineSettingsView() },
+                               label: { SettingItemLabel(title: "浏览引擎", image: "globe", color: .blue) })
+                NavigationLink(destination: { HomeScreenSettingsView() },
+                               label: { SettingItemLabel(title: "主屏幕", image: "list.bullet.rectangle.portrait", color: .blue) })
+                NavigationLink(destination: { SearchSettingsView() },
+                               label: { SettingItemLabel(title: "搜索", image: "magnifyingglass", color: .gray) })
+            }
+            Section {
+                Button(action: {
+                    if userPasscodeEncrypted.isEmpty {
+                        isPasscodeViewPresented = true
+                    } else {
+                        isEnterPasscodeViewInputPresented = true
                     }
-                    NavigationLink(destination: { LaboratoryView() }, label: {
-                        SettingItemLabel(title: "实验室", image: "flask.fill", color: .blue)
+                }, label: {
+                    SettingItemLabel(title: "密码", image: "lock.fill", color: .red)
+                })
+                NavigationLink(destination: { PrivacySettingsView() }, label: { SettingItemLabel(title: "隐私与安全性", image: "hand.raised.fill", color: .blue) })
+            }
+            Section {
+                if isDeveloperModeEnabled {
+                    NavigationLink(destination: { DeveloperSettingsView() }, label: {
+                        SettingItemLabel(title: "开发者", image: "hammer.fill", color: .blue, symbolFontSize: 10)
                     })
-                    if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "IsDarockInternalTap-to-RadarAvailable") {
-                        NavigationLink(destination: { InternalDebuggingView() }, label: {
-                            SettingItemLabel(title: "Debugging", image: "ant.fill", color: .purple)
-                        })
-                    }
+                }
+                NavigationLink(destination: { LaboratoryView() }, label: {
+                    SettingItemLabel(title: "实验室", image: "flask.fill", color: .blue)
+                })
+                if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "IsDarockInternalTap-to-RadarAvailable") {
+                    NavigationLink(destination: { InternalDebuggingView() }, label: {
+                        SettingItemLabel(title: "Debugging", image: "ant.fill", color: .purple)
+                    })
                 }
             }
         }
         .navigationTitle("设置")
+        .navigationDestination(isPresented: $isPasscodeViewPresented, destination: { PasswordSettingsView() })
         .sheet(isPresented: $isEnterPasscodeViewInputPresented) {
             PasswordInputView(text: $passcodeInputTmp, placeholder: "输入你的密码") { pwd in
                 if pwd.md5 == userPasscodeEncrypted {
@@ -216,20 +218,28 @@ struct SettingsView: View {
         var body: some View {
             List {
                 Section {
-                    NavigationLink(destination: { AboutView() }, label: { SettingItemLabel(title: "关于", image: "applewatch", color: .gray) })
-                    NavigationLink(destination: { SoftwareUpdateView() }, label: { SettingItemLabel(title: "软件更新", image: "gear.badge", color: .gray) })
-                    NavigationLink(destination: { StorageView() }, label: { SettingItemLabel(title: "储存空间", image: "externaldrive.fill", color: .gray) })
+                    NavigationLink(destination: { AboutView() },
+                                   label: { SettingItemLabel(title: "关于", image: "applewatch", color: .gray) })
+                    NavigationLink(destination: { SoftwareUpdateView() },
+                                   label: { SettingItemLabel(title: "软件更新", image: "gear.badge", color: .gray) })
+                    NavigationLink(destination: { StorageView() },
+                                   label: { SettingItemLabel(title: "储存空间", image: "externaldrive.fill", color: .gray) })
                 }
                 Section {
-                    NavigationLink(destination: { ContinuityView() }, label: { SettingItemLabel(title: "连续互通", image: "point.3.filled.connected.trianglepath.dotted", color: .blue) })
+                    NavigationLink(destination: { ContinuityView() },
+                                   label: { SettingItemLabel(title: "连续互通", image: "point.3.filled.connected.trianglepath.dotted", color: .blue) })
                 }
                 Section {
-                    NavigationLink(destination: { KeyboardView() }, label: { SettingItemLabel(title: "键盘", image: "keyboard.fill", color: .gray) })
-                    NavigationLink(destination: { ImageViewerView() }, label: { SettingItemLabel(title: "图像查看器", image: "photo.fill.on.rectangle.fill", color: .blue) })
+                    NavigationLink(destination: { KeyboardView() },
+                                   label: { SettingItemLabel(title: "键盘", image: "keyboard.fill", color: .gray) })
+                    NavigationLink(destination: { ImageViewerView() },
+                                   label: { SettingItemLabel(title: "图像查看器", image: "photo.fill.on.rectangle.fill", color: .blue) })
                 }
                 Section {
-                    NavigationLink(destination: { LegalView() }, label: { SettingItemLabel(title: "法律与监管", image: "text.justify.left", color: .gray) })
-                    NavigationLink(destination: { ContactView() }, label: { SettingItemLabel(title: "联系我们", image: "bubble.right", color: .green) })
+                    NavigationLink(destination: { LegalView() },
+                                   label: { SettingItemLabel(title: "法律与监管", image: "text.justify.left", color: .gray) })
+                    NavigationLink(destination: { ContactView() },
+                                   label: { SettingItemLabel(title: "联系我们", image: "bubble.right", color: .green) })
                 }
             }
             .navigationTitle("通用")
@@ -287,7 +297,10 @@ struct SettingsView: View {
                                 }
                                 Divider()
                                 Button(action: {
-                                    let session = ASWebAuthenticationSession(url: URL(string: "https://apps.apple.com/cn/app/darock-browser/id1670065481")!, callbackURLScheme: nil) { _, _ in
+                                    let session = ASWebAuthenticationSession(
+                                        url: URL(string: "https://apps.apple.com/cn/app/darock-browser/id1670065481")!,
+                                        callbackURLScheme: nil
+                                    ) { _, _ in
                                         return
                                     }
                                     session.prefersEphemeralWebBrowserSession = true
@@ -385,7 +398,14 @@ struct SettingsView: View {
                                         BarMark(x: .value("", tmpSize))
                                             .foregroundStyle(by: .value("", "Primary"))
                                     }
-                                    .chartForegroundStyleScale(["Gray": .gray, "Purple": .purple, "Orange": .orange, "Green": .green, "Primary": .primary, "Secondary": Color(hex: 0x333333)])
+                                    .chartForegroundStyleScale(
+                                        ["Gray": .gray,
+                                         "Purple": .purple,
+                                         "Orange": .orange,
+                                         "Green": .green,
+                                         "Primary": .primary,
+                                         "Secondary": Color(hex: 0x333333)]
+                                    )
                                     .chartXAxis(.hidden)
                                     .chartLegend(.hidden)
                                     .cornerRadius(2)
@@ -471,7 +491,9 @@ struct SettingsView: View {
                                         .swipeActions {
                                             Button(role: .destructive, action: {
                                                 do {
-                                                    try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoMetadatas[i]["Title"]!)
+                                                    try FileManager.default.removeItem(
+                                                        atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoMetadatas[i]["Title"]!
+                                                    )
                                                     videoMetadatas.remove(at: i)
                                                 } catch {
                                                     globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
@@ -510,7 +532,9 @@ struct SettingsView: View {
                                                         names.removeAll(where: { element in
                                                             return if element == bookMetadatas[i]["Folder"]! { true } else { false }
                                                         })
-                                                        try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/" + bookMetadatas[i]["Folder"]!)
+                                                        try FileManager.default.removeItem(
+                                                            atPath: NSHomeDirectory() + "/Documents/" + bookMetadatas[i]["Folder"]!
+                                                        )
                                                         bookMetadatas.remove(at: i)
                                                     } catch {
                                                         globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
@@ -621,12 +645,7 @@ struct SettingsView: View {
                                                         DispatchQueue(label: "com.darock.WatchBrowser.storage-clear-cache", qos: .userInitiated).async {
                                                             do {
                                                                 isClearingCache = true
-                                                                var filePaths = try FileManager.default.contentsOfDirectory(atPath: NSTemporaryDirectory())
-                                                                for filePath in filePaths {
-                                                                    let fullPath = (NSTemporaryDirectory() as NSString).appendingPathComponent(filePath)
-                                                                    try FileManager.default.removeItem(atPath: fullPath)
-                                                                }
-                                                                filePaths = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Library/Caches/")
+                                                                let filePaths = try FileManager.default.contentsOfDirectory(atPath: NSTemporaryDirectory())
                                                                 for filePath in filePaths {
                                                                     let fullPath = (NSTemporaryDirectory() as NSString).appendingPathComponent(filePath)
                                                                     try FileManager.default.removeItem(atPath: fullPath)
@@ -690,12 +709,14 @@ struct SettingsView: View {
                                 // Size counting
                                 mediaSize = folderSize(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos") ?? 0
                                 webArchiveSize = folderSize(atPath: NSHomeDirectory() + "/Documents/WebArchives") ?? 0
-                                tmpSize = (folderSize(atPath: NSTemporaryDirectory()) ?? 0) + (folderSize(atPath: NSHomeDirectory() + "/Library/Caches/") ?? 0)
+                                tmpSize = folderSize(atPath: NSTemporaryDirectory()) ?? 0
                                 bundleSize = folderSize(atPath: Bundle.main.bundlePath) ?? 0
                                 if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos") {
                                     // Video sizes
                                     let files = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos")
-                                    let videoHumanNameChart = (UserDefaults.standard.dictionary(forKey: "VideoHumanNameChart") as? [String: String]) ?? [String: String]()
+                                    let videoHumanNameChart = (
+                                        UserDefaults.standard.dictionary(forKey: "VideoHumanNameChart") as? [String: String]
+                                    ) ?? [String: String]()
                                     for file in files {
                                         var dicV = [String: String]()
                                         dicV.updateValue(NSHomeDirectory() + "/Documents/DownloadedVideos/\(file)", forKey: "Path")
@@ -1534,7 +1555,7 @@ struct SettingsView: View {
                     } header: {
                         Text("暗礁浏览器")
                     }
-                    if NSLocale.current.languageCode == "zh" {
+                    if NSLocale.current.language.languageCode!.identifier == "zh" {
                         Section {
                             Button(action: {
                                 let session = ASWebAuthenticationSession(
@@ -1622,7 +1643,7 @@ struct SettingsView: View {
             var body: some View {
                 List {
                     Section {
-                        if NSLocale.current.languageCode == "zh" {
+                        if NSLocale.current.language.languageCode!.identifier == "zh" {
                             NavigationLink(destination: {
                                 VStack {
                                     Image(decorative: EFQRCode.generate(for: "https://qm.qq.com/q/1q943WQLAo")!, scale: 1)
@@ -1655,7 +1676,7 @@ struct SettingsView: View {
                             })
                         }
                     } header: {
-                        if NSLocale.current.languageCode == "zh" {
+                        if NSLocale.current.language.languageCode!.identifier == "zh" {
                             Text("QQ")
                         } else {
                             Text("Telegram")
@@ -1761,6 +1782,367 @@ struct SettingsView: View {
             .navigationTitle("浏览引擎")
         }
     }
+    struct HomeScreenSettingsView: View {
+        var body: some View {
+            List {
+                Section {
+                    NavigationLink(destination: { ControlSettingsView() }, label: {
+                        Label("组件", systemImage: "rectangle.grid.1x2")
+                    })
+                    if #available(watchOS 10, *) {
+                        NavigationLink(destination: { ToolbarSettingsView() }, label: {
+                            Label("工具栏", systemImage: "circle.dashed")
+                        })
+                    }
+                }
+            }
+            .navigationTitle("主屏幕")
+        }
+        
+        struct ControlSettingsView: View {
+            @State var homeScreenSorts = [HomeScreenControlType]()
+            @State var isAddControlPresented = false
+            var body: some View {
+                List {
+                    Section {
+                        if !homeScreenSorts.isEmpty {
+                            ForEach(0..<homeScreenSorts.count, id: \.self) { i in
+                                switch homeScreenSorts[i] {
+                                case .searchField:
+                                    Label("搜索输入框", systemImage: "character.cursor.ibeam")
+                                case .searchButton:
+                                    Label("搜索按钮", systemImage: "magnifyingglass")
+                                case .spacer:
+                                    Label("间隔", systemImage: "square.dashed")
+                                        .swipeActions {
+                                            Button(role: .destructive, action: {
+                                                homeScreenSorts.remove(at: i)
+                                                savePreferences()
+                                            }, label: {
+                                                Image(systemName: "xmark.bin.fill")
+                                            })
+                                        }
+                                case .pinnedBookmarks:
+                                    Label("固定的书签", systemImage: "pin.fill")
+                                case .text(let text):
+                                    TextFieldLink(label: {
+                                        VStack(alignment: .leading) {
+                                            Text("自定义文本")
+                                                .font(.system(size: 13))
+                                                .foregroundStyle(Color.gray)
+                                            Text(text)
+                                            Text("轻触以编辑")
+                                                .font(.system(size: 12))
+                                                .foregroundStyle(Color.gray)
+                                        }
+                                    }, onSubmit: { str in
+                                        homeScreenSorts[i] = .text(str)
+                                        savePreferences()
+                                    })
+                                    .swipeActions {
+                                        Button(role: .destructive, action: {
+                                            homeScreenSorts.remove(at: i)
+                                            savePreferences()
+                                        }, label: {
+                                            Image(systemName: "xmark.bin.fill")
+                                        })
+                                    }
+                                case .navigationLink(let navigation):
+                                    VStack(alignment: .leading) {
+                                        Text("导航到")
+                                            .font(.system(size: 13))
+                                            .foregroundStyle(Color.gray)
+                                        switch navigation {
+                                        case .bookmark:
+                                            Label("Home.bookmarks", systemImage: "bookmark")
+                                        case .history:
+                                            Label("Home.history", systemImage: "clock")
+                                        case .webarchive:
+                                            Label("网页归档", systemImage: "archivebox")
+                                        case .userscript:
+                                            Label("用户脚本", systemImage: "applescript")
+                                        case .localBook:
+                                            Label("本地图书", systemImage: "book.pages")
+                                        case .localVideo:
+                                            Label("本地视频", systemImage: "tray.and.arrow.down")
+                                        case .chores:
+                                            Label("杂项", systemImage: "square.on.square")
+                                        case .feedbackAssistant:
+                                            Label("反馈助理", systemImage: "exclamationmark.bubble")
+                                        case .tips:
+                                            Label("提示", systemImage: "lightbulb")
+                                        case .settings:
+                                            Label("Home.settings", systemImage: "gear")
+                                        }
+                                    }
+                                }
+                            }
+                            .onMove { source, destination in
+                                homeScreenSorts.move(fromOffsets: source, toOffset: destination)
+                                savePreferences()
+                            }
+                        }
+                    } header: {
+                        Text("拖动以重新排序")
+                    } footer: {
+                        Text("功能不可用时，项目可能仍然不会在主屏幕的对应位置显示。")
+                    }
+                }
+                .navigationTitle("组件")
+                .sheet(isPresented: $isAddControlPresented) {
+                    AddControlView { newControl in
+                        homeScreenSorts.append(newControl)
+                        savePreferences()
+                    }
+                }
+                .toolbar {
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button(action: {
+                            isAddControlPresented = true
+                        }, label: {
+                            Image(systemName: "plus")
+                        })
+                    }
+                }
+                .onAppear {
+                    if let currentPref = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/HomeScreen.drkdatah", encoding: .utf8),
+                       let data = getJsonData([HomeScreenControlType].self, from: currentPref) {
+                        homeScreenSorts = data
+                    } else {
+                        homeScreenSorts = HomeScreenControlType.defaultScreen
+                    }
+                }
+            }
+            
+            func savePreferences() {
+                if let newPref = jsonString(from: homeScreenSorts) {
+                    do {
+                        try newPref.write(toFile: NSHomeDirectory() + "/Documents/HomeScreen.drkdatah", atomically: true, encoding: .utf8)
+                    } catch {
+                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                    }
+                }
+            }
+            
+            struct AddControlView: View {
+                var completion: (HomeScreenControlType) -> Void
+                @Environment(\.dismiss) var dismiss
+                var body: some View {
+                    NavigationStack {
+                        List {
+                            Section {
+                                Button(action: {
+                                    completion(.spacer)
+                                    dismiss()
+                                }, label: {
+                                    Label("间隔", systemImage: "square.dashed")
+                                })
+                                Button(action: {
+                                    completion(.text(""))
+                                    dismiss()
+                                }, label: {
+                                    Label("自定义文本", systemImage: "textformat")
+                                })
+                            }
+                        }
+                        .navigationTitle("添加控件")
+                    }
+                }
+            }
+        }
+        @available(watchOS 10.0, *)
+        struct ToolbarSettingsView: View {
+            @Environment(\.dismiss) var dismiss
+            @State var currentToolbar: HomeScreenToolbar?
+            @State var toolChanging = HomeScreenControlType.spacer
+            @State var toolChangingPosition = HomeScreenToolbarPosition.topLeading
+            @State var isChangeToolPresented = false
+            var body: some View {
+                List {
+                    Section {
+                        Button(action: {
+                            dismiss()
+                        }, label: {
+                            Label("返回", systemImage: "chevron.backward")
+                        })
+                    }
+                }
+                .navigationTitle("工具栏")
+                .navigationBarBackButtonHidden()
+                .sheet(isPresented: $isChangeToolPresented) {
+                    ChangeToolView(item: toolChanging) { newControl in
+                        switch toolChangingPosition {
+                        case .topLeading:
+                            currentToolbar?.topLeading = newControl
+                        case .topTrailing:
+                            currentToolbar?.topTrailing = newControl
+                        case .bottomLeading:
+                            currentToolbar?.bottomLeading = newControl
+                        case .bottomCenter:
+                            currentToolbar?.bottomCenter = newControl
+                        case .bottomTrailing:
+                            currentToolbar?.bottomTrailing = newControl
+                        }
+                        savePreferences()
+                    }
+                }
+                .toolbar {
+                    if let currentToolbar {
+                        getFullToolbar(by: currentToolbar, with: .preference) { type, position, _ in
+                            toolChanging = type
+                            toolChangingPosition = position
+                            isChangeToolPresented = true
+                        }
+                    }
+                }
+                .onAppear {
+                    if let currentPref = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/MainToolbar.drkdatam", encoding: .utf8),
+                       let data = getJsonData(HomeScreenToolbar.self, from: currentPref) {
+                        currentToolbar = data
+                    } else {
+                        currentToolbar = HomeScreenToolbar.default
+                    }
+                }
+            }
+            
+            func savePreferences() {
+                if let currentToolbar, let newPref = jsonString(from: currentToolbar) {
+                    do {
+                        try newPref.write(toFile: NSHomeDirectory() + "/Documents/MainToolbar.drkdatam", atomically: true, encoding: .utf8)
+                    } catch {
+                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                    }
+                }
+            }
+            
+            struct ChangeToolView: View {
+                var item: HomeScreenControlType
+                var completion: (HomeScreenControlType) -> Void
+                @Environment(\.dismiss) var dismiss
+                var body: some View {
+                    NavigationStack {
+                        List {
+                            Section {
+                                Button(action: {
+                                    completion(.spacer)
+                                    dismiss()
+                                }, label: {
+                                    Label("无", systemImage: "circle.dashed")
+                                })
+                                Button(action: {
+                                    completion(.searchButton)
+                                    dismiss()
+                                }, label: {
+                                    Label("搜索", systemImage: "magnifyingglass")
+                                })
+                                Button(action: {
+                                    completion(.navigationLink(.bookmark))
+                                    dismiss()
+                                }, label: {
+                                    VStack(alignment: .leading) {
+                                        Text("导航到")
+                                            .font(.system(size: 13))
+                                            .foregroundStyle(Color.gray)
+                                        Label("Home.bookmarks", systemImage: "bookmark")
+                                    }
+                                })
+                                Button(action: {
+                                    completion(.navigationLink(.history))
+                                    dismiss()
+                                }, label: {
+                                    VStack(alignment: .leading) {
+                                        Text("导航到")
+                                            .font(.system(size: 13))
+                                            .foregroundStyle(Color.gray)
+                                        Label("Home.history", systemImage: "clock")
+                                    }
+                                })
+                                Button(action: {
+                                    completion(.navigationLink(.webarchive))
+                                    dismiss()
+                                }, label: {
+                                    VStack(alignment: .leading) {
+                                        Text("导航到")
+                                            .font(.system(size: 13))
+                                            .foregroundStyle(Color.gray)
+                                        Label("网页归档", systemImage: "archivebox")
+                                    }
+                                })
+                                Button(action: {
+                                    completion(.navigationLink(.userscript))
+                                    dismiss()
+                                }, label: {
+                                    VStack(alignment: .leading) {
+                                        Text("导航到")
+                                            .font(.system(size: 13))
+                                            .foregroundStyle(Color.gray)
+                                        Label("用户脚本", systemImage: "applescript")
+                                    }
+                                })
+                                Button(action: {
+                                    completion(.navigationLink(.localBook))
+                                    dismiss()
+                                }, label: {
+                                    VStack(alignment: .leading) {
+                                        Text("导航到")
+                                            .font(.system(size: 13))
+                                            .foregroundStyle(Color.gray)
+                                        Label("本地图书", systemImage: "book.pages")
+                                    }
+                                })
+                                Button(action: {
+                                    completion(.navigationLink(.localVideo))
+                                    dismiss()
+                                }, label: {
+                                    VStack(alignment: .leading) {
+                                        Text("导航到")
+                                            .font(.system(size: 13))
+                                            .foregroundStyle(Color.gray)
+                                        Label("本地视频", systemImage: "tray.and.arrow.down")
+                                    }
+                                })
+                                Button(action: {
+                                    completion(.navigationLink(.feedbackAssistant))
+                                    dismiss()
+                                }, label: {
+                                    VStack(alignment: .leading) {
+                                        Text("导航到")
+                                            .font(.system(size: 13))
+                                            .foregroundStyle(Color.gray)
+                                        Label("反馈助理", systemImage: "exclamationmark.bubble")
+                                    }
+                                })
+                                Button(action: {
+                                    completion(.navigationLink(.tips))
+                                    dismiss()
+                                }, label: {
+                                    VStack(alignment: .leading) {
+                                        Text("导航到")
+                                            .font(.system(size: 13))
+                                            .foregroundStyle(Color.gray)
+                                        Label("提示", systemImage: "lightbulb")
+                                    }
+                                })
+                                Button(action: {
+                                    completion(.navigationLink(.settings))
+                                    dismiss()
+                                }, label: {
+                                    VStack(alignment: .leading) {
+                                        Text("导航到")
+                                            .font(.system(size: 13))
+                                            .foregroundStyle(Color.gray)
+                                        Label("Home.settings", systemImage: "gear")
+                                    }
+                                })
+                            }
+                        }
+                        .navigationTitle("更改工具")
+                        .navigationBarTitleDisplayMode(.inline)
+                    }
+                }
+            }
+        }
+    }
     struct SearchSettingsView: View {
         @AppStorage("WebSearch") var webSearch = "必应"
         @AppStorage("AllowCookies") var allowCookies = true
@@ -1848,7 +2230,7 @@ struct SettingsView: View {
                 }
                 .sheet(isPresented: $isAddCustomSEPresented, onDismiss: {
                     customSearchEngineList = UserDefaults.standard.stringArray(forKey: "CustomSearchEngineList") ?? [String]()
-                }, content: {AddCustomSearchEngineView(isAddCustomSEPresented: $isAddCustomSEPresented)})
+                }, content: { AddCustomSearchEngineView(isAddCustomSEPresented: $isAddCustomSEPresented) })
             }
             
             struct MainView: View {
@@ -1867,7 +2249,10 @@ struct SettingsView: View {
                         }
                         if customSearchEngineList.count != 0 {
                             ForEach(0..<customSearchEngineList.count, id: \.self) { i in
-                                Text(customSearchEngineList[i].replacingOccurrences(of: "%lld", with: String(localized: "Settings.search.customize.search-content")))
+                                Text(
+                                    customSearchEngineList[i]
+                                        .replacingOccurrences(of: "%lld", with: String(localized: "Settings.search.customize.search-content"))
+                                )
                                     .swipeActions {
                                         Button(role: .destructive, action: {
                                             customSearchEngineList.remove(at: i)
@@ -1905,7 +2290,7 @@ struct SettingsView: View {
                                 Text("Settings.search.customize.link.discription")
                             }
                             Section {
-                                NavigationLink(destination: {Step2(customUrlInput: customUrlInput, isAddCustomSEPresented: $isAddCustomSEPresented)}, label: {
+                                NavigationLink(destination: { Step2(customUrlInput: customUrlInput, isAddCustomSEPresented: $isAddCustomSEPresented) }, label: {
                                     Text("Settings.search.customize.next")
                                 })
                                 .disabled(customUrlInput.isEmpty)
@@ -2067,7 +2452,7 @@ struct SettingsView: View {
                 Section {
                     if !userPasscodeEncrypted.isEmpty {
                         Button(action: {
-                            if CheckSecurityDelay() {
+                            if checkSecurityDelay() {
                                 isClosePasswordPresented = true
                             } else {
                                 isClosePasscodeDelayPresented = true
@@ -2088,7 +2473,7 @@ struct SettingsView: View {
                             .toolbar(.hidden, for: .navigationBar)
                         }
                         Button(action: {
-                            if CheckSecurityDelay() {
+                            if checkSecurityDelay() {
                                 isChangePasswordPresented = true
                             } else {
                                 isChangePasscodeDelayPresented = true
@@ -2190,7 +2575,7 @@ struct SettingsView: View {
                             .onChange(of: isSecurityDelayEnabled) { value in
                                 if !value {
                                     isSecurityDelayEnabled = true
-                                    if !CheckSecurityDelay() {
+                                    if !checkSecurityDelay() {
                                         isTurnOffDelayPresented = true
                                     } else {
                                         isSecurityDelayEnabled = false
@@ -2205,7 +2590,7 @@ struct SettingsView: View {
                             Button(action: {
                                 if securityDelayRequirement != "byLocation" {
                                     if CLLocationManager.locationServicesEnabled() {
-                                        if !CheckSecurityDelay() {
+                                        if !checkSecurityDelay() {
                                             isChangeToByLocationPresented = true
                                         } else {
                                             securityDelayRequirement = "byLocation"
@@ -2258,7 +2643,7 @@ struct SettingsView: View {
                                 }
                                 if addLocationCheckTimer == nil {
                                     Button(action: {
-                                        if CheckSecurityDelay() {
+                                        if checkSecurityDelay() {
                                             LocationManager.shared.manager.startUpdatingLocation()
                                             addLocationCheckTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
                                                 if let location = LocationManager.shared.location {
@@ -2339,8 +2724,10 @@ struct SettingsView: View {
                                             color: .blue)
                 }
                 Section {
-                    NavigationLink(destination: { CookieView() }, label: { SettingItemLabel(title: "Cookie", image: "doc.fill", color: .gray) })
-                    NavigationLink(destination: { WebsiteSecurityView() }, label: { SettingItemLabel(title: "站点安全", image: "macwindow.on.rectangle", color: .gray) })
+                    NavigationLink(destination: { CookieView() },
+                                   label: { SettingItemLabel(title: "Cookie", image: "doc.fill", color: .gray) })
+                    NavigationLink(destination: { WebsiteSecurityView() },
+                                   label: { SettingItemLabel(title: "站点安全", image: "macwindow.on.rectangle", color: .gray) })
                 }
                 Section {
                     NavigationLink(destination: { DeveloperModeView() }, label: {
@@ -2419,17 +2806,25 @@ struct SettingsView: View {
                             Text("Safari 18.0")
                                 .tag("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15")
                             Text("Safari - iOS 17.4 - iPhone")
-                                .tag("Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1")
+                                .tag(
+                                    "Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1"
+                                )
                             Text("Safari - iPadOS 17.4 - iPad mini")
-                                .tag("Mozilla/5.0 (iPad; CPU OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1")
+                                .tag(
+                                    "Mozilla/5.0 (iPad; CPU OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1"
+                                )
                             Text("Safari - iPadOS 17.4 - iPad")
                                 .tag("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15")
                         }
                         Section {
                             Text("Microsoft Edge - macOS")
-                                .tag("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0")
+                                .tag(
+                                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+                                )
                             Text("Microsoft Edge - Windows")
-                                .tag("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0")
+                                .tag(
+                                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+                                )
                         }
                         Section {
                             Text("Google Chrome - macOS")
@@ -2489,7 +2884,7 @@ struct SettingsView: View {
                         Text("Present Start Time")
                     })
                     Button(action: {
-                        tipWithText("\(String(CheckSecurityDelay()))", symbol: "hammer.circle.fill")
+                        tipWithText("\(String(checkSecurityDelay()))", symbol: "hammer.circle.fill")
                     }, label: {
                         Text("Present Check Status")
                     })
@@ -2498,7 +2893,7 @@ struct SettingsView: View {
                 }
                 Section {
                     Button(action: {
-                        tipWithText(String(GetWebHistory().count), symbol: "hammer.circle.fill")
+                        tipWithText(String(getWebHistory().count), symbol: "hammer.circle.fill")
                     }, label: {
                         Text("Present History Count")
                     })
@@ -2713,7 +3108,7 @@ struct SecurityDelayCounterView: View {
 
 /// 检查安全延时是否已完成
 /// - Returns: 是否已完成
-func CheckSecurityDelay() -> Bool {
+func checkSecurityDelay() -> Bool {
     if !UserDefaults.standard.bool(forKey: "IsSecurityDelayEnabled") {
         return true
     }
@@ -2762,5 +3157,175 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         manager.stopUpdatingLocation()
         location = locValue
+    }
+}
+
+enum HomeScreenControlType: Codable, Equatable {
+    case searchField
+    case searchButton
+    case spacer
+    case pinnedBookmarks
+    case text(String)
+    case navigationLink(HomeScreenNavigationType)
+    
+    static var defaultScreen: [Self] {
+        [
+            .searchField,
+            .searchButton,
+            .spacer,
+            .navigationLink(.bookmark),
+            .navigationLink(.history),
+            .navigationLink(.webarchive),
+            .navigationLink(.userscript),
+            .navigationLink(.localBook),
+            .navigationLink(.localVideo),
+            .navigationLink(.chores),
+            .spacer,
+            .pinnedBookmarks,
+            .spacer,
+            .navigationLink(.settings),
+            .spacer,
+            .navigationLink(.feedbackAssistant),
+            .navigationLink(.tips)
+        ]
+    }
+}
+enum HomeScreenNavigationType: Codable, Hashable {
+    case bookmark
+    case history
+    case webarchive
+    case userscript
+    case localBook
+    case localVideo
+    case chores
+    case feedbackAssistant
+    case tips
+    case settings
+}
+enum ToolbarButtonRenderType {
+    case preference // In Settings View
+    case main       // In Home Screen
+}
+enum HomeScreenToolbarPosition: Codable {
+    case topLeading
+    case topTrailing
+    case bottomLeading
+    case bottomCenter
+    case bottomTrailing
+}
+struct HomeScreenToolbar: Codable {
+    var topLeading: HomeScreenControlType
+    var topTrailing: HomeScreenControlType
+    var bottomLeading: HomeScreenControlType
+    var bottomCenter: HomeScreenControlType
+    var bottomTrailing: HomeScreenControlType
+    
+    static var `default`: Self {
+        .init(topLeading: .navigationLink(.settings), topTrailing: .spacer, bottomLeading: .spacer, bottomCenter: .spacer, bottomTrailing: .spacer)
+    }
+}
+
+@ViewBuilder
+func getToolbarButton(by control: HomeScreenControlType, with type: ToolbarButtonRenderType, action: ((Any?) -> Void)? = nil) -> some View {
+    switch control {
+    case .searchField, .searchButton:
+        if type == .main {
+            TextFieldLink(label: {
+                Image(systemName: "magnifyingglass")
+            }, onSubmit: { str in
+                action?(str)
+            })
+        } else {
+            Button(action: {
+                action?(nil)
+            }, label: {
+                Image(systemName: "magnifyingglass")
+            })
+        }
+    case .spacer, .pinnedBookmarks:
+        if type == .main {
+            Spacer()
+        } else {
+            Button(action: {
+                action?(nil)
+            }, label: {
+                Image(systemName: "circle.dashed")
+            })
+        }
+    case .text(let string):
+        Text(string)
+            .onTapGesture {
+                action?(string)
+            }
+    case .navigationLink(let navigation):
+        Button(action: {
+            action?(navigation)
+        }, label: {
+            switch navigation {
+            case .bookmark:
+                Image(systemName: "bookmark")
+            case .history:
+                Image(systemName: "clock")
+            case .webarchive:
+                Image(systemName: "archivebox")
+            case .userscript:
+                Image(systemName: "applescript")
+            case .localBook:
+                Image(systemName: "book")
+            case .localVideo:
+                Image(systemName: "film")
+            case .chores:
+                Spacer()
+            case .feedbackAssistant:
+                Image(systemName: "exclamationmark.bubble")
+            case .tips:
+                Image(systemName: "lightbulb")
+            case .settings:
+                Image(systemName: "gear")
+            }
+        })
+    }
+}
+@available(watchOS 10.0, *)
+@ToolbarContentBuilder
+func getFullToolbar(
+    by controls: HomeScreenToolbar,
+    with type: ToolbarButtonRenderType,
+    action: @escaping (HomeScreenControlType, HomeScreenToolbarPosition, Any?) -> Void
+) -> some ToolbarContent {
+    ToolbarItem(placement: .topBarLeading) {
+        getToolbarButton(by: controls.topLeading, with: type) { object in
+            action(controls.topLeading, .topLeading, object)
+        }
+    }
+    if UserDefaults.standard.bool(forKey: "LabTabBrowsingEnabled") {
+        ToolbarItem(placement: .topBarTrailing) {
+            Button(action: {
+                action(controls.topTrailing, .topTrailing, nil)
+            }, label: {
+                Image(systemName: "square.on.square.dashed")
+                    .symbolRenderingMode(.hierarchical)
+                    .foregroundColor(.white)
+            })
+            .disabled(type == .preference)
+        }
+    } else {
+        ToolbarItem(placement: .topBarTrailing) {
+            getToolbarButton(by: controls.topTrailing, with: type) { object in
+                action(controls.topTrailing, .topTrailing, object)
+            }
+        }
+    }
+    ToolbarItemGroup(placement: .bottomBar) {
+        getToolbarButton(by: controls.bottomLeading, with: type) { object in
+            action(controls.bottomLeading, .bottomLeading, object)
+        }
+//        getToolbarButton(by: controls.bottomCenter, with: type) { object in
+//            action(controls.bottomCenter, .bottomCenter, object)
+//        }
+        Spacer()
+        getToolbarButton(by: controls.bottomTrailing, with: type) { object in
+            action(controls.bottomTrailing, .bottomTrailing, object)
+        }
     }
 }
