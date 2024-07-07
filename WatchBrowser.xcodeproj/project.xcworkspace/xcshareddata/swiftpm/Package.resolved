@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Serene-Garden/Vela",
       "state" : {
-        "revision" : "38ff8e470da52f0fd8ccc6ef2f6b1abcaa34e618",
-        "version" : "2.1.7"
+        "revision" : "c78a0998fdd33787ebb80ffc2307a846c51d9a75",
+        "version" : "2.1.8"
       }
     },
     {

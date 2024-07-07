@@ -32,7 +32,7 @@ final class DarockBrowserUITests: XCTestCase {
             app.navigationBars.buttons["close-sheet"].firstMatch.tap()
         }
         // Main Page
-        app.navigationBars.buttons["MainSettingsButton"].firstMatch.tap()
+        app.navigationBars.buttons["gear"].firstMatch.tap()
         // Settings View
         app.swipeUp()
         app.navigationBars.buttons.element(boundBy: 0).tap()
