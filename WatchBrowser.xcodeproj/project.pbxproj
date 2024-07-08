@@ -208,6 +208,7 @@
 		8CDE9B8E2C3959DE0083B09E /* .swiftlint.yml */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; tabWidth = 2; };
 		8CDE9B912C3AACDA0083B09E /* ___MesugakiAmane.drkdatau */ = {isa = PBXFileReference; lastKnownFileType = file; path = "___MesugakiAmane.drkdatau"; sourceTree = "<group>"; };
 		8CDE9B932C3AE15D0083B09E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8CDE9B982C3BD7A40083B09E /* ci_pre_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_pre_xcodebuild.sh; sourceTree = "<group>"; };
 		8CF5DC4E2BAE04D5007F9974 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		E25EA8392B70ABEF00BFEC6E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E25EA83B2B70ABF000BFEC6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -282,6 +283,7 @@
 			children = (
 				8C5869C72C3165E400A18923 /* Intents.intentdefinition */,
 				8CDE9B8E2C3959DE0083B09E /* .swiftlint.yml */,
+				8CDE9B972C3BD77A0083B09E /* ci_scripts */,
 				6BF209F22990E61C00E623FC /* WatchBrowser Watch App */,
 				8C5281172C22FA3C00392315 /* TripleQuestionmarkCore */,
 				8C5869D02C316A2100A18923 /* DarockBrowser Intents */,
@@ -419,6 +421,14 @@
 				8C6E11DE2BDC029E005420C0 /* WEBackSwift.swift */,
 			);
 			path = AdvWebView;
+			sourceTree = "<group>";
+		};
+		8CDE9B972C3BD77A0083B09E /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				8CDE9B982C3BD7A40083B09E /* ci_pre_xcodebuild.sh */,
+			);
+			path = ci_scripts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
