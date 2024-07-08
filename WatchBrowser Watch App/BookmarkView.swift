@@ -12,7 +12,6 @@ struct BookmarkView: View {
     @State var markTotal = 0
     public static var editingBookmarkIndex = 0
     @AppStorage("IsAllowCookie") var isAllowCookie = false
-    @AppStorage("IsRecordHistory") var isRecordHistory = true
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockBookmarks") var usePasscodeForLockBookmarks = false
@@ -56,9 +55,6 @@ struct BookmarkView: View {
                         ForEach(1...markTotal, id: \.self) { i in
                             Button(action: {
                                 AdvancedWebViewController.shared.present(UserDefaults.standard.string(forKey: "BookmarkLink\(i)")!)
-                                if isRecordHistory {
-                                    recordHistory(UserDefaults.standard.string(forKey: "BookmarkLink\(i)")!, webSearch: webSearch)
-                                }
                             }, label: {
                                 Text(UserDefaults.standard.string(forKey: "BookmarkName\(i)") ?? "")
                             })

@@ -427,7 +427,7 @@ func mergeWebHistoriesBetween(primary: [SingleHistoryItem], secondary: [SingleHi
 }
 
 struct CloseHistoryTipView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         ScrollView {
             Text("History.turn-off")
@@ -435,13 +435,17 @@ struct CloseHistoryTipView: View {
                 .font(.system(size: 20))
             Text("History.clear-history-at-the-same-time")
             Button(role: .destructive, action: {
-                UserDefaults.standard.set([String](), forKey: "WebHistory")
-                self.presentationMode.wrappedValue.dismiss()
+                do {
+                    try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/WebHistories.drkdataw")
+                } catch {
+                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                }
+                dismiss()
             }, label: {
                 Label("History.clear", systemImage: "trash.fill")
             })
             Button(role: .cancel, action: {
-                self.presentationMode.wrappedValue.dismiss()
+                dismiss()
             }, label: {
                 Label("History.save", systemImage: "arrow.down.doc.fill")
             })
