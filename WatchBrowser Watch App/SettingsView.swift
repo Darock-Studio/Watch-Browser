@@ -232,6 +232,8 @@ struct SettingsView: View {
                 Section {
                     NavigationLink(destination: { KeyboardView() },
                                    label: { SettingItemLabel(title: "键盘", image: "keyboard.fill", color: .gray) })
+                    NavigationLink(destination: { MusicPlayerView() },
+                                   label: { SettingItemLabel(title: "音乐播放器", image: "music.note.list", color: .red) })
                     NavigationLink(destination: { ImageViewerView() },
                                    label: { SettingItemLabel(title: "图像查看器", image: "photo.fill.on.rectangle.fill", color: .blue) })
                 }
@@ -246,6 +248,9 @@ struct SettingsView: View {
         }
         
         struct AboutView: View {
+            @State var songCount = 0
+            @State var videoCount = 0
+            @State var bookCount = 0
             var body: some View {
                 List {
                     Section {
@@ -253,6 +258,32 @@ struct SettingsView: View {
                             Text("App 版本")
                             Spacer()
                             Text(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)
+                                .foregroundColor(.gray)
+                        }
+                        HStack {
+                            Text("构建版本")
+                            Spacer()
+                            Text(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    Section {
+                        HStack {
+                            Text("音乐")
+                            Spacer()
+                            Text(String(songCount))
+                                .foregroundColor(.gray)
+                        }
+                        HStack {
+                            Text("视频")
+                            Spacer()
+                            Text(String(videoCount))
+                                .foregroundColor(.gray)
+                        }
+                        HStack {
+                            Text("图书")
+                            Spacer()
+                            Text(String(bookCount))
                                 .foregroundColor(.gray)
                         }
                         if #available(watchOS 10, *) {
@@ -263,6 +294,19 @@ struct SettingsView: View {
                     }
                 }
                 .navigationTitle("关于")
+                .onAppear {
+                    do {
+                        songCount = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/").count
+                        videoCount = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/").count
+                        let allDocumentFiles = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents")
+                        bookCount = 0
+                        for file in allDocumentFiles where file.hasPrefix("EPUB") {
+                            bookCount++
+                        }
+                    } catch {
+                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                    }
+                }
             }
         }
         struct SoftwareUpdateView: View {
@@ -374,6 +418,7 @@ struct SettingsView: View {
             @State var isClearingCache = false
             @State var videoMetadatas = [[String: String]]()
             @State var bookMetadatas = [[String: String]]()
+            @State var audioMetadatas = [[String: String]]()
             var body: some View {
                 Form {
                     List {
@@ -504,7 +549,43 @@ struct SettingsView: View {
                                         }
                                     }
                                 } header: {
-                                    Text("媒体")
+                                    Text("视频")
+                                }
+                            }
+                            if !audioMetadatas.isEmpty {
+                                Section {
+                                    ForEach(0..<audioMetadatas.count, id: \.self) { i in
+                                        VStack {
+                                            HStack {
+                                                Text(audioMetadatas[i]["Title"]!)
+                                                    .font(.system(size: 13, weight: .bold))
+                                                    .lineLimit(2)
+                                                Spacer()
+                                            }
+                                            HStack {
+                                                Text("\(bytesToMegabytes(bytes: UInt64(audioMetadatas[i]["Size"] ?? "0") ?? 0) ~ 2) MB")
+                                                    .font(.system(size: 15))
+                                                    .foregroundColor(.gray)
+                                                Spacer()
+                                            }
+                                        }
+                                        .swipeActions {
+                                            Button(role: .destructive, action: {
+                                                do {
+                                                    try FileManager.default.removeItem(
+                                                        atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/" + audioMetadatas[i]["Title"]!
+                                                    )
+                                                    audioMetadatas.remove(at: i)
+                                                } catch {
+                                                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                                }
+                                            }, label: {
+                                                Image(systemName: "xmark.bin.fill")
+                                            })
+                                        }
+                                    }
+                                } header: {
+                                    Text("音乐")
                                 }
                             }
                             if !bookMetadatas.isEmpty {
@@ -707,12 +788,13 @@ struct SettingsView: View {
                         DispatchQueue(label: "com.darock.DarockBili.storage-load", qos: .userInitiated).async {
                             do {
                                 // Size counting
-                                mediaSize = folderSize(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos") ?? 0
+                                mediaSize = (folderSize(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos") ?? 0)
+                                + (folderSize(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios") ?? 0)
                                 webArchiveSize = folderSize(atPath: NSHomeDirectory() + "/Documents/WebArchives") ?? 0
                                 tmpSize = folderSize(atPath: NSTemporaryDirectory()) ?? 0
                                 bundleSize = folderSize(atPath: Bundle.main.bundlePath) ?? 0
                                 if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos") {
-                                    // Video sizes
+                                    // Video Sizes
                                     let files = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos")
                                     let videoHumanNameChart = (
                                         UserDefaults.standard.dictionary(forKey: "VideoHumanNameChart") as? [String: String]
@@ -736,6 +818,32 @@ struct SettingsView: View {
                                         videoMetadatas.append(dicV)
                                     }
                                     videoMetadatas.sort { UInt64($0["Size"] ?? "0")! > UInt64($1["Size"] ?? "0")! }
+                                }
+                                if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios") {
+                                    // Audio Sizes
+                                    let files = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios")
+                                    let audioHumanNameChart = (
+                                        UserDefaults.standard.dictionary(forKey: "AudioHumanNameChart") as? [String: String]
+                                    ) ?? [String: String]()
+                                    for file in files {
+                                        var dicV = [String: String]()
+                                        dicV.updateValue(NSHomeDirectory() + "/Documents/DownloadedAudios/\(file)", forKey: "Path")
+                                        do {
+                                            let attributes = try FileManager.default.attributesOfItem(atPath: dicV["Path"]!)
+                                            if let fileSize = attributes[.size] as? UInt64 {
+                                                dicV.updateValue(String(fileSize), forKey: "Size")
+                                            }
+                                        } catch {
+                                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                        }
+                                        if let vn = audioHumanNameChart[file] {
+                                            dicV.updateValue(vn, forKey: "Title")
+                                        } else {
+                                            dicV.updateValue(file, forKey: "Title")
+                                        }
+                                        audioMetadatas.append(dicV)
+                                    }
+                                    audioMetadatas.sort { UInt64($0["Size"] ?? "0")! > UInt64($1["Size"] ?? "0")! }
                                 }
                                 let allDocumentFiles = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents")
                                 let bookNameChart = (UserDefaults.standard.dictionary(forKey: "EPUBFileNameChart") as? [String: String]) ?? [String: String]()
@@ -846,6 +954,17 @@ struct SettingsView: View {
                     }
                 }
                 .navigationTitle("Settings.keyboard")
+            }
+        }
+        struct MusicPlayerView: View {
+            @AppStorage("MPIsShowTranslatedLyrics") var isShowTranslatedLyrics = true
+            var body: some View {
+                List {
+                    Section {
+                        Toggle("显示翻译歌词", isOn: $isShowTranslatedLyrics)
+                    }
+                }
+                .navigationTitle("音乐播放器")
             }
         }
         struct ImageViewerView: View {
@@ -1861,6 +1980,8 @@ struct SettingsView: View {
                                             Label("网页归档", systemImage: "archivebox")
                                         case .userscript:
                                             Label("用户脚本", systemImage: "applescript")
+                                        case .localAudio:
+                                            Label("本地音频", systemImage: "music.quarternote.3")
                                         case .localBook:
                                             Label("本地图书", systemImage: "book.pages")
                                         case .localVideo:
@@ -2423,6 +2544,7 @@ struct SettingsView: View {
         @AppStorage("UsePasscodeForLockDarockBrowser") var usePasscodeForLockDarockBrowser = false
         @AppStorage("UsePasscodeForLockBookmarks") var usePasscodeForLockBookmarks = false
         @AppStorage("UsePasscodeForLockHistories") var usePasscodeForLockHistories = false
+        @AppStorage("UsePasscodeForLocalAudios") var usePasscodeForLocalAudios = false
         @AppStorage("UsePasscodeForLocalVideos") var usePasscodeForLocalVideos = false
         @AppStorage("UsePasscodeForWebArchives") var usePasscodeForWebArchives = false
         @AppStorage("UsePasscodeForLocalBooks") var usePasscodeForLocalBooks = false
@@ -2442,6 +2564,7 @@ struct SettingsView: View {
                         Toggle("锁定暗礁浏览器", isOn: $usePasscodeForLockDarockBrowser)
                         Toggle("锁定书签", isOn: $usePasscodeForLockBookmarks)
                         Toggle("锁定历史记录", isOn: $usePasscodeForLockHistories)
+                        Toggle("锁定本地音频", isOn: $usePasscodeForLocalAudios)
                         Toggle("锁定本地视频", isOn: $usePasscodeForLocalVideos)
                         Toggle("锁定网页归档", isOn: $usePasscodeForWebArchives)
                         Toggle("锁定本地图书", isOn: $usePasscodeForLocalBooks)
@@ -3177,6 +3300,7 @@ enum HomeScreenControlType: Codable, Equatable {
             .navigationLink(.history),
             .navigationLink(.webarchive),
             .navigationLink(.userscript),
+            .navigationLink(.localAudio),
             .navigationLink(.localBook),
             .navigationLink(.localVideo),
             .navigationLink(.chores),
@@ -3197,6 +3321,7 @@ enum HomeScreenNavigationType: Codable, Hashable {
     case userscript
     case localBook
     case localVideo
+    case localAudio
     case chores
     case feedbackAssistant
     case tips
@@ -3270,6 +3395,8 @@ func getToolbarButton(by control: HomeScreenControlType, with type: ToolbarButto
                 Image(systemName: "archivebox")
             case .userscript:
                 Image(systemName: "applescript")
+            case .localAudio:
+                Image(systemName: "music.quarternote.3")
             case .localBook:
                 Image(systemName: "book")
             case .localVideo:

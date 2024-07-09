@@ -38,7 +38,9 @@ struct VideoListView: View {
             }
             .navigationTitle("视频列表")
             .sheet(isPresented: $isPlayerPresented, content: { VideoPlayingView(link: $willPlayVideoLink) })
-            .sheet(isPresented: $isVideoDownloadPresented, content: { VideoDownloadView(videoLink: $willDownloadVideoLink) })
+            .sheet(isPresented: $isVideoDownloadPresented) {
+                MediaDownloadView(mediaLink: $willDownloadVideoLink, mediaTypeName: "视频", saveFolderName: "DownloadedVideos", saveFileName: .constant(nil))
+            }
             .onDisappear {
                 if dismissListsShouldRepresentWebView {
                     DispatchQueue.main.async {
@@ -150,8 +152,11 @@ struct VideoPlayingView: View {
     }
 }
 
-struct VideoDownloadView: View {
-    @Binding var videoLink: String
+struct MediaDownloadView: View {
+    @Binding var mediaLink: String
+    var mediaTypeName: LocalizedStringKey
+    var saveFolderName: String
+    @Binding var saveFileName: String?
     @Environment(\.dismiss) var dismiss
     @State var downloadProgress = ValuedProgress(completedUnitCount: 0, totalUnitCount: 0)
     @State var isFinishedDownload = false
@@ -211,7 +216,7 @@ struct VideoDownloadView: View {
                     }
                 }
             }
-            .navigationTitle("下载视频")
+            .navigationTitle("下载\(mediaTypeName)")
             .toolbar(.hidden, for: .navigationBar)
             .alert("未完成的下载", isPresented: $isTerminateDownloadingAlertPresented, actions: {
                 Button(role: .destructive, action: {
@@ -231,14 +236,19 @@ struct VideoDownloadView: View {
         .onAppear {
             extendScreenIdleTime(600)
             do {
-                if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos") {
-                    try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos", withIntermediateDirectories: true)
+                if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)") {
+                    try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)", withIntermediateDirectories: true)
                 }
                 let destination: DownloadRequest.Destination = { _, _ in
-                    return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/DownloadedVideos/\(String(videoLink.split(separator: "/").last!.split(separator: ".mp4?")[0])).mp4"),
-                            [.removePreviousFile, .createIntermediateDirectories])
+                    if let saveFileName {
+                        return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(saveFileName)"),
+                                [.removePreviousFile, .createIntermediateDirectories])
+                    } else {
+                        return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(String(mediaLink.split(separator: "/").last!.split(separator: "?")[0]))"),
+                                [.removePreviousFile, .createIntermediateDirectories])
+                    }
                 }
-                AF.download(videoLink, to: destination)
+                AF.download(mediaLink, to: destination)
                     .downloadProgress { progress in
                         downloadProgress = ValuedProgress(completedUnitCount: progress.completedUnitCount,
                                                           totalUnitCount: progress.totalUnitCount,

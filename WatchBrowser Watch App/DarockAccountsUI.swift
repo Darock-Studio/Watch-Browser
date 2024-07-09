@@ -60,10 +60,36 @@ struct DarockAccountLogin: View {
                         }
                     })
                     .alert(alertTipText, isPresented: $isAlertPresented, actions: {})
+                    if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "IsDarockInternalConnectAvailable") {
+                        Button(action: {
+                            WKExtension.shared().openSystemURL(
+                                URL(string: "https://darock.top/internal/connect/ssologin?callback=darockbrower{slash}login{slash}%account@")!
+                            )
+                        }, label: {
+                            HStack {
+                                Image("DarockConnectIcon")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                                    .cornerRadius(6)
+                                Text("DarockConnect")
+                            }
+                        })
+                    }
                     NavigationLink(destination: { RegisterView() }, label: {
                         Text("注册")
                     })
                     .padding(.vertical)
+                }
+            }
+        }
+        .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
+            if let url = userActivity.webpageURL, let action = url.absoluteString.split(separator: "darock.top/darockbrowser/", maxSplits: 1)[from: 1] {
+                let slashSpd = action.split(separator: "/")
+                if let arg1 = slashSpd[from: 0], let arg2 = slashSpd[from: 1] {
+                    if arg1 == "login" {
+                        darockAccount = String(arg2)
+                        dismiss()
+                    }
                 }
             }
         }
@@ -287,7 +313,7 @@ struct DarockAccountManagementMain: View {
                 Text("退出登录")
             })
         }, message: {
-            Text("已同步（未实装）的数据将会被保留。")
+            Text("已同步的数据将会被保留。")
         })
     }
     

@@ -298,6 +298,7 @@ struct BlurBackground: ViewModifier {
                                 }
                                 .resizable()
                                 .scaledToFill()
+                                .frame(width: WKInterfaceDevice.current().screenBounds.width, height: WKInterfaceDevice.current().screenBounds.height)
                                 .blur(radius: 20)
                                 .opacity(backgroundPicOpacity)
                                 .animation(.easeOut(duration: 1.2), value: backgroundPicOpacity)

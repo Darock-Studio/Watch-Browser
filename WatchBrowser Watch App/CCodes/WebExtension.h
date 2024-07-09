@@ -17,6 +17,7 @@ bool pMenuShouldDismiss;
 bool pShouldPresentVideoList;
 bool pShouldPresentImageList;
 bool pShouldPresentBookList;
+bool pShouldPresentAudioList;
 bool dismissListsShouldRepresentWebView;
 id webViewObject;
 id webViewParentController;
@@ -38,6 +39,7 @@ NSUserActivity* globalWebBrowsingUserActivity;
 +(void) setUserScriptDelegateWithController: (id)controller;
 +(void) PresentVideoList;
 +(void) PresentBookList;
++(void) PresentAudioList;
 +(void) DismissWebView;
 
 @end

@@ -46,6 +46,11 @@ public class WESwiftDelegate: NSObject {
             if _fastPath(isHistoryRecording) {
                 recordHistory(curl, webSearch: webSearch, showName: Dynamic(webViewObject).title.asString)
             }
+            if _slowPath(curl.hasSuffix(".mp3")) {
+                audioLinkLists = [curl]
+                WebExtension.presentAudioList()
+                return
+            }
             if _slowPath(curl.hasSuffix(".mp4")) {
                 videoLinkLists = [curl]
                 WebExtension.presentVideoList()

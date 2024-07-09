@@ -10,6 +10,7 @@ import Dynamic
 import Intents
 import WatchKit
 import SDWebImage
+import AVFoundation
 import SDWebImageSVGCoder
 import SDWebImagePDFCoder
 import SDWebImageWebPCoder
@@ -175,6 +176,12 @@ class AppDelegate: NSObject, WKApplicationDelegate {
 //                break
 //            }
 //        }
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, policy: .default)
+            AVAudioSession.sharedInstance().activate { _, _ in }
+        } catch {
+            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+        }
     }
     
     func didRegisterForRemoteNotifications(withDeviceToken deviceToken: Data) {
@@ -212,6 +219,22 @@ public func globalErrorHandler(_ error: Error, at: String = "Not Provided") {
             .replacingOccurrences(of: "=", with: "{equal}")
             .replacingOccurrences(of: "&", with: "{and}")
         pIsTapToRadarAlertPresented = true
+    }
+}
+func resetGlobalAudioLooper() {
+    if let currentLooper = globalAudioLooper {
+        NotificationCenter.default.removeObserver(currentLooper)
+        globalAudioLooper = nil
+    }
+    globalAudioLooper = NotificationCenter.default.addObserver(
+        forName: AVPlayerItem.didPlayToEndTimeNotification,
+        object: globalAudioPlayer.currentItem,
+        queue: .main) { _ in
+            let playbackBehavior = PlaybackBehavior.init(rawValue: UserDefaults.standard.string(forKey: "MPPlaybackBehavior") ?? "pause") ?? .pause
+            if playbackBehavior == .singleLoop {
+                globalAudioPlayer.seek(to: .zero)
+                globalAudioPlayer.play()
+            }
     }
 }
 

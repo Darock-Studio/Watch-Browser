@@ -78,6 +78,11 @@ id webScriptDelegate;
     pShouldPresentImageList = true;
     dismissListsShouldRepresentWebView = true;
 }
++(void) PresentAudioList {
+    [self DismissWebView];
+    pShouldPresentAudioList = true;
+    dismissListsShouldRepresentWebView = true;
+}
 +(void) PresentBookList {
     [self DismissWebView];
     pShouldPresentBookList = true;

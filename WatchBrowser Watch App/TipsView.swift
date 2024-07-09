@@ -49,6 +49,13 @@ struct TipsView: View {
                 Text("发现更多")
             }
             Section {
+                NavigationLink(destination: { MusicView() }, label: {
+                    HStack {
+                        Image(systemName: "music.note")
+                            .foregroundColor(.red)
+                        Text("音乐")
+                    }
+                })
                 NavigationLink(destination: { PhotosView() }, label: {
                     HStack {
                         Image(systemName: "photo")
@@ -314,6 +321,30 @@ struct TipsView: View {
         }
     }
     
+    struct MusicView: View {
+        var body: some View {
+            List {
+                Section {
+                    Text("轻触浏览菜单“播放网页音频”、在网页中寻找或直接在搜索框中输入音频链接")
+                }
+                Section {
+                    Button(action: {
+                        audioLinkLists = ["http://music.\(0b10100011).com/song/media/outer/url?id=411500345.mp3"]
+                        pShouldPresentAudioList = true
+                        dismissListsShouldRepresentWebView = false
+                    }, label: {
+                        Text("查看示例音频")
+                    })
+                } header: {
+                    Text("示例音频")
+                } footer: {
+                    Text("仅作示例。")
+                }
+            }
+            .navigationTitle("音乐")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
     struct PhotosView: View {
         @State var randomIndex = 0
         var body: some View {

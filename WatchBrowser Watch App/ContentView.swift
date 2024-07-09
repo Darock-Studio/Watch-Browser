@@ -16,8 +16,10 @@ import Alamofire
 import SwiftyJSON
 import AuthenticationServices
 
+var pIsAudioControllerAvailable = false
+var pShouldPresentAudioController = false
+
 struct ContentView: View {
-    public static var bingSearchingText = ""
     @AppStorage("LabTabBrowsingEnabled") var labTabBrowsingEnabled = false
     @AppStorage("IsHistoryTransferNeeded") var isHistoryTransferNeeded = true
     @AppStorage("DarockAccount") var darockAccount = ""
@@ -34,9 +36,11 @@ struct ContentView: View {
     @State var mainTabSelection = 2
     @State var isVideoListPresented = false
     @State var isImageListPresented = false
+    @State var isAudioListPresented = false
     @State var isBookListPresented = false
     @State var isSettingsPresented = false
     @State var isTabsPresented = false
+    @State var isAudioControllerPresented = false
     @State var toolbarNavigationDestination: HomeScreenNavigationType?
     @State var showSettingsButtonInList = false
     var body: some View {
@@ -96,6 +100,7 @@ struct ContentView: View {
                     }
                     .navigationDestination(isPresented: $isVideoListPresented, destination: { VideoListView() })
                     .navigationDestination(isPresented: $isImageListPresented, destination: { ImageListView() })
+                    .navigationDestination(isPresented: $isAudioListPresented, destination: { AudioListView() })
                     .navigationDestination(isPresented: $isBookListPresented, destination: { BookListView() })
                     .navigationDestination(isPresented: $isSettingsPresented, destination: { SettingsView() })
                     .navigationDestination(isPresented: $isTabsPresented, destination: { BrowsingTabsView() })
@@ -109,6 +114,8 @@ struct ContentView: View {
                             WebArchiveListView()
                         case .userscript:
                             UserScriptsView()
+                        case .localAudio:
+                            LocalAudiosView()
                         case .localBook:
                             LocalBooksView()
                         case .localVideo:
@@ -142,12 +149,14 @@ struct ContentView: View {
                         }
                     }
             } else {
-                MainView(withSetting: .constant(false))
+                MainView(withSetting: .constant(true))
                     .navigationDestination(isPresented: $isVideoListPresented, destination: { VideoListView() })
                     .navigationDestination(isPresented: $isImageListPresented, destination: { ImageListView() })
+                    .navigationDestination(isPresented: $isAudioListPresented, destination: { AudioListView() })
                     .navigationDestination(isPresented: $isBookListPresented, destination: { BookListView() })
             }
         }
+        .sheet(isPresented: $isAudioControllerPresented, content: { AudioControllerView() })
         .onAppear {
             if _slowPath(isHistoryTransferNeeded) {
                 if (UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()).isEmpty {
@@ -164,9 +173,17 @@ struct ContentView: View {
                     pShouldPresentImageList = false
                     isImageListPresented = true
                 }
+                if _slowPath(pShouldPresentAudioList) {
+                    pShouldPresentAudioList = false
+                    isAudioListPresented = true
+                }
                 if _slowPath(pShouldPresentBookList) {
                     pShouldPresentBookList = false
                     isBookListPresented = true
+                }
+                if _slowPath(pShouldPresentAudioController) {
+                    pShouldPresentAudioController = false
+                    isAudioControllerPresented = true
                 }
             }
             
@@ -236,10 +253,23 @@ struct MainView: View {
     @State var newFeedbackCount = 0
     @State var isNewVerAvailable = false
     @State var isHaveDownloadedVideo = false
+    @State var isHaveDownloadedAudio = false
     @State var isPreloadedSearchWeb = false
     @State var isOfflineBooksAvailable = false
+    @State var isAudioControllerAvailable = false
     var body: some View {
         List {
+            if isAudioControllerAvailable {
+                Button(action: {
+                    pShouldPresentAudioController = true
+                }, label: {
+                    HStack {
+                        Spacer()
+                        Label("播放中", systemImage: "music.note.list")
+                        Spacer()
+                    }
+                })
+            }
             if !customControls.isEmpty {
                 getMainView(by: customControls)
             } else {
@@ -261,7 +291,17 @@ struct MainView: View {
         }
         .onAppear {
             if let currentPref = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/HomeScreen.drkdatah", encoding: .utf8),
-               let data = getJsonData([HomeScreenControlType].self, from: currentPref) {
+               var data = getJsonData([HomeScreenControlType].self, from: currentPref) {
+                if !data.contains(.navigationLink(.localAudio)) {
+                    data.append(.navigationLink(.localAudio))
+                    if let newPref = jsonString(from: data) {
+                        do {
+                            try newPref.write(toFile: NSHomeDirectory() + "/Documents/HomeScreen.drkdatah", atomically: true, encoding: .utf8)
+                        } catch {
+                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                        }
+                    }
+                }
                 customControls = data
             } else {
                 customControls = HomeScreenControlType.defaultScreen
@@ -310,7 +350,15 @@ struct MainView: View {
             } catch {
                 globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
             }
+            do {
+                if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios") {
+                    isHaveDownloadedAudio = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios").isEmpty
+                }
+            } catch {
+                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+            }
             isOfflineBooksAvailable = !(UserDefaults.standard.stringArray(forKey: "EPUBFlieFolders") ?? [String]()).isEmpty
+            isAudioControllerAvailable = pIsAudioControllerAvailable
         }
     }
     
@@ -421,6 +469,15 @@ struct MainView: View {
                                 }
                                 videoLinkLists = [textOrURL]
                                 pShouldPresentVideoList = true
+                                dismissListsShouldRepresentWebView = false
+                                recordHistory(textOrURL, webSearch: webSearch)
+                                return
+                            } else if textOrURL.hasSuffix(".mp3") {
+                                if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+                                    textOrURL = "http://" + textOrURL
+                                }
+                                audioLinkLists = [textOrURL]
+                                pShouldPresentAudioList = true
                                 dismissListsShouldRepresentWebView = false
                                 recordHistory(textOrURL, webSearch: webSearch)
                                 return
@@ -553,6 +610,16 @@ struct MainView: View {
                             })
                             .disabled(isUseOldWebView)
                             .accessibilityIdentifier("MainUserScriptButton")
+                        case .localAudio:
+                            if isHaveDownloadedAudio {
+                                NavigationLink(destination: { LocalAudiosView() }, label: {
+                                    HStack {
+                                        Spacer()
+                                        Label("本地音频", systemImage: "music.quarternote.3")
+                                        Spacer()
+                                    }
+                                })
+                            }
                         case .localBook:
                             if isOfflineBooksAvailable {
                                 NavigationLink(destination: { LocalBooksView() }, label: {

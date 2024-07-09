@@ -9,11 +9,13 @@ import UIKit
 import SwiftUI
 import Dynamic
 import SwiftSoup
+import DarockKit
 import AuthenticationServices
 
 fileprivate var webViewController = AdvancedWebViewController()
 var videoLinkLists = [String]()
 var imageLinkLists = [String]()
+var audioLinkLists = [String]()
 var bookLinkLists = [String]()
 
 class AdvancedWebViewController {
@@ -285,6 +287,15 @@ class AdvancedWebViewController {
                                            tintColor: .white,
                                            selector: "PresentImageList")
             menuView.addSubview(imageButton)
+            menuButtonYOffset += 45
+        }
+        if !audioLinkLists.isEmpty {
+            let audioButton = makeUIButton(title: .text(String(localized: "播放网页音频")),
+                                           frame: getMiddleRect(y: menuButtonYOffset, height: 40),
+                                           backgroundColor: .gray.opacity(0.5),
+                                           tintColor: .white,
+                                           selector: "PresentAudioList")
+            menuView.addSubview(audioButton)
             menuButtonYOffset += 60
         }
         
@@ -387,7 +398,7 @@ class AdvancedWebViewController {
         isVideoChecking = true
         updateMenuController()
         Dynamic(webViewObject).evaluateJavaScript("document.documentElement.outerHTML", completionHandler: { [self] obj, error in
-            DispatchQueue(label: "com.darock.WatchBrowser.wt.video-check", qos: .userInitiated).async { [self] in
+            DispatchQueue(label: "com.darock.WatchBrowser.wt.media-check", qos: .userInitiated).async { [self] in
                 if let htmlStr = obj as? String {
                     do {
                         let doc = try SwiftSoup.parse(htmlStr)
@@ -425,9 +436,30 @@ class AdvancedWebViewController {
                             }
                             imageLinkLists = srcs
                         }
+                        let audios = try doc.body()?.select("audio")
+                        if let audios {
+                            var srcs = [String]()
+                            for audio in audios {
+                                var src = try audio.attr("src")
+                                if src != "" {
+                                    if src.hasPrefix("/") {
+                                        if currentUrl.split(separator: "/").count < 2 {
+                                            continue
+                                        }
+                                        src = "http://" + currentUrl.split(separator: "/")[1] + src
+                                    }
+                                    srcs.append(src)
+                                }
+                            }
+                            audioLinkLists = srcs
+                        }
                     } catch {
                         globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
                     }
+                }
+                if currentUrl.contains(/music\..*\.com/) && currentUrl.contains(/(\?|&)id=[0-9]*($|&)/),
+                   let mid = currentUrl.split(separator: "id=")[from: 1]?.split(separator: "&").first {
+                    audioLinkLists = ["http://music.\(0b10100011).com/song/media/outer/url?id=\(mid).mp3"]
                 }
                 DispatchQueue.main.async { [self] in
                     isVideoChecking = false
