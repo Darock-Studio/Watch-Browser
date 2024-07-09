@@ -1878,7 +1878,7 @@
       "shouldTranslate" : false
     },
     "DarockConnect" : {
-
+      "shouldTranslate" : false
     },
     "Data & Cloud" : {
       "shouldTranslate" : false
@@ -4057,6 +4057,16 @@
         }
       }
     },
+    "下载媒体" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download Media"
+          }
+        }
+      }
+    },
     "下载已完成" : {
       "localizations" : {
         "en" : {
@@ -4109,34 +4119,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "下載時出錯："
-          }
-        }
-      }
-    },
-    "下载视频" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Download Video"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "動画をダウンロード"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скачать видео"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "下載視頻"
           }
         }
       }
@@ -4444,7 +4426,14 @@
       }
     },
     "仅作示例。" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For demonstration purposes only."
+          }
+        }
+      }
     },
     "仅作示例。\n%@" : {
       "localizations" : {
@@ -5420,6 +5409,16 @@
         }
       }
     },
+    "前往“提示”了解更多" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to \"Tips\" to learn more"
+          }
+        }
+      }
+    },
     "前往“隐私与安全性”设置" : {
       "localizations" : {
         "en" : {
@@ -6130,12 +6129,12 @@
         }
       }
     },
-    "向左滑动视频链接" : {
+    "向左滑动媒体链接" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Swipe left on video link"
+            "value" : "Swipe left on media link"
           }
         }
       }
@@ -6496,12 +6495,12 @@
         }
       }
     },
-    "在视频列表页向左滑动视频即可下载" : {
+    "在视频或音频列表页向左滑动项目即可下载" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Swipe left on the video in the video list page to download."
+            "value" : "Swipe left on the link in the video or audio list page to download."
           }
         }
       }
@@ -7542,37 +7541,15 @@
         }
       }
     },
-    "已同步（未实装）的数据将会被保留。" : {
-      "extractionState" : "stale",
+    "已同步的数据将会被保留。" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Synced (not implemented) data will be retained."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "同期されていないデータは保存されます。"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синхронизированные (удаленные) данные будут сохранены."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已同步（未實裝）的數據將會被保留。"
+            "value" : "Synced data will be retained."
           }
         }
       }
-    },
-    "已同步的数据将会被保留。" : {
-
     },
     "已启用" : {
       "localizations" : {
@@ -8907,7 +8884,14 @@
       }
     },
     "播放中" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Now Syncing"
+          }
+        }
+      }
     },
     "播放倍速" : {
       "localizations" : {
@@ -8972,7 +8956,14 @@
       }
     },
     "播放网页音频" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play Audio"
+          }
+        }
+      }
     },
     "操作" : {
       "localizations" : {
@@ -9315,7 +9306,14 @@
       }
     },
     "显示翻译歌词" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show Translated Lyrics (Chinese, Simplified)"
+          }
+        }
+      }
     },
     "暗礁浏览器" : {
       "localizations" : {
@@ -9346,7 +9344,14 @@
       }
     },
     "暗礁浏览器 - 音频播放" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browser - Audio Playing"
+          }
+        }
+      }
     },
     "暗礁浏览器 (%@)" : {
       "localizations" : {
@@ -9733,7 +9738,14 @@
       }
     },
     "本地音频" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Local Audios"
+          }
+        }
+      }
     },
     "杂项" : {
       "localizations" : {
@@ -9746,7 +9758,14 @@
       }
     },
     "构建版本" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Build Number"
+          }
+        }
+      }
     },
     "查看图片" : {
       "localizations" : {
@@ -9841,7 +9860,14 @@
       }
     },
     "查看示例音频" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View sample audio"
+          }
+        }
+      }
     },
     "查看网页图片" : {
       "localizations" : {
@@ -10012,7 +10038,14 @@
       }
     },
     "歌词不可用" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lyrics Unavailable"
+          }
+        }
+      }
     },
     "正在下载..." : {
       "localizations" : {
@@ -11500,7 +11533,14 @@
       }
     },
     "示例音频" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sample Audio"
+          }
+        }
+      }
     },
     "视频" : {
       "localizations" : {
@@ -11719,7 +11759,14 @@
       }
     },
     "空音频列表" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empty Audio List"
+          }
+        }
+      }
     },
     "站点安全" : {
       "localizations" : {
@@ -12854,13 +12901,20 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tap \"Play web video\" in the browse menu, find or enter video links directly in the search box on the webpage."
+            "value" : "Tap \"Play Video\" in the browse menu, find or enter video links directly in the search box on the webpage."
           }
         }
       }
     },
     "轻触浏览菜单“播放网页音频”、在网页中寻找或直接在搜索框中输入音频链接" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap \"Play Audio\" in the browse menu, find or enter video links directly in the search box on the webpage."
+          }
+        }
+      }
     },
     "轻触浏览菜单“查看网页图片”、在网页中寻找或直接在搜索框中输入图片链接" : {
       "localizations" : {
@@ -13779,7 +13833,14 @@
       }
     },
     "锁定本地音频" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lock Local Audios"
+          }
+        }
+      }
     },
     "锁定网页归档" : {
       "localizations" : {
@@ -14452,16 +14513,54 @@
       }
     },
     "音乐" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Music"
+          }
+        }
+      }
+    },
+    "音乐播放" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Music Playing"
+          }
+        }
+      }
     },
     "音乐播放器" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Music Player"
+          }
+        }
+      }
     },
     "音频" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Audio"
+          }
+        }
+      }
     },
     "音频列表" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Audio List"
+          }
+        }
+      }
     },
     "预计时间：%llds" : {
       "localizations" : {

@@ -210,11 +210,11 @@ struct TipsView: View {
                             Text("快速书签")
                         }
                     })
-                    NavigationLink(destination: { DownloadVideoView() }, label: {
+                    NavigationLink(destination: { DownloadMediaView() }, label: {
                         HStack {
                             Image(systemName: "arrow.down.doc.fill")
                                 .foregroundColor(.green)
-                            Text("下载视频")
+                            Text("下载媒体")
                         }
                     })
                 }
@@ -290,11 +290,11 @@ struct TipsView: View {
                 .navigationTitle("快速书签")
             }
         }
-        struct DownloadVideoView: View {
+        struct DownloadMediaView: View {
             var body: some View {
                 List {
                     Section {
-                        Text("在视频列表页向左滑动视频即可下载")
+                        Text("在视频或音频列表页向左滑动项目即可下载")
                     }
                     Section {
                         Text(verbatim: "https://darock.top/Shiroko.mp4")
@@ -309,7 +309,7 @@ struct TipsView: View {
                             Image(systemName: "arrow.left")
                                 .font(.system(size: 20, weight: .bold))
                                 .foregroundColor(.blue)
-                            Text("向左滑动视频链接")
+                            Text("向左滑动媒体链接")
                         }
                     } header: {
                         Text("尝试一下？")

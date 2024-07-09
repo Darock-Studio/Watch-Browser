@@ -163,10 +163,12 @@ class AdvancedWebViewController {
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [self] _ in
             if _slowPath(pIsMenuButtonDown) {
                 pIsMenuButtonDown = false
-                DispatchQueue.main.async {
-                    self.vc.presentViewController(self.menuController, animated: true, completion: nil)
+                if _fastPath(self.menuController.presentingViewController.asObject == nil) {
+                    DispatchQueue.main.async {
+                        self.vc.presentViewController(self.menuController, animated: true, completion: nil)
+                    }
+                    checkWebContent()
                 }
-                checkWebContent()
             }
             if _slowPath(pMenuShouldDismiss) {
                 pMenuShouldDismiss = false

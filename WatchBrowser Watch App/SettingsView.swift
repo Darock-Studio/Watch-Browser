@@ -296,8 +296,16 @@ struct SettingsView: View {
                 .navigationTitle("关于")
                 .onAppear {
                     do {
-                        songCount = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/").count
-                        videoCount = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/").count
+                        if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/") {
+                            do {
+                                songCount = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/").count
+                            } catch {
+                                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                            }
+                        }
+                        if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/") {
+                            videoCount = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/").count
+                        }
                         let allDocumentFiles = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents")
                         bookCount = 0
                         for file in allDocumentFiles where file.hasPrefix("EPUB") {

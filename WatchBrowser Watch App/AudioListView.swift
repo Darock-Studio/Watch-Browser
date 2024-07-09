@@ -11,6 +11,7 @@ import Combine
 import DarockKit
 import MediaPlayer
 import AVFoundation
+import SDWebImageSwiftUI
 
 let globalAudioPlayer = AVPlayer()
 var globalAudioLooper: Any?
@@ -89,6 +90,7 @@ struct AudioListView: View {
 
 struct AudioControllerView: View {
     @AppStorage("MPIsShowTranslatedLyrics") var isShowTranslatedLyrics = true
+    @Namespace var coverScaleNamespace
     @State var lyrics = [Double: String]()
     @State var isLyricsAvailable = true
     @State var currentPlaybackTime = 0.0
@@ -159,11 +161,12 @@ struct AudioControllerView: View {
                     }
                 } else {
                     Text("歌词不可用")
+                        .offset(y: -20)
                 }
                 // Audio Controls
                 VStack {
                     Spacer()
-                    if isShowingControls {
+                    if isShowingControls || !isLyricsAvailable {
                         VStack {
                             VStack {
                                 ProgressView(value: isProgressDraging ? progressDragingNewTime : currentPlaybackTime, total: currentItemTotalTime)
@@ -331,6 +334,8 @@ struct AudioControllerView: View {
             } else {
                 isLyricsAvailable = false
             }
+            isShowingControls = true
+            resetMenuDismissTimer()
             resetGlobalAudioLooper()
             pIsAudioControllerAvailable = true
             extendScreenIdleTime(3600)
