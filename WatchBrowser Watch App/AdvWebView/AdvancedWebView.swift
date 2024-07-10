@@ -15,6 +15,7 @@ import AuthenticationServices
 fileprivate var webViewController = AdvancedWebViewController()
 var videoLinkLists = [String]()
 var imageLinkLists = [String]()
+var imageAltTextLists = [String]()
 var audioLinkLists = [String]()
 var bookLinkLists = [String]()
 
@@ -404,6 +405,7 @@ class AdvancedWebViewController {
                 if let htmlStr = obj as? String {
                     do {
                         let doc = try SwiftSoup.parse(htmlStr)
+                        videoLinkLists.removeAll()
                         let videos = try doc.body()?.select("video")
                         if let videos {
                             var srcs = [String]()
@@ -421,9 +423,29 @@ class AdvancedWebViewController {
                             }
                             videoLinkLists = srcs
                         }
+                        let iframeVideos = try doc.body()?.select("iframe")
+                        if let iframeVideos {
+                            var srcs = [String]()
+                            for video in iframeVideos {
+                                var src = try video.attr("src")
+                                if src != "" && (src.hasSuffix(".mp4") || src.hasSuffix(".m3u8")) {
+                                    if src.split(separator: "://").count >= 2 && !src.hasPrefix("http://") && !src.hasPrefix("https://") {
+                                        src = "http://" + src.split(separator: "://").last!
+                                    } else if src.hasPrefix("/") {
+                                        if currentUrl.split(separator: "/").count < 2 {
+                                            continue
+                                        }
+                                        src = "http://" + currentUrl.split(separator: "/")[1] + src
+                                    }
+                                    srcs.append(src)
+                                }
+                            }
+                            videoLinkLists += srcs
+                        }
                         let images = try doc.body()?.select("img")
                         if let images {
                             var srcs = [String]()
+                            var alts = [String]()
                             for image in images {
                                 var src = try image.attr("src")
                                 if src != "" {
@@ -435,8 +457,10 @@ class AdvancedWebViewController {
                                     }
                                     srcs.append(src)
                                 }
+                                alts.append((try? image.attr("alt")) ?? "")
                             }
                             imageLinkLists = srcs
+                            imageAltTextLists = alts
                         }
                         let audios = try doc.body()?.select("audio")
                         if let audios {

@@ -38,9 +38,13 @@ struct TextField: View {
         if _modifyKeyboard {
             if #available(watchOS 10, *) {
                 if let titleKey {
-                    CepheusKeyboard(input: text, prompt: titleKey, style: style, onSubmit: _onSubmit)
+                    CepheusKeyboard(input: text, prompt: titleKey, CepheusIsEnabled: true, style: style, onSubmit: _onSubmit)
                 } else if let titleKeyString {
-                    CepheusKeyboard(input: text, prompt: LocalizedStringResource(stringLiteral: titleKeyString), style: style, onSubmit: _onSubmit)
+                    CepheusKeyboard(input: text,
+                                    prompt: LocalizedStringResource(stringLiteral: titleKeyString),
+                                    CepheusIsEnabled: true,
+                                    style: style,
+                                    onSubmit: _onSubmit)
                 }
             } else {
                 Button(action: {

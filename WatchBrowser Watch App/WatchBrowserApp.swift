@@ -9,6 +9,7 @@ import SwiftUI
 import Dynamic
 import Intents
 import WatchKit
+import DarockKit
 import SDWebImage
 import AVFoundation
 import SDWebImageSVGCoder
@@ -176,12 +177,6 @@ class AppDelegate: NSObject, WKApplicationDelegate {
 //                break
 //            }
 //        }
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, policy: .default)
-            AVAudioSession.sharedInstance().activate { _, _ in }
-        } catch {
-            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
-        }
     }
     
     func didRegisterForRemoteNotifications(withDeviceToken deviceToken: Data) {
@@ -234,6 +229,26 @@ func resetGlobalAudioLooper() {
             if playbackBehavior == .singleLoop {
                 globalAudioPlayer.seek(to: .zero)
                 globalAudioPlayer.play()
+            } else if playbackBehavior == .listLoop {
+                if let currentContent = getCurrentPlaylistContents() {
+                    for i in 0..<currentContent.count {
+                        if let currentUrl = (globalAudioPlayer.currentItem?.asset as? AVURLAsset)?.url {
+                            if currentUrl.absoluteString == currentContent[i].replacingOccurrences(
+                                of: "%DownloadedContent@=", with: "file://\(NSHomeDirectory())/Documents/DownloadedAudios/"
+                            ) {
+                                if let nextItem = currentContent[from: i + 1] {
+                                    playAudio(url: nextItem, presentController: false)
+                                } else if let firstItem = currentContent.first {
+                                    playAudio(url: firstItem, presentController: false)
+                                }
+                                break
+                            }
+                        }
+                    }
+                } else {
+                    globalAudioPlayer.seek(to: .zero)
+                    globalAudioPlayer.play()
+                }
             }
     }
 }

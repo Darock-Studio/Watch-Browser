@@ -15,27 +15,23 @@ import SDWebImageSwiftUI
 
 let globalAudioPlayer = AVPlayer()
 var globalAudioLooper: Any?
+var globalAudioCurrentPlaylist = ""
 var nowPlayingAudioId = ""
 
 struct AudioListView: View {
+    @AppStorage("MPIsShowTranslatedLyrics") var isShowTranslatedLyrics = true
     @State var willDownloadAudioLink = ""
     @State var downloadFileName: String?
     @State var isAudioDownloadPresented = false
+    @State var addPlaylistUrl = ""
+    @State var isAddToPlaylistPresented = false
     var body: some View {
         if !audioLinkLists.isEmpty {
             List {
                 ForEach(0..<audioLinkLists.count, id: \.self) { i in
                     Button(action: {
                         setForAudioPlaying()
-                        globalAudioPlayer.replaceCurrentItem(with: AVPlayerItem(url: URL(string: audioLinkLists[i])!))
-                        if audioLinkLists[i].contains(/music\..*\.com/) && audioLinkLists[i].contains(/(\?|&)id=[0-9]*\.mp3($|&)/),
-                           let mid = audioLinkLists[i].split(separator: "id=")[from: 1]?.split(separator: ".mp3").first {
-                            nowPlayingAudioId = String(mid)
-                        } else {
-                            nowPlayingAudioId = ""
-                        }
-                        pShouldPresentAudioController = true
-                        globalAudioPlayer.play()
+                        playAudio(url: audioLinkLists[i])
                     }, label: {
                         Text(audioLinkLists[i])
                     })
@@ -57,6 +53,58 @@ struct AudioListView: View {
                                             }
                                         }
                                     }
+                                DarockKit.Network.shared
+                                    .requestJSON("https://music.\(0b10100011).com/api/song/lyric?id=\(mid)&lv=1&kv=1&tv=-1") { respJson, isSuccess in
+                                        if isSuccess {
+                                            var lyrics = [Double: String]()
+                                            if let lyric = respJson["lrc"]["lyric"].string {
+                                                let lineSpd = lyric.components(separatedBy: "\n")
+                                                for lineText in lineSpd {
+                                                    // swiftlint:disable:next for_where
+                                                    if lineText.contains(/\[[0-9]*:[0-9]*.[0-9]*\].*/) {
+                                                        if let text = lineText.components(separatedBy: "]")[from: 1],
+                                                           let time = lineText.components(separatedBy: "[")[from: 1]?.components(separatedBy: "]")[from: 0],
+                                                           let dTime = lyricTimeStringToSeconds(String(time)) {
+                                                            lyrics.updateValue(String(text), forKey: dTime)
+                                                        }
+                                                    }
+                                                }
+                                                if isShowTranslatedLyrics {
+                                                    if let tlyric = respJson["tlyric"]["lyric"].string {
+                                                        let lineSpd = tlyric.components(separatedBy: "\n")
+                                                        for lineText in lineSpd {
+                                                            // swiftlint:disable:next for_where
+                                                            if lineText.contains(/\[[0-9]*:[0-9]*.[0-9]*\].*/) {
+                                                                if let text = lineText.components(separatedBy: "]")[from: 1],
+                                                                   let time = lineText.components(separatedBy: "[")[from: 1]?
+                                                                    .components(separatedBy: "]")[from: 0],
+                                                                   let dTime = lyricTimeStringToSeconds(String(time)),
+                                                                   let sourceLyric = lyrics[dTime],
+                                                                   !sourceLyric.isEmpty && !text.isEmpty {
+                                                                    lyrics.updateValue("\(sourceLyric)%tranlyric@\(text)", forKey: dTime)
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                do {
+                                                    if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/OfflineLyrics") {
+                                                        try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/OfflineLyrics",
+                                                                                            withIntermediateDirectories: false)
+                                                    }
+                                                    if let jsonStr = jsonString(from: lyrics) {
+                                                        try jsonStr.write(
+                                                            toFile: NSHomeDirectory() + "/Documents/OfflineLyrics/\(mid).drkdatal",
+                                                            atomically: true,
+                                                            encoding: .utf8
+                                                        )
+                                                    }
+                                                } catch {
+                                                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                                }
+                                            }
+                                        }
+                                    }
                             } else {
                                 downloadFileName = "\(audioLinkLists[i].split(separator: "/").last!.split(separator: ".mp3")[0]).mp3"
                             }
@@ -64,12 +112,50 @@ struct AudioListView: View {
                         }, label: {
                             Image(systemName: "square.and.arrow.down")
                         })
+                        Button(action: {
+                            addPlaylistUrl = audioLinkLists[i]
+                            isAddToPlaylistPresented = true
+                        }, label: {
+                            Image(systemName: "text.badge.plus")
+                        })
                     }
                 }
             }
             .navigationTitle("音频列表")
             .sheet(isPresented: $isAudioDownloadPresented) {
                 MediaDownloadView(mediaLink: $willDownloadAudioLink, mediaTypeName: "音频", saveFolderName: "DownloadedAudios", saveFileName: $downloadFileName)
+            }
+            .sheet(isPresented: $isAddToPlaylistPresented) {
+                NavigationStack {
+                    PlaylistsView { fileName in
+                        do {
+                            let sourceStr = try String(contentsOfFile: NSHomeDirectory() + "/Documents/Playlists/\(fileName)", encoding: .utf8)
+                            if var sourceData = getJsonData([String].self, from: sourceStr) {
+                                sourceData.append(addPlaylistUrl)
+                                if let newStr = jsonString(from: sourceData) {
+                                    try newStr.write(toFile: NSHomeDirectory() + "/Documents/Playlists/\(fileName)", atomically: true, encoding: .utf8)
+                                    if addPlaylistUrl.contains(/music\..*\.com/) && addPlaylistUrl.contains(/(\?|&)id=[0-9]*\.mp3($|&)/),
+                                       let mid = addPlaylistUrl.split(separator: "id=")[from: 1]?.split(separator: ".mp3").first {
+                                        DarockKit.Network.shared
+                                            .requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(mid)&ids=%5B\(mid)%5D") { respJson, isSuccess in
+                                                if isSuccess {
+                                                    if let audioName = respJson["songs"][0]["name"].string {
+                                                        var nameChart = (
+                                                            UserDefaults.standard.dictionary(forKey: "AudioHumanNameChart") as? [String: String]
+                                                        ) ?? [String: String]()
+                                                        nameChart.updateValue(audioName, forKey: "\(mid).mp3")
+                                                        UserDefaults.standard.set(nameChart, forKey: "AudioHumanNameChart")
+                                                    }
+                                                }
+                                            }
+                                    }
+                                }
+                            }
+                        } catch {
+                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                        }
+                    }
+                }
             }
             .onDisappear {
                 if dismissListsShouldRepresentWebView {
@@ -93,7 +179,7 @@ struct AudioControllerView: View {
     @Namespace var coverScaleNamespace
     @State var lyrics = [Double: String]()
     @State var isLyricsAvailable = true
-    @State var currentPlaybackTime = 0.0
+    @State var currentPlaybackTime = globalAudioPlayer.currentTime().seconds
     @State var currentItemTotalTime = 0.0
     @State var currentScrolledId = 0.0
     @State var isShowingControls = false
@@ -104,69 +190,71 @@ struct AudioControllerView: View {
     @State var controlMenuDismissTimer: Timer?
     @State var backgroundImageUrl: URL?
     @State var audioName = ""
+    @State var audioHumanNameChart = [String: String]()
+    @State var currentPlaylistContent = [String]()
     var body: some View {
         NavigationStack {
-            ZStack {
-                if isLyricsAvailable {
-                    if !lyrics.isEmpty {
-                        ScrollViewReader { scrollProxy in
-                            let lyricKeys = Array<Double>(lyrics.keys).sorted(by: { lhs, rhs in lhs < rhs })
-                            ScrollView {
-                                VStack(alignment: .leading) {
-                                    if let firstKey = lyricKeys.first {
-                                        if firstKey >= 2.0 {
-                                            WaitingDotView(startTime: 0.0, endTime: firstKey, currentTime: $currentPlaybackTime)
+            TabView {
+                ZStack {
+                    if isLyricsAvailable {
+                        if !lyrics.isEmpty {
+                            ScrollViewReader { scrollProxy in
+                                let lyricKeys = Array<Double>(lyrics.keys).sorted(by: { lhs, rhs in lhs < rhs })
+                                ScrollView {
+                                    VStack(alignment: .leading) {
+                                        if let firstKey = lyricKeys.first {
+                                            if firstKey >= 2.0 {
+                                                WaitingDotView(startTime: 0.0, endTime: firstKey, currentTime: $currentPlaybackTime)
+                                            }
+                                        }
+                                        if #available(watchOS 10, *) {
+                                            lyricsMainView
+                                                .scrollTransition { content, phase in
+                                                    content
+                                                        .scaleEffect(phase.isIdentity ? 1 : 0.98)
+                                                        .opacity(phase.isIdentity ? 1 : 0.5)
+                                                        .offset(y: phase == .bottomTrailing ? 10 : 0)
+                                                }
+                                        } else {
+                                            lyricsMainView
                                         }
                                     }
-                                    if #available(watchOS 10, *) {
-                                        lyricsMainView
-                                            .scrollTransition { content, phase in
-                                                content
-                                                    .scaleEffect(phase.isIdentity ? 1 : 0.98)
-                                                    .opacity(phase.isIdentity ? 1 : 0.5)
-                                                    .offset(y: phase == .bottomTrailing ? 10 : 0)
-                                            }
-                                    } else {
-                                        lyricsMainView
+                                }
+                                .scrollIndicators(.never)
+                                .onReceive(globalAudioPlayer.periodicTimePublisher()) { _ in
+                                    var newScrollId = 0.0
+                                    var isUpdatedScrollId = false
+                                    for i in 0..<lyricKeys.count where currentPlaybackTime < lyricKeys[i] {
+                                        if let newKey = lyricKeys[from: i - 1] {
+                                            newScrollId = newKey
+                                        } else {
+                                            newScrollId = lyricKeys[i]
+                                        }
+                                        isUpdatedScrollId = true
+                                        break
+                                    }
+                                    if _slowPath(!isUpdatedScrollId && !lyricKeys.isEmpty) {
+                                        newScrollId = lyricKeys.last!
+                                    }
+                                    if _slowPath(newScrollId != currentScrolledId) {
+                                        currentScrolledId = newScrollId
+                                        debugPrint("Scrolling to \(newScrollId)")
+                                        withAnimation(.easeOut(duration: 0.5)) {
+                                            scrollProxy.scrollTo(newScrollId, anchor: .init(x: 0.5, y: 0.25))
+                                        }
                                     }
                                 }
                             }
-                            .scrollIndicators(.never)
-                            .onReceive(globalAudioPlayer.periodicTimePublisher()) { time in
-                                // Code in this closure runs at nearly each frame, optimizing for speed is important.
-                                if time.seconds - currentPlaybackTime >= 0.3 || time.seconds < currentPlaybackTime {
-                                    currentPlaybackTime = time.seconds
-                                }
-                                var newScrollId = 0.0
-                                for i in 0..<lyricKeys.count where currentPlaybackTime < lyricKeys[i] {
-                                    if let newKey = lyricKeys[from: i - 1] {
-                                        newScrollId = newKey
-                                    } else {
-                                        newScrollId = lyricKeys[i]
-                                    }
-                                    break
-                                }
-                                if _slowPath(newScrollId != currentScrolledId) {
-                                    currentScrolledId = newScrollId
-                                    debugPrint("Scrolling to \(newScrollId)")
-                                    withAnimation(.easeOut(duration: 0.5)) {
-                                        scrollProxy.scrollTo(newScrollId, anchor: .init(x: 0.5, y: 0.25))
-                                    }
-                                }
-                                
-                            }
+                        } else {
+                            ProgressView()
                         }
                     } else {
-                        ProgressView()
+                        Text("歌词不可用")
+                            .offset(y: -20)
                     }
-                } else {
-                    Text("歌词不可用")
-                        .offset(y: -20)
-                }
-                // Audio Controls
-                VStack {
-                    Spacer()
-                    if isShowingControls || !isLyricsAvailable {
+                    // Audio Controls
+                    VStack {
+                        Spacer()
                         VStack {
                             VStack {
                                 ProgressView(value: isProgressDraging ? progressDragingNewTime : currentPlaybackTime, total: currentItemTotalTime)
@@ -209,7 +297,13 @@ struct AudioControllerView: View {
                                     case .pause:
                                         playbackBehavior = .singleLoop
                                     case .singleLoop:
-                                        playbackBehavior = .pause
+                                        if !currentPlaylistContent.isEmpty {
+                                            playbackBehavior = .listLoop
+                                        } else {
+                                            playbackBehavior = .pause
+                                        }
+                                    case .listLoop:
+                                        playbackBehavior = .singleLoop
                                     }
                                     UserDefaults.standard.set(playbackBehavior.rawValue, forKey: "MPPlaybackBehavior")
                                     resetMenuDismissTimer()
@@ -220,6 +314,8 @@ struct AudioControllerView: View {
                                             Image(systemName: "pause.circle")
                                         case .singleLoop:
                                             Image(systemName: "repeat.1")
+                                        case .listLoop:
+                                            Image(systemName: "repeat")
                                         }
                                     }
                                     .font(.system(size: 20))
@@ -258,87 +354,74 @@ struct AudioControllerView: View {
                                     .offset(y: 20)
                             }
                         }
-                        .transition(
-                            AnyTransition
-                                .opacity
-                                .animation(.easeOut(duration: 0.2))
-                        )
+                        .opacity(isShowingControls || !isLyricsAvailable ? 1.0 : 0.0)
+                        .offset(y: isShowingControls || !isLyricsAvailable ? 0 : 10)
+                        .animation(.easeOut(duration: 0.2), value: isShowingControls)
+                        .animation(.easeOut(duration: 0.2), value: isLyricsAvailable)
+                    }
+                    .ignoresSafeArea()
+                }
+                .navigationTitle(audioName)
+                .onTapGesture { location in
+                    if location.y > WKInterfaceDevice.current().screenBounds.height / 2 {
+                        isShowingControls = true
+                        resetMenuDismissTimer()
+                    } else {
+                        isShowingControls = false
                     }
                 }
-                .ignoresSafeArea()
-            }
-            .navigationTitle(audioName)
-            .modifier(BlurBackground(imageUrl: backgroundImageUrl))
-            .onTapGesture { location in
-                if location.y > WKInterfaceDevice.current().screenBounds.height / 2 {
-                    isShowingControls = true
-                    resetMenuDismissTimer()
-                } else {
-                    isShowingControls = false
+                .tag(1)
+                // MARK: --- Tab View Divider ---
+                List {
+                    if !currentPlaylistContent.isEmpty {
+                        Section {
+                            ForEach(0..<currentPlaylistContent.count, id: \.self) { i in
+                                Button(action: {
+                                    playAudio(url: currentPlaylistContent[i], presentController: false)
+                                }, label: {
+                                    HStack {
+                                        if let currentUrl = (globalAudioPlayer.currentItem?.asset as? AVURLAsset)?.url {
+                                            if currentUrl.absoluteString == currentPlaylistContent[i].replacingOccurrences(
+                                                of: "%DownloadedContent@=", with: "file://\(NSHomeDirectory())/Documents/DownloadedAudios/"
+                                            ) {
+                                                AudioVisualizerView()
+                                            }
+                                        }
+                                        Text(audioHumanNameChart[
+                                            String(currentPlaylistContent[i].split(separator: "/").last!.split(separator: "=").last!)
+                                        ] ?? currentPlaylistContent[i])
+                                    }
+                                })
+                            }
+                        }
+                    } else {
+                        Text("不在播放列表")
+                    }
                 }
+                .navigationTitle("播放列表")
             }
+            .modifier(BlurBackground(imageUrl: backgroundImageUrl))
         }
         .onAppear {
             isPlaying = globalAudioPlayer.timeControlStatus == .playing
             currentItemTotalTime = globalAudioPlayer.currentItem?.duration.seconds ?? 0.0
             playbackBehavior = .init(rawValue: UserDefaults.standard.string(forKey: "MPPlaybackBehavior") ?? "pause") ?? .pause
-            if !nowPlayingAudioId.isEmpty {
-                DarockKit.Network.shared
-                    .requestJSON("https://music.\(0b10100011).com/api/song/lyric?id=\(nowPlayingAudioId)&lv=1&kv=1&tv=-1") { respJson, isSuccess in
-                        if isSuccess {
-                            if let lyric = respJson["lrc"]["lyric"].string {
-                                let lineSpd = lyric.components(separatedBy: "\n")
-                                for lineText in lineSpd {
-                                    // swiftlint:disable:next for_where
-                                    if lineText.contains(/\[[0-9]*:[0-9]*.[0-9]*\].*/) {
-                                        if let text = lineText.components(separatedBy: "]")[from: 1],
-                                           let time = lineText.components(separatedBy: "[")[from: 1]?.components(separatedBy: "]")[from: 0],
-                                           let dTime = lyricTimeStringToSeconds(String(time)) {
-                                            lyrics.updateValue(String(text), forKey: dTime)
-                                        }
-                                    }
-                                }
-                                if isShowTranslatedLyrics {
-                                    if let tlyric = respJson["tlyric"]["lyric"].string {
-                                        let lineSpd = tlyric.components(separatedBy: "\n")
-                                        for lineText in lineSpd {
-                                            // swiftlint:disable:next for_where
-                                            if lineText.contains(/\[[0-9]*:[0-9]*.[0-9]*\].*/) {
-                                                if let text = lineText.components(separatedBy: "]")[from: 1],
-                                                   let time = lineText.components(separatedBy: "[")[from: 1]?.components(separatedBy: "]")[from: 0],
-                                                   let dTime = lyricTimeStringToSeconds(String(time)),
-                                                   let sourceLyric = lyrics[dTime],
-                                                   !sourceLyric.isEmpty && !text.isEmpty {
-                                                    lyrics.updateValue("\(sourceLyric)%tranlyric@\(text)", forKey: dTime)
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            } else {
-                                isLyricsAvailable = false
-                            }
-                        } else {
-                            isLyricsAvailable = false
-                        }
-                    }
-                DarockKit.Network.shared
-                    .requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(nowPlayingAudioId)&ids=%5B\(nowPlayingAudioId)%5D") { respJson, isSuccess in
-                        if isSuccess {
-                            if let imageUrl = respJson["songs"][0]["album"]["picUrl"].string {
-                                backgroundImageUrl = URL(string: imageUrl)
-                            }
-                            audioName = respJson["songs"][0]["name"].string ?? ""
-                        }
-                    }
-            } else {
-                isLyricsAvailable = false
-            }
+            updateMetadata()
             isShowingControls = true
             resetMenuDismissTimer()
             resetGlobalAudioLooper()
             pIsAudioControllerAvailable = true
             extendScreenIdleTime(3600)
+            audioHumanNameChart = (UserDefaults.standard.dictionary(forKey: "AudioHumanNameChart") as? [String: String]) ?? [String: String]()
+            if !globalAudioCurrentPlaylist.isEmpty
+                && FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/Playlists/\(globalAudioCurrentPlaylist)") {
+                do {
+                    let fileStr = try String(contentsOfFile: NSHomeDirectory() + "/Documents/Playlists/\(globalAudioCurrentPlaylist)", encoding: .utf8)
+                    currentPlaylistContent = getJsonData([String].self, from: fileStr) ?? [String]()
+                } catch {
+                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                }
+            }
         }
         .onDisappear {
             recoverNormalIdleTime()
@@ -353,6 +436,13 @@ struct AudioControllerView: View {
         .onReceive(globalAudioPlayer.publisher(for: \.currentItem)) { item in
             if let item {
                 currentItemTotalTime = item.duration.seconds
+                updateMetadata()
+            }
+        }
+        .onReceive(globalAudioPlayer.periodicTimePublisher()) { time in
+            // Code in this closure runs at nearly each frame, optimizing for speed is important.
+            if time.seconds - currentPlaybackTime >= 0.3 || time.seconds < currentPlaybackTime {
+                currentPlaybackTime = time.seconds
             }
         }
     }
@@ -389,6 +479,84 @@ struct AudioControllerView: View {
         }
     }
     
+    func updateMetadata() {
+        isLyricsAvailable = true
+        lyrics.removeAll()
+        if !nowPlayingAudioId.isEmpty {
+            DarockKit.Network.shared
+                .requestJSON("https://music.\(0b10100011).com/api/song/lyric?id=\(nowPlayingAudioId)&lv=1&kv=1&tv=-1") { respJson, isSuccess in
+                    if isSuccess {
+                        if let lyric = respJson["lrc"]["lyric"].string {
+                            let lineSpd = lyric.components(separatedBy: "\n")
+                            for lineText in lineSpd {
+                                // swiftlint:disable:next for_where
+                                if lineText.contains(/\[[0-9]*:[0-9]*.[0-9]*\].*/) {
+                                    if let text = lineText.components(separatedBy: "]")[from: 1],
+                                       let time = lineText.components(separatedBy: "[")[from: 1]?.components(separatedBy: "]")[from: 0],
+                                       let dTime = lyricTimeStringToSeconds(String(time)) {
+                                        lyrics.updateValue(String(text), forKey: dTime)
+                                    }
+                                }
+                            }
+                            if isShowTranslatedLyrics {
+                                if let tlyric = respJson["tlyric"]["lyric"].string {
+                                    let lineSpd = tlyric.components(separatedBy: "\n")
+                                    for lineText in lineSpd {
+                                        // swiftlint:disable:next for_where
+                                        if lineText.contains(/\[[0-9]*:[0-9]*.[0-9]*\].*/) {
+                                            if let text = lineText.components(separatedBy: "]")[from: 1],
+                                               let time = lineText.components(separatedBy: "[")[from: 1]?.components(separatedBy: "]")[from: 0],
+                                               let dTime = lyricTimeStringToSeconds(String(time)),
+                                               let sourceLyric = lyrics[dTime],
+                                               !sourceLyric.isEmpty && !text.isEmpty {
+                                                lyrics.updateValue("\(sourceLyric)%tranlyric@\(text)", forKey: dTime)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if lyrics.isEmpty {
+                                isLyricsAvailable = false
+                            }
+                        } else {
+                            isLyricsAvailable = false
+                        }
+                    } else {
+                        // Offline Lyrics
+                        if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/OfflineLyrics/\(nowPlayingAudioId).drkdatal") {
+                            do {
+                                let lrcFileStr = try String(
+                                    contentsOfFile: NSHomeDirectory() + "/Documents/OfflineLyrics/\(nowPlayingAudioId).drkdatal",
+                                    encoding: .utf8
+                                )
+                                if let lrcData = getJsonData([Double: String].self, from: lrcFileStr) {
+                                    lyrics = lrcData
+                                } else {
+                                    isLyricsAvailable = false
+                                }
+                            } catch {
+                                isLyricsAvailable = false
+                                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                            }
+                        } else {
+                            isLyricsAvailable = false
+                        }
+                    }
+                }
+            DarockKit.Network.shared
+                .requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(nowPlayingAudioId)&ids=%5B\(nowPlayingAudioId)%5D") { respJson, isSuccess in
+                    if isSuccess {
+                        if let imageUrl = respJson["songs"][0]["album"]["picUrl"].string {
+                            backgroundImageUrl = URL(string: imageUrl)
+                        }
+                        audioName = respJson["songs"][0]["name"].string ?? ""
+                    }
+                }
+        } else {
+            isLyricsAvailable = false
+        }
+    }
+    
     struct WaitingDotView: View {
         var startTime: Double
         var endTime: Double
@@ -420,7 +588,11 @@ struct AudioControllerView: View {
             .opacity(currentTime >= startTime && currentTime <= endTime ? 1.0 : 0.0100000002421438702673861521)
             .onAppear {
                 withAnimation(.easeInOut(duration: 2.0).repeatForever()) {
-                    scale = 1.15
+                    if scale > 1.0 {
+                        scale = 1.0
+                    } else {
+                        scale = 1.15
+                    }
                 }
             }
             .onChange(of: currentTime) { value in
@@ -509,6 +681,16 @@ func formattedTime(from seconds: Double) -> String {
     return String(format: "%02d:%02d", minutes, remainingSeconds)
 }
 func setForAudioPlaying() {
+    do {
+        try AVAudioSession.sharedInstance().setCategory(
+            AVAudioSession.Category.playback,
+            mode: .default,
+            policy: UserDefaults.standard.bool(forKey: "MPBackgroundPlay") ? .longFormAudio : .default
+        )
+        AVAudioSession.sharedInstance().activate { _, _ in }
+    } catch {
+        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+    }
     let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
     var nowPlayingInfo = nowPlayingInfoCenter.nowPlayingInfo ?? [String: Any]()
     let title = String(localized: "暗礁浏览器 - 音频播放")
@@ -519,9 +701,12 @@ func setForAudioPlaying() {
 enum PlaybackBehavior: String {
     case pause
     case singleLoop
+    case listLoop
 }
 
 struct LocalAudiosView: View {
+    var selectHandler: ((String) -> Void)?
+    @Environment(\.dismiss) var dismiss
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLocalAudios") var usePasscodeForLocalAudios = false
     @State var isLocked = true
@@ -548,22 +733,46 @@ struct LocalAudiosView: View {
                     if !audioNames.isEmpty {
                         ForEach(0..<audioNames.count, id: \.self) { i in
                             Button(action: {
-                                setForAudioPlaying()
-                                let audioPathPrefix = URL(filePath: NSHomeDirectory() + "/Documents/DownloadedAudios")
-                                globalAudioPlayer.replaceCurrentItem(with: AVPlayerItem(url: audioPathPrefix.appending(path: audioNames[i])))
-                                if let noSuffix = audioNames[i].split(separator: ".").first, let mid = Int(noSuffix) {
-                                    nowPlayingAudioId = String(mid)
+                                if let selectHandler {
+                                    selectHandler("%DownloadedContent@=\(audioNames[i])")
+                                    dismiss()
                                 } else {
-                                    nowPlayingAudioId = ""
+                                    setForAudioPlaying()
+                                    let audioPathPrefix = URL(filePath: NSHomeDirectory() + "/Documents/DownloadedAudios")
+                                    globalAudioPlayer.replaceCurrentItem(with: AVPlayerItem(url: audioPathPrefix.appending(path: audioNames[i])))
+                                    if let noSuffix = audioNames[i].split(separator: ".").first, let mid = Int(noSuffix) {
+                                        nowPlayingAudioId = String(mid)
+                                    } else {
+                                        nowPlayingAudioId = ""
+                                    }
+                                    pShouldPresentAudioController = true
+                                    globalAudioPlayer.play()
                                 }
-                                pShouldPresentAudioController = true
-                                globalAudioPlayer.play()
                             }, label: {
                                 Text(audioHumanNameChart[audioNames[i]] ?? audioNames[i])
                             })
                             .swipeActions {
                                 Button(role: .destructive, action: {
                                     do {
+                                        // Delete this in all playlists
+                                        if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/Playlists") {
+                                            let playlistFiles = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/Playlists")
+                                            for file in playlistFiles {
+                                                let content = try String(contentsOfFile: NSHomeDirectory() + "/Documents/Playlists/\(file)")
+                                                if var data = getJsonData([String].self, from: content) {
+                                                    data.removeAll(where: { element in
+                                                        element == "%DownloadedContent@=\(audioNames[i])"
+                                                    })
+                                                    if let newStr = jsonString(from: data) {
+                                                        try newStr.write(
+                                                            toFile: NSHomeDirectory() + "/Documents/Playlists/\(file)",
+                                                            atomically: true,
+                                                            encoding: .utf8
+                                                        )
+                                                    }
+                                                }
+                                            }
+                                        }
                                         try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/" + audioNames[i])
                                         audioNames.remove(at: i)
                                     } catch {
@@ -615,6 +824,385 @@ struct LocalAudiosView: View {
             }
         }
     }
+}
+
+struct PlaylistsView: View {
+    var selectHandler: ((String) -> Void)?
+    @Environment(\.dismiss) var dismiss
+    @State var listFileNames = [String]()
+    @State var isCreateListPresented = false
+    @State var createListNameInput = ""
+    @State var deletingIndex = 0
+    @State var isConfirmDeletePresented = false
+    var body: some View {
+        List {
+            if #unavailable(watchOS 10.5) {
+                Section {
+                    Button(action: {
+                        isCreateListPresented = true
+                    }, label: {
+                        HStack {
+                            Spacer()
+                            Label("新建播放列表", systemImage: "plus")
+                            Spacer()
+                        }
+                    })
+                }
+            }
+            if !listFileNames.isEmpty {
+                Section {
+                    ForEach(0..<listFileNames.count, id: \.self) { i in
+                        Group {
+                            if let selectHandler {
+                                Button(action: {
+                                    selectHandler(listFileNames[i])
+                                    dismiss()
+                                }, label: {
+                                    Text(listFileNames[i].dropLast(9))
+                                })
+                            } else {
+                                NavigationLink(destination: { ListDetailView(fileName: listFileNames[i]) }, label: {
+                                    Text(listFileNames[i].dropLast(9))
+                                })
+                            }
+                        }
+                        .swipeActions {
+                            Button(action: {
+                                deletingIndex = i
+                                isConfirmDeletePresented = true
+                            }, label: {
+                                Image(systemName: "xmark.bin.fill")
+                            })
+                            .tint(.red)
+                        }
+                    }
+                }
+            } else {
+                Text("无播放列表")
+            }
+        }
+        .navigationTitle("\(selectHandler != nil ? "添加到" : "")播放列表")
+        .sheet(isPresented: $isCreateListPresented) {
+            NavigationStack {
+                List {
+                    Section {
+                        TextField("名称", text: $createListNameInput, style: "field-page")
+                        Button(action: {
+                            let listStr = jsonString(from: [String]())!
+                            do {
+                                try listStr.write(toFile: NSHomeDirectory() + "/Documents/Playlists/\(createListNameInput).drkdatap",
+                                                  atomically: true,
+                                                  encoding: .utf8)
+                            } catch {
+                                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                            }
+                            createListNameInput = ""
+                            getPlaylistFiles()
+                            isCreateListPresented = false
+                        }, label: {
+                            Label("创建", systemImage: "plus")
+                        })
+                    }
+                }
+                .navigationTitle("创建播放列表")
+            }
+        }
+        .alert("删除播放列表", isPresented: $isConfirmDeletePresented, actions: {
+            Button(role: .cancel, action: {
+                
+            }, label: {
+                Text("取消")
+            })
+            Button(role: .destructive, action: {
+                do {
+                    try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/Playlists/\(listFileNames[deletingIndex])")
+                    listFileNames.remove(at: deletingIndex)
+                } catch {
+                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                }
+            }, label: {
+                Text("确认")
+            })
+        }, message: {
+            Text("这将删除播放列表中的所有内容\n确定吗？")
+        })
+        .toolbar {
+            if #available(watchOS 10.5, *) {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        isCreateListPresented = true
+                    }, label: {
+                        Image(systemName: "plus")
+                    })
+                }
+            }
+        }
+        .onAppear {
+            getPlaylistFiles()
+        }
+    }
+    
+    func getPlaylistFiles() {
+        do {
+            if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/Playlists") {
+                listFileNames = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/Playlists")
+            } else {
+                try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/Playlists", withIntermediateDirectories: true)
+            }
+        } catch {
+            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+        }
+    }
+    
+    struct ListDetailView: View {
+        var fileName: String
+        @State var listContent = [String]()
+        @State var isAddMusicPresented = false
+        @State var renameContentIndex = 0
+        @State var isRenamePresented = false
+        @State var renameInput = ""
+        @State var audioHumanNameChart = [String: String]()
+        var body: some View {
+            List {
+                if #unavailable(watchOS 10.5) {
+                    Button(action: {
+                        isAddMusicPresented = true
+                    }, label: {
+                        HStack {
+                            Spacer()
+                            Label("添加歌曲", systemImage: "plus")
+                            Spacer()
+                        }
+                    })
+                }
+                if !listContent.isEmpty {
+                    Section {
+                        ForEach(0..<listContent.count, id: \.self) { i in
+                            Button(action: {
+                                setForAudioPlaying()
+                                globalAudioCurrentPlaylist = fileName
+                                playAudio(url: listContent[i])
+                            }, label: {
+                                Text(audioHumanNameChart[String(listContent[i].split(separator: "/").last!.split(separator: "=").last!)] ?? listContent[i])
+                            })
+                            .swipeActions {
+                                Button(role: .destructive, action: {
+                                    listContent.remove(at: i)
+                                    saveCurrentContent()
+                                }, label: {
+                                    Image(systemName: "xmark.bin.fill")
+                                })
+                                Button(action: {
+                                    renameContentIndex = i
+                                    isRenamePresented = true
+                                }, label: {
+                                    Image(systemName: "pencil.line")
+                                })
+                            }
+                        }
+                        .onMove { source, destination in
+                            listContent.move(fromOffsets: source, toOffset: destination)
+                            saveCurrentContent()
+                        }
+                    }
+                } else {
+                    Text("空播放列表")
+                }
+            }
+            .navigationTitle(fileName.dropLast(9))
+            .sheet(isPresented: $isAddMusicPresented, onDismiss: { saveCurrentContent() }, content: { AddMusicToListView(listContent: $listContent) })
+            .sheet(isPresented: $isRenamePresented) {
+                NavigationStack {
+                    List {
+                        Section {
+                            TextField("新名称", text: $renameInput)
+                            Button(action: {
+                                audioHumanNameChart.updateValue(
+                                    renameInput,
+                                    forKey: String(listContent[renameContentIndex].split(separator: "/").last!.split(separator: "=").last!)
+                                )
+                                UserDefaults.standard.set(audioHumanNameChart, forKey: "AudioHumanNameChart")
+                                saveCurrentContent()
+                                isRenamePresented = false
+                            }, label: {
+                                Label("完成", systemImage: "checkmark")
+                            })
+                        }
+                    }
+                    .navigationTitle("重命名")
+                }
+                .onDisappear {
+                    renameInput = ""
+                }
+            }
+            .toolbar {
+                if #available(watchOS 10.5, *) {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(action: {
+                            isAddMusicPresented = true
+                        }, label: {
+                            Image(systemName: "plus")
+                        })
+                    }
+                }
+            }
+            .onAppear {
+                do {
+                    let fileContent = try String(contentsOfFile: NSHomeDirectory() + "/Documents/Playlists/\(fileName)", encoding: .utf8)
+                    listContent = getJsonData([String].self, from: fileContent) ?? [String]()
+                } catch {
+                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                }
+                audioHumanNameChart = (UserDefaults.standard.dictionary(forKey: "AudioHumanNameChart") as? [String: String]) ?? [String: String]()
+            }
+        }
+        
+        func saveCurrentContent() {
+            if let content = jsonString(from: listContent) {
+                do {
+                    try content.write(toFile: NSHomeDirectory() + "/Documents/Playlists/\(fileName)", atomically: true, encoding: .utf8)
+                } catch {
+                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                }
+            }
+        }
+        
+        struct AddMusicToListView: View {
+            @Binding var listContent: [String]
+            @Environment(\.dismiss) var dismiss
+            @State var linkInput = ""
+            @State var isAddLinkInvalid = false
+            var body: some View {
+                NavigationStack {
+                    List {
+                        Section {
+                            NavigationLink(destination: {
+                                LocalAudiosView { url in
+                                    listContent.append(url)
+                                    dismiss()
+                                }
+                            }, label: {
+                                Text("从离线歌曲选择")
+                            })
+                            TextField("输入歌曲链接", text: $linkInput)
+                                .onSubmit {
+                                    if !linkInput.hasSuffix(".mp3") {
+                                        isAddLinkInvalid = true
+                                        return
+                                    }
+                                    if !linkInput.hasPrefix("http://") && !linkInput.hasPrefix("https://") {
+                                        linkInput = "http://" + linkInput
+                                    }
+                                    listContent.append(linkInput)
+                                    dismiss()
+                                }
+                            if isAddLinkInvalid {
+                                HStack {
+                                    Image(systemName: "xmark.octagon.fill")
+                                        .foregroundStyle(Color.red)
+                                    Text("歌曲链接无效")
+                                }
+                            }
+                        }
+                        Section {
+                            Label("可在解析的音频列表页左滑项目以添加到列表", systemImage: "lightbulb.max")
+                        }
+                    }
+                    .navigationTitle("添加歌曲")
+                }
+            }
+        }
+    }
+}
+
+struct AudioVisualizerView: View {
+    @State private var drawingHeight = true
+    @State var isAudioPlaying = globalAudioPlayer.timeControlStatus == .playing
+    var animation: Animation {
+        return .linear(duration: 0.5).repeatForever()
+    }
+    var body: some View {
+        Group {
+            if isAudioPlaying {
+                HStack {
+                    bar(low: 0.4)
+                        .animation(animation.speed(1.8), value: drawingHeight)
+                    bar(low: 0.3)
+                        .animation(animation.speed(2.4), value: drawingHeight)
+                    bar(low: 0.5)
+                        .animation(animation.speed(2.0), value: drawingHeight)
+                    bar(low: 0.3)
+                        .animation(animation.speed(3.0), value: drawingHeight)
+                    bar(low: 0.5)
+                        .animation(animation.speed(2.0), value: drawingHeight)
+                }
+                .frame(width: 22)
+                .onAppear {
+                    drawingHeight.toggle()
+                }
+            } else {
+                HStack {
+                    bar(low: 0.2, high: 0.2)
+                    bar(low: 0.2, high: 0.2)
+                    bar(low: 0.2, high: 0.2)
+                    bar(low: 0.2, high: 0.2)
+                    bar(low: 0.2, high: 0.2)
+                }
+                .frame(width: 22)
+            }
+        }
+        .onReceive(globalAudioPlayer.publisher(for: \.timeControlStatus)) { status in
+            isAudioPlaying = status == .playing
+        }
+    }
+    
+    func bar(low: CGFloat = 0.0, high: CGFloat = 1.0) -> some View {
+        RoundedRectangle(cornerRadius: 3)
+            .fill(Color.white)
+            .frame(height: (drawingHeight ? high : low) * 18)
+            .frame(height: 18)
+            .padding(.horizontal, -1.5)
+    }
+}
+
+func playAudio(url: String, presentController: Bool = true) {
+    if url.contains(/music\..*\.com/) && url.contains(/(\?|&)id=[0-9]*\.mp3($|&)/),
+       let mid = url.split(separator: "id=")[from: 1]?.split(separator: ".mp3").first {
+        nowPlayingAudioId = String(mid)
+    } else if let noSuffix = url.split(separator: "/").last?
+        .split(separator: "=").last?
+        .split(separator: ".").first,
+              let mid = Int(noSuffix) {
+        nowPlayingAudioId = String(mid)
+    } else {
+        nowPlayingAudioId = ""
+    }
+    globalAudioPlayer.replaceCurrentItem(
+        with: AVPlayerItem(
+            url: URL(
+                string: url
+                    .replacingOccurrences(of: "%DownloadedContent@=",
+                                          with: "file://\(NSHomeDirectory())/Documents/DownloadedAudios/")
+            )!
+        )
+    )
+    resetGlobalAudioLooper()
+    if presentController {
+        pShouldPresentAudioController = true
+    }
+    globalAudioPlayer.play()
+}
+func getCurrentPlaylistContents() -> [String]? {
+    if !globalAudioCurrentPlaylist.isEmpty
+        && FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/Playlists/\(globalAudioCurrentPlaylist)") {
+        do {
+            let fileStr = try String(contentsOfFile: NSHomeDirectory() + "/Documents/Playlists/\(globalAudioCurrentPlaylist)", encoding: .utf8)
+            return getJsonData([String].self, from: fileStr)
+        } catch {
+            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+        }
+    }
+    return nil
 }
 
 // Extensions for periodicTimePublisher

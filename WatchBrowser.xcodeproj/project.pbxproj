@@ -1003,7 +1003,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.13.0;
+				MARKETING_VERSION = 4.14.0;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -1045,7 +1045,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.13.0;
+				MARKETING_VERSION = 4.14.0;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -1070,7 +1070,7 @@
 				DEVELOPMENT_TEAM = B57D8PP775;
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
-				MARKETING_VERSION = 4.13.0;
+				MARKETING_VERSION = 4.14.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -1088,7 +1088,7 @@
 				GCC_OPTIMIZATION_LEVEL = z;
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
-				MARKETING_VERSION = 4.13.0;
+				MARKETING_VERSION = 4.14.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;

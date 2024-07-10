@@ -456,6 +456,16 @@
         }
       }
     },
+    "%@播放列表" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Playlist"
+          }
+        }
+      }
+    },
     "%lld" : {
       "localizations" : {
         "en" : {
@@ -4029,6 +4039,16 @@
         }
       }
     },
+    "上面的网站在 Apple Watch 上运行表现较好，尽管如此，我们仍然不接受网站内问题的反馈。\n网站内容由网页提供商提供，Darock 不对其内容负责。\n请自行辨别其中内容真实性，特别是广告内容。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "These websites perform well on Apple Watch; however, we still do not accept feedback on in-website issues. \nWebsite content is provided by web service providers, and Darock is not responsible for its content. \nPlease verify the authenticity of the content yourself, especially advertisements."
+          }
+        }
+      }
+    },
     "下一页" : {
       "localizations" : {
         "en" : {
@@ -4119,6 +4139,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "下載時出錯："
+          }
+        }
+      }
+    },
+    "不在播放列表" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not in Playlist"
           }
         }
       }
@@ -4539,6 +4569,16 @@
         }
       }
     },
+    "从离线歌曲选择" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select from offline songs"
+          }
+        }
+      }
+    },
     "从边缘\n向右滑动" : {
       "localizations" : {
         "en" : {
@@ -4903,6 +4943,16 @@
         }
       }
     },
+    "允许后台播放" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow Background Playing"
+          }
+        }
+      }
+    },
     "全屏" : {
       "localizations" : {
         "en" : {
@@ -5263,6 +5313,26 @@
         }
       }
     },
+    "创建" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create"
+          }
+        }
+      }
+    },
+    "创建播放列表" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Playlist"
+          }
+        }
+      }
+    },
     "创建网页归档" : {
       "localizations" : {
         "en" : {
@@ -5287,6 +5357,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "創建網頁歸檔"
+          }
+        }
+      }
+    },
+    "删除播放列表" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Playlist"
           }
         }
       }
@@ -5989,6 +6069,16 @@
         }
       }
     },
+    "可在解析的音频列表页左滑项目以添加到列表" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swipe left on items in the parsed audio list page to add them to the list."
+          }
+        }
+      }
+    },
     "可能的问题：" : {
       "localizations" : {
         "en" : {
@@ -6345,30 +6435,12 @@
         }
       }
     },
-    "图片列表" : {
+    "图片列表 (%lld)" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Image List"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "画像リスト"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Список фотографий"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "圖片列表"
+            "value" : "Image List (%lld)"
           }
         }
       }
@@ -6629,6 +6701,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "增強的瀏覽引擎包含更多高級功能"
+          }
+        }
+      }
+    },
+    "声音" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sound"
           }
         }
       }
@@ -7635,6 +7717,16 @@
         }
       }
     },
+    "常用设置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Common Settings"
+          }
+        }
+      }
+    },
     "常见问题" : {
       "localizations" : {
         "en" : {
@@ -7987,6 +8079,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "When logging into the account on multiple devices or after reinstalling Darock Browser, data stored in Darock Cloud will automatically sync."
+          }
+        }
+      }
+    },
+    "快捷书签" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick Bookmarks"
+          }
+        }
+      }
+    },
+    "快进 10 秒" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forward 10s"
+          }
+        }
+      }
+    },
+    "快退 10 秒" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Backward 10s"
           }
         }
       }
@@ -8888,7 +9010,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Now Syncing"
+            "value" : "Now Playing"
           }
         }
       }
@@ -8917,6 +9039,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "播放倍速"
+          }
+        }
+      }
+    },
+    "播放列表" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Playlist"
           }
         }
       }
@@ -9061,12 +9193,22 @@
         }
       }
     },
+    "新名称" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Name"
+          }
+        }
+      }
+    },
     "新建反馈" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "New feedback"
+            "value" : "New Feedback"
           }
         },
         "ja" : {
@@ -9085,6 +9227,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新建反饋"
+          }
+        }
+      }
+    },
+    "新建播放列表" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Playlist…"
           }
         }
       }
@@ -9123,6 +9275,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無打開的標籤頁"
+          }
+        }
+      }
+    },
+    "无播放列表" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Playlist"
           }
         }
       }
@@ -10037,6 +10199,26 @@
         }
       }
     },
+    "次要搜索引擎" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Secondary Search Engine"
+          }
+        }
+      }
+    },
+    "歌曲链接无效" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid Song Link"
+          }
+        }
+      }
+    },
     "歌词不可用" : {
       "localizations" : {
         "en" : {
@@ -10528,6 +10710,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Add a Control"
+          }
+        }
+      }
+    },
+    "添加歌曲" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Music"
           }
         }
       }
@@ -11730,6 +11922,16 @@
         }
       }
     },
+    "空播放列表" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empty Playlist"
+          }
+        }
+      }
+    },
     "空视频列表" : {
       "localizations" : {
         "en" : {
@@ -12366,6 +12568,16 @@
         }
       }
     },
+    "若要在后台播放，你需要在播放前连接蓝牙音频设备。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To play in the background, you need to connect a Bluetooth audio device before playing."
+          }
+        }
+      }
+    },
     "若要确认删除，请在上方输入“%@”" : {
       "localizations" : {
         "en" : {
@@ -12896,6 +13108,16 @@
         }
       }
     },
+    "轻触后滑动数码表冠" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap and swipe the Digital Crown"
+          }
+        }
+      }
+    },
     "轻触浏览菜单“播放网页视频”、在网页中寻找或直接在搜索框中输入视频链接" : {
       "localizations" : {
         "en" : {
@@ -13072,6 +13294,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "輸入新密碼"
+          }
+        }
+      }
+    },
+    "输入歌曲链接" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Song Link"
           }
         }
       }
@@ -13334,6 +13566,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "這代表什麼？"
+          }
+        }
+      }
+    },
+    "这将删除播放列表中的所有内容\n确定吗？" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This will delete all content in the playlist.\nAre you sure?"
           }
         }
       }
@@ -13648,6 +13890,16 @@
         }
       }
     },
+    "重命名" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rename"
+          }
+        }
+      }
+    },
     "重新检查" : {
       "localizations" : {
         "en" : {
@@ -13932,6 +14184,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "鍵盤設置..."
+          }
+        }
+      }
+    },
+    "长按搜索按钮使用次要搜索引擎" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Long press search button for Secondary Search Engine"
           }
         }
       }

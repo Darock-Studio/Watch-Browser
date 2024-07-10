@@ -35,21 +35,30 @@ struct BookmarkView: View {
             .navigationBarBackButtonHidden()
         } else {
             List {
-                Button(action: {
-                    isNewMarkPresented = true
-                }, label: {
-                    HStack {
-                        Spacer()
-                        Label("Bookmark.add", systemImage: "plus")
-                        Spacer()
-                    }
-                })
-                .accessibilityIdentifier("AddBookmarkButton")
-                .sheet(isPresented: $isNewMarkPresented, onDismiss: {
-                    markTotal = UserDefaults.standard.integer(forKey: "BookmarkTotal")
-                }, content: {
-                    AddBookmarkView()
-                })
+                Section {
+                    Button(action: {
+                        isNewMarkPresented = true
+                    }, label: {
+                        HStack {
+                            Spacer()
+                            Label("Bookmark.add", systemImage: "plus")
+                            Spacer()
+                        }
+                    })
+                    .accessibilityIdentifier("AddBookmarkButton")
+                    .sheet(isPresented: $isNewMarkPresented, onDismiss: {
+                        markTotal = UserDefaults.standard.integer(forKey: "BookmarkTotal")
+                    }, content: {
+                        AddBookmarkView()
+                    })
+                    NavigationLink(destination: { StaredBookmarksView() }, label: {
+                        HStack {
+                            Spacer()
+                            Label("快捷书签", systemImage: "star")
+                            Spacer()
+                        }
+                    })
+                }
                 if markTotal != 0 {
                     Section {
                         ForEach(1...markTotal, id: \.self) { i in
@@ -119,6 +128,37 @@ struct BookmarkView: View {
             }
         }
     }
+    
+    struct StaredBookmarksView: View {
+        var body: some View {
+            List {
+                Section {
+                    ForEach(Array<String>(staredBookmarks.keys).sorted(), id: \.self) { key in
+                        Button(action: {
+                            AdvancedWebViewController.shared.present(staredBookmarks[key]!)
+                        }, label: {
+                            Text(key)
+                        })
+                    }
+                } footer: {
+                    Text(
+                        "上面的网站在 Apple Watch 上运行表现较好，尽管如此，我们仍然不接受网站内问题的反馈。\n网站内容由网页提供商提供，Darock 不对其内容负责。\n请自行辨别其中内容真实性，特别是广告内容。"
+                    )
+                }
+            }
+            .navigationTitle("快捷书签")
+        }
+        
+        let staredBookmarks = [
+            "樱花动漫": "http://yhdm.one",
+            "笔趣阁": "https://www.bigee.cc",
+            "微软数学": "https://math.microsoft.com",
+            "百度贴吧": "https://tieba.baidu.com",
+            "网易云音乐": "https://music.163.com",
+            "哔哩哔哩": "https://bilibili.com",
+            "Pixiv Viewer": "https://lab.getloli.com/pixiv-viewer"
+        ]
+    }
 }
 
 struct AddBookmarkView: View {
@@ -173,8 +213,8 @@ struct EditBookmarkView: View {
                     Spacer()
                 }
                 .listRowBackground(Color.clear)
-                TextField("Bookmark.name", text: $markName)
-                TextField("Bookmark.link", text: $markLink)
+                TextField("Bookmark.name", text: $markName, style: "field-page")
+                TextField("Bookmark.link", text: $markLink, style: "field-page")
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                 Button(action: {

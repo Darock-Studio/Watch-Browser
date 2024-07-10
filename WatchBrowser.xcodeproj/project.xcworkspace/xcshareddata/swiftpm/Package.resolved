@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Serene-Garden/Cepheus",
       "state" : {
-        "revision" : "cb7e1591ae660fef61a23f3219e1114575f87850",
-        "version" : "2.2.0"
+        "revision" : "0754853c69a39f6cdc04abb8b1d194a3ed3a483e",
+        "version" : "2.3.0"
       }
     },
     {

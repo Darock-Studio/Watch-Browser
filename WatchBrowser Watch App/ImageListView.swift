@@ -22,11 +22,22 @@ struct ImageListView: View {
                         tabSelection = i
                         isImageViewerPresented = true
                     }, label: {
-                        Text(imageLinkLists[i])
+                        if !imageAltTextLists[i].isEmpty {
+                            VStack(alignment: .leading) {
+                                Text(imageAltTextLists[i])
+                                Text(imageLinkLists[i])
+                                    .font(.system(size: 14))
+                                    .lineLimit(1)
+                                    .truncationMode(.middle)
+                                    .foregroundStyle(Color.gray)
+                            }
+                        } else {
+                            Text(imageLinkLists[i])
+                        }
                     })
                 }
             }
-            .navigationTitle("图片列表")
+            .navigationTitle("图片列表 (\(imageLinkLists.count))")
             .sheet(isPresented: $isImageViewerPresented, content: {
                 if useDigitalCrownFor == "zoom" {
                     TabView(selection: $tabSelection) {

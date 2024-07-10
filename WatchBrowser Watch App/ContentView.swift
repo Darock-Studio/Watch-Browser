@@ -112,6 +112,8 @@ struct ContentView: View {
                             HistoryView()
                         case .webarchive:
                             WebArchiveListView()
+                        case .musicPlaylist:
+                            PlaylistsView()
                         case .userscript:
                             UserScriptsView()
                         case .localAudio:
@@ -235,6 +237,8 @@ struct ContentView: View {
 struct MainView: View {
     @Binding var withSetting: Bool
     @AppStorage("WebSearch") var webSearch = "必应"
+    @AppStorage("IsLongPressAlternativeSearch") var isLongPressAlternativeSearch = false
+    @AppStorage("AlternativeSearch") var alternativeSearch = "必应"
     @AppStorage("IsAllowCookie") var isAllowCookie = false
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
     @AppStorage("IsShowBetaTest1") var isShowBetaTest = true
@@ -265,7 +269,8 @@ struct MainView: View {
                 }, label: {
                     HStack {
                         Spacer()
-                        Label("播放中", systemImage: "music.note.list")
+                        AudioVisualizerView()
+                        Text("播放中")
                         Spacer()
                     }
                 })
@@ -292,14 +297,17 @@ struct MainView: View {
         .onAppear {
             if let currentPref = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/HomeScreen.drkdatah", encoding: .utf8),
                var data = getJsonData([HomeScreenControlType].self, from: currentPref) {
+                if !data.contains(.navigationLink(.musicPlaylist)) {
+                    data.append(.navigationLink(.musicPlaylist))
+                }
                 if !data.contains(.navigationLink(.localAudio)) {
                     data.append(.navigationLink(.localAudio))
-                    if let newPref = jsonString(from: data) {
-                        do {
-                            try newPref.write(toFile: NSHomeDirectory() + "/Documents/HomeScreen.drkdatah", atomically: true, encoding: .utf8)
-                        } catch {
-                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
-                        }
+                }
+                if let newPref = jsonString(from: data) {
+                    do {
+                        try newPref.write(toFile: NSHomeDirectory() + "/Documents/HomeScreen.drkdatah", atomically: true, encoding: .utf8)
+                    } catch {
+                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
                     }
                 }
                 customControls = data
@@ -410,7 +418,7 @@ struct MainView: View {
                         .textInputAutocapitalization(.never)
                         .privacySensitive()
                         .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                            if #available(watchOS 9, *), textOrURL != "" {
+                            if textOrURL != "" {
                                 Button(action: {
                                     let userdefault = UserDefaults.standard
                                     let total = userdefault.integer(forKey: "BookmarkTotal") + 1
@@ -463,61 +471,7 @@ struct MainView: View {
                         }
                     case .searchButton:
                         Button(action: {
-                            if textOrURL.hasSuffix(".mp4") {
-                                if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                                    textOrURL = "http://" + textOrURL
-                                }
-                                videoLinkLists = [textOrURL]
-                                pShouldPresentVideoList = true
-                                dismissListsShouldRepresentWebView = false
-                                recordHistory(textOrURL, webSearch: webSearch)
-                                return
-                            } else if textOrURL.hasSuffix(".mp3") {
-                                if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                                    textOrURL = "http://" + textOrURL
-                                }
-                                audioLinkLists = [textOrURL]
-                                pShouldPresentAudioList = true
-                                dismissListsShouldRepresentWebView = false
-                                recordHistory(textOrURL, webSearch: webSearch)
-                                return
-                            } else if textOrURL.hasSuffix(".png")
-                                        || textOrURL.hasSuffix(".jpg")
-                                        || textOrURL.hasSuffix(".webp")
-                                        || textOrURL.hasSuffix(".pdf") {
-                                if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                                    textOrURL = "http://" + textOrURL
-                                }
-                                imageLinkLists = [textOrURL]
-                                pShouldPresentImageList = true
-                                dismissListsShouldRepresentWebView = false
-                                recordHistory(textOrURL, webSearch: webSearch)
-                                return
-                            } else if textOrURL.hasSuffix(".epub") {
-                                if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                                    textOrURL = "http://" + textOrURL
-                                }
-                                bookLinkLists = [textOrURL]
-                                pShouldPresentBookList = true
-                                dismissListsShouldRepresentWebView = false
-                                recordHistory(textOrURL, webSearch: webSearch)
-                                return
-                            }
-                            if #available(watchOS 10, *), preloadSearchContent && !isUseOldWebView && isPreloadedSearchWeb {
-                                AdvancedWebViewController.shared.present()
-                                isPreloadedSearchWeb = false
-                                return
-                            }
-                            if textOrURL.isURL() {
-                                if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                                    textOrURL = "http://" + textOrURL
-                                }
-                                AdvancedWebViewController.shared.present(textOrURL.urlEncoded())
-                            } else {
-                                AdvancedWebViewController.shared.present(
-                                    getWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)
-                                )
-                            }
+                            startSearch(with: webSearch)
                         }, label: {
                             HStack {
                                 Spacer()
@@ -526,6 +480,14 @@ struct MainView: View {
                                 Spacer()
                             }
                         })
+                        .onTapGesture {
+                            startSearch(with: webSearch)
+                        }
+                        .onLongPressGesture {
+                            if isLongPressAlternativeSearch {
+                                startSearch(with: alternativeSearch, allowPreload: false)
+                            }
+                        }
                         .accessibilityIdentifier("MainSearchButton")
                     case .spacer:
                         EmptyView()
@@ -589,6 +551,14 @@ struct MainView: View {
                                 })
                                 .disabled(isUseOldWebView)
                             }
+                        case .musicPlaylist:
+                            NavigationLink(destination: { PlaylistsView() }, label: {
+                                HStack {
+                                    Spacer()
+                                    Label("播放列表", systemImage: "music.note.list")
+                                    Spacer()
+                                }
+                            })
                         case .userscript:
                             NavigationLink(destination: { UserScriptsView() }, label: {
                                 VStack {
@@ -704,6 +674,64 @@ struct MainView: View {
                     }
                 }
             }
+        }
+    }
+    
+    func startSearch(with engine: String, allowPreload: Bool = true) {
+        if textOrURL.hasSuffix(".mp4") {
+            if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+                textOrURL = "http://" + textOrURL
+            }
+            videoLinkLists = [textOrURL]
+            pShouldPresentVideoList = true
+            dismissListsShouldRepresentWebView = false
+            recordHistory(textOrURL, webSearch: engine)
+            return
+        } else if textOrURL.hasSuffix(".mp3") {
+            if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+                textOrURL = "http://" + textOrURL
+            }
+            audioLinkLists = [textOrURL]
+            pShouldPresentAudioList = true
+            dismissListsShouldRepresentWebView = false
+            recordHistory(textOrURL, webSearch: engine)
+            return
+        } else if textOrURL.hasSuffix(".png")
+                    || textOrURL.hasSuffix(".jpg")
+                    || textOrURL.hasSuffix(".webp")
+                    || textOrURL.hasSuffix(".pdf") {
+            if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+                textOrURL = "http://" + textOrURL
+            }
+            imageLinkLists = [textOrURL]
+            pShouldPresentImageList = true
+            dismissListsShouldRepresentWebView = false
+            recordHistory(textOrURL, webSearch: engine)
+            return
+        } else if textOrURL.hasSuffix(".epub") {
+            if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+                textOrURL = "http://" + textOrURL
+            }
+            bookLinkLists = [textOrURL]
+            pShouldPresentBookList = true
+            dismissListsShouldRepresentWebView = false
+            recordHistory(textOrURL, webSearch: engine)
+            return
+        }
+        if #available(watchOS 10, *), preloadSearchContent && !isUseOldWebView && isPreloadedSearchWeb && allowPreload {
+            AdvancedWebViewController.shared.present()
+            isPreloadedSearchWeb = false
+            return
+        }
+        if textOrURL.isURL() {
+            if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+                textOrURL = "http://" + textOrURL
+            }
+            AdvancedWebViewController.shared.present(textOrURL.urlEncoded())
+        } else {
+            AdvancedWebViewController.shared.present(
+                getWebSearchedURL(textOrURL, webSearch: engine, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)
+            )
         }
     }
 }

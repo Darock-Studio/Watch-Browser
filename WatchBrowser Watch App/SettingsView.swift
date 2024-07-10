@@ -92,6 +92,7 @@ struct SettingsView: View {
                 }
             }
             Section {
+                NavigationLink(destination: { StaredSettingsView() }, label: { SettingItemLabel(title: "常用设置", image: "star", color: .orange) })
                 NavigationLink(destination: { NetworkSettingsView() }, label: { SettingItemLabel(title: "网络", image: "network", color: .blue) })
             }
             Section {
@@ -203,6 +204,31 @@ struct SettingsView: View {
         }
     }
     
+    struct StaredSettingsView: View {
+        @AppStorage("RequestDesktopWeb") var requestDesktopWeb = false
+        @AppStorage("ForceApplyDarkMode") var forceApplyDarkMode = false
+        var body: some View {
+            List {
+                Section {
+                    Toggle(isOn: $forceApplyDarkMode) {
+                        HStack {
+                            Image(systemName: "rectangle.inset.filled")
+                                .foregroundStyle(Color.gray.gradient)
+                            Text("强制深色模式")
+                        }
+                    }
+                    Toggle(isOn: $requestDesktopWeb) {
+                        HStack {
+                            Image(systemName: "desktopcomputer")
+                                .foregroundStyle(Color.blue.gradient)
+                            Text("请求桌面网站")
+                        }
+                    }
+                }
+            }
+            .navigationTitle("常用设置")
+        }
+    }
     struct NetworkSettingsView: View {
         var body: some View {
             List {
@@ -936,7 +962,7 @@ struct SettingsView: View {
                             Text("Settings.keyboard.third-party")
                         }
                         if #available(watchOS 10, *) {
-                            CepheusKeyboard(input: .constant(""), prompt: "Settings.keyboard.preview")
+                            CepheusKeyboard(input: .constant(""), prompt: "Settings.keyboard.preview", CepheusIsEnabled: true)
                         } else {
                             Button(action: {
                                 isKeyboardPresented = true
@@ -966,10 +992,16 @@ struct SettingsView: View {
         }
         struct MusicPlayerView: View {
             @AppStorage("MPIsShowTranslatedLyrics") var isShowTranslatedLyrics = true
+            @AppStorage("MPBackgroundPlay") var isAllowBackgroundPlay = false
             var body: some View {
                 List {
                     Section {
                         Toggle("显示翻译歌词", isOn: $isShowTranslatedLyrics)
+                    }
+                    Section {
+                        Toggle("允许后台播放", isOn: $isAllowBackgroundPlay)
+                    } footer: {
+                        Text("若要在后台播放，你需要在播放前连接蓝牙音频设备。")
                     }
                 }
                 .navigationTitle("音乐播放器")
@@ -1986,6 +2018,8 @@ struct SettingsView: View {
                                             Label("Home.history", systemImage: "clock")
                                         case .webarchive:
                                             Label("网页归档", systemImage: "archivebox")
+                                        case .musicPlaylist:
+                                            Label("播放列表", systemImage: "music.note.list")
                                         case .userscript:
                                             Label("用户脚本", systemImage: "applescript")
                                         case .localAudio:
@@ -2274,6 +2308,8 @@ struct SettingsView: View {
     }
     struct SearchSettingsView: View {
         @AppStorage("WebSearch") var webSearch = "必应"
+        @AppStorage("IsLongPressAlternativeSearch") var isLongPressAlternativeSearch = false
+        @AppStorage("AlternativeSearch") var alternativeSearch = "必应"
         @AppStorage("AllowCookies") var allowCookies = true
         @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
         @State var customSearchEngineList = [String]()
@@ -2300,6 +2336,23 @@ struct SettingsView: View {
                             }
                         }
                     }
+                    Toggle("长按搜索按钮使用次要搜索引擎", isOn: $isLongPressAlternativeSearch)
+                    if isLongPressAlternativeSearch {
+                        Picker(selection: $alternativeSearch, label: Text("次要搜索引擎")) {
+                            ForEach(EngineNames.allCases, id: \.self) { engineNames in
+                                Text(engineTitle[engineNames.rawValue]!).tag(engineNames.rawValue)
+                            }
+                            if customSearchEngineList.count != 0 {
+                                ForEach(0..<customSearchEngineList.count, id: \.self) { i in
+                                    Text(
+                                        customSearchEngineList[i]
+                                            .replacingOccurrences(of: "%lld", with: String(localized: "Settings.search.customize.search-content"))
+                                    )
+                                    .tag(customSearchEngineList[i])
+                                }
+                            }
+                        }
+                    }
                     if webSearch == "谷歌" && !allowCookies {
                         NavigationLink(destination: { PrivacySettingsView() }, label: {
                             HStack {
@@ -2316,6 +2369,8 @@ struct SettingsView: View {
                             }
                         })
                     }
+                }
+                Section {
                     NavigationLink(destination: { CustomSearchEngineSettingsView() }, label: {
                         Text("管理自定搜索引擎...")
                     })
@@ -2328,13 +2383,6 @@ struct SettingsView: View {
             .onAppear {
                 customSearchEngineList = UserDefaults.standard.stringArray(forKey: "CustomSearchEngineList") ?? [String]()
             }
-        }
-        
-        enum EngineNames: String, CaseIterable {
-            case bing = "必应"
-            case baidu = "百度"
-            case google = "谷歌"
-            case sougou = "搜狗"
         }
         
         struct CustomSearchEngineSettingsView: View {
@@ -3307,18 +3355,20 @@ enum HomeScreenControlType: Codable, Equatable {
             .navigationLink(.bookmark),
             .navigationLink(.history),
             .navigationLink(.webarchive),
+            .navigationLink(.musicPlaylist),
             .navigationLink(.userscript),
             .navigationLink(.localAudio),
             .navigationLink(.localBook),
             .navigationLink(.localVideo),
-            .navigationLink(.chores),
             .spacer,
             .pinnedBookmarks,
             .spacer,
             .navigationLink(.settings),
             .spacer,
             .navigationLink(.feedbackAssistant),
-            .navigationLink(.tips)
+            .navigationLink(.tips),
+            .spacer,
+            .navigationLink(.chores)
         ]
     }
 }
@@ -3326,6 +3376,7 @@ enum HomeScreenNavigationType: Codable, Hashable {
     case bookmark
     case history
     case webarchive
+    case musicPlaylist
     case userscript
     case localBook
     case localVideo
@@ -3401,6 +3452,8 @@ func getToolbarButton(by control: HomeScreenControlType, with type: ToolbarButto
                 Image(systemName: "clock")
             case .webarchive:
                 Image(systemName: "archivebox")
+            case .musicPlaylist:
+                Image(systemName: "music.note.list")
             case .userscript:
                 Image(systemName: "applescript")
             case .localAudio:
@@ -3463,4 +3516,11 @@ func getFullToolbar(
             action(controls.bottomTrailing, .bottomTrailing, object)
         }
     }
+}
+
+enum EngineNames: String, CaseIterable {
+    case bing = "必应"
+    case baidu = "百度"
+    case google = "谷歌"
+    case sougou = "搜狗"
 }

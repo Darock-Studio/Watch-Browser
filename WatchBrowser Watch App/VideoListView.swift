@@ -9,6 +9,7 @@ import AVKit
 import SwiftUI
 import Dynamic
 import Alamofire
+import DarockKit
 import AVFoundation
 
 struct VideoListView: View {
@@ -60,11 +61,12 @@ struct VideoListView: View {
 
 struct VideoPlayingView: View {
     @Binding var link: String
-    @State var player: AVPlayer!
+    @State var player: AVPlayer! = AVPlayer()
     @State var playbackSpeed = 1.0
     @State var isFullScreen = false
     @State var mainTabViewSelection = 1
     @State var jumpToInput = ""
+    @State var currentTime = 0.0
     var body: some View {
         TabView(selection: $mainTabViewSelection) {
             VideoPlayer(player: player)
@@ -96,6 +98,15 @@ struct VideoPlayingView: View {
                     Text("画面")
                 }
                 Section {
+                    HStack {
+                        VolumeControlView()
+                        Text("轻触后滑动数码表冠")
+                    }
+                    .listRowBackground(Color.clear)
+                } header: {
+                    Text("声音")
+                }
+                Section {
                     Picker("播放倍速", selection: $playbackSpeed) {
                         Text("0.5x").tag(0.5)
                         Text("0.75x").tag(0.75)
@@ -115,16 +126,16 @@ struct VideoPlayingView: View {
                         }
                         jumpToInput = ""
                     }
-//                    Button(action: {
-//                        player.seek(to: CMTime(seconds: currentTime + 10, preferredTimescale: 1))
-//                    }, label: {
-//                        Label("快进 10 秒", systemImage: "goforward.10")
-//                    })
-//                    Button(action: {
-//                        player.seek(to: CMTime(seconds: currentTime - 10, preferredTimescale: 1))
-//                    }, label: {
-//                        Label("快退 10 秒", systemImage: "gobackward.10")
-//                    })
+                    Button(action: {
+                        player.seek(to: CMTime(seconds: currentTime + 10, preferredTimescale: 60000))
+                    }, label: {
+                        Label("快进 10 秒", systemImage: "goforward.10")
+                    })
+                    Button(action: {
+                        player.seek(to: CMTime(seconds: currentTime - 10, preferredTimescale: 60000))
+                    }, label: {
+                        Label("快退 10 秒", systemImage: "gobackward.10")
+                    })
                 } header: {
                     Text("播放")
                 }
@@ -148,6 +159,9 @@ struct VideoPlayingView: View {
             if (UserDefaults.standard.object(forKey: "CCIsContinuityMediaEnabled") as? Bool) ?? true {
                 globalMediaUserActivity?.invalidate()
             }
+        }
+        .onReceive(player.periodicTimePublisher()) { time in
+            currentTime = time.seconds
         }
     }
 }

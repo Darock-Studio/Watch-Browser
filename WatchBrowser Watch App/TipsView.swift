@@ -94,9 +94,15 @@ struct TipsView: View {
                     HStack {
                         Spacer()
                         VStack {
-                            Image(systemName: "checkmark.rectangle.stack.fill")
-                                .font(.system(size: 40))
-                                .foregroundColor(.green)
+                            if #available(watchOS 10, *) {
+                                Image(systemName: "checkmark.rectangle.stack.fill")
+                                    .font(.system(size: 40))
+                                    .foregroundColor(.green)
+                            } else {
+                                Image(systemName: "sparkles.rectangle.stack.fill")
+                                    .font(.system(size: 40))
+                                    .foregroundColor(.green)
+                            }
                             Text("设置清单")
                                 .font(.system(size: 20, weight: .bold))
                             Text("从此处开始设置你的暗礁浏览器。")
