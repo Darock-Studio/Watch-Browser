@@ -156,7 +156,7 @@ struct BookmarkView: View {
             "百度贴吧": "https://tieba.baidu.com",
             "网易云音乐": "https://music.163.com",
             "哔哩哔哩": "https://bilibili.com",
-            "Pixiv Viewer": "https://lab.getloli.com/pixiv-viewer"
+            "Pixiv Viewer": "https://www.pixiv.pics"
         ]
     }
 }
