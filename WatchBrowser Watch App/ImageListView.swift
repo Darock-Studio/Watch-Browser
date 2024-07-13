@@ -22,7 +22,7 @@ struct ImageListView: View {
                         tabSelection = i
                         isImageViewerPresented = true
                     }, label: {
-                        if !imageAltTextLists[i].isEmpty {
+                        if let altText = imageAltTextLists[from: 1], !altText.isEmpty {
                             VStack(alignment: .leading) {
                                 Text(imageAltTextLists[i])
                                 Text(imageLinkLists[i])

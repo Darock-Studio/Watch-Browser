@@ -115,15 +115,22 @@ struct HistoryView: View {
                                         }
                                     }, label: {
                                         if let showName = histories[i].title, !showName.isEmpty {
-                                            if histories[i].url.hasPrefix("https://www.bing.com/search?q=")
-                                                || histories[i].url.hasPrefix("https://www.baidu.com/s?wd=")
-                                                || histories[i].url.hasPrefix("https://www.google.com/search?q=")
-                                                || histories[i].url.hasPrefix("https://www.sogou.com/web?query=") {
-                                                Label(showName, systemImage: "magnifyingglass")
-                                            } else if histories[i].url.hasPrefix("file://") {
-                                                Label(showName, systemImage: "archivebox")
-                                            } else {
-                                                Label(showName, systemImage: "globe")
+                                            VStack(alignment: .leading) {
+                                                if histories[i].url.hasPrefix("https://www.bing.com/search?q=")
+                                                    || histories[i].url.hasPrefix("https://www.baidu.com/s?wd=")
+                                                    || histories[i].url.hasPrefix("https://www.google.com/search?q=")
+                                                    || histories[i].url.hasPrefix("https://www.sogou.com/web?query=") {
+                                                    Label(showName, systemImage: "magnifyingglass")
+                                                } else if histories[i].url.hasPrefix("file://") {
+                                                    Label(showName, systemImage: "archivebox")
+                                                } else {
+                                                    Label(showName, systemImage: "globe")
+                                                }
+                                                Text(histories[i].url)
+                                                    .font(.system(size: 14))
+                                                    .lineLimit(1)
+                                                    .truncationMode(.middle)
+                                                    .foregroundStyle(Color.gray)
                                             }
                                         } else {
                                             if histories[i].url.hasPrefix("https://www.bing.com/search?q=") {

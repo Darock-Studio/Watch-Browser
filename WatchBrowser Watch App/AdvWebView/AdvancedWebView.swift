@@ -349,8 +349,9 @@ class AdvancedWebViewController {
             menuView.addSubview(archiveButton)
             menuButtonYOffset += 50
         }
-
+        
         if rebindController {
+            menuView.setContentOffset(CGPointZero, animated: false)
             menuController.view = menuView
         }
     }

@@ -65,7 +65,7 @@ struct AudioListView: View {
                                                         if let text = lineText.components(separatedBy: "]")[from: 1],
                                                            let time = lineText.components(separatedBy: "[")[from: 1]?.components(separatedBy: "]")[from: 0],
                                                            let dTime = lyricTimeStringToSeconds(String(time)) {
-                                                            lyrics.updateValue(String(text), forKey: dTime)
+                                                            lyrics.updateValue(String(text).removePrefix(" "), forKey: dTime)
                                                         }
                                                     }
                                                 }
@@ -81,7 +81,7 @@ struct AudioListView: View {
                                                                    let dTime = lyricTimeStringToSeconds(String(time)),
                                                                    let sourceLyric = lyrics[dTime],
                                                                    !sourceLyric.isEmpty && !text.isEmpty {
-                                                                    lyrics.updateValue("\(sourceLyric)%tranlyric@\(text)", forKey: dTime)
+                                                                    lyrics.updateValue("\(sourceLyric)%tranlyric@\(text.removePrefix(" "))", forKey: dTime)
                                                                 }
                                                             }
                                                         }
@@ -276,7 +276,7 @@ struct AudioControllerView: View {
                                                 isProgressDraging = false
                                             }
                                     )
-                                    .frame(height: 20)
+                                    .frame(height: 10)
                                 HStack {
                                     Text(formattedTime(from: currentPlaybackTime))
                                         .font(.system(size: 11))
@@ -468,7 +468,7 @@ struct AudioControllerView: View {
                     .multilineTextAlignment(.leading)
                     .opacity(currentScrolledId == lyricKeys[i] ? 1.0 : 0.6)
                 } else {
-                    if let endTime = lyricKeys[from: i + 1], endTime - lyricKeys[i] > 1.0 {
+                    if let endTime = lyricKeys[from: i + 1], endTime - lyricKeys[i] > 2.0 {
                         WaitingDotView(startTime: lyricKeys[i], endTime: endTime, currentTime: $currentPlaybackTime)
                     }
                 }
@@ -494,7 +494,7 @@ struct AudioControllerView: View {
                                     if let text = lineText.components(separatedBy: "]")[from: 1],
                                        let time = lineText.components(separatedBy: "[")[from: 1]?.components(separatedBy: "]")[from: 0],
                                        let dTime = lyricTimeStringToSeconds(String(time)) {
-                                        lyrics.updateValue(String(text), forKey: dTime)
+                                        lyrics.updateValue(String(text).removePrefix(" "), forKey: dTime)
                                     }
                                 }
                             }
@@ -509,7 +509,7 @@ struct AudioControllerView: View {
                                                let dTime = lyricTimeStringToSeconds(String(time)),
                                                let sourceLyric = lyrics[dTime],
                                                !sourceLyric.isEmpty && !text.isEmpty {
-                                                lyrics.updateValue("\(sourceLyric)%tranlyric@\(text)", forKey: dTime)
+                                                lyrics.updateValue("\(sourceLyric)%tranlyric@\(text.removePrefix(" "))", forKey: dTime)
                                             }
                                         }
                                     }
@@ -1015,7 +1015,7 @@ struct PlaylistsView: View {
                 NavigationStack {
                     List {
                         Section {
-                            TextField("新名称", text: $renameInput)
+                            TextField("新名称", text: $renameInput, style: "field-page")
                             Button(action: {
                                 audioHumanNameChart.updateValue(
                                     renameInput,
@@ -1084,7 +1084,7 @@ struct PlaylistsView: View {
                             }, label: {
                                 Text("从离线歌曲选择")
                             })
-                            TextField("输入歌曲链接", text: $linkInput)
+                            TextField("输入歌曲链接", text: $linkInput, style: "field-page")
                                 .onSubmit {
                                     if !linkInput.hasSuffix(".mp3") {
                                         isAddLinkInvalid = true
@@ -1203,6 +1203,16 @@ func getCurrentPlaylistContents() -> [String]? {
         }
     }
     return nil
+}
+
+extension String {
+    func removePrefix(_ c: String) -> Self {
+        var selfCopy = self
+        while selfCopy.hasPrefix(c) {
+            selfCopy.removeFirst()
+        }
+        return selfCopy
+    }
 }
 
 // Extensions for periodicTimePublisher

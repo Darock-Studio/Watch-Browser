@@ -269,6 +269,10 @@ struct SettingsView: View {
                     NavigationLink(destination: { ContactView() },
                                    label: { SettingItemLabel(title: "联系我们", image: "bubble.right", color: .green) })
                 }
+                Section {
+                    NavigationLink(destination: { ResetView() },
+                                   label: { SettingItemLabel(title: "还原", image: "arrow.counterclockwise", color: .gray) })
+                }
             }
             .navigationTitle("通用")
         }
@@ -571,7 +575,7 @@ struct SettingsView: View {
                                             Button(role: .destructive, action: {
                                                 do {
                                                     try FileManager.default.removeItem(
-                                                        atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoMetadatas[i]["Title"]!
+                                                        atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoMetadatas[i]["FileName"]!
                                                     )
                                                     videoMetadatas.remove(at: i)
                                                 } catch {
@@ -607,7 +611,7 @@ struct SettingsView: View {
                                             Button(role: .destructive, action: {
                                                 do {
                                                     try FileManager.default.removeItem(
-                                                        atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/" + audioMetadatas[i]["Title"]!
+                                                        atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/" + audioMetadatas[i]["FileName"]!
                                                     )
                                                     audioMetadatas.remove(at: i)
                                                 } catch {
@@ -849,6 +853,7 @@ struct SettingsView: View {
                                         } else {
                                             dicV.updateValue(file, forKey: "Title")
                                         }
+                                        dicV.updateValue(file, forKey: "FileName")
                                         videoMetadatas.append(dicV)
                                     }
                                     videoMetadatas.sort { UInt64($0["Size"] ?? "0")! > UInt64($1["Size"] ?? "0")! }
@@ -875,6 +880,7 @@ struct SettingsView: View {
                                         } else {
                                             dicV.updateValue(file, forKey: "Title")
                                         }
+                                        dicV.updateValue(file, forKey: "FileName")
                                         audioMetadatas.append(dicV)
                                     }
                                     audioMetadatas.sort { UInt64($0["Size"] ?? "0")! > UInt64($1["Size"] ?? "0")! }
@@ -1850,6 +1856,98 @@ struct SettingsView: View {
                 .navigationTitle("联系我们")
             }
         }
+        
+        struct ResetView: View {
+            @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
+            @State var isResetSettingsWarningPresented = false
+            @State var isResetAllWarningPresented = false
+            @State var isResetSettingsPasscodePresented = false
+            @State var isResetSettingsDelayPresented = false
+            @State var passcodeInputTmp = ""
+            var body: some View {
+                List {
+                    Section {
+                        Button(action: {
+                            if userPasscodeEncrypted.isEmpty {
+                                isResetSettingsWarningPresented = true
+                            } else {
+                                if checkSecurityDelay() {
+                                    isResetSettingsPasscodePresented = true
+                                } else {
+                                    isResetSettingsDelayPresented = true
+                                }
+                            }
+                        }, label: {
+                            Text("还原所有设置")
+                        })
+                        Button(action: {
+                            isResetAllWarningPresented = true
+                        }, label: {
+                            Text("抹掉所有内容和设置")
+                        })
+                    }
+                }
+                .navigationTitle("还原")
+                .alert("还原所有设置", isPresented: $isResetSettingsWarningPresented, actions: {
+                    Button(role: .cancel, action: { }, label: {
+                        Text("取消")
+                    })
+                    Button(role: .destructive, action: {
+                        do {
+                            try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Library/Preferences/com.darock.WatchBrowser.watchkitapp.plist")
+                            tipWithText("已还原", symbol: "checkmark.circle.fill")
+                        } catch {
+                            tipWithText("还原时出错", symbol: "xmark.circle.fill")
+                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                        }
+                    }, label: {
+                        Text("还原")
+                    })
+                }, message: {
+                    Text("此操作不可逆\n确定吗？")
+                })
+                .alert("抹掉所有内容和设置", isPresented: $isResetAllWarningPresented, actions: {
+                    Button(role: .cancel, action: { }, label: {
+                        Text("取消")
+                    })
+                    Button(role: .destructive, action: {
+                        do {
+                            var filePaths = try FileManager.default.contentsOfDirectory(atPath: NSTemporaryDirectory())
+                            for filePath in filePaths {
+                                let fullPath = (NSTemporaryDirectory() as NSString).appendingPathComponent(filePath)
+                                try FileManager.default.removeItem(atPath: fullPath)
+                            }
+                            filePaths = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents")
+                            for filePath in filePaths {
+                                let fullPath = (NSTemporaryDirectory() as NSString).appendingPathComponent(filePath)
+                                try FileManager.default.removeItem(atPath: fullPath)
+                            }
+                            try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Library/Preferences/com.darock.WatchBrowser.watchkitapp.plist")
+                            tipWithText("已抹掉", symbol: "checkmark.circle.fill")
+                        } catch {
+                            tipWithText("抹掉时出错", symbol: "xmark.circle.fill")
+                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                        }
+                    }, label: {
+                        Text("抹掉")
+                    })
+                }, message: {
+                    Text("此操作不可逆\n确定吗？")
+                })
+                .sheet(isPresented: $isResetSettingsDelayPresented, content: { SecurityDelayRequiredView(reasonTitle: "需要安全延时以抹掉所有设置") })
+                .sheet(isPresented: $isResetSettingsPasscodePresented) {
+                    PasswordInputView(text: $passcodeInputTmp, placeholder: "输入密码以继续") { pwd in
+                        if pwd.md5 == userPasscodeEncrypted {
+                            isResetSettingsWarningPresented = true
+                        } else {
+                            tipWithText("密码错误", symbol: "xmark.circle.fill")
+                        }
+                        passcodeInputTmp = ""
+                    }
+                    .toolbar(.hidden, for: .navigationBar)
+                }
+            }
+        }
     }
     struct AccessibilitySettingsView: View {
         @AppStorage("IsWebMinFontSizeStricted") var isWebMinFontSizeStricted = false
@@ -2020,14 +2118,10 @@ struct SettingsView: View {
                                             Label("网页归档", systemImage: "archivebox")
                                         case .musicPlaylist:
                                             Label("播放列表", systemImage: "music.note.list")
+                                        case .localMedia:
+                                            Label("本地音频", systemImage: "play.square.stack")
                                         case .userscript:
                                             Label("用户脚本", systemImage: "applescript")
-                                        case .localAudio:
-                                            Label("本地音频", systemImage: "music.quarternote.3")
-                                        case .localBook:
-                                            Label("本地图书", systemImage: "book.pages")
-                                        case .localVideo:
-                                            Label("本地视频", systemImage: "tray.and.arrow.down")
                                         case .chores:
                                             Label("杂项", systemImage: "square.on.square")
                                         case .feedbackAssistant:
@@ -2232,6 +2326,17 @@ struct SettingsView: View {
                                     }
                                 })
                                 Button(action: {
+                                    completion(.navigationLink(.localMedia))
+                                    dismiss()
+                                }, label: {
+                                    VStack(alignment: .leading) {
+                                        Text("导航到")
+                                            .font(.system(size: 13))
+                                            .foregroundStyle(Color.gray)
+                                        Label("本地媒体", systemImage: "play.square.stack")
+                                    }
+                                })
+                                Button(action: {
                                     completion(.navigationLink(.userscript))
                                     dismiss()
                                 }, label: {
@@ -2240,28 +2345,6 @@ struct SettingsView: View {
                                             .font(.system(size: 13))
                                             .foregroundStyle(Color.gray)
                                         Label("用户脚本", systemImage: "applescript")
-                                    }
-                                })
-                                Button(action: {
-                                    completion(.navigationLink(.localBook))
-                                    dismiss()
-                                }, label: {
-                                    VStack(alignment: .leading) {
-                                        Text("导航到")
-                                            .font(.system(size: 13))
-                                            .foregroundStyle(Color.gray)
-                                        Label("本地图书", systemImage: "book.pages")
-                                    }
-                                })
-                                Button(action: {
-                                    completion(.navigationLink(.localVideo))
-                                    dismiss()
-                                }, label: {
-                                    VStack(alignment: .leading) {
-                                        Text("导航到")
-                                            .font(.system(size: 13))
-                                            .foregroundStyle(Color.gray)
-                                        Label("本地视频", systemImage: "tray.and.arrow.down")
                                     }
                                 })
                                 Button(action: {
@@ -3356,10 +3439,8 @@ enum HomeScreenControlType: Codable, Equatable {
             .navigationLink(.history),
             .navigationLink(.webarchive),
             .navigationLink(.musicPlaylist),
+            .navigationLink(.localMedia),
             .navigationLink(.userscript),
-            .navigationLink(.localAudio),
-            .navigationLink(.localBook),
-            .navigationLink(.localVideo),
             .spacer,
             .pinnedBookmarks,
             .spacer,
@@ -3377,10 +3458,8 @@ enum HomeScreenNavigationType: Codable, Hashable {
     case history
     case webarchive
     case musicPlaylist
+    case localMedia
     case userscript
-    case localBook
-    case localVideo
-    case localAudio
     case chores
     case feedbackAssistant
     case tips
@@ -3456,12 +3535,8 @@ func getToolbarButton(by control: HomeScreenControlType, with type: ToolbarButto
                 Image(systemName: "music.note.list")
             case .userscript:
                 Image(systemName: "applescript")
-            case .localAudio:
-                Image(systemName: "music.quarternote.3")
-            case .localBook:
-                Image(systemName: "book")
-            case .localVideo:
-                Image(systemName: "film")
+            case .localMedia:
+                Image(systemName: "play.square.stack")
             case .chores:
                 Spacer()
             case .feedbackAssistant:
@@ -3499,8 +3574,10 @@ func getFullToolbar(
         }
     } else {
         ToolbarItem(placement: .topBarTrailing) {
-            getToolbarButton(by: controls.topTrailing, with: type) { object in
-                action(controls.topTrailing, .topTrailing, object)
+            if controls.topTrailing != .spacer {
+                getToolbarButton(by: controls.topTrailing, with: type) { object in
+                    action(controls.topTrailing, .topTrailing, object)
+                }
             }
         }
     }

@@ -114,14 +114,10 @@ struct ContentView: View {
                             WebArchiveListView()
                         case .musicPlaylist:
                             PlaylistsView()
+                        case .localMedia:
+                            LocalMediaView()
                         case .userscript:
                             UserScriptsView()
-                        case .localAudio:
-                            LocalAudiosView()
-                        case .localBook:
-                            LocalBooksView()
-                        case .localVideo:
-                            LocalVideosView()
                         case .chores:
                             EmptyView()
                         case .feedbackAssistant:
@@ -247,6 +243,8 @@ struct MainView: View {
     @AppStorage("PreloadSearchContent") var preloadSearchContent = true
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
     @AppStorage("LabTabBrowsingEnabled") var labTabBrowsingEnabled = false
+    @AppStorage("ShouldShowRatingRequest") var shouldShowRatingRequest = false
+    @AppStorage("MainPageShowCount") var mainPageShowCount = 0
     @State var customControls = [HomeScreenControlType]()
     @State var textOrURL = ""
     @State var goToButtonLabelText: LocalizedStringKey = "Home.search"
@@ -300,8 +298,8 @@ struct MainView: View {
                 if !data.contains(.navigationLink(.musicPlaylist)) {
                     data.append(.navigationLink(.musicPlaylist))
                 }
-                if !data.contains(.navigationLink(.localAudio)) {
-                    data.append(.navigationLink(.localAudio))
+                if !data.contains(.navigationLink(.localMedia)) {
+                    data.append(.navigationLink(.localMedia))
                 }
                 if let newPref = jsonString(from: data) {
                     do {
@@ -367,6 +365,10 @@ struct MainView: View {
             }
             isOfflineBooksAvailable = !(UserDefaults.standard.stringArray(forKey: "EPUBFlieFolders") ?? [String]()).isEmpty
             isAudioControllerAvailable = pIsAudioControllerAvailable
+            mainPageShowCount++
+            if mainPageShowCount == 10 {
+                shouldShowRatingRequest = true
+            }
         }
     }
     
@@ -559,6 +561,16 @@ struct MainView: View {
                                     Spacer()
                                 }
                             })
+                        case .localMedia:
+                            if isHaveDownloadedAudio || isOfflineBooksAvailable || isHaveDownloadedVideo {
+                                NavigationLink(destination: { LocalMediaView() }, label: {
+                                    HStack {
+                                        Spacer()
+                                        Label("本地媒体", systemImage: "play.square.stack")
+                                        Spacer()
+                                    }
+                                })
+                            }
                         case .userscript:
                             NavigationLink(destination: { UserScriptsView() }, label: {
                                 VStack {
@@ -580,37 +592,19 @@ struct MainView: View {
                             })
                             .disabled(isUseOldWebView)
                             .accessibilityIdentifier("MainUserScriptButton")
-                        case .localAudio:
-                            if isHaveDownloadedAudio {
-                                NavigationLink(destination: { LocalAudiosView() }, label: {
-                                    HStack {
-                                        Spacer()
-                                        Label("本地音频", systemImage: "music.quarternote.3")
-                                        Spacer()
-                                    }
-                                })
-                            }
-                        case .localBook:
-                            if isOfflineBooksAvailable {
-                                NavigationLink(destination: { LocalBooksView() }, label: {
-                                    HStack {
-                                        Spacer()
-                                        Label("本地图书", systemImage: "book.pages")
-                                        Spacer()
-                                    }
-                                })
-                            }
-                        case .localVideo:
-                            if isHaveDownloadedVideo {
-                                NavigationLink(destination: { LocalVideosView() }, label: {
-                                    HStack {
-                                        Spacer()
-                                        Label("本地视频", systemImage: "tray.and.arrow.down")
-                                        Spacer()
-                                    }
-                                })
-                            }
                         case .chores:
+                            if shouldShowRatingRequest {
+                                Button(action: {
+                                    shouldShowRatingRequest = false
+                                }, label: {
+                                    VStack(alignment: .leading) {
+                                        Text("喜欢暗礁浏览器？前往 iPhone 上的 App Store 为我们评分！")
+                                        Text("轻触以隐藏")
+                                            .font(.system(size: 14))
+                                            .foregroundStyle(Color.gray)
+                                    }
+                                })
+                            }
                             if #available(watchOS 10, *), isShowDAssistantAd {
                                 NavigationLink(destination: { DAssistAdView() }, label: {
                                     HStack {

@@ -150,12 +150,12 @@ struct BookmarkView: View {
         }
         
         let staredBookmarks = [
-            "樱花动漫": "http://yhdm.one",
-            "笔趣阁": "https://www.bigee.cc",
-            "微软数学": "https://math.microsoft.com",
-            "百度贴吧": "https://tieba.baidu.com",
-            "网易云音乐": "https://music.163.com",
-            "哔哩哔哩": "https://bilibili.com",
+            String(localized: "樱花动漫"): "http://yhdm.one",
+            String(localized: "笔趣阁"): "https://www.bigee.cc",
+            String(localized: "微软数学"): "https://math.microsoft.com",
+            String(localized: "百度贴吧"): "https://tieba.baidu.com",
+            String(localized: "网易云音乐"): "https://music.163.com",
+            String(localized: "哔哩哔哩"): "https://bilibili.com",
             "Pixiv Viewer": "https://www.pixiv.pics"
         ]
     }
