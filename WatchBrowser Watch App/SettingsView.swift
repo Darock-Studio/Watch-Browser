@@ -2119,7 +2119,7 @@ struct SettingsView: View {
                                         case .musicPlaylist:
                                             Label("播放列表", systemImage: "music.note.list")
                                         case .localMedia:
-                                            Label("本地音频", systemImage: "play.square.stack")
+                                            Label("本地媒体", systemImage: "play.square.stack")
                                         case .userscript:
                                             Label("用户脚本", systemImage: "applescript")
                                         case .chores:
