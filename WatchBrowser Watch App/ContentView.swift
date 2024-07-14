@@ -44,114 +44,128 @@ struct ContentView: View {
     @State var toolbarNavigationDestination: HomeScreenNavigationType?
     @State var showSettingsButtonInList = false
     var body: some View {
-        NavigationStack {
+        Group {
             if #available(watchOS 10.0, *) {
-                mainWithBackground
-                    .toolbar {
-                        if let currentToolbar {
-                            getFullToolbar(by: currentToolbar, with: .main) { type, position, obj in
-                                if labTabBrowsingEnabled && position == .topTrailing {
-                                    isTabsPresented = true
-                                } else {
-                                    switch type {
-                                    case .searchField, .searchButton:
-                                        if var content = obj as? String {
-                                            if content.isURL() {
-                                                if !content.hasPrefix("http://") && !content.hasPrefix("https://") {
-                                                    content = "http://" + content
+                NavigationStack {
+                    mainWithBackground
+                        .toolbar {
+                            if let currentToolbar {
+                                getFullToolbar(by: currentToolbar, with: .main) { type, position, obj in
+                                    if labTabBrowsingEnabled && position == .topTrailing {
+                                        isTabsPresented = true
+                                    } else {
+                                        switch type {
+                                        case .searchField, .searchButton:
+                                            if var content = obj as? String {
+                                                if content.isURL() {
+                                                    if !content.hasPrefix("http://") && !content.hasPrefix("https://") {
+                                                        content = "http://" + content
+                                                    }
+                                                    AdvancedWebViewController.shared.present(content.urlEncoded())
+                                                } else {
+                                                    AdvancedWebViewController.shared.present(
+                                                        getWebSearchedURL(content,
+                                                                          webSearch: webSearch,
+                                                                          isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)
+                                                    )
                                                 }
-                                                AdvancedWebViewController.shared.present(content.urlEncoded())
-                                            } else {
-                                                AdvancedWebViewController.shared.present(
-                                                    getWebSearchedURL(content,
-                                                                      webSearch: webSearch,
-                                                                      isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)
-                                                )
                                             }
+                                        case .spacer, .pinnedBookmarks, .text:
+                                            break
+                                        case .navigationLink(let navigation):
+                                            toolbarNavigationDestination = navigation
                                         }
-                                    case .spacer, .pinnedBookmarks, .text:
-                                        break
-                                    case .navigationLink(let navigation):
-                                        toolbarNavigationDestination = navigation
+                                    }
+                                }
+                            } else {
+                                ToolbarItem(placement: .topBarLeading) {
+                                    Button(action: {
+                                        isSettingsPresented = true
+                                    }, label: {
+                                        Image(systemName: "gear")
+                                    })
+                                    .accessibilityIdentifier("MainSettingsButton")
+                                }
+                                if labTabBrowsingEnabled {
+                                    ToolbarItem(placement: .topBarTrailing) {
+                                        Button(action: {
+                                            isTabsPresented = true
+                                        }, label: {
+                                            Image(systemName: "square.on.square.dashed")
+                                                .symbolRenderingMode(.hierarchical)
+                                                .foregroundColor(.white)
+                                        })
                                     }
                                 }
                             }
-                        } else {
-                            ToolbarItem(placement: .topBarLeading) {
-                                Button(action: {
-                                    isSettingsPresented = true
-                                }, label: {
-                                    Image(systemName: "gear")
-                                })
-                                .accessibilityIdentifier("MainSettingsButton")
+                        }
+                        .navigationDestination(isPresented: $isVideoListPresented, destination: { VideoListView() })
+                        .navigationDestination(isPresented: $isImageListPresented, destination: { ImageListView() })
+                        .navigationDestination(isPresented: $isAudioListPresented, destination: { AudioListView() })
+                        .navigationDestination(isPresented: $isBookListPresented, destination: { BookListView() })
+                        .navigationDestination(isPresented: $isSettingsPresented, destination: { SettingsView() })
+                        .navigationDestination(isPresented: $isTabsPresented, destination: { BrowsingTabsView() })
+                        .navigationDestination(item: $toolbarNavigationDestination) { destination in
+                            switch destination {
+                            case .bookmark:
+                                BookmarkView()
+                            case .history:
+                                HistoryView()
+                            case .webarchive:
+                                WebArchiveListView()
+                            case .musicPlaylist:
+                                PlaylistsView()
+                            case .localMedia:
+                                LocalMediaView()
+                            case .userscript:
+                                UserScriptsView()
+                            case .chores:
+                                EmptyView()
+                            case .feedbackAssistant:
+                                FeedbackView()
+                            case .tips:
+                                TipsView()
+                            case .settings:
+                                SettingsView()
                             }
-                            if labTabBrowsingEnabled {
-                                ToolbarItem(placement: .topBarTrailing) {
-                                    Button(action: {
-                                        isTabsPresented = true
-                                    }, label: {
-                                        Image(systemName: "square.on.square.dashed")
-                                            .symbolRenderingMode(.hierarchical)
-                                            .foregroundColor(.white)
-                                    })
+                        }
+                        .onAppear {
+                            if let currentPref = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/MainToolbar.drkdatam", encoding: .utf8),
+                               let data = getJsonData(HomeScreenToolbar.self, from: currentPref) {
+                                currentToolbar = data
+                            } else {
+                                currentToolbar = HomeScreenToolbar.default
+                            }
+                            if let currentToolbar {
+                                if currentToolbar.topLeading == .navigationLink(.settings)
+                                    || currentToolbar.topTrailing == .navigationLink(.settings)
+                                    || currentToolbar.bottomLeading == .navigationLink(.settings)
+                                    || currentToolbar.bottomTrailing == .navigationLink(.settings) {
+                                    showSettingsButtonInList = false
+                                } else {
+                                    showSettingsButtonInList = true
                                 }
                             }
                         }
-                    }
-                    .navigationDestination(isPresented: $isVideoListPresented, destination: { VideoListView() })
-                    .navigationDestination(isPresented: $isImageListPresented, destination: { ImageListView() })
-                    .navigationDestination(isPresented: $isAudioListPresented, destination: { AudioListView() })
-                    .navigationDestination(isPresented: $isBookListPresented, destination: { BookListView() })
-                    .navigationDestination(isPresented: $isSettingsPresented, destination: { SettingsView() })
-                    .navigationDestination(isPresented: $isTabsPresented, destination: { BrowsingTabsView() })
-                    .navigationDestination(item: $toolbarNavigationDestination) { destination in
-                        switch destination {
-                        case .bookmark:
-                            BookmarkView()
-                        case .history:
-                            HistoryView()
-                        case .webarchive:
-                            WebArchiveListView()
-                        case .musicPlaylist:
-                            PlaylistsView()
-                        case .localMedia:
-                            LocalMediaView()
-                        case .userscript:
-                            UserScriptsView()
-                        case .chores:
-                            EmptyView()
-                        case .feedbackAssistant:
-                            FeedbackView()
-                        case .tips:
-                            TipsView()
-                        case .settings:
-                            SettingsView()
-                        }
-                    }
-                    .onAppear {
-                        if let currentPref = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/MainToolbar.drkdatam", encoding: .utf8),
-                           let data = getJsonData(HomeScreenToolbar.self, from: currentPref) {
-                            currentToolbar = data
-                        } else {
-                            currentToolbar = HomeScreenToolbar.default
-                        }
-                        if let currentToolbar {
-                            if currentToolbar.topLeading == .navigationLink(.settings)
-                                || currentToolbar.topTrailing == .navigationLink(.settings)
-                                || currentToolbar.bottomLeading == .navigationLink(.settings)
-                                || currentToolbar.bottomTrailing == .navigationLink(.settings) {
-                                showSettingsButtonInList = false
-                            } else {
-                                showSettingsButtonInList = true
-                            }
-                        }
-                    }
+                }
             } else {
-                MainView(withSetting: .constant(true))
-                    .navigationDestination(isPresented: $isVideoListPresented, destination: { VideoListView() })
-                    .navigationDestination(isPresented: $isImageListPresented, destination: { ImageListView() })
-                    .navigationDestination(isPresented: $isAudioListPresented, destination: { AudioListView() })
-                    .navigationDestination(isPresented: $isBookListPresented, destination: { BookListView() })
+                NavigationView {
+                    ZStack {
+                        NavigationLink("", isActive: $isVideoListPresented, destination: { VideoListView() })
+                            .frame(width: 0, height: 0)
+                            .hidden()
+                        NavigationLink("", isActive: $isImageListPresented, destination: { ImageListView() })
+                            .frame(width: 0, height: 0)
+                            .hidden()
+                        NavigationLink("", isActive: $isAudioListPresented, destination: { AudioListView() })
+                            .frame(width: 0, height: 0)
+                            .hidden()
+                        NavigationLink("", isActive: $isBookListPresented, destination: { BookListView() })
+                            .frame(width: 0, height: 0)
+                            .hidden()
+                        MainView(withSetting: .constant(true))
+                    }
+                }
             }
         }
         .sheet(isPresented: $isAudioControllerPresented, content: { AudioControllerView() })

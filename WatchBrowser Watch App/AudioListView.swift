@@ -276,7 +276,7 @@ struct AudioControllerView: View {
                                                 isProgressDraging = false
                                             }
                                     )
-                                    .frame(height: 10)
+                                    .frame(height: 20)
                                 HStack {
                                     Text(formattedTime(from: currentPlaybackTime))
                                         .font(.system(size: 11))
