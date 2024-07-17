@@ -431,12 +431,31 @@ class AdvancedWebViewController {
                                 var src = try video.attr("src")
                                 if src != "" && (src.hasSuffix(".mp4") || src.hasSuffix(".m3u8")) {
                                     if src.split(separator: "://").count >= 2 && !src.hasPrefix("http://") && !src.hasPrefix("https://") {
-                                        src = "http://" + src.split(separator: "://").last!
+                                        src = "https://" + src.split(separator: "://").last!
                                     } else if src.hasPrefix("/") {
                                         if currentUrl.split(separator: "/").count < 2 {
                                             continue
                                         }
-                                        src = "http://" + currentUrl.split(separator: "/")[1] + src
+                                        src = "https://" + currentUrl.split(separator: "/")[1] + src
+                                    }
+                                    srcs.append(src)
+                                }
+                            }
+                            videoLinkLists += srcs
+                        }
+                        let aLinks = try doc.body()?.select("a")
+                        if let aLinks {
+                            var srcs = [String]()
+                            for video in aLinks {
+                                var src = try video.attr("href")
+                                if src != "" && (src.hasSuffix(".mp4") || src.hasSuffix(".m3u8")) {
+                                    if src.split(separator: "://").count >= 2 && !src.hasPrefix("http://") && !src.hasPrefix("https://") {
+                                        src = "https://" + src.split(separator: "://").last!
+                                    } else if src.hasPrefix("/") {
+                                        if currentUrl.split(separator: "/").count < 2 {
+                                            continue
+                                        }
+                                        src = "https://" + currentUrl.split(separator: "/")[1] + src
                                     }
                                     srcs.append(src)
                                 }

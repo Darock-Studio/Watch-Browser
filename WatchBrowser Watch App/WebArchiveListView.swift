@@ -88,7 +88,7 @@ struct WebArchiveListView: View {
                             Spacer()
                         }
                         .listRowBackground(Color.clear)
-                        TextField("名称", text: $customNameInputCache)
+                        TextField("名称", text: $customNameInputCache, style: "field-page")
                         Button(action: {
                             archiveCustomNameChart.updateValue(customNameInputCache, forKey: customingNameKey)
                             isArchiveCustomNamePresented = false

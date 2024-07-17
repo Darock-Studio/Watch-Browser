@@ -101,14 +101,21 @@ struct HistoryView: View {
                                             } else if histories[i].url.hasSuffix(".mp4") {
                                                 videoLinkLists = [histories[i].url]
                                                 pShouldPresentVideoList = true
+                                                dismissListsShouldRepresentWebView = false
+                                            } else if histories[i].url.hasSuffix(".mp3") {
+                                                audioLinkLists = [histories[i].url]
+                                                pShouldPresentAudioList = true
+                                                dismissListsShouldRepresentWebView = false
                                             } else if histories[i].url.hasSuffix(".png")
                                                         || histories[i].url.hasSuffix(".jpg")
                                                         || histories[i].url.hasSuffix(".webp") {
                                                 imageLinkLists = [histories[i].url]
                                                 pShouldPresentImageList = true
+                                                dismissListsShouldRepresentWebView = false
                                             } else if histories[i].url.hasSuffix(".epub") {
                                                 bookLinkLists = [histories[i].url]
                                                 pShouldPresentBookList = true
+                                                dismissListsShouldRepresentWebView = false
                                             } else {
                                                 AdvancedWebViewController.shared.present(histories[i].url.urlDecoded().urlEncoded())
                                             }
@@ -150,6 +157,8 @@ struct HistoryView: View {
                                                 )
                                             } else if histories[i].url.hasSuffix(".mp4") {
                                                 Label(histories[i].url, systemImage: "film")
+                                            } else if histories[i].url.hasSuffix(".mp3") {
+                                                Label(histories[i].url, systemImage: "music.note")
                                             } else if histories[i].url.hasSuffix(".png")
                                                         || histories[i].url.hasSuffix(".jpg")
                                                         || histories[i].url.hasSuffix(".webp") {

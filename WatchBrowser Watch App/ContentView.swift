@@ -477,9 +477,9 @@ struct MainView: View {
                         }
                         .swipeActions {
                             if textOrURL != "" {
-                                Button(role: .destructive, action: {
+                                Button(action: {
                                     textOrURL = ""
-                                    goToButtonLabelText = "Home.go"
+                                    goToButtonLabelText = "Home.search"
                                 }, label: {
                                     Image(systemName: "xmark.bin.fill")
                                 })

@@ -783,6 +783,7 @@ struct LocalAudiosView: View {
                                 })
                                 Button(action: {
                                     editNameAudioName = audioNames[i]
+                                    editNameInput = audioHumanNameChart[audioNames[i]] ?? audioNames[i]
                                     isEditNamePresented = true
                                 }, label: {
                                     Image(systemName: "pencil.line")
