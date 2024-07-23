@@ -4077,6 +4077,16 @@
         }
       }
     },
+    "下载器" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Downloader"
+          }
+        }
+      }
+    },
     "下载媒体" : {
       "localizations" : {
         "en" : {
@@ -4855,6 +4865,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "保存"
+          }
+        }
+      }
+    },
+    "保存图片时出错" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed"
           }
         }
       }
@@ -6465,6 +6485,16 @@
         }
       }
     },
+    "图片已保存" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved"
+          }
+        }
+      }
+    },
     "在 iPhone 上继续" : {
       "localizations" : {
         "en" : {
@@ -7105,6 +7135,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "完成！"
+          }
+        }
+      }
+    },
+    "完成后提醒" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notify when Finish"
           }
         }
       }
@@ -9951,6 +9991,16 @@
         }
       }
     },
+    "本地图片" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Local Image"
+          }
+        }
+      }
+    },
     "本地媒体" : {
       "localizations" : {
         "en" : {
@@ -10325,6 +10375,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lyrics Unavailable"
+          }
+        }
+      }
+    },
+    "正在下载 M3U8 媒体，这可能需要较长时间，且暗礁浏览器无法报告进度。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Downloading M3U8 media, this may take a while, and Darock Browser cannot report progress."
           }
         }
       }

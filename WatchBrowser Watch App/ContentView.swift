@@ -319,7 +319,7 @@ struct MainView: View {
                     do {
                         try newPref.write(toFile: NSHomeDirectory() + "/Documents/HomeScreen.drkdatah", atomically: true, encoding: .utf8)
                     } catch {
-                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                        globalErrorHandler(error)
                     }
                 }
                 customControls = data
@@ -368,14 +368,14 @@ struct MainView: View {
                     isHaveDownloadedVideo = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos").isEmpty
                 }
             } catch {
-                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                globalErrorHandler(error)
             }
             do {
                 if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios") {
                     isHaveDownloadedAudio = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios").isEmpty
                 }
             } catch {
-                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                globalErrorHandler(error)
             }
             isOfflineBooksAvailable = !(UserDefaults.standard.stringArray(forKey: "EPUBFlieFolders") ?? [String]()).isEmpty
             isAudioControllerAvailable = pIsAudioControllerAvailable

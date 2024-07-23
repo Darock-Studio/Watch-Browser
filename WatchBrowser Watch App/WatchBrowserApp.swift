@@ -203,7 +203,7 @@ public func tipWithText(_ text: String, symbol: String = "", time: Double = 3.0)
         pIsShowingTip = false
     }
 }
-public func globalErrorHandler(_ error: Error, at: String = "Not Provided") {
+public func globalErrorHandler(_ error: Error, at: String = "\(#file)-\(#function)-\(#line)") {
     print(error)
     if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "IsDarockInternalTap-to-RadarAvailable") {
         pTapToRadarAlertContent = "Swift has catched an internal error.\nPlease help us make Darock Browser better by logging a bug. Thanks. (\(at))"

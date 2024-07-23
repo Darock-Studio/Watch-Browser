@@ -801,7 +801,7 @@ func getAllSettingsForAppdiagnose() -> String? {
                 return String(decoding: jsonData, as: UTF8.self)
             }
         } catch {
-            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+            globalErrorHandler(error)
         }
     }
     return nil

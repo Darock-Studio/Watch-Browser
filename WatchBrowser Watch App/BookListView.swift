@@ -260,7 +260,7 @@ struct LocalBooksView: View {
                                             UserDefaults.standard.set(bookFolderNames, forKey: "EPUBFlieFolders")
                                             UserDefaults.standard.set(nameChart, forKey: "EPUBFileNameChart")
                                         } catch {
-                                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                            globalErrorHandler(error)
                                         }
                                     }, label: {
                                         Image(systemName: "xmark.bin.fill")

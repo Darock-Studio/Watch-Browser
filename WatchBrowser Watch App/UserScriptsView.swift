@@ -45,7 +45,7 @@ struct UserScriptsView: View {
                 do {
                     try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/UserScripts/", withIntermediateDirectories: false)
                 } catch {
-                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                    globalErrorHandler(error)
                 }
             }
         }
@@ -79,7 +79,7 @@ struct UserScriptsAddView: View {
                                         }
                                         isSearching = false
                                     } catch {
-                                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                        globalErrorHandler(error)
                                     }
                                 }
                             }
@@ -149,7 +149,7 @@ struct UserScriptsAddView: View {
                                                 isInstalled = true
                                                 isInstalling = false
                                             } catch {
-                                                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                                globalErrorHandler(error)
                                             }
                                         }
                                     }
@@ -192,7 +192,7 @@ struct UserScriptsAddView: View {
                                 jsLink = try installArea.select("a").first()!.attr("href")
                             }
                         } catch {
-                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                            globalErrorHandler(error)
                         }
                     }
                 }

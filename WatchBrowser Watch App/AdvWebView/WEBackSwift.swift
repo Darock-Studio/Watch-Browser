@@ -28,7 +28,7 @@ public class WEBackSwift: NSObject {
                             forKey: "WebArchiveList"
                         )
                     } catch {
-                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                        globalErrorHandler(error)
                     }
                 }
             } else {

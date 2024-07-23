@@ -397,7 +397,7 @@ func getWebHistory() -> [SingleHistoryItem] {
         }
         return getJsonData([SingleHistoryItem].self, from: jsonSource) ?? [SingleHistoryItem]()
     } catch {
-        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+        globalErrorHandler(error)
     }
     return [SingleHistoryItem]()
 }
@@ -407,7 +407,7 @@ func writeWebHistory(from histories: [SingleHistoryItem]) {
             try json.write(toFile: NSHomeDirectory() + "/Documents/WebHistories.drkdataw", atomically: true, encoding: .utf8)
         }
     } catch {
-        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+        globalErrorHandler(error)
     }
 }
 func getWebHistoryFromCloud(with account: String) async -> [SingleHistoryItem]? {
@@ -454,7 +454,7 @@ struct CloseHistoryTipView: View {
                 do {
                     try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/WebHistories.drkdataw")
                 } catch {
-                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                    globalErrorHandler(error)
                 }
                 dismiss()
             }, label: {
@@ -493,7 +493,7 @@ struct HistoryTransferView: View {
                             dismiss()
                             tipWithText("迁移已完成", symbol: "checkmark.circle.fill")
                         } catch {
-                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                            globalErrorHandler(error)
                         }
                     } else {
                         tipWithText("迁移出错，请提交反馈", symbol: "xmark.circle.fill")

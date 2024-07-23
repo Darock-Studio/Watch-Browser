@@ -55,6 +55,14 @@ class AdvancedWebViewController {
     }
     var isVideoChecking = false
     
+    /// 显示 WebView 视图
+    /// - Parameters:
+    ///   - iurl: 网页 URL
+    ///   - archiveUrl: 网页归档 URL
+    ///   - presentController: 是否将 WebView 推送到屏幕
+    ///   - loadMimeType: 载入内容的 Mime Type
+    ///   - overrideOldWebView: 覆盖使用旧版引擎设置
+    /// - Returns: WebView Object
     @discardableResult
     func present(_ iurl: String = "",
                  archiveUrl: URL? = nil,
@@ -500,7 +508,7 @@ class AdvancedWebViewController {
                             audioLinkLists = srcs
                         }
                     } catch {
-                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                        globalErrorHandler(error)
                     }
                 }
                 if currentUrl.contains(/music\..*\.com/) && currentUrl.contains(/(\?|&)id=[0-9]*($|&)/),

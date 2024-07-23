@@ -8,6 +8,7 @@
 import SwiftUI
 import Dynamic
 import DarockKit
+import Alamofire
 import SDWebImageSwiftUI
 
 struct ImageListView: View {
@@ -35,6 +36,25 @@ struct ImageListView: View {
                             Text(imageLinkLists[i])
                         }
                     })
+                    .swipeActions {
+                        Button(action: {
+                            let destination: DownloadRequest.Destination = { _, _ in
+                                return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/LocalImages/\(Date.now.timeIntervalSince1970).png"),
+                                        [.removePreviousFile, .createIntermediateDirectories])
+                            }
+                            AF.download(imageLinkLists[i], to: destination)
+                                .response { result in
+                                    if result.error == nil, let filePath = result.fileURL?.path {
+                                        debugPrint(filePath)
+                                        tipWithText("图片已保存", symbol: "checkmark.circle.fill")
+                                    } else {
+                                        tipWithText("保存图片时出错", symbol: "xmark.circle.fill")
+                                    }
+                                }
+                        }, label: {
+                            Image(systemName: "square.and.arrow.down")
+                        })
+                    }
                 }
             }
             .navigationTitle("图片列表 (\(imageLinkLists.count))")
@@ -104,6 +124,83 @@ struct ImageViewerView: View {
                 globalMediaUserActivity?.isEligibleForHandoff = true
                 globalMediaUserActivity?.webpageURL = URL(string: url)!
                 globalMediaUserActivity?.becomeCurrent()
+            }
+        }
+    }
+}
+
+struct LocalImageView: View {
+    @AppStorage("IVUseDigitalCrownFor") var useDigitalCrownFor = "zoom"
+    @State var images = [String]()
+    @State var isImageViewerPresented = false
+    @State var tabSelection = 0
+    var body: some View {
+        ScrollViewReader { scrollProxy in
+            List {
+                Section {
+                    if !images.isEmpty {
+                        LazyVGrid(columns: [
+                            .init(.fixed(WKInterfaceDevice.current().screenBounds.width / 3), spacing: 0),
+                            .init(.fixed(WKInterfaceDevice.current().screenBounds.width / 3), spacing: 0),
+                            .init(.fixed(WKInterfaceDevice.current().screenBounds.width / 3), spacing: 0)
+                        ], spacing: 0) {
+                            ForEach(0..<images.count, id: \.self) { i in
+                                if let image = UIImage(contentsOfFile: NSHomeDirectory() + "/Documents/LocalImages/\(images[i])") {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: WKInterfaceDevice.current().screenBounds.width / 3, height: 80)
+                                        .clipped()
+                                        .onTapGesture {
+                                            tabSelection = i
+                                            isImageViewerPresented = true
+                                        }
+                                        .id(i)
+                                }
+                            }
+                        }
+                        .onAppear {
+                            scrollProxy.scrollTo(images.count - 1)
+                        }
+                    }
+                }
+                .listRowBackground(Color.clear)
+                .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+            }
+            .scrollIndicators(.never)
+        }
+        .navigationTitle("本地图片")
+        .sheet(isPresented: $isImageViewerPresented) {
+            if useDigitalCrownFor == "zoom" {
+                TabView(selection: $tabSelection) {
+                    ForEach(0..<images.count, id: \.self) { i in
+                        ImageViewerView(url: URL(filePath: NSHomeDirectory() + "/Documents/LocalImages/\(images[i])").absoluteString)
+                            .tag(i)
+                    }
+                }
+            } else {
+                TabView(selection: $tabSelection) {
+                    ForEach(0..<images.count, id: \.self) { i in
+                        ImageViewerView(url: URL(filePath: NSHomeDirectory() + "/Documents/LocalImages/\(images[i])").absoluteString)
+                            .tag(i)
+                    }
+                }
+                .tabViewStyle(.carousel)
+            }
+        }
+        .onAppear {
+            do {
+                images = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/LocalImages")
+                images.sort { lhs, rhs in
+                    let lt = lhs.dropLast(4) // Drop ".png"
+                    let rt = rhs.dropLast(4)
+                    if let dl = Double(lt), let dr = Double(rt) {
+                        return dl < dr
+                    }
+                    return false
+                }
+            } catch {
+                globalErrorHandler(error)
             }
         }
     }

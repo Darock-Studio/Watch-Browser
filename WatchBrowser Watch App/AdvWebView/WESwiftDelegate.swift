@@ -108,7 +108,7 @@ public class WESwiftDelegate: NSObject {
                     )
                     Dynamic(webViewObject).evaluateJavaScript(jsStr, completionHandler: nil)
                 } catch {
-                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                    globalErrorHandler(error)
                 }
             }
         }

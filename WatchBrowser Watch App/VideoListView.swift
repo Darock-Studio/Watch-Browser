@@ -16,6 +16,7 @@ struct VideoListView: View {
     @State var willPlayVideoLink = ""
     @State var isPlayerPresented = false
     @State var willDownloadVideoLink = ""
+    @State var downloadVideoSaveName: String?
     @State var isVideoDownloadPresented = false
     var body: some View {
         if !videoLinkLists.isEmpty {
@@ -40,7 +41,12 @@ struct VideoListView: View {
             .navigationTitle("视频列表")
             .sheet(isPresented: $isPlayerPresented, content: { VideoPlayingView(link: $willPlayVideoLink) })
             .sheet(isPresented: $isVideoDownloadPresented) {
-                MediaDownloadView(mediaLink: $willDownloadVideoLink, mediaTypeName: "视频", saveFolderName: "DownloadedVideos", saveFileName: .constant(nil))
+                MediaDownloadView(
+                    mediaLink: $willDownloadVideoLink,
+                    mediaTypeName: "视频",
+                    saveFolderName: "DownloadedVideos",
+                    saveFileName: $downloadVideoSaveName
+                )
             }
             .onDisappear {
                 if dismissListsShouldRepresentWebView {
@@ -78,11 +84,6 @@ struct VideoPlayingView: View {
                 .offset(y: isFullScreen ? 20 : 0)
                 .ignoresSafeArea()
                 .tag(1)
-                .onChange(of: player?.timeControlStatus) { value in
-                    if value == .playing {
-                        player.rate = Float(playbackSpeed)
-                    }
-                }
             List {
                 Section {
                     Button(action: {
@@ -172,6 +173,11 @@ struct VideoPlayingView: View {
         .onReceive(player.periodicTimePublisher()) { time in
             currentTime = time.seconds
         }
+        .onReceive(player.publisher(for: \.timeControlStatus)) { status in
+            if status == .playing {
+                player.rate = Float(playbackSpeed)
+            }
+        }
     }
 }
 
@@ -181,10 +187,12 @@ struct MediaDownloadView: View {
     var saveFolderName: String
     @Binding var saveFileName: String?
     @Environment(\.dismiss) var dismiss
+    @AppStorage("DLIsFeedbackWhenFinish") var isFeedbackWhenFinish = false
     @State var downloadProgress = ValuedProgress(completedUnitCount: 0, totalUnitCount: 0)
     @State var isFinishedDownload = false
     @State var isTerminateDownloadingAlertPresented = false
     @State var errorText = ""
+    @State var m3u8DownloadObservation: NSKeyValueObservation?
     var body: some View {
         NavigationStack {
             List {
@@ -213,13 +221,18 @@ struct MediaDownloadView: View {
                         VStack {
                             Text("正在下载...")
                                 .font(.system(size: 20, weight: .bold))
-                            ProgressView(value: Double(downloadProgress.completedUnitCount), total: Double(downloadProgress.totalUnitCount))
-                            Text("\(String(format: "%.2f", Double(downloadProgress.completedUnitCount) / Double(downloadProgress.totalUnitCount) * 100))%")
-                            Text("\(String(format: "%.2f", Double(downloadProgress.completedUnitCount) / 1024 / 1024))MB / \(String(format: "%.2f", Double(downloadProgress.totalUnitCount) / 1024 / 1024))MB")
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.1)
-                            if let eta = downloadProgress.estimatedTimeRemaining {
-                                Text("预计时间：\(Int(eta))s")
+                            if mediaLink.hasSuffix(".m3u8"), #available(watchOS 10, *) {
+                                ProgressView()
+                                Text("正在下载 M3U8 媒体，这可能需要较长时间，且暗礁浏览器无法报告进度。")
+                            } else {
+                                ProgressView(value: Double(downloadProgress.completedUnitCount), total: Double(downloadProgress.totalUnitCount))
+                                Text("\(String(format: "%.2f", Double(downloadProgress.completedUnitCount) / Double(downloadProgress.totalUnitCount) * 100))%")
+                                Text("\(String(format: "%.2f", Double(downloadProgress.completedUnitCount) / 1024 / 1024))MB / \(String(format: "%.2f", Double(downloadProgress.totalUnitCount) / 1024 / 1024))MB")
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.1)
+                                if let eta = downloadProgress.estimatedTimeRemaining {
+                                    Text("预计时间：\(Int(eta))s")
+                                }
                             }
                         }
                     } else {
@@ -262,37 +275,122 @@ struct MediaDownloadView: View {
                 if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)") {
                     try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)", withIntermediateDirectories: true)
                 }
-                let destination: DownloadRequest.Destination = { _, _ in
-                    if let saveFileName {
-                        return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(saveFileName)"),
-                                [.removePreviousFile, .createIntermediateDirectories])
-                    } else {
-                        return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(String(mediaLink.split(separator: "/").last!.split(separator: "?")[0]))"),
-                                [.removePreviousFile, .createIntermediateDirectories])
+                if mediaLink.hasSuffix(".m3u8"), #available(watchOS 10, *) {
+                    let configuration = URLSessionConfiguration.background(withIdentifier: "com.darock.WatchBrowser.download.m3u8")
+                    let session = AVAssetDownloadURLSession(
+                        configuration: configuration,
+                        assetDownloadDelegate: M3U8DownloadDelegate.shared,
+                        delegateQueue: .main
+                    )
+                    let asset = AVURLAsset(url: URL(string: mediaLink)!)
+                    let downloadTask = session.makeAssetDownloadTask(downloadConfiguration: .init(asset: asset, title: ""))
+                    M3U8DownloadDelegate.shared.finishDownloadingHandler = { _, _, location in
+                        print(location)
+                        do {
+                            if let saveFileName {
+                                if _fastPath(!FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(saveFileName)")) {
+                                    try FileManager.default.moveItem(atPath: location.path, toPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(saveFileName)")
+                                } else {
+                                    var duplicateMarkNum = 1
+                                    while FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(saveFileName) (\(duplicateMarkNum))") {
+                                        duplicateMarkNum++
+                                    }
+                                    try FileManager.default.moveItem(atPath: location.path, toPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(saveFileName) (\(duplicateMarkNum))")
+                                }
+                            } else {
+                                if _fastPath(!FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(String(mediaLink.split(separator: "/").last!.split(separator: ".")[0])).movpkg")) {
+                                    try FileManager.default.moveItem(
+                                        atPath: location.path,
+                                        toPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(String(mediaLink.split(separator: "/").last!.split(separator: ".")[0])).movpkg"
+                                    )
+                                } else {
+                                    var duplicateMarkNum = 1
+                                    while FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(String(mediaLink.split(separator: "/").last!.split(separator: ".")[0])).movpkg (\(duplicateMarkNum))") {
+                                        duplicateMarkNum++
+                                    }
+                                    try FileManager.default.moveItem(
+                                        atPath: location.path,
+                                        toPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(String(mediaLink.split(separator: "/").last!.split(separator: ".")[0])).movpkg (\(duplicateMarkNum))"
+                                    )
+                                }
+                            }
+                            isFinishedDownload = true
+                            if isFeedbackWhenFinish {
+                                WKInterfaceDevice.current().play(.success)
+                            }
+                        } catch {
+                            errorText = String(localized: "下载时出错：") + error.localizedDescription
+                            if isFeedbackWhenFinish {
+                                WKInterfaceDevice.current().play(.failure)
+                            }
+                            globalErrorHandler(error)
+                        }
                     }
-                }
-                AF.download(mediaLink, to: destination)
-                    .downloadProgress { progress in
+                    downloadTask.priority = 1.0
+                    downloadTask.resume()
+                    m3u8DownloadObservation = downloadTask.progress.observe(\.fractionCompleted) { progress, _ in
                         downloadProgress = ValuedProgress(completedUnitCount: progress.completedUnitCount,
                                                           totalUnitCount: progress.totalUnitCount,
                                                           estimatedTimeRemaining: progress.estimatedTimeRemaining)
                     }
-                    .response { result in
-                        if result.error == nil, let filePath = result.fileURL?.path {
-                            debugPrint(filePath)
-                            isFinishedDownload = true
+                } else {
+                    let destination: DownloadRequest.Destination = { _, _ in
+                        if let saveFileName {
+                            if _fastPath(!FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(saveFileName)")) {
+                                return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(saveFileName)"),
+                                        [.removePreviousFile, .createIntermediateDirectories])
+                            } else {
+                                var duplicateMarkNum = 1
+                                while FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(saveFileName) (\(duplicateMarkNum))") {
+                                    duplicateMarkNum++
+                                }
+                                return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(saveFileName) (\(duplicateMarkNum))"),
+                                        [.removePreviousFile, .createIntermediateDirectories])
+                            }
                         } else {
-                            if let et = result.error?.localizedDescription {
-                                errorText = String(localized: "下载时出错：") + et
+                            if _fastPath(!FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(String(mediaLink.split(separator: "/").last!.split(separator: "?")[0]))")) {
+                                return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(String(mediaLink.split(separator: "/").last!.split(separator: "?")[0]))"),
+                                        [.removePreviousFile, .createIntermediateDirectories])
+                            } else {
+                                var duplicateMarkNum = 1
+                                while FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(String(mediaLink.split(separator: "/").last!.split(separator: "?")[0])) (\(duplicateMarkNum))") {
+                                    duplicateMarkNum++
+                                }
+                                return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(String(mediaLink.split(separator: "/").last!.split(separator: "?")[0])) (\(duplicateMarkNum))"),
+                                        [.removePreviousFile, .createIntermediateDirectories])
                             }
                         }
                     }
+                    AF.download(mediaLink, to: destination)
+                        .downloadProgress { progress in
+                            downloadProgress = ValuedProgress(completedUnitCount: progress.completedUnitCount,
+                                                              totalUnitCount: progress.totalUnitCount,
+                                                              estimatedTimeRemaining: progress.estimatedTimeRemaining)
+                        }
+                        .response { result in
+                            if result.error == nil, let filePath = result.fileURL?.path {
+                                debugPrint(filePath)
+                                isFinishedDownload = true
+                                if isFeedbackWhenFinish {
+                                    WKInterfaceDevice.current().play(.success)
+                                }
+                            } else {
+                                if let et = result.error?.localizedDescription {
+                                    errorText = String(localized: "下载时出错：") + et
+                                }
+                                if isFeedbackWhenFinish {
+                                    WKInterfaceDevice.current().play(.failure)
+                                }
+                            }
+                        }
+                }
             } catch {
-                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                globalErrorHandler(error)
             }
         }
         .onDisappear {
             recoverNormalIdleTime()
+            m3u8DownloadObservation?.invalidate()
         }
     }
 }
@@ -337,7 +435,7 @@ struct LocalVideosView: View {
                                         try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoNames[i])
                                         videoNames.remove(at: i)
                                     } catch {
-                                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                        globalErrorHandler(error)
                                     }
                                 }, label: {
                                     Image(systemName: "xmark.bin.fill")
@@ -381,7 +479,7 @@ struct LocalVideosView: View {
                     videoNames = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos")
                     videoHumanNameChart = (UserDefaults.standard.dictionary(forKey: "VideoHumanNameChart") as? [String: String]) ?? [String: String]()
                 } catch {
-                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                    globalErrorHandler(error)
                 }
             }
         }
@@ -392,4 +490,19 @@ struct ValuedProgress {
     var completedUnitCount: Int64
     var totalUnitCount: Int64
     var estimatedTimeRemaining: TimeInterval?
+}
+
+@available(watchOS 10.0, *)
+private class M3U8DownloadDelegate: NSObject, AVAssetDownloadDelegate {
+    static let shared = M3U8DownloadDelegate(finishDownloadingHandler: { _, _, _ in })
+    
+    var finishDownloadingHandler: (URLSession, AVAssetDownloadTask, URL) -> Void
+    
+    init(finishDownloadingHandler: @escaping (URLSession, AVAssetDownloadTask, URL) -> Void) {
+        self.finishDownloadingHandler = finishDownloadingHandler
+    }
+    
+    func urlSession(_ session: URLSession, assetDownloadTask: AVAssetDownloadTask, didFinishDownloadingTo location: URL) {
+        finishDownloadingHandler(session, assetDownloadTask, location)
+    }
 }

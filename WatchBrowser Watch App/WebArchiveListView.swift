@@ -52,7 +52,7 @@ struct WebArchiveListView: View {
                                             + "/Documents/WebArchives/\(archiveLinks[i].base64Encoded().replacingOccurrences(of: "/", with: "{slash}")).drkdataw"
                                         )
                                     } catch {
-                                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                        globalErrorHandler(error)
                                     }
                                     archiveLinks.remove(at: i)
                                     UserDefaults.standard.set(archiveLinks, forKey: "WebArchiveList")

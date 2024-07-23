@@ -330,7 +330,7 @@ struct SettingsView: View {
                             do {
                                 songCount = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/").count
                             } catch {
-                                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                globalErrorHandler(error)
                             }
                         }
                         if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/") {
@@ -342,7 +342,7 @@ struct SettingsView: View {
                             bookCount++
                         }
                     } catch {
-                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                        globalErrorHandler(error)
                     }
                 }
             }
@@ -579,7 +579,7 @@ struct SettingsView: View {
                                                     )
                                                     videoMetadatas.remove(at: i)
                                                 } catch {
-                                                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                                    globalErrorHandler(error)
                                                 }
                                             }, label: {
                                                 Image(systemName: "xmark.bin.fill")
@@ -615,7 +615,7 @@ struct SettingsView: View {
                                                     )
                                                     audioMetadatas.remove(at: i)
                                                 } catch {
-                                                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                                    globalErrorHandler(error)
                                                 }
                                             }, label: {
                                                 Image(systemName: "xmark.bin.fill")
@@ -656,7 +656,7 @@ struct SettingsView: View {
                                                         )
                                                         bookMetadatas.remove(at: i)
                                                     } catch {
-                                                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                                        globalErrorHandler(error)
                                                     }
                                                 }, label: {
                                                     Image(systemName: "xmark.bin.fill")
@@ -771,7 +771,7 @@ struct SettingsView: View {
                                                                 }
                                                                 isClearingCache = false
                                                             } catch {
-                                                                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                                                globalErrorHandler(error)
                                                             }
                                                         }
                                                     }, label: {
@@ -846,7 +846,7 @@ struct SettingsView: View {
                                                 dicV.updateValue(String(fileSize), forKey: "Size")
                                             }
                                         } catch {
-                                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                            globalErrorHandler(error)
                                         }
                                         if let vn = videoHumanNameChart[file] {
                                             dicV.updateValue(vn, forKey: "Title")
@@ -873,7 +873,7 @@ struct SettingsView: View {
                                                 dicV.updateValue(String(fileSize), forKey: "Size")
                                             }
                                         } catch {
-                                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                            globalErrorHandler(error)
                                         }
                                         if let vn = audioHumanNameChart[file] {
                                             dicV.updateValue(vn, forKey: "Title")
@@ -903,7 +903,7 @@ struct SettingsView: View {
                                 bookMetadatas.sort { UInt64($0["Size"] ?? "0")! > UInt64($1["Size"] ?? "0")! }
                                 isLoading = false
                             } catch {
-                                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                globalErrorHandler(error)
                             }
                         }
                     }
@@ -926,7 +926,7 @@ struct SettingsView: View {
                             totalSize += fileSize
                         }
                     } catch {
-                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                        globalErrorHandler(error)
                     }
                 }
                 
@@ -994,6 +994,17 @@ struct SettingsView: View {
                     }
                 }
                 .navigationTitle("Settings.keyboard")
+            }
+        }
+        struct DownloaderView: View {
+            @AppStorage("DLIsFeedbackWhenFinish") var isFeedbackWhenFinish = false
+            var body: some View {
+                List {
+                    Section {
+                        Toggle("完成后提醒", isOn: $isFeedbackWhenFinish)
+                    }
+                }
+                .navigationTitle("下载器")
             }
         }
         struct MusicPlayerView: View {
@@ -1898,7 +1909,7 @@ struct SettingsView: View {
                             tipWithText("已还原", symbol: "checkmark.circle.fill")
                         } catch {
                             tipWithText("还原时出错", symbol: "xmark.circle.fill")
-                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                            globalErrorHandler(error)
                         }
                     }, label: {
                         Text("还原")
@@ -1926,7 +1937,7 @@ struct SettingsView: View {
                             tipWithText("已抹掉", symbol: "checkmark.circle.fill")
                         } catch {
                             tipWithText("抹掉时出错", symbol: "xmark.circle.fill")
-                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                            globalErrorHandler(error)
                         }
                     }, label: {
                         Text("抹掉")
@@ -2176,7 +2187,7 @@ struct SettingsView: View {
                     do {
                         try newPref.write(toFile: NSHomeDirectory() + "/Documents/HomeScreen.drkdatah", atomically: true, encoding: .utf8)
                     } catch {
-                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                        globalErrorHandler(error)
                     }
                 }
             }
@@ -2267,7 +2278,7 @@ struct SettingsView: View {
                     do {
                         try newPref.write(toFile: NSHomeDirectory() + "/Documents/MainToolbar.drkdatam", atomically: true, encoding: .utf8)
                     } catch {
-                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                        globalErrorHandler(error)
                     }
                 }
             }
@@ -3167,7 +3178,7 @@ struct SettingsView: View {
                         do {
                             throw NSError(domain: "com.darock.DarockBrowser.TestError", code: 1)
                         } catch {
-                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                            globalErrorHandler(error)
                         }
                     }, label: {
                         Text("Toggle an Internal Error")

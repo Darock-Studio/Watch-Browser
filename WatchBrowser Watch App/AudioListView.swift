@@ -100,7 +100,7 @@ struct AudioListView: View {
                                                         )
                                                     }
                                                 } catch {
-                                                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                                    globalErrorHandler(error)
                                                 }
                                             }
                                         }
@@ -152,7 +152,7 @@ struct AudioListView: View {
                                 }
                             }
                         } catch {
-                            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                            globalErrorHandler(error)
                         }
                     }
                 }
@@ -419,7 +419,7 @@ struct AudioControllerView: View {
                     let fileStr = try String(contentsOfFile: NSHomeDirectory() + "/Documents/Playlists/\(globalAudioCurrentPlaylist)", encoding: .utf8)
                     currentPlaylistContent = getJsonData([String].self, from: fileStr) ?? [String]()
                 } catch {
-                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                    globalErrorHandler(error)
                 }
             }
         }
@@ -536,7 +536,7 @@ struct AudioControllerView: View {
                                 }
                             } catch {
                                 isLyricsAvailable = false
-                                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                globalErrorHandler(error)
                             }
                         } else {
                             isLyricsAvailable = false
@@ -681,21 +681,18 @@ func formattedTime(from seconds: Double) -> String {
     return String(format: "%02d:%02d", minutes, remainingSeconds)
 }
 func setForAudioPlaying() {
-    do {
-        try AVAudioSession.sharedInstance().setCategory(
-            AVAudioSession.Category.playback,
-            mode: .default,
-            policy: UserDefaults.standard.bool(forKey: "MPBackgroundPlay") ? .longFormAudio : .default
-        )
-        AVAudioSession.sharedInstance().activate { _, _ in }
-    } catch {
-        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+    if UserDefaults.standard.bool(forKey: "MPBackgroundPlay") {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(
+                AVAudioSession.Category.playback,
+                mode: .default,
+                policy: .longFormAudio
+            )
+            AVAudioSession.sharedInstance().activate { _, _ in }
+        } catch {
+            globalErrorHandler(error)
+        }
     }
-    let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
-    var nowPlayingInfo = nowPlayingInfoCenter.nowPlayingInfo ?? [String: Any]()
-    let title = String(localized: "暗礁浏览器 - 音频播放")
-    nowPlayingInfo[MPMediaItemPropertyTitle] = title
-    nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
 }
 
 enum PlaybackBehavior: String {
@@ -776,7 +773,7 @@ struct LocalAudiosView: View {
                                         try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/" + audioNames[i])
                                         audioNames.remove(at: i)
                                     } catch {
-                                        globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                        globalErrorHandler(error)
                                     }
                                 }, label: {
                                     Image(systemName: "xmark.bin.fill")
@@ -820,7 +817,7 @@ struct LocalAudiosView: View {
                     audioNames = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios")
                     audioHumanNameChart = (UserDefaults.standard.dictionary(forKey: "AudioHumanNameChart") as? [String: String]) ?? [String: String]()
                 } catch {
-                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                    globalErrorHandler(error)
                 }
             }
         }
@@ -895,7 +892,7 @@ struct PlaylistsView: View {
                                                   atomically: true,
                                                   encoding: .utf8)
                             } catch {
-                                globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                                globalErrorHandler(error)
                             }
                             createListNameInput = ""
                             getPlaylistFiles()
@@ -919,7 +916,7 @@ struct PlaylistsView: View {
                     try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/Playlists/\(listFileNames[deletingIndex])")
                     listFileNames.remove(at: deletingIndex)
                 } catch {
-                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                    globalErrorHandler(error)
                 }
             }, label: {
                 Text("确认")
@@ -951,7 +948,7 @@ struct PlaylistsView: View {
                 try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/Playlists", withIntermediateDirectories: true)
             }
         } catch {
-            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+            globalErrorHandler(error)
         }
     }
     
@@ -1052,7 +1049,7 @@ struct PlaylistsView: View {
                     let fileContent = try String(contentsOfFile: NSHomeDirectory() + "/Documents/Playlists/\(fileName)", encoding: .utf8)
                     listContent = getJsonData([String].self, from: fileContent) ?? [String]()
                 } catch {
-                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                    globalErrorHandler(error)
                 }
                 audioHumanNameChart = (UserDefaults.standard.dictionary(forKey: "AudioHumanNameChart") as? [String: String]) ?? [String: String]()
             }
@@ -1063,7 +1060,7 @@ struct PlaylistsView: View {
                 do {
                     try content.write(toFile: NSHomeDirectory() + "/Documents/Playlists/\(fileName)", atomically: true, encoding: .utf8)
                 } catch {
-                    globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+                    globalErrorHandler(error)
                 }
             }
         }
@@ -1166,6 +1163,10 @@ struct AudioVisualizerView: View {
     }
 }
 
+/// 播放音频
+/// - Parameters:
+///   - url: 音频URL
+///   - presentController: 是否同时显示播放控件
 func playAudio(url: String, presentController: Bool = true) {
     if url.contains(/music\..*\.com/) && url.contains(/(\?|&)id=[0-9]*\.mp3($|&)/),
        let mid = url.split(separator: "id=")[from: 1]?.split(separator: ".mp3").first {
@@ -1192,7 +1193,10 @@ func playAudio(url: String, presentController: Bool = true) {
         pShouldPresentAudioController = true
     }
     globalAudioPlayer.play()
+    updateNowPlaying()
 }
+/// 获取当前播放列表内容
+/// - Returns: 歌曲名
 func getCurrentPlaylistContents() -> [String]? {
     if !globalAudioCurrentPlaylist.isEmpty
         && FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/Playlists/\(globalAudioCurrentPlaylist)") {
@@ -1200,10 +1204,60 @@ func getCurrentPlaylistContents() -> [String]? {
             let fileStr = try String(contentsOfFile: NSHomeDirectory() + "/Documents/Playlists/\(globalAudioCurrentPlaylist)", encoding: .utf8)
             return getJsonData([String].self, from: fileStr)
         } catch {
-            globalErrorHandler(error, at: "\(#file)-\(#function)-\(#line)")
+            globalErrorHandler(error)
         }
     }
     return nil
+}
+func updateNowPlaying() {
+    var nowPlayingInfo = [String: Any]()
+    if !nowPlayingAudioId.isEmpty {
+        DarockKit.Network.shared
+            .requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(nowPlayingAudioId)&ids=%5B\(nowPlayingAudioId)%5D") { respJson, isSuccess in
+                if isSuccess {
+                    if let imageUrlString = respJson["songs"][0]["album"]["picUrl"].string,
+                       let imageUrl = URL(string: imageUrlString),
+                       let imageData = try? Data(contentsOf: imageUrl),
+                       let image = UIImage(data: imageData) {
+                        nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
+                    }
+                    nowPlayingInfo[MPMediaItemPropertyTitle] = respJson["songs"][0]["name"].string ?? String(localized: "暗礁浏览器 - 音频播放")
+                    nowPlayingInfo[MPMediaItemPropertyArtist] = respJson["songs"][0]["artists"][0]["name"].string ?? ""
+                    nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = respJson["songs"][0]["album"]["name"].string ?? ""
+                    nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = globalAudioPlayer.currentItem?.duration
+                    MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+                }
+            }
+    } else {
+        nowPlayingInfo[MPMediaItemPropertyTitle] = String(localized: "暗礁浏览器 - 音频播放")
+        nowPlayingInfo[MPMediaItemPropertyArtist] = ""
+        nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = ""
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = globalAudioPlayer.currentItem?.duration
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
+    let commandCenter = MPRemoteCommandCenter.shared()
+    commandCenter.playCommand.addTarget { _ in
+        globalAudioPlayer.play()
+        return .success
+    }
+    commandCenter.pauseCommand.addTarget { _ in
+        globalAudioPlayer.pause()
+        return .success
+    }
+    commandCenter.skipForwardCommand.addTarget { _ in
+        globalAudioPlayer.seek(
+            to: CMTime(seconds: globalAudioPlayer.currentTime().seconds + 15, preferredTimescale: 60000),
+            toleranceBefore: .zero,
+            toleranceAfter: .zero)
+        return .success
+    }
+    commandCenter.skipBackwardCommand.addTarget { _ in
+        globalAudioPlayer.seek(
+            to: CMTime(seconds: globalAudioPlayer.currentTime().seconds - 15, preferredTimescale: 60000),
+            toleranceBefore: .zero,
+            toleranceAfter: .zero)
+        return .success
+    }
 }
 
 extension String {
