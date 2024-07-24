@@ -7027,6 +7027,16 @@
         }
       }
     },
+    "安全延时结束后您将收到通知。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You will get a notification when the security delay ends."
+          }
+        }
+      }
+    },
     "安全性" : {
       "localizations" : {
         "en" : {

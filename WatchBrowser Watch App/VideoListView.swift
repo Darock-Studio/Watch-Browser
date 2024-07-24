@@ -73,6 +73,7 @@ struct VideoPlayingView: View {
     @State var mainTabViewSelection = 1
     @State var jumpToInput = ""
     @State var currentTime = 0.0
+    @State var cachedPlayerTimeControlStatus = AVPlayer.TimeControlStatus.paused
     var body: some View {
         TabView(selection: $mainTabViewSelection) {
             VideoPlayer(player: player)
@@ -174,8 +175,11 @@ struct VideoPlayingView: View {
             currentTime = time.seconds
         }
         .onReceive(player.publisher(for: \.timeControlStatus)) { status in
-            if status == .playing {
-                player.rate = Float(playbackSpeed)
+            if _slowPath(status != cachedPlayerTimeControlStatus) {
+                if status == .playing {
+                    player.rate = Float(playbackSpeed)
+                }
+                cachedPlayerTimeControlStatus = status
             }
         }
     }

@@ -13,6 +13,7 @@ import DarockKit
 import SwiftDate
 import CoreLocation
 import NetworkExtension
+import UserNotifications
 import TripleQuestionmarkCore
 import AuthenticationServices
 
@@ -1923,12 +1924,7 @@ struct SettingsView: View {
                     })
                     Button(role: .destructive, action: {
                         do {
-                            var filePaths = try FileManager.default.contentsOfDirectory(atPath: NSTemporaryDirectory())
-                            for filePath in filePaths {
-                                let fullPath = (NSTemporaryDirectory() as NSString).appendingPathComponent(filePath)
-                                try FileManager.default.removeItem(atPath: fullPath)
-                            }
-                            filePaths = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents")
+                            let filePaths = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents")
                             for filePath in filePaths {
                                 let fullPath = (NSTemporaryDirectory() as NSString).appendingPathComponent(filePath)
                                 try FileManager.default.removeItem(atPath: fullPath)
@@ -3280,6 +3276,7 @@ struct SecurityDelayRequiredView: View {
     @AppStorage("SecurityDelayRequirement") var securityDelayRequirement = "always"
     @AppStorage("SecurityDelayStartTime") var securityDelayStartTime = -1.0
     @State var isCounterPresented = false
+    @State var isNotificationPermissionGranted = false
     var body: some View {
         ScrollView {
             VStack {
@@ -3299,6 +3296,16 @@ struct SecurityDelayRequiredView: View {
                     Text("安全延时会进行一个小时。")
                     Spacer()
                 }
+                if isNotificationPermissionGranted {
+                    HStack {
+                        Image(systemName: "bell.badge.fill")
+                            .symbolRenderingMode(.hierarchical)
+                            .font(.system(size: 28))
+                            .foregroundColor(.blue)
+                        Text("安全延时结束后您将收到通知。")
+                        Spacer()
+                    }
+                }
                 HStack {
                     Image(systemName: "applewatch")
                         .font(.system(size: 28))
@@ -3309,6 +3316,13 @@ struct SecurityDelayRequiredView: View {
                 Button(action: {
                     securityDelayStartTime = Date.now.timeIntervalSince1970
                     isCounterPresented = true
+                    let content = UNMutableNotificationContent()
+                    content.title = ""
+                    content.body = ""
+                    content.sound = UNNotificationSound.default
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: false)
+                    let request = UNNotificationRequest(identifier: "com.darock.WatchBrowser.securityDelay.notification", content: content, trigger: trigger)
+                    UNUserNotificationCenter.current().add(request) { _ in }
                 }, label: {
                     Text("开始安全延时")
                 })
@@ -3324,6 +3338,9 @@ struct SecurityDelayRequiredView: View {
         .onAppear {
             if securityDelayStartTime > 0 {
                 isCounterPresented = true
+            }
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
+                isNotificationPermissionGranted = granted
             }
         }
     }
