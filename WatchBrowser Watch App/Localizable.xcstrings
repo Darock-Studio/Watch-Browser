@@ -350,6 +350,22 @@
         }
       }
     },
+    "%@：反馈暂未被阅读。\n\n%@：报告中描述的是预期中的表现。\n\n%@：报告中的问题无法被修复，或是不具有可行性。\n\n%@：在你提交此报告前，已有另一人提出了相同的问题，你仍会在第一个报告得到修复后收到“已修复”的状态更新。\n        你的报告可能会与那些初看似乎具有相同根源的类似报告分到一组。但是，类似的报告也可能包含多种原因。如果你发现该修复方案解决了类似报告中的问题，但无法完全解决你报告的问题，请提交新报告。\n\n%@：短时间内可能无法解决此问题。\n\n%@：Darock 正在为此问题提供修复方案。\n\n%@：修复工作已完成，但还未提交更新或是更新正在等待发布。\n\n%@：修复工作已完成，可更新至最新版本验证修复。\n\n%@：报告与 App 本身无关，或是问题并非由 App 本身引起。\n\n%@：未能通过报告中的问题复现问题，需要提供更多信息。\n\n%@：提供的信息不足以让我们确定问题，你需要补充更多信息。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: Feedback has not been read yet.\n\n%2$@: The report describes the expected behavior.\n\n%3$@: The issue in the report cannot be fixed or is not feasible.\n\n%4$@: Before you submitted this report, someone else had already raised the same issue. You will still receive a \"Fixed\" status update after the first report is resolved. \n        Your report may be grouped with similar reports that initially seem to have the same root cause. However, similar reports may also contain multiple causes. If you find that the fix resolves the issue in the similar reports but does not fully resolve your reported issue, please submit a new report.\n\n%5$@: This issue may not be resolved in a short period of time.\n\n%6$@: Darock is working on a fix for this issue.\n\n%7$@: The fix has been completed but the update has not been submitted or the update is pending release.\n\n%8$@: The fix has been completed, please update to the latest version to verify the fix.\n\n%9$@: The report is not related to the app itself, or the issue is not caused by the app.\n\n%10$@: Unable to reproduce the issue based on the report, more information is needed.\n\n%11$@: The information provided is insufficient to identify the issue, more details are required."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@：反馈暂未被阅读。\n\n%2$@：报告中描述的是预期中的表现。\n\n%3$@：报告中的问题无法被修复，或是不具有可行性。\n\n%4$@：在你提交此报告前，已有另一人提出了相同的问题，你仍会在第一个报告得到修复后收到“已修复”的状态更新。\n        你的报告可能会与那些初看似乎具有相同根源的类似报告分到一组。但是，类似的报告也可能包含多种原因。如果你发现该修复方案解决了类似报告中的问题，但无法完全解决你报告的问题，请提交新报告。\n\n%5$@：短时间内可能无法解决此问题。\n\n%6$@：Darock 正在为此问题提供修复方案。\n\n%7$@：修复工作已完成，但还未提交更新或是更新正在等待发布。\n\n%8$@：修复工作已完成，可更新至最新版本验证修复。\n\n%9$@：报告与 App 本身无关，或是问题并非由 App 本身引起。\n\n%10$@：未能通过报告中的问题复现问题，需要提供更多信息。\n\n%11$@：提供的信息不足以让我们确定问题，你需要补充更多信息。"
+          }
+        }
+      }
+    },
     "%@%%" : {
       "localizations" : {
         "en" : {
@@ -456,12 +472,122 @@
         }
       }
     },
+    "%@已修复" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Fixed"
+          }
+        }
+      }
+    },
+    "%@已在未来版本修复" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Fixed in Future Versions"
+          }
+        }
+      }
+    },
+    "%@按预期工作" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Work as Expected"
+          }
+        }
+      }
+    },
+    "%@搁置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Shelved"
+          }
+        }
+      }
+    },
     "%@播放列表" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ Playlist"
+          }
+        }
+      }
+    },
+    "%@无法修复" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Unable to Fix"
+          }
+        }
+      }
+    },
+    "%@未标记" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Unmarked"
+          }
+        }
+      }
+    },
+    "%@未能复现" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Cannot Reproduce"
+          }
+        }
+      }
+    },
+    "%@正在修复" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Fixing"
+          }
+        }
+      }
+    },
+    "%@问题并不与 App 相关" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Unrelated"
+          }
+        }
+      }
+    },
+    "%@问题重复" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Duplicate"
+          }
+        }
+      }
+    },
+    "%@需要更多细节" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Details Required"
           }
         }
       }
@@ -4267,6 +4393,16 @@
         }
       }
     },
+    "了解反馈状态" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Understanding Feedback Status"
+          }
+        }
+      }
+    },
     "二维码" : {
       "localizations" : {
         "en" : {
@@ -4547,6 +4683,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "仍有問題？"
+          }
+        }
+      }
+    },
+    "从历史记录选择" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select from History"
           }
         }
       }
@@ -5119,6 +5265,16 @@
         }
       }
     },
+    "关于视频播放卡住..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About video frozen…"
+          }
+        }
+      }
+    },
     "关于网页适配..." : {
       "localizations" : {
         "en" : {
@@ -5261,6 +5417,16 @@
         }
       }
     },
+    "分享到暗礁文件" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share to Cluster"
+          }
+        }
+      }
+    },
     "分享方式" : {
       "localizations" : {
         "en" : {
@@ -5377,6 +5543,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "創建網頁歸檔"
+          }
+        }
+      }
+    },
+    "删除" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
           }
         }
       }
@@ -5859,6 +6035,16 @@
         }
       }
     },
+    "反馈状态" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feedback Status"
+          }
+        }
+      }
+    },
     "反馈类型" : {
       "localizations" : {
         "en" : {
@@ -6277,6 +6463,16 @@
         }
       }
     },
+    "向我们推荐网站" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suggest a website to us"
+          }
+        }
+      }
+    },
     "启用安全延时" : {
       "localizations" : {
         "en" : {
@@ -6613,6 +6809,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在安全延時結束後，您可以繼續之前的操作"
+          }
+        }
+      }
+    },
+    "在少数情况下，播放视频时可能会出现**只有声音，没有画面或画面卡住**的情况。\n\n遇到此类情况，重启 Apple Watch 即可解决，请勿提交反馈。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In rare cases, you might encounter situations where **there is sound but no picture or the picture is frozen** while playing a video.\n\nIf you experience this, simply restart your Apple Watch to resolve the issue. Please do not submit feedback."
           }
         }
       }
@@ -7609,6 +7815,16 @@
         }
       }
     },
+    "已下载 %@MB" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Downloaded %@ MB"
+          }
+        }
+      }
+    },
     "已使用 %@ MB" : {
       "localizations" : {
         "en" : {
@@ -7787,12 +8003,32 @@
         }
       }
     },
+    "已安装暗礁文件" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cluster Installed"
+          }
+        }
+      }
+    },
     "已抹掉" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erased"
+          }
+        }
+      }
+    },
+    "已提交" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Submitted"
           }
         }
       }
@@ -8419,6 +8655,46 @@
         }
       }
     },
+    "我知道了" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "我确认网站中不包含不良内容" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I confirm that the website does not contain inappropriate content."
+          }
+        }
+      }
+    },
+    "我确认网站具有普遍性，多数人会认为这有用" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I confirm that the website is generally useful and most people would find it beneficial."
+          }
+        }
+      }
+    },
+    "我确认网站在暗礁浏览器中工作正常" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I confirm that the website works properly in Darock Browser."
+          }
+        }
+      }
+    },
     "或在 iPhone 上的 App Store 继续" : {
       "localizations" : {
         "en" : {
@@ -8767,6 +9043,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "推薦 - 暗礁助手"
+          }
+        }
+      }
+    },
+    "推荐书签" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suggest for Bookmark"
           }
         }
       }
@@ -9968,7 +10254,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cannot Reappear"
+            "value" : "Cannot Reproduce"
           }
         },
         "ja" : {
@@ -11230,6 +11516,16 @@
         }
       }
     },
+    "现在，可将暗礁浏览器的本地文件分享到暗礁文件" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can now share local files from Darock Browser to Cluster."
+          }
+        }
+      }
+    },
     "现在，更多的 Cookie 可被记录" : {
       "localizations" : {
         "en" : {
@@ -12188,16 +12484,6 @@
         }
       }
     },
-    "笔趣阁" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bigee Novel (Chinese, Simplified)"
-          }
-        }
-      }
-    },
     "等待 Darock 修复" : {
       "localizations" : {
         "en" : {
@@ -12840,6 +13126,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "被刪除"
+          }
+        }
+      }
+    },
+    "要求" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Requirements"
           }
         }
       }
@@ -14222,6 +14518,16 @@
         }
       }
     },
+    "链接" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Link"
+          }
+        }
+      }
+    },
     "锁定书签" : {
       "localizations" : {
         "en" : {
@@ -14491,7 +14797,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Repeated"
+            "value" : "Duplicate"
           }
         },
         "ja" : {

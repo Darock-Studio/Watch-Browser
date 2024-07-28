@@ -32,6 +32,7 @@ struct WatchBrowser_Watch_AppApp: App {
     @AppStorage("ShouldTipNewFeatures3") var shouldTipNewFeatures = true
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockDarockBrowser") var usePasscodeForLockDarockBrowser = false
+    @AppStorage("IsThisClusterInstalled") var isThisClusterInstalled = false
     @State var showTipText: LocalizedStringKey = ""
     @State var showTipSymbol = ""
     @State var isShowingTip = false
@@ -39,6 +40,7 @@ struct WatchBrowser_Watch_AppApp: App {
     @State var passcodeInputCache = ""
     @State var tapToRadarAlertContent = ""
     @State var isTapToRadarAlertPresented = false
+    @State var isClusterInstalledTipPresented = false
     var body: some Scene {
         WindowGroup {
             ZStack {
@@ -46,6 +48,7 @@ struct WatchBrowser_Watch_AppApp: App {
                     .blur(radius: isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser ? 12 : 0)
                     .allowsHitTesting(!(isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser))
                     .sheet(isPresented: $shouldTipNewFeatures, content: { NewFeaturesView() })
+                    .sheet(isPresented: $isClusterInstalledTipPresented, content: { ClusterTipView() })
                     .onAppear {
                         if userPasscodeEncrypted.isEmpty || !usePasscodeForLockDarockBrowser {
                             isBrowserLocked = false
@@ -150,6 +153,11 @@ struct WatchBrowser_Watch_AppApp: App {
                 SDImageCodersManager.shared.addCoder(SDImageWebPCoder.shared)
                 SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
                 SDImageCodersManager.shared.addCoder(SDImagePDFCoder.shared)
+                
+                if (UserDefaults(suiteName: "group.darockst")?.bool(forKey: "DCIsClusterInstalled") ?? false) && !isThisClusterInstalled {
+                    isThisClusterInstalled = true
+                    isClusterInstalledTipPresented = true
+                }
             @unknown default:
                 break
             }

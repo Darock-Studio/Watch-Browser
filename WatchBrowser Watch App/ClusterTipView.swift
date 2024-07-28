@@ -1,0 +1,33 @@
+//
+//  ClusterTipView.swift
+//  WatchBrowser Watch App
+//
+//  Created by memz233 on 7/28/24.
+//
+
+import SwiftUI
+
+struct ClusterTipView: View {
+    @Environment(\.dismiss) var dismiss
+    var body: some View {
+        List {
+            Section {
+                Text("已安装暗礁文件")
+                    .font(.system(size: 20, weight: .bold))
+                Text("现在，可将暗礁浏览器的本地文件分享到暗礁文件")
+            }
+            .listRowBackground(Color.clear)
+            Section {
+                Button(action: {
+                    dismiss()
+                }, label: {
+                    Text("我知道了")
+                })
+            }
+        }
+    }
+}
+
+#Preview {
+    ClusterTipView()
+}

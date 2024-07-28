@@ -46,7 +46,7 @@ fileprivate let globalStateIcons = [
     "minus",
     "curlybraces",
     "xmark",
-    "arrow.trianglehead.pull",
+    "arrow.triangle.pull",
     "books.vertical",
     "hammer",
     "clock.badge.checkmark",
@@ -71,6 +71,9 @@ struct FeedbackView: View {
                 .accessibilityIdentifier("NewFeedbackButton")
                 NavigationLink(destination: { FAQView() }, label: {
                     Label("常见问题", systemImage: "sparkles")
+                })
+                NavigationLink(destination: { StateMeaningsView() }, label: {
+                    Label("了解反馈状态", systemImage: "bolt.badge.clock")
                 })
             } footer: {
                 Text("提交反馈前，请先检查常见问题")
@@ -346,21 +349,12 @@ struct FeedbackView: View {
                                 return
                             }
                             isSending = true
-                            let histories = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
-                            let sendHistories: [String]
-                            if histories.count >= 3 {
-                                sendHistories = [histories[0], histories[1], histories[2]]
-                            } else if !histories.isEmpty {
-                                sendHistories = histories
-                            } else {
-                                sendHistories = [String]()
-                            }
                             let extDiags = { () -> String in
                                 if _fastPath(!dontSendDiagnose) {
                                     var extData = """
                                     
                                     Version：v\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) Build \(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)
-                                    NearestHistories：\(sendHistories.description.prefix(300))
+                                    NearestHistories：\(getWebHistory().prefix(3))
                                     OS：\(WKInterfaceDevice.current().systemVersion)
                                     """
                                     if let settings = getAllSettingsForAppdiagnose() {
@@ -680,7 +674,7 @@ struct FeedbackView: View {
     }
 }
 
-struct FAQView: View {
+private struct FAQView: View {
     var body: some View {
         List {
             NavigationLink(destination: {
@@ -693,6 +687,17 @@ struct FAQView: View {
                 }
             }, label: {
                 Text("关于视频...")
+            })
+            NavigationLink(destination: {
+                ScrollView {
+                    Markdown(String(localized: """
+                    在少数情况下，播放视频时可能会出现**只有声音，没有画面或画面卡住**的情况。
+                    
+                    遇到此类情况，重启 Apple Watch 即可解决，请勿提交反馈。
+                    """))
+                }
+            }, label: {
+                Text("关于视频播放卡住...")
             })
             NavigationLink(destination: {
                 ScrollView {
@@ -720,6 +725,37 @@ struct FAQView: View {
             })
         }
         .navigationTitle("常见问题")
+    }
+}
+private struct StateMeaningsView: View {
+    var body: some View {
+        ScrollView {
+            Text("""
+            \(Text("\(Image(systemName: globalStateIcons[0]))未标记").foregroundColor(globalStateColors[0]))：反馈暂未被阅读，或是正在验证问题。
+            
+            \(Text("\(Image(systemName: globalStateIcons[1]))按预期工作").foregroundColor(globalStateColors[1]))：报告中描述的是预期中的表现。
+            
+            \(Text("\(Image(systemName: globalStateIcons[2]))无法修复").foregroundColor(globalStateColors[2]))：报告中的问题无法被修复，或是不具有可行性。
+            
+            \(Text("\(Image(systemName: globalStateIcons[3]))问题重复").foregroundColor(globalStateColors[3]))：在你提交此报告前，已有另一人提出了相同的问题，你仍会在第一个报告得到修复后收到“已修复”的状态更新。
+                    你的报告可能会与那些初看似乎具有相同根源的类似报告分到一组。但是，类似的报告也可能包含多种原因。如果你发现该修复方案解决了类似报告中的问题，但无法完全解决你报告的问题，请提交新报告。
+            
+            \(Text("\(Image(systemName: globalStateIcons[4]))搁置").foregroundColor(globalStateColors[4]))：短时间内可能无法解决此问题。
+            
+            \(Text("\(Image(systemName: globalStateIcons[5]))正在修复").foregroundColor(globalStateColors[5]))：Darock 正在为此问题提供修复方案。
+            
+            \(Text("\(Image(systemName: globalStateIcons[6]))已在未来版本修复").foregroundColor(globalStateColors[6]))：修复工作已完成，但还未提交更新或是更新正在等待发布。
+            
+            \(Text("\(Image(systemName: globalStateIcons[7]))已修复").foregroundColor(globalStateColors[7]))：修复工作已完成，可更新至最新版本验证修复。
+            
+            \(Text("\(Image(systemName: globalStateIcons[8]))问题并不与 App 相关").foregroundColor(globalStateColors[8]))：报告与 App 本身无关，或是问题并非由 App 本身引起。
+            
+            \(Text("\(Image(systemName: globalStateIcons[9]))未能复现").foregroundColor(globalStateColors[9]))：未能通过报告中的问题复现问题，需要提供更多信息。
+            
+            \(Text("\(Image(systemName: globalStateIcons[10]))需要更多细节").foregroundColor(globalStateColors[10]))：提供的信息不足以让我们确定问题，你需要补充更多信息。
+            """)
+        }
+        .navigationTitle("反馈状态")
     }
 }
 
@@ -796,7 +832,9 @@ func getAllSettingsForAppdiagnose() -> String? {
     let prefPath = NSHomeDirectory() + "/Library/Preferences/com.darock.WatchBrowser.watchkitapp.plist"
     if let plistData = FileManager.default.contents(atPath: prefPath) {
         do {
-            if let plistObject = try PropertyListSerialization.propertyList(from: plistData, options: [], format: nil) as? [String: Any] {
+            if var plistObject = try PropertyListSerialization.propertyList(from: plistData, options: [], format: nil) as? [String: Any] {
+                plistObject.removeValue(forKey: "CurrentTabs")
+                plistObject.removeValue(forKey: "WebHistory")
                 let jsonData = try JSONSerialization.data(withJSONObject: plistObject)
                 return String(decoding: jsonData, as: UTF8.self)
             }

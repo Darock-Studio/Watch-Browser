@@ -200,7 +200,7 @@ struct DarockAccountLogin: View {
 }
 
 struct DarockAccountManagementMain: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     @AppStorage("DarockAccount") var darockAccount = ""
     @State var username = ""
     @State var isSignOutAlertPresented = false
@@ -308,7 +308,7 @@ struct DarockAccountManagementMain: View {
             })
             Button(role: .destructive, action: {
                 darockAccount = ""
-                dismiss()
+                presentationMode.wrappedValue.dismiss()
             }, label: {
                 Text("退出登录")
             })

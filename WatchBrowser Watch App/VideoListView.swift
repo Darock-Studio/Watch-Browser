@@ -18,6 +18,8 @@ struct VideoListView: View {
     @State var willDownloadVideoLink = ""
     @State var downloadVideoSaveName: String?
     @State var isVideoDownloadPresented = false
+    @State var shareVideoLink = ""
+    @State var isSharePresented = false
     var body: some View {
         if !videoLinkLists.isEmpty {
             List {
@@ -35,11 +37,18 @@ struct VideoListView: View {
                         }, label: {
                             Image(systemName: "square.and.arrow.down")
                         })
+                        Button(action: {
+                            shareVideoLink = videoLinkLists[i]
+                            isSharePresented = true
+                        }, label: {
+                            Image(systemName: "square.and.arrow.up")
+                        })
                     }
                 }
             }
             .navigationTitle("视频列表")
             .sheet(isPresented: $isPlayerPresented, content: { VideoPlayingView(link: $willPlayVideoLink) })
+            .sheet(isPresented: $isSharePresented, content: { ShareView(linkToShare: $shareVideoLink) })
             .sheet(isPresented: $isVideoDownloadPresented) {
                 MediaDownloadView(
                     mediaLink: $willDownloadVideoLink,
@@ -197,6 +206,8 @@ struct MediaDownloadView: View {
     @State var isTerminateDownloadingAlertPresented = false
     @State var errorText = ""
     @State var m3u8DownloadObservation: NSKeyValueObservation?
+    @State var m3u8DownloadTimer: Timer?
+    @State var m3u8DownloadedSize = 0.0
     var body: some View {
         NavigationStack {
             List {
@@ -227,11 +238,12 @@ struct MediaDownloadView: View {
                                 .font(.system(size: 20, weight: .bold))
                             if mediaLink.hasSuffix(".m3u8"), #available(watchOS 10, *) {
                                 ProgressView()
+                                Text("已下载 \(m3u8DownloadedSize ~ 2)MB")
                                 Text("正在下载 M3U8 媒体，这可能需要较长时间，且暗礁浏览器无法报告进度。")
                             } else {
                                 ProgressView(value: Double(downloadProgress.completedUnitCount), total: Double(downloadProgress.totalUnitCount))
-                                Text("\(String(format: "%.2f", Double(downloadProgress.completedUnitCount) / Double(downloadProgress.totalUnitCount) * 100))%")
-                                Text("\(String(format: "%.2f", Double(downloadProgress.completedUnitCount) / 1024 / 1024))MB / \(String(format: "%.2f", Double(downloadProgress.totalUnitCount) / 1024 / 1024))MB")
+                                Text("\((Double(downloadProgress.completedUnitCount) / Double(downloadProgress.totalUnitCount) * 100) ~ 2)%")
+                                Text("\((Double(downloadProgress.completedUnitCount) / 1024 / 1024) ~ 2)MB / \((Double(downloadProgress.totalUnitCount) / 1024 / 1024) ~ 2)MB")
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.1)
                                 if let eta = downloadProgress.estimatedTimeRemaining {
@@ -274,7 +286,7 @@ struct MediaDownloadView: View {
             })
         }
         .onAppear {
-            extendScreenIdleTime(600)
+            extendScreenIdleTime(3600)
             do {
                 if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)") {
                     try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)", withIntermediateDirectories: true)
@@ -331,6 +343,33 @@ struct MediaDownloadView: View {
                         }
                     }
                     downloadTask.priority = 1.0
+                    
+                    let libFiles = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Library")
+                    var libMediaFolderName = ""
+                    for file in libFiles where file.hasPrefix("com.apple.UserManagedAssets.") {
+                        libMediaFolderName = file
+                        break
+                    }
+                    if !libMediaFolderName.isEmpty {
+                        let previousFiles = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Library/\(libMediaFolderName)")
+                        m3u8DownloadTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+                            do {
+                                let currentFiles = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Library/\(libMediaFolderName)")
+                                if _fastPath(currentFiles.count > previousFiles.count) {
+                                    if let newFlie = currentFiles.filter({ !previousFiles.contains($0) }).first {
+                                        let newFileSize = Double(try folderSize(
+                                            atPath: NSHomeDirectory() + "/Library/\(libMediaFolderName)/\(newFlie)"
+                                        ) ?? 0) / 1024.0 / 1024.0
+                                        m3u8DownloadedSize = newFileSize
+                                    }
+                                }
+                            } catch {
+                                // Don't insert globalErrorHandler because it's in a timer.
+                                print(error)
+                            }
+                        }
+                    }
+                    
                     downloadTask.resume()
                     m3u8DownloadObservation = downloadTask.progress.observe(\.fractionCompleted) { progress, _ in
                         downloadProgress = ValuedProgress(completedUnitCount: progress.completedUnitCount,
@@ -395,13 +434,34 @@ struct MediaDownloadView: View {
         .onDisappear {
             recoverNormalIdleTime()
             m3u8DownloadObservation?.invalidate()
+            m3u8DownloadTimer?.invalidate()
         }
+    }
+    
+    func folderSize(atPath path: String) throws -> UInt64? {
+        let fileManager = FileManager.default
+        guard let files = fileManager.enumerator(atPath: path) else {
+            return nil
+        }
+        
+        var totalSize: UInt64 = 0
+        
+        for case let file as String in files {
+            let filePath = "\(path)/\(file)"
+            let attributes = try fileManager.attributesOfItem(atPath: filePath)
+            if let fileSize = attributes[.size] as? UInt64 {
+                totalSize += fileSize
+            }
+        }
+        
+        return totalSize
     }
 }
 
 struct LocalVideosView: View {
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLocalVideos") var usePasscodeForLocalVideos = false
+    @AppStorage("IsThisClusterInstalled") var isThisClusterInstalled = false
     @State var isLocked = true
     @State var passcodeInputCache = ""
     @State var videoNames = [String]()
@@ -450,6 +510,28 @@ struct LocalVideosView: View {
                                 }, label: {
                                     Image(systemName: "pencil.line")
                                 })
+                            }
+                            .swipeActions(edge: .leading) {
+                                if isThisClusterInstalled {
+                                    Button(action: {
+                                        do {
+                                            let containerFilePath = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.darockst")!.path + "/TransferFile.drkdatat"
+                                            if FileManager.default.fileExists(atPath: containerFilePath) {
+                                                try FileManager.default.removeItem(atPath: containerFilePath)
+                                            }
+                                            try FileManager.default.copyItem(
+                                                atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoNames[i],
+                                                toPath: containerFilePath
+                                            )
+                                            let saveFileName = videoNames[i].hasSuffix(".mp4") ? videoNames[i] : videoNames[i] + ".mp4"
+                                            WKExtension.shared().openSystemURL(URL(string: "https://darock.top/cluster/add/\(saveFileName)")!)
+                                        } catch {
+                                            globalErrorHandler(error)
+                                        }
+                                    }, label: {
+                                        Image(systemName: "square.grid.3x1.folder.badge.plus")
+                                    })
+                                }
                             }
                         }
                     }

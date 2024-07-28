@@ -131,9 +131,12 @@ struct ImageViewerView: View {
 
 struct LocalImageView: View {
     @AppStorage("IVUseDigitalCrownFor") var useDigitalCrownFor = "zoom"
+    @AppStorage("IsThisClusterInstalled") var isThisClusterInstalled = false
     @State var images = [String]()
     @State var isImageViewerPresented = false
     @State var tabSelection = 0
+    @State var isMenuPresented = false
+    @State var indexForMenu = 0
     var body: some View {
         ScrollViewReader { scrollProxy in
             List {
@@ -154,6 +157,10 @@ struct LocalImageView: View {
                                         .onTapGesture {
                                             tabSelection = i
                                             isImageViewerPresented = true
+                                        }
+                                        .onLongPressGesture(minimumDuration: 1.0) {
+                                            indexForMenu = i
+                                            isMenuPresented = true
                                         }
                                         .id(i)
                                 }
@@ -186,6 +193,56 @@ struct LocalImageView: View {
                     }
                 }
                 .tabViewStyle(.carousel)
+            }
+        }
+        .sheet(isPresented: $isMenuPresented) {
+            NavigationStack {
+                List {
+                    if isThisClusterInstalled {
+                        Section {
+                            Button(action: {
+                                do {
+                                    let containerFilePath = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.darockst")!.path + "/TransferFile.drkdatat"
+                                    if FileManager.default.fileExists(atPath: containerFilePath) {
+                                        try FileManager.default.removeItem(atPath: containerFilePath)
+                                    }
+                                    try FileManager.default.copyItem(
+                                        atPath: NSHomeDirectory() + "/Documents/LocalImages/" + images[indexForMenu],
+                                        toPath: containerFilePath
+                                    )
+                                    WKExtension.shared().openSystemURL(URL(string: "https://darock.top/cluster/add/\(images[indexForMenu])")!)
+                                    isMenuPresented = false
+                                    images = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/LocalImages")
+                                    images.sort { lhs, rhs in
+                                        let lt = lhs.dropLast(4) // Drop ".png"
+                                        let rt = rhs.dropLast(4)
+                                        if let dl = Double(lt), let dr = Double(rt) {
+                                            return dl < dr
+                                        }
+                                        return false
+                                    }
+                                } catch {
+                                    globalErrorHandler(error)
+                                }
+                            }, label: {
+                                Label("分享到暗礁文件", systemImage: "square.grid.3x1.folder.badge.plus")
+                            })
+                        }
+                    }
+                    Section {
+                        Button(role: .destructive, action: {
+                            do {
+                                try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/LocalImages/" + images[indexForMenu])
+                                isMenuPresented = false
+                            } catch {
+                                globalErrorHandler(error)
+                            }
+                        }, label: {
+                            Label("删除", systemImage: "trash")
+                                .foregroundStyle(Color.red)
+                        })
+                    }
+                }
             }
         }
         .onAppear {

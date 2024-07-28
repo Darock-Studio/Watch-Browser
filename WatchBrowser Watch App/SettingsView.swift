@@ -281,6 +281,7 @@ struct SettingsView: View {
         struct AboutView: View {
             @State var songCount = 0
             @State var videoCount = 0
+            @State var photoCount = 0
             @State var bookCount = 0
             var body: some View {
                 List {
@@ -312,6 +313,12 @@ struct SettingsView: View {
                                 .foregroundColor(.gray)
                         }
                         HStack {
+                            Text("图片")
+                            Spacer()
+                            Text(String(photoCount))
+                                .foregroundColor(.gray)
+                        }
+                        HStack {
                             Text("图书")
                             Spacer()
                             Text(String(bookCount))
@@ -328,14 +335,13 @@ struct SettingsView: View {
                 .onAppear {
                     do {
                         if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/") {
-                            do {
-                                songCount = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/").count
-                            } catch {
-                                globalErrorHandler(error)
-                            }
+                            songCount = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/").count
                         }
                         if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/") {
                             videoCount = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/").count
+                        }
+                        if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/LocalImages/") {
+                            photoCount = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/LocalImages/").count
                         }
                         let allDocumentFiles = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents")
                         bookCount = 0

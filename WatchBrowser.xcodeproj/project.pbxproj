@@ -67,6 +67,7 @@
 		8CB803CC2BD3D776009B2FAC /* Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 8CB803CB2BD3D776009B2FAC /* Dynamic */; };
 		8CB803D02BD3DCE4009B2FAC /* WebExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB803CF2BD3DCE4009B2FAC /* WebExtension.m */; };
 		8CB803D42BD3E6D1009B2FAC /* AdvancedWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB803D32BD3E6D1009B2FAC /* AdvancedWebView.swift */; };
+		8CCDABEF2C5674F100E29E3D /* ClusterTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCDABEE2C5674F100E29E3D /* ClusterTipView.swift */; };
 		8CCF13F22C20A4FF00F5E0D7 /* DarockAccountsUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCF13F12C20A4FF00F5E0D7 /* DarockAccountsUI.swift */; };
 		8CDE9B922C3AACDA0083B09E /* ___MesugakiAmane.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8CDE9B912C3AACDA0083B09E /* ___MesugakiAmane.drkdatau */; };
 		8CDE9B942C3AE1610083B09E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE9B932C3AE15D0083B09E /* Extensions.swift */; };
@@ -207,6 +208,7 @@
 		8CB803D12BD3DCEE009B2FAC /* WebExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebExtension.h; sourceTree = "<group>"; };
 		8CB803D32BD3E6D1009B2FAC /* AdvancedWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedWebView.swift; sourceTree = "<group>"; };
 		8CB803DE2BD44879009B2FAC /* WatchBrowser Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WatchBrowser Watch App.entitlements"; sourceTree = "<group>"; };
+		8CCDABEE2C5674F100E29E3D /* ClusterTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterTipView.swift; sourceTree = "<group>"; };
 		8CCF13F12C20A4FF00F5E0D7 /* DarockAccountsUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarockAccountsUI.swift; sourceTree = "<group>"; };
 		8CCF13F32C20B31700F5E0D7 /* HYWenHei.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HYWenHei.ttf; sourceTree = "<group>"; };
 		8CDE9B8E2C3959DE0083B09E /* .swiftlint.yml */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; tabWidth = 2; };
@@ -348,6 +350,7 @@
 				8C6D86782C10C6A70089CE67 /* LaboratoryView.swift */,
 				8C6D867A2C10CA680089CE67 /* BrowsingTabsView.swift */,
 				8C03B6DF2C296338000770B4 /* NetworkCheckView.swift */,
+				8CCDABEE2C5674F100E29E3D /* ClusterTipView.swift */,
 				6BF209F72990E61E00E623FC /* Assets.xcassets */,
 				E25EA83A2B70ABEF00BFEC6E /* InfoPlist.strings */,
 				6BF209F92990E61E00E623FC /* Preview Content */,
@@ -773,6 +776,7 @@
 				8C03B6E02C296338000770B4 /* NetworkCheckView.swift in Sources */,
 				8C6E11DD2BDBF464005420C0 /* NewFeaturesView.swift in Sources */,
 				8CA4537D2AE3C63900138CE4 /* MLTestsView.swift in Sources */,
+				8CCDABEF2C5674F100E29E3D /* ClusterTipView.swift in Sources */,
 				8C894B222BE7569300768B59 /* ExtKeyboardView.swift in Sources */,
 				8C6D86792C10C6A70089CE67 /* LaboratoryView.swift in Sources */,
 				6BF209F42990E61C00E623FC /* WatchBrowserApp.swift in Sources */,
@@ -1011,7 +1015,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.15.1;
+				MARKETING_VERSION = 4.15.2;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -1053,7 +1057,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.15.1;
+				MARKETING_VERSION = 4.15.2;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -1079,7 +1083,7 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 4.15.1;
+				MARKETING_VERSION = 4.15.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -1098,7 +1102,7 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 4.15.1;
+				MARKETING_VERSION = 4.15.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -1261,7 +1265,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 4.15.1;
+				MARKETING_VERSION = 4.15.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.Intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1292,7 +1296,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 4.15.1;
+				MARKETING_VERSION = 4.15.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.Intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;

@@ -1,5 +1,5 @@
 {
-  "originHash" : "3209aa044a278b898208cd3efd48629e4f99c4eacf8aa5f4a4fad4948281682c",
+  "originHash" : "1f8cae2262e676e249c600d0301565d180b629e035ac77af48129d88c8e70245",
   "pins" : [
     {
       "identity" : "aexml",
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Serene-Garden/Cepheus",
       "state" : {
-        "revision" : "0754853c69a39f6cdc04abb8b1d194a3ed3a483e",
-        "version" : "2.3.0"
+        "revision" : "fbcef88f6f2d004fa4ac13e1fb1ff915a30fb800",
+        "version" : "2.3.2"
       }
     },
     {
@@ -34,7 +34,7 @@
       "location" : "https://github.com/Darock-Studio/DarockKit",
       "state" : {
         "branch" : "main",
-        "revision" : "4afcdeba8f3c6ca4dbd7ba2886924bdcbadec262"
+        "revision" : "c36f40dc6174d729836a9fe1cb45bd18573589e5"
       }
     },
     {
@@ -96,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "be0bcd7823ce56629948491f2eaeaa19979514f7",
-        "version" : "5.19.4"
+        "revision" : "86e9185ef41c4238a93ad8efe61ddeb701e80bbf",
+        "version" : "5.19.5"
       }
     },
     {
@@ -177,8 +177,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/scinfu/SwiftSoup",
       "state" : {
-        "revision" : "028487d4a8a291b2fe1b4392b5425b6172056148",
-        "version" : "2.7.2"
+        "revision" : "e2d11208519549c2e5798d70190472045633f22f",
+        "version" : "2.7.3"
       }
     },
     {
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Serene-Garden/Vela",
       "state" : {
-        "revision" : "c78a0998fdd33787ebb80ffc2307a846c51d9a75",
-        "version" : "2.1.8"
+        "revision" : "bc7833befef3ea20b1b6594c15068d790c03ed10",
+        "version" : "2.3.0"
       }
     },
     {

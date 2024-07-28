@@ -706,6 +706,7 @@ struct LocalAudiosView: View {
     @Environment(\.dismiss) var dismiss
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLocalAudios") var usePasscodeForLocalAudios = false
+    @AppStorage("IsThisClusterInstalled") var isThisClusterInstalled = false
     @State var isLocked = true
     @State var passcodeInputCache = ""
     @State var audioNames = [String]()
@@ -785,6 +786,27 @@ struct LocalAudiosView: View {
                                 }, label: {
                                     Image(systemName: "pencil.line")
                                 })
+                            }
+                            .swipeActions(edge: .leading) {
+                                if isThisClusterInstalled {
+                                    Button(action: {
+                                        do {
+                                            let containerFilePath = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.darockst")!.path + "/TransferFile.drkdatat"
+                                            if FileManager.default.fileExists(atPath: containerFilePath) {
+                                                try FileManager.default.removeItem(atPath: containerFilePath)
+                                            }
+                                            try FileManager.default.copyItem(
+                                                atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/" + audioNames[i],
+                                                toPath: containerFilePath
+                                            )
+                                            WKExtension.shared().openSystemURL(URL(string: "https://darock.top/cluster/add/\(audioNames[i])")!)
+                                        } catch {
+                                            globalErrorHandler(error)
+                                        }
+                                    }, label: {
+                                        Image(systemName: "square.grid.3x1.folder.badge.plus")
+                                    })
+                                }
                             }
                         }
                     }

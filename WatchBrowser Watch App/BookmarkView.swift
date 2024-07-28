@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DarockKit
 import AuthenticationServices
 
 struct BookmarkView: View {
@@ -145,19 +146,104 @@ struct BookmarkView: View {
                         "上面的网站在 Apple Watch 上运行表现较好，尽管如此，我们仍然不接受网站内问题的反馈。\n网站内容由网页提供商提供，Darock 不对其内容负责。\n请自行辨别其中内容真实性，特别是广告内容。"
                     )
                 }
+                Section {
+                    NavigationLink(destination: { SuggestWebView() }, label: {
+                        Text("向我们推荐网站")
+                    })
+                }
             }
             .navigationTitle("快捷书签")
         }
         
         let staredBookmarks = [
             String(localized: "樱花动漫"): "http://yhdm.one",
-            String(localized: "笔趣阁"): "https://www.bigee.cc",
             String(localized: "微软数学"): "https://math.microsoft.com",
             String(localized: "百度贴吧"): "https://tieba.baidu.com",
             String(localized: "网易云音乐"): "https://music.163.com",
             String(localized: "哔哩哔哩"): "https://bilibili.com",
             "Pixiv Viewer": "https://www.pixiv.pics"
         ]
+        
+        struct SuggestWebView: View {
+            @Environment(\.dismiss) var dismiss
+            @State var linkInput = ""
+            @State var isHistorySelectorPresented = false
+            @State var confirm1 = false
+            @State var confirm2 = false
+            @State var confirm3 = false
+            var body: some View {
+                List {
+                    Section {
+                        TextField("链接", text: $linkInput)
+                        
+                        Button(action: {
+                            isHistorySelectorPresented = true
+                        }, label: {
+                            Label("从历史记录选择", systemImage: "clock.badge.checkmark")
+                        })
+                    }
+                    Section {
+                        Button(action: {
+                            confirm1.toggle()
+                        }, label: {
+                            HStack {
+                                Image(systemName: confirm1 ? "checkmark.circle.fill" : "circle")
+                                    .foregroundStyle(Color.blue)
+                                Text("我确认网站在暗礁浏览器中工作正常")
+                            }
+                        })
+                        Button(action: {
+                            confirm2.toggle()
+                        }, label: {
+                            HStack {
+                                Image(systemName: confirm2 ? "checkmark.circle.fill" : "circle")
+                                    .foregroundStyle(Color.blue)
+                                Text("我确认网站中不包含不良内容")
+                            }
+                        })
+                        Button(action: {
+                            confirm3.toggle()
+                        }, label: {
+                            HStack {
+                                Image(systemName: confirm3 ? "checkmark.circle.fill" : "circle")
+                                    .foregroundStyle(Color.blue)
+                                Text("我确认网站具有普遍性，多数人会认为这有用")
+                            }
+                        })
+                    } header: {
+                        Text("要求")
+                    }
+                    Section {
+                        Button(action: {
+                            let msgToSend = """
+                            书签推荐
+                            State：0
+                            Content：\(linkInput)
+                            Time：\(Date.now.timeIntervalSince1970)
+                            Sender: User
+                            """
+                            DarockKit.Network.shared
+                                .requestString("https://fapi.darock.top:65535/feedback/submit/anony/暗礁浏览器-常用书签推荐/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))") { _, _ in }
+                            dismiss()
+                            tipWithText("已提交", symbol: "checkmark.circle.fill")
+                        }, label: {
+                            Text("提交")
+                        })
+                        .disabled(!confirm1 || !confirm2 || !confirm3 || linkInput.isEmpty)
+                    }
+                }
+                .navigationTitle("推荐书签")
+                .sheet(isPresented: $isHistorySelectorPresented) {
+                    NavigationStack {
+                        HistoryView { sel in
+                            linkInput = sel
+                            isHistorySelectorPresented = false
+                        }
+                        .navigationTitle("选取历史记录")
+                    }
+                }
+            }
+        }
     }
 }
 

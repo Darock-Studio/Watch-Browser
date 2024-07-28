@@ -327,7 +327,7 @@ struct HistoryView: View {
                 }
             }
             .toolbar {
-                if #available(watchOS 10.5, *), !histories.isEmpty && isHistoryRecording {
+                if #available(watchOS 10.5, *), !histories.isEmpty && isHistoryRecording && selectionHandler == nil {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button(role: .destructive, action: {
                             isClearOptionsPresented = true

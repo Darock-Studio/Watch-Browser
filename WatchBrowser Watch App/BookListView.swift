@@ -221,6 +221,7 @@ struct BookViewerView: View {
 struct LocalBooksView: View {
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLocalBooks") var usePasscodeForLocalBooks = false
+    @AppStorage("IsThisClusterInstalled") var isThisClusterInstalled = false
     @State var isLocked = true
     @State var passcodeInputCache = ""
     @State var bookFolderNames = [String]()
@@ -265,6 +266,27 @@ struct LocalBooksView: View {
                                     }, label: {
                                         Image(systemName: "xmark.bin.fill")
                                     })
+                                }
+                                .swipeActions(edge: .leading) {
+                                    if isThisClusterInstalled {
+                                        Button(action: {
+                                            do {
+                                                let containerFilePath = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.darockst")!.path + "/TransferFile.drkdatat"
+                                                if FileManager.default.fileExists(atPath: containerFilePath) {
+                                                    try FileManager.default.removeItem(atPath: containerFilePath)
+                                                }
+                                                try FileManager.default.copyItem(
+                                                    atPath: NSHomeDirectory() + "/Documents/" + bookFolderNames[i],
+                                                    toPath: containerFilePath
+                                                )
+                                                WKExtension.shared().openSystemURL(URL(string: "https://darock.top/cluster/add/\(bookFolderNames[i])")!)
+                                            } catch {
+                                                globalErrorHandler(error)
+                                            }
+                                        }, label: {
+                                            Image(systemName: "square.grid.3x1.folder.badge.plus")
+                                        })
+                                    }
                                 }
                             }
                         }
