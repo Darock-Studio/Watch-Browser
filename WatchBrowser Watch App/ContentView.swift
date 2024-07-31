@@ -649,6 +649,7 @@ struct MainView: View {
                                                     .font(.system(size: 12, weight: .medium))
                                                     .background(Circle().fill(Color.red).frame(width: 15, height: 15).opacity(1.0))
                                                     .offset(x: 3, y: -5)
+                                                    .truncationMode(.head)
                                             }
                                         }
                                         Text("反馈助理")

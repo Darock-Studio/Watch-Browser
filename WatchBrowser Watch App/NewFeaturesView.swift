@@ -15,9 +15,8 @@ struct NewFeaturesView: View {
                     Text("“暗礁浏览器”新功能")
                         .font(.system(size: 18, weight: .bold))
                         .accessibilityIdentifier("NewFeaturesTitle")
-                    SingleFeatureRow(symbol: "music.note.list", mainText: "音乐播放", detailText: "前往“提示”了解更多") { AnyView(
-                        TipsView.MusicView()
-                    )} // swiftlint:disable:this closure_end_indentation
+                    SingleFeatureRow(symbol: "book.fill", mainText: "新版图书阅读器", detailText: "图书阅读器现在合并所有章节并自动保存阅读位置")
+                    SingleFeatureRow(symbol: "book.and.wrench", mainText: "图书阅读器设置", detailText: "现可在设置→通用→阅读器中个性化设置图书阅读器")
                     Text("您可以随时在“提示->新功能”中重新打开此页")
                         .multilineTextAlignment(.center)
                         .opacity(0.7)
@@ -72,6 +71,25 @@ struct SingleFeatureRow: View {
 }
 
 // MARK: ArchivedNewFeatures
+private struct _NewFeaturesViewArchived240729: View {
+    var body: some View {
+        NavigationView {
+            ScrollView {
+                VStack {
+                    Text("“暗礁浏览器”新功能")
+                        .font(.system(size: 18, weight: .bold))
+                        .accessibilityIdentifier("NewFeaturesTitle")
+                    SingleFeatureRow(symbol: "music.note.list", mainText: "音乐播放", detailText: "前往“提示”了解更多") { AnyView(
+                        TipsView.MusicView()
+                    )} // swiftlint:disable:this closure_end_indentation
+                    Text("您可以随时在“提示->新功能”中重新打开此页")
+                        .multilineTextAlignment(.center)
+                        .opacity(0.7)
+                }
+            }
+        }
+    }
+}
 private struct _NewFeaturesViewArchived240709: View {
     var body: some View {
         NavigationView {

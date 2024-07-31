@@ -9,6 +9,7 @@ import SwiftUI
 import Dynamic
 import EPUBKit
 import Alamofire
+import MarkdownUI
 import SDWebImageSwiftUI
 
 struct BookListView: View {
@@ -31,17 +32,6 @@ struct BookListView: View {
                 }
             }
             .navigationTitle("图书列表")
-            .onDisappear {
-                if dismissListsShouldRepresentWebView {
-                    DispatchQueue.main.async {
-                        Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(
-                            AdvancedWebViewController.shared.vc,
-                            animated: true,
-                            completion: nil
-                        )
-                    }
-                }
-            }
         } else {
             Text("空图书列表")
         }
@@ -145,74 +135,10 @@ struct BookViewerView: View {
                 }
             }
             .listRowBackground(Color.clear)
-            if let contents = document.tableOfContents.subTable {
-                Section {
-                    contentLinks(from: contents, with: document.contentDirectory)
-                }
-            }
-        }
-        
-        @ViewBuilder
-        func contentLinks(from contents: [EPUBTableOfContents], with rootLink: URL) -> AnyView {
-            AnyView(
-                ForEach(0..<contents.count, id: \.self) { i in
-                    NavigationLink(destination: {
-                        if !(contents[i].subTable ?? [EPUBTableOfContents]()).isEmpty {
-                            List {
-                                if contents[i].item != nil {
-                                    Section {
-                                        NavigationLink(destination: { SingleContentPreviewView(content: contents[i], rootLink: rootLink) }, label: {
-                                            Text(contents[i].label)
-                                        })
-                                    }
-                                }
-                                if let subTable = contents[i].subTable {
-                                    Section {
-                                        contentLinks(from: subTable, with: rootLink)
-                                    }
-                                }
-                            }
-                            .navigationTitle(contents[i].label)
-                        } else {
-                            SingleContentPreviewView(content: contents[i], rootLink: rootLink)
-                        }
-                    }, label: {
-                        HStack {
-                            Text(contents[i].label)
-                            Spacer()
-                            if !(contents[i].subTable ?? [EPUBTableOfContents]()).isEmpty {
-                                Image(systemName: "chevron.forward")
-                                    .opacity(0.6)
-                            }
-                        }
-                    })
-                }
-            )
-        }
-    }
-    struct SingleContentPreviewView: View {
-        var content: EPUBTableOfContents
-        var rootLink: URL
-        var body: some View {
-            List {
-                Section {
-                    HStack {
-                        Spacer()
-                        Text(content.label)
-                        Spacer()
-                    }
-                }
-                .listRowBackground(Color.clear)
-                Section {
-                    Button(action: {
-                        pWebDelegateStartNavigationAutoViewport = true
-                        AdvancedWebViewController.shared.present(archiveUrl: rootLink.appending(path: content.item!),
-                                                                 loadMimeType: "text/html",
-                                                                 overrideOldWebView: true)
-                    }, label: {
-                        Text("开始阅读")
-                    })
-                }
+            Section {
+                NavigationLink(destination: { BookReaderView(document: document) }, label: {
+                    Text(UserDefaults.standard.integer(forKey: "\(document.directory.lastPathComponent)ReadOffset") == 0 ? "开始阅读" : "继续阅读")
+                })
             }
         }
     }
@@ -305,6 +231,89 @@ struct LocalBooksView: View {
     }
 }
 
+struct BookReaderView: View {
+    var document: EPUBDocument
+    @AppStorage("RVFontSize") var fontSize = 14
+    @AppStorage("RVIsBoldText") var isBoldText = false
+    @AppStorage("RVCharacterSpacing") var characterSpacing = 1.0
+    @State var contents = [NSAttributedString]()
+    @State var loadProgress = 0.0
+    @State var toolbarVisibility = Visibility.visible
+    var body: some View {
+        ScrollViewReader { scrollProxy in
+            ScrollView {
+                if !contents.isEmpty {
+                    LazyVStack(alignment: .leading) {
+                        ForEach(0..<contents.count, id: \.self) { i in
+                            Text(AttributedString(contents[i]))
+                                .onAppear {
+                                    UserDefaults.standard.set(i, forKey: "\(document.directory.lastPathComponent)ReadOffset")
+                                }
+                        }
+                    }
+                    .onTapGesture {
+                        toolbarVisibility = .visible
+                        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
+                            toolbarVisibility = .hidden
+                        }
+                    }
+                    .onAppear {
+                        withAnimation {
+                            scrollProxy.scrollTo(UserDefaults.standard.integer(forKey: "\(document.directory.lastPathComponent)ReadOffset"), anchor: .center)
+                        }
+                    }
+                } else {
+                    Text("正在载入...")
+                    ProgressView(value: loadProgress)
+                }
+            }
+        }
+        .toolbar(toolbarVisibility, for: .navigationBar)
+        .animation(.easeOut, value: toolbarVisibility)
+        .onAppear {
+            extendScreenIdleTime(1200)
+            DispatchQueue(label: "com.darock.WatchBrowser.load-book-content", qos: .userInitiated).async {
+                do {
+                    let spines = document.spine.items
+                    var tmpContents = [NSAttributedString]()
+                    for i in 0..<spines.count {
+                        let id = spines[i].idref
+                        let idChart = document.manifest.items
+                        if let path = idChart[id]?.path {
+                            let rawStr = try String(contentsOf: document.contentDirectory.appending(path: path), encoding: .utf8)
+                            let splitedStrs = rawStr.components(separatedBy: .newlines)
+                            for j in 0..<splitedStrs.count {
+                                let attrStr = try NSMutableAttributedString(
+                                    data: splitedStrs[j].data(using: .utf8)!,
+                                    options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue],
+                                    documentAttributes: nil
+                                )
+                                let fullRange = NSMakeRange(0, attrStr.length)
+                                attrStr.setAttributes([.foregroundColor: UIColor.white,
+                                                       .font: UIFont.systemFont(ofSize: CGFloat(fontSize), weight: isBoldText ? .bold : .regular),
+                                                       .kern: CGFloat(characterSpacing)],
+                                                      range: fullRange
+                                )
+                                tmpContents.append(attrStr)
+                                loadProgress += 1.0 / Double(splitedStrs.count) * 1.0 / Double(spines.count)
+                            }
+                        }
+                    }
+                    contents = tmpContents
+                    DispatchQueue.main.async {
+                        recoverNormalIdleTime()
+                        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+                            toolbarVisibility = .hidden
+                        }
+                    }
+                } catch {
+                    globalErrorHandler(error)
+                }
+            }
+        }
+    }
+}
+
 struct BlurBackground: ViewModifier {
     var imageUrl: URL?
     @State private var backgroundPicOpacity: CGFloat = 0.0
@@ -332,5 +341,13 @@ struct BlurBackground: ViewModifier {
         } else {
             content
         }
+    }
+}
+
+struct ScrollViewOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
     }
 }

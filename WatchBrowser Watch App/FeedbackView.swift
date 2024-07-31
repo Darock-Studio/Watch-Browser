@@ -361,6 +361,46 @@ struct FeedbackView: View {
                                         _onFastPath()
                                         extData += "\nSettings：\(settings)"
                                     }
+                                    if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/NSExceptionLogs") {
+                                        do {
+                                            var content = ""
+                                            var latestTime = 0.0
+                                            for file in try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/NSExceptionLogs") {
+                                                if let time = Double(file.dropLast(4)), time > latestTime {
+                                                    content = try String(
+                                                        contentsOfFile: NSHomeDirectory() + "/Documents/NSExceptionLogs/" + file,
+                                                        encoding: .utf8
+                                                    )
+                                                    latestTime = time
+                                                }
+                                            }
+                                            if !content.isEmpty {
+                                                extData += "\nLatestNSException：\(content.replacingOccurrences(of: "\n", with: "\\n"))\nLatestNSExceptionTime：\(latestTime)"
+                                            }
+                                        } catch {
+                                            globalErrorHandler(error)
+                                        }
+                                    }
+                                    if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/SwiftErrorLogs") {
+                                        do {
+                                            var content = ""
+                                            var latestTime = 0.0
+                                            for file in try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/SwiftErrorLogs") {
+                                                if let time = Double(file.dropLast(4)), time > latestTime {
+                                                    content = try String(
+                                                        contentsOfFile: NSHomeDirectory() + "/Documents/SwiftErrorLogs/" + file,
+                                                        encoding: .utf8
+                                                    )
+                                                    latestTime = time
+                                                }
+                                            }
+                                            if !content.isEmpty {
+                                                extData += "\nLatestSwiftError：\(content.replacingOccurrences(of: "\n", with: "\\n"))\nLatestSwiftErrorTime：\(latestTime)"
+                                            }
+                                        } catch {
+                                            globalErrorHandler(error)
+                                        }
+                                    }
                                     return extData
                                 } else {
                                     return ""
@@ -543,7 +583,11 @@ struct FeedbackView: View {
                 if isSuccess {
                     formattedTexts.removeAll()
                     replies.removeAll()
-                    feedbackText = respStr.apiFixed().replacingOccurrences(of: "\\n", with: "\n").replacingOccurrences(of: "\\\"", with: "\"")
+                    feedbackText = respStr.apiFixed()
+                        .replacingOccurrences(of: "\\\\n", with: "____LINEBREAK_REPLACE_TOKEN____")
+                        .replacingOccurrences(of: "\\n", with: "\n")
+                        .replacingOccurrences(of: "____LINEBREAK_REPLACE_TOKEN____", with: "\\n")
+                        .replacingOccurrences(of: "\\\"", with: "\"")
                     let spd = feedbackText.split(separator: "\n")
                     for text in spd {
                         if text == "---" { break }
@@ -649,6 +693,12 @@ struct FeedbackView: View {
                             } else if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") == "Settings" {
                                 Text("[Privacy Hidden]")
                                     .font(.system(size: 14))
+                            } else if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") == "LatestNSException" {
+                                Text("[Large Data]")
+                                    .font(.system(size: 14))
+                            } else if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") == "LatestSwiftError" {
+                                Text("[Large Data]")
+                                    .font(.system(size: 14))
                             } else if (from[i].contains("：") && from[i] != "："
                                        ? from[i].split(separator: "：")[0]
                                        : "") == "AddDuplicateDelete"
@@ -657,9 +707,24 @@ struct FeedbackView: View {
                                             : "") == "DuplicateTo",
                                       let goId = Int(from[i].split(separator: "：")[1]) {
                                 Text("FB\(projName.projNameLinked())\(String(goId))")
+                            } else if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") == "MarkdownContent" {
+                                Markdown(
+                                    (from[i].split(separator: "：").count > 1
+                                     ? String(from[i].split(separator: "：", maxSplits: 1)[1])
+                                     : from[i]).replacingOccurrences(of: "\\n", with: "\n")
+                                )
+                                .font(.system(size: 14))
+                                .environment(\.openURL, OpenURLAction { url in
+                                    AdvancedWebViewController.shared.present(url.absoluteString)
+                                    return .handled
+                                })
                             } else {
-                                Text(from[i].split(separator: "：").count > 1 ? String(from[i].split(separator: "：")[1]).dropLast("\\") : from[i].dropLast("\\"))
-                                    .font(.system(size: 14))
+                                Text(
+                                    (from[i].split(separator: "：").count > 1
+                                    ? String(from[i].split(separator: "：", maxSplits: 1)[1])
+                                     : from[i]).replacingOccurrences(of: "\\n", with: "\n")
+                                )
+                                .font(.system(size: 14))
                             }
                             Spacer()
                         }
@@ -674,7 +739,7 @@ struct FeedbackView: View {
     }
 }
 
-private struct FAQView: View {
+struct FAQView: View {
     var body: some View {
         List {
             NavigationLink(destination: {
@@ -793,7 +858,7 @@ extension String {
             return "状态"
         case "Type":
             return "类型"
-        case "Content":
+        case "Content", "MarkdownContent":
             return "描述"
         case "Version":
             return "App 版本"

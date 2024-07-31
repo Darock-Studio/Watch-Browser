@@ -21,6 +21,7 @@
 		8C03B6E02C296338000770B4 /* NetworkCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C03B6DF2C296338000770B4 /* NetworkCheckView.swift */; };
 		8C03B70E2C29B2CE000770B4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8C03B70D2C29B2CE000770B4 /* Localizable.xcstrings */; };
 		8C1DED022C32AEBB0048A32A /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1DED012C32AEB00048A32A /* General.swift */; };
+		8C3432ED2C5972DF00DC3912 /* RadarKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C3432EC2C5972DF00DC3912 /* RadarKit */; };
 		8C40D4C42C33DBE900C4221C /* SDWebImagePDFCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 8C40D4C32C33DBE900C4221C /* SDWebImagePDFCoder */; };
 		8C40D4C62C33DE6B00C4221C /* TopLevelDomainList.drkdatat in Resources */ = {isa = PBXBuildFile; fileRef = 8C40D4C52C33DE5E00C4221C /* TopLevelDomainList.drkdatat */; };
 		8C40D4C92C33EC9900C4221C /* Punnycode in Frameworks */ = {isa = PBXBuildFile; productRef = 8C40D4C82C33EC9900C4221C /* Punnycode */; };
@@ -55,7 +56,6 @@
 		8CA7B84C2BE3E025004643FE /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8CA7B84B2BE3E025004643FE /* SDWebImageSwiftUI */; };
 		8CA7B84F2BE3E053004643FE /* SDWebImageWebPCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 8CA7B84E2BE3E053004643FE /* SDWebImageWebPCoder */; };
 		8CA7B8522BE3E078004643FE /* SDWebImageSVGCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 8CA7B8512BE3E078004643FE /* SDWebImageSVGCoder */; };
-		8CAC41BB2BEFF32300CE9278 /* SupportsUICore in Frameworks */ = {isa = PBXBuildFile; productRef = 8CAC41BA2BEFF32300CE9278 /* SupportsUICore */; };
 		8CAF38F72BD4F960006B9B16 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 8CAF38F62BD4F960006B9B16 /* SwiftSoup */; };
 		8CAF38F92BD4FC95006B9B16 /* VideoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAF38F82BD4FC95006B9B16 /* VideoListView.swift */; };
 		8CB0189A2BDBC5C500982644 /* WESwiftDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB018992BDBC5C500982644 /* WESwiftDelegate.swift */; };
@@ -228,11 +228,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C3432ED2C5972DF00DC3912 /* RadarKit in Frameworks */,
 				8CA7B84F2BE3E053004643FE /* SDWebImageWebPCoder in Frameworks */,
 				8CA7B84C2BE3E025004643FE /* SDWebImageSwiftUI in Frameworks */,
 				8C40D4C92C33EC9900C4221C /* Punnycode in Frameworks */,
 				8CB803CC2BD3D776009B2FAC /* Dynamic in Frameworks */,
-				8CAC41BB2BEFF32300CE9278 /* SupportsUICore in Frameworks */,
 				6B0253D82A4EFB0100567986 /* DarockKit in Frameworks */,
 				8C52811C2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Frameworks */,
 				6BFFCC562A8A6CF3001175EE /* DarockKit in Frameworks */,
@@ -503,12 +503,12 @@
 				8CA7B84B2BE3E025004643FE /* SDWebImageSwiftUI */,
 				8CA7B84E2BE3E053004643FE /* SDWebImageWebPCoder */,
 				8CA7B8512BE3E078004643FE /* SDWebImageSVGCoder */,
-				8CAC41BA2BEFF32300CE9278 /* SupportsUICore */,
 				8C5D647F2C1D9D7C008E591B /* Cepheus */,
 				8C7C4D402C2D87B300FD282B /* EPUBKit */,
 				8C40D4C32C33DBE900C4221C /* SDWebImagePDFCoder */,
 				8C40D4C82C33EC9900C4221C /* Punnycode */,
 				8CF8B9622C44FCAA0070F833 /* MarkdownUI */,
+				8C3432EC2C5972DF00DC3912 /* RadarKit */,
 			);
 			productName = "WatchBrowser Watch App";
 			productReference = 6BF209EE2990E61C00E623FC /* DarockBrowser.app */;
@@ -646,13 +646,13 @@
 				8CA7B84A2BE3E025004643FE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				8CA7B84D2BE3E053004643FE /* XCRemoteSwiftPackageReference "SDWebImageWebPCoder" */,
 				8CA7B8502BE3E078004643FE /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */,
-				8CAC41B92BEFF32200CE9278 /* XCRemoteSwiftPackageReference "SupportsUICore" */,
 				8C5D647E2C1D9D7C008E591B /* XCRemoteSwiftPackageReference "Cepheus" */,
 				8C7C4D3F2C2D87B200FD282B /* XCRemoteSwiftPackageReference "EPUBKit" */,
 				8CB349F12C32B87700CB6AC3 /* XCRemoteSwiftPackageReference "Vela" */,
 				8C40D4C22C33DBE900C4221C /* XCRemoteSwiftPackageReference "SDWebImagePDFCoder" */,
 				8C40D4C72C33EC9900C4221C /* XCRemoteSwiftPackageReference "PunycodeSwift" */,
 				8CF8B9612C44FCAA0070F833 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				8C3432EB2C5972DF00DC3912 /* XCRemoteSwiftPackageReference "RadarKit" */,
 			);
 			productRefGroup = 6BF209E92990E61C00E623FC /* Products */;
 			projectDirPath = "";
@@ -1015,7 +1015,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.15.2;
+				MARKETING_VERSION = 4.16.0;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -1057,7 +1057,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.15.2;
+				MARKETING_VERSION = 4.16.0;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -1083,7 +1083,7 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 4.15.2;
+				MARKETING_VERSION = 4.16.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -1102,7 +1102,7 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 4.15.2;
+				MARKETING_VERSION = 4.16.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -1265,7 +1265,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 4.15.2;
+				MARKETING_VERSION = 4.16.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.Intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1296,7 +1296,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 4.15.2;
+				MARKETING_VERSION = 4.16.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.Intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1432,6 +1432,14 @@
 				kind = branch;
 			};
 		};
+		8C3432EB2C5972DF00DC3912 /* XCRemoteSwiftPackageReference "RadarKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Darock-Studio/RadarKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.8;
+			};
+		};
 		8C40D4C22C33DBE900C4221C /* XCRemoteSwiftPackageReference "SDWebImagePDFCoder" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImagePDFCoder";
@@ -1496,14 +1504,6 @@
 				minimumVersion = 1.7.0;
 			};
 		};
-		8CAC41B92BEFF32200CE9278 /* XCRemoteSwiftPackageReference "SupportsUICore" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Darock-Studio/SupportsUICore";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		8CAF38F52BD4F960006B9B16 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scinfu/SwiftSoup";
@@ -1548,6 +1548,11 @@
 			package = 6BFFCC542A8A6CF3001175EE /* XCRemoteSwiftPackageReference "DarockKit" */;
 			productName = DarockKit;
 		};
+		8C3432EC2C5972DF00DC3912 /* RadarKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C3432EB2C5972DF00DC3912 /* XCRemoteSwiftPackageReference "RadarKit" */;
+			productName = RadarKit;
+		};
 		8C40D4C32C33DBE900C4221C /* SDWebImagePDFCoder */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8C40D4C22C33DBE900C4221C /* XCRemoteSwiftPackageReference "SDWebImagePDFCoder" */;
@@ -1587,11 +1592,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8CA7B8502BE3E078004643FE /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */;
 			productName = SDWebImageSVGCoder;
-		};
-		8CAC41BA2BEFF32300CE9278 /* SupportsUICore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8CAC41B92BEFF32200CE9278 /* XCRemoteSwiftPackageReference "SupportsUICore" */;
-			productName = SupportsUICore;
 		};
 		8CAF38F62BD4F960006B9B16 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -29,7 +29,7 @@ struct WatchBrowser_Watch_AppApp: App {
     let device = WKInterfaceDevice.current()
     @WKApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) var scenePhase
-    @AppStorage("ShouldTipNewFeatures3") var shouldTipNewFeatures = true
+    @AppStorage("ShouldTipNewFeatures4") var shouldTipNewFeatures = true
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockDarockBrowser") var usePasscodeForLockDarockBrowser = false
     @AppStorage("IsThisClusterInstalled") var isThisClusterInstalled = false
@@ -167,6 +167,7 @@ struct WatchBrowser_Watch_AppApp: App {
 
 class AppDelegate: NSObject, WKApplicationDelegate {
     func applicationDidFinishLaunching() {
+        NSSetUncaughtExceptionHandler(nsErrorHandler(_:))
 //        INPreferences.requestSiriAuthorization { status in
 //            switch status {
 //            case .notDetermined:
@@ -213,6 +214,21 @@ public func tipWithText(_ text: String, symbol: String = "", time: Double = 3.0)
 }
 public func globalErrorHandler(_ error: Error, at: String = "\(#file)-\(#function)-\(#line)") {
     print(error)
+    do {
+        if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/SwiftErrorLogs") {
+            try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/SwiftErrorLogs", withIntermediateDirectories: true)
+        }
+        try """
+        Error：\(error.localizedDescription)
+        Location：\(at)
+        """.write(
+            toFile: NSHomeDirectory() + "/Documents/SwiftErrorLogs/\(Date().timeIntervalSince1970).txt",
+            atomically: true,
+            encoding: .utf8
+        )
+    } catch {
+        print("Error in globalErrorHandler: \(error)")
+    }
     if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "IsDarockInternalTap-to-RadarAvailable") {
         pTapToRadarAlertContent = "Swift has catched an internal error.\nPlease help us make Darock Browser better by logging a bug. Thanks. (\(at))"
         pTapToRadarAttachText = "Auto-attachd DarockBrowser(\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)). At \(at). LocdStr: \(error.localizedDescription) Add more infomation here: "
@@ -222,6 +238,46 @@ public func globalErrorHandler(_ error: Error, at: String = "\(#file)-\(#functio
             .replacingOccurrences(of: "=", with: "{equal}")
             .replacingOccurrences(of: "&", with: "{and}")
         pIsTapToRadarAlertPresented = true
+    }
+}
+public func nsErrorHandler(_ exception: NSException) {
+    print(exception)
+    do {
+        if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/NSExceptionLogs") {
+            try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/NSExceptionLogs", withIntermediateDirectories: true)
+        }
+        var hierarchyStack = [(String, (String, [String]))]()
+        //            View Controller    view   subviews
+        if var topController = Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.asObject {
+            hierarchyStack.append(
+                (topController.description,
+                 (Dynamic(topController).view.asObject?.description ?? "nil",
+                  (Dynamic(topController).view.asArray as? [NSObject])?.map { $0.description } ?? ["nil"]))
+            )
+            while let presentedViewController = Dynamic(topController).presentedViewController.asObject {
+                topController = presentedViewController
+                hierarchyStack.append(
+                    (topController.description,
+                     (Dynamic(topController).view.asObject?.description ?? "nil",
+                      (Dynamic(topController).view.asArray as? [NSObject])?.map { $0.description } ?? ["nil"]))
+                )
+            }
+        }
+        try """
+        Name：\(exception.name)
+        Reason：\(exception.reason ?? "nil")
+        Call Stack：
+        \(exception.callStackSymbols.joined(separator: "\n"))
+        
+        View Hierarchy：
+        \(hierarchyStack.map { "\($0.0)||\($0.1.0)||\($0.1.1)" }.joined(separator: "\n"))
+        """.write(
+            toFile: NSHomeDirectory() + "/Documents/NSExceptionLogs/\(Date().timeIntervalSince1970).txt",
+            atomically: true,
+            encoding: .utf8
+        )
+    } catch {
+        print(error)
     }
 }
 func resetGlobalAudioLooper() {

@@ -1,5 +1,5 @@
 {
-  "originHash" : "1f8cae2262e676e249c600d0301565d180b629e035ac77af48129d88c8e70245",
+  "originHash" : "8c214f3d8ab9b5d8ce0d6bbedd42128345120b1fab751e21009345594f3742fe",
   "pins" : [
     {
       "identity" : "aexml",
@@ -92,6 +92,15 @@
       }
     },
     {
+      "identity" : "radarkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Darock-Studio/RadarKit",
+      "state" : {
+        "revision" : "40da59275f288626eeec962a9262209c7ffb39d2",
+        "version" : "1.0.8"
+      }
+    },
+    {
       "identity" : "sdwebimage",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
@@ -134,15 +143,6 @@
       "state" : {
         "revision" : "f534cfe830a7807ecc3d0332127a502426cfa067",
         "version" : "0.14.6"
-      }
-    },
-    {
-      "identity" : "supportsuicore",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Darock-Studio/SupportsUICore",
-      "state" : {
-        "branch" : "main",
-        "revision" : "2460d64cf0419fd2606b08f24558496d8fe8a360"
       }
     },
     {

@@ -234,6 +234,9 @@
     "[Hex Data]" : {
       "shouldTranslate" : false
     },
+    "[Large Data]" : {
+      "shouldTranslate" : false
+    },
     "[Privacy Hidden]" : {
       "shouldTranslate" : false
     },
@@ -350,18 +353,18 @@
         }
       }
     },
-    "%@：反馈暂未被阅读。\n\n%@：报告中描述的是预期中的表现。\n\n%@：报告中的问题无法被修复，或是不具有可行性。\n\n%@：在你提交此报告前，已有另一人提出了相同的问题，你仍会在第一个报告得到修复后收到“已修复”的状态更新。\n        你的报告可能会与那些初看似乎具有相同根源的类似报告分到一组。但是，类似的报告也可能包含多种原因。如果你发现该修复方案解决了类似报告中的问题，但无法完全解决你报告的问题，请提交新报告。\n\n%@：短时间内可能无法解决此问题。\n\n%@：Darock 正在为此问题提供修复方案。\n\n%@：修复工作已完成，但还未提交更新或是更新正在等待发布。\n\n%@：修复工作已完成，可更新至最新版本验证修复。\n\n%@：报告与 App 本身无关，或是问题并非由 App 本身引起。\n\n%@：未能通过报告中的问题复现问题，需要提供更多信息。\n\n%@：提供的信息不足以让我们确定问题，你需要补充更多信息。" : {
+    "%@：反馈暂未被阅读，或是正在验证问题。\n\n%@：报告中描述的是预期中的表现。\n\n%@：报告中的问题无法被修复，或是不具有可行性。\n\n%@：在你提交此报告前，已有另一人提出了相同的问题，你仍会在第一个报告得到修复后收到“已修复”的状态更新。\n        你的报告可能会与那些初看似乎具有相同根源的类似报告分到一组。但是，类似的报告也可能包含多种原因。如果你发现该修复方案解决了类似报告中的问题，但无法完全解决你报告的问题，请提交新报告。\n\n%@：短时间内可能无法解决此问题。\n\n%@：Darock 正在为此问题提供修复方案。\n\n%@：修复工作已完成，但还未提交更新或是更新正在等待发布。\n\n%@：修复工作已完成，可更新至最新版本验证修复。\n\n%@：报告与 App 本身无关，或是问题并非由 App 本身引起。\n\n%@：未能通过报告中的问题复现问题，需要提供更多信息。\n\n%@：提供的信息不足以让我们确定问题，你需要补充更多信息。" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@: Feedback has not been read yet.\n\n%2$@: The report describes the expected behavior.\n\n%3$@: The issue in the report cannot be fixed or is not feasible.\n\n%4$@: Before you submitted this report, someone else had already raised the same issue. You will still receive a \"Fixed\" status update after the first report is resolved. \n        Your report may be grouped with similar reports that initially seem to have the same root cause. However, similar reports may also contain multiple causes. If you find that the fix resolves the issue in the similar reports but does not fully resolve your reported issue, please submit a new report.\n\n%5$@: This issue may not be resolved in a short period of time.\n\n%6$@: Darock is working on a fix for this issue.\n\n%7$@: The fix has been completed but the update has not been submitted or the update is pending release.\n\n%8$@: The fix has been completed, please update to the latest version to verify the fix.\n\n%9$@: The report is not related to the app itself, or the issue is not caused by the app.\n\n%10$@: Unable to reproduce the issue based on the report, more information is needed.\n\n%11$@: The information provided is insufficient to identify the issue, more details are required."
+            "value" : "%1$@: Feedback has not been read yet, or the issue is being verified.\n\n%2$@: The report describes the expected behavior.\n\n%3$@: The issue in the report cannot be fixed or is not feasible.\n\n%4$@: Before you submitted this report, someone else had already raised the same issue. You will still receive a \"Fixed\" status update after the first report is resolved.\n        Your report may be grouped with similar reports that initially seem to have the same root cause. However, similar reports may also contain multiple causes. If you find that the fix resolves the issue in the similar reports but does not fully resolve your reported issue, please submit a new report.\n\n%5$@: This issue may not be resolved in a short period of time.\n\n%6$@: Darock is working on a fix for this issue.\n\n%7$@: The fix has been completed but the update has not been submitted or the update is pending release.\n\n%8$@: The fix has been completed, please update to the latest version to verify the fix.\n\n%9$@: The report is not related to the app itself, or the issue is not caused by the app.\n\n%10$@: Unable to reproduce the issue based on the report, more information is needed.\n\n%11$@: The information provided is insufficient to identify the issue, more details are required."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$@：反馈暂未被阅读。\n\n%2$@：报告中描述的是预期中的表现。\n\n%3$@：报告中的问题无法被修复，或是不具有可行性。\n\n%4$@：在你提交此报告前，已有另一人提出了相同的问题，你仍会在第一个报告得到修复后收到“已修复”的状态更新。\n        你的报告可能会与那些初看似乎具有相同根源的类似报告分到一组。但是，类似的报告也可能包含多种原因。如果你发现该修复方案解决了类似报告中的问题，但无法完全解决你报告的问题，请提交新报告。\n\n%5$@：短时间内可能无法解决此问题。\n\n%6$@：Darock 正在为此问题提供修复方案。\n\n%7$@：修复工作已完成，但还未提交更新或是更新正在等待发布。\n\n%8$@：修复工作已完成，可更新至最新版本验证修复。\n\n%9$@：报告与 App 本身无关，或是问题并非由 App 本身引起。\n\n%10$@：未能通过报告中的问题复现问题，需要提供更多信息。\n\n%11$@：提供的信息不足以让我们确定问题，你需要补充更多信息。"
+            "value" : "%1$@：反馈暂未被阅读，或是正在验证问题。\n\n%2$@：报告中描述的是预期中的表现。\n\n%3$@：报告中的问题无法被修复，或是不具有可行性。\n\n%4$@：在你提交此报告前，已有另一人提出了相同的问题，你仍会在第一个报告得到修复后收到“已修复”的状态更新。\n        你的报告可能会与那些初看似乎具有相同根源的类似报告分到一组。但是，类似的报告也可能包含多种原因。如果你发现该修复方案解决了类似报告中的问题，但无法完全解决你报告的问题，请提交新报告。\n\n%5$@：短时间内可能无法解决此问题。\n\n%6$@：Darock 正在为此问题提供修复方案。\n\n%7$@：修复工作已完成，但还未提交更新或是更新正在等待发布。\n\n%8$@：修复工作已完成，可更新至最新版本验证修复。\n\n%9$@：报告与 App 本身无关，或是问题并非由 App 本身引起。\n\n%10$@：未能通过报告中的问题复现问题，需要提供更多信息。\n\n%11$@：提供的信息不足以让我们确定问题，你需要补充更多信息。"
           }
         }
       }
@@ -1211,6 +1214,9 @@
           }
         }
       }
+    },
+    "A" : {
+      "shouldTranslate" : false
     },
     "All data will be lost!" : {
       "shouldTranslate" : false
@@ -6627,6 +6633,26 @@
         }
       }
     },
+    "图书阅读器现在合并所有章节并自动保存阅读位置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The book reader now merges all chapters and automatically saves your reading position."
+          }
+        }
+      }
+    },
+    "图书阅读器设置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Book Reader Settings"
+          }
+        }
+      }
+    },
     "图像查看器" : {
       "localizations" : {
         "en" : {
@@ -7051,6 +7077,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "字體大小"
+          }
+        }
+      }
+    },
+    "字间距" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Character Spacing"
           }
         }
       }
@@ -9657,6 +9693,16 @@
         }
       }
     },
+    "新版图书阅读器" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Book Reader"
+          }
+        }
+      }
+    },
     "无" : {
       "localizations" : {
         "en" : {
@@ -9889,6 +9935,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Show Translated Lyrics (Chinese, Simplified)"
+          }
+        }
+      }
+    },
+    "晚饭过后，我沿着海滩散步，想找一个绝佳的位置读完手里的书，再开启一本新书。我发现了一个地方，目之所及，空无一人。这里还有一张吊床，可以阅读和小憩。我躺下来，几经调整，找到一个最舒适的姿势，就此遁入书中，沉浸在最后一个章节。一时间，" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "finished my dinner and walked along the beach looking for the perfect spot to finish my book and start a new one. I discovered a place with no one in sight and a hammock to read and nap in. I lay down, shifted my body for maximum comfort, and escaped into the last chapter. The characters on the page became all mixed up with the people in my life, and the sun and breeze with a distance time and place I had forgotten."
           }
         }
       }
@@ -11482,6 +11538,16 @@
         }
       }
     },
+    "现可在设置→通用→阅读器中个性化设置图书阅读器" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can now personalize the book reader in Settings → General → Reader."
+          }
+        }
+      }
+    },
     "现可将网页归档以供离线查看" : {
       "localizations" : {
         "en" : {
@@ -12568,6 +12634,16 @@
         }
       }
     },
+    "粗体文本" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bold Text"
+          }
+        }
+      }
+    },
     "系统版本" : {
       "localizations" : {
         "en" : {
@@ -12612,6 +12688,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Controls"
+          }
+        }
+      }
+    },
+    "继续阅读" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
           }
         }
       }
@@ -14826,6 +14912,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Spacer"
+          }
+        }
+      }
+    },
+    "阅读器" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reader"
           }
         }
       }
