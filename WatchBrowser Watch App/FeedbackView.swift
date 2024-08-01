@@ -9,7 +9,6 @@ import SwiftUI
 import DarockKit
 import SwiftDate
 import MarkdownUI
-import SupportsUICore
 import UserNotifications
 
 fileprivate let globalStates: [LocalizedStringKey] = [
