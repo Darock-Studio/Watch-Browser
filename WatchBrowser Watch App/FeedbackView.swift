@@ -225,20 +225,9 @@ struct FeedbackView: View {
                                             NavigationLink(destination: {
                                                 ScrollView {
                                                     HStack {
-                                                        Text({ () -> String in
-                                                            let histories = UserDefaults.standard.stringArray(forKey: "WebHistory") ?? [String]()
-                                                            let sendHistories: [String]
-                                                            if histories.count >= 3 {
-                                                                sendHistories = [histories[0], histories[1], histories[2]]
-                                                            } else if !histories.isEmpty {
-                                                                sendHistories = histories
-                                                            } else {
-                                                                sendHistories = [String]()
-                                                            }
-                                                            return String(sendHistories.description.prefix(300))
-                                                        }())
-                                                        .font(.system(size: 13, design: .monospaced))
-                                                        .multilineTextAlignment(.leading)
+                                                        Text("\(getWebHistory().map { $0.url.prefix(100) }.prefix(3))")
+                                                            .font(.system(size: 13, design: .monospaced))
+                                                            .multilineTextAlignment(.leading)
                                                         Spacer()
                                                     }
                                                 }
@@ -354,7 +343,7 @@ struct FeedbackView: View {
                                     var extData = """
                                     
                                     Version：v\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) Build \(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)
-                                    NearestHistories：\(getWebHistory().prefix(3))
+                                    NearestHistories：\(getWebHistory().map { $0.url.prefix(100) }.prefix(3))
                                     OS：\(WKInterfaceDevice.current().systemVersion)
                                     """
                                     if let settings = getAllSettingsForAppdiagnose() {

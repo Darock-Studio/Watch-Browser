@@ -20,19 +20,20 @@ struct VideoListView: View {
     @State var isVideoDownloadPresented = false
     @State var shareVideoLink = ""
     @State var isSharePresented = false
+    @State var cachedVideoLinkLists = [String]() // Resolve crash if global list changes after this view rendered
     var body: some View {
-        if !videoLinkLists.isEmpty {
+        if !cachedVideoLinkLists.isEmpty {
             List {
-                ForEach(0..<videoLinkLists.count, id: \.self) { i in
+                ForEach(0..<cachedVideoLinkLists.count, id: \.self) { i in
                     Button(action: {
-                        willPlayVideoLink = videoLinkLists[i]
+                        willPlayVideoLink = cachedVideoLinkLists[i]
                         isPlayerPresented = true
                     }, label: {
-                        Text(videoLinkLists[i])
+                        Text(cachedVideoLinkLists[i])
                     })
                     .swipeActions {
                         Button(action: {
-                            willDownloadVideoLink = videoLinkLists[i]
+                            willDownloadVideoLink = cachedVideoLinkLists[i]
                             isVideoDownloadPresented = true
                         }, label: {
                             Image(systemName: "square.and.arrow.down")
@@ -70,6 +71,9 @@ struct VideoListView: View {
             }
         } else {
             Text("空视频列表")
+                .onAppear {
+                    cachedVideoLinkLists = videoLinkLists
+                }
         }
     }
 }
