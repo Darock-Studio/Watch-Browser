@@ -41,6 +41,7 @@ struct WatchBrowser_Watch_AppApp: App {
     @State var tapToRadarAlertContent = ""
     @State var isTapToRadarAlertPresented = false
     @State var isClusterInstalledTipPresented = false
+    @State var isSendNSErrorLogPresented = false
     var body: some Scene {
         WindowGroup {
             ZStack {
@@ -49,10 +50,14 @@ struct WatchBrowser_Watch_AppApp: App {
                     .allowsHitTesting(!(isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser))
                     .sheet(isPresented: $shouldTipNewFeatures, content: { NewFeaturesView() })
                     .sheet(isPresented: $isClusterInstalledTipPresented, content: { ClusterTipView() })
+                    .sheet(isPresented: $isSendNSErrorLogPresented, onDismiss: {
+                        UserDefaults.standard.set(false, forKey: "AppNewNSExceptionLogged")
+                    }, content: { SendNSErrorLogView() })
                     .onAppear {
                         if userPasscodeEncrypted.isEmpty || !usePasscodeForLockDarockBrowser {
                             isBrowserLocked = false
                         }
+                        isSendNSErrorLogPresented = UserDefaults.standard.bool(forKey: "AppNewNSExceptionLogged")
                     }
                 if isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser {
                     PasswordInputView(text: $passcodeInputCache, placeholder: "输入密码", hideCancelButton: true, dismissAfterComplete: false) { pwd in
@@ -165,6 +170,75 @@ struct WatchBrowser_Watch_AppApp: App {
     }
 }
 
+struct SendNSErrorLogView: View {
+    @Environment(\.dismiss) var dismiss
+    @State var descriptionInput = ""
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    Text("暗礁浏览器似乎在上次运行中发生了崩溃")
+                        .font(.headline)
+                    Text("不过我们收集到了错误日志～(∠・ω< )⌒☆")
+                }
+                .listRowBackground(Color.clear)
+                Section {
+                    TextField("描述 (可选)", text: $descriptionInput)
+                } footer: {
+                    Text("对问题的描述，例如您在 App 崩溃前做了什么。")
+                }
+                Section {
+                    Button(action: {
+                        if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/NSExceptionLogs") {
+                            do {
+                                var content = ""
+                                var latestTime = 0.0
+                                for file in try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/NSExceptionLogs") {
+                                    if let time = Double(file.dropLast(4)), time > latestTime {
+                                        content = try String(
+                                            contentsOfFile: NSHomeDirectory() + "/Documents/NSExceptionLogs/" + file,
+                                            encoding: .utf8
+                                        )
+                                        latestTime = time
+                                    }
+                                }
+                                if !content.isEmpty {
+                                    let msgToSend = """
+                                        捕获的 NS 异常
+                                        State：0
+                                        LatestNSException：\(content.replacingOccurrences(of: "\n", with: "\\n"))
+                                        LatestNSExceptionTime：\(latestTime)
+                                        Content：\(descriptionInput)
+                                        Time：\(Date.now.timeIntervalSince1970)
+                                        Sender: User
+                                        """
+                                    DarockKit.Network.shared
+                                        .requestString("https://fapi.darock.top:65535/feedback/submit/anony/Darock Browser/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))") { _, _ in }
+                                }
+                            } catch {
+                                globalErrorHandler(error)
+                            }
+                        }
+                        dismiss()
+                        tipWithText("已发送", symbol: "checkmark.circle.fill")
+                    }, label: {
+                        Text("发送")
+                    })
+                    Button(action: {
+                        dismiss()
+                    }, label: {
+                        Text("不发送")
+                    })
+                } header: {
+                    Text("要发送错误日志吗？")
+                }
+            }
+            .navigationTitle("反馈助理")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+}
+
 class AppDelegate: NSObject, WKApplicationDelegate {
     func applicationDidFinishLaunching() {
         NSSetUncaughtExceptionHandler(nsErrorHandler(_:))
@@ -264,18 +338,22 @@ public func nsErrorHandler(_ exception: NSException) {
             }
         }
         try """
-        Name：\(exception.name)
-        Reason：\(exception.reason ?? "nil")
-        Call Stack：
+        Name: \(exception.name)
+        Reason: \(exception.reason ?? "nil")
+        Last Exception Backtrace:
         \(exception.callStackSymbols.joined(separator: "\n"))
         
-        View Hierarchy：
+        Thread Call Stack Symbols:
+        \(Thread.callStackSymbols.joined(separator: "\n"))
+        
+        View Hierarchy:
         \(hierarchyStack.map { "\($0.0)||\($0.1.0)||\($0.1.1)" }.joined(separator: "\n"))
         """.write(
             toFile: NSHomeDirectory() + "/Documents/NSExceptionLogs/\(Date().timeIntervalSince1970).txt",
             atomically: true,
             encoding: .utf8
         )
+        UserDefaults.standard.set(true, forKey: "AppNewNSExceptionLogged")
     } catch {
         print(error)
     }

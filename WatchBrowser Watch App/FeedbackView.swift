@@ -59,7 +59,6 @@ fileprivate let globalStateIcons = [
 
 struct FeedbackView: View {
     @State var feedbackIds = [String]()
-    @State var supportIds = [String]()
     @State var badgeOnIds = [String]()
     var body: some View {
         List {
@@ -106,7 +105,6 @@ struct FeedbackView: View {
         .navigationTitle("反馈助理")
         .onAppear {
             feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
-            supportIds = UserDefaults.standard.stringArray(forKey: "SupportIDs") ?? [String]()
             badgeOnIds.removeAll()
             for id in feedbackIds {
                 DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)") { respStr, isSuccess in
