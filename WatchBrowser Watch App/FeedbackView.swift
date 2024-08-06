@@ -107,7 +107,7 @@ struct FeedbackView: View {
             feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
             badgeOnIds.removeAll()
             for id in feedbackIds {
-                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)") { respStr, isSuccess in
+                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)".compatibleUrlEncoded()) { respStr, isSuccess in
                     if isSuccess {
                         let repCount = respStr.apiFixed().components(separatedBy: "---").count - 1
                         let lastViewCount = UserDefaults.standard.integer(forKey: "RadarFB\(id)ReplyCount")
@@ -144,7 +144,7 @@ struct FeedbackView: View {
                     }
                     Section {
                         ForEach(0..<contentInputs.count, id: \.self) { i in
-                            TextField("描述行\(i + 1)", text: $contentInputs[i])
+                            TextField("描述行\(i &+ 1)", text: $contentInputs[i])
                                 .swipeActions {
                                     if contentInputs.count > 1 {
                                         Button(role: .destructive, action: {
@@ -402,7 +402,7 @@ struct FeedbackView: View {
                             Sender: User
                             """
                             DarockKit.Network.shared
-                                .requestString("https://fapi.darock.top:65535/feedback/submit/anony/Darock Browser/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))") { respStr, isSuccess in
+                                .requestString("https://fapi.darock.top:65535/feedback/submit/anony/Darock Browser/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))".compatibleUrlEncoded()) { respStr, isSuccess in
                                     if isSuccess {
                                         if Int(respStr) != nil {
                                             var arr = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
@@ -541,7 +541,7 @@ struct FeedbackView: View {
                         Time：\(Date.now.timeIntervalSince1970)
                         """.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
                         DarockKit.Network.shared
-                            .requestString("https://fapi.darock.top:65535/radar/reply/Darock Browser/\(id)/\(enced)") { respStr, isSuccess in
+                            .requestString("https://fapi.darock.top:65535/radar/reply/Darock Browser/\(id)/\(enced)".compatibleUrlEncoded()) { respStr, isSuccess in
                                 if isSuccess {
                                     if respStr.apiFixed() == "Success" {
                                         refresh()
@@ -565,7 +565,7 @@ struct FeedbackView: View {
         
         @inline(__always)
         func refresh() {
-            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/\(projName)/\(id)") { respStr, isSuccess in
+            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/\(projName)/\(id)".compatibleUrlEncoded()) { respStr, isSuccess in
                 if isSuccess {
                     formattedTexts.removeAll()
                     replies.removeAll()
@@ -799,11 +799,11 @@ private struct StateMeaningsView: View {
             
             \(Text("\(Image(systemName: globalStateIcons[7]))已修复").foregroundColor(globalStateColors[7]))：修复工作已完成，可更新至最新版本验证修复。
             
-            \(Text("\(Image(systemName: globalStateIcons[8]))问题并不与 App 相关").foregroundColor(globalStateColors[8]))：报告与 App 本身无关，或是问题并非由 App 本身引起。
-            
             \(Text("\(Image(systemName: globalStateIcons[9]))未能复现").foregroundColor(globalStateColors[9]))：未能通过报告中的问题复现问题，需要提供更多信息。
             
-            \(Text("\(Image(systemName: globalStateIcons[10]))需要更多细节").foregroundColor(globalStateColors[10]))：提供的信息不足以让我们确定问题，你需要补充更多信息。
+            \(Text("\(Image(systemName: globalStateIcons[10]))问题并不与 App 相关").foregroundColor(globalStateColors[10]))：报告与 App 本身无关，或是问题并非由 App 本身引起。
+            
+            \(Text("\(Image(systemName: globalStateIcons[11]))需要更多细节").foregroundColor(globalStateColors[11]))：提供的信息不足以让我们确定问题，你需要补充更多信息。
             """)
         }
         .navigationTitle("反馈状态")
@@ -811,6 +811,7 @@ private struct StateMeaningsView: View {
 }
 
 extension String {
+    @_effects(readnone)
     func dropFirst(_ k: Character) -> String {
         if self.hasPrefix(String(k)) {
             return String(self.dropFirst())
@@ -818,6 +819,7 @@ extension String {
             return self
         }
     }
+    @_effects(readnone)
     func dropLast(_ k: Character) -> String {
         if self.hasSuffix(String(k)) {
             return String(self.dropLast())
@@ -825,6 +827,7 @@ extension String {
             return self
         }
     }
+    @_effects(readnone)
     func projNameLinked() -> Self {
         let shortMd5d = String(self.md5.prefix(8)).lowercased()
         let a2nchart: [Character: Int] = ["a": 0, "b": 1, "c": 2, "d": 3, "e": 4, "f": 5, "g": 6, "h": 7, "i": 8, "j": 9, "k": 0, "l": 1, "m": 2, "n": 3, "o": 4, "p": 5, "q": 6, "r": 7, "s": 8, "t": 9, "u": 0, "v": 1, "w": 2, "x": 3, "y": 4, "z": 5] // swiftlint:disable:this line_length
@@ -838,6 +841,7 @@ extension String {
         }
         return ced
     }
+    @_effects(readnone)
     func titleReadable() -> LocalizedStringKey {
         switch self {
         case "State":
@@ -879,6 +883,7 @@ extension Data {
     }
 }
 
+@_effects(readonly)
 func getAllSettingsForAppdiagnose() -> String? {
     let prefPath = NSHomeDirectory() + "/Library/Preferences/com.darock.WatchBrowser.watchkitapp.plist"
     if let plistData = FileManager.default.contents(atPath: prefPath) {
@@ -886,6 +891,7 @@ func getAllSettingsForAppdiagnose() -> String? {
             if var plistObject = try PropertyListSerialization.propertyList(from: plistData, options: [], format: nil) as? [String: Any] {
                 plistObject.removeValue(forKey: "CurrentTabs")
                 plistObject.removeValue(forKey: "WebHistory")
+                plistObject.removeValue(forKey: "UserPasscodeEncrypted")
                 let jsonData = try JSONSerialization.data(withJSONObject: plistObject)
                 return String(decoding: jsonData, as: UTF8.self)
             }

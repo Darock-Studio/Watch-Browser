@@ -1559,126 +1559,18 @@
         }
       }
     },
-    "%@：反馈暂未被阅读，或是正在验证问题。\n\n%@：报告中描述的是预期中的表现。\n\n%@：报告中的问题无法被修复，或是不具有可行性。\n\n%@：在你提交此报告前，已有另一人提出了相同的问题，你仍会在第一个报告得到修复后收到“已修复”的状态更新。\n        你的报告可能会与那些初看似乎具有相同根源的类似报告分到一组。但是，类似的报告也可能包含多种原因。如果你发现该修复方案解决了类似报告中的问题，但无法完全解决你报告的问题，请提交新报告。\n\n%@：短时间内可能无法解决此问题。\n\n%@：Darock 正在为此问题提供修复方案。\n\n%@：修复工作已完成，但还未提交更新或是更新正在等待发布。\n\n%@：修复工作已完成，可更新至最新版本验证修复。\n\n%@：报告与 App 本身无关，或是问题并非由 App 本身引起。\n\n%@：未能通过报告中的问题复现问题，需要提供更多信息。\n\n%@：提供的信息不足以让我们确定问题，你需要补充更多信息。" : {
+    "%@：反馈暂未被阅读，或是正在验证问题。\n\n%@：报告中描述的是预期中的表现。\n\n%@：报告中的问题无法被修复，或是不具有可行性。\n\n%@：在你提交此报告前，已有另一人提出了相同的问题，你仍会在第一个报告得到修复后收到“已修复”的状态更新。\n        你的报告可能会与那些初看似乎具有相同根源的类似报告分到一组。但是，类似的报告也可能包含多种原因。如果你发现该修复方案解决了类似报告中的问题，但无法完全解决你报告的问题，请提交新报告。\n\n%@：短时间内可能无法解决此问题。\n\n%@：Darock 正在为此问题提供修复方案。\n\n%@：修复工作已完成，但还未提交更新或是更新正在等待发布。\n\n%@：修复工作已完成，可更新至最新版本验证修复。\n\n%@：未能通过报告中的问题复现问题，需要提供更多信息。\n\n%@：报告与 App 本身无关，或是问题并非由 App 本身引起。\n\n%@：提供的信息不足以让我们确定问题，你需要补充更多信息。" : {
       "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@: لم تتم قراءة التعليقات بعد، أو يتم التحقق من المشكلة.\n\n%@: يصف التقرير الأداء المتوقع.\n\n%@: لا يمكن إصلاح المشكلة في التقرير أو أنها غير مجدية.\n\n%@: قبل إرسال هذا التقرير، طرح شخص آخر نفس السؤال، وستظل تتلقى تحديثا \"ثابتا\" للحالة بعد إصلاح التقرير الأول.\n\nقد يتم تقسيم تقريرك إلى مجموعات ذات تقارير مماثلة يبدو أن لها نفس الجذور في المرة الأولى. ومع ذلك، قد تحتوي التقارير المماثلة أيضا على أسباب متعددة. إذا وجدت أن حل الإصلاح يحل المشكلة المشابهة للتقرير، ولكن لا يمكنه حل المشكلة التي أبلغت عنها تماما، فيرجى تقديم تقرير جديد.\n\n%@: قد لا يتم حل هذه المشكلة في فترة زمنية قصيرة.\n\n%@: Darock يتم توفير خطة إصلاح لهذه المشكلة.\n\n%@: تم الانتهاء من أعمال الإصلاح، ولكن لم يتم تقديم التحديث أو التحديث في انتظار الإصدار.\n\n%@: تم الانتهاء من أعمال الإصلاح ويمكن تحديثها إلى أحدث إصدار للتحقق من الإصلاح.\n\n%@: التقرير لا علاقة له بالتطبيق نفسه، أو أن المشكلة ليست ناجمة عن التطبيق نفسه.\n\n%@: فشلت المشكلة في إعادة إنتاج المشكلة في التقرير، ويجب تقديم مزيد من المعلومات.\n\n%@: المعلومات المقدمة ليست كافية بالنسبة لنا لتحديد المشكلة. تحتاج إلى إضافة المزيد من المعلومات."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@: Das Feedback wurde noch nicht gelesen oder das Problem wird überprüft.\n\n%@: Der Bericht beschreibt die erwartete Leistung.\n\n%@: Das Problem im Bericht kann nicht behoben werden oder ist nicht machbar.\n\n%@: Bevor Sie diesen Bericht einreichen, hat eine andere Person dieselbe Frage gestellt, und Sie erhalten immer noch eine \"fixierte\" Statusaktualisierung, nachdem der erste Bericht repariert wurde.\n\nIhr Bericht kann in Gruppen mit ähnlichen Berichten unterteilt werden, die beim ersten Mal die gleichen Wurzeln zu haben scheinen. Ähnliche Berichte können jedoch auch mehrere Gründe enthalten. Wenn Sie feststellen, dass die Reparaturlösung das Problem ähnlich wie im Bericht löst, aber das von Ihnen gemeldete Problem nicht vollständig lösen kann, reichen Sie bitte einen neuen Bericht ein.\n\n%@: Dieses Problem kann nicht in kurzer Zeit gelöst werden.\n\n%@: Darock Für dieses Problem wird ein Reparaturplan bereitgestellt.\n\n%@: Die Reparaturarbeiten wurden abgeschlossen, aber das Update wurde nicht eingereicht oder das Update wartet auf die Veröffentlichung.\n\n%@: Die Reparaturarbeiten wurden abgeschlossen und können auf die neueste Version aktualisiert werden, um die Reparatur zu überprüfen.\n\n%@: Der Bericht hat nichts mit der App selbst zu tun, oder das Problem wird nicht von der App selbst verursacht.\n\n%@: Das Problem konnte das Problem im Bericht nicht reproduzieren, und es müssen weitere Informationen bereitgestellt werden.\n\n%@: Die bereitgestellten Informationen reichen nicht aus, um das Problem zu ermitteln. Sie müssen weitere Informationen hinzufügen."
-          }
-        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@: Feedback has not been read yet, or the issue is being verified.\n\n%2$@: The report describes the expected behavior.\n\n%3$@: The issue in the report cannot be fixed or is not feasible.\n\n%4$@: Before you submitted this report, someone else had already raised the same issue. You will still receive a \"Fixed\" status update after the first report is resolved.\n        Your report may be grouped with similar reports that initially seem to have the same root cause. However, similar reports may also contain multiple causes. If you find that the fix resolves the issue in the similar reports but does not fully resolve your reported issue, please submit a new report.\n\n%5$@: This issue may not be resolved in a short period of time.\n\n%6$@: Darock is working on a fix for this issue.\n\n%7$@: The fix has been completed but the update has not been submitted or the update is pending release.\n\n%8$@: The fix has been completed, please update to the latest version to verify the fix.\n\n%9$@: The report is not related to the app itself, or the issue is not caused by the app.\n\n%10$@: Unable to reproduce the issue based on the report, more information is needed.\n\n%11$@: The information provided is insufficient to identify the issue, more details are required."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@: Los comentarios aún no se han leído, o el problema está siendo verificado.\n\n%@: El informe describe el rendimiento esperado.\n\n%@: El problema en el informe no se puede solucionar o no es factible.\n\n%@: Antes de enviar este informe, otra persona ha hecho la misma pregunta, y aún así recibirá una actualización de estado \"fija\" después de que se repare el primer informe.\n\nSu informe puede dividirse en grupos con informes similares que parecen tener las mismas raíces la primera vez. Sin embargo, informes similares también pueden contener múltiples razones. Si encuentra que la solución de reparación resuelve el problema de manera similar al informe, pero no puede resolver completamente el problema que informó, envíe un nuevo informe.\n\n%@: Este problema puede no resolverse en un corto período de tiempo.\n\n%@: Darock Se está proporcionando un plan de reparación para este problema.\n\n%@: El trabajo de reparación se ha completado, pero la actualización no se ha enviado o la actualización está esperando su lanzamiento.\n\n%@: El trabajo de reparación se ha completado y se puede actualizar a la última versión para verificar la reparación.\n\n%@: El informe no tiene nada que ver con la aplicación en sí, o el problema no es causado por la propia aplicación.\n\n%@: El problema no pudo reproducir el problema en el informe, y se necesita proporcionar más información.\n\n%@: La información proporcionada no es suficiente para que determinemos el problema. Necesitas agregar más información."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ : Les commentaires n'ont pas encore été lus, ou le problème est en cours de vérification.\n\n%@ : Le rapport décrit les performances attendues.\n\n%@ : Le problème dans le rapport ne peut pas être résolu ou n'est pas réalisable.\n\n%@ : Avant de soumettre ce rapport, une autre personne a posé la même question, et vous recevrez toujours une mise à jour du statut \"fixe\" après la réparation du premier rapport.\n\nVotre rapport peut être divisé en groupes avec des rapports similaires qui semblent avoir les mêmes racines la première fois. Cependant, des rapports similaires peuvent également contenir de multiples raisons. Si vous trouvez que la solution de réparation résout le problème similaire au rapport, mais ne peut pas résoudre complètement le problème que vous avez signalé, veuillez soumettre un nouveau rapport.\n\n%@ : Ce problème peut ne pas être résolu en peu de temps.\n\n%@ : Darock Un plan de réparation est fourni pour ce problème.\n\n%@ : Le travail de réparation est terminé, mais la mise à jour n'a pas été soumise ou la mise à jour est en attente de publication.\n\n%@ : Le travail de réparation a été terminé et peut être mis à jour vers la dernière version pour vérifier la réparation.\n\n%@ : Le rapport n'a rien à voir avec l'application elle-même, ou le problème n'est pas causé par l'application elle-même.\n\n%@ : Le problème n'a pas réussi à reproduire le problème dans le rapport, et plus d'informations doivent être fournies.\n\n%@ : Les informations fournies ne nous suffisent pas pour déterminer le problème. Vous devez ajouter plus d'informations."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@: प्रतिक्रिया अभी तक नहीं पढ़ी गई है, या समस्या का सत्यापन किया जा रहा है।\n\n%@: रिपोर्ट अपेक्षित प्रदर्शन का वर्णन करती है।\n\n%@: रिपोर्ट में समस्या को ठीक नहीं किया जा सकता है या संभव नहीं है।\n\n%@: इस रिपोर्ट को जमा करने से पहले, किसी अन्य व्यक्ति ने वही प्रश्न पूछा है, और पहली रिपोर्ट की मरम्मत के बाद भी आपको \"निश्चित\" स्थिति अपडेट प्राप्त होगा।\n\nआपकी रिपोर्ट को समान रिपोर्टों वाले समूहों में विभाजित किया जा सकता है जिनकी पहली बार में समान जड़ें प्रतीत होती हैं। हालांकि, इसी तरह की रिपोर्टों में कई कारण भी हो सकते हैं। यदि आप पाते हैं कि मरम्मत समाधान रिपोर्ट के समान समस्या को हल करता है, लेकिन आपके द्वारा रिपोर्ट की गई समस्या को पूरी तरह से हल नहीं कर सकता है, तो कृपया एक नई रिपोर्ट जमा करें।\n\n%@: इस समस्या को थोड़े समय में हल नहीं किया जा सकता है।\n\n%@: Darock इस समस्या के लिए एक मरम्मत योजना प्रदान की जा रही है।\n\n%@: मरम्मत का काम पूरा हो गया है, लेकिन अपडेट सबमिट नहीं किया गया है या अपडेट जारी होने की प्रतीक्षा कर रहा है।\n\n%@: मरम्मत का काम पूरा हो गया है और मरम्मत को सत्यापित करने के लिए नवीनतम संस्करण में अपडेट किया जा सकता है।\n\n%@: रिपोर्ट का ऐप से कोई लेना-देना नहीं है, या समस्या स्वयं ऐप के कारण नहीं है।\n\n%@: समस्या रिपोर्ट में समस्या को पुन: उत्पन्न करने में विफल रही, और अधिक जानकारी प्रदान करने की आवश्यकता है।\n\n%@: प्रदान की गई जानकारी हमारे लिए समस्या निर्धारित करने के लिए पर्याप्त नहीं है। आपको और अधिक जानकारी जोड़ने की आवश्यकता है।"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@: Umpan balik belum dibaca, atau masalahnya sedang diverifikasi.\n\n%@: Laporan tersebut menjelaskan kinerja yang diharapkan.\n\n%@: Masalah dalam laporan tidak dapat diperbaiki atau tidak layak.\n\n%@: Sebelum Anda mengirimkan laporan ini, orang lain telah mengajukan pertanyaan yang sama, dan Anda masih akan menerima pembaruan status \"diperbaiki\" setelah laporan pertama diperbaiki.\n\nLaporan Anda dapat dibagi menjadi beberapa kelompok dengan laporan serupa yang tampaknya memiliki akar yang sama pada awalnya. Namun, laporan serupa juga dapat mengandung beberapa alasan. Jika Anda menemukan bahwa solusi perbaikan memecahkan masalah yang mirip dengan laporan, tetapi tidak dapat sepenuhnya menyelesaikan masalah yang Anda laporkan, silakan kirimkan laporan baru.\n\n%@: Masalah ini mungkin tidak dapat diselesaikan dalam waktu singkat.\n\n%@: Darock Sebuah rencana perbaikan sedang disediakan untuk masalah ini.\n\n%@: Pekerjaan perbaikan telah selesai, tetapi pembaruan belum dikirimkan atau pembaruan sedang menunggu rilis.\n\n%@: Pekerjaan perbaikan telah selesai dan dapat diperbarui ke versi terbaru untuk memverifikasi perbaikan.\n\n%@: Laporan tidak ada hubungannya dengan Aplikasi itu sendiri, atau masalahnya tidak disebabkan oleh Aplikasi itu sendiri.\n\n%@: Masalah gagal mereproduksi masalah dalam laporan, dan lebih banyak informasi perlu diberikan.\n\n%@: Informasi yang diberikan tidak cukup bagi kami untuk menentukan masalahnya. Anda perlu menambahkan lebih banyak informasi."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@: Il feedback non è stato ancora letto o il problema è in fase di verifica.\n\n%@: Il rapporto descrive le prestazioni previste.\n\n%@: Il problema nel rapporto non può essere risolto o non è fattibile.\n\n%@: Prima di inviare questo rapporto, un'altra persona ha posto la stessa domanda e riceverai comunque un aggiornamento di stato \"fisso\" dopo che il primo rapporto è stato riparato.\n\nIl tuo rapporto può essere diviso in gruppi con rapporti simili che sembrano avere le stesse radici alla prima volta. Tuttavia, rapporti simili possono anche contenere molteplici motivi. Se scopri che la soluzione di riparazione risolve il problema simile al rapporto, ma non può risolvere completamente il problema che hai segnalato, invia un nuovo rapporto.\n\n%@: Questo problema potrebbe non essere risolto in un breve periodo di tempo.\n\n%@: Darock Viene fornito un piano di riparazione per questo problema.\n\n%@: Il lavoro di riparazione è stato completato, ma l'aggiornamento non è stato inviato o l'aggiornamento è in attesa di rilascio.\n\n%@: Il lavoro di riparazione è stato completato e può essere aggiornato all'ultima versione per verificare la riparazione.\n\n%@: Il rapporto non ha nulla a che fare con l'app stessa, o il problema non è causato dall'app stessa.\n\n%@: Il problema non è riuscito a riprodurre il problema nel rapporto e devono essere fornite ulteriori informazioni.\n\n%@: Le informazioni fornite non sono sufficienti per determinare il problema. È necessario aggiungere ulteriori informazioni."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@：フィードバックはまだ読まれていない、または問題を検証している。\n\n%@：報告書に記述されているのは予想された表現です。\n\n%@：報告書の問題は修復できない、または実現不可能です。\n\n%@：あなたがこのレポートを提出する前に、すでに別の人が同じ問題を提起しました。最初のレポートが修復された後も「修復済み」のステータスの更新が届きます。\n\nあなたのレポートは、最初は同じルーツを持っているように見える類似のレポートとグループに分けられるかもしれません。 しかし、同様の報告には複数の理由が含まれる可能性があります。 もしこの修復案が報告書と似たような問題を解決したが、あなたが報告した問題を完全に解決できないことが分かったら、新しい報告書を提出してください。\n\n%@：短期間でこの問題を解決できないかもしれない。\n\n%@：Darockこの問題に対する修復案を提供しています。\n\n%@：修復作業は完了しましたが、まだ更新を提出していないか、更新は発表を待っています。\n\n%@：修復作業が完了しました。最新バージョンに更新して修復を検証できます。\n\n%@：レポートはApp自体とは無関係、または問題はApp自体によって引き起こされたものではありません。\n\n%@：報告書の問題を再現できなかったため、より多くの情報を提供する必要があります。\n\n%@：提供された情報は私たちが問題を確定するのに十分ではありません。あなたはより多くの情報を補足する必要があります。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@: 피드백이 아직 읽히지 않았거나 문제를 검증하고 있습니다.\n\n%@: 보고서에 묘사된 것은 예상된 성과입니다.\n\n%@: 보고서의 문제는 고칠 수 없거나 실행 가능하지 않습니다.\n\n%@: 당신이 이 보고서를 제출하기 전에 이미 다른 사람이 같은 문제를 제기했고, 당신은 여전히 첫 번째 보고서가 수정된 후에도 \"수정됨\" 상태 업데이트를 받게 될 것입니다.\n\n당신의 보고서는 처음에는 같은 근원을 가지고 있는 것처럼 보이는 유사한 보고서와 한 그룹으로 나눌 수 있습니다. 그러나 유사한 보고서에는 여러 가지 이유가 포함될 수 있습니다. 이 수정안이 보고서와 유사한 문제를 해결했지만 보고한 문제를 완전히 해결할 수 없다는 것을 발견하면 새로운 보고서를 제출하십시오.\n\n%@: 단기간에 이 문제를 해결하지 못할 수도 있습니다.\n\n%@: Darock 이 문제에 대한 복구 방안을 제공하고 있습니다.\n\n%@: 복구 작업이 완료되었지만 아직 업데이트를 제출하지 않았거나 업데이트가 출시를 기다리고 있습니다.\n\n%@: 복구 작업이 완료되었으며, 최신 버전으로 업데이트하여 복구를 검증할 수 있습니다.\n\n%@: 보고서가 앱 자체와 관련이 없거나 문제가 앱 자체에서 발생한 것이 아닙니다.\n\n%@: 보고서의 문제를 통해 문제를 재현하지 못했으며, 더 많은 정보를 제공해야 합니다.\n\n%@: 제공된 정보는 우리가 문제를 파악하기에 충분하지 않습니다. 당신은 더 많은 정보를 추가해야 합니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@: De feedback is nog niet gelezen, of het probleem wordt geverifieerd.\n\n%@: Het rapport beschrijft de verwachte prestaties.\n\n%@: Het probleem in het rapport kan niet worden opgelost of is niet haalbaar.\n\n%@: Voordat u dit rapport indient, heeft een andere persoon dezelfde vraag gesteld en ontvangt u nog steeds een \"vaste\" statusupdate nadat het eerste rapport is gerepareerd.\n\nUw rapport kan worden onderverdeeld in groepen met vergelijkbare rapporten die bij de eerste keer dezelfde wortels lijken te hebben. Vergelijkbare rapporten kunnen echter ook meerdere redenen bevatten. Als u vindt dat de reparatieoplossing het probleem op dezelfde manier oplost als in het rapport, maar het door u gemelde probleem niet volledig kan oplossen, dient u een nieuw rapport in.\n\n%@: Dit probleem kan niet in korte tijd worden opgelost.\n\n%@: Darock Voor dit probleem wordt een reparatieplan verstrekt.\n\n%@: De reparatiewerkzaamheden zijn voltooid, maar de update is niet ingediend of de update wacht op vrijgave.\n\n%@: De reparatiewerkzaamheden zijn voltooid en kunnen worden bijgewerkt naar de nieuwste versie om de reparatie te verifiëren.\n\n%@: Het rapport heeft niets te maken met de app zelf, of het probleem wordt niet veroorzaakt door de app zelf.\n\n%@: Het probleem kon het probleem niet reproduceren in het rapport en er moet meer informatie worden verstrekt.\n\n%@: De verstrekte informatie is niet genoeg voor ons om het probleem te bepalen. U moet meer informatie toevoegen."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@: Opinia nie została jeszcze przeczytana lub problem jest weryfikowany.\n\n%@: Raport opisuje oczekiwaną wydajność.\n\n%@: Problem w raporcie nie może zostać rozwiązany lub nie jest wykonalny.\n\n%@: Zanim prześlesz ten raport, inna osoba zadała to samo pytanie, a Ty nadal będziesz otrzymywać \"naprawioną\" aktualizację statusu po naprawie pierwszego raportu.\n\nTwój raport może być podzielony na grupy z podobnymi raportami, które wydają się mieć te same korzenie za pierwszym razem. Jednak podobne raporty mogą również zawierać wiele powodów. Jeśli okaże się, że rozwiązanie naprawy rozwiązuje problem podobny do raportu, ale nie może całkowicie rozwiązać problemu, który zgłosiłeś, prześlij nowe zgłoszenie.\n\n%@: Ten problem może nie zostać rozwiązany w krótkim czasie.\n\n%@: Darock Dla tego problemu przewidziany jest plan naprawy.\n\n%@: Prace naprawcze zostały zakończone, ale aktualizacja nie została przesłana lub aktualizacja oczekuje na wydanie.\n\n%@: Prace naprawcze zostały zakończone i można je zaktualizować do najnowszej wersji w celu weryfikacji naprawy.\n\n%@: Raport nie ma nic wspólnego z samą aplikacją lub problem nie jest spowodowany przez samą aplikację.\n\n%@: Problem nie odtworzył problemu w raporcie i należy podać więcej informacji.\n\n%@: Podane informacje nie są dla nas wystarczające, aby określić problem. Musisz dodać więcej informacji."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@: O feedback ainda não foi lido ou o problema está sendo verificado.\n\n%@: O relatório descreve o desempenho esperado.\n\n%@: O problema no relatório não pode ser corrigido ou não é viável.\n\n%@: Antes de enviar este relatório, outra pessoa fez a mesma pergunta, e você ainda receberá uma atualização de status \"corrigida\" depois que o primeiro relatório for reparado.\n\nSeu relatório pode ser dividido em grupos com relatórios semelhantes que parecem ter as mesmas raízes na primeira vez. No entanto, relatórios semelhantes também podem conter várias razões. Se você achar que a solução de reparo resolve o problema semelhante ao relatório, mas não pode resolver completamente o problema que você relatou, envie um novo relatório.\n\n%@: Este problema pode não ser resolvido em um curto período de tempo.\n\n%@: Darock Um plano de reparo está sendo fornecido para este problema.\n\n%@: O trabalho de reparo foi concluído, mas a atualização não foi enviada ou a atualização está aguardando lançamento.\n\n%@: O trabalho de reparo foi concluído e pode ser atualizado para a versão mais recente para verificar o reparo.\n\n%@: O relatório não tem nada a ver com o próprio aplicativo, ou o problema não é causado pelo próprio aplicativo.\n\n%@: O problema não conseguiu reproduzir o problema no relatório, e mais informações precisam ser fornecidas.\n\n%@: As informações fornecidas não são suficientes para determinarmos o problema. Você precisa adicionar mais informações."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@: Отзыв еще не был прочитан или проблема проверяется.\n\n%@: В отчете описывается ожидаемая производительность.\n\n%@: Проблема в отчете не может быть исправлена или невозможна.\n\n%@: Перед отправкой этого отчета другой человек задал тот же вопрос, и вы все равно будете получать \"исправленное\" обновление статуса после того, как первый отчет будет исправлен.\n\nВаш отчет может быть разделен на группы с похожими отчетами, которые, кажется, имеют одни и те же корни в первый раз. Однако подобные отчеты также могут содержать несколько причин. Если вы обнаружите, что решение по ремонту решает проблему, аналогичную отчету, но не может полностью решить проблему, о которой вы сообщили, пожалуйста, отправьте новый отчет.\n\n%@: Эта проблема не может быть решена за короткий промежуток времени.\n\n%@: Darock Для этой проблемы предоставляется план ремонта.\n\n%@: Ремонтные работы завершены, но обновление не было отправлено или обновление ожидает выпуска.\n\n%@: Ремонтные работы завершены и могут быть обновлены до последней версии для проверки ремонта.\n\n%@: Отчет не имеет ничего общего с самим приложением, или проблема не вызвана самим приложением.\n\n%@: Проблема не смогла воспроизвести проблему в отчете, и необходимо предоставить дополнительную информацию.\n\n%@: Предоставленной информации недостаточно для определения проблемы. Вам нужно добавить больше информации."
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@: ยังไม่ได้อ่านข้อเสนอแนะ หรือปัญหากําลังถูกตรวจสอบ\n\n%@: รายงานอธิบายประสิทธิภาพที่คาดหวัง\n\n%@: ปัญหาในรายงานไม่สามารถแก้ไขได้หรือไม่เป็นไปได้\n\n%@: ก่อนที่คุณจะส่งรายงานนี้ บุคคลอื่นได้ถามคําถามเดียวกัน และคุณจะยังคงได้รับการอัปเดตสถานะ \"แก้ไขแล้ว\" หลังจากรายงานฉบับแรกได้รับการซ่อมแซม\n\nรายงานของคุณอาจถูกแบ่งออกเป็นกลุ่มที่มีรายงานที่คล้ายกันซึ่งดูเหมือนจะมีรากเดียวกันในครั้งแรก อย่างไรก็ตาม รายงานที่คล้ายกันอาจมีเหตุผลหลายประการ หากคุณพบว่าโซลูชันการซ่อมแซมแก้ไขปัญหาที่คล้ายกับรายงาน แต่ไม่สามารถแก้ไขปัญหาที่คุณรายงานได้อย่างสมบูรณ์ โปรดส่งรายงานใหม่\n\n%@: ปัญหานี้อาจไม่ได้รับการแก้ไขในระยะเวลาอันสั้น\n\n%@: Darock กําลังจัดทําแผนการซ่อมแซมสําหรับปัญหานี้\n\n%@: งานซ่อมแซมเสร็จสมบูรณ์แล้ว แต่ยังไม่ได้ส่งการอัปเดตหรือการอัปเดตกําลังรอการเผยแพร่\n\n%@: งานซ่อมแซมเสร็จสมบูรณ์แล้วและสามารถอัปเดตเป็นเวอร์ชันล่าสุดเพื่อตรวจสอบการซ่อมแซมได้\n\n%@: รายงานไม่มีส่วนเกี่ยวข้องกับตัวแอปเอง หรือปัญหาไม่ได้เกิดจากตัวแอปเอง\n\n%@: ปัญหาไม่สามารถทําซ้ําปัญหาในรายงานได้ และจําเป็นต้องให้ข้อมูลเพิ่มเติม\n\n%@: ข้อมูลที่ให้ไว้ไม่เพียงพอสําหรับเราที่จะระบุปัญหา คุณต้องเพิ่มข้อมูลเพิ่มเติม"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@: Geri bildirim henüz okunmadı veya sorun doğrulanıyor.\n\n%@: Raporda beklenen performans açıklanmaktadır.\n\n%@: Rapordaki sorun çözülemiyor veya mümkün değil.\n\n%@: Bu raporu göndermeden önce, başka bir kişi aynı soruyu sordu ve ilk rapor onarıldıktan sonra yine de \"sabit\" bir durum güncellemesi alacaksınız.\n\nRaporunuz, ilk seferde aynı köklere sahip gibi görünen benzer raporlara sahip gruplara ayrılabilir. Bununla birlikte, benzer raporlar birden fazla neden de içerebilir. Onarım çözümünün rapora benzer sorunu çözdüğünü ancak bildirdiğiniz sorunu tamamen çözemediğini fark ederseniz, lütfen yeni bir rapor gönderin.\n\n%@: Bu sorun kısa sürede çözülmeyebilir.\n\n%@: Darock Bu sorun için bir onarım planı sağlanmaktadır.\n\n%@: Onarım çalışması tamamlandı, ancak güncelleme gönderilmedi veya güncelleme yayınlanmayı bekliyor.\n\n%@: Onarım işi tamamlandı ve onarımı doğrulamak için en son sürüme güncellenebilir.\n\n%@: Raporun Uygulamanın kendisiyle hiçbir ilgisi yoktur veya sorun Uygulamanın kendisinden kaynaklanmaz.\n\n%@: Sorun, sorunu raporda yeniden üretemedi ve daha fazla bilgi sağlanması gerekiyor.\n\n%@: Verilen bilgiler sorunu belirlememiz için yeterli değil. Daha fazla bilgi eklemeniz gerekiyor."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@: Відгук ще не прочитано, або проблема перевіряється.\n\n%@: У звіті описана очікувана продуктивність.\n\n%@: Проблема у звіті не може бути виправлена або неможлива.\n\n%@: Перед тим, як надіслати цей звіт, інша людина задала те саме питання, і ви все одно отримаєте \"виправлене\" оновлення статусу після виправлення першого звіту.\n\nВаш звіт може бути розділений на групи з подібними звітами, які, здається, мають однакові корені в перший раз. Однак подібні звіти також можуть містити кілька причин. Якщо ви виявите, що рішення для ремонту вирішує проблему, подібну до звіту, але не може повністю вирішити проблему, про яку ви повідомили, будь ласка, надішліть новий звіт.\n\n%@: Ця проблема не може бути вирішена за короткий проміжок часу.\n\n%@: Darock Для цієї проблеми надається план ремонту.\n\n%@: Ремонтні роботи завершені, але оновлення не надіслано або оновлення очікує на випуск.\n\n%@: Ремонтні роботи завершені і можуть бути оновлені до останньої версії для перевірки ремонту.\n\n%@: Звіт не має нічого спільного з самим додатком, або проблема не викликана самим додатком.\n\n%@: Проблема не змогла відтворити проблему у звіті, і необхідно надати більше інформації.\n\n%@: Наданої інформації недостатньо для визначення проблеми. Вам потрібно додати більше інформації."
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@: Phản hồi chưa được đọc hoặc vấn đề đang được xác minh.\n\n%@: Báo cáo mô tả hiệu suất dự kiến.\n\n%@: Vấn đề trong báo cáo không thể khắc phục hoặc không khả thi.\n\n%@: Trước khi bạn gửi báo cáo này, một người khác đã hỏi cùng một câu hỏi và bạn vẫn sẽ nhận được bản cập nhật trạng thái \"đã sửa\" sau khi báo cáo đầu tiên được sửa chữa.\n\nBáo cáo của bạn có thể được chia thành các nhóm với các báo cáo tương tự dường như có cùng nguồn gốc ngay lần đầu tiên. Tuy nhiên, các báo cáo tương tự cũng có thể chứa nhiều lý do. Nếu bạn thấy rằng giải pháp sửa chữa giải quyết vấn đề tương tự như báo cáo, nhưng không thể giải quyết hoàn toàn vấn đề bạn đã báo cáo, vui lòng gửi báo cáo mới.\n\n%@: Vấn đề này có thể không được giải quyết trong một khoảng thời gian ngắn.\n\n%@: Darock Một kế hoạch sửa chữa đang được cung cấp cho vấn đề này.\n\n%@: Công việc sửa chữa đã hoàn thành, nhưng bản cập nhật chưa được gửi hoặc bản cập nhật đang chờ phát hành.\n\n%@: Công việc sửa chữa đã hoàn thành và có thể được cập nhật lên phiên bản mới nhất để xác minh việc sửa chữa.\n\n%@: Báo cáo không liên quan gì đến bản thân Ứng dụng hoặc sự cố không phải do chính Ứng dụng gây ra.\n\n%@: Vấn đề không tái tạo được vấn đề trong báo cáo và cần cung cấp thêm thông tin.\n\n%@: Thông tin được cung cấp không đủ để chúng tôi xác định vấn đề. Bạn cần thêm thông tin."
+            "value" : "%1$@: Feedback has not been read yet, or the issue is being verified.\n\n%2$@: The report describes the expected behavior.\n\n%3$@: The issue in the report cannot be fixed or is not feasible.\n\n%4$@: Before you submitted this report, someone else had already raised the same issue. You will still receive a \"Fixed\" status update after the first report is resolved.\n        Your report may be grouped with similar reports that initially seem to have the same root cause. However, similar reports may also contain multiple causes. If you find that the fix resolves the issue in the similar reports but does not fully resolve your reported issue, please submit a new report.\n\n%5$@: This issue may not be resolved in a short period of time.\n\n%6$@: Darock is working on a fix for this issue.\n\n%7$@: The fix has been completed but the update has not been submitted or the update is pending release.\n\n%8$@: The fix has been completed, please update to the latest version to verify the fix.\n\n%9$@: Unable to reproduce the issue based on the report, more information is needed.\n\n%10$@: The report is not related to the app itself, or the issue is not caused by the app.\n\n%11$@: The information provided is insufficient to identify the issue, more details are required."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$@：反馈暂未被阅读，或是正在验证问题。\n\n%2$@：报告中描述的是预期中的表现。\n\n%3$@：报告中的问题无法被修复，或是不具有可行性。\n\n%4$@：在你提交此报告前，已有另一人提出了相同的问题，你仍会在第一个报告得到修复后收到“已修复”的状态更新。\n        你的报告可能会与那些初看似乎具有相同根源的类似报告分到一组。但是，类似的报告也可能包含多种原因。如果你发现该修复方案解决了类似报告中的问题，但无法完全解决你报告的问题，请提交新报告。\n\n%5$@：短时间内可能无法解决此问题。\n\n%6$@：Darock 正在为此问题提供修复方案。\n\n%7$@：修复工作已完成，但还未提交更新或是更新正在等待发布。\n\n%8$@：修复工作已完成，可更新至最新版本验证修复。\n\n%9$@：报告与 App 本身无关，或是问题并非由 App 本身引起。\n\n%10$@：未能通过报告中的问题复现问题，需要提供更多信息。\n\n%11$@：提供的信息不足以让我们确定问题，你需要补充更多信息。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
+            "value" : "%1$@：反馈暂未被阅读，或是正在验证问题。\n\n%2$@：报告中描述的是预期中的表现。\n\n%3$@：报告中的问题无法被修复，或是不具有可行性。\n\n%4$@：在你提交此报告前，已有另一人提出了相同的问题，你仍会在第一个报告得到修复后收到“已修复”的状态更新。\n        你的报告可能会与那些初看似乎具有相同根源的类似报告分到一组。但是，类似的报告也可能包含多种原因。如果你发现该修复方案解决了类似报告中的问题，但无法完全解决你报告的问题，请提交新报告。\n\n%5$@：短时间内可能无法解决此问题。\n\n%6$@：Darock 正在为此问题提供修复方案。\n\n%7$@：修复工作已完成，但还未提交更新或是更新正在等待发布。\n\n%8$@：修复工作已完成，可更新至最新版本验证修复。\n\n%9$@：未能通过报告中的问题复现问题，需要提供更多信息。\n\n%10$@：报告与 App 本身无关，或是问题并非由 App 本身引起。\n\n%11$@：提供的信息不足以让我们确定问题，你需要补充更多信息。"
           }
         }
       }
@@ -1878,7 +1770,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@���:%@%lld"
+            "value" : "%@%lld:%@%lld"
           }
         },
         "ru" : {
@@ -4787,124 +4679,6 @@
         }
       }
     },
-    "3.5 订阅免费试用兑换" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 اشترك للتبادل التجريبي المجاني"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 Abonnieren Sie den kostenlosen Testaustausch"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 Subscription Free Trial Redemption"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 Suscríbete para un intercambio de prueba gratuito"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 Abonnez-vous pour un échange d'essai gratuit"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 मुफ्त परीक्षण विनिमय के लिए सदस्यता लें"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 Berlangganan untuk pertukaran percobaan gratis"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 Iscriviti per uno scambio di prova gratuito"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 無料試用サブスクリプションを利用"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 구독 무료 체험 교환"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 Abonneer u voor gratis proefruil"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 Subskrybuj bezpłatną wymianę próbną"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 Inscreva-se para troca de avaliação gratuita"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 Подписка Бесплатная пробная биржа"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 สมัครสมาชิกเพื่อแลกเปลี่ยนทดลองใช้ฟรี"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 Ücretsiz deneme değişimi için abone olun"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 Підпишіться на безкоштовний пробний обмін"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 Đăng ký trao đổi dùng thử miễn phí"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3.5 訂閱免費試用兌換"
-          }
-        }
-      }
-    },
     "3x" : {
       "localizations" : {
         "ar" : {
@@ -5143,124 +4917,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "4"
-          }
-        }
-      }
-    },
-    "4.0 订阅免费试用兑换" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4.0 تبادل تجريبي مجاني للاشتراك"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4.0 Abonnement Kostenloser Testaustausch"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4.0 Subscription Free Trial Redemption"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4.0 Suscripción Intercambio de prueba gratuito"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4.0 Abonnement Échange d'essai gratuit"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4.0 सदस्यता मुफ्त परीक्षण विनिमय"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4.0 Pertukaran Percobaan Gratis Berlangganan"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4.0 Abbonamento Scambio di prova gratuito"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4.0 無料試用サブスクリプションを利用"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4.0 구독 무료 체험 교환"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4.0 Abonnement Gratis Proef Uitwisseling"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Subskrypcja 4.0 Bezpłatna wymiana próbna"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4.0 Assinatura Troca de Avaliação Gratuita"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4.0 Подписка Бесплатная Пробная Версия Погасление"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4.0 การสมัครสมาชิกทดลองใช้ฟรี แลกเปลี่ยน"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4.0 Abonelik Ücretsiz Deneme Değişimi"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Підписка 4.0 Безкоштовний пробний обмін"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Đăng ký 4.0 Trao đổi dùng thử miễn phí"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4.0 訂閱免費試用兌換"
           }
         }
       }
@@ -7546,7 +7202,18 @@
       },
       "shouldTranslate" : false
     },
-    "Crash This App" : {
+    "Crash This App through NSException" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crash This App through NSException"
+          }
+        }
+      },
+      "shouldTranslate" : false
+    },
+    "Crash This App through Swift fatalError" : {
       "shouldTranslate" : false
     },
     "D" : {
@@ -8501,124 +8168,6 @@
     },
     "Darock Studio" : {
       "shouldTranslate" : false
-    },
-    "Darock 为暗礁浏览器用户准备了暗礁助手的订阅免费试用" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock تم إعداد نسخة اشتراك مجانية من Reef Assistant لمستخدمي متصفح الشعاب المرجانية."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock Für Reef-Browser-Benutzer wurde eine kostenlose Testversion von Reef Assistant vorbereitet."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock provides a subscription free trial of the Darock Assistant for users of the Darock Browser"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock Se ha preparado una prueba de suscripción gratuita de Reef Assistant para los usuarios de Reef Browser."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock Un essai d'abonnement gratuit de Reef Assistant a été préparé pour les utilisateurs de navigateurs reef."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock रीफ ब्राउज़र उपयोगकर्ताओं के लिए रीफ सहायक का एक मुफ्त सदस्यता परीक्षण तैयार किया गया है।"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock Uji coba berlangganan gratis Reef Assistant telah disiapkan untuk pengguna browser reef."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock Una prova di abbonamento gratuita di Reef Assistant è stata preparata per gli utenti del browser Reef."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "DarockはDarockブラウザユーザーのためにDarockアシスタントの無料試用を提供します"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock 암초 브라우저 사용자를 위해 암초 도우미의 구독 무료 체험을 준비했습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock Een gratis abonnementsproefversie van Reef Assistant is voorbereid voor gebruikers van reef-browsers."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock Dla użytkowników przeglądarki reef przygotowano bezpłatną wersję próbną subskrypcji Reef Assistant."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock Uma avaliação de assinatura gratuita do Reef Assistant foi preparada para usuários de navegadores de recife."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock подготовил бесплатную пробную версию Reef Assistant для пользователей Reef Browser."
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock การทดลองสมัครสมาชิกฟรีของ Reef Assistant ได้จัดทําขึ้นสําหรับผู้ใช้เบราว์เซอร์ reef"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock Reef tarayıcı kullanıcıları için Reef Assistant'ın ücretsiz abonelik deneme sürümü hazırlanmıştır."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock Безкоштовна пробна версія підписки Reef Assistant була підготовлена для користувачів браузера Reef."
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock Bản dùng thử đăng ký miễn phí của Reef Assistant đã được chuẩn bị cho người dùng trình duyệt reef."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock 為暗礁瀏覽器用戶準備了暗礁助手的訂閱免費試用"
-          }
-        }
-      }
     },
     "Darock 始终重视您的隐私，所有 Cookie 仅在本地存储" : {
       "localizations" : {
@@ -24673,6 +24222,16 @@
         }
       }
     },
+    "删除项目" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Item"
+          }
+        }
+      }
+    },
     "前往 App Store 下载" : {
       "localizations" : {
         "ar" : {
@@ -40653,6 +40212,16 @@
         }
       }
     },
+    "我们已修复 watchOS 9 的部分网络访问问题" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We have fixed network access issues in watchOS 9."
+          }
+        }
+      }
+    },
     "我应当怎么做？" : {
       "localizations" : {
         "ar" : {
@@ -43025,120 +42594,12 @@
         }
       }
     },
-    "推荐 - 暗礁助手" : {
+    "推荐 - 暗礁文件" : {
       "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "التوصية - مساعد الشعاب المرجانية"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Empfehlung - Riffassistent"
-          }
-        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Suggestion - Darock Assistant"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recomendación - Asistente de arrecife"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recommandation - Assistant de récif"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "सिफारिश - रीफ सहायक"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rekomendasi - Asisten Karang"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Raccomandazione - Reef Assistant"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "おすすめ - Darockアシスタント"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "추천 - 암초 도우미"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aanbeveling - Reef Assistant"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rekomendacja - Reef Assistant"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recomendação - Reef Assistant"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Рекомендуется - Помощник По Рифу"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "คําแนะนํา - ผู้ช่วยแนวปะการัง"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tavsiye - Resif Asistanı"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Рекомендація - Reef Assistant"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Đề xuất - Trợ lý rạn san hô"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "推薦 - 暗礁助手"
+            "value" : "Suggestion - Cluster"
           }
         }
       }
@@ -46393,6 +45854,16 @@
         }
       }
     },
+    "无可播放的视频" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No playable videos"
+          }
+        }
+      }
+    },
     "无打开的标签页" : {
       "localizations" : {
         "ar" : {
@@ -47687,6 +47158,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "暗礁文件可与暗礁浏览器配合使用，在安装暗礁文件后，您可以将暗礁浏览器中的本地媒体存储至暗礁文件。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cluster can be used with Darock Browser. After installing Cluster, you can store local media from Darock Browser to Cluster."
           }
         }
       }
@@ -56120,6 +55601,16 @@
         }
       }
     },
+    "现在，App 内所有网络功能已在 watchOS 9 中正常运行，“反馈助理”可正常工作。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All network features within the app are now functioning properly in watchOS 9, and \"Feedback Assistant\" is working correctly."
+          }
+        }
+      }
+    },
     "现在，可将暗礁浏览器的本地文件分享到暗礁文件" : {
       "localizations" : {
         "ar" : {
@@ -56710,120 +56201,12 @@
         }
       }
     },
-    "由 Darock 开发的暗礁助手让您能够在 iPhone 和 Apple Watch 上与 AI 对话并获取帮助" : {
+    "由 Darock 开发的暗礁暗礁文件让您能够在 Apple Watch 上轻松存储、管理和查看文件。" : {
       "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "يسمح لك Reef Assistant الذي طورته Darock بالتحدث إلى الذكاء الاصطناعي والحصول على المساعدة على iPhone وApple Watch."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Assistant wurde von Darock entwickelt und ermöglicht es Ihnen, mit KI zu sprechen und Hilfe auf iPhone und Apple Watch zu erhalten."
-          }
-        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The Darock Assistant developed by Darock allows you to converse with AI and get help on your iPhone and Apple Watch"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Assistant desarrollado por Darock te permite hablar con IA y obtener ayuda en iPhone y Apple Watch."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Assistant développé par Darock vous permet de parler à l'IA et d'obtenir de l'aide sur iPhone et Apple Watch."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock द्वारा विकसित रीफ सहायक आपको एआई से बात करने और आईफोन और ऐप्पल वॉच पर सहायता प्राप्त करने की अनुमति देता है।"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Assistant yang dikembangkan oleh Darock memungkinkan Anda untuk berbicara dengan AI dan mendapatkan bantuan di iPhone dan Apple Watch."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Assistant sviluppato da Darock ti consente di parlare con l'IA e ottenere aiuto su iPhone e Apple Watch."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darockが開発したDarockアシスタントを使用して、iPhoneやApple WatchでAIと対話し、支援を受けることができます"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock에서 개발한 암초 도우미를 사용하면 iPhone 및 Apple Watch에서 AI와 대화하고 도움을 받을 수 있습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Met Reef Assistant ontwikkeld door Darock kun je met AI praten en hulp krijgen op iPhone en Apple Watch."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Assistant opracowany przez Darock pozwala rozmawiać ze sztuczną inteligencją i uzyskać pomoc na iPhonie i Apple Watch."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O Reef Assistant desenvolvido pela Darock permite que você converse com a IA e obtenha ajuda no iPhone e no Apple Watch."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Assistant, разработанный Darock, позволяет вам разговаривать с ИИ и получать помощь на iPhone и Apple Watch."
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Assistant ที่พัฒนาโดย Darock ช่วยให้คุณสามารถพูดคุยกับ AI และรับความช่วยเหลือบน iPhone และ Apple Watch"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock tarafından geliştirilen Reef Assistant, AI ile konuşmanıza ve iPhone ve Apple Watch hakkında yardım almanıza olanak tanır."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Assistant, розроблений Darock, дозволяє спілкуватися зі штучним інтелектом та отримувати допомогу на iPhone та Apple Watch."
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Assistant được phát triển bởi Darock cho phép bạn nói chuyện với AI và nhận trợ giúp trên iPhone và Apple Watch."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "由 Darock 開發的暗礁助手讓您能夠在 iPhone 和 Apple Watch 上與 AI 對話並獲取幫助"
+            "value" : "Developed by Darock, Cluster allows you to easily store, manage, and view files on your Apple Watch."
           }
         }
       }
@@ -58488,6 +57871,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "確定嗎？"
+          }
+        }
+      }
+    },
+    "确定要删除此项目吗\n此操作不可撤销" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to delete this item?\nThis action cannot be undone."
           }
         }
       }
@@ -65830,6 +65223,16 @@
         }
       }
     },
+    "起点小说" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qidian Novel (Chinese, Simplified)"
+          }
+        }
+      }
+    },
     "跳转到...(秒)" : {
       "localizations" : {
         "ar" : {
@@ -72682,6 +72085,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "锁定标签页" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lock Tabs"
           }
         }
       }

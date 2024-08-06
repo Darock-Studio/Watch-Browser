@@ -252,7 +252,7 @@ struct MainView: View {
     @AppStorage("IsAllowCookie") var isAllowCookie = false
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
     @AppStorage("IsShowBetaTest1") var isShowBetaTest = true
-    @AppStorage("IsShowDAssistantAd") var isShowDAssistantAd = true
+    @AppStorage("IsShowClusterAd") var isShowClusterAd = true
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
     @AppStorage("PreloadSearchContent") var preloadSearchContent = true
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
@@ -332,7 +332,7 @@ struct MainView: View {
             let feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
             newFeedbackCount = 0
             for id in feedbackIds {
-                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)") { respStr, isSuccess in
+                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)".compatibleUrlEncoded()) { respStr, isSuccess in
                     if isSuccess {
                         let repCount = respStr.apiFixed().components(separatedBy: "---").count - 1
                         let lastViewCount = UserDefaults.standard.integer(forKey: "RadarFB\(id)ReplyCount")
@@ -342,7 +342,7 @@ struct MainView: View {
                     }
                 }
             }
-            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/newver") { respStr, isSuccess in
+            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
                 if isSuccess {
                     let spdVer = respStr.apiFixed().split(separator: ".")
                     if spdVer.count == 3 {
@@ -437,7 +437,7 @@ struct MainView: View {
                             if textOrURL != "" {
                                 Button(action: {
                                     let userdefault = UserDefaults.standard
-                                    let total = userdefault.integer(forKey: "BookmarkTotal") + 1
+                                    let total = userdefault.integer(forKey: "BookmarkTotal") &+ 1
                                     let markName = { () -> String in
                                         if textOrURL.isURL() {
                                             if textOrURL.hasPrefix("https://") || textOrURL.hasPrefix("http://") {
@@ -619,11 +619,11 @@ struct MainView: View {
                                     }
                                 })
                             }
-                            if #available(watchOS 10, *), isShowDAssistantAd {
-                                NavigationLink(destination: { DAssistAdView() }, label: {
+                            if #available(watchOS 10, *), isShowClusterAd {
+                                NavigationLink(destination: { ClusterAdView() }, label: {
                                     HStack {
                                         Spacer()
-                                        Label("推荐 - 暗礁助手", systemImage: "sparkles")
+                                        Label("推荐 - 暗礁文件", systemImage: "sparkles")
                                         Spacer()
                                     }
                                 })
@@ -745,34 +745,48 @@ struct MainView: View {
     }
 }
 
-func getWebSearchedURL(_ iUrl: String, webSearch: String, isSearchEngineShortcutEnabled: Bool) -> String {
+/// 获取网页搜索链接
+///
+/// 没有匹配的可用搜索引擎时，此方法会返回空字符串。
+///
+/// - Parameters:
+///   - content: 搜索内容
+///   - webSearch: 搜索引擎
+///   - isSearchEngineShortcutEnabled: 是否启用搜索引擎快捷方式
+/// - Returns: 对应的搜索链接
+@_effects(readnone)
+func getWebSearchedURL(_ content: String, webSearch: String, isSearchEngineShortcutEnabled: Bool) -> String {
     var wisu = ""
     if isSearchEngineShortcutEnabled {
-        if iUrl.hasPrefix("bing") {
-            return "https://www.bing.com/search?q=\(iUrl.urlEncoded().dropFirst(4).replacingOccurrences(of: "&", with: "%26"))"
-        } else if iUrl.hasPrefix("baidu") {
-            return "https://www.baidu.com/s?wd=\(iUrl.urlEncoded().dropFirst(5).replacingOccurrences(of: "&", with: "%26"))"
-        } else if iUrl.hasPrefix("google") {
-            return "https://www.google.com/search?q=\(iUrl.urlEncoded().dropFirst(6).replacingOccurrences(of: "&", with: "%26"))"
-        } else if iUrl.hasPrefix("sogou") {
-            return "https://www.sogou.com/web?query=\(iUrl.urlEncoded().dropFirst(5).replacingOccurrences(of: "&", with: "%26"))"
+        if content.hasPrefix("bing") {
+            return "https://www.bing.com/search?q=\(content.urlEncoded().dropFirst(4).replacingOccurrences(of: "&", with: "%26"))"
+        } else if content.hasPrefix("baidu") {
+            return "https://www.baidu.com/s?wd=\(content.urlEncoded().dropFirst(5).replacingOccurrences(of: "&", with: "%26"))"
+        } else if content.hasPrefix("google") {
+            return "https://www.google.com/search?q=\(content.urlEncoded().dropFirst(6).replacingOccurrences(of: "&", with: "%26"))"
+        } else if content.hasPrefix("sogou") {
+            return "https://www.sogou.com/web?query=\(content.urlEncoded().dropFirst(5).replacingOccurrences(of: "&", with: "%26"))"
         }
     }
     switch webSearch {
     case "必应":
-        wisu = "https://www.bing.com/search?q=\(iUrl.urlEncoded().replacingOccurrences(of: "&", with: "%26"))"
+        wisu = "https://www.bing.com/search?q=\(content.urlEncoded().replacingOccurrences(of: "&", with: "%26"))"
     case "百度":
-        wisu = "https://www.baidu.com/s?wd=\(iUrl.urlEncoded().replacingOccurrences(of: "&", with: "%26"))"
+        wisu = "https://www.baidu.com/s?wd=\(content.urlEncoded().replacingOccurrences(of: "&", with: "%26"))"
     case "谷歌":
-        wisu = "https://www.google.com/search?q=\(iUrl.urlEncoded().replacingOccurrences(of: "&", with: "%26"))"
+        wisu = "https://www.google.com/search?q=\(content.urlEncoded().replacingOccurrences(of: "&", with: "%26"))"
     case "搜狗":
-        wisu = "https://www.sogou.com/web?query=\(iUrl.urlEncoded().replacingOccurrences(of: "&", with: "%26"))"
+        wisu = "https://www.sogou.com/web?query=\(content.urlEncoded().replacingOccurrences(of: "&", with: "%26"))"
     default:
-        wisu = webSearch.replacingOccurrences(of: "%lld", with: iUrl.urlEncoded().replacingOccurrences(of: "&", with: "%26"))
+        wisu = webSearch.replacingOccurrences(of: "%lld", with: content.urlEncoded().replacingOccurrences(of: "&", with: "%26"))
     }
     return wisu
 }
 
+/// 获取URL的顶级域名称
+/// - Parameter url: 要处理的URL
+/// - Returns: 顶级域名称，e.g. com
+@_effects(readnone)
 func getTopLevel(from url: String) -> String? {
     if !url.contains(".") {
         return nil
@@ -798,19 +812,31 @@ func getTopLevel(from url: String) -> String? {
 }
 
 extension String {
-    //将原始的url编码为合法的url
+    /// 将原始的url编码为合法的url
+    @_effects(readnone)
     func urlEncoded() -> String {
-        let encodeUrlString = self.addingPercentEncoding(withAllowedCharacters:
-            .urlQueryAllowed)
+        let encodeUrlString = self.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         return encodeUrlString ?? ""
     }
      
-    //将编码后的url转换回原始的url
+    /// 将编码后的url转换回原始的url
+    @_effects(readnone)
     func urlDecoded() -> String {
         return self.removingPercentEncoding ?? ""
     }
     
-    //是否为URL
+    /// 仅为要求手动编码URL的系统编码URL
+    @_effects(readnone)
+    func compatibleUrlEncoded() -> String {
+        if #available(watchOS 10.0, *) {
+            return self
+        } else {
+            return self.urlEncoded()
+        }
+    }
+    
+    /// 是否为URL
+    @_effects(readnone)
     func isURL() -> Bool {
         var topLevelDomainList = (try! String(contentsOf: Bundle.main.url(forResource: "TopLevelDomainList", withExtension: "drkdatat")!, encoding: .utf8))
             .split(separator: "\n")
@@ -826,8 +852,6 @@ extension String {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+#Preview {
+    ContentView()
 }

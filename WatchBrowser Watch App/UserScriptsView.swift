@@ -63,7 +63,7 @@ struct UserScriptsAddView: View {
                     if !searchInput.isEmpty {
                         isSearching = true
                         DarockKit.Network.shared
-                            .requestString("https://greasyfork.org/\(NSLocale.current.language.languageCode!.identifier == "zh" ? "zh-CN" : "en")/scripts?q=\(searchInput)") { respStr, isSuccess in
+                            .requestString("https://greasyfork.org/\(NSLocale.current.language.languageCode!.identifier == "zh" ? "zh-CN" : "en")/scripts?q=\(searchInput)".compatibleUrlEncoded()) { respStr, isSuccess in
                                 if isSuccess {
                                     do {
                                         let doc = try SwiftSoup.parse(respStr)
@@ -133,7 +133,7 @@ struct UserScriptsAddView: View {
                             if !isInstalled {
                                 Button(action: {
                                     isInstalling = true
-                                    DarockKit.Network.shared.requestString(jsLink) { respStr, isSuccess in
+                                    DarockKit.Network.shared.requestString(jsLink.compatibleUrlEncoded()) { respStr, isSuccess in
                                         if isSuccess {
                                             do {
                                                 try respStr.write(
@@ -178,7 +178,7 @@ struct UserScriptsAddView: View {
                 if (UserDefaults.standard.stringArray(forKey: "UserScriptNames") ?? [String]()).contains(title) {
                     isInstalled = true
                 }
-                DarockKit.Network.shared.requestString("https://greasyfork.org\(url)") { respStr, isSuccess in
+                DarockKit.Network.shared.requestString("https://greasyfork.org\(url)".compatibleUrlEncoded()) { respStr, isSuccess in
                     if isSuccess {
                         do {
                             let doc = try SwiftSoup.parse(respStr)

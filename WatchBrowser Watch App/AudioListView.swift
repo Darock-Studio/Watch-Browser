@@ -42,7 +42,7 @@ struct AudioListView: View {
                                let mid = audioLinkLists[i].split(separator: "id=")[from: 1]?.split(separator: ".mp3").first {
                                 downloadFileName = "\(mid).mp3"
                                 DarockKit.Network.shared
-                                    .requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(mid)&ids=%5B\(mid)%5D") { respJson, isSuccess in
+                                    .requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(mid)&ids=%5B\(mid)%5D".compatibleUrlEncoded()) { respJson, isSuccess in
                                         if isSuccess {
                                             if let audioName = respJson["songs"][0]["name"].string {
                                                 var nameChart = (
@@ -54,7 +54,7 @@ struct AudioListView: View {
                                         }
                                     }
                                 DarockKit.Network.shared
-                                    .requestJSON("https://music.\(0b10100011).com/api/song/lyric?id=\(mid)&lv=1&kv=1&tv=-1") { respJson, isSuccess in
+                                    .requestJSON("https://music.\(0b10100011).com/api/song/lyric?id=\(mid)&lv=1&kv=1&tv=-1".compatibleUrlEncoded()) { respJson, isSuccess in
                                         if isSuccess {
                                             var lyrics = [Double: String]()
                                             if let lyric = respJson["lrc"]["lyric"].string {
@@ -137,7 +137,7 @@ struct AudioListView: View {
                                     if addPlaylistUrl.contains(/music\..*\.com/) && addPlaylistUrl.contains(/(\?|&)id=[0-9]*\.mp3($|&)/),
                                        let mid = addPlaylistUrl.split(separator: "id=")[from: 1]?.split(separator: ".mp3").first {
                                         DarockKit.Network.shared
-                                            .requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(mid)&ids=%5B\(mid)%5D") { respJson, isSuccess in
+                                            .requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(mid)&ids=%5B\(mid)%5D".compatibleUrlEncoded()) { respJson, isSuccess in
                                                 if isSuccess {
                                                     if let audioName = respJson["songs"][0]["name"].string {
                                                         var nameChart = (
@@ -159,13 +159,7 @@ struct AudioListView: View {
             }
             .onDisappear {
                 if dismissListsShouldRepresentWebView {
-                    DispatchQueue.main.async {
-                        Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(
-                            AdvancedWebViewController.shared.vc,
-                            animated: true,
-                            completion: nil
-                        )
-                    }
+                    safePresent(AdvancedWebViewController.shared.vc)
                 }
             }
         } else {
@@ -468,7 +462,7 @@ struct AudioControllerView: View {
                     .multilineTextAlignment(.leading)
                     .opacity(currentScrolledId == lyricKeys[i] ? 1.0 : 0.6)
                 } else {
-                    if let endTime = lyricKeys[from: i + 1], endTime - lyricKeys[i] > 2.0 {
+                    if let endTime = lyricKeys[from: i &+ 1], endTime - lyricKeys[i] > 2.0 {
                         WaitingDotView(startTime: lyricKeys[i], endTime: endTime, currentTime: $currentPlaybackTime)
                     }
                 }
@@ -484,7 +478,7 @@ struct AudioControllerView: View {
         lyrics.removeAll()
         if !nowPlayingAudioId.isEmpty {
             DarockKit.Network.shared
-                .requestJSON("https://music.\(0b10100011).com/api/song/lyric?id=\(nowPlayingAudioId)&lv=1&kv=1&tv=-1") { respJson, isSuccess in
+                .requestJSON("https://music.\(0b10100011).com/api/song/lyric?id=\(nowPlayingAudioId)&lv=1&kv=1&tv=-1".compatibleUrlEncoded()) { respJson, isSuccess in
                     if isSuccess {
                         if let lyric = respJson["lrc"]["lyric"].string {
                             let lineSpd = lyric.components(separatedBy: "\n")
@@ -544,7 +538,7 @@ struct AudioControllerView: View {
                     }
                 }
             DarockKit.Network.shared
-                .requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(nowPlayingAudioId)&ids=%5B\(nowPlayingAudioId)%5D") { respJson, isSuccess in
+                .requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(nowPlayingAudioId)&ids=%5B\(nowPlayingAudioId)%5D".compatibleUrlEncoded()) { respJson, isSuccess in
                     if isSuccess {
                         if let imageUrl = respJson["songs"][0]["album"]["picUrl"].string {
                             backgroundImageUrl = URL(string: imageUrl)
@@ -663,6 +657,7 @@ struct AudioControllerView: View {
     }
 }
 
+@_effects(readnone)
 func lyricTimeStringToSeconds(_ timeString: String) -> Double? {
     let components = timeString.split(separator: ":")
     guard components.count == 2,
@@ -672,6 +667,7 @@ func lyricTimeStringToSeconds(_ timeString: String) -> Double? {
     }
     return minutes * 60 + seconds
 }
+@_effects(readnone)
 func formattedTime(from seconds: Double) -> String {
     if seconds.isNaN {
         return "00:00"
@@ -714,6 +710,8 @@ struct LocalAudiosView: View {
     @State var isEditNamePresented = false
     @State var editNameAudioName = ""
     @State var editNameInput = ""
+    @State var deleteItemIndex = 0
+    @State var isDeleteItemAlertPresented = false
     var body: some View {
         if isLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLocalAudios {
             PasswordInputView(text: $passcodeInputCache, placeholder: "输入密码", dismissAfterComplete: false) { pwd in
@@ -751,31 +749,8 @@ struct LocalAudiosView: View {
                             })
                             .swipeActions {
                                 Button(role: .destructive, action: {
-                                    do {
-                                        // Delete this in all playlists
-                                        if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/Playlists") {
-                                            let playlistFiles = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/Playlists")
-                                            for file in playlistFiles {
-                                                let content = try String(contentsOfFile: NSHomeDirectory() + "/Documents/Playlists/\(file)")
-                                                if var data = getJsonData([String].self, from: content) {
-                                                    data.removeAll(where: { element in
-                                                        element == "%DownloadedContent@=\(audioNames[i])"
-                                                    })
-                                                    if let newStr = jsonString(from: data) {
-                                                        try newStr.write(
-                                                            toFile: NSHomeDirectory() + "/Documents/Playlists/\(file)",
-                                                            atomically: true,
-                                                            encoding: .utf8
-                                                        )
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/" + audioNames[i])
-                                        audioNames.remove(at: i)
-                                    } catch {
-                                        globalErrorHandler(error)
-                                    }
+                                    deleteItemIndex = i
+                                    isDeleteItemAlertPresented = true
                                 }, label: {
                                     Image(systemName: "xmark.bin.fill")
                                 })
@@ -813,6 +788,42 @@ struct LocalAudiosView: View {
                 }
             }
             .navigationTitle("本地音频")
+            .alert("删除项目", isPresented: $isDeleteItemAlertPresented, actions: {
+                Button(role: .cancel, action: {}, label: {
+                    Text("取消")
+                })
+                Button(role: .destructive, action: {
+                    do {
+                        // Delete this in all playlists
+                        if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/Playlists") {
+                            let playlistFiles = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/Playlists")
+                            for file in playlistFiles {
+                                let content = try String(contentsOfFile: NSHomeDirectory() + "/Documents/Playlists/\(file)")
+                                if var data = getJsonData([String].self, from: content) {
+                                    data.removeAll(where: { element in
+                                        element == "%DownloadedContent@=\(audioNames[deleteItemIndex])"
+                                    })
+                                    if let newStr = jsonString(from: data) {
+                                        try newStr.write(
+                                            toFile: NSHomeDirectory() + "/Documents/Playlists/\(file)",
+                                            atomically: true,
+                                            encoding: .utf8
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                        try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/" + audioNames[deleteItemIndex])
+                        audioNames.remove(at: deleteItemIndex)
+                    } catch {
+                        globalErrorHandler(error)
+                    }
+                }, label: {
+                    Text("删除")
+                })
+            }, message: {
+                Text("确定要删除此项目吗\n此操作不可撤销")
+            })
             .sheet(isPresented: $isEditNamePresented) {
                 NavigationStack {
                     List {
@@ -1219,6 +1230,7 @@ func playAudio(url: String, presentController: Bool = true) {
 }
 /// 获取当前播放列表内容
 /// - Returns: 歌曲名
+@_effects(readonly)
 func getCurrentPlaylistContents() -> [String]? {
     if !globalAudioCurrentPlaylist.isEmpty
         && FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/Playlists/\(globalAudioCurrentPlaylist)") {
@@ -1235,7 +1247,7 @@ func updateNowPlaying() {
     var nowPlayingInfo = [String: Any]()
     if !nowPlayingAudioId.isEmpty {
         DarockKit.Network.shared
-            .requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(nowPlayingAudioId)&ids=%5B\(nowPlayingAudioId)%5D") { respJson, isSuccess in
+            .requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(nowPlayingAudioId)&ids=%5B\(nowPlayingAudioId)%5D".compatibleUrlEncoded()) { respJson, isSuccess in
                 if isSuccess {
                     if let imageUrlString = respJson["songs"][0]["album"]["picUrl"].string,
                        let imageUrl = URL(string: imageUrlString),

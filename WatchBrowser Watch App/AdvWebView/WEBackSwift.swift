@@ -9,7 +9,7 @@ import Dynamic
 import Foundation
 
 @objcMembers
-public class WEBackSwift: NSObject {
+public final class WEBackSwift: NSObject {
     public static func createWebArchive() {
         Dynamic(webViewObject).createWebArchiveDataWithCompletionHandler({ data, error in
             if _fastPath(error == nil) {

@@ -78,13 +78,7 @@ struct ImageListView: View {
             })
             .onDisappear {
                 if dismissListsShouldRepresentWebView {
-                    DispatchQueue.main.async {
-                        Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(
-                            AdvancedWebViewController.shared.vc,
-                            animated: true,
-                            completion: nil
-                        )
-                    }
+                    safePresent(AdvancedWebViewController.shared.vc)
                 }
                 if (UserDefaults.standard.object(forKey: "CCIsContinuityMediaEnabled") as? Bool) ?? true {
                     globalMediaUserActivity?.invalidate()

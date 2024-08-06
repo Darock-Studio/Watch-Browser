@@ -383,10 +383,11 @@ func recordHistory(_ inp: String, webSearch: String, showName: String? = nil) {
         if let uploadData = jsonString(from: historiesToUpload) {
             _onFastPath()
             let encodedData = uploadData.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
-            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/cloud/update/\(account)/WebHistory.drkdataw/\(encodedData)") { _, _ in }
+            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/cloud/update/\(account)/WebHistory.drkdataw/\(encodedData)".compatibleUrlEncoded()) { _, _ in }
         }
     }
 }
+@_effects(readonly)
 func getWebHistory() -> [SingleHistoryItem] {
     do {
         let jsonSource: String
@@ -410,9 +411,10 @@ func writeWebHistory(from histories: [SingleHistoryItem]) {
         globalErrorHandler(error)
     }
 }
+@_effects(readonly)
 func getWebHistoryFromCloud(with account: String) async -> [SingleHistoryItem]? {
     await withCheckedContinuation { continuation in
-        DarockKit.Network.shared.requestJSON("https://fapi.darock.top:65535/drkbs/cloud/get/\(account)/WebHistory.drkdataw") { respJson, isSuccess in
+        DarockKit.Network.shared.requestJSON("https://fapi.darock.top:65535/drkbs/cloud/get/\(account)/WebHistory.drkdataw".compatibleUrlEncoded()) { respJson, isSuccess in
             if isSuccess {
                 if let rawString = respJson.rawString(), let jsonData = getJsonData([SingleHistoryItem].self, from: rawString) {
                     _onFastPath()
@@ -426,6 +428,7 @@ func getWebHistoryFromCloud(with account: String) async -> [SingleHistoryItem]? 
         }
     }
 }
+@_effects(readnone)
 func mergeWebHistoriesBetween(primary: [SingleHistoryItem], secondary: [SingleHistoryItem]) -> [SingleHistoryItem] {
     var primCopy = primary
     for single in secondary where !primary.contains(where: { $0.time == single.time }) {

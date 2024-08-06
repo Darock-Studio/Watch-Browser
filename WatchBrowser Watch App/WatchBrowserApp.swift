@@ -33,6 +33,7 @@ struct WatchBrowser_Watch_AppApp: App {
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockDarockBrowser") var usePasscodeForLockDarockBrowser = false
     @AppStorage("IsThisClusterInstalled") var isThisClusterInstalled = false
+    @AppStorage("ShouldOS9NetworkFixingTip") var shouldOS9NetworkFixingTip = true
     @State var showTipText: LocalizedStringKey = ""
     @State var showTipSymbol = ""
     @State var isShowingTip = false
@@ -42,6 +43,7 @@ struct WatchBrowser_Watch_AppApp: App {
     @State var isTapToRadarAlertPresented = false
     @State var isClusterInstalledTipPresented = false
     @State var isSendNSErrorLogPresented = false
+    @State var isOS9NetworkFixPresented = false
     var body: some Scene {
         WindowGroup {
             ZStack {
@@ -53,11 +55,36 @@ struct WatchBrowser_Watch_AppApp: App {
                     .sheet(isPresented: $isSendNSErrorLogPresented, onDismiss: {
                         UserDefaults.standard.set(false, forKey: "AppNewNSExceptionLogged")
                     }, content: { SendNSErrorLogView() })
+                    .sheet(isPresented: $isOS9NetworkFixPresented) {
+                        shouldOS9NetworkFixingTip = false
+                    } content: {
+                        NavigationStack {
+                            List {
+                                Section {
+                                    Text("我们已修复 watchOS 9 的部分网络访问问题")
+                                        .font(.headline)
+                                    Text("现在，App 内所有网络功能已在 watchOS 9 中正常运行，“反馈助理”可正常工作。")
+                                }
+                                .listRowBackground(Color.clear)
+                                Section {
+                                    Button(action: {
+                                        shouldOS9NetworkFixingTip = false
+                                        isOS9NetworkFixPresented = false
+                                    }, label: {
+                                        Text("我知道了")
+                                    })
+                                }
+                            }
+                        }
+                    }
                     .onAppear {
                         if userPasscodeEncrypted.isEmpty || !usePasscodeForLockDarockBrowser {
                             isBrowserLocked = false
                         }
                         isSendNSErrorLogPresented = UserDefaults.standard.bool(forKey: "AppNewNSExceptionLogged")
+                        if #unavailable(watchOS 10.0), shouldOS9NetworkFixingTip {
+                            isOS9NetworkFixPresented = true
+                        }
                     }
                 if isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser {
                     PasswordInputView(text: $passcodeInputCache, placeholder: "输入密码", hideCancelButton: true, dismissAfterComplete: false) { pwd in
@@ -213,7 +240,7 @@ struct SendNSErrorLogView: View {
                                         Sender: User
                                         """
                                     DarockKit.Network.shared
-                                        .requestString("https://fapi.darock.top:65535/feedback/submit/anony/Darock Browser/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))") { _, _ in }
+                                        .requestString("https://fapi.darock.top:65535/feedback/submit/anony/Darock Browser/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))".compatibleUrlEncoded()) { _, _ in }
                                 }
                             } catch {
                                 globalErrorHandler(error)
@@ -340,6 +367,7 @@ public func nsErrorHandler(_ exception: NSException) {
         try """
         Name: \(exception.name)
         Reason: \(exception.reason ?? "nil")
+        UserInfo: \(exception.userInfo ?? ["nil": "nil"])
         Last Exception Backtrace:
         \(exception.callStackSymbols.joined(separator: "\n"))
         
@@ -378,7 +406,7 @@ func resetGlobalAudioLooper() {
                             if currentUrl.absoluteString == currentContent[i].replacingOccurrences(
                                 of: "%DownloadedContent@=", with: "file://\(NSHomeDirectory())/Documents/DownloadedAudios/"
                             ) {
-                                if let nextItem = currentContent[from: i + 1] {
+                                if let nextItem = currentContent[from: i &+ 1] {
                                     playAudio(url: nextItem, presentController: false)
                                 } else if let firstItem = currentContent.first {
                                     playAudio(url: firstItem, presentController: false)

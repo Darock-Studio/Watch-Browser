@@ -22,7 +22,9 @@ fileprivate var errorLabel = { () -> Dynamic in
 }()
 
 @objcMembers
-public class WESwiftDelegate: NSObject {
+public final class WESwiftDelegate: NSObject {
+    public static let shared = WESwiftDelegate()
+    
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
     @AppStorage("WebSearch") var webSearch = "必应"
     

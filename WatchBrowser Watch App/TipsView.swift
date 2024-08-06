@@ -22,8 +22,14 @@ struct TipsView: View {
             Section {
                 NavigationLink(destination: { SetupChecklistView() }, label: {
                     HStack {
-                        Image(systemName: "checkmark.rectangle.stack")
-                            .foregroundColor(.yellow)
+                        Image(systemName: {
+                            if #available(watchOS 10, *) {
+                                "checkmark.rectangle.stack"
+                            } else {
+                                "rectangle.badge.checkmark"
+                            }
+                        }())
+                        .foregroundColor(.yellow)
                         Text("设置清单")
                     }
                 })

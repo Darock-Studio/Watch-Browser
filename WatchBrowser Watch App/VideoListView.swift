@@ -60,13 +60,7 @@ struct VideoListView: View {
             }
             .onDisappear {
                 if dismissListsShouldRepresentWebView {
-                    DispatchQueue.main.async {
-                        Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(
-                            AdvancedWebViewController.shared.vc,
-                            animated: true,
-                            completion: nil
-                        )
-                    }
+                    safePresent(AdvancedWebViewController.shared.vc)
                 }
             }
         } else {
@@ -86,18 +80,60 @@ struct VideoPlayingView: View {
     @State var mainTabViewSelection = 1
     @State var jumpToInput = ""
     @State var currentTime = 0.0
+    @State var playerScale: CGFloat = 1.0
+    @State var __playerScale = 1.0
+    @State var playerScaledOffset = CGSizeZero
+    @State var playerScaledLastOffset = CGSizeZero
     @State var cachedPlayerTimeControlStatus = AVPlayer.TimeControlStatus.paused
     var body: some View {
         TabView(selection: $mainTabViewSelection) {
-            VideoPlayer(player: player)
-                .rotationEffect(.degrees(isFullScreen ? 90 : 0))
-                .frame(
-                    width: isFullScreen ? WKInterfaceDevice.current().screenBounds.height : nil,
-                    height: isFullScreen ? WKInterfaceDevice.current().screenBounds.width : nil
-                )
-                .offset(y: isFullScreen ? 20 : 0)
-                .ignoresSafeArea()
-                .tag(1)
+            ZStack {
+                VideoPlayer(player: player)
+                    .rotationEffect(.degrees(isFullScreen ? 90 : 0))
+                    .frame(
+                        width: isFullScreen ? WKInterfaceDevice.current().screenBounds.height : nil,
+                        height: isFullScreen ? WKInterfaceDevice.current().screenBounds.width : nil
+                    )
+                    .offset(y: isFullScreen ? 20 : 0)
+                    .scaleEffect(playerScale)
+                    .ignoresSafeArea()
+                    .offset(playerScaledOffset)
+                    .dragGestureByPlayerScale($playerScale, offset: $playerScaledOffset, lastOffset: $playerScaledLastOffset)
+                if cachedPlayerTimeControlStatus == .paused {
+                    VStack {
+                        ZStack {
+                            Color.accentColor // For tap gesture
+                                .frame(width: 60, height: 40)
+                                .opacity(0.0100000002421438702673861521)
+                            HStack(spacing: 2) {
+                                Image(systemName: "rectangle.portrait.arrowtriangle.2.outward")
+                                    .shadow(color: .accentColor, radius: 1)
+                                Text(String(__playerScale))
+                                    .shadow(color: .accentColor, radius: 1)
+                            }
+                            .font(.system(size: 14))
+                        }
+                        .onTapGesture {
+                            if __playerScale < 10.0 {
+                                __playerScale += 1.0
+                                playerScale += 1.0
+                            } else {
+                                __playerScale = 1.0
+                                playerScale = 1.0
+                                playerScaledOffset = CGSizeZero
+                                playerScaledLastOffset = CGSizeZero
+                            }
+                        }
+                        Spacer()
+                    }
+                    .ignoresSafeArea()
+                }
+            }
+            .animation(.smooth, value: cachedPlayerTimeControlStatus)
+            .animation(.smooth, value: playerScale)
+            .animation(.smooth, value: __playerScale)
+            .scrollIndicators(.never)
+            .tag(1)
             List {
                 Section {
                     Button(action: {
@@ -194,6 +230,27 @@ struct VideoPlayingView: View {
                 }
                 cachedPlayerTimeControlStatus = status
             }
+        }
+    }
+}
+private extension View {
+    @ViewBuilder
+    func dragGestureByPlayerScale(_ scale: Binding<CGFloat>, offset: Binding<CGSize>, lastOffset: Binding<CGSize>) -> some View {
+        if scale.wrappedValue != 1.0 {
+            self.gesture(
+                DragGesture()
+                    .onChanged { gesture in
+                        offset.wrappedValue = CGSize(
+                            width: gesture.translation.width + lastOffset.wrappedValue.width,
+                            height: gesture.translation.height + lastOffset.wrappedValue.height
+                        )
+                    }
+                    .onEnded { _ in
+                        lastOffset.wrappedValue = offset.wrappedValue
+                    }
+            )
+        } else {
+            self
         }
     }
 }
@@ -475,6 +532,8 @@ struct LocalVideosView: View {
     @State var isEditNamePresented = false
     @State var editNameVideoName = ""
     @State var editNameInput = ""
+    @State var deleteItemIndex = 0
+    @State var isDeleteItemAlertPresented = false
     var body: some View {
         if isLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLocalVideos {
             PasswordInputView(text: $passcodeInputCache, placeholder: "输入密码", dismissAfterComplete: false) { pwd in
@@ -499,12 +558,8 @@ struct LocalVideosView: View {
                             })
                             .swipeActions {
                                 Button(role: .destructive, action: {
-                                    do {
-                                        try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoNames[i])
-                                        videoNames.remove(at: i)
-                                    } catch {
-                                        globalErrorHandler(error)
-                                    }
+                                    deleteItemIndex = i
+                                    isDeleteItemAlertPresented = true
                                 }, label: {
                                     Image(systemName: "xmark.bin.fill")
                                 })
@@ -542,6 +597,23 @@ struct LocalVideosView: View {
                 }
             }
             .navigationTitle("本地视频")
+            .alert("删除项目", isPresented: $isDeleteItemAlertPresented, actions: {
+                Button(role: .cancel, action: {}, label: {
+                    Text("取消")
+                })
+                Button(role: .destructive, action: {
+                    do {
+                        try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoNames[deleteItemIndex])
+                        videoNames.remove(at: deleteItemIndex)
+                    } catch {
+                        globalErrorHandler(error)
+                    }
+                }, label: {
+                    Text("删除")
+                })
+            }, message: {
+                Text("确定要删除此项目吗\n此操作不可撤销")
+            })
             .sheet(isPresented: $isPlayerPresented, content: { VideoPlayingView(link: $willPlayVideoLink) })
             .sheet(isPresented: $isEditNamePresented) {
                 NavigationStack {
@@ -583,7 +655,7 @@ struct ValuedProgress {
 }
 
 @available(watchOS 10.0, *)
-private class M3U8DownloadDelegate: NSObject, AVAssetDownloadDelegate {
+private final class M3U8DownloadDelegate: NSObject, AVAssetDownloadDelegate {
     static let shared = M3U8DownloadDelegate(finishDownloadingHandler: { _, _, _ in })
     
     var finishDownloadingHandler: (URLSession, AVAssetDownloadTask, URL) -> Void

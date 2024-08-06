@@ -72,8 +72,8 @@ struct BookmarkView: View {
                             .swipeActions(edge: .trailing, allowsFullSwipe: true, content: {
                                 Button(role: .destructive, action: {
                                     for i2 in i...markTotal {
-                                        UserDefaults.standard.set(UserDefaults.standard.string(forKey: "BookmarkName\(i2 + 1)"), forKey: "BookmarkName\(i2)")
-                                        UserDefaults.standard.set(UserDefaults.standard.string(forKey: "BookmarkLink\(i2 + 1)"), forKey: "BookmarkLink\(i2)")
+                                        UserDefaults.standard.set(UserDefaults.standard.string(forKey: "BookmarkName\(i2 &+ 1)"), forKey: "BookmarkName\(i2)")
+                                        UserDefaults.standard.set(UserDefaults.standard.string(forKey: "BookmarkLink\(i2 &+ 1)"), forKey: "BookmarkLink\(i2)")
                                     }
                                     UserDefaults.standard.set(markTotal - 1, forKey: "BookmarkTotal")
                                     markTotal -= 1
@@ -161,6 +161,7 @@ struct BookmarkView: View {
             String(localized: "百度贴吧"): "https://tieba.baidu.com",
             String(localized: "网易云音乐"): "https://music.163.com",
             String(localized: "哔哩哔哩"): "https://bilibili.com",
+            String(localized: "起点小说"): "https://qidian.com",
             "Pixiv Viewer": "https://www.pixiv.pics"
         ]
         
@@ -223,7 +224,7 @@ struct BookmarkView: View {
                             Sender: User
                             """
                             DarockKit.Network.shared
-                                .requestString("https://fapi.darock.top:65535/feedback/submit/anony/暗礁浏览器-常用书签推荐/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))") { _, _ in }
+                                .requestString("https://fapi.darock.top:65535/feedback/submit/anony/暗礁浏览器-常用书签推荐/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))".compatibleUrlEncoded()) { _, _ in }
                             dismiss()
                             tipWithText("已提交", symbol: "checkmark.circle.fill")
                         }, label: {
@@ -262,7 +263,7 @@ struct AddBookmarkView: View {
                     .textInputAutocapitalization(.never)
                 Button(action: {
                     let userdefault = UserDefaults.standard
-                    let total = userdefault.integer(forKey: "BookmarkTotal") + 1
+                    let total = userdefault.integer(forKey: "BookmarkTotal") &+ 1
                     userdefault.set(markName, forKey: "BookmarkName\(total)")
                     userdefault.set(
                         markLink.hasPrefix("https://") || markLink.hasPrefix("http://") ? markLink.urlEncoded() : "http://" + markLink.urlEncoded(),

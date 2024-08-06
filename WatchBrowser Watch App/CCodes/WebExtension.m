@@ -95,19 +95,19 @@ id webScriptDelegate;
 @implementation WebExtensionDelegate
 
 - (void)webView:(id)view didStartProvisionalNavigation:(id)navigation {
-    [[[WESwiftDelegate alloc] init] webView:view didStartProvisionalNavigation:navigation];
+    [[WESwiftDelegate shared] webView:view didStartProvisionalNavigation:navigation];
 }
 - (void)webView:(id)view didFinishNavigation:(id)navigation {
-    [[[WESwiftDelegate alloc] init] webView:view didFinishNavigation:navigation];
+    [[WESwiftDelegate shared] webView:view didFinishNavigation:navigation];
 }
 - (void)webView:(id)view didFailNavigation:(id)navigation withError:(NSError *)error {
-    [[[WESwiftDelegate alloc] init] webView:view didFailNavigation:navigation withError:error];
+    [[WESwiftDelegate shared] webView:view didFailNavigation:navigation withError:error];
 }
 - (void)webView:(id)view didFailProvisionalNavigation:(id)navigation withError:(NSError *)error {
-    [[[WESwiftDelegate alloc] init] webView:view didFailProvisionalNavigation:navigation withError:error];
+    [[WESwiftDelegate shared] webView:view didFailProvisionalNavigation:navigation withError:error];
 }
 - (void)webViewWebContentProcessDidTerminate:(id)webView {
-    [[[WESwiftDelegate alloc] init] webViewWebContentProcessDidTerminate:webView];
+    [[WESwiftDelegate shared] webViewWebContentProcessDidTerminate:webView];
 }
 
 @end
@@ -115,7 +115,7 @@ id webScriptDelegate;
 @implementation WebUIDelegate
 
 - (id)webView:(id)webView createWebViewWithConfiguration:(id)configuration forNavigationAction:(id)navigationAction windowFeatures:(id)windowFeatures {
-    return [[[WESwiftDelegate alloc] init] webView:webView createWebViewWith:configuration for:navigationAction windowFeatures:windowFeatures];
+    return [[WESwiftDelegate shared] webView:webView createWebViewWith:configuration for:navigationAction windowFeatures:windowFeatures];
 }
 
 @end

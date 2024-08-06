@@ -192,7 +192,7 @@ struct ExtKeyboardView: View {
             fullText.append(.init(value: t))
         } else {
             fullText.insert(.init(value: t), at: cursor)
-            cursor += 1
+            cursor &+= 1
         }
     }
     func combine() -> String {

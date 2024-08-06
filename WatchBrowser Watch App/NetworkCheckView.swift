@@ -122,7 +122,7 @@ struct NetworkCheckView: View {
         Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { timer in
             timer.invalidate()
             networkState = 1
-            DarockKit.Network.shared.requestString("https://apple.com.cn") { _, isSuccess in
+            DarockKit.Network.shared.requestString("https://apple.com.cn".compatibleUrlEncoded()) { _, isSuccess in
                 if isSuccess {
                     checkDarock()
                     networkState = 3
@@ -135,7 +135,7 @@ struct NetworkCheckView: View {
         
         func checkDarock() {
             darockAPIState = 1
-            DarockKit.Network.shared.requestString("https://api.darock.top") { respStr, isSuccess in
+            DarockKit.Network.shared.requestString("https://api.darock.top".compatibleUrlEncoded()) { respStr, isSuccess in
                 if isSuccess {
                     if respStr.apiFixed() == "OK" {
                         darockAPIState = 3

@@ -59,7 +59,7 @@ struct SettingsView: View {
                     })
                     .sheet(isPresented: $isDarockAccountLoginPresented, onDismiss: {
                         if !darockAccount.isEmpty {
-                            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)") { respStr, isSuccess in
+                            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
                                 if isSuccess {
                                     accountUsername = respStr.apiFixed()
                                 }
@@ -100,7 +100,13 @@ struct SettingsView: View {
                 NavigationLink(destination: { GeneralSettingsView() },
                                label: { SettingItemLabel(title: "通用", image: "gear", color: .gray) })
                 NavigationLink(destination: { AccessibilitySettingsView() },
-                               label: { SettingItemLabel(title: "辅助功能", image: "accessibility", color: .blue, symbolFontSize: 18) })
+                               label: { SettingItemLabel(title: "辅助功能", image: {
+                    if #available(watchOS 10, *) {
+                        "accessibility"
+                    } else {
+                        "figure.stand"
+                    }
+                }(), color: .blue, symbolFontSize: 18) })
                 NavigationLink(destination: { BrowsingEngineSettingsView() },
                                label: { SettingItemLabel(title: "浏览引擎", image: "globe", color: .blue) })
                 NavigationLink(destination: { HomeScreenSettingsView() },
@@ -127,7 +133,13 @@ struct SettingsView: View {
                     })
                 }
                 NavigationLink(destination: { LaboratoryView() }, label: {
-                    SettingItemLabel(title: "实验室", image: "flask.fill", color: .blue)
+                    SettingItemLabel(title: "实验室", image: {
+                        if #available(watchOS 10, *) {
+                            "flask.fill"
+                        } else {
+                            "hammer.fill"
+                        }
+                    }(), color: .blue)
                 })
                 if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "IsDarockInternalTap-to-RadarAvailable") {
                     NavigationLink(destination: { InternalDebuggingView() }, label: {
@@ -151,7 +163,7 @@ struct SettingsView: View {
         }
         .onAppear {
             if !darockAccount.isEmpty {
-                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)") { respStr, isSuccess in
+                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
                     if isSuccess {
                         accountUsername = respStr.apiFixed()
                     }
@@ -328,7 +340,7 @@ struct SettingsView: View {
                         }
                         if #available(watchOS 10, *) {
                             TQCAccentColorHiddenButton {
-                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/analyze/add/DBTQCAccentColor/\(Date.now.timeIntervalSince1970)") { _, _ in }
+                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/analyze/add/DBTQCAccentColor/\(Date.now.timeIntervalSince1970)".compatibleUrlEncoded()) { _, _ in }
                             }
                         }
                     }
@@ -419,7 +431,7 @@ struct SettingsView: View {
                 }
                 .navigationTitle("软件更新")
                 .onAppear {
-                    DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/newver") { respStr, isSuccess in
+                    DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
                         if isSuccess {
                             let spdVer = respStr.apiFixed().split(separator: ".")
                             if spdVer.count == 3 {
@@ -901,7 +913,7 @@ struct SettingsView: View {
                                     var metadata = [String: String]()
                                     metadata.updateValue(file, forKey: "Folder")
                                     if let fileSize = folderSize(atPath: NSHomeDirectory() + "/Documents/\(file)") {
-                                        bookSize += fileSize
+                                        bookSize &+= fileSize
                                         metadata.updateValue(String(fileSize), forKey: "Size")
                                     }
                                     if let name = bookNameChart[file] {
@@ -932,7 +944,7 @@ struct SettingsView: View {
                     do {
                         let attributes = try fileManager.attributesOfItem(atPath: filePath)
                         if let fileSize = attributes[.size] as? UInt64 {
-                            totalSize += fileSize
+                            totalSize &+= fileSize
                         }
                     } catch {
                         globalErrorHandler(error)
@@ -1898,7 +1910,7 @@ struct SettingsView: View {
                     .sheet(isPresented: $isTQCView1Presented, content: {
                         TQCOnaniiView()
                             .onAppear {
-                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/analyze/add/DBTQCOnanii/\(Date.now.timeIntervalSince1970)") { _, _ in }
+                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/analyze/add/DBTQCOnanii/\(Date.now.timeIntervalSince1970)".compatibleUrlEncoded()) { _, _ in }
                             }
                     })
                 }
@@ -2805,6 +2817,8 @@ struct SettingsView: View {
         @AppStorage("UsePasscodeForWebArchives") var usePasscodeForWebArchives = false
         @AppStorage("UsePasscodeForLocalBooks") var usePasscodeForLocalBooks = false
         @AppStorage("IsSecurityDelayEnabled") var isSecurityDelayEnabled = false
+        @AppStorage("LabTabBrowsingEnabled") var labTabBrowsingEnabled = false
+        @AppStorage("UsePasscodeForBrowsingTab") var usePasscodeForBrowsingTab = false
         @State var isSetPasswordInputPresented = false
         @State var isSetPasswordConfirmInputPresented = false
         @State var isClosePasswordPresented = false
@@ -2824,6 +2838,9 @@ struct SettingsView: View {
                         Toggle("锁定本地视频", isOn: $usePasscodeForLocalVideos)
                         Toggle("锁定网页归档", isOn: $usePasscodeForWebArchives)
                         Toggle("锁定本地图书", isOn: $usePasscodeForLocalBooks)
+                        if labTabBrowsingEnabled {
+                            Toggle("锁定标签页", isOn: $usePasscodeForBrowsingTab)
+                        }
                     } header: {
                         Text("将密码用于：")
                     }
@@ -3314,7 +3331,13 @@ struct SettingsView: View {
                     Button(role: .destructive, action: {
                         fatalError("Internal Debugging Crash")
                     }, label: {
-                        Text("Crash This App")
+                        Text("Crash This App through Swift fatalError")
+                    })
+                    Button(role: .destructive, action: {
+                        let e = NSException(name: NSExceptionName.mallocException, reason: "Internal Debugging Exception", userInfo: ["Info": "Debug"])
+                        e.raise()
+                    }, label: {
+                        Text("Crash This App through NSException")
                     })
                     Button(role: .destructive, action: {
                         isTestAppRemovalWarningPresented = true
@@ -3542,7 +3565,7 @@ func checkSecurityDelay() -> Bool {
     return false
 }
 
-class LocationManager: NSObject, CLLocationManagerDelegate {
+final class LocationManager: NSObject, CLLocationManagerDelegate {
     static let shared = LocationManager()
     
     override init() {
@@ -3626,6 +3649,9 @@ struct HomeScreenToolbar: Codable {
     }
 }
 
+@_effects(readonly)
+@_effects(notEscaping control.**)
+@_effects(notEscaping type.**)
 @ViewBuilder
 func getToolbarButton(by control: HomeScreenControlType, with type: ToolbarButtonRenderType, action: ((Any?) -> Void)? = nil) -> some View {
     switch control {
@@ -3688,6 +3714,8 @@ func getToolbarButton(by control: HomeScreenControlType, with type: ToolbarButto
     }
 }
 @available(watchOS 10.0, *)
+@_effects(readonly)
+@_effects(escaping controls.** -> action.**)
 @ToolbarContentBuilder
 func getFullToolbar(
     by controls: HomeScreenToolbar,

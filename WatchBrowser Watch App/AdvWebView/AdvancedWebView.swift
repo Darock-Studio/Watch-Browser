@@ -19,7 +19,7 @@ var imageAltTextLists = [String]()
 var audioLinkLists = [String]()
 var bookLinkLists = [String]()
 
-class AdvancedWebViewController {
+final class AdvancedWebViewController {
     public static let shared = AdvancedWebViewController()
     
     var currentTabIndex: Int?
@@ -70,9 +70,7 @@ class AdvancedWebViewController {
                  loadMimeType: String = "application/x-webarchive",
                  overrideOldWebView: Bool = false) -> Dynamic {
         if iurl.isEmpty && archiveUrl == nil {
-            DispatchQueue.main.async {
-                Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(self.vc, animated: true, completion: nil)
-            }
+            safePresent(self.vc)
             return Dynamic(webViewObject)
         }
         
@@ -154,9 +152,7 @@ class AdvancedWebViewController {
         vc.view = webViewHolder
 
         if _fastPath(presentController) {
-            DispatchQueue.main.async {
-                Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(self.vc, animated: true, completion: nil)
-            }
+            safePresent(self.vc)
         }
         webViewParentController = vc.asObject!
         
@@ -172,11 +168,10 @@ class AdvancedWebViewController {
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [self] _ in
             if _slowPath(pIsMenuButtonDown) {
                 pIsMenuButtonDown = false
-                if _fastPath(self.menuController.presentingViewController.asObject == nil) {
-                    DispatchQueue.main.async {
-                        self.vc.presentViewController(self.menuController, animated: true, completion: nil)
+                safePresent(self.menuController, on: self.vc) { success in
+                    if success {
+                        checkWebContent()
                     }
-                    checkWebContent()
                 }
             }
             if _slowPath(pMenuShouldDismiss) {
@@ -210,9 +205,7 @@ class AdvancedWebViewController {
         loadProgressView = ref.loadProgressView
         webViewObject = ref.webViewObject
         webViewParentController = ref.webViewParentController
-        DispatchQueue.main.async {
-            Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.presentViewController(self.vc, animated: true, completion: nil)
-        }
+        safePresent(vc)
     }
     func storeTab(in allTabs: [String], at index: Int? = nil) {
         let recoverReference = TabWebKitReference(webViewHolder: webViewHolder,
@@ -282,7 +275,7 @@ class AdvancedWebViewController {
             menuButtonYOffset += 60
         } else {
             let tipText = Dynamic.UILabel()
-            tipText.text = "无可播放的视频"
+            tipText.text = String(localized: "无可播放的视频")
             tipText.setFrame(getMiddleRect(y: menuButtonYOffset, height: 60))
             tipText.setFont(UIFont(name: "Helvetica", size: 12))
             menuView.addSubview(tipText)
@@ -364,6 +357,7 @@ class AdvancedWebViewController {
         }
     }
     
+    @_effects(readonly)
     func makeUIButton(
         title: TextOrImage,
         frame: CGRect,
@@ -420,12 +414,28 @@ class AdvancedWebViewController {
                             var srcs = [String]()
                             for video in videos {
                                 var src = try video.attr("src")
-                                if src != "" {
+                                if src.isEmpty, let tagSrc = try? video.select("source") {
+                                    src = try tagSrc.attr("src")
+                                }
+                                if !src.isEmpty {
                                     if src.hasPrefix("/") {
                                         if currentUrl.split(separator: "/").count < 2 {
                                             continue
                                         }
                                         src = "http://" + currentUrl.split(separator: "/")[1] + src
+                                    } else if !src.hasPrefix("http://") && !src.hasPrefix("https://") {
+                                        var currentUrlCopy = currentUrl
+                                        let webSuffixList = [".html", ".htm", ".php", ".xhtml"]
+                                        if webSuffixList.contains(where: { element in currentUrlCopy.hasSuffix(element) }) {
+                                            if currentUrlCopy.split(separator: "/").count < 2 {
+                                                continue
+                                            }
+                                            currentUrlCopy = currentUrlCopy.components(separatedBy: "/").dropLast().joined(separator: "/")
+                                        }
+                                        if !currentUrlCopy.hasSuffix("/") {
+                                            currentUrlCopy += "/"
+                                        }
+                                        src = currentUrlCopy + src
                                     }
                                     srcs.append(src)
                                 }
@@ -529,6 +539,7 @@ class AdvancedWebViewController {
     }
 }
 
+@_effects(readnone)
 func getMiddleRect(y: CGFloat, height: CGFloat) -> CGRect {
     let sb = WKInterfaceDevice.current().screenBounds
     return CGRect(x: (sb.width - (sb.width - 40)) / 2, y: y, width: sb.width - 40, height: height)
