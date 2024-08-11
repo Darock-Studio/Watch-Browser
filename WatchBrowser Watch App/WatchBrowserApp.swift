@@ -231,16 +231,42 @@ struct SendNSErrorLogView: View {
                                 }
                                 if !content.isEmpty {
                                     let msgToSend = """
-                                        捕获的 NS 异常
-                                        State：0
-                                        LatestNSException：\(content.replacingOccurrences(of: "\n", with: "\\n"))
-                                        LatestNSExceptionTime：\(latestTime)
-                                        Content：\(descriptionInput)
-                                        Time：\(Date.now.timeIntervalSince1970)
-                                        Sender: User
-                                        """
-                                    DarockKit.Network.shared
-                                        .requestString("https://fapi.darock.top:65535/feedback/submit/anony/Darock Browser/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))".compatibleUrlEncoded()) { _, _ in }
+                                    捕获的 NS 异常
+                                    State：0
+                                    LatestNSException：\(content.replacingOccurrences(of: "\n", with: "\\n"))
+                                    LatestNSExceptionTime：\(latestTime)
+                                    Content：\(descriptionInput)
+                                    Version：v\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) Build \(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)
+                                    OS：\(WKInterfaceDevice.current().systemVersion)
+                                    Time：\(Date.now.timeIntervalSince1970)
+                                    Sender: User
+                                    """
+                                    DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
+                                        if isSuccess {
+                                            let spdVer = respStr.apiFixed().split(separator: ".")
+                                            var isNewVerAvailable = false
+                                            if spdVer.count == 3 {
+                                                if let x = Int(spdVer[0]), let y = Int(spdVer[1]), let z = Int(spdVer[2]) {
+                                                    let currVerSpd = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).split(separator: ".")
+                                                    if currVerSpd.count == 3 {
+                                                        if let cx = Int(currVerSpd[0]), let cy = Int(currVerSpd[1]), let cz = Int(currVerSpd[2]) {
+                                                            if x > cx {
+                                                                isNewVerAvailable = true
+                                                            } else if x == cx && y > cy {
+                                                                isNewVerAvailable = true
+                                                            } else if x == cx && y == cy && z > cz {
+                                                                isNewVerAvailable = true
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            if !isNewVerAvailable {
+                                                DarockKit.Network.shared
+                                                    .requestString("https://fapi.darock.top:65535/feedback/submit/anony/Darock Browser/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))".compatibleUrlEncoded()) { _, _ in }
+                                            }
+                                        }
+                                    }
                                 }
                             } catch {
                                 globalErrorHandler(error)
@@ -313,7 +339,7 @@ public func tipWithText(_ text: String, symbol: String = "", time: Double = 3.0)
         pIsShowingTip = false
     }
 }
-public func globalErrorHandler(_ error: Error, at: String = "\(#file)-\(#function)-\(#line)") {
+public func globalErrorHandler(_ error: Error, file: StaticString = #file, function: StaticString = #function, line: Int = #line) {
     print(error)
     do {
         if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/SwiftErrorLogs") {
@@ -321,7 +347,7 @@ public func globalErrorHandler(_ error: Error, at: String = "\(#file)-\(#functio
         }
         try """
         Error：\(error.localizedDescription)
-        Location：\(at)
+        Location：\(file):\(line) - \(function)
         """.write(
             toFile: NSHomeDirectory() + "/Documents/SwiftErrorLogs/\(Date().timeIntervalSince1970).txt",
             atomically: true,
@@ -331,8 +357,8 @@ public func globalErrorHandler(_ error: Error, at: String = "\(#file)-\(#functio
         print("Error in globalErrorHandler: \(error)")
     }
     if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "IsDarockInternalTap-to-RadarAvailable") {
-        pTapToRadarAlertContent = "Swift has catched an internal error.\nPlease help us make Darock Browser better by logging a bug. Thanks. (\(at))"
-        pTapToRadarAttachText = "Auto-attachd DarockBrowser(\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)). At \(at). LocdStr: \(error.localizedDescription) Add more infomation here: "
+        pTapToRadarAlertContent = "Swift has catched an internal error.\nPlease help us make Darock Browser better by logging a bug. Thanks. (\(file):\(line) - \(function))"
+        pTapToRadarAttachText = "Auto-attachd DarockBrowser(\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)). At \(file):\(line) - \(function). LocdStr: \(error.localizedDescription) Add more infomation here: "
             .replacingOccurrences(of: "\n", with: "{LineBreak}")
             .replacingOccurrences(of: "/", with: "{slash}")
             .replacingOccurrences(of: "?", with: "{questionmark}")

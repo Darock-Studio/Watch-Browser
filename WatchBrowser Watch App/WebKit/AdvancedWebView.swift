@@ -224,7 +224,7 @@ final class AdvancedWebViewController {
         if let index {
             tabsCopy[index] = updateUrl
         } else {
-            tabsCopy.append(updateUrl)
+            tabsCopy.insert(updateUrl, at: 0)
         }
         UserDefaults.standard.set(tabsCopy, forKey: "CurrentTabs")
         currentTabIndex = nil

@@ -5,6 +5,8 @@
 //  Created by 凌嘉徽 on 2023/1/22.
 //
 
+// Deprecated: Use Cepheus keyboard on watchOS 10 and newer OS.
+
 import Foundation
 import SwiftUI
 import Combine

@@ -39,6 +39,26 @@ struct VideoListView: View {
                             Image(systemName: "square.and.arrow.down")
                         })
                         Button(action: {
+                            do {
+                                let linkFilePath = NSHomeDirectory() + "/Documents/SavedVideoLinks.drkdatas"
+                                if !FileManager.default.fileExists(atPath: linkFilePath) {
+                                    try jsonString(from: [String]())!.write(toFile: linkFilePath, atomically: true, encoding: .utf8)
+                                }
+                                if let fileStr = try? String(contentsOfFile: linkFilePath, encoding: .utf8),
+                                   var links = getJsonData([String].self, from: fileStr) {
+                                    links.append(cachedVideoLinkLists[i])
+                                    try jsonString(from: links)!.write(toFile: linkFilePath, atomically: true, encoding: .utf8)
+                                    tipWithText("已添加到列表", symbol: "checkmark.circle.fill")
+                                }
+                            } catch {
+                                globalErrorHandler(error)
+                            }
+                        }, label: {
+                            Image(systemName: "rectangle.stack.badge.plus")
+                        })
+                    }
+                    .swipeActions(edge: .leading) {
+                        Button(action: {
                             shareVideoLink = videoLinkLists[i]
                             isSharePresented = true
                         }, label: {
@@ -206,6 +226,10 @@ struct VideoPlayingView: View {
             )
             let item = AVPlayerItem(asset: asset)
             player = AVPlayer(playerItem: item)
+            player.seek(
+                to: CMTime(seconds: Double(UserDefaults.standard.integer(forKey: "VideoProgressForLink\(link.md5.prefix(16))")), preferredTimescale: 60000)
+            )
+            setForAudioPlaying()
             if ((UserDefaults.standard.object(forKey: "CCIsContinuityMediaEnabled") as? Bool) ?? true)
                 && (link.hasPrefix("http://") || link.hasPrefix("https://")) {
                 globalMediaUserActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
@@ -216,6 +240,7 @@ struct VideoPlayingView: View {
         }
         .onDisappear {
             player.pause()
+            UserDefaults.standard.set(Int(currentTime), forKey: "VideoProgressForLink\(link.md5.prefix(16))")
             if (UserDefaults.standard.object(forKey: "CCIsContinuityMediaEnabled") as? Bool) ?? true {
                 globalMediaUserActivity?.invalidate()
             }
@@ -551,10 +576,20 @@ struct LocalVideosView: View {
                     if !videoNames.isEmpty {
                         ForEach(0..<videoNames.count, id: \.self) { i in
                             Button(action: {
-                                willPlayVideoLink = URL(fileURLWithPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoNames[i]).absoluteString
+                                if videoNames[i].hasPrefix("http://") || videoNames[i].hasPrefix("https://") {
+                                    willPlayVideoLink = videoNames[i]
+                                } else {
+                                    willPlayVideoLink = URL(filePath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoNames[i]).absoluteString
+                                }
                                 isPlayerPresented = true
                             }, label: {
-                                Text(videoHumanNameChart[videoNames[i]] ?? videoNames[i])
+                                HStack {
+                                    if !videoNames[i].hasPrefix("http://") && !videoNames[i].hasPrefix("https://") {
+                                        Image(systemName: "square.and.arrow.down.fill")
+                                            .foregroundStyle(Color.gray)
+                                    }
+                                    Text(videoHumanNameChart[videoNames[i]] ?? videoNames[i])
+                                }
                             })
                             .swipeActions {
                                 Button(role: .destructive, action: {
@@ -596,14 +631,28 @@ struct LocalVideosView: View {
                     }
                 }
             }
-            .navigationTitle("本地视频")
+            .navigationTitle("视频")
             .alert("删除项目", isPresented: $isDeleteItemAlertPresented, actions: {
                 Button(role: .cancel, action: {}, label: {
                     Text("取消")
                 })
                 Button(role: .destructive, action: {
                     do {
-                        try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoNames[deleteItemIndex])
+                        if videoNames[deleteItemIndex].hasPrefix("http://") || videoNames[deleteItemIndex].hasPrefix("https://") {
+                            let linkFilePath = NSHomeDirectory() + "/Documents/SavedVideoLinks.drkdatas"
+                            if !FileManager.default.fileExists(atPath: linkFilePath) {
+                                try jsonString(from: [String]())!.write(toFile: linkFilePath, atomically: true, encoding: .utf8)
+                            }
+                            if let fileStr = try? String(contentsOfFile: linkFilePath, encoding: .utf8),
+                               var links = getJsonData([String].self, from: fileStr) {
+                                if let di = links.firstIndex(of: videoNames[deleteItemIndex]) {
+                                    links.remove(at: di)
+                                    try jsonString(from: links)!.write(toFile: linkFilePath, atomically: true, encoding: .utf8)
+                                }
+                            }
+                        } else {
+                            try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoNames[deleteItemIndex])
+                        }
                         videoNames.remove(at: deleteItemIndex)
                     } catch {
                         globalErrorHandler(error)
@@ -639,6 +688,14 @@ struct LocalVideosView: View {
             .onAppear {
                 do {
                     videoNames = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos")
+                    let linkFilePath = NSHomeDirectory() + "/Documents/SavedVideoLinks.drkdatas"
+                    if FileManager.default.fileExists(atPath: linkFilePath) {
+                        if let fileStr = try? String(contentsOfFile: linkFilePath, encoding: .utf8),
+                           let links = getJsonData([String].self, from: fileStr) {
+                            videoNames += links
+                        }
+                    }
+                    videoNames.sort()
                     videoHumanNameChart = (UserDefaults.standard.dictionary(forKey: "VideoHumanNameChart") as? [String: String]) ?? [String: String]()
                 } catch {
                     globalErrorHandler(error)

@@ -131,15 +131,20 @@ struct BookmarkView: View {
     }
     
     struct StaredBookmarksView: View {
+        @State var staredBookmarks = [String: String]()
         var body: some View {
             List {
                 Section {
-                    ForEach(Array<String>(staredBookmarks.keys).sorted(), id: \.self) { key in
-                        Button(action: {
-                            AdvancedWebViewController.shared.present(staredBookmarks[key]!)
-                        }, label: {
-                            Text(key)
-                        })
+                    if !staredBookmarks.isEmpty {
+                        ForEach(Array<String>(staredBookmarks.keys).sorted(), id: \.self) { key in
+                            Button(action: {
+                                AdvancedWebViewController.shared.present(staredBookmarks[key]!)
+                            }, label: {
+                                Text(key)
+                            })
+                        }
+                    } else {
+                        Text("无法载入快捷书签，请提交错误报告。")
                     }
                 } footer: {
                     Text(
@@ -153,17 +158,17 @@ struct BookmarkView: View {
                 }
             }
             .navigationTitle("快捷书签")
+            .onAppear {
+                // Updating values dynamicly to resolve rdar://FB268002073203
+                staredBookmarks.updateValue("http://yhdm.one", forKey: String(localized: "樱花动漫"))
+                staredBookmarks.updateValue("https://math.microsoft.com", forKey: String(localized: "微软数学"))
+                staredBookmarks.updateValue("https://tieba.baidu.com", forKey: String(localized: "百度贴吧"))
+                staredBookmarks.updateValue("https://music.163.com", forKey: String(localized: "网易云音乐"))
+                staredBookmarks.updateValue("https://bilibili.com", forKey: String(localized: "哔哩哔哩"))
+                staredBookmarks.updateValue("https://qidian.com", forKey: String(localized: "起点小说"))
+                staredBookmarks.updateValue("https://www.pixiv.pics", forKey: "Pixiv Viewer")
+            }
         }
-        
-        let staredBookmarks = [
-            String(localized: "樱花动漫"): "http://yhdm.one",
-            String(localized: "微软数学"): "https://math.microsoft.com",
-            String(localized: "百度贴吧"): "https://tieba.baidu.com",
-            String(localized: "网易云音乐"): "https://music.163.com",
-            String(localized: "哔哩哔哩"): "https://bilibili.com",
-            String(localized: "起点小说"): "https://qidian.com",
-            "Pixiv Viewer": "https://www.pixiv.pics"
-        ]
         
         struct SuggestWebView: View {
             @Environment(\.dismiss) var dismiss

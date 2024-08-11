@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 import Dynamic
 import Cepheus
-import WatchKit
+import EFQRCode
 import Punycode
 import DarockKit
 import Alamofire
@@ -116,7 +116,7 @@ struct ContentView: View {
                             case .musicPlaylist:
                                 PlaylistsView()
                             case .localMedia:
-                                LocalMediaView()
+                                MediaListView()
                             case .userscript:
                                 UserScriptsView()
                             case .chores:
@@ -251,7 +251,7 @@ struct MainView: View {
     @AppStorage("AlternativeSearch") var alternativeSearch = "必应"
     @AppStorage("IsAllowCookie") var isAllowCookie = false
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
-    @AppStorage("IsShowBetaTest1") var isShowBetaTest = true
+    @AppStorage("IsShowJoinGroup") var isShowJoinGroup = true
     @AppStorage("IsShowClusterAd") var isShowClusterAd = true
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
     @AppStorage("PreloadSearchContent") var preloadSearchContent = true
@@ -270,6 +270,7 @@ struct MainView: View {
     @State var isNewVerAvailable = false
     @State var isHaveDownloadedVideo = false
     @State var isHaveDownloadedAudio = false
+    @State var isHaveLocalImage = false
     @State var isPreloadedSearchWeb = false
     @State var isOfflineBooksAvailable = false
     @State var isAudioControllerAvailable = false
@@ -373,6 +374,13 @@ struct MainView: View {
             do {
                 if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios") {
                     isHaveDownloadedAudio = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios").isEmpty
+                }
+            } catch {
+                globalErrorHandler(error)
+            }
+            do {
+                if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/LocalImages") {
+                    isHaveLocalImage = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/LocalImages").isEmpty
                 }
             } catch {
                 globalErrorHandler(error)
@@ -576,11 +584,11 @@ struct MainView: View {
                                 }
                             })
                         case .localMedia:
-                            if isHaveDownloadedAudio || isOfflineBooksAvailable || isHaveDownloadedVideo {
-                                NavigationLink(destination: { LocalMediaView() }, label: {
+                            if isHaveDownloadedAudio || isHaveLocalImage || isOfflineBooksAvailable || isHaveDownloadedVideo {
+                                NavigationLink(destination: { MediaListView() }, label: {
                                     HStack {
                                         Spacer()
-                                        Label("本地媒体", systemImage: "play.square.stack")
+                                        Label("媒体列表", systemImage: "play.square.stack")
                                         Spacer()
                                     }
                                 })
@@ -628,11 +636,11 @@ struct MainView: View {
                                     }
                                 })
                             }
-                            if isShowBetaTest {
-                                NavigationLink(destination: { MLTestsView() }, label: {
+                            if isShowJoinGroup {
+                                NavigationLink(destination: { JoinGroupView() }, label: {
                                     HStack {
                                         Spacer()
-                                        Label("Home.invatation", systemImage: "megaphone")
+                                        Label("欢迎加入群聊", systemImage: "bubble.left.and.bubble.right")
                                         Spacer()
                                     }
                                 })

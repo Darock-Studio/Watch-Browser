@@ -1076,7 +1076,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "**竝非所有網頁內的眎頻均能被解析**\n\n請**不要**提齣網站眎頻無灋播放之類的反餽"
           }
         }
       }
@@ -1571,6 +1571,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "%1$@：反馈暂未被阅读，或是正在验证问题。\n\n%2$@：报告中描述的是预期中的表现。\n\n%3$@：报告中的问题无法被修复，或是不具有可行性。\n\n%4$@：在你提交此报告前，已有另一人提出了相同的问题，你仍会在第一个报告得到修复后收到“已修复”的状态更新。\n        你的报告可能会与那些初看似乎具有相同根源的类似报告分到一组。但是，类似的报告也可能包含多种原因。如果你发现该修复方案解决了类似报告中的问题，但无法完全解决你报告的问题，请提交新报告。\n\n%5$@：短时间内可能无法解决此问题。\n\n%6$@：Darock 正在为此问题提供修复方案。\n\n%7$@：修复工作已完成，但还未提交更新或是更新正在等待发布。\n\n%8$@：修复工作已完成，可更新至最新版本验证修复。\n\n%9$@：未能通过报告中的问题复现问题，需要提供更多信息。\n\n%10$@：报告与 App 本身无关，或是问题并非由 App 本身引起。\n\n%11$@：提供的信息不足以让我们确定问题，你需要补充更多信息。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@：反餽蹔未被閱讀，或是正在騐証問題。\n\n%2$@：報告中描述的是預朞中的錶現。\n\n%3$@：報告中的問題無灋被修複，或是不具有可行性。\n\n%4$@：在你提交此報告前，已有另一人提齣瞭相衕的問題，你仍會在第一箇報告得到修複後收到“已修複”的狀態更新。\n        你的報告可能會與那些初看似乎具有相衕根源的類似報告分到一組。但是，類似的報告也可能包含多種原囙。如果你發現該修複方案解決瞭類似報告中的問題，但無灋完全解決你報告的問題，請提交新報告。\n\n%5$@：短時間內可能無灋解決此問題。\n\n%6$@：Darock 正在爲此問題提供修複方案。\n\n%7$@：修複工作已完成，但還未提交更新或是更新正在等待發布。\n\n%8$@：修複工作已完成，可更新至最新版本騐証修複。\n\n%9$@：未能通過報告中的問題複現問題，需要提供更多信息。\n\n%10$@：報告與 App 本身無關，或是問題竝非由 App 本身引起。\n\n%11$@：提供的信息不足以讓我們確定問題，你需要補充更多信息。"
           }
         }
       }
@@ -2408,7 +2414,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "%@按預朞工作"
           }
         }
       }
@@ -2526,7 +2532,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "%@擱置"
           }
         }
       }
@@ -2880,7 +2886,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "%@未標記"
           }
         }
       }
@@ -2998,7 +3004,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "%@未能複現"
           }
         }
       }
@@ -3234,7 +3240,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "%@問題竝不與 App 相關"
           }
         }
       }
@@ -3352,7 +3358,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "%@問題重複"
           }
         }
       }
@@ -8164,7 +8170,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "Darock Studio" : {
       "shouldTranslate" : false
@@ -9936,130 +9943,6 @@
         }
       }
     },
-    "Home.invatation" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darockأدعوك لإجراء الاختبار"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "DarockIch lade Sie ein, den Test zu machen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock invites you for a test"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "DarockTe invito a hacer la prueba"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "DarockJe vous invite à passer le test"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darockआपको परीक्षा देने के लिए आमंत्रित करें"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "DarockMengundang Anda untuk mengikuti tes"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "DarockTi invito a fare il test"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darockはテストに参加するよう招待しています"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock시험에 초대합니다"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock Nodig je uit om de test te doen"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "DarockZaproś do wzięcia udziału w teście"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "DarockConvido você a fazer o teste"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дарок приглашает вас на тест."
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darockเชิญคุณมาทําแบบทดสอบ"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "DarockSeni sınava girmeye davet ediyorum"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "DarockЗапрошуйте вас пройти тест"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "DarockMời bạn làm bài kiểm tra"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock邀请您参加测试"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock邀請您參加測試"
-          }
-        }
-      }
-    },
     "Home.search" : {
       "localizations" : {
         "ar" : {
@@ -10179,7 +10062,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "搜索"
           }
         }
       }
@@ -11069,773 +10952,6 @@
       },
       "shouldTranslate" : false
     },
-    "Invataion.app-discription" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "عميل Bilibili على Apple Watch"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bilibili-Client auf der Apple Watch"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A Bilibili Client on Apple Watch"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cliente Bilibili en Apple Watch"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Client Bilibili sur Apple Watch"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "एप्पल वॉच पर बिलीबिली क्लाइंट"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Klien Bilibili di Apple Watch"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Client Bilibili su Apple Watch"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Watch用のBilibiliクライアント"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Watch의 Bilibili 클라이언트"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bilibili-client op Apple Watch"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Klient Bilibili na Apple Watch"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cliente Bilibili no Apple Watch"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Клиент Bilibili на Apple Watch"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ไคลเอนต์ Bilibili บน Apple Watch"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Watch'ta Bilibili istemcisi"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Клієнт Bilibili на Apple Watch"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Khách hàng Bilibili trên Apple Watch"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Watch 上的 Bilibili 客户端"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Watch 上的 Bilibili 客戶端"
-          }
-        }
-      }
-    },
-    "Invataion.app-name" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "MeowBili"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "喵哩喵哩"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      },
-      "shouldTranslate" : false
-    },
-    "Invatation" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "دعوة اختبار"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einladung zum Testen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Invatation"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Invitación de prueba"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Invitation au test"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "परीक्षण का निमंत्रण"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Undangan tes"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Invito al test"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "テスト招待"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "테스트 초대"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Testuitnodiging"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zaproszenie na test"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Convite de teste"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тестовое приглашение"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "คําเชิญทดสอบ"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Test daveti"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тестове запрошення"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lời mời kiểm tra"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "测试邀请"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "測試邀請"
-          }
-        }
-      }
-    },
-    "Invatation.continue-on-iphone" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تابع على iPhone"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Auf dem iPhone fortfahren"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Continue on iPhone"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Continuar en el iPhone"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Continuer sur iPhone"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "आईफोन पर जारी रखें"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lanjutkan di iPhone"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Continua su iPhone"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iPhoneで続行"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iPhone에서 계속"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ga door op iPhone"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kontynuuj na iPhonie"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Continuar no iPhone"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Продолжить на iPhone"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ดําเนินการต่อบนไอโฟน"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iPhone'da devam et"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Продовжити на iPhone"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tiếp tục trên iPhone"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在iPhone上继续"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在iPhone上繼續"
-          }
-        }
-      }
-    },
-    "Invatation.download" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تَنْزيل"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Herunterladen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Download"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descargar"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Télécharger"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "डाउनलोड"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Download"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scaricare"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ダウンロード"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "다운로드"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Downloaden"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Przesłać dane z serwera"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Baixar"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Загружать, загрузить"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ดาวน์โหลด"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "İndir"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Завантажити"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tải xuống"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "下载"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "下載"
-          }
-        }
-      }
-    },
-    "Invatation.learn-more" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تعلم المزيد"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mehr erfahren"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Learn More"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Más información"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "En savoir plus"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "और जानें"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pelajari lebih lanjut"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scopri di più"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "もっと詳しく"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "더 알아보기"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Meer informatie"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dowiedz się więcej"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Saiba mais"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Узнать больше"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "เรียนรู้เพิ่มเติม"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Daha fazlasını öğren"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дізнатися більше"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tìm hiểu thêm"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "了解更多"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "了解更多"
-          }
-        }
-      }
-    },
-    "Invatation.leave-and-hide" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "اترك واختبئ"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Verlassen und verstecken"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Leave and Hide"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dejar y esconder"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Laisse et cache-toi"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "छोड़ दो और छिप जाओ"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pergi dan bersembunyi"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lascia e nasconditi"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "離れて非表示"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "떠나고 숨다"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Verlaat en verberg"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zostaw i schowaj się"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deixe e esconda-se"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Уйти и спрятаться"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ออกไปและซ่อนตัว"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ayrıl ve saklan"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Залиш і сховайся"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rời đi và trốn"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "离开并隐藏"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "離開並隱藏"
-          }
-        }
-      }
-    },
     "JavaScript" : {
       "shouldTranslate" : false
     },
@@ -12128,7 +11244,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "Reset All What's New Screen State" : {
       "shouldTranslate" : false
@@ -16037,7 +15154,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "上面的網站在 Apple Watch 上運行錶現較好，盡管如此，我們仍然不接受網站內問題的反餽。\n網站內容由網頁提供商提供，Darock 不對其內容負責。\n請自行辨彆其中內容眞實性，特彆是廣告內容。"
           }
         }
       }
@@ -16273,7 +15390,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "下載器"
           }
         }
       }
@@ -16391,7 +15508,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "下載媒體"
           }
         }
       }
@@ -16632,12 +15749,28 @@
         }
       }
     },
+    "不再显示" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don’t show again"
+          }
+        }
+      }
+    },
     "不发送" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Don’t Send"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不發送"
           }
         }
       }
@@ -16755,7 +15888,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "不在播放列錶"
           }
         }
       }
@@ -16766,6 +15899,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "But we got the error log ～(∠・ω< )⌒☆"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不過我們收集到瞭錯誤日誌～(∠・ω< )⌒☆"
           }
         }
       }
@@ -16883,7 +16022,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "與此反餽重複"
           }
         }
       }
@@ -17355,7 +16494,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "主屏幕"
           }
         }
       }
@@ -17473,7 +16612,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "瞭解反餽狀態"
           }
         }
       }
@@ -18181,7 +17320,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "僅作示例\n©2020 NAT GAMES Co., Ltd. All Rights Reserved.\n©2020 Yostar, Inc. All Rights Reserved."
           }
         }
       }
@@ -18299,7 +17438,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "僅作示例，此處的操作不會眞的下載眎頻。"
           }
         }
       }
@@ -18535,7 +17674,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "僅作示例，請支持正版圖書。"
           }
         }
       }
@@ -18653,7 +17792,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "僅作示例。"
           }
         }
       }
@@ -18771,125 +17910,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "仅聊天，若要反馈 App 问题，请前往%@" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "الدردشة فقط. إذا كنت ترغب في تقديم ملاحظات حول مشاكل التطبيق، فيرجى الانتقال إلى %@"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nur Chat. Wenn Sie Feedback zu App-Problemen geben möchten, gehen Sie bitte zu %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chat only. To provide feedback on app issues, please go to %@."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Solo chat. Si desea dar su opinión sobre los problemas de la aplicación, vaya a %@"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chat uniquement. Si vous souhaitez donner votre avis sur les problèmes d'application, veuillez vous rendre sur %@"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "केवल चैट करें। यदि आप ऐप की समस्याओं पर प्रतिक्रिया देना चाहते हैं, तो कृपया %@ पर जाएं"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hanya obrolan. Jika Anda ingin memberikan umpan balik tentang masalah Aplikasi, silakan pergi ke %@"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Solo chat. Se vuoi dare un feedback sui problemi dell'app, vai su %@"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "チャットのみ、Appの問題をフィードバックしたい場合は、%@へ行ってください。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "채팅만 하고, 앱 문제를 피드백하려면%@"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alleen chat. Als je feedback wilt geven over app-problemen, ga dan naar %@"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tylko czat. Jeśli chcesz przekazać opinię na temat problemów z aplikacją, przejdź do %@"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apenas bate-papo. Se você quiser dar feedback sobre problemas do aplicativo, acesse %@"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Только в чате. Если вы хотите оставить отзыв о проблемах с приложением, пожалуйста, перейдите на %@"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "แชทเท่านั้น หากคุณต้องการให้ข้อเสนอแนะเกี่ยวกับปัญหาของแอป โปรดไปที่ %@"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yalnızca sohbet. Uygulama sorunları hakkında geri bildirimde bulunmak istiyorsanız, lütfen %@ adresine gidin"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тільки чат. Якщо ви хочете залишити відгук про проблеми з додатком, будь ласка, перейдіть до %@"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chỉ trò chuyện. Nếu bạn muốn đưa ra phản hồi về các vấn đề của Ứng dụng, vui lòng truy cập %@"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
+            "value" : "僅作示例。\n%@"
           }
         }
       }
@@ -19243,7 +18264,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "從歴史記録選擇"
           }
         }
       }
@@ -19479,7 +18500,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "從離綫歌麯選擇"
           }
         }
       }
@@ -21963,7 +20984,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "關於视频播放卡住..."
           }
         }
       }
@@ -22199,7 +21220,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "關聯反馈"
           }
         }
       }
@@ -22553,7 +21574,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "最大縮放倍數"
           }
         }
       }
@@ -22671,7 +21692,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "最近的歴史記録"
           }
         }
       }
@@ -22907,7 +21928,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "分享到暗礁文件"
           }
         }
       }
@@ -23385,7 +22406,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "创建"
           }
         }
       }
@@ -23503,7 +22524,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "剏建播放列錶"
           }
         }
       }
@@ -23739,7 +22760,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "刪除"
           }
         }
       }
@@ -23857,7 +22878,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "刪除播放列錶"
           }
         }
       }
@@ -24228,6 +23249,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Delete Item"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除項目"
           }
         }
       }
@@ -27205,7 +26232,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "可在解析的音頻列錶頁左滑項目以添加到列錶"
           }
         }
       }
@@ -27913,7 +26940,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "嚮左滑働媒體鏈接"
           }
         }
       }
@@ -28385,7 +27412,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "哔哩哔哩"
           }
         }
       }
@@ -28857,7 +27884,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "固定的書籤"
           }
         }
       }
@@ -29565,7 +28592,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "圖書閱讀器設置"
           }
         }
       }
@@ -30751,7 +29778,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "在少數情況下，播放眎頻時可能會齣現**隻有聲音，沒有畫面或畫面卡住**的情況。\n\n遇到此類情況，重啓 Apple Watch 卽可解決，請勿提交反餽。"
           }
         }
       }
@@ -31583,7 +30610,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "聲音"
           }
         }
       }
@@ -31820,6 +30847,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "媒體"
+          }
+        }
+      }
+    },
+    "媒体列表" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Media List"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "媒體列錶"
           }
         }
       }
@@ -32291,7 +31334,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "存儲至 Darock Cloud"
           }
         }
       }
@@ -33589,7 +32632,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "完成後提醒"
           }
         }
       }
@@ -34662,6 +33705,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Description of the issue, such as what you were doing before the app crashed."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "對問題的描述，例如您在 App 崩潰前做了什麽。"
           }
         }
       }
@@ -35841,7 +34890,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "已下載 %@MB"
           }
         }
       }
@@ -36785,7 +35834,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "已安装暗礁文件"
           }
         }
       }
@@ -37026,6 +36075,22 @@
         }
       }
     },
+    "已添加到列表" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Added to List"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已添加到列錶"
+          }
+        }
+      }
+    },
     "已还原" : {
       "localizations" : {
         "ar" : {
@@ -37139,7 +36204,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "已還原"
           }
         }
       }
@@ -37257,7 +36322,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "常用設置"
           }
         }
       }
@@ -38437,7 +37502,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "開始閱讀"
           }
         }
       }
@@ -38909,7 +37974,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "噹在多設俻登録賬號，或是重新安裝闇礁瀏覽器後，存儲至 Darock Cloud 的數據將會自働衕步。"
           }
         }
       }
@@ -39263,7 +38328,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "快進 10 秒"
           }
         }
       }
@@ -40089,7 +39154,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "您可以隨時在“提示->新功能”中重新打開此頁"
           }
         }
       }
@@ -40453,7 +39518,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "我知道了"
           }
         }
       }
@@ -40689,7 +39754,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "我確認網站具有普徧性，多數人會認爲這有用"
           }
         }
       }
@@ -40807,7 +39872,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "我確認網站在暗礁瀏覽器中工作正常"
           }
         }
       }
@@ -41999,7 +41064,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "抹掉時齣錯"
           }
         }
       }
@@ -42117,7 +41182,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "拖働以重新排序"
           }
         }
       }
@@ -42600,6 +41665,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Suggestion - Cluster"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "推荐 - 暗礁文件"
           }
         }
       }
@@ -44055,7 +43126,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "搜索按鈕"
           }
         }
       }
@@ -44415,7 +43486,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "播放中"
           }
         }
       }
@@ -44893,7 +43964,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "播放網頁音頻"
           }
         }
       }
@@ -45613,7 +44684,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "新建播放列錶"
           }
         }
       }
@@ -46213,7 +45284,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "無本地圖書"
           }
         }
       }
@@ -46332,6 +45403,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法修復"
+          }
+        }
+      }
+    },
+    "无法载入快捷书签，请提交错误报告。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to load Quick Bookmarks, please file a feedback."
           }
         }
       }
@@ -47039,7 +46120,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "顯示繙譯歌詞"
           }
         }
       }
@@ -47157,7 +46238,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "晚飯過後，我沿着海灘散步，想找一箇絕佳的位置讀完手裏的書，再開啓一本新書。我發現瞭一箇地方，目之所及，空無一人。這裏還有一張弔牀，可以閱讀和小憩。我躺下來，幾經調整，找到一箇最舒適的姿勢，就此遯入書中，沉浸在最後一箇章節。一時間，"
           }
         }
       }
@@ -47168,6 +46249,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cluster can be used with Darock Browser. After installing Cluster, you can store local media from Darock Browser to Cluster."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暗礁文件可与暗礁浏览器配合使用，在安装暗礁文件后，您可以将暗礁浏览器中的本地媒体存储至暗礁文件。"
           }
         }
       }
@@ -49065,7 +48152,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "本地圖書"
           }
         }
       }
@@ -49183,7 +48270,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "本地圖片"
           }
         }
       }
@@ -49301,125 +48388,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "本地视频" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "فيديو محلي"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lokales Video"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Local Videos"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vídeo local"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vidéo locale"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "स्थानीय वीडियो"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Video lokal"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Video locale"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ローカル動画"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "현지 영상"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lokale video"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lokalne wideo"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vídeo local"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Местное видео"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "วิดีโอท้องถิ่น"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yerel video"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Місцеве відео"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Video địa phương"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "本地視頻"
+            "value" : "本地媒體"
           }
         }
       }
@@ -49537,7 +48506,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "本地音頻"
           }
         }
       }
@@ -49773,7 +48742,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "构建版本"
           }
         }
       }
@@ -50487,7 +49456,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "査看示例音頻"
           }
         }
       }
@@ -51313,7 +50282,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "櫻花働漫"
           }
         }
       }
@@ -51431,7 +50400,20 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "次要搜索引擎"
+          }
+        }
+      }
+    },
+    "欢迎加入 QQ 群 248036605" : {
+      "shouldTranslate" : false
+    },
+    "欢迎加入群聊" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to Group Chat"
           }
         }
       }
@@ -51667,7 +50649,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "歌詞不可用"
           }
         }
       }
@@ -51785,7 +50767,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "正在下載 M3U8 媒體，這可能需要較長時間，且闇礁瀏覽器無灋報告進度。"
           }
         }
       }
@@ -53083,7 +52065,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "此操作不可逆\n確定嗎？"
           }
         }
       }
@@ -54044,7 +53026,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "添加控件"
           }
         }
       }
@@ -55724,7 +54706,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "现在，可将暗礁浏览器的本地文件分享到暗礁文件"
           }
         }
       }
@@ -57634,7 +56616,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "直接在搜索框輸入或在網頁中輕觸.epub鏈接以開始"
           }
         }
       }
@@ -58712,7 +57694,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "示例圖片"
           }
         }
       }
@@ -59066,7 +58048,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "视频"
           }
         }
       }
@@ -59774,7 +58756,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "空圖書列錶"
           }
         }
       }
@@ -60010,7 +58992,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "空播放列錶"
           }
         }
       }
@@ -60246,7 +59228,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "空音頻列錶"
           }
         }
       }
@@ -60954,7 +59936,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "系统版本"
           }
         }
       }
@@ -61308,7 +60290,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "繼續閱讀"
           }
         }
       }
@@ -61544,7 +60526,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "縮放"
           }
         }
       }
@@ -61662,7 +60644,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "網易雲音樂"
           }
         }
       }
@@ -62611,242 +61593,6 @@
         }
       }
     },
-    "群号：248036605" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "رقم المجموعة: 248036605"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gruppennummer: 248036605"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Group ID: 248036605"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Número de grupo: 248036605"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Numéro de groupe : 248036605"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "समूह संख्या: 248036605"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nomor grup: 248036605"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Numero di gruppo: 248036605"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "グループ番号：248036605"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "그룹 번호: 248036605"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Groepsnummer: 248036605"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Numer grupy: 248036605"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Número do grupo: 248036605"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Номер группы: 248036605"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "หมายเลขกลุ่ม: 248036605"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Grup numarası: 248036605"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Номер групи: 248036605"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Số nhóm: 248036605"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "联系我们" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تواصل معنا"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kontaktieren Sie uns"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contact Us"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contáctenos"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contactez-nous"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "हमसे संपर्क करें"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hubungi kami"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contattaci"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ご連絡下さい"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "저희에게 연락하세요"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Neem contact met ons op"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Skontaktuj się z nami"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Entre em contato conosco"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Свяжитесь с нами"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ติดต่อเรา"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bizimle iletişime geçin"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Зв'яжіться з нами"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Liên hệ với chúng tôi"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
     "脚本均来自greasyfork.org，Darock 无法进行审核，请自行辨别内容" : {
       "localizations" : {
         "ar" : {
@@ -63320,7 +62066,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "自定義文本"
           }
         }
       }
@@ -63922,6 +62668,12 @@
             "state" : "translated",
             "value" : "Would you like to send the error log?"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要發送錯誤日誌嗎？"
+          }
         }
       }
     },
@@ -64038,7 +62790,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "要求"
           }
         }
       }
@@ -65229,6 +63981,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Qidian Novel (Chinese, Simplified)"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "起点小说"
           }
         }
       }
@@ -66532,7 +65290,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "輕觸瀏覽菜單“播放網頁眎頻”、在網頁中尋找或直接在搜索框中輸入眎頻鏈接"
           }
         }
       }
@@ -66650,7 +65408,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "輕觸瀏覽菜單“播放網頁音頻”、在網頁中尋找或直接在搜索框中輸入音頻鏈接"
           }
         }
       }
@@ -69010,7 +67768,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "還原時齣錯"
           }
         }
       }
@@ -69364,7 +68122,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "這將刪除播放列錶中的所有內容\n確定嗎？"
           }
         }
       }
@@ -69836,7 +68594,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "連續互通"
           }
         }
       }
@@ -69954,7 +68712,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "連續互通媒體"
           }
         }
       }
@@ -70898,7 +69656,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "通知令牌"
           }
         }
       }
@@ -72212,7 +70970,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "鎖定網頁歸檔"
           }
         }
       }
@@ -72684,7 +71442,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "長按搜索按鈕使用次要搜索引擎"
           }
         }
       }
@@ -75758,7 +74516,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "音樂播放器"
           }
         }
       }
@@ -75876,7 +74634,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "音頻"
           }
         }
       }
@@ -75994,7 +74752,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "音頻列錶"
           }
         }
       }
@@ -76348,7 +75106,23 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "額外歴史記録"
+          }
+        }
+      }
+    },
+    "首次载入可能需要一些时间，完成后将缓存数据以加快后续载入。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The initial load may take some time. Once completed, the data will be cached to speed up future loads."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "首次載入可能需要一些時間，完成後將緩存數據以加快後續載入。"
           }
         }
       }

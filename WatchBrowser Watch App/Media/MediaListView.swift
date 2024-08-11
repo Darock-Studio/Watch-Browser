@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LocalMediaView: View {
+struct MediaListView: View {
     @State var isHaveDownloadedVideo = false
     @State var isHaveDownloadedAudio = false
     @State var isHaveLocalImage = false
@@ -17,27 +17,27 @@ struct LocalMediaView: View {
             Section {
                 if isHaveDownloadedAudio {
                     NavigationLink(destination: { LocalAudiosView() }, label: {
-                        Label("本地音频", systemImage: "music.quarternote.3")
+                        Label("音频", systemImage: "music.quarternote.3")
                     })
                 }
                 if isOfflineBooksAvailable {
                     NavigationLink(destination: { LocalBooksView() }, label: {
-                        Label("本地图书", systemImage: "book.pages")
+                        Label("图书", systemImage: "book.pages")
                     })
                 }
                 if isHaveLocalImage {
                     NavigationLink(destination: { LocalImageView() }, label: {
-                        Label("本地图片", systemImage: "photo.stack")
+                        Label("图片", systemImage: "photo.stack")
                     })
                 }
                 if isHaveDownloadedVideo {
                     NavigationLink(destination: { LocalVideosView() }, label: {
-                        Label("本地视频", systemImage: "tray.and.arrow.down")
+                        Label("视频", systemImage: "play.square")
                     })
                 }
             }
         }
-        .navigationTitle("本地媒体")
+        .navigationTitle("媒体列表")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             do {

@@ -281,8 +281,6 @@ struct SettingsView: View {
                 Section {
                     NavigationLink(destination: { LegalView() },
                                    label: { SettingItemLabel(title: "法律与监管", image: "text.justify.left", color: .gray) })
-                    NavigationLink(destination: { ContactView() },
-                                   label: { SettingItemLabel(title: "联系我们", image: "bubble.right", color: .green) })
                 }
                 Section {
                     NavigationLink(destination: { ResetView() },
@@ -1936,58 +1934,6 @@ struct SettingsView: View {
                         }
                     }
                 }
-            }
-        }
-        struct ContactView: View {
-            var body: some View {
-                List {
-                    Section {
-                        if NSLocale.current.language.languageCode!.identifier == "zh" {
-                            NavigationLink(destination: {
-                                VStack {
-                                    Image(decorative: EFQRCode.generate(for: "https://qm.qq.com/q/1q943WQLAo")!, scale: 1)
-                                        .resizable()
-                                        .frame(width: 120, height: 120)
-                                    Text("在 iPhone 上继续")
-                                }
-                                .navigationTitle("加入群聊")
-                                .navigationBarTitleDisplayMode(.inline)
-                            }, label: {
-                                Text("群号：248036605")
-                            })
-                        } else {
-                            NavigationLink(destination: {
-                                VStack {
-                                    Image(decorative: EFQRCode.generate(for: "https://t.me/drkcomu")!, scale: 1)
-                                        .resizable()
-                                        .frame(width: 120, height: 120)
-                                    Text("在 iPhone 上继续")
-                                }
-                                .navigationTitle("加入群聊")
-                                .navigationBarTitleDisplayMode(.inline)
-                            }, label: {
-                                VStack(alignment: .leading) {
-                                    Text("@DRKCOMU")
-                                    Text("轻触以查看二维码")
-                                        .font(.system(size: 13))
-                                        .foregroundStyle(Color.gray)
-                                }
-                            })
-                        }
-                    } header: {
-                        if NSLocale.current.language.languageCode!.identifier == "zh" {
-                            Text("QQ")
-                        } else {
-                            Text("Telegram")
-                        }
-                    } footer: {
-                        NavigationLink(destination: { FeedbackView() }, label: {
-                            Text("仅聊天，若要反馈 App 问题，请前往\(Text("反馈助理").bold().foregroundColor(.blue))")
-                        })
-                        .buttonStyle(.plain)
-                    }
-                }
-                .navigationTitle("联系我们")
             }
         }
         

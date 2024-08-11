@@ -5,6 +5,7 @@
 //  Created by memz233 on 6/27/24.
 //
 
+import OSLog
 import SwiftUI
 import Dynamic
 import EPUBKit
@@ -236,7 +237,7 @@ struct BookReaderView: View {
     @AppStorage("RVFontSize") var fontSize = 14
     @AppStorage("RVIsBoldText") var isBoldText = false
     @AppStorage("RVCharacterSpacing") var characterSpacing = 1.0
-    @State var contents = [NSAttributedString]()
+    @State var contents = CodableAttributedStringArray()
     @State var loadProgress = 0.0
     @State var toolbarVisibility = Visibility.visible
     var body: some View {
@@ -265,6 +266,8 @@ struct BookReaderView: View {
                 } else {
                     Text("正在载入...")
                     ProgressView(value: loadProgress)
+                    Text("首次载入可能需要一些时间，完成后将缓存数据以加快后续载入。")
+                        .padding(.vertical)
                 }
             }
         }
@@ -274,6 +277,21 @@ struct BookReaderView: View {
             extendScreenIdleTime(1200)
             DispatchQueue(label: "com.darock.WatchBrowser.load-book-content", qos: .userInitiated).async {
                 do {
+                    if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/tmp/Book\(document.directory.lastPathComponent)Cache.drkdatae") {
+                        let data = try Data(contentsOf: URL(filePath: NSHomeDirectory() + "/tmp/Book\(document.directory.lastPathComponent)Cache.drkdatae"))
+                        let decoder = PropertyListDecoder()
+                        contents = try decoder.decode(CodableAttributedStringArray.self, from: data)
+                        contents = CodableAttributedStringArray(contents.map { element in
+                            let mutable = NSMutableAttributedString(attributedString: element)
+                            let fullRange = NSMakeRange(0, element.length)
+                            mutable.setAttributes([.foregroundColor: UIColor.white,
+                                                   .font: UIFont.systemFont(ofSize: CGFloat(fontSize), weight: isBoldText ? .bold : .regular),
+                                                   .kern: CGFloat(characterSpacing)],
+                                                  range: fullRange
+                            )
+                            return NSAttributedString(attributedString: mutable)
+                        })
+                    }
                     let spines = document.spine.items
                     var tmpContents = [NSAttributedString]()
                     for i in 0..<spines.count {
@@ -299,13 +317,16 @@ struct BookReaderView: View {
                             }
                         }
                     }
-                    contents = tmpContents
+                    contents = .init(tmpContents)
                     DispatchQueue.main.async {
                         recoverNormalIdleTime()
                         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
                             toolbarVisibility = .hidden
                         }
                     }
+                    let encoder = PropertyListEncoder()
+                    encoder.outputFormat = .binary
+                    try encoder.encode(contents).write(to: URL(filePath: NSHomeDirectory() + "/tmp/Book\(document.directory.lastPathComponent)Cache.drkdatae"))
                 } catch {
                     globalErrorHandler(error)
                 }
@@ -349,5 +370,82 @@ struct ScrollViewOffsetPreferenceKey: PreferenceKey {
     
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
         value = nextValue()
+    }
+}
+
+
+private struct CodableAttributedString: Codable {
+    var attributedString: NSAttributedString = NSAttributedString()
+    
+    enum CodingKeys: String, CodingKey {
+        case string
+    }
+    
+    init() {}
+    init(_ attributedString: NSAttributedString) {
+        self.attributedString = attributedString
+    }
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let attrStr = try container.decode(String.self, forKey: .string)
+        attributedString = .init(string: attrStr)
+    }
+    
+    func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        let fullRange = NSMakeRange(0, attributedString.length)
+        try container.encode(attributedString.string, forKey: .string)
+        
+    }
+}
+struct CodableAttributedStringArray: Codable {
+    private var array: [CodableAttributedString] = []
+    
+    enum CodingKeys: String, CodingKey {
+        case array
+    }
+    
+    init() {}
+    init(_ array: [NSAttributedString]) {
+        self.array = array.map { CodableAttributedString($0) }
+    }
+}
+extension CodableAttributedStringArray {
+    subscript (index: Int) -> NSAttributedString {
+        get {
+            return array[index].attributedString
+        }
+        set {
+            array[index].attributedString = newValue
+        }
+    }
+    
+    @inlinable
+//    @_specialize(where T == NSAttributedString, E == Never)
+    func map<T, E>(_ transform: (NSAttributedString) throws(E) -> T) throws(E) -> [T] where E: Error {
+        let initialCapacity = array.underestimatedCount
+        var result = ContiguousArray<T>()
+        result.reserveCapacity(initialCapacity)
+        
+        var iterator = array.makeIterator()
+        
+        // Add elements up to the initial capacity without checking for regrowth.
+        for _ in 0..<initialCapacity {
+            result.append(try transform(iterator.next()!.attributedString))
+        }
+        // Add remaining elements, if any.
+        while let element = iterator.next() {
+            result.append(try transform(element.attributedString))
+        }
+        
+        return Array(result)
+    }
+    
+    var isEmpty: Bool {
+        array.isEmpty
+    }
+    
+    var count: Int {
+        array.count
     }
 }
