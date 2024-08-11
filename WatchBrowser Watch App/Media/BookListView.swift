@@ -419,7 +419,7 @@ extension CodableAttributedStringArray {
     }
     
     @inlinable
-    func map<T, E>(_ transform: (NSAttributedString) throws(E) -> T) throws(E) -> [T] where E: Error {
+    public func map<T>(_ transform: (NSAttributedString) throws -> T) rethrows -> [T] {
         let initialCapacity = array.underestimatedCount
         var result = ContiguousArray<T>()
         result.reserveCapacity(initialCapacity)
