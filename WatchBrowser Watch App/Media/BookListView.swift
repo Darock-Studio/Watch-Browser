@@ -393,9 +393,7 @@ private struct CodableAttributedString: Codable {
     
     func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        let fullRange = NSMakeRange(0, attributedString.length)
         try container.encode(attributedString.string, forKey: .string)
-        
     }
 }
 struct CodableAttributedStringArray: Codable {
@@ -421,7 +419,6 @@ extension CodableAttributedStringArray {
     }
     
     @inlinable
-//    @_specialize(where T == NSAttributedString, E == Never)
     func map<T, E>(_ transform: (NSAttributedString) throws(E) -> T) throws(E) -> [T] where E: Error {
         let initialCapacity = array.underestimatedCount
         var result = ContiguousArray<T>()
