@@ -673,9 +673,6 @@ struct FeedbackView: View {
                             } else if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") == "NotificationToken" {
                                 Text("[Hex Data]")
                                     .font(.system(size: 14))
-                            } else if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") == "NearestHistories" {
-                                Text("[Privacy Hidden]")
-                                    .font(.system(size: 14))
                             } else if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") == "Settings" {
                                 Text("[Privacy Hidden]")
                                     .font(.system(size: 14))
@@ -685,6 +682,12 @@ struct FeedbackView: View {
                             } else if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") == "LatestSwiftError" {
                                 Text("[Large Data]")
                                     .font(.system(size: 14))
+                            } else if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") == "UpdateTitle" {
+                                if let source = from[i].split(separator: "：")[from: 1]?.split(separator: "__->__")[from: 0],
+                                   let to = from[i].split(separator: "：")[from: 1]?.split(separator: "__->__")[from: 1] {
+                                    Markdown("~\(source)~ → **\(to)**")
+                                        .markdownTheme(.gitHub)
+                                }
                             } else if (from[i].contains("：") && from[i] != "："
                                        ? from[i].split(separator: "：")[0]
                                        : "") == "AddDuplicateDelete"
@@ -699,12 +702,13 @@ struct FeedbackView: View {
                                      ? String(from[i].split(separator: "：", maxSplits: 1)[1])
                                      : from[i]).replacingOccurrences(of: "\\n", with: "\n")
                                 )
+                                .markdownTheme(.gitHub)
                                 .font(.system(size: 14))
                                 .environment(\.openURL, OpenURLAction { url in
                                     AdvancedWebViewController.shared.present(url.absoluteString)
                                     return .handled
                                 })
-                            } else {
+                            } else if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") != "NearestHistories" {
                                 Text(
                                     (from[i].split(separator: "：").count > 1
                                     ? String(from[i].split(separator: "：", maxSplits: 1)[1])
@@ -854,8 +858,6 @@ extension String {
             return "App 版本"
         case "OS":
             return "系统版本"
-        case "NearestHistories":
-            return "最近的历史记录"
         case "ExtHistories":
             return "额外历史记录"
         case "DuplicateTo":

@@ -33,7 +33,6 @@ struct WatchBrowser_Watch_AppApp: App {
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockDarockBrowser") var usePasscodeForLockDarockBrowser = false
     @AppStorage("IsThisClusterInstalled") var isThisClusterInstalled = false
-    @AppStorage("ShouldOS9NetworkFixingTip") var shouldOS9NetworkFixingTip = true
     @State var showTipText: LocalizedStringKey = ""
     @State var showTipSymbol = ""
     @State var isShowingTip = false
@@ -43,7 +42,6 @@ struct WatchBrowser_Watch_AppApp: App {
     @State var isTapToRadarAlertPresented = false
     @State var isClusterInstalledTipPresented = false
     @State var isSendNSErrorLogPresented = false
-    @State var isOS9NetworkFixPresented = false
     var body: some Scene {
         WindowGroup {
             ZStack {
@@ -55,36 +53,11 @@ struct WatchBrowser_Watch_AppApp: App {
                     .sheet(isPresented: $isSendNSErrorLogPresented, onDismiss: {
                         UserDefaults.standard.set(false, forKey: "AppNewNSExceptionLogged")
                     }, content: { SendNSErrorLogView() })
-                    .sheet(isPresented: $isOS9NetworkFixPresented) {
-                        shouldOS9NetworkFixingTip = false
-                    } content: {
-                        NavigationStack {
-                            List {
-                                Section {
-                                    Text("我们已修复 watchOS 9 的部分网络访问问题")
-                                        .font(.headline)
-                                    Text("现在，App 内所有网络功能已在 watchOS 9 中正常运行，“反馈助理”可正常工作。")
-                                }
-                                .listRowBackground(Color.clear)
-                                Section {
-                                    Button(action: {
-                                        shouldOS9NetworkFixingTip = false
-                                        isOS9NetworkFixPresented = false
-                                    }, label: {
-                                        Text("我知道了")
-                                    })
-                                }
-                            }
-                        }
-                    }
                     .onAppear {
                         if userPasscodeEncrypted.isEmpty || !usePasscodeForLockDarockBrowser {
                             isBrowserLocked = false
                         }
                         isSendNSErrorLogPresented = UserDefaults.standard.bool(forKey: "AppNewNSExceptionLogged")
-                        if #unavailable(watchOS 10.0), shouldOS9NetworkFixingTip {
-                            isOS9NetworkFixPresented = true
-                        }
                     }
                 if isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser {
                     PasswordInputView(text: $passcodeInputCache, placeholder: "输入密码", hideCancelButton: true, dismissAfterComplete: false) { pwd in
@@ -241,43 +214,47 @@ struct SendNSErrorLogView: View {
                                     Time：\(Date.now.timeIntervalSince1970)
                                     Sender: User
                                     """
-                                    DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
-                                        if isSuccess {
-                                            let spdVer = respStr.apiFixed().split(separator: ".")
-                                            var isNewVerAvailable = false
-                                            if spdVer.count == 3 {
-                                                if let x = Int(spdVer[0]), let y = Int(spdVer[1]), let z = Int(spdVer[2]) {
-                                                    let currVerSpd = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).split(separator: ".")
-                                                    if currVerSpd.count == 3 {
-                                                        if let cx = Int(currVerSpd[0]), let cy = Int(currVerSpd[1]), let cz = Int(currVerSpd[2]) {
-                                                            if x > cx {
-                                                                isNewVerAvailable = true
-                                                            } else if x == cx && y > cy {
-                                                                isNewVerAvailable = true
-                                                            } else if x == cx && y == cy && z > cz {
-                                                                isNewVerAvailable = true
+                                    DarockKit.Network.shared
+                                        .requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
+                                            if isSuccess {
+                                                let spdVer = respStr.apiFixed().split(separator: ".")
+                                                var isNewVerAvailable = false
+                                                if spdVer.count == 3 {
+                                                    if let x = Int(spdVer[0]), let y = Int(spdVer[1]), let z = Int(spdVer[2]) {
+                                                        let currVerSpd = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)
+                                                            .split(separator: ".")
+                                                        if currVerSpd.count == 3 {
+                                                            if let cx = Int(currVerSpd[0]), let cy = Int(currVerSpd[1]), let cz = Int(currVerSpd[2]) {
+                                                                if x > cx {
+                                                                    isNewVerAvailable = true
+                                                                } else if x == cx && y > cy {
+                                                                    isNewVerAvailable = true
+                                                                } else if x == cx && y == cy && z > cz {
+                                                                    isNewVerAvailable = true
+                                                                }
                                                             }
                                                         }
                                                     }
                                                 }
-                                            }
-                                            if !isNewVerAvailable {
-                                                DarockKit.Network.shared
-                                                    .requestString("https://fapi.darock.top:65535/feedback/submit/anony/Darock Browser/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))".compatibleUrlEncoded()) { _, _ in }
+                                                if !isNewVerAvailable {
+                                                    DarockKit.Network.shared
+                                                        .requestString("https://fapi.darock.top:65535/feedback/submit/anony/Darock Browser/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))".compatibleUrlEncoded()) { _, _ in }
+                                                }
                                             }
                                         }
-                                    }
                                 }
                             } catch {
                                 globalErrorHandler(error)
                             }
                         }
+                        UserDefaults.standard.set(false, forKey: "AppNewNSExceptionLogged")
                         dismiss()
                         tipWithText("已发送", symbol: "checkmark.circle.fill")
                     }, label: {
                         Text("发送")
                     })
                     Button(action: {
+                        UserDefaults.standard.set(false, forKey: "AppNewNSExceptionLogged")
                         dismiss()
                     }, label: {
                         Text("不发送")

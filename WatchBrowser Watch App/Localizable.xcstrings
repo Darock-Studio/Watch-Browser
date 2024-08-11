@@ -21580,6 +21580,7 @@
       }
     },
     "最近的历史记录" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -39278,6 +39279,7 @@
       }
     },
     "我们已修复 watchOS 9 的部分网络访问问题" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -54584,6 +54586,7 @@
       }
     },
     "现在，App 内所有网络功能已在 watchOS 9 中正常运行，“反馈助理”可正常工作。" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
