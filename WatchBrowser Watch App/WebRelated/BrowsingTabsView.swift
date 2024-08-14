@@ -106,6 +106,6 @@ struct TabWebKitReference: Identifiable {
     var menuView: Dynamic // UIScrollView
     var vc: Dynamic // UIViewController
     var loadProgressView: Dynamic // UIProgressView
-    var webViewObject: AnyObject
+    var webViewObject: WKWebView
     var webViewParentController: AnyObject
 }

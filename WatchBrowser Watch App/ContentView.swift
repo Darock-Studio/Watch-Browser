@@ -251,8 +251,8 @@ struct MainView: View {
     @AppStorage("AlternativeSearch") var alternativeSearch = "必应"
     @AppStorage("IsAllowCookie") var isAllowCookie = false
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
-    @AppStorage("IsShowJoinGroup") var isShowJoinGroup = true
-    @AppStorage("IsShowClusterAd") var isShowClusterAd = true
+    @AppStorage("IsShowJoinGroup2") var isShowJoinGroup = true
+    @AppStorage("IsShowClusterAd2") var isShowClusterAd = true
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
     @AppStorage("PreloadSearchContent") var preloadSearchContent = true
     @AppStorage("isUseOldWebView") var isUseOldWebView = false

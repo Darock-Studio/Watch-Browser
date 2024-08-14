@@ -13,6 +13,29 @@ struct JoinGroupView: View {
     @AppStorage("IsShowJoinGroup") var isShowJoinGroup = true
     var body: some View {
         List {
+            if NSLocale.current.language.languageCode!.identifier != "zh" {
+                Section {
+                    NavigationLink(destination: {
+                        VStack {
+                            Image(decorative: EFQRCode.generate(for: "https://discord.gg/wumcXQ2aTJ")!, scale: 1)
+                                .resizable()
+                                .frame(width: 120, height: 120)
+                            Text("在 iPhone 上继续")
+                        }
+                        .navigationTitle("加入群聊")
+                        .navigationBarTitleDisplayMode(.inline)
+                    }, label: {
+                        VStack(alignment: .leading) {
+                            Text("Darock Community")
+                            Text("轻触以查看二维码")
+                                .font(.system(size: 13))
+                                .foregroundStyle(Color.gray)
+                        }
+                    })
+                } header: {
+                    Text("Discord")
+                }
+            }
             Section {
                 if NSLocale.current.language.languageCode!.identifier == "zh" {
                     NavigationLink(destination: {

@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import "WebExtension.h"
+#import "UIKit/UIButton.h"
 #import "DarockBrowser-Swift.h"
 
 id webNavigationDelegate;
@@ -19,21 +20,11 @@ id webScriptDelegate;
 
 @implementation WebExtension : NSObject
 
-+(id) getBindedButtonWithSelector: (NSString *)selector button:(id) button {
++(id) getBindedButtonWithSelector: (NSString *)selector button:(UIButton *) button {
     id cbtn = button;
     [cbtn addTarget:self action:NSSelectorFromString(selector) forControlEvents:1 << 6];
     
     return cbtn;
-}
-+(void) setWebViewDelegate {
-    webNavigationDelegate = [[WebExtensionDelegate alloc] init];
-    [webViewObject setValue:webNavigationDelegate forKey:@"navigationDelegate"];
-    webUIDelegate = [[WebUIDelegate alloc] init];
-    [webViewObject setValue:webUIDelegate forKey:@"UIDelegate"];
-}
-+(void) setUserScriptDelegateWithController: (id)controller {
-    webScriptDelegate = [[WebScriptMessageHandler alloc] init];
-    [controller performSelector:NSSelectorFromString(@"addScriptMessageHandler:name:") withObject:webScriptDelegate withObject:@"logHandler"];
 }
 
 // Externald Method Start
@@ -89,42 +80,6 @@ id webScriptDelegate;
     dismissListsShouldRepresentWebView = true;
 }
 // Externald Method End
-
-@end
-
-@implementation WebExtensionDelegate
-
-- (void)webView:(id)view didStartProvisionalNavigation:(id)navigation {
-    [[WESwiftDelegate shared] webView:view didStartProvisionalNavigation:navigation];
-}
-- (void)webView:(id)view didFinishNavigation:(id)navigation {
-    [[WESwiftDelegate shared] webView:view didFinishNavigation:navigation];
-}
-- (void)webView:(id)view didFailNavigation:(id)navigation withError:(NSError *)error {
-    [[WESwiftDelegate shared] webView:view didFailNavigation:navigation withError:error];
-}
-- (void)webView:(id)view didFailProvisionalNavigation:(id)navigation withError:(NSError *)error {
-    [[WESwiftDelegate shared] webView:view didFailProvisionalNavigation:navigation withError:error];
-}
-- (void)webViewWebContentProcessDidTerminate:(id)webView {
-    [[WESwiftDelegate shared] webViewWebContentProcessDidTerminate:webView];
-}
-
-@end
-
-@implementation WebUIDelegate
-
-- (id)webView:(id)webView createWebViewWithConfiguration:(id)configuration forNavigationAction:(id)navigationAction windowFeatures:(id)windowFeatures {
-    return [[WESwiftDelegate shared] webView:webView createWebViewWith:configuration for:navigationAction windowFeatures:windowFeatures];
-}
-
-@end
-
-@implementation WebScriptMessageHandler
-
-- (void)userContentController:(id)userContentController didReceiveScriptMessage:(id)message {
-    [[[WESwiftDelegate alloc] init] userContentController:userContentController didReceive:message];
-}
 
 @end
 

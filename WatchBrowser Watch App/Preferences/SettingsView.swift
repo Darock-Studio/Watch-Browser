@@ -28,144 +28,151 @@ struct SettingsView: View {
     @State var isDarockAccountLoginPresented = false
     @State var accountUsername = ""
     var body: some View {
-        List {
-            Section {
-                if darockAccount.isEmpty {
-                    Button(action: {
-                        isDarockAccountLoginPresented = true
-                    }, label: {
-                        HStack {
-                            ZStack {
-                                Image(systemName: "circle.dotted")
-                                    .font(.system(size: 40, weight: .bold))
-                                    .foregroundColor(.init(hex: 0x144683))
-                                Image(systemName: "circle.dotted")
-                                    .font(.system(size: 30, weight: .light))
-                                    .rotationEffect(.degrees(8))
-                                    .foregroundColor(.init(hex: 0x144683))
-                                Text("D")
-                                    .font(.custom("HYWenHei-85W", size: 14))
-                                    .foregroundColor(.init(hex: 0x0c79ff))
-                                    .scaleEffect(1.2)
-                            }
-                            VStack(alignment: .leading) {
-                                Text("Darock 账户")
-                                    .font(.system(size: 15, weight: .semibold))
-                                Text("登录以为今后账户相关功能做好准备。")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.gray)
-                            }
-                        }
-                    })
-                    .sheet(isPresented: $isDarockAccountLoginPresented, onDismiss: {
-                        if !darockAccount.isEmpty {
-                            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
-                                if isSuccess {
-                                    accountUsername = respStr.apiFixed()
+        ZStack {
+            if #unavailable(watchOS 10.0) {
+                NavigationLink("", isActive: $isPasscodeViewPresented, destination: { PasswordSettingsView() })
+                    .frame(width: 0, height: 0)
+                    .hidden()
+            }
+            List {
+                Section {
+                    if darockAccount.isEmpty {
+                        Button(action: {
+                            isDarockAccountLoginPresented = true
+                        }, label: {
+                            HStack {
+                                ZStack {
+                                    Image(systemName: "circle.dotted")
+                                        .font(.system(size: 40, weight: .bold))
+                                        .foregroundColor(.init(hex: 0x144683))
+                                    Image(systemName: "circle.dotted")
+                                        .font(.system(size: 30, weight: .light))
+                                        .rotationEffect(.degrees(8))
+                                        .foregroundColor(.init(hex: 0x144683))
+                                    Text("D")
+                                        .font(.custom("HYWenHei-85W", size: 14))
+                                        .foregroundColor(.init(hex: 0x0c79ff))
+                                        .scaleEffect(1.2)
+                                }
+                                VStack(alignment: .leading) {
+                                    Text("Darock 账户")
+                                        .font(.system(size: 15, weight: .semibold))
+                                    Text("登录以为今后账户相关功能做好准备。")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(.gray)
                                 }
                             }
-                        }
-                    }, content: { DarockAccountLogin() })
-                } else {
-                    NavigationLink(destination: { DarockAccountManagementMain(username: accountUsername) }, label: {
-                        HStack {
-                            Image(systemName: "person.crop.circle")
-                                .font(.system(size: 32))
-                                .foregroundColor(.blue)
-                            VStack(alignment: .leading) {
-                                Group {
-                                    if !accountUsername.isEmpty {
-                                        Text(accountUsername)
-                                            .lineLimit(1)
-                                            .minimumScaleFactor(accountUsername.count <= 20 ? 0.1 : 0.5)
-                                    } else {
-                                        Text(verbatim: "loading")
-                                            .redacted(reason: .placeholder)
+                        })
+                        .sheet(isPresented: $isDarockAccountLoginPresented, onDismiss: {
+                            if !darockAccount.isEmpty {
+                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
+                                    if isSuccess {
+                                        accountUsername = respStr.apiFixed()
                                     }
                                 }
-                                .font(.system(size: 16, weight: .semibold))
-                                Text("Darock 账户以及更多")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.gray)
                             }
+                        }, content: { DarockAccountLogin() })
+                    } else {
+                        NavigationLink(destination: { DarockAccountManagementMain(username: accountUsername) }, label: {
+                            HStack {
+                                Image(systemName: "person.crop.circle")
+                                    .font(.system(size: 32))
+                                    .foregroundColor(.blue)
+                                VStack(alignment: .leading) {
+                                    Group {
+                                        if !accountUsername.isEmpty {
+                                            Text(accountUsername)
+                                                .lineLimit(1)
+                                                .minimumScaleFactor(accountUsername.count <= 20 ? 0.1 : 0.5)
+                                        } else {
+                                            Text(verbatim: "loading")
+                                                .redacted(reason: .placeholder)
+                                        }
+                                    }
+                                    .font(.system(size: 16, weight: .semibold))
+                                    Text("Darock 账户以及更多")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                        })
+                    }
+                }
+                Section {
+                    NavigationLink(destination: { StaredSettingsView() }, label: { SettingItemLabel(title: "常用设置", image: "star", color: .orange) })
+                    NavigationLink(destination: { NetworkSettingsView() }, label: { SettingItemLabel(title: "网络", image: "network", color: .blue) })
+                }
+                Section {
+                    NavigationLink(destination: { GeneralSettingsView() },
+                                   label: { SettingItemLabel(title: "通用", image: "gear", color: .gray) })
+                    NavigationLink(destination: { AccessibilitySettingsView() },
+                                   label: { SettingItemLabel(title: "辅助功能", image: {
+                        if #available(watchOS 10, *) {
+                            "accessibility"
+                        } else {
+                            "figure.stand"
                         }
+                    }(), color: .blue, symbolFontSize: 18) })
+                    NavigationLink(destination: { BrowsingEngineSettingsView() },
+                                   label: { SettingItemLabel(title: "浏览引擎", image: "globe", color: .blue) })
+                    NavigationLink(destination: { HomeScreenSettingsView() },
+                                   label: { SettingItemLabel(title: "主屏幕", image: "list.bullet.rectangle.portrait", color: .blue) })
+                    NavigationLink(destination: { SearchSettingsView() },
+                                   label: { SettingItemLabel(title: "搜索", image: "magnifyingglass", color: .gray) })
+                }
+                Section {
+                    Button(action: {
+                        if userPasscodeEncrypted.isEmpty {
+                            isPasscodeViewPresented = true
+                        } else {
+                            isEnterPasscodeViewInputPresented = true
+                        }
+                    }, label: {
+                        SettingItemLabel(title: "密码", image: "lock.fill", color: .red)
                     })
+                    NavigationLink(destination: { PrivacySettingsView() }, label: { SettingItemLabel(title: "隐私与安全性", image: "hand.raised.fill", color: .blue) })
+                }
+                Section {
+                    if isDeveloperModeEnabled {
+                        NavigationLink(destination: { DeveloperSettingsView() }, label: {
+                            SettingItemLabel(title: "开发者", image: "hammer.fill", color: .blue, symbolFontSize: 10)
+                        })
+                    }
+                    NavigationLink(destination: { LaboratoryView() }, label: {
+                        SettingItemLabel(title: "实验室", image: {
+                            if #available(watchOS 10, *) {
+                                "flask.fill"
+                            } else {
+                                "hammer.fill"
+                            }
+                        }(), color: .blue)
+                    })
+                    if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "IsDarockInternalTap-to-RadarAvailable") {
+                        NavigationLink(destination: { InternalDebuggingView() }, label: {
+                            SettingItemLabel(title: "Debugging", image: "ant.fill", color: .purple)
+                        })
+                    }
                 }
             }
-            Section {
-                NavigationLink(destination: { StaredSettingsView() }, label: { SettingItemLabel(title: "常用设置", image: "star", color: .orange) })
-                NavigationLink(destination: { NetworkSettingsView() }, label: { SettingItemLabel(title: "网络", image: "network", color: .blue) })
-            }
-            Section {
-                NavigationLink(destination: { GeneralSettingsView() },
-                               label: { SettingItemLabel(title: "通用", image: "gear", color: .gray) })
-                NavigationLink(destination: { AccessibilitySettingsView() },
-                               label: { SettingItemLabel(title: "辅助功能", image: {
-                    if #available(watchOS 10, *) {
-                        "accessibility"
-                    } else {
-                        "figure.stand"
-                    }
-                }(), color: .blue, symbolFontSize: 18) })
-                NavigationLink(destination: { BrowsingEngineSettingsView() },
-                               label: { SettingItemLabel(title: "浏览引擎", image: "globe", color: .blue) })
-                NavigationLink(destination: { HomeScreenSettingsView() },
-                               label: { SettingItemLabel(title: "主屏幕", image: "list.bullet.rectangle.portrait", color: .blue) })
-                NavigationLink(destination: { SearchSettingsView() },
-                               label: { SettingItemLabel(title: "搜索", image: "magnifyingglass", color: .gray) })
-            }
-            Section {
-                Button(action: {
-                    if userPasscodeEncrypted.isEmpty {
+            .navigationTitle("设置")
+            .navigationDestination(isPresented: $isPasscodeViewPresented, destination: { PasswordSettingsView() })
+            .sheet(isPresented: $isEnterPasscodeViewInputPresented) {
+                PasswordInputView(text: $passcodeInputTmp, placeholder: "输入你的密码") { pwd in
+                    if pwd.md5 == userPasscodeEncrypted {
                         isPasscodeViewPresented = true
                     } else {
-                        isEnterPasscodeViewInputPresented = true
+                        tipWithText("密码错误", symbol: "xmark.circle.fill")
                     }
-                }, label: {
-                    SettingItemLabel(title: "密码", image: "lock.fill", color: .red)
-                })
-                NavigationLink(destination: { PrivacySettingsView() }, label: { SettingItemLabel(title: "隐私与安全性", image: "hand.raised.fill", color: .blue) })
-            }
-            Section {
-                if isDeveloperModeEnabled {
-                    NavigationLink(destination: { DeveloperSettingsView() }, label: {
-                        SettingItemLabel(title: "开发者", image: "hammer.fill", color: .blue, symbolFontSize: 10)
-                    })
+                    passcodeInputTmp = ""
                 }
-                NavigationLink(destination: { LaboratoryView() }, label: {
-                    SettingItemLabel(title: "实验室", image: {
-                        if #available(watchOS 10, *) {
-                            "flask.fill"
-                        } else {
-                            "hammer.fill"
+                .toolbar(.hidden, for: .navigationBar)
+            }
+            .onAppear {
+                if !darockAccount.isEmpty {
+                    DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
+                        if isSuccess {
+                            accountUsername = respStr.apiFixed()
                         }
-                    }(), color: .blue)
-                })
-                if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "IsDarockInternalTap-to-RadarAvailable") {
-                    NavigationLink(destination: { InternalDebuggingView() }, label: {
-                        SettingItemLabel(title: "Debugging", image: "ant.fill", color: .purple)
-                    })
-                }
-            }
-        }
-        .navigationTitle("设置")
-        .navigationDestination(isPresented: $isPasscodeViewPresented, destination: { PasswordSettingsView() })
-        .sheet(isPresented: $isEnterPasscodeViewInputPresented) {
-            PasswordInputView(text: $passcodeInputTmp, placeholder: "输入你的密码") { pwd in
-                if pwd.md5 == userPasscodeEncrypted {
-                    isPasscodeViewPresented = true
-                } else {
-                    tipWithText("密码错误", symbol: "xmark.circle.fill")
-                }
-                passcodeInputTmp = ""
-            }
-            .toolbar(.hidden, for: .navigationBar)
-        }
-        .onAppear {
-            if !darockAccount.isEmpty {
-                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
-                    if isSuccess {
-                        accountUsername = respStr.apiFixed()
                     }
                 }
             }
@@ -2027,6 +2034,8 @@ struct SettingsView: View {
     struct AccessibilitySettingsView: View {
         @AppStorage("IsWebMinFontSizeStricted") var isWebMinFontSizeStricted = false
         @AppStorage("WebMinFontSize") var webMinFontSize = 10.0
+        @AppStorage("ABIsReduceBrightness") var isReduceBrightness = false
+        @AppStorage("ABReduceBrightnessLevel") var reduceBrightnessLevel = 0.2
         var body: some View {
             List {
                 Section {
@@ -2038,6 +2047,18 @@ struct SettingsView: View {
                         Text(String(format: "%.0f", webMinFontSize))
                     }
                     .disabled(!isWebMinFontSizeStricted)
+                }
+                Section {
+                    Toggle("降低亮度", isOn: $isReduceBrightness)
+                    VStack {
+                        Slider(value: $reduceBrightnessLevel, in: 0.0...0.8, step: 0.05) {
+                            Text("降低亮度")
+                        }
+                        Text(String(format: "%.2f", reduceBrightnessLevel))
+                    }
+                    .disabled(!isReduceBrightness)
+                } footer: {
+                    Text("屏幕右上方的时间不会被降低亮度")
                 }
             }
             .navigationTitle("辅助功能")
@@ -2759,6 +2780,7 @@ struct SettingsView: View {
         @AppStorage("UsePasscodeForLockBookmarks") var usePasscodeForLockBookmarks = false
         @AppStorage("UsePasscodeForLockHistories") var usePasscodeForLockHistories = false
         @AppStorage("UsePasscodeForLocalAudios") var usePasscodeForLocalAudios = false
+        @AppStorage("UsePasscodeForLocalImages") var usePasscodeForLocalImages = false
         @AppStorage("UsePasscodeForLocalVideos") var usePasscodeForLocalVideos = false
         @AppStorage("UsePasscodeForWebArchives") var usePasscodeForWebArchives = false
         @AppStorage("UsePasscodeForLocalBooks") var usePasscodeForLocalBooks = false
@@ -2781,6 +2803,7 @@ struct SettingsView: View {
                         Toggle("锁定书签", isOn: $usePasscodeForLockBookmarks)
                         Toggle("锁定历史记录", isOn: $usePasscodeForLockHistories)
                         Toggle("锁定本地音频", isOn: $usePasscodeForLocalAudios)
+                        Toggle("锁定本地图片", isOn: $usePasscodeForLocalImages)
                         Toggle("锁定本地视频", isOn: $usePasscodeForLocalVideos)
                         Toggle("锁定网页归档", isOn: $usePasscodeForWebArchives)
                         Toggle("锁定本地图书", isOn: $usePasscodeForLocalBooks)
@@ -2903,6 +2926,7 @@ struct SettingsView: View {
         struct SecurityDelayView: View {
             @AppStorage("IsSecurityDelayEnabled") var isSecurityDelayEnabled = false
             @AppStorage("SecurityDelayRequirement") var securityDelayRequirement = "always"
+            @AppStorage("IsFirstShowSecurityDelay") var isFirstShowSecurityDelay = true
             @State var isDebugDelayPresented = false
             @State var isTurnOffDelayPresented = false
             @State var isChangeToByLocationPresented = false
@@ -2923,7 +2947,17 @@ struct SettingsView: View {
                                         isSecurityDelayEnabled = false
                                     }
                                 }
+                                isFirstShowSecurityDelay = false
                             }
+                        if isFirstShowSecurityDelay {
+                            HStack(alignment: .top) {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .font(.system(size: 15))
+                                    .foregroundStyle(Color.yellow)
+                                Text("一旦开启安全延时，您将需要等待一小时才能够关闭。")
+                                    .font(.system(size: 15))
+                            }
+                        }
                     } footer: {
                         Text("安全延时在您进行更改密码等敏感操作时要求额外的等待时间，以保护您的隐私安全。")
                     }
@@ -3020,6 +3054,9 @@ struct SettingsView: View {
                 .sheet(isPresented: $isLocationPermissionPresented, content: { LocationPremissionView() })
                 .onAppear {
                     trustedLocations = (UserDefaults.standard.array(forKey: "SecurityDelayTrustedLocations") as? [[Double]]) ?? [[Double]]()
+                }
+                .onDisappear {
+                    isFirstShowSecurityDelay = false
                 }
             }
             

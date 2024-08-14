@@ -3599,6 +3599,28 @@
         }
       }
     },
+    "%lld秒" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld second"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld seconds"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "0" : {
       "localizations" : {
         "ar" : {
@@ -8173,6 +8195,9 @@
       },
       "shouldTranslate" : false
     },
+    "Darock Community" : {
+      "shouldTranslate" : false
+    },
     "Darock Studio" : {
       "shouldTranslate" : false
     },
@@ -8551,6 +8576,9 @@
       "shouldTranslate" : false
     },
     "Debugging" : {
+      "shouldTranslate" : false
+    },
+    "Discord" : {
       "shouldTranslate" : false
     },
     "Error Handler" : {
@@ -14801,6 +14829,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "一切良好"
+          }
+        }
+      }
+    },
+    "一旦开启安全延时，您将需要等待一小时才能够关闭。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Once Security Delay is enabled, you will need to wait one hour before you can disable it."
           }
         }
       }
@@ -21575,125 +21613,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最大縮放倍數"
-          }
-        }
-      }
-    },
-    "最近的历史记录" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "السجلات التاريخية الحديثة"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jüngste historische Aufzeichnungen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recent History"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Registros históricos recientes"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Documents historiques récents"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "हाल के ऐतिहासिक रिकॉर्ड"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Catatan sejarah terkini"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Documenti storici recenti"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最近の歴史記録"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "최근 역사 기록"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recente historische gegevens"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ostatnie zapisy historyczne"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Registros históricos recentes"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Последние исторические записи"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "บันทึกทางประวัติศาสตร์ล่าสุด"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Son tarihsel kayıtlar"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Останні історичні записи"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Các ghi chép lịch sử gần đây"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最近的歴史記録"
           }
         }
       }
@@ -29784,6 +29703,16 @@
         }
       }
     },
+    "在当前播放时间添加" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add the current playback time"
+          }
+        }
+      }
+    },
     "在视频或音频列表页向左滑动项目即可下载" : {
       "localizations" : {
         "ar" : {
@@ -34660,6 +34589,16 @@
         }
       }
     },
+    "屏幕右上方的时间不会被降低亮度" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The time in the top right corner of the screen will not dim."
+          }
+        }
+      }
+    },
     "工具栏" : {
       "localizations" : {
         "ar" : {
@@ -39274,17 +39213,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "您可以隨時在“設置”中重新打開此頁"
-          }
-        }
-      }
-    },
-    "我们已修复 watchOS 9 的部分网络访问问题" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "We have fixed network access issues in watchOS 9."
           }
         }
       }
@@ -47215,6 +47143,16 @@
         }
       }
     },
+    "更新标签" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update Tags"
+          }
+        }
+      }
+    },
     "服务器错误" : {
       "localizations" : {
         "ar" : {
@@ -49577,6 +49515,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "查看網頁圖片"
+          }
+        }
+      }
+    },
+    "标签不会被本地化，因为它们是动态添加的。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tags will not be localized because they are dynamically added."
           }
         }
       }
@@ -54585,17 +54533,6 @@
         }
       }
     },
-    "现在，App 内所有网络功能已在 watchOS 9 中正常运行，“反馈助理”可正常工作。" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "All network features within the app are now functioning properly in watchOS 9, and \"Feedback Assistant\" is working correctly."
-          }
-        }
-      }
-    },
     "现在，可将暗礁浏览器的本地文件分享到暗礁文件" : {
       "localizations" : {
         "ar" : {
@@ -58052,6 +57989,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "视频"
+          }
+        }
+      }
+    },
+    "视频书签" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video Bookmarks"
           }
         }
       }
@@ -63990,6 +63937,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "起点小说"
+          }
+        }
+      }
+    },
+    "跳转到" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jump to"
           }
         }
       }
@@ -70614,6 +70571,16 @@
         }
       }
     },
+    "锁定本地图片" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lock Local Images"
+          }
+        }
+      }
+    },
     "锁定本地视频" : {
       "localizations" : {
         "ar" : {
@@ -72160,6 +72127,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "附加選項"
+          }
+        }
+      }
+    },
+    "降低亮度" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dim Brightness"
           }
         }
       }

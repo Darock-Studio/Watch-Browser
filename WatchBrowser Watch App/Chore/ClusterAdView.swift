@@ -19,7 +19,7 @@ struct ClusterAdView: View {
                 Text("由 Darock 开发的暗礁暗礁文件让您能够在 Apple Watch 上轻松存储、管理和查看文件。")
                 Button(action: {
                     let session = ASWebAuthenticationSession(
-                        url: URL(string: "https://apps.apple.com/cn/app/cluster-files/id6581473546")!,
+                        url: URL(string: "https://apps.apple.com/app/cluster-files/id6581473546")!,
                         callbackURLScheme: nil
                     ) { _, _ in }
                     session.prefersEphemeralWebBrowserSession = true
@@ -31,7 +31,7 @@ struct ClusterAdView: View {
                 NavigationLink(destination: {
                     VStack {
                         VStack {
-                            Image(decorative: EFQRCode.generate(for: "https://apps.apple.com/cn/app/cluster-files/id6581473546")!,
+                            Image(decorative: EFQRCode.generate(for: "https://apps.apple.com/app/cluster-files/id6581473546")!,
                                   scale: 1)
                                 .resizable()
                                 .frame(width: 100, height: 100)

@@ -688,6 +688,37 @@ struct FeedbackView: View {
                                     Markdown("~\(source)~ → **\(to)**")
                                         .markdownTheme(.gitHub)
                                 }
+                            } else if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") == "UpdateTags" {
+                                if let combined = from[i].split(separator: "：")[from: 1] {
+                                    let tags = Array<FeedbackTag>(fromCombined: String(combined))
+                                    if !tags.isEmpty {
+                                        ScrollView(.horizontal) {
+                                            HStack {
+                                                ForEach(0..<tags.count, id: \.self) { i in
+                                                    Text(tags[i].name)
+                                                        .font(.system(size: 15, weight: .semibold))
+                                                        .foregroundStyle(Color.white)
+                                                        .padding(.horizontal, 8)
+                                                        .padding(.vertical, 3)
+                                                        .background {
+                                                            if #available(watchOS 10.0, *) {
+                                                                Capsule()
+                                                                    .fill(tags[i].color)
+                                                                    .stroke(Material.ultraThin.opacity(0.2), lineWidth: 2)
+                                                            } else {
+                                                                tags[i].color
+                                                                    .clipShape(Capsule())
+                                                            }
+                                                        }
+                                                }
+                                            }
+                                        }
+                                        .scrollIndicators(.never)
+                                        if NSLocale.current.language.languageCode!.identifier != "zh" {
+                                            Text("标签不会被本地化，因为它们是动态添加的。")
+                                        }
+                                    }
+                                }
                             } else if (from[i].contains("：") && from[i] != "："
                                        ? from[i].split(separator: "：")[0]
                                        : "") == "AddDuplicateDelete"
@@ -866,6 +897,8 @@ extension String {
             return "关联反馈"
         case "NotificationToken":
             return "通知令牌"
+        case "UpdateTags":
+            return "更新标签"
         case "Settings":
             return "设置"
         default:
@@ -894,6 +927,10 @@ func getAllSettingsForAppdiagnose() -> String? {
                 plistObject.removeValue(forKey: "CurrentTabs")
                 plistObject.removeValue(forKey: "WebHistory")
                 plistObject.removeValue(forKey: "UserPasscodeEncrypted")
+                let removeKeyPrefixs = ["VideoProgressForLink", "WebHistory", "VideoMarkForLink"]
+                for key in plistObject.keys where removeKeyPrefixs.contains(where: { key.hasPrefix($0) }) {
+                    plistObject.removeValue(forKey: key)
+                }
                 let jsonData = try JSONSerialization.data(withJSONObject: plistObject)
                 return String(decoding: jsonData, as: UTF8.self)
             }
@@ -902,4 +939,61 @@ func getAllSettingsForAppdiagnose() -> String? {
         }
     }
     return nil
+}
+
+struct FeedbackTag: Equatable {
+    var name: String
+    var color: Color
+    
+    init(name: String, color: Color) {
+        self.name = name
+        self.color = color
+    }
+    init?(fromCombined string: String) {
+        let spd = string.components(separatedBy: "&&&")
+        if let name = spd[from: 0], let colors = spd[from: 1] {
+            let colorSplited = colors.components(separatedBy: ",")
+            if let red = colorSplited[from: 0], let green = colorSplited[from: 1], let blue = colorSplited[from: 2],
+               let red = Double(red), let green = Double(green), let blue = Double(blue) {
+                self.name = name
+                self.color = Color(red: red, green: green, blue: blue)
+                return
+            }
+        }
+        
+        return nil
+    }
+    
+    func toString() -> String {
+        let uiColor = UIColor(color)
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        uiColor.getRed(&red, green: &green, blue: &blue, alpha: nil)
+        return "\(name)&&&\(red),\(green),\(blue)"
+    }
+    
+    static func == (lhs: FeedbackTag, rhs: FeedbackTag) -> Bool {
+        return lhs.name == rhs.name
+    }
+}
+extension Array<FeedbackTag> {
+    init(fromCombined string: String) {
+        var result = [FeedbackTag]()
+        let spd = string.components(separatedBy: "<****>")
+        for tag in spd {
+            if let tag = FeedbackTag(fromCombined: tag) {
+                result.append(tag)
+            }
+        }
+        
+        self = result
+    }
+    
+    func toString() -> String {
+        if isEmpty {
+            return "[None]"
+        }
+        return map { $0.toString() }.joined(separator: "<****>")
+    }
 }

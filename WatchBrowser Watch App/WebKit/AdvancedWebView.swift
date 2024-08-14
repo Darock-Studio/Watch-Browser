@@ -12,7 +12,6 @@ import SwiftSoup
 import DarockKit
 import AuthenticationServices
 
-fileprivate var webViewController = AdvancedWebViewController()
 var videoLinkLists = [String]()
 var imageLinkLists = [String]()
 var imageAltTextLists = [String]()
@@ -44,6 +43,8 @@ final class AdvancedWebViewController {
     @AppStorage("WebMinFontSize") var webMinFontSize = 10.0
     @AppStorage("IsShowFraudulentWebsiteWarning") var isShowFraudulentWebsiteWarning = true
     @AppStorage("WKJavaScriptEnabled") var isJavaScriptEnabled = true
+    @AppStorage("ABIsReduceBrightness") var isReduceBrightness = false
+    @AppStorage("ABReduceBrightnessLevel") var reduceBrightnessLevel = 0.2
     
     var currentUrl: String {
         if let url = Dynamic(webViewObject).URL.asObject {
@@ -68,10 +69,10 @@ final class AdvancedWebViewController {
                  archiveUrl: URL? = nil,
                  presentController: Bool = true,
                  loadMimeType: String = "application/x-webarchive",
-                 overrideOldWebView: Bool = false) -> Dynamic {
+                 overrideOldWebView: Bool = false) -> WKWebView? {
         if iurl.isEmpty && archiveUrl == nil {
             safePresent(self.vc)
-            return Dynamic(webViewObject)
+            return webViewObject
         }
         
         let url = URL(string: iurl) ?? archiveUrl!
@@ -100,8 +101,8 @@ final class AdvancedWebViewController {
         
         let sb = WKInterfaceDevice.current().screenBounds
         
-        let wkWebView = Dynamic.WKWebView()
-        wkWebView.setFrame(sb)
+        let wkWebView = WKWebView()
+        wkWebView.frame = sb
         if _fastPath(customUserAgent.isEmpty) {
             if _slowPath(requestDesktopWeb) {
                 wkWebView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
@@ -112,17 +113,14 @@ final class AdvancedWebViewController {
             wkWebView.customUserAgent = customUserAgent
         }
         wkWebView.allowsBackForwardNavigationGestures = useBackforwardGesture
-        wkWebView.configuration.websiteDataStore.httpCookieStore.setCookiePolicy(
-            allowCookies
-            ? Dynamic.WKCookiePolicyAllow
-            : Dynamic.WKCookiePolicyDisllow,
-            completionHandler: {} as @convention(block) () -> Void
-        )
+        if #available(watchOS 10.0, *) {
+            wkWebView.configuration.websiteDataStore.httpCookieStore.setCookiePolicy(allowCookies ? .allow : .disallow)
+        }
         if _slowPath(isWebMinFontSizeStricted) {
             wkWebView.configuration.preferences.minimumFontSize = CGFloat(webMinFontSize)
         }
         wkWebView.configuration.preferences.javaScriptEnabled = isJavaScriptEnabled
-        wkWebView.configuration.preferences.fraudulentWebsiteWarningEnabled = isShowFraudulentWebsiteWarning
+        wkWebView.configuration.preferences.isFraudulentWebsiteWarningEnabled = isShowFraudulentWebsiteWarning
         
         // Load Progress Bar
         loadProgressView.frame = CGRect(x: 0, y: 0, width: sb.width, height: 20)
@@ -148,6 +146,15 @@ final class AdvancedWebViewController {
         webViewHolder.addSubview(moreButton)
         webViewHolder.addSubview(loadProgressView)
         
+        if isReduceBrightness {
+            let reduceBrightnessView = Dynamic.UIView()
+            reduceBrightnessView.backgroundColor = UIColor.black
+            reduceBrightnessView.alpha = reduceBrightnessLevel
+            reduceBrightnessView.frame = sb
+            reduceBrightnessView.isUserInteractionEnabled = false
+            webViewHolder.addSubview(reduceBrightnessView)
+        }
+        
         vc = Dynamic.UIViewController()
         vc.view = webViewHolder
 
@@ -157,10 +164,14 @@ final class AdvancedWebViewController {
         webViewParentController = vc.asObject!
         
         if let archiveUrl {
-            wkWebView.loadData(NSData(contentsOf: archiveUrl), MIMEType: loadMimeType, characterEncodingName: "utf-8", baseURL: archiveUrl)
+            do {
+                wkWebView.load(try Data(contentsOf: archiveUrl), mimeType: loadMimeType, characterEncodingName: "utf-8", baseURL: archiveUrl)
+            } catch {
+                globalErrorHandler(error)
+            }
         } else {
             _onFastPath()
-            wkWebView.loadRequest(URLRequest(url: url))
+            wkWebView.load(URLRequest(url: url))
         }
         
         updateMenuController()
@@ -178,21 +189,19 @@ final class AdvancedWebViewController {
                 pMenuShouldDismiss = false
                 dismissControllersOnWebView()
             }
-            if _slowPath(wkWebView.isLoading.asBool ?? false) {
-                loadProgressView.setProgress(Float(wkWebView.estimatedProgress.asDouble ?? 0.0), animated: true)
+            if _slowPath(wkWebView.isLoading) {
+                loadProgressView.setProgress(Float(wkWebView.estimatedProgress), animated: true)
             }
         }
         
-        webViewObject = wkWebView.asObject!
-        WebExtension.setWebViewDelegate()
+        webViewObject = wkWebView
+        wkWebView.navigationDelegate = WebViewNavigationDelegate.shared
+        wkWebView.uiDelegate = WebViewUIDelegate.shared
         
-//        let source = "function captureLog(msg) { window.webkit.messageHandlers.logHandler.postMessage(msg); } window.console.log = captureLog; window.console.warn = captureLog; window.console.error = captureLog;"
-//        let script = Dynamic.WKUserScript(source: source, injectionTime: Dynamic.WKUserScriptInjectionTimeAtDocumentStart, forMainFrameOnly: false)
-//        wkWebView.configuration.userContentController.addUserScript(script)
-//        WebExtension.setUserScriptDelegateWithController(wkWebView.configuration.userContentController)
-        
-        if _slowPath(isAllowWebInspector) {
-            wkWebView.inspectable = true
+        if #available(watchOS 9.4, *) {
+            if _slowPath(isAllowWebInspector) {
+                wkWebView.isInspectable = true
+            }
         }
         
         return wkWebView

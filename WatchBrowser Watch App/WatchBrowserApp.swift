@@ -33,6 +33,8 @@ struct WatchBrowser_Watch_AppApp: App {
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockDarockBrowser") var usePasscodeForLockDarockBrowser = false
     @AppStorage("IsThisClusterInstalled") var isThisClusterInstalled = false
+    @AppStorage("ABIsReduceBrightness") var isReduceBrightness = false
+    @AppStorage("ABReduceBrightnessLevel") var reduceBrightnessLevel = 0.2
     @State var showTipText: LocalizedStringKey = ""
     @State var showTipSymbol = ""
     @State var isShowingTip = false
@@ -115,6 +117,13 @@ struct WatchBrowser_Watch_AppApp: App {
                 }
                 .ignoresSafeArea()
                 .allowsHitTesting(false)
+                if isReduceBrightness {
+                    Rectangle()
+                        .fill(Color.black)
+                        .opacity(reduceBrightnessLevel)
+                        .ignoresSafeArea()
+                        .allowsHitTesting(false)
+                }
             }
             .alert("Runtime Error", isPresented: $isTapToRadarAlertPresented, actions: {
                 Button(role: .cancel, action: {

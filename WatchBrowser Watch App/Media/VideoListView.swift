@@ -105,6 +105,9 @@ struct VideoPlayingView: View {
     @State var playerScaledOffset = CGSizeZero
     @State var playerScaledLastOffset = CGSizeZero
     @State var cachedPlayerTimeControlStatus = AVPlayer.TimeControlStatus.paused
+    @State var videoMarks = [[String: String]]()
+    @State var editVideoMarkNameIndex: Int?
+    @State var editVideoMarkNameInput = ""
     var body: some View {
         TabView(selection: $mainTabViewSelection) {
             ZStack {
@@ -199,19 +202,92 @@ struct VideoPlayingView: View {
                     }
                     Button(action: {
                         player.seek(to: CMTime(seconds: currentTime + 10, preferredTimescale: 60000))
+                        player.play()
                     }, label: {
                         Label("快进 10 秒", systemImage: "goforward.10")
                     })
                     Button(action: {
                         player.seek(to: CMTime(seconds: currentTime - 10, preferredTimescale: 60000))
+                        player.play()
                     }, label: {
                         Label("快退 10 秒", systemImage: "gobackward.10")
                     })
                 } header: {
                     Text("播放")
                 }
+                Section {
+                    Button(action: {
+                        videoMarks.append(["Time": "\(Int(currentTime))"])
+                        
+                    }, label: {
+                        Label("在当前播放时间添加", systemImage: "bookmark.fill")
+                    })
+                    if !videoMarks.isEmpty {
+                        ForEach(0..<videoMarks.count, id: \.self) { i in
+                            Button(action: {
+                                player.seek(to: CMTime(seconds: Double(Int(videoMarks[i]["Time"]!)!), preferredTimescale: 60000))
+                                player.play()
+                                mainTabViewSelection = 1
+                            }, label: {
+                                VStack(alignment: .leading) {
+                                    Text("跳转到")
+                                        .font(.system(size: 14))
+                                        .opacity(0.6)
+                                    Text(videoMarks[i]["Name"] ?? String(localized: "\(Int(videoMarks[i]["Time"]!)!)秒"))
+                                }
+                            })
+                            .swipeActions {
+                                Button(role: .destructive, action: {
+                                    videoMarks.remove(at: i)
+                                }, label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                })
+                                Button(action: {
+                                    editVideoMarkNameIndex = i
+                                }, label: {
+                                    Image(systemName: "pencil.line")
+                                })
+                            }
+                        }
+                        .onMove { source, destination in
+                            videoMarks.move(fromOffsets: source, toOffset: destination)
+                        }
+                    }
+                } header: {
+                    Text("视频书签")
+                }
+                .onChange(of: videoMarks) { _ in
+                    UserDefaults.standard.set(videoMarks, forKey: "VideoMarkForLink\(link.md5.prefix(16))")
+                }
             }
             .tag(2)
+            .sheet(item: $editVideoMarkNameIndex) { index in
+                NavigationStack {
+                    List {
+                        HStack {
+                            Spacer()
+                            Text("自定义名称")
+                                .font(.system(size: 20, weight: .bold))
+                            Spacer()
+                        }
+                        .listRowBackground(Color.clear)
+                        TextField("名称", text: $editVideoMarkNameInput, style: "field-page")
+                        Button(action: {
+                            videoMarks[index].updateValue(editVideoMarkNameInput, forKey: "Name")
+                            editVideoMarkNameIndex = nil
+                        }, label: {
+                            HStack {
+                                Spacer()
+                                Label("完成", systemImage: "checkmark")
+                                Spacer()
+                            }
+                        })
+                    }
+                }
+                .onAppear {
+                    editVideoMarkNameInput = videoMarks[index]["Name"] ?? ""
+                }
+            }
         }
         .navigationBarHidden(true)
         .scrollIndicators(.never)
@@ -230,6 +306,7 @@ struct VideoPlayingView: View {
                 to: CMTime(seconds: Double(UserDefaults.standard.integer(forKey: "VideoProgressForLink\(link.md5.prefix(16))")), preferredTimescale: 60000)
             )
             setForAudioPlaying()
+            videoMarks = (UserDefaults.standard.array(forKey: "VideoMarkForLink\(link.md5.prefix(16))") as? [[String: String]]) ?? []
             if ((UserDefaults.standard.object(forKey: "CCIsContinuityMediaEnabled") as? Bool) ?? true)
                 && (link.hasPrefix("http://") || link.hasPrefix("https://")) {
                 globalMediaUserActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
