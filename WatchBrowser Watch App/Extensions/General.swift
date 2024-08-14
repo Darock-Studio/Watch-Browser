@@ -79,6 +79,6 @@ struct TextField: View {
     }
 }
 
-extension Int: @retroactive Identifiable {
+extension Int: Identifiable {
     public var id: Self { self }
 }

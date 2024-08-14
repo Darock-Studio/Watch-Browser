@@ -72,7 +72,7 @@ UIKIT_EXTERN API_AVAILABLE(ios(14.0), tvos(14.0), watchos(7.0)) NS_SWIFT_UI_ACTO
 @property (nonatomic, readonly) UIListContentTextProperties *secondaryTextProperties;
 
 /// Whether the content view will preserve inherited layout margins from its superview on the horizontal and/or vertical axes.
-@property (nonatomic) UIAxis axesPreservingSuperviewLayoutMargins;
+@property (nonatomic) UIAxis axesPreservingSuperviewLayoutMargins API_UNAVAILABLE(watchos);
 /// The margins for the content to the edges of the content view. (When preserving superview layout margins on one or both axes, these are just minimum margins, as inherited margins may be larger.)
 @property (nonatomic) NSDirectionalEdgeInsets directionalLayoutMargins;
 

@@ -29,7 +29,6 @@
 #import "UIKit/NSStringDrawing.h"
 #import "UIKit/NSText.h"
 
-#if !TARGET_OS_WATCH || __has_include(<QuartzCore/QuartzCore.h>)
 #import "UIKit/UIAccelerometer.h"
 #import "UIKit/UIAccessibility.h"
 #import "UIKit/UIAccessibilityContentSizeCategoryImageAdjusting.h"
@@ -361,4 +360,3 @@
 #import "UIKit/UIContentUnavailableButtonProperties.h"
 #import "UIKit/UIContentUnavailableConfigurationState.h"
 #import "UIKit/UIContentUnavailableView.h"
-#endif
