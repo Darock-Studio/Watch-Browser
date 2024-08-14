@@ -708,6 +708,12 @@
 		8CB803D32BD3E6D1009B2FAC /* AdvancedWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedWebView.swift; sourceTree = "<group>"; };
 		8CB803DE2BD44879009B2FAC /* WatchBrowser Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WatchBrowser Watch App.entitlements"; sourceTree = "<group>"; };
 		8CB9A10D2C6D229200E6A367 /* MarkdownUI+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarkdownUI+.swift"; sourceTree = "<group>"; };
+		8CB9A11B2C6D2CCB00E6A367 /* gl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gl.h; sourceTree = "<group>"; };
+		8CB9A11C2C6D2CCB00E6A367 /* glext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glext.h; sourceTree = "<group>"; };
+		8CB9A11E2C6D2CCB00E6A367 /* gl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gl.h; sourceTree = "<group>"; };
+		8CB9A11F2C6D2CCB00E6A367 /* glext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glext.h; sourceTree = "<group>"; };
+		8CB9A1212C6D2CCB00E6A367 /* gl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gl.h; sourceTree = "<group>"; };
+		8CB9A1222C6D2CCB00E6A367 /* glext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glext.h; sourceTree = "<group>"; };
 		8CCDABEE2C5674F100E29E3D /* ClusterTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterTipView.swift; sourceTree = "<group>"; };
 		8CCF13F12C20A4FF00F5E0D7 /* DarockAccountsUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarockAccountsUI.swift; sourceTree = "<group>"; };
 		8CCF13F32C20B31700F5E0D7 /* HYWenHei.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HYWenHei.ttf; sourceTree = "<group>"; };
@@ -736,12 +742,6 @@
 		E25EA83B2B70ABF000BFEC6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E296FE012A459C5D00331BD4 /* BulletinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		8C3A5F8F2C6BCEA1002097A8 /* ES1 */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ES1; sourceTree = "<group>"; };
-		8C3A5F922C6BCEA1002097A8 /* ES2 */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ES2; sourceTree = "<group>"; };
-		8C3A5F952C6BCEA1002097A8 /* ES3 */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ES3; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6BF209EB2990E61C00E623FC /* Frameworks */ = {
@@ -1277,9 +1277,9 @@
 				8C3A5F8A2C6BCEA1002097A8 /* EAGL.h */,
 				8C3A5F8B2C6BCEA1002097A8 /* EAGLDrawable.h */,
 				8C3A5F8C2C6BCEA1002097A8 /* EAGLIOSurface.h */,
-				8C3A5F8F2C6BCEA1002097A8 /* ES1 */,
-				8C3A5F922C6BCEA1002097A8 /* ES2 */,
-				8C3A5F952C6BCEA1002097A8 /* ES3 */,
+				8CB9A11D2C6D2CCB00E6A367 /* ES1 */,
+				8CB9A1202C6D2CCB00E6A367 /* ES2 */,
+				8CB9A1232C6D2CCB00E6A367 /* ES3 */,
 				8C3A5F962C6BCEA1002097A8 /* gltypes.h */,
 				8C3A5F972C6BCEA1002097A8 /* OpenGLESAvailability.h */,
 			);
@@ -1484,6 +1484,33 @@
 				8CB9A10D2C6D229200E6A367 /* MarkdownUI+.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8CB9A11D2C6D2CCB00E6A367 /* ES1 */ = {
+			isa = PBXGroup;
+			children = (
+				8CB9A11B2C6D2CCB00E6A367 /* gl.h */,
+				8CB9A11C2C6D2CCB00E6A367 /* glext.h */,
+			);
+			path = ES1;
+			sourceTree = "<group>";
+		};
+		8CB9A1202C6D2CCB00E6A367 /* ES2 */ = {
+			isa = PBXGroup;
+			children = (
+				8CB9A11E2C6D2CCB00E6A367 /* gl.h */,
+				8CB9A11F2C6D2CCB00E6A367 /* glext.h */,
+			);
+			path = ES2;
+			sourceTree = "<group>";
+		};
+		8CB9A1232C6D2CCB00E6A367 /* ES3 */ = {
+			isa = PBXGroup;
+			children = (
+				8CB9A1212C6D2CCB00E6A367 /* gl.h */,
+				8CB9A1222C6D2CCB00E6A367 /* glext.h */,
+			);
+			path = ES3;
 			sourceTree = "<group>";
 		};
 		8CDA8C7D2C67EF94001D5770 /* Media */ = {
