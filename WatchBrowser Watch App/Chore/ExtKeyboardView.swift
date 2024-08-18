@@ -33,7 +33,7 @@ struct ExtKeyboardView: View {
     let numThirdRow = [".", ",", "?", "!", "'"]
     let symbolFirstRow = ["[", "]", "{", "}", "#", "%", "^", "*", "+", "="]
     let symbolSecondRow = ["_", "\\", "|", "~", "<", ">", "·"]
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     @State var lastTimeTap = Date.distantPast
     @State var fullText = [Charater]()
     @State var isShowingNumber = false
@@ -154,7 +154,7 @@ struct ExtKeyboardView: View {
         .toolbar {
             ToolbarItem(placement: .confirmationAction, content: {
                 Button(action: {
-                    dismiss()
+                    presentationMode.wrappedValue.dismiss()
                     onFinished(combine())
                 }, label: {
                     if #available(watchOS 10.0, *) {

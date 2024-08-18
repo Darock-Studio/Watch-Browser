@@ -4,3 +4,4 @@
 
 #include "WebExtension.h"
 #include "WebKit/WebKit.h"
+#include "SFSafariViewControllerDelegate.h"

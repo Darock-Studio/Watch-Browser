@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ClusterTipView: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     var body: some View {
         List {
             Section {
@@ -19,7 +19,7 @@ struct ClusterTipView: View {
             .listRowBackground(Color.clear)
             Section {
                 Button(action: {
-                    dismiss()
+                    presentationMode.wrappedValue.dismiss()
                 }, label: {
                     Text("我知道了")
                 })

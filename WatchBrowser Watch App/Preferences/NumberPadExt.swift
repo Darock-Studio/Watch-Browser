@@ -15,11 +15,11 @@ struct PasswordInputView: View {
     var hideCancelButton: Bool = false
     var dismissAfterComplete = true
     var completion: ((String) -> Void)?
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     var body: some View {
         VStack {
             Spacer()
-                .frame(height: 26)
+                .frame(height: 10)
             Group {
                 if !text.isEmpty {
                     HStack(spacing: 5) {
@@ -32,7 +32,7 @@ struct PasswordInputView: View {
                     }
                 } else {
                     Text(placeholder)
-                        .font(.system(size: 13))
+                        .font(.system(size: 14))
                 }
             }
             .frame(height: 12)
@@ -46,18 +46,19 @@ struct PasswordInputView: View {
                         .font(.system(size: 14, weight: .semibold, design: .rounded))
                 }
                 .onTapGesture {
-                    dismiss()
+                    presentationMode.wrappedValue.dismiss()
                 }
             }
             Spacer()
                 .frame(height: 5)
         }
         .ignoresSafeArea()
+        ._statusBarHidden(true)
         .onChange(of: text) { value in
             if value.count == 6 {
                 completion?(value)
                 if dismissAfterComplete {
-                    dismiss()
+                    presentationMode.wrappedValue.dismiss()
                 }
             }
         }

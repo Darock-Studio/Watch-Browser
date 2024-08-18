@@ -9,7 +9,7 @@ import SwiftUI
 import DarockKit
 
 struct DarockAccountLogin: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     @AppStorage("DarockAccount") var darockAccount = ""
     @State var accountCache = ""
     @State var passwdCache = ""
@@ -41,7 +41,7 @@ struct DarockAccountLogin: View {
                             if isSuccess {
                                 if respStr.apiFixed() == "Success" {
                                     darockAccount = accountCache
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 } else {
                                     alertTipText = "错误：账号或密码错误"
                                     isAlertPresented = true
@@ -88,7 +88,7 @@ struct DarockAccountLogin: View {
                 if let arg1 = slashSpd[from: 0], let arg2 = slashSpd[from: 1] {
                     if arg1 == "login" {
                         darockAccount = String(arg2)
-                        dismiss()
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }
             }
@@ -96,7 +96,7 @@ struct DarockAccountLogin: View {
     }
     
     struct RegisterView: View {
-        @Environment(\.dismiss) var dismiss
+        @Environment(\.presentationMode) var presentationMode
         @State var mailInput = ""
         @State var passwordInput = ""
         @State var passwordConfirmInput = ""
@@ -134,7 +134,7 @@ struct DarockAccountLogin: View {
                                 DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/set/\(mailInput)/\(usernameInput)".compatibleUrlEncoded()) { _, isSuccess in
                                     if isSuccess {
                                         isRegistering = false
-                                        dismiss()
+                                        presentationMode.wrappedValue.dismiss()
                                     }
                                 }
                             }
@@ -349,7 +349,7 @@ struct DarockAccountManagementMain: View {
         
         struct NameChangeView: View {
             @Binding var username: String
-            @Environment(\.dismiss) var dismiss
+            @Environment(\.presentationMode) var presentationMode
             @AppStorage("DarockAccount") var darockAccount = ""
             @State var nameInput = ""
             @State var isApplying = false
@@ -379,7 +379,7 @@ struct DarockAccountManagementMain: View {
                             DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/set/\(darockAccount)/\(nameInput)".compatibleUrlEncoded()) { _, isSuccess in
                                 if isSuccess {
                                     username = nameInput
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }
                                 isApplying = false
                             }
@@ -487,7 +487,7 @@ struct DarockAccountManagementMain: View {
         }
         
         struct ChangePasswordView: View {
-            @Environment(\.dismiss) var dismiss
+            @Environment(\.presentationMode) var presentationMode
             @AppStorage("DarockAccount") var darockAccount = ""
             @State var currentPasswordInput = ""
             @State var newPasswordInput = ""
@@ -509,7 +509,7 @@ struct DarockAccountManagementMain: View {
                                     if isSuccess {
                                         if respStr.apiFixed() == "Success" {
                                             tipWithText("密码已更改", symbol: "checkmark.circle.fill")
-                                            dismiss()
+                                            presentationMode.wrappedValue.dismiss()
                                         } else {
                                             tipWithText("原密码错误", symbol: "xmark.circle.fill")
                                             currentPasswordInput = ""

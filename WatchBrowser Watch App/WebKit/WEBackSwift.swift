@@ -32,7 +32,6 @@ public final class WEBackSwift: NSObject {
                     globalErrorHandler(error)
                 }
             }
-            pMenuShouldDismiss = true
         }
     }
     

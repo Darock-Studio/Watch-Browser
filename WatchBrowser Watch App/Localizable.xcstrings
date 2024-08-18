@@ -8581,6 +8581,9 @@
     "Discord" : {
       "shouldTranslate" : false
     },
+    "Discord Server" : {
+      "shouldTranslate" : false
+    },
     "Error Handler" : {
       "shouldTranslate" : false
     },
@@ -14529,6 +14532,9 @@
         }
       }
     },
+    "Tap for Details about our Discord Server" : {
+      "shouldTranslate" : false
+    },
     "Tap-to-Radar" : {
       "shouldTranslate" : false
     },
@@ -15797,22 +15803,6 @@
         }
       }
     },
-    "不发送" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Don’t Send"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "不發送"
-          }
-        }
-      }
-    },
     "不在播放列表" : {
       "localizations" : {
         "ar" : {
@@ -15927,22 +15917,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "不在播放列錶"
-          }
-        }
-      }
-    },
-    "不过我们收集到了错误日志～(∠・ω< )⌒☆" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "But we got the error log ～(∠・ω< )⌒☆"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "不過我們收集到瞭錯誤日誌～(∠・ω< )⌒☆"
           }
         }
       }
@@ -19251,6 +19225,16 @@
         }
       }
     },
+    "使用旧版引擎打开" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open with Legacy Engine"
+          }
+        }
+      }
+    },
     "使用旧版引擎时，用户脚本不可用" : {
       "localizations" : {
         "ar" : {
@@ -20073,6 +20057,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "信息"
+          }
+        }
+      }
+    },
+    "修改名称" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Name"
+          }
+        }
+      }
+    },
+    "停止载入" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop Loading"
           }
         }
       }
@@ -23887,6 +23891,16 @@
         }
       }
     },
+    "前进列表" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forward List"
+          }
+        }
+      }
+    },
     "剩余时间" : {
       "localizations" : {
         "ar" : {
@@ -25433,16 +25447,6 @@
         }
       }
     },
-    "发送" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Send"
-          }
-        }
-      }
-    },
     "发送的反馈" : {
       "localizations" : {
         "ar" : {
@@ -26153,6 +26157,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "可在解析的音頻列錶頁左滑項目以添加到列錶"
+          }
+        }
+      }
+    },
+    "可用时自动进入阅读器" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use Reader Automatically when Available"
           }
         }
       }
@@ -29709,6 +29723,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Add the current playback time"
+          }
+        }
+      }
+    },
+    "在浏览中隐藏时间" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hide Time during Browsing"
           }
         }
       }
@@ -33625,22 +33649,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "密碼長度不能小於8位"
-          }
-        }
-      }
-    },
-    "对问题的描述，例如您在 App 崩溃前做了什么。" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Description of the issue, such as what you were doing before the app crashed."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "對問題的描述，例如您在 App 崩潰前做了什麽。"
           }
         }
       }
@@ -41847,16 +41855,6 @@
         }
       }
     },
-    "描述 (可选)" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Description (Optional)"
-          }
-        }
-      }
-    },
     "描述行%lld" : {
       "localizations" : {
         "ar" : {
@@ -44855,16 +44853,6 @@
         }
       }
     },
-    "无可播放的视频" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No playable videos"
-          }
-        }
-      }
-    },
     "无打开的标签页" : {
       "localizations" : {
         "ar" : {
@@ -45583,6 +45571,16 @@
         }
       }
     },
+    "旧版引擎设置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legacy Engine Settings"
+          }
+        }
+      }
+    },
     "昨天和今天" : {
       "localizations" : {
         "ar" : {
@@ -45815,6 +45813,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "顯示“快速退出”按鈕"
+          }
+        }
+      }
+    },
+    "显示与亮度" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Display & Brightness"
           }
         }
       }
@@ -46543,16 +46551,6 @@
         }
       }
     },
-    "暗礁浏览器似乎在上次运行中发生了崩溃" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock Browser appears to have crashed during the last session."
-          }
-        }
-      }
-    },
     "暗礁浏览器已是最新版本" : {
       "localizations" : {
         "ar" : {
@@ -47149,6 +47147,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Update Tags"
+          }
+        }
+      }
+    },
+    "更新的浏览菜单" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updated Browsing Menu"
           }
         }
       }
@@ -52846,6 +52854,26 @@
         }
       }
     },
+    "浏览菜单" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Browsing Menu"
+          }
+        }
+      }
+    },
+    "浏览菜单现在更美观并更易操作" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The browse menu is now more visually appealing and easier to use."
+          }
+        }
+      }
+    },
     "浙ICP备2024071295号-2A" : {
       "localizations" : {
         "zh-Hans" : {
@@ -52862,6 +52890,16 @@
         }
       },
       "shouldTranslate" : false
+    },
+    "添加到书签" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to Bookmarks"
+          }
+        }
+      }
     },
     "添加控件" : {
       "localizations" : {
@@ -54291,6 +54329,36 @@
         }
       }
     },
+    "现可在浏览菜单中快速使用旧版引擎打开当前页" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can now quickly open the current page with the legacy engine from the browsing menu."
+          }
+        }
+      }
+    },
+    "现可在浏览菜单中快速将当前页添加到书签" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can now quickly add the current page to bookmarks from the browsing menu."
+          }
+        }
+      }
+    },
+    "现可在浏览菜单中快速请求桌面网站" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can now quickly request desktop website from the browsing menu."
+          }
+        }
+      }
+    },
     "现可在设置→通用→阅读器中个性化设置图书阅读器" : {
       "localizations" : {
         "ar" : {
@@ -54529,6 +54597,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "現可將網頁歸檔以供離線查看"
+          }
+        }
+      }
+    },
+    "现可设置是否为旧版浏览引擎自动启用阅读器模式" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can now set whether to use reader automatically for the legacy browsing engine."
+          }
+        }
+      }
+    },
+    "现可设置是否在网页中隐藏时间，减少干扰" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can now set whether to hide the time in web pages to reduce distractions."
           }
         }
       }
@@ -58593,6 +58681,16 @@
         }
       }
     },
+    "空列表" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empty List"
+          }
+        }
+      }
+    },
     "空图书列表" : {
       "localizations" : {
         "ar" : {
@@ -60953,6 +61051,16 @@
         }
       }
     },
+    "网页内添加书签" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Bookmarks within Web Pages"
+          }
+        }
+      }
+    },
     "网页崩溃后总是自动重新载入" : {
       "localizations" : {
         "ar" : {
@@ -62611,22 +62719,6 @@
         }
       }
     },
-    "要发送错误日志吗？" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Would you like to send the error log?"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "要發送錯誤日誌嗎？"
-          }
-        }
-      }
-    },
     "要求" : {
       "localizations" : {
         "ar" : {
@@ -63803,6 +63895,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "請求桌面網站"
+          }
+        }
+      }
+    },
+    "请求移动网站" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Request Mobile Website"
           }
         }
       }
@@ -65609,124 +65711,6 @@
         }
       }
     },
-    "辅助功能" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "سُهولة الوُصولِ"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aufgeschlossenheit"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Accessibility"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Accesibilidad"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Accessibilité"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "सुगमता"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aksesibilitas"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Accessibilità"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "アクセシビリティ"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "보조 기능"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Toegankelijkheid"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dostępność"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Acessibilidade"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Функции доступности"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "การเข้าถึง"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erişilebilirlik"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Доступність"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Khả năng truy cập được"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "輔助功能"
-          }
-        }
-      }
-    },
     "输入你的密码" : {
       "localizations" : {
         "ar" : {
@@ -67375,6 +67359,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "返回列表" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Backward List"
           }
         }
       }
@@ -72495,6 +72489,16 @@
         }
       }
     },
+    "隐藏时间" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hide Digital Time"
+          }
+        }
+      }
+    },
     "需要安全延时" : {
       "localizations" : {
         "ar" : {
@@ -74733,6 +74737,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "音頻列錶"
+          }
+        }
+      }
+    },
+    "页面链接" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Link"
           }
         }
       }

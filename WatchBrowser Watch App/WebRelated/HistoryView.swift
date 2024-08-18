@@ -316,6 +316,17 @@ struct HistoryView: View {
                                     return false
                                 })
                                 writeWebHistory(from: histories)
+                                if UserDefaults.standard.bool(forKey: "DCSaveHistory"),
+                                   let account = UserDefaults.standard.string(forKey: "DarockAccount"),
+                                   !account.isEmpty {
+                                    // Darock Cloud Upload
+                                    let historiesToUpload = Array<SingleHistoryItem>(histories.prefix(50))
+                                    if let uploadData = jsonString(from: historiesToUpload) {
+                                        _onFastPath()
+                                        let encodedData = uploadData.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
+                                        DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/cloud/update/\(account)/WebHistory.drkdataw/\(encodedData)".compatibleUrlEncoded()) { _, _ in }
+                                    }
+                                }
                                 isClearOptionsPresented = false
                             }, label: {
                                 Text("清除历史记录")
@@ -326,6 +337,7 @@ struct HistoryView: View {
                     .navigationTitle("清除历史记录")
                 }
             }
+            .navigationTitle("历史记录")
             .toolbar {
                 if #available(watchOS 10.5, *), !histories.isEmpty && isHistoryRecording && selectionHandler == nil {
                     ToolbarItem(placement: .topBarTrailing) {
@@ -446,7 +458,7 @@ func mergeWebHistoriesBetween(primary: [SingleHistoryItem], secondary: [SingleHi
 }
 
 struct CloseHistoryTipView: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     var body: some View {
         ScrollView {
             Text("History.turn-off")
@@ -456,15 +468,25 @@ struct CloseHistoryTipView: View {
             Button(role: .destructive, action: {
                 do {
                     try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/WebHistories.drkdataw")
+                    if UserDefaults.standard.bool(forKey: "DCSaveHistory"),
+                       let account = UserDefaults.standard.string(forKey: "DarockAccount"),
+                       !account.isEmpty {
+                        // Darock Cloud Upload
+                        if let uploadData = jsonString(from: [SingleHistoryItem]()) {
+                            _onFastPath()
+                            let encodedData = uploadData.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
+                            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/cloud/update/\(account)/WebHistory.drkdataw/\(encodedData)".compatibleUrlEncoded()) { _, _ in }
+                        }
+                    }
                 } catch {
                     globalErrorHandler(error)
                 }
-                dismiss()
+                presentationMode.wrappedValue.dismiss()
             }, label: {
                 Label("History.clear", systemImage: "trash.fill")
             })
             Button(role: .cancel, action: {
-                dismiss()
+                presentationMode.wrappedValue.dismiss()
             }, label: {
                 Label("History.save", systemImage: "arrow.down.doc.fill")
             })
@@ -473,7 +495,7 @@ struct CloseHistoryTipView: View {
 }
 
 struct HistoryTransferView: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     @AppStorage("IsHistoryTransferNeeded") var isHistoryTransferNeeded = true
     var body: some View {
         List {
@@ -493,7 +515,7 @@ struct HistoryTransferView: View {
                             UserDefaults.standard.removeObject(forKey: "WebHistoryNames")
                             UserDefaults.standard.removeObject(forKey: "WebHistoryRecordTimes")
                             isHistoryTransferNeeded = false
-                            dismiss()
+                            presentationMode.wrappedValue.dismiss()
                             tipWithText("迁移已完成", symbol: "checkmark.circle.fill")
                         } catch {
                             globalErrorHandler(error)
@@ -515,7 +537,7 @@ struct HistoryTransferView: View {
                     UserDefaults.standard.removeObject(forKey: "WebHistoryNames")
                     UserDefaults.standard.removeObject(forKey: "WebHistoryRecordTimes")
                     isHistoryTransferNeeded = false
-                    dismiss()
+                    presentationMode.wrappedValue.dismiss()
                     tipWithText("迁移已完成", symbol: "checkmark.circle.fill")
                 }, label: {
                     Text("清空历史记录并在今后使用新架构")

@@ -13,6 +13,7 @@ struct NetworkCheckView: View {
     @State var networkState = 0
     @State var darockAPIState = 0
     @State var isTroubleshooting = false
+    @State var isNewVerAvailable = false
     var lightColors: [Color] = [.secondary, .orange, .red, .green, .red]
     var body: some View {
         List {
@@ -28,11 +29,12 @@ struct NetworkCheckView: View {
                         NavigationLink(destination: { FeedbackView() }, label: {
                             VStack(alignment: .leading) {
                                 Text("仍有问题？")
-                                Text("反馈问题")
+                                Text(isNewVerAvailable ? "“反馈助理”不可用，因为暗礁浏览器有更新可用" : "反馈问题")
                                     .font(.system(size: 13))
                                     .foregroundColor(.gray)
                             }
                         })
+                        .disabled(isNewVerAvailable)
                     } else {
                         Text("可能的问题：")
                             .bold()
@@ -112,6 +114,27 @@ struct NetworkCheckView: View {
             networkState = 0
             darockAPIState = 0
             checkInternet()
+            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
+                if isSuccess {
+                    let spdVer = respStr.apiFixed().split(separator: ".")
+                    if spdVer.count == 3 {
+                        if let x = Int(spdVer[0]), let y = Int(spdVer[1]), let z = Int(spdVer[2]) {
+                            let currVerSpd = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).split(separator: ".")
+                            if currVerSpd.count == 3 {
+                                if let cx = Int(currVerSpd[0]), let cy = Int(currVerSpd[1]), let cz = Int(currVerSpd[2]) {
+                                    if x > cx {
+                                        isNewVerAvailable = true
+                                    } else if x == cx && y > cy {
+                                        isNewVerAvailable = true
+                                    } else if x == cx && y == cy && z > cz {
+                                        isNewVerAvailable = true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         .onDisappear {
             progressTimer?.invalidate()

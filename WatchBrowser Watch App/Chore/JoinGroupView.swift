@@ -9,7 +9,7 @@ import SwiftUI
 import EFQRCode
 
 struct JoinGroupView: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     @AppStorage("IsShowJoinGroup") var isShowJoinGroup = true
     var body: some View {
         List {
@@ -79,7 +79,7 @@ struct JoinGroupView: View {
             Section {
                 Button(action: {
                     isShowJoinGroup = false
-                    dismiss()
+                    presentationMode.wrappedValue.dismiss()
                 }, label: {
                     Text("不再显示")
                 })

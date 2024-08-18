@@ -505,7 +505,7 @@ The uniform type identifier kUTTypeWebArchive can be used get the related pasteb
   A match found by the search is selected and the page is scrolled to reveal the selection.
   The completion handler is called after the search completes.
 */
-- (void)findString:(NSString *)string withConfiguration:(nullable WKFindConfiguration *)configuration completionHandler:(void (^)(WKFindResult *result))completionHandler NS_REFINED_FOR_SWIFT API_AVAILABLE(macos(11.0), ios(14.0));
+- (void)findString:(NSString *)string withConfiguration:(nullable WKFindConfiguration *)configuration completionHandler:(void (^)(WKFindResult *result))completionHandler API_AVAILABLE(macos(11.0), ios(14.0));
 
 /* @abstract Checks whether or not WKWebViews handle the given URL scheme by default.
  @param scheme The URL scheme to check.

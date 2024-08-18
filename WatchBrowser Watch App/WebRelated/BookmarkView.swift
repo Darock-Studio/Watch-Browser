@@ -171,7 +171,7 @@ struct BookmarkView: View {
         }
         
         struct SuggestWebView: View {
-            @Environment(\.dismiss) var dismiss
+            @Environment(\.presentationMode) var presentationMode
             @State var linkInput = ""
             @State var isHistorySelectorPresented = false
             @State var confirm1 = false
@@ -230,7 +230,7 @@ struct BookmarkView: View {
                             """
                             DarockKit.Network.shared
                                 .requestString("https://fapi.darock.top:65535/feedback/submit/anony/暗礁浏览器-常用书签推荐/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))".compatibleUrlEncoded()) { _, _ in }
-                            dismiss()
+                            presentationMode.wrappedValue.dismiss()
                             tipWithText("已提交", symbol: "checkmark.circle.fill")
                         }, label: {
                             Text("提交")
@@ -271,7 +271,7 @@ struct AddBookmarkView: View {
                     let total = userdefault.integer(forKey: "BookmarkTotal") &+ 1
                     userdefault.set(markName, forKey: "BookmarkName\(total)")
                     userdefault.set(
-                        markLink.hasPrefix("https://") || markLink.hasPrefix("http://") ? markLink.urlEncoded() : "http://" + markLink.urlEncoded(),
+                        markLink.hasPrefix("https://") || markLink.hasPrefix("http://") ? markLink : "http://" + markLink,
                         forKey: "BookmarkLink\(total)"
                     )
                     userdefault.set(total, forKey: "BookmarkTotal")
@@ -292,7 +292,7 @@ struct AddBookmarkView: View {
 }
 
 struct EditBookmarkView: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     @State var markName = ""
     @State var markLink = ""
     var body: some View {
@@ -316,7 +316,7 @@ struct EditBookmarkView: View {
                         markLink.hasPrefix("https://") || markLink.hasPrefix("http://") ? markLink.urlEncoded() : "http://" + markLink.urlEncoded(),
                         forKey: "BookmarkLink\(BookmarkView.editingBookmarkIndex)"
                     )
-                    dismiss()
+                    presentationMode.wrappedValue.dismiss()
                 }, label: {
                     HStack {
                         Spacer()

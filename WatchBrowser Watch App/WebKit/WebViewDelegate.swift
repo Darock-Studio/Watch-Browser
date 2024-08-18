@@ -52,17 +52,23 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
             }
             if _slowPath(curl.hasSuffix(".mp3")) {
                 audioLinkLists = [curl]
-                WebExtension.presentAudioList()
+                AdvancedWebViewController.shared.dismissWebView()
+                pShouldPresentAudioList = true
+                dismissListsShouldRepresentWebView = true
                 return
             }
             if _slowPath(curl.hasSuffix(".mp4")) {
                 videoLinkLists = [curl]
-                WebExtension.presentVideoList()
+                AdvancedWebViewController.shared.dismissWebView()
+                pShouldPresentVideoList = true
+                dismissListsShouldRepresentWebView = true
                 return
             }
             if _slowPath(curl.hasSuffix(".epub")) {
                 bookLinkLists = [curl]
-                WebExtension.presentBookList()
+                AdvancedWebViewController.shared.dismissWebView()
+                pShouldPresentBookList = true
+                dismissListsShouldRepresentWebView = true
                 return
             }
             if _slowPath(curl.contains("bilibili.com/")) && (UserDefaults(suiteName: "group.darockst")?.bool(forKey: "DCIsMeowBiliInstalled") ?? false) {
@@ -168,5 +174,17 @@ public final class WebViewUIDelegate: NSObject, WKUIDelegate {
             webView.load(navigationAction.request)
         }
         return nil
+    }
+}
+
+public final class SafariViewDelegate: NSObject, SFSafariViewControllerDelegate {
+    public static let shared = SafariViewDelegate()
+    
+    public func safariViewController(_ controller: Any, didCompleteInitialLoad didLoadSuccessfully: Bool) {
+        debugPrint("SF Complete Load")
+    }
+    
+    public func safariViewController(_ controller: Any, initialLoadDidRedirectTo URL: URL) {
+        debugPrint("Redirect to: \(URL)")
     }
 }

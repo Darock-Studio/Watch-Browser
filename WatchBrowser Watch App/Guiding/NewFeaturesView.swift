@@ -15,8 +15,19 @@ struct NewFeaturesView: View {
                     Text("“暗礁浏览器”新功能")
                         .font(.system(size: 18, weight: .bold))
                         .accessibilityIdentifier("NewFeaturesTitle")
-                    SingleFeatureRow(symbol: "book.fill", mainText: "新版图书阅读器", detailText: "图书阅读器现在合并所有章节并自动保存阅读位置")
-                    SingleFeatureRow(symbol: "book.and.wrench", mainText: "图书阅读器设置", detailText: "现可在设置→通用→阅读器中个性化设置图书阅读器")
+                    SingleFeatureRow(symbol: "list.bullet.rectangle.portrait", mainText: "更新的浏览菜单", detailText: "浏览菜单现在更美观并更易操作")
+                    SingleFeatureRow(symbol: "globe.badge.chevron.backward", mainText: "旧版引擎设置", detailText: "现可设置是否为旧版浏览引擎自动启用阅读器模式")
+                    SingleFeatureRow(symbol: "clock.badge.xmark", mainText: "在浏览中隐藏时间", detailText: "现可设置是否在网页中隐藏时间，减少干扰")
+                    SingleFeatureRow(symbol: "bookmark", mainText: "网页内添加书签", detailText: "现可在浏览菜单中快速将当前页添加到书签")
+                    SingleFeatureRow(symbol: "desktopcomputer", mainText: "请求桌面网站", detailText: "现可在浏览菜单中快速请求桌面网站")
+                    SingleFeatureRow(symbol: "globe", mainText: "使用旧版引擎打开", detailText: "现可在浏览菜单中快速使用旧版引擎打开当前页")
+                    if NSLocale.current.language.languageCode!.identifier != "zh" {
+                        SingleFeatureRow(symbol: "bubble.left.and.bubble.right",
+                                         mainText: "Discord Server",
+                                         detailText: "Tap for Details about our Discord Server") { AnyView(
+                            JoinGroupView()
+                        )} // swiftlint:disable:this closure_end_indentation
+                    }
                     Text("您可以随时在“提示->新功能”中重新打开此页")
                         .multilineTextAlignment(.center)
                         .opacity(0.7)
@@ -71,6 +82,24 @@ struct SingleFeatureRow: View {
 }
 
 // MARK: ArchivedNewFeatures
+private struct _NewFeaturesViewArchived240818: View {
+    var body: some View {
+        NavigationView {
+            ScrollView {
+                VStack {
+                    Text("“暗礁浏览器”新功能")
+                        .font(.system(size: 18, weight: .bold))
+                        .accessibilityIdentifier("NewFeaturesTitle")
+                    SingleFeatureRow(symbol: "book.fill", mainText: "新版图书阅读器", detailText: "图书阅读器现在合并所有章节并自动保存阅读位置")
+                    SingleFeatureRow(symbol: "book.and.wrench", mainText: "图书阅读器设置", detailText: "现可在设置→通用→阅读器中个性化设置图书阅读器")
+                    Text("您可以随时在“提示->新功能”中重新打开此页")
+                        .multilineTextAlignment(.center)
+                        .opacity(0.7)
+                }
+            }
+        }
+    }
+}
 private struct _NewFeaturesViewArchived240729: View {
     var body: some View {
         NavigationView {
@@ -126,7 +155,7 @@ private struct _NewFeaturesViewArchived240628: View {
                                 Text("查看图片 - 步骤")
                             }
                         }
-                            .navigationTitle("图片")
+                        .navigationTitle("图片")
                     )})
                     SingleFeatureRow(symbol: "arrow.uturn.up", mainText: "视频直接跳转", detailText: "打开视频直链时，将直接跳转视频")
                     Text("您可以随时在“设置”中重新打开此页")

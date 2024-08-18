@@ -11,7 +11,7 @@ import AuthenticationServices
 
 @available(watchOS 10.0, *)
 struct ClusterAdView: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     @AppStorage("IsShowClusterAd") var isShowClusterAd = true
     var body: some View {
         List {
@@ -49,7 +49,7 @@ struct ClusterAdView: View {
             Section {
                 Button(action: {
                     isShowClusterAd = false
-                    dismiss()
+                    presentationMode.wrappedValue.dismiss()
                 }, label: {
                     Text("退出并不再显示")
                         .foregroundStyle(Color.blue)

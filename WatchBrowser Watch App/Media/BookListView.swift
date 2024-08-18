@@ -153,6 +153,8 @@ struct LocalBooksView: View {
     @State var passcodeInputCache = ""
     @State var bookFolderNames = [String]()
     @State var nameChart = [String: String]()
+    @State var deleteItemIndex = 0
+    @State var isDeleteItemAlertPresented = false
     var body: some View {
         if isLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLocalBooks {
             PasswordInputView(text: $passcodeInputCache, placeholder: "输入密码", dismissAfterComplete: false) { pwd in
@@ -181,15 +183,8 @@ struct LocalBooksView: View {
                                 })
                                 .swipeActions {
                                     Button(role: .destructive, action: {
-                                        do {
-                                            try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/\(bookFolderNames[i])")
-                                            nameChart.removeValue(forKey: bookFolderNames[i])
-                                            bookFolderNames.remove(at: i)
-                                            UserDefaults.standard.set(bookFolderNames, forKey: "EPUBFlieFolders")
-                                            UserDefaults.standard.set(nameChart, forKey: "EPUBFileNameChart")
-                                        } catch {
-                                            globalErrorHandler(error)
-                                        }
+                                        deleteItemIndex = i
+                                        isDeleteItemAlertPresented = true
                                     }, label: {
                                         Image(systemName: "xmark.bin.fill")
                                     })
@@ -224,6 +219,26 @@ struct LocalBooksView: View {
             }
             .navigationTitle("本地图书")
             .navigationBarTitleDisplayMode(.inline)
+            .alert("删除项目", isPresented: $isDeleteItemAlertPresented, actions: {
+                Button(role: .cancel, action: {}, label: {
+                    Text("取消")
+                })
+                Button(role: .destructive, action: {
+                    do {
+                        try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/\(bookFolderNames[deleteItemIndex])")
+                        nameChart.removeValue(forKey: bookFolderNames[deleteItemIndex])
+                        bookFolderNames.remove(at: deleteItemIndex)
+                        UserDefaults.standard.set(bookFolderNames, forKey: "EPUBFlieFolders")
+                        UserDefaults.standard.set(nameChart, forKey: "EPUBFileNameChart")
+                    } catch {
+                        globalErrorHandler(error)
+                    }
+                }, label: {
+                    Text("删除")
+                })
+            }, message: {
+                Text("确定要删除此项目吗\n此操作不可撤销")
+            })
             .onAppear {
                 bookFolderNames = UserDefaults.standard.stringArray(forKey: "EPUBFlieFolders") ?? [String]()
                 nameChart = (UserDefaults.standard.dictionary(forKey: "EPUBFileNameChart") as? [String: String]) ?? [String: String]()
@@ -240,38 +255,59 @@ struct BookReaderView: View {
     @State var contents = CodableAttributedStringArray()
     @State var loadProgress = 0.0
     @State var toolbarVisibility = Visibility.visible
+    @State var progressJumpSliderValue = 0.0
+    @State var isProgressEditing = false
     var body: some View {
         ScrollViewReader { scrollProxy in
-            ScrollView {
-                if !contents.isEmpty {
-                    LazyVStack(alignment: .leading) {
-                        ForEach(0..<contents.count, id: \.self) { i in
-                            Text(AttributedString(contents[i]))
-                                .onAppear {
-                                    UserDefaults.standard.set(i, forKey: "\(document.directory.lastPathComponent)ReadOffset")
-                                }
+            ZStack {
+                ScrollView {
+                    if !contents.isEmpty {
+                        LazyVStack(alignment: .leading) {
+                            ForEach(0..<contents.count, id: \.self) { i in
+                                Text(AttributedString(contents[i]))
+                                    .onAppear {
+                                        UserDefaults.standard.set(i, forKey: "\(document.directory.lastPathComponent)ReadOffset")
+                                        progressJumpSliderValue = Double(i)
+                                    }
+                            }
                         }
-                    }
-                    .onTapGesture {
-                        toolbarVisibility = .visible
-                        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
-                            toolbarVisibility = .hidden
+                        .onTapGesture {
+                            toolbarVisibility = .visible
+                            Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
+                                toolbarVisibility = .hidden
+                            }
                         }
-                    }
-                    .onAppear {
-                        withAnimation {
-                            scrollProxy.scrollTo(UserDefaults.standard.integer(forKey: "\(document.directory.lastPathComponent)ReadOffset"), anchor: .center)
+                        .onAppear {
+                            withAnimation {
+                                scrollProxy.scrollTo(UserDefaults.standard.integer(forKey: "\(document.directory.lastPathComponent)ReadOffset"), anchor: .center)
+                            }
                         }
+                    } else {
+                        Text("正在载入...")
+                        ProgressView(value: loadProgress)
+                        Text("首次载入可能需要一些时间，完成后将缓存数据以加快后续载入。")
+                            .padding(.vertical)
                     }
-                } else {
-                    Text("正在载入...")
-                    ProgressView(value: loadProgress)
-                    Text("首次载入可能需要一些时间，完成后将缓存数据以加快后续载入。")
-                        .padding(.vertical)
                 }
+//                if toolbarVisibility != .hidden && !contents.isEmpty {
+//                    VStack {
+//                        Spacer()
+//                        Slider(value: $progressJumpSliderValue, in: 0.0...Double(contents.count - 1), step: 1) { isEditing in
+//                            isProgressEditing = isEditing
+//                        }
+//                        .focusable()
+//                        .onChange(of: progressJumpSliderValue) { _ in
+//                            if isProgressEditing {
+//                                scrollProxy.scrollTo(Int(progressJumpSliderValue), anchor: .center)
+//                            }
+//                        }
+//                    }
+//                    .ignoresSafeArea()
+//                }
             }
         }
         .toolbar(toolbarVisibility, for: .navigationBar)
+        ._statusBarHidden(toolbarVisibility == .hidden)
         .animation(.easeOut, value: toolbarVisibility)
         .onAppear {
             extendScreenIdleTime(1200)

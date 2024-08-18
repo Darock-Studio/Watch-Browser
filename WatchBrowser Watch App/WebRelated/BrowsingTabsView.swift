@@ -102,8 +102,6 @@ struct TabWebKitReference: Identifiable {
     let id = UUID()
     
     var webViewHolder: Dynamic // UIView
-    var menuController: Dynamic // UIViewController
-    var menuView: Dynamic // UIScrollView
     var vc: Dynamic // UIViewController
     var loadProgressView: Dynamic // UIProgressView
     var webViewObject: WKWebView

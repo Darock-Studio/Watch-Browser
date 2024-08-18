@@ -105,14 +105,8 @@ struct SettingsView: View {
                 Section {
                     NavigationLink(destination: { GeneralSettingsView() },
                                    label: { SettingItemLabel(title: "通用", image: "gear", color: .gray) })
-                    NavigationLink(destination: { AccessibilitySettingsView() },
-                                   label: { SettingItemLabel(title: "辅助功能", image: {
-                        if #available(watchOS 10, *) {
-                            "accessibility"
-                        } else {
-                            "figure.stand"
-                        }
-                    }(), color: .blue, symbolFontSize: 18) })
+                    NavigationLink(destination: { DisplaySettingsView() },
+                                   label: { SettingItemLabel(title: "显示与亮度", image: "sun.max.fill", color: .blue) })
                     NavigationLink(destination: { BrowsingEngineSettingsView() },
                                    label: { SettingItemLabel(title: "浏览引擎", image: "globe", color: .blue) })
                     NavigationLink(destination: { HomeScreenSettingsView() },
@@ -130,7 +124,8 @@ struct SettingsView: View {
                     }, label: {
                         SettingItemLabel(title: "密码", image: "lock.fill", color: .red)
                     })
-                    NavigationLink(destination: { PrivacySettingsView() }, label: { SettingItemLabel(title: "隐私与安全性", image: "hand.raised.fill", color: .blue) })
+                    NavigationLink(destination: { PrivacySettingsView() },
+                                   label: { SettingItemLabel(title: "隐私与安全性", image: "hand.raised.fill", color: .blue) })
                 }
                 Section {
                     if isDeveloperModeEnabled {
@@ -868,8 +863,14 @@ struct SettingsView: View {
                                         dicV.updateValue(NSHomeDirectory() + "/Documents/DownloadedVideos/\(file)", forKey: "Path")
                                         do {
                                             let attributes = try FileManager.default.attributesOfItem(atPath: dicV["Path"]!)
-                                            if let fileSize = attributes[.size] as? UInt64 {
-                                                dicV.updateValue(String(fileSize), forKey: "Size")
+                                            if (attributes[.type] as! FileAttributeType) != .typeDirectory {
+                                                if let fileSize = attributes[.size] as? UInt64 {
+                                                    dicV.updateValue(String(fileSize), forKey: "Size")
+                                                }
+                                            } else {
+                                                if let fileSize = folderSize(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/\(file)") {
+                                                    dicV.updateValue(String(fileSize), forKey: "Size")
+                                                }
                                             }
                                         } catch {
                                             globalErrorHandler(error)
@@ -2031,7 +2032,7 @@ struct SettingsView: View {
             }
         }
     }
-    struct AccessibilitySettingsView: View {
+    struct DisplaySettingsView: View {
         @AppStorage("IsWebMinFontSizeStricted") var isWebMinFontSizeStricted = false
         @AppStorage("WebMinFontSize") var webMinFontSize = 10.0
         @AppStorage("ABIsReduceBrightness") var isReduceBrightness = false
@@ -2061,7 +2062,7 @@ struct SettingsView: View {
                     Text("屏幕右上方的时间不会被降低亮度")
                 }
             }
-            .navigationTitle("辅助功能")
+            .navigationTitle("显示与亮度")
         }
     }
     struct BrowsingEngineSettingsView: View {
@@ -2069,68 +2070,98 @@ struct SettingsView: View {
         @AppStorage("RequestDesktopWeb") var requestDesktopWeb = false
         @AppStorage("UseBackforwardGesture") var useBackforwardGesture = true
         @AppStorage("KeepDigitalTime") var keepDigitalTime = false
+        @AppStorage("HideDigitalTime") var hideDigitalTime = false
         @AppStorage("ShowFastExitButton") var showFastExitButton = false
         @AppStorage("AlwaysReloadWebPageAfterCrash") var alwaysReloadWebPageAfterCrash = false
         @AppStorage("PreloadSearchContent") var preloadSearchContent = true
         @AppStorage("ForceApplyDarkMode") var forceApplyDarkMode = false
+        @AppStorage("LBIsAutoEnterReader") var isAutoEnterReader = true
         var body: some View {
             List {
                 Section {
                     Toggle("使用旧版浏览引擎", isOn: $isUseOldWebView)
                 }
-                Section {
-                    Toggle(isOn: $requestDesktopWeb) {
-                        HStack {
-                            Image(systemName: "desktopcomputer")
-                                .foregroundStyle(Color.blue.gradient)
-                            Text("请求桌面网站")
-                        }
-                    }
-                    Toggle(isOn: $useBackforwardGesture) {
-                        HStack {
-                            Image(systemName: "hand.draw")
-                                .foregroundStyle(Color.purple.gradient)
-                            Text("使用手势返回上一页")
-                        }
-                    }
-                    Toggle(isOn: $keepDigitalTime) {
-                        HStack {
-                            Image(systemName: "clock")
-                            Text("保持时间可见")
-                        }
-                    }
-                    Toggle(isOn: $showFastExitButton) {
-                        HStack {
-                            Image(systemName: "escape")
-                                .foregroundStyle(Color.red.gradient)
-                            Text("显示“快速退出”按钮")
-                        }
-                    }
-                    Toggle(isOn: $alwaysReloadWebPageAfterCrash) {
-                        HStack {
-                            Image(systemName: "arrow.counterclockwise")
-                                .foregroundStyle(Color.blue.gradient)
-                            Text("网页崩溃后总是自动重新载入")
-                        }
-                    }
-                    if #available(watchOS 10, *) {
-                        Toggle(isOn: $preloadSearchContent) {
+                if !isUseOldWebView {
+                    Section {
+                        Toggle(isOn: $requestDesktopWeb) {
                             HStack {
-                                Image(systemName: "sparkle.magnifyingglass")
-                                    .foregroundStyle(Color.orange.gradient)
-                                Text("预载入搜索内容")
+                                Image(systemName: "desktopcomputer")
+                                    .foregroundStyle(Color.blue.gradient)
+                                Text("请求桌面网站")
+                            }
+                        }
+                        Toggle(isOn: $useBackforwardGesture) {
+                            HStack {
+                                Image(systemName: "hand.draw")
+                                    .foregroundStyle(Color.purple.gradient)
+                                Text("使用手势返回上一页")
+                            }
+                        }
+                        Toggle(isOn: $hideDigitalTime) {
+                            HStack {
+                                Image(systemName: "clock.badge.xmark")
+                                    .foregroundStyle(Color.blue.gradient)
+                                Text("隐藏时间")
+                            }
+                        }
+                        .onChange(of: hideDigitalTime) { _ in
+                            if hideDigitalTime {
+                                keepDigitalTime = false
+                            }
+                        }
+                        Toggle(isOn: $keepDigitalTime) {
+                            HStack {
+                                Image(systemName: "clock")
+                                Text("保持时间可见")
+                            }
+                        }
+                        .onChange(of: keepDigitalTime) { _ in
+                            if keepDigitalTime {
+                                hideDigitalTime = false
+                            }
+                        }
+                        Toggle(isOn: $showFastExitButton) {
+                            HStack {
+                                Image(systemName: "escape")
+                                    .foregroundStyle(Color.red.gradient)
+                                Text("显示“快速退出”按钮")
+                            }
+                        }
+                        Toggle(isOn: $alwaysReloadWebPageAfterCrash) {
+                            HStack {
+                                Image(systemName: "arrow.counterclockwise")
+                                    .foregroundStyle(Color.blue.gradient)
+                                Text("网页崩溃后总是自动重新载入")
+                            }
+                        }
+                        if #available(watchOS 10, *) {
+                            Toggle(isOn: $preloadSearchContent) {
+                                HStack {
+                                    Image(systemName: "sparkle.magnifyingglass")
+                                        .foregroundStyle(Color.orange.gradient)
+                                    Text("预载入搜索内容")
+                                }
+                            }
+                        }
+                        Toggle(isOn: $forceApplyDarkMode) {
+                            HStack {
+                                Image(systemName: "rectangle.inset.filled")
+                                    .foregroundStyle(Color.gray.gradient)
+                                Text("强制深色模式")
                             }
                         }
                     }
-                    Toggle(isOn: $forceApplyDarkMode) {
-                        HStack {
-                            Image(systemName: "rectangle.inset.filled")
-                                .foregroundStyle(Color.gray.gradient)
-                            Text("强制深色模式")
+                } else {
+                    Section {
+                        Toggle(isOn: $isAutoEnterReader) {
+                            HStack {
+                                Image(systemName: "doc.plaintext")
+                                    .foregroundStyle(Color.blue.gradient)
+                                Text("可用时自动进入阅读器")
+                            }
                         }
                     }
                 }
-                .disabled(isUseOldWebView)
             }
             .navigationTitle("浏览引擎")
         }
@@ -2279,20 +2310,20 @@ struct SettingsView: View {
             
             struct AddControlView: View {
                 var completion: (HomeScreenControlType) -> Void
-                @Environment(\.dismiss) var dismiss
+                @Environment(\.presentationMode) var presentationMode
                 var body: some View {
                     NavigationStack {
                         List {
                             Section {
                                 Button(action: {
                                     completion(.spacer)
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }, label: {
                                     Label("间隔", systemImage: "square.dashed")
                                 })
                                 Button(action: {
                                     completion(.text(""))
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }, label: {
                                     Label("自定义文本", systemImage: "textformat")
                                 })
@@ -2305,7 +2336,7 @@ struct SettingsView: View {
         }
         @available(watchOS 10.0, *)
         struct ToolbarSettingsView: View {
-            @Environment(\.dismiss) var dismiss
+            @Environment(\.presentationMode) var presentationMode
             @State var currentToolbar: HomeScreenToolbar?
             @State var toolChanging = HomeScreenControlType.spacer
             @State var toolChangingPosition = HomeScreenToolbarPosition.topLeading
@@ -2314,7 +2345,7 @@ struct SettingsView: View {
                 List {
                     Section {
                         Button(action: {
-                            dismiss()
+                            presentationMode.wrappedValue.dismiss()
                         }, label: {
                             Label("返回", systemImage: "chevron.backward")
                         })
@@ -2371,26 +2402,26 @@ struct SettingsView: View {
             struct ChangeToolView: View {
                 var item: HomeScreenControlType
                 var completion: (HomeScreenControlType) -> Void
-                @Environment(\.dismiss) var dismiss
+                @Environment(\.presentationMode) var presentationMode
                 var body: some View {
                     NavigationStack {
                         List {
                             Section {
                                 Button(action: {
                                     completion(.spacer)
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }, label: {
                                     Label("无", systemImage: "circle.dashed")
                                 })
                                 Button(action: {
                                     completion(.searchButton)
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }, label: {
                                     Label("搜索", systemImage: "magnifyingglass")
                                 })
                                 Button(action: {
                                     completion(.navigationLink(.bookmark))
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }, label: {
                                     VStack(alignment: .leading) {
                                         Text("导航到")
@@ -2401,7 +2432,7 @@ struct SettingsView: View {
                                 })
                                 Button(action: {
                                     completion(.navigationLink(.history))
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }, label: {
                                     VStack(alignment: .leading) {
                                         Text("导航到")
@@ -2412,7 +2443,7 @@ struct SettingsView: View {
                                 })
                                 Button(action: {
                                     completion(.navigationLink(.webarchive))
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }, label: {
                                     VStack(alignment: .leading) {
                                         Text("导航到")
@@ -2423,7 +2454,7 @@ struct SettingsView: View {
                                 })
                                 Button(action: {
                                     completion(.navigationLink(.localMedia))
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }, label: {
                                     VStack(alignment: .leading) {
                                         Text("导航到")
@@ -2434,7 +2465,7 @@ struct SettingsView: View {
                                 })
                                 Button(action: {
                                     completion(.navigationLink(.userscript))
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }, label: {
                                     VStack(alignment: .leading) {
                                         Text("导航到")
@@ -2445,7 +2476,7 @@ struct SettingsView: View {
                                 })
                                 Button(action: {
                                     completion(.navigationLink(.feedbackAssistant))
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }, label: {
                                     VStack(alignment: .leading) {
                                         Text("导航到")
@@ -2456,7 +2487,7 @@ struct SettingsView: View {
                                 })
                                 Button(action: {
                                     completion(.navigationLink(.tips))
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }, label: {
                                     VStack(alignment: .leading) {
                                         Text("导航到")
@@ -2467,7 +2498,7 @@ struct SettingsView: View {
                                 })
                                 Button(action: {
                                     completion(.navigationLink(.settings))
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }, label: {
                                     VStack(alignment: .leading) {
                                         Text("导航到")
@@ -3388,7 +3419,7 @@ struct SettingsView: View {
 
 struct SecurityDelayRequiredView: View {
     var reasonTitle: LocalizedStringKey
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     @AppStorage("SecurityDelayRequirement") var securityDelayRequirement = "always"
     @AppStorage("SecurityDelayStartTime") var securityDelayStartTime = -1.0
     @State var isCounterPresented = false
@@ -3449,7 +3480,7 @@ struct SecurityDelayRequiredView: View {
         }
         .navigationTitle("需要安全延时")
         .sheet(isPresented: $isCounterPresented, onDismiss: {
-            dismiss()
+            presentationMode.wrappedValue.dismiss()
         }, content: { SecurityDelayCounterView() })
         .onAppear {
             if securityDelayStartTime > 0 {
@@ -3462,7 +3493,7 @@ struct SecurityDelayRequiredView: View {
     }
 }
 struct SecurityDelayCounterView: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     @AppStorage("SecurityDelayStartTime") var securityDelayStartTime = -1.0
     @State var timeDiff = Time(minute: 0, second: 0)
     var body: some View {
@@ -3486,7 +3517,7 @@ struct SecurityDelayCounterView: View {
                 }
                 .padding()
                 Button(action: {
-                    dismiss()
+                    presentationMode.wrappedValue.dismiss()
                 }, label: {
                     Text("完成")
                 })

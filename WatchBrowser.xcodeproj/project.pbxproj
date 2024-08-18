@@ -36,6 +36,8 @@
 		8C5869D22C316A2100A18923 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5869D12C316A2100A18923 /* IntentHandler.swift */; };
 		8C5869D62C316A2100A18923 /* DarockBrowser Intents.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8C5869CD2C316A2100A18923 /* DarockBrowser Intents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8C5869DA2C316C3E00A18923 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8C5869C72C3165E400A18923 /* Intents.intentdefinition */; };
+		8C5930652C712F75004C79CE /* BrowsingMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5930642C712F75004C79CE /* BrowsingMenuView.swift */; };
+		8C5930672C71CE51004C79CE /* SwiftWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5930662C71CE45004C79CE /* SwiftWebView.swift */; };
 		8C5D64802C1D9D7C008E591B /* Cepheus in Frameworks */ = {isa = PBXBuildFile; productRef = 8C5D647F2C1D9D7C008E591B /* Cepheus */; };
 		8C67C8F32C60DFF30091714D /* UIKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C67C8F22C60DFED0091714D /* UIKitHelper.swift */; };
 		8C6D86792C10C6A70089CE67 /* LaboratoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D86782C10C6A70089CE67 /* LaboratoryView.swift */; };
@@ -679,6 +681,10 @@
 		8C5869CE2C316A2100A18923 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		8C5869D12C316A2100A18923 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		8C5869D32C316A2100A18923 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C5930602C711C22004C79CE /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = "../../../../Library/Developer/CoreSimulator/Volumes/watchOS_22R5328f/Library/Developer/CoreSimulator/Profiles/Runtimes/watchOS 11.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/Frameworks/SafariServices.framework"; sourceTree = "<group>"; };
+		8C5930632C7124B2004C79CE /* SFSafariViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSafariViewControllerDelegate.h; sourceTree = "<group>"; };
+		8C5930642C712F75004C79CE /* BrowsingMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowsingMenuView.swift; sourceTree = "<group>"; };
+		8C5930662C71CE45004C79CE /* SwiftWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftWebView.swift; sourceTree = "<group>"; };
 		8C67C8F22C60DFED0091714D /* UIKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitHelper.swift; sourceTree = "<group>"; };
 		8C6C698F2C416AA000E7C01E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		8C6C69912C416AA000E7C01E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -1404,6 +1410,7 @@
 		8C41F7E72C1439C90052A635 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C5930602C711C22004C79CE /* SafariServices.framework */,
 				8C5869CE2C316A2100A18923 /* Intents.framework */,
 				8C6C698F2C416AA000E7C01E /* WidgetKit.framework */,
 				8C6C69912C416AA000E7C01E /* SwiftUI.framework */,
@@ -1457,6 +1464,7 @@
 				8CB803CE2BD3DCE4009B2FAC /* WatchBrowser Watch App-Bridging-Header.h */,
 				8CB803D12BD3DCEE009B2FAC /* WebExtension.h */,
 				8CB803CF2BD3DCE4009B2FAC /* WebExtension.m */,
+				8C5930632C7124B2004C79CE /* SFSafariViewControllerDelegate.h */,
 				8C3A5FD12C6C8CB8002097A8 /* WebKit */,
 				8C3A5DEB2C6BCBC4002097A8 /* UIKit */,
 				8C3A5F6D2C6BCE5B002097A8 /* QuartzCore */,
@@ -1470,7 +1478,9 @@
 			isa = PBXGroup;
 			children = (
 				8C67C8F22C60DFED0091714D /* UIKitHelper.swift */,
+				8C5930662C71CE45004C79CE /* SwiftWebView.swift */,
 				8CB803D32BD3E6D1009B2FAC /* AdvancedWebView.swift */,
+				8C5930642C712F75004C79CE /* BrowsingMenuView.swift */,
 				8CB018992BDBC5C500982644 /* WebViewDelegate.swift */,
 				8C6E11DE2BDC029E005420C0 /* WEBackSwift.swift */,
 			);
@@ -1734,7 +1744,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					6BF209E72990E61C00E623FC = {
 						CreatedOnToolsVersion = 14.2;
@@ -1902,6 +1912,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CF5DC4F2BAE04D5007F9974 /* ShareView.swift in Sources */,
+				8C5930652C712F75004C79CE /* BrowsingMenuView.swift in Sources */,
 				8C6E11E12BDC0638005420C0 /* WebArchiveListView.swift in Sources */,
 				8C6D867B2C10CA680089CE67 /* BrowsingTabsView.swift in Sources */,
 				8CA7B8392BE397D1004643FE /* UserScriptsView.swift in Sources */,
@@ -1927,6 +1938,7 @@
 				8C6E11DD2BDBF464005420C0 /* NewFeaturesView.swift in Sources */,
 				8CB9A10E2C6D229600E6A367 /* MarkdownUI+.swift in Sources */,
 				8CA4537D2AE3C63900138CE4 /* JoinGroupView.swift in Sources */,
+				8C5930672C71CE51004C79CE /* SwiftWebView.swift in Sources */,
 				8CCDABEF2C5674F100E29E3D /* ClusterTipView.swift in Sources */,
 				8C894B222BE7569300768B59 /* ExtKeyboardView.swift in Sources */,
 				8C6D86792C10C6A70089CE67 /* LaboratoryView.swift in Sources */,
@@ -2180,9 +2192,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.18.0;
-				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction";
-				OTHER_SWIFT_FLAGS = "";
+				MARKETING_VERSION = 5.0.0;
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem";
+				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = watchos;
@@ -2224,9 +2236,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.18.0;
-				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction";
-				OTHER_SWIFT_FLAGS = "";
+				MARKETING_VERSION = 5.0.0;
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem";
+				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = watchos;
@@ -2252,7 +2264,7 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 4.18.0;
+				MARKETING_VERSION = 5.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2271,7 +2283,7 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 4.18.0;
+				MARKETING_VERSION = 5.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2434,7 +2446,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 4.18.0;
+				MARKETING_VERSION = 5.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.Intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -2465,7 +2477,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 4.18.0;
+				MARKETING_VERSION = 5.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.Intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -2546,7 +2558,7 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 4.18.0;
+				MARKETING_VERSION = 5.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2584,9 +2596,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.18.0;
-				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction";
-				OTHER_SWIFT_FLAGS = "";
+				MARKETING_VERSION = 5.0.0;
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem";
+				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = watchos;
@@ -2621,7 +2633,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 4.18.0;
+				MARKETING_VERSION = 5.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.Intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;

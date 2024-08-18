@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import Dynamic
+import Combine
 import SwiftSoup
 import DarockKit
 import AuthenticationServices
@@ -18,16 +19,31 @@ var imageAltTextLists = [String]()
 var audioLinkLists = [String]()
 var bookLinkLists = [String]()
 
-final class AdvancedWebViewController {
-    public static let shared = AdvancedWebViewController()
+@objc
+final class AdvancedWebViewController: NSObject {
+    @objc public static let shared = AdvancedWebViewController()
+    
+    // FIXME: Less publisher for better future
+    static let presentBrowsingMenuPublisher = PassthroughSubject<Void, Never>()
+    static let dismissWebViewPublisher = PassthroughSubject<Void, Never>()
     
     var currentTabIndex: Int?
     
     var webViewHolder = Dynamic.UIView()
-    var menuController = Dynamic.UIViewController()
-    var menuView = Dynamic.UIScrollView()
     var vc = Dynamic.UIViewController()
     var loadProgressView = Dynamic.UIProgressView()
+    
+    var isOverrideDesktopWeb = false {
+        didSet {
+            if isOverrideDesktopWeb {
+                webViewObject?.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+                webViewObject?.reload()
+            } else {
+                webViewObject?.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+                webViewObject?.reload()
+            }
+        }
+    }
     
     @AppStorage("AllowCookies") var allowCookies = true
     @AppStorage("RequestDesktopWeb") var requestDesktopWeb = false
@@ -45,6 +61,7 @@ final class AdvancedWebViewController {
     @AppStorage("WKJavaScriptEnabled") var isJavaScriptEnabled = true
     @AppStorage("ABIsReduceBrightness") var isReduceBrightness = false
     @AppStorage("ABReduceBrightnessLevel") var reduceBrightnessLevel = 0.2
+    @AppStorage("LBIsAutoEnterReader") var isAutoEnterReader = true
     
     var currentUrl: String {
         if let url = Dynamic(webViewObject).URL.asObject {
@@ -55,6 +72,11 @@ final class AdvancedWebViewController {
         }
     }
     var isVideoChecking = false
+    
+    override init() {
+        super.init()
+        dlopen("/System/Library/Frameworks/SafariServices.framework/SafariServices", RTLD_NOW)
+    }
     
     /// 显示 WebView 视图
     /// - Parameters:
@@ -69,7 +91,7 @@ final class AdvancedWebViewController {
                  archiveUrl: URL? = nil,
                  presentController: Bool = true,
                  loadMimeType: String = "application/x-webarchive",
-                 overrideOldWebView: Bool = false) -> WKWebView? {
+                 overrideOldWebView: OverrideLegacyViewOptions = .default) -> WKWebView? {
         if iurl.isEmpty && archiveUrl == nil {
             safePresent(self.vc)
             return webViewObject
@@ -77,14 +99,14 @@ final class AdvancedWebViewController {
         
         let url = URL(string: iurl) ?? archiveUrl!
 
-        if _slowPath(isUseOldWebView && !overrideOldWebView) {
+        if _slowPath((isUseOldWebView && overrideOldWebView != .alwaysAdvanced) || overrideOldWebView == .alwaysLegacy) {
             // rdar://FB268002071845
             if _fastPath(presentController) {
-                let session = ASWebAuthenticationSession(url: url, callbackURLScheme: nil) { _, _ in
-                    return
-                }
-                session.prefersEphemeralWebBrowserSession = !allowCookies
-                session.start()
+                let legacyConfiguration = Dynamic.SFSafariViewControllerConfiguration()
+                legacyConfiguration.entersReaderIfAvailable = isAutoEnterReader
+                let legacyViewController = Dynamic.SFSafariViewController.initWithURL(url, configuration: legacyConfiguration)
+                legacyViewController.delegate = SafariViewDelegate.shared
+                safePresent(legacyViewController)
                 
                 if _fastPath(isHistoryRecording) {
                     recordHistory(iurl, webSearch: webSearch)
@@ -155,11 +177,10 @@ final class AdvancedWebViewController {
             webViewHolder.addSubview(reduceBrightnessView)
         }
         
-        vc = Dynamic.UIViewController()
-        vc.view = webViewHolder
+        vc = Dynamic(_makeUIHostingController(AnyView(SwiftWebView(webView: webViewHolder.asObject!))))
 
         if _fastPath(presentController) {
-            safePresent(self.vc)
+            safePresent(vc)
         }
         webViewParentController = vc.asObject!
         
@@ -174,23 +195,9 @@ final class AdvancedWebViewController {
             wkWebView.load(URLRequest(url: url))
         }
         
-        updateMenuController()
-        
-        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [self] _ in
-            if _slowPath(pIsMenuButtonDown) {
-                pIsMenuButtonDown = false
-                safePresent(self.menuController, on: self.vc) { success in
-                    if success {
-                        checkWebContent()
-                    }
-                }
-            }
-            if _slowPath(pMenuShouldDismiss) {
-                pMenuShouldDismiss = false
-                dismissControllersOnWebView()
-            }
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
             if _slowPath(wkWebView.isLoading) {
-                loadProgressView.setProgress(Float(wkWebView.estimatedProgress), animated: true)
+                self.loadProgressView.setProgress(Float(wkWebView.estimatedProgress), animated: true)
             }
         }
         
@@ -208,8 +215,6 @@ final class AdvancedWebViewController {
     }
     func recover(from ref: TabWebKitReference) {
         webViewHolder = ref.webViewHolder
-        menuController = ref.menuController
-        menuView = ref.menuView
         vc = ref.vc
         loadProgressView = ref.loadProgressView
         webViewObject = ref.webViewObject
@@ -218,8 +223,6 @@ final class AdvancedWebViewController {
     }
     func storeTab(in allTabs: [String], at index: Int? = nil) {
         let recoverReference = TabWebKitReference(webViewHolder: webViewHolder,
-                                                  menuController: menuController,
-                                                  menuView: menuView,
                                                   vc: vc,
                                                   loadProgressView: loadProgressView,
                                                   webViewObject: webViewObject,
@@ -237,133 +240,6 @@ final class AdvancedWebViewController {
         }
         UserDefaults.standard.set(tabsCopy, forKey: "CurrentTabs")
         currentTabIndex = nil
-    }
-    
-    func updateMenuController(rebindController: Bool = true) {
-        // Action Menu
-        for subview in menuView.subviews.asArray! {
-            Dynamic(subview).removeFromSuperview()
-        }
-        let sb = WKInterfaceDevice.current().screenBounds
-        menuView.contentSize = CGSizeMake(sb.width, sb.height + 200)
-        
-        // Buttons in Menu
-        var menuButtonYOffset: CGFloat = 30
-        
-        // Close Button
-        let closeButton = makeUIButton(title: .image(UIImage(systemName: "xmark")!),
-                                       frame: .init(x: 20, y: 20, width: 25, height: 25),
-                                       backgroundColor: .gray.opacity(0.5),
-                                       tintColor: .white,
-                                       selector: "DismissMenu")
-        menuView.addSubview(closeButton)
-        
-        let urlText = Dynamic.UILabel()
-        if let url = Dynamic(webViewObject).URL.asObject {
-            urlText.text = (url as! NSURL).absoluteString!
-            urlText.setFrame(getMiddleRect(y: menuButtonYOffset, height: 60))
-            urlText.setFont(UIFont(name: "Helvetica", size: 10))
-            urlText.setNumberOfLines(4)
-            menuView.addSubview(urlText)
-            menuButtonYOffset += 45
-        }
-
-        if !videoLinkLists.isEmpty {
-            let playButton = makeUIButton(title: .text(String(localized: "播放网页视频")),
-                                          frame: getMiddleRect(y: menuButtonYOffset, height: 40),
-                                          backgroundColor: .gray.opacity(0.5),
-                                          tintColor: .white,
-                                          selector: "PresentVideoList")
-            menuView.addSubview(playButton)
-            menuButtonYOffset += 60
-        } else if isVideoChecking {
-            let checkIndicator = Dynamic.UIActivityIndicatorView()
-            checkIndicator.frame = getMiddleRect(y: menuButtonYOffset, height: 40)
-            menuView.addSubview(checkIndicator)
-            checkIndicator.startAnimating()
-            menuButtonYOffset += 60
-        } else {
-            let tipText = Dynamic.UILabel()
-            tipText.text = String(localized: "无可播放的视频")
-            tipText.setFrame(getMiddleRect(y: menuButtonYOffset, height: 60))
-            tipText.setFont(UIFont(name: "Helvetica", size: 12))
-            menuView.addSubview(tipText)
-            menuButtonYOffset += 60
-        }
-        if !imageLinkLists.isEmpty {
-            if menuButtonYOffset > 100 {
-                menuButtonYOffset -= 15
-            }
-            let imageButton = makeUIButton(title: .text(String(localized: "查看网页图片")),
-                                           frame: getMiddleRect(y: menuButtonYOffset, height: 40),
-                                           backgroundColor: .gray.opacity(0.5),
-                                           tintColor: .white,
-                                           selector: "PresentImageList")
-            menuView.addSubview(imageButton)
-            menuButtonYOffset += 45
-        }
-        if !audioLinkLists.isEmpty {
-            let audioButton = makeUIButton(title: .text(String(localized: "播放网页音频")),
-                                           frame: getMiddleRect(y: menuButtonYOffset, height: 40),
-                                           backgroundColor: .gray.opacity(0.5),
-                                           tintColor: .white,
-                                           selector: "PresentAudioList")
-            menuView.addSubview(audioButton)
-            menuButtonYOffset += 60
-        }
-        
-        let reloadButton = makeUIButton(title: .text(String(localized: "重新载入")),
-                                        frame: getMiddleRect(y: menuButtonYOffset, height: 40),
-                                        backgroundColor: .gray.opacity(0.5),
-                                        tintColor: .white,
-                                        selector: "WKReload")
-        menuView.addSubview(reloadButton)
-        menuButtonYOffset += 60
-        
-        if Dynamic(webViewObject).canGoBack.asBool ?? false {
-            let previousButton = makeUIButton(title: .text(String(localized: "上一页")),
-                                              frame: getMiddleRect(y: menuButtonYOffset, height: 40),
-                                              backgroundColor: .gray.opacity(0.5),
-                                              tintColor: .white,
-                                              selector: "WKGoBack")
-            menuView.addSubview(previousButton)
-            menuButtonYOffset += 50
-        }
-        if Dynamic(webViewObject).canGoForward.asBool ?? false {
-            let forwardButton = makeUIButton(title: .text(String(localized: "下一页")),
-                                             frame: getMiddleRect(y: menuButtonYOffset, height: 40),
-                                             backgroundColor: .gray.opacity(0.5),
-                                             tintColor: .white,
-                                             selector: "WKGoForward")
-            menuView.addSubview(forwardButton)
-            menuButtonYOffset += 50
-        }
-        
-        let exitButton = makeUIButton(title: .text(String(localized: "退出")),
-                                      frame: getMiddleRect(y: menuButtonYOffset, height: 40),
-                                      backgroundColor: .gray.opacity(0.5),
-                                      tintColor: .red,
-                                      selector: "DismissWebView",
-                                      accessibilityIdentifier: "WebViewDismissButton")
-        menuView.addSubview(exitButton)
-        menuButtonYOffset += 70
-        
-        if !currentUrl.isEmpty
-            && !currentUrl.hasPrefix("file://")
-            && !(UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()).contains(currentUrl) {
-            let archiveButton = makeUIButton(title: .text(String(localized: "存储本页离线归档")),
-                                             frame: getMiddleRect(y: menuButtonYOffset, height: 40),
-                                             backgroundColor: .gray.opacity(0.5),
-                                             tintColor: .white,
-                                             selector: "ArchiveCurrentPage")
-            menuView.addSubview(archiveButton)
-            menuButtonYOffset += 50
-        }
-        
-        if rebindController {
-            menuView.setContentOffset(CGPointZero, animated: false)
-            menuController.view = menuView
-        }
     }
     
     @_effects(readonly)
@@ -406,145 +282,23 @@ final class AdvancedWebViewController {
         vc.dismissViewControllerAnimated(animated, completion: nil)
     }
     
-    func checkWebContent() {
-        if isVideoChecking {
-            return
-        }
-        isVideoChecking = true
-        updateMenuController()
-        Dynamic(webViewObject).evaluateJavaScript("document.documentElement.outerHTML", completionHandler: { [self] obj, error in
-            DispatchQueue(label: "com.darock.WatchBrowser.wt.media-check", qos: .userInitiated).async { [self] in
-                if let htmlStr = obj as? String {
-                    do {
-                        let doc = try SwiftSoup.parse(htmlStr)
-                        videoLinkLists.removeAll()
-                        let videos = try doc.body()?.select("video")
-                        if let videos {
-                            var srcs = [String]()
-                            for video in videos {
-                                var src = try video.attr("src")
-                                if src.isEmpty, let tagSrc = try? video.select("source") {
-                                    src = try tagSrc.attr("src")
-                                }
-                                if !src.isEmpty {
-                                    if src.hasPrefix("/") {
-                                        if currentUrl.split(separator: "/").count < 2 {
-                                            continue
-                                        }
-                                        src = "http://" + currentUrl.split(separator: "/")[1] + src
-                                    } else if !src.hasPrefix("http://") && !src.hasPrefix("https://") {
-                                        var currentUrlCopy = currentUrl
-                                        let webSuffixList = [".html", ".htm", ".php", ".xhtml"]
-                                        if webSuffixList.contains(where: { element in currentUrlCopy.hasSuffix(element) }) {
-                                            if currentUrlCopy.split(separator: "/").count < 2 {
-                                                continue
-                                            }
-                                            currentUrlCopy = currentUrlCopy.components(separatedBy: "/").dropLast().joined(separator: "/")
-                                        }
-                                        if !currentUrlCopy.hasSuffix("/") {
-                                            currentUrlCopy += "/"
-                                        }
-                                        src = currentUrlCopy + src
-                                    }
-                                    srcs.append(src)
-                                }
-                            }
-                            videoLinkLists = srcs
-                        }
-                        let iframeVideos = try doc.body()?.select("iframe")
-                        if let iframeVideos {
-                            var srcs = [String]()
-                            for video in iframeVideos {
-                                var src = try video.attr("src")
-                                if src != "" && (src.hasSuffix(".mp4") || src.hasSuffix(".m3u8")) {
-                                    if src.split(separator: "://").count >= 2 && !src.hasPrefix("http://") && !src.hasPrefix("https://") {
-                                        src = "https://" + src.split(separator: "://").last!
-                                    } else if src.hasPrefix("/") {
-                                        if currentUrl.split(separator: "/").count < 2 {
-                                            continue
-                                        }
-                                        src = "https://" + currentUrl.split(separator: "/")[1] + src
-                                    }
-                                    srcs.append(src)
-                                }
-                            }
-                            videoLinkLists += srcs
-                        }
-                        let aLinks = try doc.body()?.select("a")
-                        if let aLinks {
-                            var srcs = [String]()
-                            for video in aLinks {
-                                var src = try video.attr("href")
-                                if src != "" && (src.hasSuffix(".mp4") || src.hasSuffix(".m3u8")) {
-                                    if src.split(separator: "://").count >= 2 && !src.hasPrefix("http://") && !src.hasPrefix("https://") {
-                                        src = "https://" + src.split(separator: "://").last!
-                                    } else if src.hasPrefix("/") {
-                                        if currentUrl.split(separator: "/").count < 2 {
-                                            continue
-                                        }
-                                        src = "https://" + currentUrl.split(separator: "/")[1] + src
-                                    }
-                                    srcs.append(src)
-                                }
-                            }
-                            videoLinkLists += srcs
-                        }
-                        let images = try doc.body()?.select("img")
-                        if let images {
-                            var srcs = [String]()
-                            var alts = [String]()
-                            for image in images {
-                                var src = try image.attr("src")
-                                if src != "" {
-                                    if src.hasPrefix("/") {
-                                        if currentUrl.split(separator: "/").count < 2 {
-                                            continue
-                                        }
-                                        src = "http://" + currentUrl.split(separator: "/")[1] + src
-                                    }
-                                    srcs.append(src)
-                                }
-                                alts.append((try? image.attr("alt")) ?? "")
-                            }
-                            imageLinkLists = srcs
-                            imageAltTextLists = alts
-                        }
-                        let audios = try doc.body()?.select("audio")
-                        if let audios {
-                            var srcs = [String]()
-                            for audio in audios {
-                                var src = try audio.attr("src")
-                                if src != "" {
-                                    if src.hasPrefix("/") {
-                                        if currentUrl.split(separator: "/").count < 2 {
-                                            continue
-                                        }
-                                        src = "http://" + currentUrl.split(separator: "/")[1] + src
-                                    }
-                                    srcs.append(src)
-                                }
-                            }
-                            audioLinkLists = srcs
-                        }
-                    } catch {
-                        globalErrorHandler(error)
-                    }
-                }
-                if currentUrl.contains(/music\..*\.com/) && currentUrl.contains(/(\?|&)id=[0-9]*($|&)/),
-                   let mid = currentUrl.split(separator: "id=")[from: 1]?.split(separator: "&").first {
-                    audioLinkLists = ["http://music.\(0b10100011).com/song/media/outer/url?id=\(mid).mp3"]
-                }
-                DispatchQueue.main.async { [self] in
-                    isVideoChecking = false
-                    updateMenuController(rebindController: false)
-                }
-            }
-        } as @convention(block) (Any?, (any Error)?) -> Void)
-    }
-    
     enum TextOrImage {
         case text(String)
         case image(UIImage)
+    }
+    
+    enum OverrideLegacyViewOptions {
+        case `default`
+        case alwaysLegacy
+        case alwaysAdvanced
+    }
+    
+    @objc
+    func presentBrowsingMenu() {
+        AdvancedWebViewController.presentBrowsingMenuPublisher.send()
+    }
+    func dismissWebView() {
+        AdvancedWebViewController.dismissWebViewPublisher.send()
     }
 }
 

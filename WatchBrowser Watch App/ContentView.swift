@@ -251,8 +251,8 @@ struct MainView: View {
     @AppStorage("AlternativeSearch") var alternativeSearch = "必应"
     @AppStorage("IsAllowCookie") var isAllowCookie = false
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
-    @AppStorage("IsShowJoinGroup2") var isShowJoinGroup = true
-    @AppStorage("IsShowClusterAd2") var isShowClusterAd = true
+    @AppStorage("IsShowJoinGroup") var isShowJoinGroup = true
+    @AppStorage("IsShowClusterAd") var isShowClusterAd = true
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
     @AppStorage("PreloadSearchContent") var preloadSearchContent = true
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
@@ -846,6 +846,19 @@ extension String {
     /// 是否为URL
     @_effects(readnone)
     func isURL() -> Bool {
+        let dotSplited = self.split(separator: ".")
+        if dotSplited.count == 4 {
+            ip: do {
+                for p in dotSplited {
+                    if let i = Int(p), i < 256 && i >= 0 {
+                        continue
+                    } else {
+                        break ip
+                    }
+                }
+                return true
+            }
+        }
         var topLevelDomainList = (try! String(contentsOf: Bundle.main.url(forResource: "TopLevelDomainList", withExtension: "drkdatat")!, encoding: .utf8))
             .split(separator: "\n")
             .map { String($0) }

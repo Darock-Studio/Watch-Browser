@@ -699,7 +699,7 @@ enum PlaybackBehavior: String {
 
 struct LocalAudiosView: View {
     var selectHandler: ((String) -> Void)?
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLocalAudios") var usePasscodeForLocalAudios = false
     @AppStorage("IsThisClusterInstalled") var isThisClusterInstalled = false
@@ -731,7 +731,7 @@ struct LocalAudiosView: View {
                             Button(action: {
                                 if let selectHandler {
                                     selectHandler("%DownloadedContent@=\(audioNames[i])")
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 } else {
                                     setForAudioPlaying()
                                     let audioPathPrefix = URL(filePath: NSHomeDirectory() + "/Documents/DownloadedAudios")
@@ -859,12 +859,15 @@ struct LocalAudiosView: View {
 
 struct PlaylistsView: View {
     var selectHandler: ((String) -> Void)?
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     @State var listFileNames = [String]()
     @State var isCreateListPresented = false
     @State var createListNameInput = ""
     @State var deletingIndex = 0
     @State var isConfirmDeletePresented = false
+    @State var renameSourceName = ""
+    @State var isRenamePresented = false
+    @State var renameInput = ""
     var body: some View {
         List {
             if #unavailable(watchOS 10.5) {
@@ -887,7 +890,7 @@ struct PlaylistsView: View {
                             if let selectHandler {
                                 Button(action: {
                                     selectHandler(listFileNames[i])
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }, label: {
                                     Text(listFileNames[i].dropLast(9))
                                 })
@@ -905,6 +908,12 @@ struct PlaylistsView: View {
                                 Image(systemName: "xmark.bin.fill")
                             })
                             .tint(.red)
+                            Button(action: {
+                                renameSourceName = String(listFileNames[i].dropLast(9))
+                                isRenamePresented = true
+                            }, label: {
+                                Image(systemName: "pencil.line")
+                            })
                         }
                     }
                 }
@@ -936,6 +945,42 @@ struct PlaylistsView: View {
                     }
                 }
                 .navigationTitle("创建播放列表")
+            }
+        }
+        .sheet(isPresented: $isRenamePresented) {
+            NavigationStack {
+                List {
+                    HStack {
+                        Spacer()
+                        Text("修改名称")
+                            .font(.system(size: 20, weight: .bold))
+                        Spacer()
+                    }
+                    .listRowBackground(Color.clear)
+                    TextField("名称", text: $renameInput, style: "field-page")
+                    Button(action: {
+                        do {
+                            try FileManager.default.moveItem(
+                                atPath: NSHomeDirectory() + "/Documents/Playlists/\(renameSourceName).drkdatap",
+                                toPath: NSHomeDirectory() + "/Documents/Playlists/\(renameInput).drkdatap"
+                            )
+                            getPlaylistFiles()
+                            isRenamePresented = false
+                        } catch {
+                            globalErrorHandler(error)
+                        }
+                    }, label: {
+                        HStack {
+                            Spacer()
+                            Label("完成", systemImage: "checkmark")
+                            Spacer()
+                        }
+                    })
+                    .disabled(renameInput.isEmpty)
+                }
+            }
+            .onDisappear {
+                renameInput = ""
             }
         }
         .alert("删除播放列表", isPresented: $isConfirmDeletePresented, actions: {
@@ -1100,7 +1145,7 @@ struct PlaylistsView: View {
         
         struct AddMusicToListView: View {
             @Binding var listContent: [String]
-            @Environment(\.dismiss) var dismiss
+            @Environment(\.presentationMode) var presentationMode
             @State var linkInput = ""
             @State var isAddLinkInvalid = false
             var body: some View {
@@ -1110,7 +1155,7 @@ struct PlaylistsView: View {
                             NavigationLink(destination: {
                                 LocalAudiosView { url in
                                     listContent.append(url)
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }
                             }, label: {
                                 Text("从离线歌曲选择")
@@ -1125,7 +1170,7 @@ struct PlaylistsView: View {
                                         linkInput = "http://" + linkInput
                                     }
                                     listContent.append(linkInput)
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }
                             if isAddLinkInvalid {
                                 HStack {

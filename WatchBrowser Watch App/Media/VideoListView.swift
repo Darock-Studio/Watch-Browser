@@ -156,6 +156,7 @@ struct VideoPlayingView: View {
             .animation(.smooth, value: playerScale)
             .animation(.smooth, value: __playerScale)
             .scrollIndicators(.never)
+            ._statusBarHidden(true)
             .tag(1)
             List {
                 Section {
@@ -362,7 +363,7 @@ struct MediaDownloadView: View {
     var mediaTypeName: LocalizedStringKey
     var saveFolderName: String
     @Binding var saveFileName: String?
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     @AppStorage("DLIsFeedbackWhenFinish") var isFeedbackWhenFinish = false
     @State var downloadProgress = ValuedProgress(completedUnitCount: 0, totalUnitCount: 0)
     @State var isFinishedDownload = false
@@ -380,7 +381,7 @@ struct MediaDownloadView: View {
                             if !isFinishedDownload {
                                 isTerminateDownloadingAlertPresented = true
                             } else {
-                                dismiss()
+                                presentationMode.wrappedValue.dismiss()
                             }
                         }, label: {
                             Image(systemName: "xmark")
@@ -435,7 +436,7 @@ struct MediaDownloadView: View {
             .toolbar(.hidden, for: .navigationBar)
             .alert("未完成的下载", isPresented: $isTerminateDownloadingAlertPresented, actions: {
                 Button(role: .destructive, action: {
-                    dismiss()
+                    presentationMode.wrappedValue.dismiss()
                 }, label: {
                     Text("退出")
                 })
@@ -484,12 +485,12 @@ struct MediaDownloadView: View {
                                     )
                                 } else {
                                     var duplicateMarkNum = 1
-                                    while FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(String(mediaLink.split(separator: "/").last!.split(separator: ".")[0])).movpkg (\(duplicateMarkNum))") {
+                                    while FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(String(mediaLink.split(separator: "/").last!.split(separator: ".")[0])) (\(duplicateMarkNum)).movpkg") {
                                         duplicateMarkNum++
                                     }
                                     try FileManager.default.moveItem(
                                         atPath: location.path,
-                                        toPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(String(mediaLink.split(separator: "/").last!.split(separator: ".")[0])).movpkg (\(duplicateMarkNum))"
+                                        toPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(String(mediaLink.split(separator: "/").last!.split(separator: ".")[0])) (\(duplicateMarkNum)).movpkg"
                                     )
                                 }
                             }

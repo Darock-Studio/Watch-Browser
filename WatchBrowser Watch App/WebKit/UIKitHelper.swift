@@ -25,6 +25,6 @@ func safePresent(_ controller: Dynamic,
         completion(true)
         return
     }
-    Logger().warning("Trying to present a ViewController which is already presented, rejecting.")
+    Logger().warning("Trying to present a ViewController which is already being presented, rejecting.")
     completion(false)
 }

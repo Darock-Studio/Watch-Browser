@@ -13,8 +13,6 @@
 #import <Foundation/Foundation.h>
 #import "WebKit/WebKit.h"
 
-bool pIsMenuButtonDown;
-bool pMenuShouldDismiss;
 bool pShouldPresentVideoList;
 bool pShouldPresentImageList;
 bool pShouldPresentBookList;
@@ -27,10 +25,7 @@ NSUserActivity* globalWebBrowsingUserActivity;
 @interface WebExtension : NSObject
 
 +(id) getBindedButtonWithSelector: (NSString *)selector button:(id) button;
-+(void) PresentVideoList;
-+(void) PresentBookList;
-+(void) PresentAudioList;
-+(void) DismissWebView;
++(void) menuButtonClicked;
 
 @end
 

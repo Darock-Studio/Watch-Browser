@@ -21,13 +21,13 @@ struct LaboratoryView: View {
                             Spacer()
                         }
                         HStack {
-                            Text("ALPHA")
+                            Text("BETA")
                                 .font(.system(size: 14, weight: .semibold))
-                                .foregroundColor(.black)
+                                .foregroundColor(.white)
                                 .padding(.horizontal, 5)
                                 .background {
                                     RoundedRectangle(cornerRadius: 8)
-                                        .fill(Color.yellow)
+                                        .fill(Color.blue)
                                 }
                             Spacer()
                         }
