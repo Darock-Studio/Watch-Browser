@@ -2401,6 +2401,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DarockBrowser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DarockBrowser";
+				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}/WatchBrowser Watch App/CCodes\"";
 				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
@@ -2423,6 +2424,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DarockBrowser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DarockBrowser";
+				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}/WatchBrowser Watch App/CCodes\"";
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -2708,6 +2710,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "WatchBrowser Watch App";
+				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}/WatchBrowser Watch App/CCodes\"";
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -2731,6 +2734,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DarockBrowser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DarockBrowser";
+				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}/WatchBrowser Watch App/CCodes\"";
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -2755,6 +2759,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "WatchBrowser Watch App";
+				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}/WatchBrowser Watch App/CCodes\"";
 				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
@@ -2777,6 +2782,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "WatchBrowser Watch App";
+				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}/WatchBrowser Watch App/CCodes\"";
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};

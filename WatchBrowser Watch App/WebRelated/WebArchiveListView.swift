@@ -38,7 +38,7 @@ struct WebArchiveListView: View {
                                     "",
                                     archiveUrl: URL(
                                         fileURLWithPath: NSHomeDirectory()
-                                        + "/Documents/WebArchives/\(archiveLinks[i].base64Encoded().replacingOccurrences(of: "/", with: "{slash}")).drkdataw"
+                                        + "/Documents/WebArchives/\(archiveLinks[i].base64Encoded().replacingOccurrences(of: "/", with: "{slash}").prefix(Int(NAME_MAX - 9))).drkdataw"
                                     )
                                 )
                             }, label: {
@@ -49,7 +49,7 @@ struct WebArchiveListView: View {
                                     do {
                                         try FileManager.default.removeItem(
                                             atPath: NSHomeDirectory()
-                                            + "/Documents/WebArchives/\(archiveLinks[i].base64Encoded().replacingOccurrences(of: "/", with: "{slash}")).drkdataw"
+                                            + "/Documents/WebArchives/\(archiveLinks[i].base64Encoded().replacingOccurrences(of: "/", with: "{slash}").prefix(Int(NAME_MAX - 9))).drkdataw"
                                         )
                                     } catch {
                                         globalErrorHandler(error)

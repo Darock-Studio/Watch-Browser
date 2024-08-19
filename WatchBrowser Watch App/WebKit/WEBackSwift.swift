@@ -21,7 +21,7 @@ public final class WEBackSwift: NSObject {
                     try data.write(
                         to: URL(
                             filePath: NSHomeDirectory()
-                            + "/Documents/WebArchives/\(curl.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")).drkdataw"
+                            + "/Documents/WebArchives/\(curl.base64Encoded().replacingOccurrences(of: "/", with: "{slash}").prefix(Int(NAME_MAX - 9))).drkdataw"
                         )
                     )
                     UserDefaults.standard.set(

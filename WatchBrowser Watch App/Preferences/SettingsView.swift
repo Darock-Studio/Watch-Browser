@@ -282,7 +282,13 @@ struct SettingsView: View {
                 }
                 Section {
                     NavigationLink(destination: { LegalView() },
-                                   label: { SettingItemLabel(title: "法律与监管", image: "text.justify.left", color: .gray) })
+                                   label: { SettingItemLabel(title: "法律与监管", image: {
+                        if #available(watchOS 11.0, *) {
+                            "checkmark.seal.text.page.fill"
+                        } else {
+                            "text.justify.left"
+                        }
+                    }(), color: .gray) })
                 }
                 Section {
                     NavigationLink(destination: { ResetView() },
