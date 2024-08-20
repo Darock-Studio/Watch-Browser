@@ -202,7 +202,7 @@ struct BrowsingMenuView: View {
                             })
                         }, label: {
                             HStack {
-                                Text("移除干扰项目")
+                                Text("隐藏干扰项目")
                                 Spacer()
                                 Image(systemName: "eye.slash.fill")
                             }
