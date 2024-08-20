@@ -42,10 +42,24 @@ final class DarockBrowserUITests: XCTestCase {
         sleep(2)
         app.buttons["WebMenuButton"].tap()
         sleep(1)
-        app.swipeUp()
-        app.buttons["WebViewDismissButton"].tap()
+        let dismissButton = app.buttons["WebViewDismissButton"]
+        app.scrollToElement(element: dismissButton)
+        dismissButton.tap()
         sleep(3)
         // Main Page
         XCTAssertTrue(app.buttons["MainSearchButton"].exists, "WebView not dismiss after tap dismiss button in web menu.")
+    }
+}
+
+extension XCUIElement {
+    func scrollToElement(element: XCUIElement) {
+        while !element.visible() {
+            swipeUp()
+        }
+    }
+    
+    func visible() -> Bool {
+        guard self.exists && !self.frame.isEmpty else { return false }
+        return XCUIApplication().windows.element(boundBy: 0).frame.contains(self.frame)
     }
 }

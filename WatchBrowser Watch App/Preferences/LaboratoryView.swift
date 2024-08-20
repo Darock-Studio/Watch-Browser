@@ -9,11 +9,31 @@ import SwiftUI
 
 struct LaboratoryView: View {
     @AppStorage("IsFirstEnterLab") var isFirstEnterLab = true
+    @AppStorage("LabHideDistractingItemsEnabled") var labHideDistractingItemsEnabled = false
     @AppStorage("LabTabBrowsingEnabled") var labTabBrowsingEnabled = false
     @State var isLabTipPresented = false
     var body: some View {
         List {
             Section {
+                Toggle(isOn: $labHideDistractingItemsEnabled, label: {
+                    VStack {
+                        HStack {
+                            Text("隐藏干扰项目")
+                            Spacer()
+                        }
+                        HStack {
+                            Text("BETA")
+                                .font(.system(size: 14, weight: .semibold))
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 5)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(Color.blue)
+                                }
+                            Spacer()
+                        }
+                    }
+                })
                 Toggle(isOn: $labTabBrowsingEnabled, label: {
                     VStack {
                         HStack {

@@ -81,6 +81,7 @@ struct VideoListView: View {
             .onDisappear {
                 if dismissListsShouldRepresentWebView {
                     safePresent(AdvancedWebViewController.shared.vc)
+                    dismissListsShouldRepresentWebView = false
                 }
             }
         } else {
@@ -548,10 +549,21 @@ struct MediaDownloadView: View {
                                         [.removePreviousFile, .createIntermediateDirectories])
                             } else {
                                 var duplicateMarkNum = 1
-                                while FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(saveFileName) (\(duplicateMarkNum))") {
-                                    duplicateMarkNum++
+                                var desamedNames = saveFileName.split(separator: ".")
+                                if let lastComponent = desamedNames[from: desamedNames.count - 2] {
+                                    desamedNames[desamedNames.count - 2] = lastComponent + " (\(duplicateMarkNum))"
+                                } else {
+                                    desamedNames[desamedNames.count - 1] += " (\(duplicateMarkNum))"
                                 }
-                                return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(saveFileName) (\(duplicateMarkNum))"),
+                                while FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(desamedNames.joined(separator: "."))") {
+                                    duplicateMarkNum++
+                                    if let lastComponent = desamedNames[from: desamedNames.count - 2] {
+                                        desamedNames[desamedNames.count - 2] = lastComponent + " (\(duplicateMarkNum))"
+                                    } else {
+                                        desamedNames[desamedNames.count - 1] += " (\(duplicateMarkNum))"
+                                    }
+                                }
+                                return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(desamedNames.joined(separator: "."))"),
                                         [.removePreviousFile, .createIntermediateDirectories])
                             }
                         } else {
@@ -560,10 +572,21 @@ struct MediaDownloadView: View {
                                         [.removePreviousFile, .createIntermediateDirectories])
                             } else {
                                 var duplicateMarkNum = 1
-                                while FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(String(mediaLink.split(separator: "/").last!.split(separator: "?")[0])) (\(duplicateMarkNum))") {
-                                    duplicateMarkNum++
+                                var desamedNames = mediaLink.split(separator: "/").last!.split(separator: "?")[0].split(separator: ".")
+                                if let lastComponent = desamedNames[from: desamedNames.count - 2] {
+                                    desamedNames[desamedNames.count - 2] = lastComponent + " (\(duplicateMarkNum))"
+                                } else {
+                                    desamedNames[desamedNames.count - 1] += " (\(duplicateMarkNum))"
                                 }
-                                return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(String(mediaLink.split(separator: "/").last!.split(separator: "?")[0])) (\(duplicateMarkNum))"),
+                                while FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(desamedNames.joined(separator: "."))") {
+                                    duplicateMarkNum++
+                                    if let lastComponent = desamedNames[from: desamedNames.count - 2] {
+                                        desamedNames[desamedNames.count - 2] = lastComponent + " (\(duplicateMarkNum))"
+                                    } else {
+                                        desamedNames[desamedNames.count - 1] += " (\(duplicateMarkNum))"
+                                    }
+                                }
+                                return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/\(saveFolderName)/\(desamedNames.joined(separator: "."))"),
                                         [.removePreviousFile, .createIntermediateDirectories])
                             }
                         }

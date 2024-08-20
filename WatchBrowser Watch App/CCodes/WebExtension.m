@@ -27,6 +27,9 @@
 +(void) menuButtonClicked {
     [[AdvancedWebViewController shared] presentBrowsingMenu];
 }
++(void) DismissWebView {
+    [[AdvancedWebViewController shared] dismissWebView];
+}
 // Externald Method End
 
 @end

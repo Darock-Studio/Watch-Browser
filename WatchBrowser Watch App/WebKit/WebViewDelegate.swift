@@ -150,7 +150,7 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         debugPrint("Failed Early Navigation")
         AdvancedWebViewController.shared.loadProgressView.hidden = true
         debugPrint(error)
-        errorLabel.text = "载入页面时出错\n\(error.localizedDescription)"
+        errorLabel.text = "\(String(localized: "载入页面时出错"))\n\(error.localizedDescription)"
         AdvancedWebViewController.shared.webViewHolder.addSubview(errorLabel)
     }
     
@@ -174,6 +174,30 @@ public final class WebViewUIDelegate: NSObject, WKUIDelegate {
             webView.load(navigationAction.request)
         }
         return nil
+    }
+}
+
+public final class WebViewScriptMessageHandler: NSObject, WKScriptMessageHandler {
+    public static let shared = WebViewScriptMessageHandler()
+    
+    public func userContentController(
+        _ userContentController: WKUserContentController,
+        didReceive message: WKScriptMessage
+    ) {
+        debugPrint(message.body)
+        if message.name == "HDIDCallback", let content = message.body as? String {
+            debugPrint("Hiding ID: \(content)")
+            webViewObject.changeCSSVisibility(elementID: content, isVisible: false, elementType: .id)
+        } else if message.name == "HDClassCallback", let content = message.body as? String {
+            debugPrint("Hiding Class: \(content)")
+            webViewObject.changeCSSVisibility(elementID: content, isVisible: false, elementType: .class)
+//            webViewObject.evaluateJavaScript("""
+//            [].forEach.call(document.querySelectorAll('.\(content)'), function(el) {
+//                el.style.filter = 'blur(20px)';
+//                el.style.outline = '5px solid #66ccff';
+//            });
+//            """)
+        }
     }
 }
 

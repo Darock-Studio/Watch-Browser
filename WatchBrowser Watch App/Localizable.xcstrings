@@ -11119,6 +11119,9 @@
     "Microsoft Edge - Windows" : {
       "shouldTranslate" : false
     },
+    "N" : {
+
+    },
     "NearestHistories.drkdatan" : {
       "localizations" : {
         "en" : {
@@ -58445,6 +58448,9 @@
         }
       }
     },
+    "移除干扰项目" : {
+
+    },
     "移除诊断信息" : {
       "localizations" : {
         "ar" : {
@@ -65593,6 +65599,9 @@
         }
       }
     },
+    "轻触要移除的项目" : {
+
+    },
     "载入书籍时出错" : {
       "localizations" : {
         "ar" : {
@@ -65710,6 +65719,9 @@
           }
         }
       }
+    },
+    "载入页面时出错" : {
+
     },
     "输入你的密码" : {
       "localizations" : {
@@ -72488,6 +72500,9 @@
           }
         }
       }
+    },
+    "隐藏干扰项目" : {
+
     },
     "隐藏时间" : {
       "localizations" : {

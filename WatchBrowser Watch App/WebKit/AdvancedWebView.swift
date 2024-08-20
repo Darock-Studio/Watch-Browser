@@ -50,6 +50,7 @@ final class AdvancedWebViewController: NSObject {
     @AppStorage("UseBackforwardGesture") var useBackforwardGesture = true
     @AppStorage("KeepDigitalTime") var keepDigitalTime = false
     @AppStorage("ShowFastExitButton") var showFastExitButton = false
+    @AppStorage("ForceApplyDarkMode") var forceApplyDarkMode = false
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
@@ -140,6 +141,9 @@ final class AdvancedWebViewController: NSObject {
         }
         if _slowPath(isWebMinFontSizeStricted) {
             wkWebView.configuration.preferences.minimumFontSize = CGFloat(webMinFontSize)
+        }
+        if forceApplyDarkMode {
+            wkWebView.underPageBackgroundColor = UIColor(Color(hex: 0x121212))
         }
         wkWebView.configuration.preferences.javaScriptEnabled = isJavaScriptEnabled
         wkWebView.configuration.preferences.isFraudulentWebsiteWarningEnabled = isShowFraudulentWebsiteWarning
@@ -297,6 +301,7 @@ final class AdvancedWebViewController: NSObject {
     func presentBrowsingMenu() {
         AdvancedWebViewController.presentBrowsingMenuPublisher.send()
     }
+    @objc
     func dismissWebView() {
         AdvancedWebViewController.dismissWebViewPublisher.send()
     }

@@ -12,8 +12,10 @@ import SwiftSoup
 
 struct BrowsingMenuView: View {
     @Binding var webViewPresentationMode: PresentationMode
+    @Binding var isHidingDistractingItems: Bool
     @Environment(\.presentationMode) var presentationMode
     @AppStorage("WebSearch") var webSearch = "必应"
+    @AppStorage("LabHideDistractingItemsEnabled") var labHideDistractingItemsEnabled = false
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
     @State var webView = webViewObject!
     @State var webLinkInput = ""
@@ -158,6 +160,54 @@ struct BrowsingMenuView: View {
                             Image(systemName: "escape")
                         }
                     })
+                    .accessibilityIdentifier("WebViewDismissButton")
+                }
+                if !isHidingDistractingItems && labHideDistractingItemsEnabled {
+                    Section {
+                        Button(action: {
+                            webView.evaluateJavaScript("document.documentElement.outerHTML", completionHandler: { obj, error in
+                                DispatchQueue(label: "com.darock.WatchBrowser.wt.test", qos: .userInitiated).async {
+                                    if let htmlStr = obj as? String {
+                                        do {
+                                            let doc = try SwiftSoup.parse(htmlStr)
+                                            if let divs = try doc.body()?.select("div[class], div[id]") {
+                                                let targetDivs = try divs.filter { div in
+                                                    return try div.children().select("div").isEmpty()
+                                                }
+                                                for div in targetDivs {
+                                                    if let id = try? div.attr("id"), !id.isEmpty {
+                                                        webView.addEventListener(
+                                                            elementID: id,
+                                                            callbackID: "HDIDCallback",
+                                                            elementType: .id,
+                                                            handler: WebViewScriptMessageHandler.shared
+                                                        )
+                                                    } else if let className = try? div.attr("class"), !className.isEmpty {
+                                                        webView.addEventListener(
+                                                            elementID: className,
+                                                            callbackID: "HDClassCallback",
+                                                            elementType: .class,
+                                                            handler: WebViewScriptMessageHandler.shared
+                                                        )
+                                                    }
+                                                }
+                                            }
+                                            isHidingDistractingItems = true
+                                            presentationMode.wrappedValue.dismiss()
+                                        } catch {
+                                            globalErrorHandler(error)
+                                        }
+                                    }
+                                }
+                            })
+                        }, label: {
+                            HStack {
+                                Text("移除干扰项目")
+                                Spacer()
+                                Image(systemName: "eye.slash.fill")
+                            }
+                        })
+                    }
                 }
                 if !AdvancedWebViewController.shared.currentUrl.isEmpty && !AdvancedWebViewController.shared.currentUrl.hasPrefix("file://") {
                     Section {
