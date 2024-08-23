@@ -130,7 +130,7 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         
         let curl = webView.url
         if (UserDefaults.standard.object(forKey: "CCIsHandoffEnabled") as? Bool) ?? true {
-            if _fastPath(curl?.absoluteString.hasPrefix("http") ?? false || curl?.absoluteString.hasPrefix("https") ?? false) {
+            if _fastPath((curl?.absoluteString.hasPrefix("http") ?? false) || (curl?.absoluteString.hasPrefix("https") ?? false)) {
                 // User Activity
                 globalWebBrowsingUserActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
                 globalWebBrowsingUserActivity.title = Dynamic(webViewObject).title.asString

@@ -79,7 +79,6 @@ struct ImageListView: View {
             .onDisappear {
                 if dismissListsShouldRepresentWebView {
                     safePresent(AdvancedWebViewController.shared.vc)
-                    dismissListsShouldRepresentWebView = false
                 }
                 if (UserDefaults.standard.object(forKey: "CCIsContinuityMediaEnabled") as? Bool) ?? true {
                     globalMediaUserActivity?.invalidate()

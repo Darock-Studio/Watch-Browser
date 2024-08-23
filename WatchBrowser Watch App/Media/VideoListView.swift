@@ -81,7 +81,6 @@ struct VideoListView: View {
             .onDisappear {
                 if dismissListsShouldRepresentWebView {
                     safePresent(AdvancedWebViewController.shared.vc)
-                    dismissListsShouldRepresentWebView = false
                 }
             }
         } else {
@@ -167,7 +166,7 @@ struct VideoPlayingView: View {
                     }, label: {
                         Label(
                             isFullScreen ? "恢复" : "全屏",
-                            systemImage: isFullScreen ? "arrow.down.right.and.arrow.up.left" : "arrow.down.left.and.arrow.up.right"
+                            systemImage: isFullScreen ? "arrow.down.right.and.arrow.up.left" : "arrow.up.left.and.arrow.down.right"
                         )
                     })
                 } header: {

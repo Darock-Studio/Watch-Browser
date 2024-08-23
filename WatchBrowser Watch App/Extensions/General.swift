@@ -86,3 +86,27 @@ struct TextField: View {
 extension Int: Identifiable {
     public var id: Self { self }
 }
+
+extension Image {
+    init(privateSystemName systemName: String) {
+        self.init(systemName, bundle: Bundle(path: {
+            #if !targetEnvironment(simulator)
+            if #available(watchOS 10.0, *) {
+                "/System/Library/PrivateFrameworks/SFSymbols.framework/CoreGlyphsPrivate.bundle"
+            } else {
+                "/System/Library/CoreServices/CoreGlyphsPrivate.bundle"
+            }
+            #else
+            "/System/Library/PrivateFrameworks/SFSymbols.framework/Versions/A/Resources/CoreGlyphsPrivate.bundle"
+            #endif
+        }()))
+    }
+}
+@ViewBuilder
+func Label(_ titleKey: LocalizedStringKey, privateSystemImage systemName: String) -> some View { // swiftlint:disable:this identifier_name
+    Label(title: {
+        Text(titleKey)
+    }, icon: {
+        Image(privateSystemName: systemName)
+    })
+}

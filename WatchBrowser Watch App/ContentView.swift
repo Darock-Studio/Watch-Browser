@@ -673,7 +673,7 @@ struct MainView: View {
                             .accessibilityIdentifier("MainFeedbackButton")
                         case .tips:
                             NavigationLink(destination: { TipsView() }, label: {
-                                Label("提示", systemImage: "lightbulb")
+                                Label("提示", privateSystemImage: "tips")
                             })
                         case .settings:
                             if withSetting {

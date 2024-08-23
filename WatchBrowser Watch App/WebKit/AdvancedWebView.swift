@@ -60,8 +60,6 @@ final class AdvancedWebViewController: NSObject {
     @AppStorage("WebMinFontSize") var webMinFontSize = 10.0
     @AppStorage("IsShowFraudulentWebsiteWarning") var isShowFraudulentWebsiteWarning = true
     @AppStorage("WKJavaScriptEnabled") var isJavaScriptEnabled = true
-    @AppStorage("ABIsReduceBrightness") var isReduceBrightness = false
-    @AppStorage("ABReduceBrightnessLevel") var reduceBrightnessLevel = 0.2
     @AppStorage("LBIsAutoEnterReader") var isAutoEnterReader = true
     
     var currentUrl: String {
@@ -171,15 +169,6 @@ final class AdvancedWebViewController: NSObject {
         }
         webViewHolder.addSubview(moreButton)
         webViewHolder.addSubview(loadProgressView)
-        
-        if isReduceBrightness {
-            let reduceBrightnessView = Dynamic.UIView()
-            reduceBrightnessView.backgroundColor = UIColor.black
-            reduceBrightnessView.alpha = reduceBrightnessLevel
-            reduceBrightnessView.frame = sb
-            reduceBrightnessView.isUserInteractionEnabled = false
-            webViewHolder.addSubview(reduceBrightnessView)
-        }
         
         vc = Dynamic(_makeUIHostingController(AnyView(SwiftWebView(webView: webViewHolder.asObject!))))
 

@@ -44735,6 +44735,26 @@
         }
       }
     },
+    "新闻" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "News (Chinese, Simpified)"
+          }
+        }
+      }
+    },
+    "新闻列表" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "News List"
+          }
+        }
+      }
+    },
     "无" : {
       "localizations" : {
         "ar" : {
@@ -45089,6 +45109,16 @@
         }
       }
     },
+    "无新闻" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empty"
+          }
+        }
+      }
+    },
     "无本地图书" : {
       "localizations" : {
         "ar" : {
@@ -45331,6 +45361,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Failed to load Quick Bookmarks, please file a feedback."
+          }
+        }
+      }
+    },
+    "无法载入新闻" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not Load News"
           }
         }
       }
@@ -63423,6 +63463,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "設置清單"
+          }
+        }
+      }
+    },
+    "该新闻不存在" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This News is not Exist"
           }
         }
       }

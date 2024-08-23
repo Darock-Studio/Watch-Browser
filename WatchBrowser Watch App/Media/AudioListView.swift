@@ -160,7 +160,6 @@ struct AudioListView: View {
             .onDisappear {
                 if dismissListsShouldRepresentWebView {
                     safePresent(AdvancedWebViewController.shared.vc)
-                    dismissListsShouldRepresentWebView = false
                 }
             }
         } else {

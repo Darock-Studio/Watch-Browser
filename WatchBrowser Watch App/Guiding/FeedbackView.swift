@@ -67,6 +67,9 @@ struct FeedbackView: View {
                     Label("新建反馈", systemImage: "exclamationmark.bubble.fill")
                 })
                 .accessibilityIdentifier("NewFeedbackButton")
+                NavigationLink(destination: { NewsView() }, label: {
+                    Label("新闻", systemImage: "newspaper")
+                })
                 NavigationLink(destination: { FAQView() }, label: {
                     Label("常见问题", systemImage: "sparkles")
                 })
@@ -758,6 +761,159 @@ struct FeedbackView: View {
             }
         }
     }
+}
+
+private struct NewsView: View {
+    let projName = "Darock Browser"
+    @State var news: [SingleNewsFile]?
+    var body: some View {
+        List {
+            if let news {
+                if !news.isEmpty {
+                    ForEach(0..<news.count, id: \.self) { i in
+                        VStack(alignment: .leading) {
+                            NavigationLink(destination: { NewsDetailView(projName: projName, id: news[i].id) }, label: {
+                                HStack {
+                                    Text(news[i].title)
+                                        .font(.headline)
+                                        .lineLimit(2)
+                                    Spacer()
+                                    Text({
+                                        let df = DateFormatter()
+                                        df.dateFormat = "yy-MM-dd"
+                                        return df.string(from: Date(timeIntervalSince1970: news[i].time))
+                                    }())
+                                    .font(.caption)
+                                    .foregroundStyle(Color.gray)
+                                }
+                            })
+                            Text(news[i].type)
+                                .font(.subheadline)
+                                .foregroundStyle(Color.gray)
+                        }
+                    }
+                } else {
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Image(systemName: "newspaper.fill")
+                                .font(.title)
+                                .foregroundStyle(Color.secondary)
+                            Text("无新闻")
+                                .font(.headline)
+                                .padding(.vertical)
+                        }
+                        Spacer()
+                    }
+                    .listRowBackground(Color.clear)
+                }
+            } else {
+                ProgressView()
+                    .centerAligned()
+            }
+        }
+        .refreshable(action: refreshNews)
+        .navigationTitle("新闻列表")
+        .onAppear {
+            Task {
+                await refreshNews()
+            }
+        }
+    }
+    
+    @Sendable
+    func refreshNews() async {
+        let result = await DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/news/get/\(projName)")
+        if case .success(let respStr) = result {
+            let fixed = respStr.apiFixed()
+            if fixed != "None" {
+                let spd = fixed.split(separator: "|").map { String($0) }
+                var fcp = [SingleNewsFile]()
+                for text in spd {
+                    let partSpd = text.split(separator: "^^").map { String($0) }
+                    if let id = partSpd[from: 0],
+                       let title = partSpd[from: 1],
+                       let type = partSpd[from: 2],
+                       let time = partSpd[from: 3],
+                       let doubleTime = Double(time) {
+                        fcp.append(.init(id: id, title: title, type: type, time: doubleTime))
+                    }
+                }
+                news = fcp.sorted { lhs, rhs in
+                    return lhs.time > rhs.time
+                }
+            } else {
+                news = []
+            }
+        }
+    }
+    
+    struct NewsDetailView: View {
+        var projName: String
+        var id: String
+        @Environment(\.presentationMode) var presentationMode
+        @State var isLoading = true
+        @State var isUnavailableAlertPresented = false
+        @State var sourceText = ""
+        @State var title = ""
+        @State var type = ""
+        @State var content = ""
+        var body: some View {
+            ScrollView {
+                if !isLoading {
+                    Markdown(content)
+                        .markdownTheme(.github)
+                } else {
+                    ProgressView()
+                }
+            }
+            .refreshable(action: refresh)
+            .navigationTitle(title.isEmpty ? id : title)
+            .navigationBarTitleDisplayMode(.inline)
+            .alert("无法载入新闻", isPresented: $isUnavailableAlertPresented, actions: {
+                Button(role: .cancel, action: {
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text("确认")
+                })
+            }, message: {
+                Text("该新闻不存在")
+            })
+            .onAppear {
+                Task {
+                    await refresh()
+                }
+            }
+        }
+        
+        @Sendable
+        func refresh() async {
+            isLoading = true
+            let result = await DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/news/detail/\(projName)/\(id)")
+            if case let .success(respStr) = result {
+                guard respStr.apiFixed() != "Not Exist" else {
+                    isUnavailableAlertPresented = true
+                    return
+                }
+                sourceText = respStr.apiFixed()
+                    .replacingOccurrences(of: "\\\\n", with: "____LINEBREAK_REPLACE_TOKEN____")
+                    .replacingOccurrences(of: "\\n", with: "\n")
+                    .replacingOccurrences(of: "____LINEBREAK_REPLACE_TOKEN____", with: "\\n")
+                    .replacingOccurrences(of: "\\\"", with: "\"")
+                let sourceSpd = sourceText.split(separator: "\n").map { String($0) }
+                title = sourceSpd[from: 0] ?? ""
+                type = sourceSpd[from: 1] ?? ""
+                content = sourceSpd.dropFirst(3).joined(separator: "\n")
+            }
+            isLoading = false
+        }
+    }
+}
+private struct SingleNewsFile: Identifiable {
+    var id: String
+    var title: String
+    var type: String
+    var time: TimeInterval
 }
 
 struct FAQView: View {
