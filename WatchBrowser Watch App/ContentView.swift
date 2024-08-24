@@ -84,7 +84,6 @@ struct ContentView: View {
                                     }, label: {
                                         Image(systemName: "gear")
                                     })
-                                    .accessibilityIdentifier("MainSettingsButton")
                                 }
                                 if labTabBrowsingEnabled {
                                     ToolbarItem(placement: .topBarTrailing) {
@@ -150,21 +149,11 @@ struct ContentView: View {
                 }
             } else {
                 NavigationView {
-                    ZStack {
-                        NavigationLink("", isActive: $isVideoListPresented, destination: { VideoListView() })
-                            .frame(width: 0, height: 0)
-                            .hidden()
-                        NavigationLink("", isActive: $isImageListPresented, destination: { ImageListView() })
-                            .frame(width: 0, height: 0)
-                            .hidden()
-                        NavigationLink("", isActive: $isAudioListPresented, destination: { AudioListView() })
-                            .frame(width: 0, height: 0)
-                            .hidden()
-                        NavigationLink("", isActive: $isBookListPresented, destination: { BookListView() })
-                            .frame(width: 0, height: 0)
-                            .hidden()
-                        MainView(withSetting: .constant(true))
-                    }
+                    MainView(withSetting: .constant(true))
+                        ._navigationDestination(isPresented: $isVideoListPresented, content: { VideoListView() })
+                        ._navigationDestination(isPresented: $isImageListPresented, content: { ImageListView() })
+                        ._navigationDestination(isPresented: $isAudioListPresented, content: { AudioListView() })
+                        ._navigationDestination(isPresented: $isBookListPresented, content: { BookListView() })
                 }
             }
         }
@@ -512,7 +501,6 @@ struct MainView: View {
                                 startSearch(with: alternativeSearch, allowPreload: false)
                             }
                         }
-                        .accessibilityIdentifier("MainSearchButton")
                     case .spacer:
                         EmptyView()
                     case .pinnedBookmarks:
@@ -541,7 +529,6 @@ struct MainView: View {
                                     Spacer()
                                 }
                             })
-                            .accessibilityIdentifier("MainBookmarkButton")
                         case .history:
                             NavigationLink(destination: {
                                 HistoryView()
@@ -552,7 +539,6 @@ struct MainView: View {
                                     Spacer()
                                 }
                             })
-                            .accessibilityIdentifier("MainHistoryButton")
                         case .webarchive:
                             if !webArchiveLinks.isEmpty {
                                 NavigationLink(destination: { WebArchiveListView() }, label: {
@@ -613,7 +599,6 @@ struct MainView: View {
                                 }
                             })
                             .disabled(isUseOldWebView)
-                            .accessibilityIdentifier("MainUserScriptButton")
                         case .chores:
                             if shouldShowRatingRequest {
                                 Button(action: {
@@ -670,7 +655,6 @@ struct MainView: View {
                                 }
                             })
                             .disabled(isNewVerAvailable)
-                            .accessibilityIdentifier("MainFeedbackButton")
                         case .tips:
                             NavigationLink(destination: { TipsView() }, label: {
                                 Label("提示", privateSystemImage: "tips")

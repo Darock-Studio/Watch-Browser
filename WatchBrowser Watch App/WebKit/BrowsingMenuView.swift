@@ -163,7 +163,6 @@ struct BrowsingMenuView: View {
                                 Image(systemName: "escape")
                             }
                         })
-                        .accessibilityIdentifier("WebViewDismissButton")
                     }
                     if !isHidingDistractingItems && labHideDistractingItemsEnabled {
                         Section {

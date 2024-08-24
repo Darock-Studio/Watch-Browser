@@ -60,15 +60,23 @@ fileprivate let globalStateIcons = [
 struct FeedbackView: View {
     @State var feedbackIds = [String]()
     @State var badgeOnIds = [String]()
+    @State var isNewNewsAvailable = false
     var body: some View {
         List {
             Section {
                 NavigationLink(destination: { NewFeedbackView() }, label: {
                     Label("新建反馈", systemImage: "exclamationmark.bubble.fill")
                 })
-                .accessibilityIdentifier("NewFeedbackButton")
                 NavigationLink(destination: { NewsView() }, label: {
-                    Label("新闻", systemImage: "newspaper")
+                    HStack {
+                        Label("新闻", systemImage: "newspaper")
+                        Spacer()
+                        if isNewNewsAvailable {
+                            Circle()
+                                .fill(Color.purple)
+                                .frame(width: 10, height: 10)
+                        }
+                    }
                 })
                 NavigationLink(destination: { FAQView() }, label: {
                     Label("常见问题", systemImage: "sparkles")
@@ -117,6 +125,31 @@ struct FeedbackView: View {
                         if repCount > lastViewCount {
                             badgeOnIds.append(id)
                         }
+                    }
+                }
+            }
+            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/news/get/Darock Browser") { respStr, isSuccess in
+                if isSuccess {
+                    let fixed = respStr.apiFixed()
+                    if fixed != "None" {
+                        let spd = fixed.split(separator: "|").map { String($0) }
+                        var fcp = [String]()
+                        for text in spd {
+                            let partSpd = text.split(separator: "^^").map { String($0) }
+                            if let id = partSpd[from: 0] {
+                                fcp.append(id)
+                            }
+                        }
+                        let readNewsIDs = UserDefaults.standard.stringArray(forKey: "ReadNewsIDs") ?? []
+                        newsCheck: do {
+                            for id in fcp where !readNewsIDs.contains(id) {
+                                isNewNewsAvailable = true
+                                break newsCheck
+                            }
+                            isNewNewsAvailable = false
+                        }
+                    } else {
+                        isNewNewsAvailable = false
                     }
                 }
             }
@@ -774,13 +807,18 @@ private struct NewsView: View {
                         VStack(alignment: .leading) {
                             NavigationLink(destination: { NewsDetailView(projName: projName, id: news[i].id) }, label: {
                                 HStack {
+                                    if news[i].isUnread {
+                                        Circle()
+                                            .fill(Color.purple)
+                                            .frame(width: 8, height: 8)
+                                    }
                                     Text(news[i].title)
                                         .font(.headline)
                                         .lineLimit(2)
                                     Spacer()
                                     Text({
                                         let df = DateFormatter()
-                                        df.dateFormat = "yy-MM-dd"
+                                        df.dateFormat = "yy/MM/dd"
                                         return df.string(from: Date(timeIntervalSince1970: news[i].time))
                                     }())
                                     .font(.caption)
@@ -829,6 +867,7 @@ private struct NewsView: View {
             if fixed != "None" {
                 let spd = fixed.split(separator: "|").map { String($0) }
                 var fcp = [SingleNewsFile]()
+                let readNewsIDs = UserDefaults.standard.stringArray(forKey: "ReadNewsIDs") ?? []
                 for text in spd {
                     let partSpd = text.split(separator: "^^").map { String($0) }
                     if let id = partSpd[from: 0],
@@ -836,7 +875,7 @@ private struct NewsView: View {
                        let type = partSpd[from: 2],
                        let time = partSpd[from: 3],
                        let doubleTime = Double(time) {
-                        fcp.append(.init(id: id, title: title, type: type, time: doubleTime))
+                        fcp.append(.init(id: id, title: title, type: type, time: doubleTime, isUnread: !readNewsIDs.contains(id)))
                     }
                 }
                 news = fcp.sorted { lhs, rhs in
@@ -883,6 +922,10 @@ private struct NewsView: View {
                 Task {
                     await refresh()
                 }
+                let readList = UserDefaults.standard.stringArray(forKey: "ReadNewsIDs") ?? []
+                if !readList.contains(id) {
+                    UserDefaults.standard.set(readList + [id], forKey: "ReadNewsIDs")
+                }
             }
         }
         
@@ -914,6 +957,7 @@ private struct SingleNewsFile: Identifiable {
     var title: String
     var type: String
     var time: TimeInterval
+    var isUnread: Bool
 }
 
 struct FAQView: View {

@@ -14,7 +14,6 @@ struct NewFeaturesView: View {
                 VStack {
                     Text("“暗礁浏览器”新功能")
                         .font(.system(size: 18, weight: .bold))
-                        .accessibilityIdentifier("NewFeaturesTitle")
                     SingleFeatureRow(symbol: "list.bullet.rectangle.portrait", mainText: "更新的浏览菜单", detailText: "浏览菜单现在更美观并更易操作")
                     SingleFeatureRow(symbol: "globe.badge.chevron.backward", mainText: "旧版引擎设置", detailText: "现可设置是否为旧版浏览引擎自动启用阅读器模式")
                     SingleFeatureRow(symbol: "clock.badge.xmark", mainText: "在浏览中隐藏时间", detailText: "现可设置是否在网页中隐藏时间，减少干扰")
@@ -89,7 +88,6 @@ private struct _NewFeaturesViewArchived240818: View {
                 VStack {
                     Text("“暗礁浏览器”新功能")
                         .font(.system(size: 18, weight: .bold))
-                        .accessibilityIdentifier("NewFeaturesTitle")
                     SingleFeatureRow(symbol: "book.fill", mainText: "新版图书阅读器", detailText: "图书阅读器现在合并所有章节并自动保存阅读位置")
                     SingleFeatureRow(symbol: "book.and.wrench", mainText: "图书阅读器设置", detailText: "现可在设置→通用→阅读器中个性化设置图书阅读器")
                     Text("您可以随时在“提示->新功能”中重新打开此页")
@@ -107,7 +105,6 @@ private struct _NewFeaturesViewArchived240729: View {
                 VStack {
                     Text("“暗礁浏览器”新功能")
                         .font(.system(size: 18, weight: .bold))
-                        .accessibilityIdentifier("NewFeaturesTitle")
                     SingleFeatureRow(symbol: "music.note.list", mainText: "音乐播放", detailText: "前往“提示”了解更多") { AnyView(
                         TipsView.MusicView()
                     )} // swiftlint:disable:this closure_end_indentation
@@ -126,7 +123,6 @@ private struct _NewFeaturesViewArchived240709: View {
                 VStack {
                     Text("“暗礁浏览器”新功能")
                         .font(.system(size: 18, weight: .bold))
-                        .accessibilityIdentifier("NewFeaturesTitle")
                     SingleFeatureRow(symbol: "book", mainText: "图书解析", detailText: "直接在搜索框输入或在网页中轻触.epub链接以开始")
                     Text("您可以随时在“提示->新功能”中重新打开此页")
                         .multilineTextAlignment(.center)
@@ -143,7 +139,6 @@ private struct _NewFeaturesViewArchived240628: View {
                 VStack {
                     Text("“暗礁浏览器”新功能")
                         .font(.system(size: 18, weight: .bold))
-                        .accessibilityIdentifier("NewFeaturesTitle")
                     SingleFeatureRow(symbol: "applescript", mainText: "用户脚本", detailText: "可在脚本商店中获取各类网页脚本")
                     SingleFeatureRow(symbol: "photo", mainText: "查看图片", detailText: "现可单独放大查看网页中的图片", navigateTo: { AnyView(
                         List {

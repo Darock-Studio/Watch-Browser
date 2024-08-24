@@ -75,7 +75,6 @@ struct HistoryView: View {
                     }
                     Section {
                         Toggle("History.record", isOn: $isHistoryRecording)
-                            .accessibilityIdentifier("RecordHistoryToggle")
                             .onChange(of: isHistoryRecording, perform: { e in
                                 if !e {
                                     isStopRecordingPagePresenting = true

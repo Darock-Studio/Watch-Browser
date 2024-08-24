@@ -46,7 +46,6 @@ struct BookmarkView: View {
                             Spacer()
                         }
                     })
-                    .accessibilityIdentifier("AddBookmarkButton")
                     .sheet(isPresented: $isNewMarkPresented, onDismiss: {
                         markTotal = UserDefaults.standard.integer(forKey: "BookmarkTotal")
                     }, content: {

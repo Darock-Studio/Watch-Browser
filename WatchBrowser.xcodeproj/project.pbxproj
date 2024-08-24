@@ -51,7 +51,6 @@
 		8C894B222BE7569300768B59 /* ExtKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C894B212BE7569300768B59 /* ExtKeyboardView.swift */; };
 		8C9188832C73A64200C64E70 /* WKWebView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9188822C73A64000C64E70 /* WKWebView+.swift */; };
 		8C96E34B2C15901400751FAF /* ClusterAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C96E34A2C15901400751FAF /* ClusterAdView.swift */; };
-		8CA1E0C02C13DD620092DFCA /* DarockBrowserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1E0BF2C13DD620092DFCA /* DarockBrowserUITests.swift */; };
 		8CA370E32B835AAD00CE0E9E /* NumberPadExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA370E22B835AAD00CE0E9E /* NumberPadExt.swift */; };
 		8CA4537B2AE3C5F600138CE4 /* EFQRCode in Frameworks */ = {isa = PBXBuildFile; productRef = 8CA4537A2AE3C5F600138CE4 /* EFQRCode */; };
 		8CA4537D2AE3C63900138CE4 /* JoinGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4537C2AE3C63900138CE4 /* JoinGroupView.swift */; };
@@ -77,6 +76,20 @@
 		8CDE9B922C3AACDA0083B09E /* ___MesugakiAmane.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8CDE9B912C3AACDA0083B09E /* ___MesugakiAmane.drkdatau */; };
 		8CDE9B942C3AE1610083B09E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE9B932C3AE15D0083B09E /* Extensions.swift */; };
 		8CDE9B9E2C3C19460083B09E /* AudioListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE9B9D2C3C19460083B09E /* AudioListView.swift */; };
+		8CE70DAF2C7A4F3500EFB3AD /* VideoPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DAE2C7A4F3100EFB3AD /* VideoPlayingView.swift */; };
+		8CE70DB12C7A4F7300EFB3AD /* MediaDownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DB02C7A4F6F00EFB3AD /* MediaDownloadView.swift */; };
+		8CE70DB32C7A4FD100EFB3AD /* LocalVideosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DB22C7A4FD000EFB3AD /* LocalVideosView.swift */; };
+		8CE70DB62C7A504100EFB3AD /* AudioControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DB52C7A503D00EFB3AD /* AudioControllerView.swift */; };
+		8CE70DB82C7A507E00EFB3AD /* LocalAudiosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DB72C7A507D00EFB3AD /* LocalAudiosView.swift */; };
+		8CE70DBA2C7A50A900EFB3AD /* PlaylistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DB92C7A50A600EFB3AD /* PlaylistsView.swift */; };
+		8CE70DBC2C7A50C500EFB3AD /* AudioVisualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DBB2C7A50C400EFB3AD /* AudioVisualizerView.swift */; };
+		8CE70DBE2C7A510400EFB3AD /* AVPlayer+PeriodicTimePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DBD2C7A50FE00EFB3AD /* AVPlayer+PeriodicTimePublisher.swift */; };
+		8CE70DC52C7A51F800EFB3AD /* BookViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DC42C7A51F700EFB3AD /* BookViewerView.swift */; };
+		8CE70DC72C7A522700EFB3AD /* LocalBooksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DC62C7A522500EFB3AD /* LocalBooksView.swift */; };
+		8CE70DC92C7A525500EFB3AD /* BlurBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DC82C7A524D00EFB3AD /* BlurBackground.swift */; };
+		8CE70DCB2C7A527E00EFB3AD /* BookReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DCA2C7A527D00EFB3AD /* BookReaderView.swift */; };
+		8CE70DCE2C7A534100EFB3AD /* ImageViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DCD2C7A533D00EFB3AD /* ImageViewerView.swift */; };
+		8CE70DD02C7A536100EFB3AD /* LocalImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DCF2C7A535F00EFB3AD /* LocalImageView.swift */; };
 		8CF5DC4F2BAE04D5007F9974 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF5DC4E2BAE04D5007F9974 /* ShareView.swift */; };
 		8CF8B95D2C4280230070F833 /* MediaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B95C2C4280230070F833 /* MediaListView.swift */; };
 		8CF8B9632C44FCAA0070F833 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF8B9622C44FCAA0070F833 /* MarkdownUI */; };
@@ -112,13 +125,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8C5869CC2C316A2100A18923;
 			remoteInfo = "DarockBrowser Intents";
-		};
-		8CA1E0C32C13DD620092DFCA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6BF209E22990E61C00E623FC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6BF209ED2990E61C00E623FC;
-			remoteInfo = "WatchBrowser Watch App";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -698,8 +704,6 @@
 		8C894B212BE7569300768B59 /* ExtKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtKeyboardView.swift; sourceTree = "<group>"; };
 		8C9188822C73A64000C64E70 /* WKWebView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView+.swift"; sourceTree = "<group>"; };
 		8C96E34A2C15901400751FAF /* ClusterAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAdView.swift; sourceTree = "<group>"; };
-		8CA1E0BD2C13DD620092DFCA /* DarockBrowserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DarockBrowserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8CA1E0BF2C13DD620092DFCA /* DarockBrowserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarockBrowserUITests.swift; sourceTree = "<group>"; };
 		8CA370E22B835AAD00CE0E9E /* NumberPadExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadExt.swift; sourceTree = "<group>"; };
 		8CA4537C2AE3C63900138CE4 /* JoinGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupView.swift; sourceTree = "<group>"; };
 		8CA7B8382BE397D1004643FE /* UserScriptsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserScriptsView.swift; sourceTree = "<group>"; };
@@ -744,6 +748,20 @@
 		8CDE9B932C3AE15D0083B09E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8CDE9B982C3BD7A40083B09E /* ci_pre_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_pre_xcodebuild.sh; sourceTree = "<group>"; };
 		8CDE9B9D2C3C19460083B09E /* AudioListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioListView.swift; sourceTree = "<group>"; };
+		8CE70DAE2C7A4F3100EFB3AD /* VideoPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayingView.swift; sourceTree = "<group>"; };
+		8CE70DB02C7A4F6F00EFB3AD /* MediaDownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDownloadView.swift; sourceTree = "<group>"; };
+		8CE70DB22C7A4FD000EFB3AD /* LocalVideosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalVideosView.swift; sourceTree = "<group>"; };
+		8CE70DB52C7A503D00EFB3AD /* AudioControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioControllerView.swift; sourceTree = "<group>"; };
+		8CE70DB72C7A507D00EFB3AD /* LocalAudiosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAudiosView.swift; sourceTree = "<group>"; };
+		8CE70DB92C7A50A600EFB3AD /* PlaylistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsView.swift; sourceTree = "<group>"; };
+		8CE70DBB2C7A50C400EFB3AD /* AudioVisualizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioVisualizerView.swift; sourceTree = "<group>"; };
+		8CE70DBD2C7A50FE00EFB3AD /* AVPlayer+PeriodicTimePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+PeriodicTimePublisher.swift"; sourceTree = "<group>"; };
+		8CE70DC42C7A51F700EFB3AD /* BookViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewerView.swift; sourceTree = "<group>"; };
+		8CE70DC62C7A522500EFB3AD /* LocalBooksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalBooksView.swift; sourceTree = "<group>"; };
+		8CE70DC82C7A524D00EFB3AD /* BlurBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurBackground.swift; sourceTree = "<group>"; };
+		8CE70DCA2C7A527D00EFB3AD /* BookReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookReaderView.swift; sourceTree = "<group>"; };
+		8CE70DCD2C7A533D00EFB3AD /* ImageViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerView.swift; sourceTree = "<group>"; };
+		8CE70DCF2C7A535F00EFB3AD /* LocalImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalImageView.swift; sourceTree = "<group>"; };
 		8CF5DC4E2BAE04D5007F9974 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		8CF8B95C2C4280230070F833 /* MediaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListView.swift; sourceTree = "<group>"; };
 		E25EA8392B70ABEF00BFEC6E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -797,13 +815,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8CA1E0BA2C13DD620092DFCA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F80BDB35D391E4AFB9701932 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -823,7 +834,6 @@
 				6BF209F22990E61C00E623FC /* WatchBrowser Watch App */,
 				8C5281172C22FA3C00392315 /* TripleQuestionmarkCore */,
 				8C5869D02C316A2100A18923 /* DarockBrowser Intents */,
-				8CA1E0BE2C13DD620092DFCA /* DarockBrowserUITests */,
 				8C547AFF2C3296D40093D592 /* DarockBrowserUnitTests */,
 				6BF209E92990E61C00E623FC /* Products */,
 				8C41F7E72C1439C90052A635 /* Frameworks */,
@@ -835,7 +845,6 @@
 			children = (
 				6BF209E82990E61C00E623FC /* DarockBrowser.app */,
 				6BF209EE2990E61C00E623FC /* DarockBrowser.app */,
-				8CA1E0BD2C13DD620092DFCA /* DarockBrowserUITests.xctest */,
 				8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */,
 				8C5869CD2C316A2100A18923 /* DarockBrowser Intents.appex */,
 				8C547AFE2C3296D40093D592 /* DarockBrowserUnitTests.xctest */,
@@ -1452,14 +1461,6 @@
 			path = "DarockBrowser Intents";
 			sourceTree = "<group>";
 		};
-		8CA1E0BE2C13DD620092DFCA /* DarockBrowserUITests */ = {
-			isa = PBXGroup;
-			children = (
-				8CA1E0BF2C13DD620092DFCA /* DarockBrowserUITests.swift */,
-			);
-			path = DarockBrowserUITests;
-			sourceTree = "<group>";
-		};
 		8CB803CD2BD3DCD1009B2FAC /* CCodes */ = {
 			isa = PBXGroup;
 			children = (
@@ -1493,8 +1494,10 @@
 			isa = PBXGroup;
 			children = (
 				8C1DED012C32AEB00048A32A /* General.swift */,
+				8CE70DC82C7A524D00EFB3AD /* BlurBackground.swift */,
 				8CB9A10D2C6D229200E6A367 /* MarkdownUI+.swift */,
 				8C9188822C73A64000C64E70 /* WKWebView+.swift */,
+				8CE70DBD2C7A50FE00EFB3AD /* AVPlayer+PeriodicTimePublisher.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1530,10 +1533,11 @@
 			isa = PBXGroup;
 			children = (
 				8CF8B95C2C4280230070F833 /* MediaListView.swift */,
-				8CAF38F82BD4FC95006B9B16 /* VideoListView.swift */,
-				8CDE9B9D2C3C19460083B09E /* AudioListView.swift */,
-				8C7C4D422C2D898700FD282B /* BookListView.swift */,
-				8CA7B8482BE3DF47004643FE /* ImageListView.swift */,
+				8CE70DB02C7A4F6F00EFB3AD /* MediaDownloadView.swift */,
+				8CE70DAD2C7A4F2100EFB3AD /* Video */,
+				8CE70DB42C7A501A00EFB3AD /* Audio */,
+				8CE70DC32C7A51E300EFB3AD /* Book */,
+				8CE70DCC2C7A532C00EFB3AD /* Image */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -1591,6 +1595,49 @@
 				8CDE9B982C3BD7A40083B09E /* ci_pre_xcodebuild.sh */,
 			);
 			path = ci_scripts;
+			sourceTree = "<group>";
+		};
+		8CE70DAD2C7A4F2100EFB3AD /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				8CAF38F82BD4FC95006B9B16 /* VideoListView.swift */,
+				8CE70DAE2C7A4F3100EFB3AD /* VideoPlayingView.swift */,
+				8CE70DB22C7A4FD000EFB3AD /* LocalVideosView.swift */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		8CE70DB42C7A501A00EFB3AD /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				8CDE9B9D2C3C19460083B09E /* AudioListView.swift */,
+				8CE70DB52C7A503D00EFB3AD /* AudioControllerView.swift */,
+				8CE70DB72C7A507D00EFB3AD /* LocalAudiosView.swift */,
+				8CE70DB92C7A50A600EFB3AD /* PlaylistsView.swift */,
+				8CE70DBB2C7A50C400EFB3AD /* AudioVisualizerView.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		8CE70DC32C7A51E300EFB3AD /* Book */ = {
+			isa = PBXGroup;
+			children = (
+				8C7C4D422C2D898700FD282B /* BookListView.swift */,
+				8CE70DC42C7A51F700EFB3AD /* BookViewerView.swift */,
+				8CE70DC62C7A522500EFB3AD /* LocalBooksView.swift */,
+				8CE70DCA2C7A527D00EFB3AD /* BookReaderView.swift */,
+			);
+			path = Book;
+			sourceTree = "<group>";
+		};
+		8CE70DCC2C7A532C00EFB3AD /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				8CA7B8482BE3DF47004643FE /* ImageListView.swift */,
+				8CE70DCD2C7A533D00EFB3AD /* ImageViewerView.swift */,
+				8CE70DCF2C7A535F00EFB3AD /* LocalImageView.swift */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1719,26 +1766,6 @@
 			productReference = 8C5869CD2C316A2100A18923 /* DarockBrowser Intents.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		8CA1E0BC2C13DD620092DFCA /* DarockBrowserUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8CA1E0C52C13DD620092DFCA /* Build configuration list for PBXNativeTarget "DarockBrowserUITests" */;
-			buildPhases = (
-				8CA1E0B92C13DD620092DFCA /* Sources */,
-				8CA1E0BA2C13DD620092DFCA /* Frameworks */,
-				8CA1E0BB2C13DD620092DFCA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8CA1E0C42C13DD620092DFCA /* PBXTargetDependency */,
-			);
-			name = DarockBrowserUITests;
-			packageProductDependencies = (
-			);
-			productName = DarockBrowserUITests;
-			productReference = 8CA1E0BD2C13DD620092DFCA /* DarockBrowserUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1766,10 +1793,6 @@
 					};
 					8C5869CC2C316A2100A18923 = {
 						CreatedOnToolsVersion = 16.0;
-					};
-					8CA1E0BC2C13DD620092DFCA = {
-						CreatedOnToolsVersion = 15.4;
-						TestTargetID = 6BF209ED2990E61C00E623FC;
 					};
 				};
 			};
@@ -1825,7 +1848,6 @@
 				6BF209ED2990E61C00E623FC /* WatchBrowser Watch App */,
 				8C5869CC2C316A2100A18923 /* DarockBrowser Intents */,
 				8C5281152C22FA3C00392315 /* TripleQuestionmarkCore */,
-				8CA1E0BC2C13DD620092DFCA /* DarockBrowserUITests */,
 				8C547AFD2C3296D40093D592 /* DarockBrowserUnitTests */,
 			);
 		};
@@ -1878,13 +1900,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8CA1E0BB2C13DD620092DFCA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1914,42 +1929,56 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CE70DCB2C7A527E00EFB3AD /* BookReaderView.swift in Sources */,
 				8CF5DC4F2BAE04D5007F9974 /* ShareView.swift in Sources */,
 				8C5930652C712F75004C79CE /* BrowsingMenuView.swift in Sources */,
 				8C6E11E12BDC0638005420C0 /* WebArchiveListView.swift in Sources */,
 				8C6D867B2C10CA680089CE67 /* BrowsingTabsView.swift in Sources */,
+				8CE70DBE2C7A510400EFB3AD /* AVPlayer+PeriodicTimePublisher.swift in Sources */,
 				8CA7B8392BE397D1004643FE /* UserScriptsView.swift in Sources */,
 				6BA7F7A02A2F6FC600FFEED0 /* SettingsView.swift in Sources */,
 				8C1DED022C32AEBB0048A32A /* General.swift in Sources */,
 				8CB803D02BD3DCE4009B2FAC /* WebExtension.m in Sources */,
+				8CE70DB32C7A4FD100EFB3AD /* LocalVideosView.swift in Sources */,
 				8CB0189A2BDBC5C500982644 /* WebViewDelegate.swift in Sources */,
 				8CF8B95D2C4280230070F833 /* MediaListView.swift in Sources */,
 				8C7C4D432C2D898700FD282B /* BookListView.swift in Sources */,
 				E296FE022A459C5D00331BD4 /* BulletinView.swift in Sources */,
+				8CE70DB62C7A504100EFB3AD /* AudioControllerView.swift in Sources */,
 				8CAF38F92BD4FC95006B9B16 /* VideoListView.swift in Sources */,
 				6B6DA6B72A0149EF00BBE6CA /* HistoryView.swift in Sources */,
 				8CA7B8492BE3DF47004643FE /* ImageListView.swift in Sources */,
 				8C6E11DF2BDC029E005420C0 /* WEBackSwift.swift in Sources */,
 				6BF20A0A299100AE00E623FC /* BookmarkView.swift in Sources */,
+				8CE70DC92C7A525500EFB3AD /* BlurBackground.swift in Sources */,
 				8C5869C82C3165E400A18923 /* Intents.intentdefinition in Sources */,
+				8CE70DC52C7A51F800EFB3AD /* BookViewerView.swift in Sources */,
 				8CA370E32B835AAD00CE0E9E /* NumberPadExt.swift in Sources */,
 				6BF209F62990E61C00E623FC /* ContentView.swift in Sources */,
+				8CE70DBA2C7A50A900EFB3AD /* PlaylistsView.swift in Sources */,
 				8CB803D42BD3E6D1009B2FAC /* AdvancedWebView.swift in Sources */,
 				8C96E34B2C15901400751FAF /* ClusterAdView.swift in Sources */,
 				8C5281292C23457F00392315 /* TipsView.swift in Sources */,
 				8C03B6E02C296338000770B4 /* NetworkCheckView.swift in Sources */,
 				8C6E11DD2BDBF464005420C0 /* NewFeaturesView.swift in Sources */,
+				8CE70DC72C7A522700EFB3AD /* LocalBooksView.swift in Sources */,
 				8C9188832C73A64200C64E70 /* WKWebView+.swift in Sources */,
 				8CB9A10E2C6D229600E6A367 /* MarkdownUI+.swift in Sources */,
+				8CE70DD02C7A536100EFB3AD /* LocalImageView.swift in Sources */,
+				8CE70DB82C7A507E00EFB3AD /* LocalAudiosView.swift in Sources */,
 				8CA4537D2AE3C63900138CE4 /* JoinGroupView.swift in Sources */,
 				8C5930672C71CE51004C79CE /* SwiftWebView.swift in Sources */,
 				8CCDABEF2C5674F100E29E3D /* ClusterTipView.swift in Sources */,
 				8C894B222BE7569300768B59 /* ExtKeyboardView.swift in Sources */,
+				8CE70DBC2C7A50C500EFB3AD /* AudioVisualizerView.swift in Sources */,
+				8CE70DB12C7A4F7300EFB3AD /* MediaDownloadView.swift in Sources */,
 				8C6D86792C10C6A70089CE67 /* LaboratoryView.swift in Sources */,
 				6BF209F42990E61C00E623FC /* WatchBrowserApp.swift in Sources */,
+				8CE70DAF2C7A4F3500EFB3AD /* VideoPlayingView.swift in Sources */,
 				8C67C8F32C60DFF30091714D /* UIKitHelper.swift in Sources */,
 				8CDE9B9E2C3C19460083B09E /* AudioListView.swift in Sources */,
 				8CCF13F22C20A4FF00F5E0D7 /* DarockAccountsUI.swift in Sources */,
+				8CE70DCE2C7A534100EFB3AD /* ImageViewerView.swift in Sources */,
 				8CB0D0202B889F3D0057EF1C /* FeedbackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1980,14 +2009,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8CA1E0B92C13DD620092DFCA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8CA1E0C02C13DD620092DFCA /* DarockBrowserUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -2010,11 +2031,6 @@
 			isa = PBXTargetDependency;
 			target = 8C5869CC2C316A2100A18923 /* DarockBrowser Intents */;
 			targetProxy = 8C5869D42C316A2100A18923 /* PBXContainerItemProxy */;
-		};
-		8CA1E0C42C13DD620092DFCA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6BF209ED2990E61C00E623FC /* WatchBrowser Watch App */;
-			targetProxy = 8CA1E0C32C13DD620092DFCA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2696,30 +2712,6 @@
 			};
 			name = UnsafeOptimized;
 		};
-		8C9EB5E12C64DA6B007A2319 /* UnsafeOptimized */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B57D8PP775;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.darock.DarockBrowserUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_TARGET_NAME = "WatchBrowser Watch App";
-				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}/WatchBrowser Watch App/CCodes\"";
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = UnsafeOptimized;
-		};
 		8C9EB5E22C64DA6B007A2319 /* UnsafeOptimized */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2743,54 +2735,6 @@
 				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = UnsafeOptimized;
-		};
-		8CA1E0C62C13DD620092DFCA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B57D8PP775;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.darock.DarockBrowserUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_TARGET_NAME = "WatchBrowser Watch App";
-				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}/WatchBrowser Watch App/CCodes\"";
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = Debug;
-		};
-		8CA1E0C72C13DD620092DFCA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B57D8PP775;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.darock.DarockBrowserUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_TARGET_NAME = "WatchBrowser Watch App";
-				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}/WatchBrowser Watch App/CCodes\"";
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -2851,16 +2795,6 @@
 				8C5869D82C316A2100A18923 /* Debug */,
 				8C5869D92C316A2100A18923 /* Release */,
 				8C9EB5DF2C64DA6B007A2319 /* UnsafeOptimized */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8CA1E0C52C13DD620092DFCA /* Build configuration list for PBXNativeTarget "DarockBrowserUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8CA1E0C62C13DD620092DFCA /* Debug */,
-				8CA1E0C72C13DD620092DFCA /* Release */,
-				8C9EB5E12C64DA6B007A2319 /* UnsafeOptimized */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

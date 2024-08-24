@@ -117,8 +117,7 @@ final class AdvancedWebViewController: NSObject {
         
         let moreButton = makeUIButton(title: .image(UIImage(systemName: "ellipsis.circle")!),
                                       frame: CGRect(x: 10, y: 10, width: 30, height: 30),
-                                      selector: "menuButtonClicked",
-                                      accessibilityIdentifier: "WebMenuButton")
+                                      selector: "menuButtonClicked")
         
         let sb = WKInterfaceDevice.current().screenBounds
         
@@ -242,8 +241,7 @@ final class AdvancedWebViewController: NSObject {
         backgroundColor: Color? = nil,
         tintColor: Color? = nil,
         cornerRadius: CGFloat = 8,
-        selector: String? = nil,
-        accessibilityIdentifier: String? = nil
+        selector: String? = nil
     ) -> Dynamic {
         var resultButton = Dynamic.UIButton.buttonWithType(1)
         switch title {
@@ -262,9 +260,6 @@ final class AdvancedWebViewController: NSObject {
         resultButton.layer.cornerRadius = cornerRadius
         if let selector {
             resultButton = Dynamic(WebExtension.getBindedButton(withSelector: selector, button: resultButton.asObject!))
-        }
-        if let accessibilityIdentifier {
-            resultButton.accessibilityIdentifier = accessibilityIdentifier
         }
         return resultButton
     }
