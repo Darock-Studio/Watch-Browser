@@ -235,7 +235,7 @@ struct TipsView: View {
         }
         
         struct FastClearView: View {
-            @State var tmpInput = "这里有一些内容，尝试快速清除它们。"
+            @State var tmpInput = String(localized: "这里有一些内容，尝试快速清除它们。")
             var body: some View {
                 List {
                     Section {
@@ -269,7 +269,7 @@ struct TipsView: View {
             }
         }
         struct FastBookmarkView: View {
-            @State var tmpInput = "你想将此段内容的搜索结果添加到书签"
+            @State var tmpInput = String(localized: "你想将此段内容的搜索结果添加到书签")
             var body: some View {
                 List {
                     Section {

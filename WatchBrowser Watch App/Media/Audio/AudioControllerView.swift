@@ -36,6 +36,7 @@ struct AudioControllerView: View {
     @State var isSoftScrolling = true
     @State var isUserScrolling = false
     @State var userScrollingResetTimer: Timer?
+    @State var lyricScrollProxy: ScrollViewProxy?
     var body: some View {
         NavigationStack {
             TabView {
@@ -76,6 +77,9 @@ struct AudioControllerView: View {
                                         }
                                     }
                                 }
+                                .onAppear {
+                                    lyricScrollProxy = scrollProxy
+                                }
                                 .onReceive(globalAudioPlayer.periodicTimePublisher()) { _ in
                                     var newScrollId = 0.0
                                     var isUpdatedScrollId = false
@@ -93,7 +97,6 @@ struct AudioControllerView: View {
                                     }
                                     if _slowPath(newScrollId != currentScrolledId && !isUserScrolling) {
                                         currentScrolledId = newScrollId
-                                        debugPrint("Scrolling to \(newScrollId)")
                                         isSoftScrolling = true
                                         withAnimation(.easeOut(duration: 0.5)) {
                                             scrollProxy.scrollTo(newScrollId, anchor: .init(x: 0.5, y: 0.2))
@@ -129,9 +132,6 @@ struct AudioControllerView: View {
                                                 let newTime = currentPlaybackTime + value.translation.width
                                                 if newTime >= 0 && newTime <= currentItemTotalTime {
                                                     progressDragingNewTime = newTime
-                                                }
-                                                if _slowPath(progressDragingNewTime == 0 || progressDragingNewTime == currentItemTotalTime) {
-                                                    WKInterfaceDevice.current().play(.click)
                                                 }
                                             }
                                             .onEnded { _ in
@@ -265,7 +265,18 @@ struct AudioControllerView: View {
                 }
                 .navigationTitle("播放列表")
             }
-            .modifier(BlurBackground(imageUrl: backgroundImageUrl))
+            .tabViewStyle(.page(indexDisplayMode: isShowingControls || !isLyricsAvailable ? .always : .never))
+            .modifier({ () -> BlurBackground in
+                #if compiler(>=6.0)
+                if #available(watchOS 11.0, *) {
+                    return BlurBackground(imageUrl: backgroundImageUrl, meshForUnavailable: .autoGradient)
+                } else {
+                    return BlurBackground(imageUrl: backgroundImageUrl)
+                }
+                #else
+                return BlurBackground(imageUrl: backgroundImageUrl)
+                #endif
+            }())
         }
         .onAppear {
             isPlaying = globalAudioPlayer.timeControlStatus == .playing
@@ -345,6 +356,17 @@ struct AudioControllerView: View {
                                                toleranceBefore: .zero,
                                                toleranceAfter: .zero)
                         globalAudioPlayer.play()
+                        currentScrolledId = lyricKeys[i]
+                        isSoftScrolling = true
+                        withAnimation(.easeOut(duration: 0.5)) {
+                            lyricScrollProxy?.scrollTo(lyricKeys[i], anchor: .init(x: 0.5, y: 0.2))
+                        }
+                        Task {
+                            try? await Task.sleep(for: .seconds(0.6)) // Animation may take longer time than duration
+                            DispatchQueue.main.async {
+                                isSoftScrolling = false
+                            }
+                        }
                     })
                     .allowsHitTesting(isUserScrolling)
                 } else {
@@ -444,6 +466,7 @@ struct AudioControllerView: View {
         @State var dot2Opacity = 0.2
         @State var dot3Opacity = 0.2
         @State var scale: CGFloat = 1
+        @State var isVisible = false
         var body: some View {
             HStack {
                 HStack(spacing: 3) {
@@ -464,17 +487,20 @@ struct AudioControllerView: View {
                 .scaleEffect(scale)
                 Spacer(minLength: 5)
             }
-            .opacity(currentTime >= startTime && currentTime <= endTime ? 1.0 : 0.0100000002421438702673861521)
+            .opacity(isVisible ? 1.0 : 0.0100000002421438702673861521)
             .onAppear {
                 withAnimation(.easeInOut(duration: 2.0).repeatForever()) {
                     if scale > 1.0 {
                         scale = 1.0
                     } else {
-                        scale = 1.15
+                        scale = 1.2
                     }
                 }
             }
             .onChange(of: currentTime) { value in
+                if _fastPath(!isVisible) {
+                    isVisible = currentTime >= startTime && currentTime <= endTime
+                }
                 if value >= startTime && value <= endTime
                     && dot1Opacity == 0.2 && dot2Opacity == 0.2 && dot3Opacity == 0.2 {
                     if #available(watchOS 10, *) {
@@ -491,11 +517,20 @@ struct AudioControllerView: View {
                                     withAnimation(.easeInOut(duration: 0.6)) {
                                         scale = 1.3
                                     } completion: {
-                                        withAnimation(.easeInOut(duration: 0.4)) {
-                                            scale = 0.1
-                                            dot1Opacity = 0.2
-                                            dot2Opacity = 0.2
-                                            dot3Opacity = 0.2
+                                        withAnimation(.easeInOut(duration: 0.3)) {
+                                            scale = 0.02
+                                            dot1Opacity = 0.02
+                                            dot2Opacity = 0.02
+                                            dot3Opacity = 0.02
+                                        } completion: {
+                                            isVisible = false
+                                            Task {
+                                                try? await Task.sleep(for: .seconds(0.5))
+                                                dot1Opacity = 0.2
+                                                dot2Opacity = 0.2
+                                                dot3Opacity = 0.2
+                                                scale = 1
+                                            }
                                         }
                                     }
                                 }
@@ -507,12 +542,16 @@ struct AudioControllerView: View {
                             dot2Opacity = 1.0
                             dot3Opacity = 1.0
                         }
+                        Task {
+                            try? await Task.sleep(for: .seconds(endTime - startTime))
+                            isVisible = false
+                            try? await Task.sleep(for: .seconds(0.5))
+                            dot1Opacity = 0.2
+                            dot2Opacity = 0.2
+                            dot3Opacity = 0.2
+                            scale = 1
+                        }
                     }
-                } else if value < startTime || value > endTime {
-                    dot1Opacity = 0.2
-                    dot2Opacity = 0.2
-                    dot3Opacity = 0.2
-                    scale = 1
                 }
             }
         }
