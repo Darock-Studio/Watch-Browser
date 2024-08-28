@@ -14,10 +14,14 @@ struct SwiftWebView: View {
     @AppStorage("HideDigitalTime") var hideDigitalTime = false
     @AppStorage("ABIsReduceBrightness") var isReduceBrightness = false
     @AppStorage("ABReduceBrightnessLevel") var reduceBrightnessLevel = 0.2
+    @State var isQuickAvoidanceShowingEmpty = false
     @State var isBrowsingMenuPresented = false
     @State var isHidingDistractingItems = false
     var body: some View {
         ZStack {
+            DoubleTapActionButton(forType: .inWeb, presentationModeForExitWeb: presentationMode) {
+                isQuickAvoidanceShowingEmpty = true
+            }
             WebView(webView: webView)
                 .ignoresSafeArea()
                 .overlay {
@@ -70,8 +74,15 @@ struct SwiftWebView: View {
                     .ignoresSafeArea()
                     .allowsHitTesting(false)
             }
+            if isQuickAvoidanceShowingEmpty {
+                Color.black
+                    .ignoresSafeArea()
+                    .onTapGesture(count: 3) {
+                        isQuickAvoidanceShowingEmpty = false
+                    }
+            }
         }
-        ._statusBarHidden(hideDigitalTime)
+        ._statusBarHidden(hideDigitalTime || isQuickAvoidanceShowingEmpty)
         .sheet(isPresented: $isBrowsingMenuPresented) {
             BrowsingMenuView(webViewPresentationMode: presentationMode, isHidingDistractingItems: $isHidingDistractingItems)
         }

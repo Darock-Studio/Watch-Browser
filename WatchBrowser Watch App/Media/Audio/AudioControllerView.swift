@@ -33,6 +33,9 @@ struct AudioControllerView: View {
     @State var audioName = ""
     @State var audioHumanNameChart = [String: String]()
     @State var currentPlaylistContent = [String]()
+    @State var isSoftScrolling = true
+    @State var isUserScrolling = false
+    @State var userScrollingResetTimer: Timer?
     var body: some View {
         NavigationStack {
             TabView {
@@ -45,7 +48,7 @@ struct AudioControllerView: View {
                                     VStack(alignment: .leading) {
                                         if let firstKey = lyricKeys.first {
                                             if firstKey >= 2.0 {
-                                                WaitingDotView(startTime: 0.0, endTime: firstKey, currentTime: $currentPlaybackTime)
+                                                WaitingDotsView(startTime: 0.0, endTime: firstKey, currentTime: $currentPlaybackTime)
                                             }
                                         }
                                         if #available(watchOS 10, *) {
@@ -61,7 +64,18 @@ struct AudioControllerView: View {
                                         }
                                     }
                                 }
+                                .withScrollOffsetUpdate()
                                 .scrollIndicators(.never)
+                                .onPreferenceChange(ScrollViewOffsetPreferenceKey.self) { _ in
+                                    if !isSoftScrolling {
+                                        // Scrolled by user (not auto scrolling lyrics)
+                                        isUserScrolling = true
+                                        userScrollingResetTimer?.invalidate()
+                                        userScrollingResetTimer = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: false) { _ in
+                                            isUserScrolling = false
+                                        }
+                                    }
+                                }
                                 .onReceive(globalAudioPlayer.periodicTimePublisher()) { _ in
                                     var newScrollId = 0.0
                                     var isUpdatedScrollId = false
@@ -77,11 +91,18 @@ struct AudioControllerView: View {
                                     if _slowPath(!isUpdatedScrollId && !lyricKeys.isEmpty) {
                                         newScrollId = lyricKeys.last!
                                     }
-                                    if _slowPath(newScrollId != currentScrolledId) {
+                                    if _slowPath(newScrollId != currentScrolledId && !isUserScrolling) {
                                         currentScrolledId = newScrollId
                                         debugPrint("Scrolling to \(newScrollId)")
+                                        isSoftScrolling = true
                                         withAnimation(.easeOut(duration: 0.5)) {
-                                            scrollProxy.scrollTo(newScrollId, anchor: .init(x: 0.5, y: 0.25))
+                                            scrollProxy.scrollTo(newScrollId, anchor: .init(x: 0.5, y: 0.2))
+                                        }
+                                        Task {
+                                            try? await Task.sleep(for: .seconds(0.6)) // Animation may take longer time than duration
+                                            DispatchQueue.main.async {
+                                                isSoftScrolling = false
+                                            }
                                         }
                                     }
                                 }
@@ -108,6 +129,9 @@ struct AudioControllerView: View {
                                                 let newTime = currentPlaybackTime + value.translation.width
                                                 if newTime >= 0 && newTime <= currentItemTotalTime {
                                                     progressDragingNewTime = newTime
+                                                }
+                                                if _slowPath(progressDragingNewTime == 0 || progressDragingNewTime == currentItemTotalTime) {
+                                                    WKInterfaceDevice.current().play(.click)
                                                 }
                                             }
                                             .onEnded { _ in
@@ -292,30 +316,44 @@ struct AudioControllerView: View {
         ForEach(0..<lyricKeys.count, id: \.self) { i in
             HStack {
                 if !lyrics[lyricKeys[i]]!.isEmpty {
-                    VStack(alignment: .leading) {
-                        if lyrics[lyricKeys[i]]!.contains("%tranlyric@"),
-                           let src = lyrics[lyricKeys[i]]!.components(separatedBy: "%tranlyric@")[from: 0],
-                           let trans = lyrics[lyricKeys[i]]!.components(separatedBy: "%tranlyric@")[from: 1] {
-                            Text(src)
-                                .font(.system(size: 16, weight: .semibold))
-                            Text(trans)
-                                .font(.system(size: 14, weight: .medium))
-                                .opacity(0.85)
-                        } else {
-                            Text(lyrics[lyricKeys[i]]!)
-                                .font(.system(size: 16, weight: .semibold))
+                    HStack {
+                        VStack(alignment: .leading) {
+                            if lyrics[lyricKeys[i]]!.contains("%tranlyric@"),
+                               let src = lyrics[lyricKeys[i]]!.components(separatedBy: "%tranlyric@")[from: 0],
+                               let trans = lyrics[lyricKeys[i]]!.components(separatedBy: "%tranlyric@")[from: 1] {
+                                Text(src)
+                                    .font(.system(size: 16, weight: .semibold))
+                                    .fixedSize(horizontal: false, vertical: true)
+                                Text(trans)
+                                    .font(.system(size: 14, weight: .medium))
+                                    .opacity(0.85)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            } else {
+                                Text(lyrics[lyricKeys[i]]!)
+                                    .font(.system(size: 16, weight: .semibold))
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
                         }
+                        Spacer(minLength: 20)
                     }
-                    .multilineTextAlignment(.leading)
                     .opacity(currentScrolledId == lyricKeys[i] ? 1.0 : 0.6)
+                    .blur(radius: currentScrolledId == lyricKeys[i] || isUserScrolling ? 0 : 1)
+                    .padding(.vertical, 5)
+                    .animation(.smooth, value: currentScrolledId)
+                    .modifier(LyricButtonModifier {
+                        globalAudioPlayer.seek(to: CMTime(seconds: lyricKeys[i], preferredTimescale: 60000),
+                                               toleranceBefore: .zero,
+                                               toleranceAfter: .zero)
+                        globalAudioPlayer.play()
+                    })
+                    .allowsHitTesting(isUserScrolling)
                 } else {
                     if let endTime = lyricKeys[from: i &+ 1], endTime - lyricKeys[i] > 2.0 {
-                        WaitingDotView(startTime: lyricKeys[i], endTime: endTime, currentTime: $currentPlaybackTime)
+                        WaitingDotsView(startTime: lyricKeys[i], endTime: endTime, currentTime: $currentPlaybackTime)
                     }
                 }
                 Spacer(minLength: 20)
             }
-            .padding(.vertical, 5)
             .id(lyricKeys[i])
         }
     }
@@ -398,14 +436,14 @@ struct AudioControllerView: View {
         }
     }
     
-    struct WaitingDotView: View {
+    struct WaitingDotsView: View {
         var startTime: Double
         var endTime: Double
         @Binding var currentTime: Double
         @State var dot1Opacity = 0.2
         @State var dot2Opacity = 0.2
         @State var dot3Opacity = 0.2
-        @State var scale = CGFloat(1)
+        @State var scale: CGFloat = 1
         var body: some View {
             HStack {
                 HStack(spacing: 3) {
@@ -489,6 +527,27 @@ struct AudioControllerView: View {
                 configuration.label
                     .scaleEffect(configuration.isPressed ? 0.9 : 1)
             }
+        }
+    }
+    struct LyricButtonModifier: ViewModifier {
+        var buttonAction: () -> Void
+        @State private var isPressed = false
+        func body(content: Content) -> some View {
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.gray)
+                    .scaleEffect(isPressed ? 0.9 : 1)
+                    .opacity(isPressed ? 0.4 : 0.0100000002421438702673861521)
+                content
+                    .scaleEffect(isPressed ? 0.9 : 1)
+            }
+            ._onButtonGesture(pressing: { isPressing in
+                isPressed = isPressing
+            }, perform: buttonAction)
+            .onLongPressGesture(minimumDuration: 1.0) {
+                
+            }
+            .animation(.easeOut(duration: 0.2), value: isPressed)
         }
     }
     

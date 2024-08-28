@@ -58,9 +58,11 @@ fileprivate let globalStateIcons = [
 ]
 
 struct FeedbackView: View {
+    @Environment(\.presentationMode) var presentationMode
     @State var feedbackIds = [String]()
     @State var badgeOnIds = [String]()
     @State var isNewNewsAvailable = false
+    @State var isNewVerAvailableAlertPresented = false
     var body: some View {
         List {
             Section {
@@ -114,6 +116,15 @@ struct FeedbackView: View {
             }
         }
         .navigationTitle("反馈助理")
+        .alert("“反馈助理”不可用", isPresented: $isNewVerAvailableAlertPresented, actions: {
+            Button(role: .cancel, action: {
+                presentationMode.wrappedValue.dismiss()
+            }, label: {
+                Text("确定")
+            })
+        }, message: {
+            Text("暗礁浏览器有更新可用。")
+        })
         .onAppear {
             feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
             badgeOnIds.removeAll()
@@ -128,7 +139,7 @@ struct FeedbackView: View {
                     }
                 }
             }
-            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/news/get/Darock Browser") { respStr, isSuccess in
+            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/news/get/Darock Browser".compatibleUrlEncoded()) { respStr, isSuccess in
                 if isSuccess {
                     let fixed = respStr.apiFixed()
                     if fixed != "None" {
@@ -150,6 +161,27 @@ struct FeedbackView: View {
                         }
                     } else {
                         isNewNewsAvailable = false
+                    }
+                }
+            }
+            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
+                if isSuccess {
+                    let spdVer = respStr.apiFixed().split(separator: ".")
+                    if spdVer.count == 3 {
+                        if let x = Int(spdVer[0]), let y = Int(spdVer[1]), let z = Int(spdVer[2]) {
+                            let currVerSpd = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).split(separator: ".")
+                            if currVerSpd.count == 3 {
+                                if let cx = Int(currVerSpd[0]), let cy = Int(currVerSpd[1]), let cz = Int(currVerSpd[2]) {
+                                    if x > cx {
+                                        isNewVerAvailableAlertPresented = true
+                                    } else if x == cx && y > cy {
+                                        isNewVerAvailableAlertPresented = true
+                                    } else if x == cx && y == cy && z > cz {
+                                        isNewVerAvailableAlertPresented = true
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -861,7 +893,7 @@ private struct NewsView: View {
     
     @Sendable
     func refreshNews() async {
-        let result = await DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/news/get/\(projName)")
+        let result = await DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/news/get/\(projName)".compatibleUrlEncoded())
         if case .success(let respStr) = result {
             let fixed = respStr.apiFixed()
             if fixed != "None" {
@@ -932,7 +964,7 @@ private struct NewsView: View {
         @Sendable
         func refresh() async {
             isLoading = true
-            let result = await DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/news/detail/\(projName)/\(id)")
+            let result = await DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/news/detail/\(projName)/\(id)".compatibleUrlEncoded())
             if case let .success(respStr) = result {
                 guard respStr.apiFixed() != "Not Exist" else {
                     isUnavailableAlertPresented = true
@@ -1001,7 +1033,7 @@ struct FAQView: View {
                     Markdown(String(localized: """
                     单独为特定的网页优化根本**不可行**。
                     
-                    想想今天让为网站A进行优化，明天另一个用户反馈想为网站B进行优化。不仅工作量大大提升，还会使代码及其难维护，这就是个无底洞。
+                    想想今天让为网站A进行优化，明天另一个用户反馈想为网站B进行优化。不仅工作量大大提升，还会使代码极其难维护，这就是个无底洞。
                     
                     请**不要**提出为**特定网站**进行优化之类的反馈。
                     """))

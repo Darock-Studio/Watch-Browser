@@ -705,17 +705,20 @@ struct DarockAccountManagementMain: View {
 }
 
 extension WKInterfaceDevice {
-    static let modelName: String = {
-        // rdar://so?26028918
-        
+    static let modelIdentifier: String = {
         var systemInfo = utsname()
         uname(&systemInfo)
         let machineMirror = Mirror(reflecting: systemInfo.machine)
-        let identifier = machineMirror.children.reduce("") { identifier, element in
+        return machineMirror.children.reduce("") { identifier, element in
             guard let value = element.value as? Int8, value != 0 else { return identifier }
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
-        print(identifier)
+    }()
+    
+    static let modelName: String = {
+        // rdar://so?26028918
+        
+        let identifier = WKInterfaceDevice.modelIdentifier
         func mapToDevice(identifier: String) -> String {
             switch identifier {
             case "Watch1,1", "Watch1,2":   return "Apple Watch (1st generation)"

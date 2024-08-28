@@ -455,14 +455,13 @@ struct MainView: View {
                                     if textOrURL.isURL() {
                                         userdefault.set(
                                             (textOrURL.hasPrefix("https://") || textOrURL.hasPrefix("http://"))
-                                            ? textOrURL.urlEncoded()
-                                            : "http://" + textOrURL.urlEncoded(),
+                                            ? textOrURL
+                                            : "http://" + textOrURL,
                                             forKey: "BookmarkLink\(total)"
                                         )
                                     } else {
                                         userdefault.set(
-                                            getWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)
-                                                .urlEncoded(),
+                                            getWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
                                             forKey: "BookmarkLink\(total)"
                                         )
                                     }

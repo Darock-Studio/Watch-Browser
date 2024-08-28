@@ -355,6 +355,16 @@
         }
       }
     },
+    "“反馈助理”不可用" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Feedback Assistant” is unavailable"
+          }
+        }
+      }
+    },
     "“反馈助理”不可用，因为暗礁浏览器有更新可用" : {
       "localizations" : {
         "ar" : {
@@ -16747,6 +16757,16 @@
         }
       }
     },
+    "互点两下" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double Tap"
+          }
+        }
+      }
+    },
     "互联网" : {
       "localizations" : {
         "ar" : {
@@ -18871,6 +18891,16 @@
         }
       }
     },
+    "使用“互点两下”手势以显示空屏幕" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use Double Tap gesture to display a blank screen."
+          }
+        }
+      }
+    },
     "使用前提示" : {
       "localizations" : {
         "ar" : {
@@ -20317,6 +20347,16 @@
         }
       }
     },
+    "全局操作" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Global Action"
+          }
+        }
+      }
+    },
     "全屏" : {
       "localizations" : {
         "ar" : {
@@ -21263,6 +21303,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "關聯反馈"
+          }
+        }
+      }
+    },
+    "关闭" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Off"
           }
         }
       }
@@ -24255,120 +24305,12 @@
         }
       }
     },
-    "单独为特定的网页优化根本**不可行**。\n\n想想今天让为网站A进行优化，明天另一个用户反馈想为网站B进行优化。不仅工作量大大提升，还会使代码及其难维护，这就是个无底洞。\n\n请**不要**提出为**特定网站**进行优化之类的反馈。" : {
+    "单独为特定的网页优化根本**不可行**。\n\n想想今天让为网站A进行优化，明天另一个用户反馈想为网站B进行优化。不仅工作量大大提升，还会使代码极其难维护，这就是个无底洞。\n\n请**不要**提出为**特定网站**进行优化之类的反馈。" : {
       "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "التحسين لصفحة ويب محددة وحدها هو ببساطة **غير مجدي**.\n\nفكر في تحسين موقع الويب A اليوم، وملاحظات مستخدم أخرى غدا بأنك تريد تحسين موقع الويب B. إنه لا يحسن عبء العمل بشكل كبير فحسب، بل يجعل أيضا من الصعب الحفاظ على الرمز، وهو حفرة لا نهاية لها.\n\nيرجى **لا** تقديم ملاحظات حول التحسين **مواقع ويب محددة**."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Die Optimierung für eine bestimmte Webseite allein ist einfach **nicht machbar**.\n\nDenken Sie darüber nach, Website A heute zu optimieren, und morgen ein weiteres Benutzerfeedback, dass Sie Website B optimieren möchten. Es verbessert nicht nur die Arbeitsbelastung erheblich, sondern erschwert auch die Wartung des Codes, was eine bodenlose Grube ist.\n\nBitte **geben Sie kein** Feedback zur Optimierung für **spezifische Websites**."
-          }
-        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "It is simply **impossible** to optimize for specific web pages individually.\n\nImagine optimizing for Website A today and then receiving feedback to optimize for Website B tomorrow. Not only would this greatly increase the workload, but it would also make the code extremely difficult to maintain. It's a bottomless pit.\n\nPlease **DO NOT** suggest optimizations for **specific websites**."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Optimizar solo para una página web específica es simplemente **no factible**.\n\nPiense en optimizar el sitio web A hoy, y otros comentarios de los usuarios mañana de que desea optimizar el sitio web B. No solo mejora en gran medida la carga de trabajo, sino que también hace que el código sea difícil de mantener, lo cual es un pozo sin fondo.\n\nPor favor, **no** dé retroalimentación sobre la optimización para **sitios web específicos**."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "L'optimisation pour une page Web spécifique est tout simplement **pas faisable**.\n\nPensez à optimiser le site Web A aujourd'hui, et à un autre commentaire de l'utilisateur demain selon lequel vous souhaitez optimiser le site Web B. Cela améliore non seulement considérablement la charge de travail, mais rend également le code difficile à maintenir, ce qui est une fosse sans fond.\n\nVeuillez **ne pas** donner de commentaires sur l'optimisation pour **sites Web spécifiques**."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "अकेले एक विशिष्ट वेब पेज के लिए ऑप्टिमाइज़ करना बस **व्यवहार्य नहीं है**।\n\nआज वेबसाइट ए को अनुकूलित करने के बारे में सोचें, और कल एक और उपयोगकर्ता प्रतिक्रिया कि आप वेबसाइट बी को अनुकूलित करना चाहते हैं। यह न केवल कार्यभार में काफी सुधार करता है, बल्कि कोड को बनाए रखना भी मुश्किल बनाता है, जो एक अथाह गड्ढा है।\n\nकृपया **न करें** **विशिष्ट वेबसाइटों** के लिए अनुकूलन पर प्रतिक्रिया दें।"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mengoptimalkan untuk halaman web tertentu saja **tidak layak**.\n\nPikirkan tentang mengoptimalkan situs web A hari ini, dan umpan balik pengguna lain besok bahwa Anda ingin mengoptimalkan situs web B. Itu tidak hanya sangat meningkatkan beban kerja, tetapi juga membuat kode sulit untuk dipelihara, yang merupakan lubang tanpa dasar.\n\nTolong **jangan** memberikan umpan balik tentang pengoptimalan untuk **situs web tertentu**."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ottimizzare solo per una pagina web specifica è semplicemente **non fattibile**.\n\nPensa all'ottimizzazione del sito web A oggi e a un altro feedback degli utenti domani che vuoi ottimizzare il sito web B. Non solo migliora notevolmente il carico di lavoro, ma rende anche difficile la manutenzione del codice, il che è un pozzo senza fondo.\n\nSi prega di **non** dare un feedback sull'ottimizzazione per **siti web specifici**."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "特定のウェブページのみを最適化することは**不可能**です。\n\n今日ウェブサイトAのために最適化し、明日別のユーザーがウェブサイトBのために最適化するようにフィードバックを提供するのは考え物です。作業量が大幅に増加するだけでなく、コードの保守が非常に難しくなります。これは無限の作業です。\n\n特定のウェブサイトのための最適化を**お控えください**。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "특정 웹페이지를 단독으로 최적화하는 것은 근본적으로 **할 수 없다**.\n\n오늘 웹사이트 A를 최적화하고 내일 다른 사용자가 웹사이트 B를 최적화하고 싶다고 피드백하는 것을 생각해 보세요. \"작업량이 크게 증가했을 뿐만 아니라, 코드와 그 유지관리를 어렵게 만들 수 있다니, 이것이 바로 바닥이 없는 구덩이이다.\"\n\n**특정 웹사이트**를 위한 최적화와 같은 피드백을 **하지 마세요."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Optimaliseren voor een specifieke webpagina alleen is gewoon **niet haalbaar**.\n\nDenk aan het optimaliseren van website A vandaag, en morgen een andere gebruikersfeedback dat je website B wilt optimaliseren. Het verbetert niet alleen de werklast aanzienlijk, maar maakt de code ook moeilijk te onderhouden, wat een bodemloze put is.\n\nGeef **geen** geen feedback over optimalisatie voor **specifieke websites**."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Optymalizacja dla konkretnej strony internetowej jest po prostu **niewykonalna**.\n\nPomyśl o optymalizacji strony internetowej A dzisiaj, a jutro kolejna opinia użytkownika, że chcesz zoptymalizować stronę internetową B. To nie tylko znacznie poprawia obciążenie pracą, ale także utrudnia utrzymanie kodu, co jest bezdennym dołem.\n\nProszę **nie** udzielać opinii na temat optymalizacji dla **konkretnych stron internetowych**."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Otimizar apenas para uma página da web específica é simplesmente **não viável**.\n\nPense em otimizar o site A hoje e outro feedback do usuário amanhã de que você deseja otimizar o site B. Isso não apenas melhora muito a carga de trabalho, mas também torna o código difícil de manter, o que é um poço sem fundo.\n\nPor favor, **não** dê feedback sobre otimização para **sites específicos**."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Невозможно оптимизировать конкретную веб-страницу в одиночку. \n\nПодумайте о том, как оптимизировать веб-сайт A сегодня, а завтра еще один отзыв пользователей о том, что вы хотите оптимизировать веб-сайт B. Не только рабочая нагрузка будет значительно увеличена, но и затруднит обслуживание кода, что является бездонной дырой. \\N\nПожалуйста, не **пересылайте отзывы, такие как оптимизация для **конкретного веб-сайта**."
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "การเพิ่มประสิทธิภาพสําหรับหน้าเว็บเฉพาะเพียงอย่างเดียวเป็นเพียง **เป็นไปไม่ได้**\n\nคิดถึงการเพิ่มประสิทธิภาพเว็บไซต์ A วันนี้ และข้อเสนอแนะของผู้ใช้อื่นในวันพรุ่งนี้ว่าคุณต้องการเพิ่มประสิทธิภาพเว็บไซต์ B ไม่เพียงแต่ปรับปรุงภาระงานอย่างมากเท่านั้น แต่ยังทําให้โค้ดดูแลรักษายากอีกด้วย ซึ่งเป็นหลุมที่ไม่มีก้นบึ้ง\n\nโปรด **อย่า** ให้ข้อเสนอแนะเกี่ยวกับการเพิ่มประสิทธิภาพสําหรับ **เว็บไซต์เฉพาะ**"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tek başına belirli bir web sayfası için optimize etmek basitçe **mkun değildir**.\n\nBugün A web sitesini ve yarın B web sitesini optimize etmek istediğiniz başka bir kullanıcı geri bildirimini optimize etmeyi düşünün. Sadece iş yükünü büyük ölçüde artırmakla kalmaz, aynı zamanda dipsiz bir çukur olan kodun bakımını da zorlaştırır.\n\nLütfen **belirli web siteleri** için optimizasyon hakkında geri bildirim vermeyin**."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Оптимізація лише для конкретної веб-сторінки просто **неможлива**.\n\nПодумайте про оптимізацію веб-сайту А сьогодні, і ще один відгук користувача завтра, що ви хочете оптимізувати веб-сайт Б. Це не тільки значно покращує робоче навантаження, але й ускладнює підтримку коду, який є бездонною ямою.\n\nБудь ласка, **не** не давайте відгук про оптимізацію для **конкретних веб-сайтів**."
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tối ưu hóa cho một trang web cụ thể đơn giản là **không khả thi**.\n\nHãy suy nghĩ về việc tối ưu hóa trang web A hôm nay và một phản hồi khác của người dùng vào ngày mai rằng bạn muốn tối ưu hóa trang web B. Nó không chỉ cải thiện đáng kể khối lượng công việc mà còn khiến mã khó duy trì, đây là một hố không đáy.\n\nVui lòng **không** đưa ra phản hồi về việc tối ưu hóa cho **các trang web cụ thể**."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "單獨為特定的網頁優化根本**不可行**。\n\n想想今天讓為網站A進行優化，明天另一個用戶反饋想為網站B進行優化。不僅工作量大大提升，還會使代碼及其難維護，這就是個無底洞。\n\n請**不要**提出為**特定網站**進行優化之類的反饋。"
           }
         }
       }
@@ -30687,6 +30629,16 @@
         }
       }
     },
+    "如果误触发手势，所有未保存的更改也将丢失！" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If the gesture is accidentally triggered, any unsaved changes will be lost!"
+          }
+        }
+      }
+    },
     "媒体" : {
       "localizations" : {
         "ar" : {
@@ -36865,6 +36817,16 @@
         }
       }
     },
+    "开启" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On"
+          }
+        }
+      }
+    },
     "开启密码" : {
       "localizations" : {
         "ar" : {
@@ -40169,6 +40131,16 @@
         }
       }
     },
+    "手势" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestures"
+          }
+        }
+      }
+    },
     "打开%@浏览菜单" : {
       "localizations" : {
         "ar" : {
@@ -40649,6 +40621,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "打開視頻直鏈時，將直接跳轉視頻"
+          }
+        }
+      }
+    },
+    "打开网页" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Webpage"
+          }
+        }
+      }
+    },
+    "打开网页行为" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Webpage Action"
           }
         }
       }
@@ -45985,6 +45977,16 @@
         }
       }
     },
+    "显示空屏幕" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Display Blank Screen"
+          }
+        }
+      }
+    },
     "显示翻译歌词" : {
       "localizations" : {
         "ar" : {
@@ -46705,6 +46707,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "暗礁瀏覽器已是最新版本"
+          }
+        }
+      }
+    },
+    "暗礁浏览器有更新可用。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browser has an update available."
           }
         }
       }
@@ -60029,6 +60041,26 @@
         }
       }
     },
+    "紧急回避" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emergency Evade"
+          }
+        }
+      }
+    },
+    "紧急回避行为" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emergency Evade Action"
+          }
+        }
+      }
+    },
     "练习主要手势" : {
       "localizations" : {
         "ar" : {
@@ -61091,6 +61123,16 @@
         }
       }
     },
+    "网页内操作" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In-web Action"
+          }
+        }
+      }
+    },
     "网页内添加书签" : {
       "localizations" : {
         "en" : {
@@ -61687,6 +61729,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "網頁現可被分享至 iPhone 或其他 App"
+          }
+        }
+      }
+    },
+    "网页链接无效" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid Link"
           }
         }
       }
@@ -64813,6 +64865,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "輕觸“查看網頁中圖片”"
+          }
+        }
+      }
+    },
+    "轻触三下屏幕以恢复，或按下数码表冠以返回表盘。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Triple-tap the screen to recover, or press the Digital Crown to return to the watch face."
           }
         }
       }
@@ -69095,6 +69157,16 @@
         }
       }
     },
+    "退出暗礁浏览器" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exit Darock Browser"
+          }
+        }
+      }
+    },
     "退出登录" : {
       "localizations" : {
         "ar" : {
@@ -69327,6 +69399,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "退出登錄？"
+          }
+        }
+      }
+    },
+    "退出网页" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exit Webpage"
           }
         }
       }
@@ -70041,6 +70123,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "重新載入"
+          }
+        }
+      }
+    },
+    "重新载入网页" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reload Webpage"
           }
         }
       }
@@ -74831,6 +74923,16 @@
         }
       }
     },
+    "预览..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preview…"
+          }
+        }
+      }
+    },
     "预计时间：%llds" : {
       "localizations" : {
         "ar" : {
@@ -75181,6 +75283,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "額外歴史記録"
+          }
+        }
+      }
+    },
+    "食指和拇指互点两下以执行指定的操作。需要先在系统设置→辅助功能中启用“快速操作”。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap twice with your index finger and thumb to perform a specified action. First, enable \"Quick Actions\" in System Settings → Accessibility."
+          }
+        }
+      }
+    },
+    "食指和拇指互点两下以执行指定的操作。需要先在系统设置中启用“互点两下”手势。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap twice with your index finger and thumb to perform a specified action. First, enable the \"Double Tap\" gesture in System Settings."
           }
         }
       }

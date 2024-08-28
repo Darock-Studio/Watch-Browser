@@ -43,9 +43,15 @@ struct WatchBrowser_Watch_AppApp: App {
     @State var tapToRadarAlertContent = ""
     @State var isTapToRadarAlertPresented = false
     @State var isClusterInstalledTipPresented = false
+    @State var isQuickAvoidanceShowingEmpty = false
     var body: some Scene {
         WindowGroup {
             ZStack {
+                if !isBrowserLocked {
+                    DoubleTapActionButton(forType: .global) {
+                        isQuickAvoidanceShowingEmpty = true
+                    }
+                }
                 ContentView()
                     .blur(radius: isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser ? 12 : 0)
                     .allowsHitTesting(!(isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser))
@@ -119,7 +125,15 @@ struct WatchBrowser_Watch_AppApp: App {
                         .ignoresSafeArea()
                         .allowsHitTesting(false)
                 }
+                if isQuickAvoidanceShowingEmpty {
+                    Color.black
+                        .ignoresSafeArea()
+                        .onTapGesture(count: 3) {
+                            isQuickAvoidanceShowingEmpty = false
+                        }
+                }
             }
+            ._statusBarHidden(isQuickAvoidanceShowingEmpty)
             .alert("Runtime Error", isPresented: $isTapToRadarAlertPresented, actions: {
                 Button(role: .cancel, action: {
                     
