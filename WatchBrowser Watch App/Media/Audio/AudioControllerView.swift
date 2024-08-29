@@ -34,6 +34,7 @@ struct AudioControllerView: View {
     @State var audioHumanNameChart = [String: String]()
     @State var currentPlaylistContent = [String]()
     @State var isSoftScrolling = true
+    @State var softScrollingResetTask: Task<Void, Never>?
     @State var isUserScrolling = false
     @State var userScrollingResetTimer: Timer?
     @State var lyricScrollProxy: ScrollViewProxy?
@@ -96,15 +97,21 @@ struct AudioControllerView: View {
                                         newScrollId = lyricKeys.last!
                                     }
                                     if _slowPath(newScrollId != currentScrolledId && !isUserScrolling) {
+                                        softScrollingResetTask?.cancel()
                                         currentScrolledId = newScrollId
                                         isSoftScrolling = true
                                         withAnimation(.easeOut(duration: 0.5)) {
                                             scrollProxy.scrollTo(newScrollId, anchor: .init(x: 0.5, y: 0.2))
                                         }
-                                        Task {
-                                            try? await Task.sleep(for: .seconds(0.6)) // Animation may take longer time than duration
-                                            DispatchQueue.main.async {
-                                                isSoftScrolling = false
+                                        softScrollingResetTask = Task {
+                                            do {
+                                                try await Task.sleep(for: .seconds(0.6)) // Animation may take longer time than duration
+                                                guard !Task.isCancelled else { return }
+                                                DispatchQueue.main.async {
+                                                    isSoftScrolling = false
+                                                }
+                                            } catch {
+                                                // Catch if task was canceled, do nothing.
                                             }
                                         }
                                     }
@@ -288,16 +295,8 @@ struct AudioControllerView: View {
             resetGlobalAudioLooper()
             pIsAudioControllerAvailable = true
             extendScreenIdleTime(3600)
-            audioHumanNameChart = (UserDefaults.standard.dictionary(forKey: "AudioHumanNameChart") as? [String: String]) ?? [String: String]()
-            if !globalAudioCurrentPlaylist.isEmpty
-                && FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/Playlists/\(globalAudioCurrentPlaylist)") {
-                do {
-                    let fileStr = try String(contentsOfFile: NSHomeDirectory() + "/Documents/Playlists/\(globalAudioCurrentPlaylist)", encoding: .utf8)
-                    currentPlaylistContent = getJsonData([String].self, from: fileStr) ?? [String]()
-                } catch {
-                    globalErrorHandler(error)
-                }
-            }
+            audioHumanNameChart = (UserDefaults.standard.dictionary(forKey: "AudioHumanNameChart") as? [String: String]) ?? [:]
+            currentPlaylistContent = getCurrentPlaylistContents() ?? []
         }
         .onDisappear {
             recoverNormalIdleTime()
@@ -328,6 +327,17 @@ struct AudioControllerView: View {
             HStack {
                 if !lyrics[lyricKeys[i]]!.isEmpty {
                     HStack {
+                        if ({ // swiftlint:disable:this control_statement
+                            var singerSplitCount = 0
+                            for key in lyricKeys[0...i] {
+                                if let src = lyrics[key]!.components(separatedBy: "%tranlyric@")[from: 0], src.hasSuffix("：") {
+                                    singerSplitCount++
+                                }
+                            }
+                            return singerSplitCount % 2 == 1
+                        }()) {
+                            Spacer()
+                        }
                         VStack(alignment: .leading) {
                             if lyrics[lyricKeys[i]]!.contains("%tranlyric@"),
                                let src = lyrics[lyricKeys[i]]!.components(separatedBy: "%tranlyric@")[from: 0],
@@ -341,11 +351,31 @@ struct AudioControllerView: View {
                                     .fixedSize(horizontal: false, vertical: true)
                             } else {
                                 Text(lyrics[lyricKeys[i]]!)
-                                    .font(.system(size: 16, weight: .semibold))
+                                    .font(.system(size: lyrics[lyricKeys[i]]!.hasSuffix("：") ? 14 : 16, weight: .semibold))
                                     .fixedSize(horizontal: false, vertical: true)
+                                    .padding(.bottom, lyrics[lyricKeys[i]]!.hasSuffix("：") ? -3 : 0)
                             }
                         }
-                        Spacer(minLength: 20)
+                        .multilineTextAlignment({
+                            var singerSplitCount = 0
+                            for key in lyricKeys[0...i] {
+                                if let src = lyrics[key]!.components(separatedBy: "%tranlyric@")[from: 0], src.hasSuffix("：") {
+                                    singerSplitCount++
+                                }
+                            }
+                            return singerSplitCount % 2 == 0 ? .leading : .trailing
+                        }())
+                        if ({ // swiftlint:disable:this control_statement
+                            var singerSplitCount = 0
+                            for key in lyricKeys[0...i] {
+                                if let src = lyrics[key]!.components(separatedBy: "%tranlyric@")[from: 0], src.hasSuffix("：") {
+                                    singerSplitCount++
+                                }
+                            }
+                            return singerSplitCount % 2 == 0
+                        }()) {
+                            Spacer(minLength: 20)
+                        }
                     }
                     .opacity(currentScrolledId == lyricKeys[i] ? 1.0 : 0.6)
                     .blur(radius: currentScrolledId == lyricKeys[i] || isUserScrolling ? 0 : 1)
@@ -372,9 +402,9 @@ struct AudioControllerView: View {
                 } else {
                     if let endTime = lyricKeys[from: i &+ 1], endTime - lyricKeys[i] > 2.0 {
                         WaitingDotsView(startTime: lyricKeys[i], endTime: endTime, currentTime: $currentPlaybackTime)
+                        Spacer()
                     }
                 }
-                Spacer(minLength: 20)
             }
             .id(lyricKeys[i])
         }
@@ -399,19 +429,17 @@ struct AudioControllerView: View {
                                     }
                                 }
                             }
-                            if isShowTranslatedLyrics {
-                                if let tlyric = respJson["tlyric"]["lyric"].string {
-                                    let lineSpd = tlyric.components(separatedBy: "\n")
-                                    for lineText in lineSpd {
-                                        // swiftlint:disable:next for_where
-                                        if lineText.contains(/\[[0-9]*:[0-9]*.[0-9]*\].*/) {
-                                            if let text = lineText.components(separatedBy: "]")[from: 1],
-                                               let time = lineText.components(separatedBy: "[")[from: 1]?.components(separatedBy: "]")[from: 0],
-                                               let dTime = lyricTimeStringToSeconds(String(time)),
-                                               let sourceLyric = lyrics[dTime],
-                                               !sourceLyric.isEmpty && !text.isEmpty {
-                                                lyrics.updateValue("\(sourceLyric)%tranlyric@\(text.removePrefix(" "))", forKey: dTime)
-                                            }
+                            if isShowTranslatedLyrics, let tlyric = respJson["tlyric"]["lyric"].string {
+                                let lineSpd = tlyric.components(separatedBy: "\n")
+                                for lineText in lineSpd {
+                                    // swiftlint:disable:next for_where
+                                    if lineText.contains(/\[[0-9]*:[0-9]*.[0-9]*\].*/) {
+                                        if let text = lineText.components(separatedBy: "]")[from: 1],
+                                           let time = lineText.components(separatedBy: "[")[from: 1]?.components(separatedBy: "]")[from: 0],
+                                           let dTime = lyricTimeStringToSeconds(String(time)),
+                                           let sourceLyric = lyrics[dTime],
+                                           !sourceLyric.isEmpty && !text.isEmpty {
+                                            lyrics.updateValue("\(sourceLyric)%tranlyric@\(text.removePrefix(" "))", forKey: dTime)
                                         }
                                     }
                                 }
@@ -678,14 +706,19 @@ func playAudio(url: String, presentController: Bool = true) {
 /// - Returns: 歌曲名
 @_effects(readonly)
 func getCurrentPlaylistContents() -> [String]? {
-    if !globalAudioCurrentPlaylist.isEmpty
-        && FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/Playlists/\(globalAudioCurrentPlaylist)") {
-        do {
+    do {
+        if globalAudioCurrentPlaylist == "LocalDownloadedAudio" {
+            return try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios").map {
+                URL(filePath: NSHomeDirectory() + "/Documents/DownloadedAudios").appending(path: $0).absoluteString
+            }
+        }
+        if !globalAudioCurrentPlaylist.isEmpty
+            && FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/Playlists/\(globalAudioCurrentPlaylist)") {
             let fileStr = try String(contentsOfFile: NSHomeDirectory() + "/Documents/Playlists/\(globalAudioCurrentPlaylist)", encoding: .utf8)
             return getJsonData([String].self, from: fileStr)
-        } catch {
-            globalErrorHandler(error)
         }
+    } catch {
+        globalErrorHandler(error)
     }
     return nil
 }

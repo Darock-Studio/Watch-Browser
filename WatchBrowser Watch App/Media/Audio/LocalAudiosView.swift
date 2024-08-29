@@ -45,6 +45,7 @@ struct LocalAudiosView: View {
                                     presentationMode.wrappedValue.dismiss()
                                 } else {
                                     setForAudioPlaying()
+                                    globalAudioCurrentPlaylist = "LocalDownloadedAudio"
                                     let audioPathPrefix = URL(filePath: NSHomeDirectory() + "/Documents/DownloadedAudios")
                                     globalAudioPlayer.replaceCurrentItem(with: AVPlayerItem(url: audioPathPrefix.appending(path: audioNames[i])))
                                     if let noSuffix = audioNames[i].split(separator: ".").first, let mid = Int(noSuffix) {

@@ -18656,7 +18656,14 @@
       }
     },
     "你想将此段内容的搜索结果添加到书签" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add the search result to bookmark"
+          }
+        }
+      }
     },
     "你要存储当前的草稿吗？" : {
       "localizations" : {
@@ -40412,6 +40419,16 @@
         }
       }
     },
+    "按章节划分" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Split by Chapter"
+          }
+        }
+      }
+    },
     "按预期工作" : {
       "localizations" : {
         "ar" : {
@@ -53194,6 +53211,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "滑動以返回"
+          }
+        }
+      }
+    },
+    "滚动" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scrolling"
           }
         }
       }
@@ -67401,7 +67428,14 @@
       }
     },
     "这里有一些内容，尝试快速清除它们。" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try to clear texts here through Fast Clear"
+          }
+        }
+      }
     },
     "进阶技巧" : {
       "localizations" : {
@@ -71113,6 +71147,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "阅读模式" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read Mode"
           }
         }
       }

@@ -78,6 +78,7 @@ struct BookViewerView: View {
     
     struct BookDetailView: View {
         var document: EPUBDocument
+        @AppStorage("RVReaderType") var readerType = "Scroll"
         @State var isCoverImageViewerPresented = false
         var body: some View {
             Section {
@@ -107,10 +108,82 @@ struct BookViewerView: View {
                 }
             }
             .listRowBackground(Color.clear)
-            Section {
-                NavigationLink(destination: { BookReaderView(document: document) }, label: {
-                    Text(UserDefaults.standard.integer(forKey: "\(document.directory.lastPathComponent)ReadOffset") == 0 ? "开始阅读" : "继续阅读")
-                })
+            if readerType == "Scroll" {
+                Section {
+                    NavigationLink(destination: { BookReaderView(document: document) }, label: {
+                        Text(UserDefaults.standard.integer(forKey: "\(document.directory.lastPathComponent)ReadOffset") == 0 ? "开始阅读" : "继续阅读")
+                    })
+                }
+            } else {
+                if let contents = document.tableOfContents.subTable {
+                    Section {
+                        contentLinks(from: contents, with: document.contentDirectory)
+                    }
+                }
+            }
+        }
+        
+        @ViewBuilder
+        func contentLinks(from contents: [EPUBTableOfContents], with rootLink: URL) -> AnyView {
+            AnyView(
+                ForEach(0..<contents.count, id: \.self) { i in
+                    NavigationLink(destination: {
+                        if !(contents[i].subTable ?? [EPUBTableOfContents]()).isEmpty {
+                            List {
+                                if contents[i].item != nil {
+                                    Section {
+                                        NavigationLink(destination: { SingleContentPreviewView(content: contents[i], rootLink: rootLink) }, label: {
+                                            Text(contents[i].label)
+                                        })
+                                    }
+                                }
+                                if let subTable = contents[i].subTable {
+                                    Section {
+                                        contentLinks(from: subTable, with: rootLink)
+                                    }
+                                }
+                            }
+                            .navigationTitle(contents[i].label)
+                        } else {
+                            SingleContentPreviewView(content: contents[i], rootLink: rootLink)
+                        }
+                    }, label: {
+                        HStack {
+                            Text(contents[i].label)
+                            Spacer()
+                            if !(contents[i].subTable ?? [EPUBTableOfContents]()).isEmpty {
+                                Image(systemName: "chevron.forward")
+                                    .opacity(0.6)
+                            }
+                        }
+                    })
+                }
+            )
+        }
+        struct SingleContentPreviewView: View {
+            var content: EPUBTableOfContents
+            var rootLink: URL
+            var body: some View {
+                List {
+                    Section {
+                        HStack {
+                            Spacer()
+                            Text(content.label)
+                            Spacer()
+                        }
+                    }
+                    .listRowBackground(Color.clear)
+                    Section {
+                        Button(action: {
+                            pWebDelegateStartNavigationAutoViewport = true
+                            AdvancedWebViewController.shared.present(archiveUrl: rootLink.appending(path: content.item!),
+                                                                     loadMimeType: "text/html",
+                                                                     overrideOldWebView: .alwaysAdvanced)
+                        }, label: {
+                            Text("开始阅读")
+                        })
+                    }
+                }
             }
         }
     }

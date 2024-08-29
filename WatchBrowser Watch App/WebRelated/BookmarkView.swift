@@ -10,7 +10,6 @@ import DarockKit
 import AuthenticationServices
 
 struct BookmarkView: View {
-    @State var markTotal = 0
     public static var editingBookmarkIndex = 0
     @AppStorage("IsAllowCookie") var isAllowCookie = false
     @AppStorage("WebSearch") var webSearch = "必应"
@@ -18,6 +17,7 @@ struct BookmarkView: View {
     @AppStorage("UsePasscodeForLockBookmarks") var usePasscodeForLockBookmarks = false
     @State var isLocked = true
     @State var passcodeInputCache = ""
+    @State var bookmarks = [BookmarkStackManager.BookmarkData]()
     @State var isNewMarkPresented = false
     @State var isBookmarkEditPresented = false
     @State var pinnedBookmarkIndexs = [Int]()
@@ -47,10 +47,8 @@ struct BookmarkView: View {
                         }
                     })
                     .sheet(isPresented: $isNewMarkPresented, onDismiss: {
-                        markTotal = UserDefaults.standard.integer(forKey: "BookmarkTotal")
-                    }, content: {
-                        AddBookmarkView()
-                    })
+                        bookmarks = BookmarkStackManager.shared.getAll()
+                    }, content: { AddBookmarkView() })
                     NavigationLink(destination: { StaredBookmarksView() }, label: {
                         HStack {
                             Spacer()
@@ -59,23 +57,19 @@ struct BookmarkView: View {
                         }
                     })
                 }
-                if markTotal != 0 {
+                if !bookmarks.isEmpty {
                     Section {
-                        ForEach(1...markTotal, id: \.self) { i in
+                        ForEach(1...bookmarks.count, id: \.self) { i in
                             Button(action: {
-                                AdvancedWebViewController.shared.present(UserDefaults.standard.string(forKey: "BookmarkLink\(i)")!)
+                                AdvancedWebViewController.shared.present(bookmarks[i - 1].link)
                             }, label: {
-                                Text(UserDefaults.standard.string(forKey: "BookmarkName\(i)") ?? "")
+                                Text(bookmarks[i - 1].name)
                             })
                             .privacySensitive()
                             .swipeActions(edge: .trailing, allowsFullSwipe: true, content: {
                                 Button(role: .destructive, action: {
-                                    for i2 in i...markTotal {
-                                        UserDefaults.standard.set(UserDefaults.standard.string(forKey: "BookmarkName\(i2 &+ 1)"), forKey: "BookmarkName\(i2)")
-                                        UserDefaults.standard.set(UserDefaults.standard.string(forKey: "BookmarkLink\(i2 &+ 1)"), forKey: "BookmarkLink\(i2)")
-                                    }
-                                    UserDefaults.standard.set(markTotal - 1, forKey: "BookmarkTotal")
-                                    markTotal -= 1
+                                    BookmarkStackManager.shared.remove(at: i)
+                                    bookmarks = BookmarkStackManager.shared.getAll()
                                 }, label: {
                                     Image(systemName: "bin.xmark.fill")
                                 })
@@ -114,16 +108,19 @@ struct BookmarkView: View {
                                 })
                             }
                         }
+                        .onMove { source, destination in
+                            BookmarkStackManager.shared.move(fromOffsets: source, toOffset: destination)
+                            bookmarks = BookmarkStackManager.shared.getAll()
+                        }
                     }
                 }
             }
             .sheet(isPresented: $isShareSheetPresented, content: { ShareView(linkToShare: $shareLink) })
             .sheet(isPresented: $isBookmarkEditPresented, onDismiss: {
-                markTotal = 0
-                markTotal = UserDefaults.standard.integer(forKey: "BookmarkTotal")
+                bookmarks = BookmarkStackManager.shared.getAll()
             }, content: { EditBookmarkView() })
             .onAppear {
-                markTotal = UserDefaults.standard.integer(forKey: "BookmarkTotal")
+                bookmarks = BookmarkStackManager.shared.getAll()
                 pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()
             }
         }
@@ -178,14 +175,9 @@ struct AddBookmarkView: View {
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                 Button(action: {
-                    let userdefault = UserDefaults.standard
-                    let total = userdefault.integer(forKey: "BookmarkTotal") &+ 1
-                    userdefault.set(markName, forKey: "BookmarkName\(total)")
-                    userdefault.set(
-                        markLink.hasPrefix("https://") || markLink.hasPrefix("http://") ? markLink : "http://" + markLink,
-                        forKey: "BookmarkLink\(total)"
+                    BookmarkStackManager.shared.push(
+                        (markName, markLink.hasPrefix("https://") || markLink.hasPrefix("http://") ? markLink.urlEncoded() : "http://" + markLink.urlEncoded())
                     )
-                    userdefault.set(total, forKey: "BookmarkTotal")
                     self.presentationMode.wrappedValue.dismiss()
                 }, label: {
                     Label("Bookmark.add", systemImage: "plus")
@@ -221,12 +213,8 @@ struct EditBookmarkView: View {
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                 Button(action: {
-                    let userdefault = UserDefaults.standard
-                    userdefault.set(markName, forKey: "BookmarkName\(BookmarkView.editingBookmarkIndex)")
-                    userdefault.set(
-                        markLink.hasPrefix("https://") || markLink.hasPrefix("http://") ? markLink.urlEncoded() : "http://" + markLink.urlEncoded(),
-                        forKey: "BookmarkLink\(BookmarkView.editingBookmarkIndex)"
-                    )
+                    BookmarkStackManager.shared[BookmarkView.editingBookmarkIndex]
+                    = (markName, markLink.hasPrefix("https://") || markLink.hasPrefix("http://") ? markLink.urlEncoded() : "http://" + markLink.urlEncoded())
                     presentationMode.wrappedValue.dismiss()
                 }, label: {
                     HStack {
@@ -244,8 +232,112 @@ struct EditBookmarkView: View {
     }
 }
 
-struct BookmarkView_Previews: PreviewProvider {
-    static var previews: some View {
-        BookmarkView()
+class BookmarkStackManager {
+    static let shared = BookmarkStackManager()
+    
+    typealias BookmarkData = (name: String, link: String)
+    
+    var endIndex: Int {
+        UserDefaults.standard.integer(forKey: "BookmarkTotal")
+    }
+    
+    func push(_ data: BookmarkData) {
+        let total = endIndex &+ 1
+        UserDefaults.standard.set(data.name, forKey: "BookmarkName\(total)")
+        UserDefaults.standard.set(data.link, forKey: "BookmarkLink\(total)")
+        UserDefaults.standard.set(total, forKey: "BookmarkTotal")
+    }
+    @discardableResult
+    func pop() -> BookmarkData {
+        let popedData = (UserDefaults.standard.string(forKey: "BookmarkName\(endIndex)")!,
+                         UserDefaults.standard.string(forKey: "BookmarkLink\(endIndex)")!)
+        UserDefaults.standard.removeObject(forKey: "BookmarkName\(endIndex)")
+        UserDefaults.standard.removeObject(forKey: "BookmarkLink\(endIndex)")
+        UserDefaults.standard.set(endIndex - 1, forKey: "BookmarkTotal")
+        return popedData
+    }
+    
+    @inline(__always)
+    func _checkIndex(_ index: Int) {
+        precondition(index <= endIndex, "Array index is out of range")
+        precondition(index >= 0, "Negative Array index is out of range")
+    }
+    @inline(__always)
+    func _checkSubscript(_ index: Int) {
+        precondition(
+            (index >= 0) && (index <= endIndex),
+            "Index out of range"
+        )
+    }
+    
+    @inline(__always)
+    func get(at index: Int) -> BookmarkData {
+        _checkIndex(index)
+        return (UserDefaults.standard.string(forKey: "BookmarkName\(index)")!, UserDefaults.standard.string(forKey: "BookmarkLink\(index)")!)
+    }
+    func getAll() -> [BookmarkData] {
+        var result = [BookmarkData]()
+        for i in 1...endIndex {
+            result.append((UserDefaults.standard.string(forKey: "BookmarkName\(i)")!, UserDefaults.standard.string(forKey: "BookmarkLink\(i)")!))
+        }
+        return result
+    }
+    func replaceAll(to newData: [BookmarkData]) {
+        for i in 0..<newData.count {
+            UserDefaults.standard.set(newData[i].name, forKey: "BookmarkName\(i + 1)")
+            UserDefaults.standard.set(newData[i].link, forKey: "BookmarkLink\(i + 1)")
+        }
+        UserDefaults.standard.set(newData.count, forKey: "BookmarkTotal")
+    }
+    
+    @discardableResult
+    func remove(at index: Int) -> BookmarkData {
+        var total = endIndex
+        let removedData = self[index]
+        var popedStack = [BookmarkData]()
+        while total >= index {
+            popedStack.append(pop())
+            total--
+        }
+        popedStack.removeLast()
+        for data in popedStack.reversed() {
+            push(data)
+            total++
+        }
+        UserDefaults.standard.set(total, forKey: "BookmarkTotal")
+        return removedData
+    }
+    func insert(_ newElement: BookmarkData, at index: Int) {
+        var total = endIndex
+        var popedStack = [BookmarkData]()
+        while total >= index {
+            popedStack.append(pop())
+            total--
+        }
+        push(newElement)
+        total++
+        popedStack.removeLast()
+        for data in popedStack.reversed() {
+            push(data)
+            total++
+        }
+        UserDefaults.standard.set(total, forKey: "BookmarkTotal")
+    }
+    func move(fromOffsets source: IndexSet, toOffset destination: Int) {
+        var arrayData = getAll()
+        arrayData.move(fromOffsets: source, toOffset: destination)
+        replaceAll(to: arrayData)
+    }
+    
+    @inlinable
+    subscript(index: Int) -> BookmarkData {
+        get {
+            _checkSubscript(index)
+            return get(at: index)
+        }
+        set {
+            UserDefaults.standard.set(newValue.name, forKey: "BookmarkName\(index)")
+            UserDefaults.standard.set(newValue.link, forKey: "BookmarkLink\(index)")
+        }
     }
 }

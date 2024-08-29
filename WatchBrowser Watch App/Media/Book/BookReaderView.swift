@@ -151,29 +151,32 @@ struct BookReaderView: View {
                         return
                     }
                     let spines = document.spine.items
-                    var tmpContents = [NSAttributedString]()
+                    var tmpContents = [NSMutableAttributedString]()
                     for i in 0..<spines.count {
                         let id = spines[i].idref
                         let idChart = document.manifest.items
                         if let path = idChart[id]?.path {
                             let rawStr = try String(contentsOf: document.contentDirectory.appending(path: path), encoding: .utf8)
                             let splitedStrs = rawStr.components(separatedBy: .newlines)
+                            let progressAddPiece = 1.0 / Double(splitedStrs.count) * 1.0 / Double(spines.count)
                             for j in 0..<splitedStrs.count {
                                 let attrStr = try NSMutableAttributedString(
                                     data: splitedStrs[j].data(using: .utf8)!,
                                     options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue],
                                     documentAttributes: nil
                                 )
-                                let fullRange = NSMakeRange(0, attrStr.length)
-                                attrStr.setAttributes([.foregroundColor: UIColor.white,
-                                                       .font: UIFont.systemFont(ofSize: CGFloat(fontSize), weight: isBoldText ? .bold : .regular),
-                                                       .kern: CGFloat(characterSpacing)],
-                                                      range: fullRange
-                                )
                                 tmpContents.append(attrStr)
-                                loadProgress += 1.0 / Double(splitedStrs.count) * 1.0 / Double(spines.count)
+                                loadProgress += progressAddPiece
                             }
                         }
+                    }
+                    tmpContents.forEach {
+                        let fullRange = NSMakeRange(0, $0.length)
+                        $0.setAttributes([.foregroundColor: UIColor.white,
+                                          .font: UIFont.systemFont(ofSize: CGFloat(fontSize), weight: isBoldText ? .bold : .regular),
+                                          .kern: CGFloat(characterSpacing)],
+                                         range: fullRange
+                        )
                     }
                     DispatchQueue.main.async {
                         contents = .init(tmpContents)

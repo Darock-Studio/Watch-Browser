@@ -1111,25 +1111,34 @@ struct SettingsView: View {
             }
         }
         struct ReaderView: View {
-            @State var attributedExample = NSMutableAttributedString()
+            @AppStorage("RVReaderType") var readerType = "Scroll"
             @AppStorage("RVFontSize") var fontSize = 14
             @AppStorage("RVIsBoldText") var isBoldText = false
             @AppStorage("RVCharacterSpacing") var characterSpacing = 1.0
+            @State var attributedExample = NSMutableAttributedString()
             @State var shouldShowFontDot = false
             var body: some View {
                 VStack {
-                    Text(AttributedString(attributedExample))
-                        .frame(height: 80)
-                        .mask {
-                            LinearGradient(
-                                gradient: Gradient(colors: [Color.black, Color.black, Color.black.opacity(0)]),
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                        }
-                        .animation(.default, value: attributedExample)
+                    if readerType == "Scroll" {
+                        Text(AttributedString(attributedExample))
+                            .frame(height: 80)
+                            .mask {
+                                LinearGradient(
+                                    gradient: Gradient(colors: [Color.black, Color.black, Color.black.opacity(0)]),
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                )
+                            }
+                            .animation(.default, value: attributedExample)
+                    }
                     Form {
                         List {
+                            Section {
+                                Picker("阅读模式", selection: $readerType) {
+                                    Text("滚动").tag("Scroll")
+                                    Text("按章节划分").tag("Paging")
+                                }
+                            }
                             Section {
                                 HStack {
                                     Button(action: {
@@ -1171,12 +1180,14 @@ struct SettingsView: View {
                                 }
                             }
                             .animation(.easeOut(duration: 0.2), value: shouldShowFontDot)
+                            .disabled(readerType != "Scroll")
                             Section {
                                 Toggle("粗体文本", isOn: $isBoldText)
                                     .onChange(of: isBoldText) { _ in
                                         refreshAttributedExample()
                                     }
                             }
+                            .disabled(readerType != "Scroll")
                             Section {
                                 VStack(alignment: .leading) {
                                     Text("字间距")
@@ -1190,6 +1201,7 @@ struct SettingsView: View {
                                         .centerAligned()
                                 }
                             }
+                            .disabled(readerType != "Scroll")
                             Section {}
                         }
                     }
