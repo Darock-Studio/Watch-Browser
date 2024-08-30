@@ -8608,6 +8608,9 @@
       },
       "shouldTranslate" : false
     },
+    "Feature Flags" : {
+      "shouldTranslate" : false
+    },
     "Firefox - macOS" : {
       "shouldTranslate" : false
     },

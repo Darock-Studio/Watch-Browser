@@ -105,7 +105,7 @@ struct AudioControllerView: View {
                                         }
                                         softScrollingResetTask = Task {
                                             do {
-                                                try await Task.sleep(for: .seconds(0.6)) // Animation may take longer time than duration
+                                                try await Task.sleep(for: .seconds(1)) // Animation may take longer time than duration
                                                 guard !Task.isCancelled else { return }
                                                 DispatchQueue.main.async {
                                                     isSoftScrolling = false
@@ -412,6 +412,7 @@ struct AudioControllerView: View {
     
     func updateMetadata() {
         isLyricsAvailable = true
+        isSoftScrolling = true
         lyrics.removeAll()
         if !nowPlayingAudioId.isEmpty {
             DarockKit.Network.shared
@@ -495,6 +496,7 @@ struct AudioControllerView: View {
         @State var dot3Opacity = 0.2
         @State var scale: CGFloat = 1
         @State var isVisible = false
+        @State var verticalPadding: CGFloat = -15
         var body: some View {
             HStack {
                 HStack(spacing: 3) {
@@ -515,6 +517,7 @@ struct AudioControllerView: View {
                 .scaleEffect(scale)
                 Spacer(minLength: 5)
             }
+            .padding(.vertical, verticalPadding)
             .opacity(isVisible ? 1.0 : 0.0100000002421438702673861521)
             .onAppear {
                 withAnimation(.easeInOut(duration: 2.0).repeatForever()) {
@@ -527,7 +530,7 @@ struct AudioControllerView: View {
             }
             .onChange(of: currentTime) { value in
                 if _fastPath(!isVisible) {
-                    isVisible = currentTime >= startTime && currentTime <= endTime
+                    isVisible = currentTime >= startTime + 0.2 && currentTime <= endTime
                 }
                 if value >= startTime && value <= endTime
                     && dot1Opacity == 0.2 && dot2Opacity == 0.2 && dot3Opacity == 0.2 {
@@ -558,6 +561,9 @@ struct AudioControllerView: View {
                                                 dot2Opacity = 0.2
                                                 dot3Opacity = 0.2
                                                 scale = 1
+                                                withAnimation(.easeInOut(duration: 2.0).repeatForever()) {
+                                                    scale = 1.2
+                                                }
                                             }
                                         }
                                     }
@@ -579,6 +585,17 @@ struct AudioControllerView: View {
                             dot3Opacity = 0.2
                             scale = 1
                         }
+                    }
+                }
+            }
+            .onChange(of: isVisible) { _ in
+                if isVisible {
+                    withAnimation(.easeOut(duration: 0.3)) {
+                        verticalPadding = 0
+                    }
+                } else {
+                    withAnimation(.easeOut) {
+                        verticalPadding = -15
                     }
                 }
             }

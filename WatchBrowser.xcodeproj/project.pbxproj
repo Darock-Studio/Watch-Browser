@@ -21,6 +21,7 @@
 		8C03B70E2C29B2CE000770B4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8C03B70D2C29B2CE000770B4 /* Localizable.xcstrings */; };
 		8C1DED022C32AEBB0048A32A /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1DED012C32AEB00048A32A /* General.swift */; };
 		8C3432ED2C5972DF00DC3912 /* RadarKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C3432EC2C5972DF00DC3912 /* RadarKit */; };
+		8C3E839D2C82246B00686E9C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E839C2C82246B00686E9C /* LICENSE */; };
 		8C40D4C42C33DBE900C4221C /* SDWebImagePDFCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 8C40D4C32C33DBE900C4221C /* SDWebImagePDFCoder */; };
 		8C40D4C62C33DE6B00C4221C /* TopLevelDomainList.drkdatat in Resources */ = {isa = PBXBuildFile; fileRef = 8C40D4C52C33DE5E00C4221C /* TopLevelDomainList.drkdatat */; };
 		8C40D4C92C33EC9900C4221C /* Punnycode in Frameworks */ = {isa = PBXBuildFile; productRef = 8C40D4C82C33EC9900C4221C /* Punnycode */; };
@@ -677,6 +678,7 @@
 		8C3A5FFC2C6C8CD1002097A8 /* WKWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKWebView.h; sourceTree = "<group>"; };
 		8C3A5FFD2C6C8CD1002097A8 /* WKWebViewConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKWebViewConfiguration.h; sourceTree = "<group>"; };
 		8C3A5FFE2C6C8CD1002097A8 /* WKWindowFeatures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKWindowFeatures.h; sourceTree = "<group>"; };
+		8C3E839C2C82246B00686E9C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		8C40D4C52C33DE5E00C4221C /* TopLevelDomainList.drkdatat */ = {isa = PBXFileReference; lastKnownFileType = text; path = TopLevelDomainList.drkdatat; sourceTree = "<group>"; };
 		8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TripleQuestionmarkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5281242C22FA5600392315 /* TripleQuestionmarkCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripleQuestionmarkCore.h; sourceTree = "<group>"; };
@@ -832,6 +834,7 @@
 		6BF209E12990E61C00E623FC = {
 			isa = PBXGroup;
 			children = (
+				8C3E839C2C82246B00686E9C /* LICENSE */,
 				8C5869C72C3165E400A18923 /* Intents.intentdefinition */,
 				8CDE9B8E2C3959DE0083B09E /* .swiftlint.yml */,
 				8CDE9B972C3BD77A0083B09E /* ci_scripts */,
@@ -1871,6 +1874,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C3E839D2C82246B00686E9C /* LICENSE in Resources */,
 				8C40D4C62C33DE6B00C4221C /* TopLevelDomainList.drkdatat in Resources */,
 				E25EA8382B70ABEF00BFEC6E /* InfoPlist.strings in Resources */,
 				6BF209F82990E61E00E623FC /* Assets.xcassets in Resources */,
@@ -2219,7 +2223,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.0.3;
+				MARKETING_VERSION = 5.1.0;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
@@ -2262,7 +2266,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.0.3;
+				MARKETING_VERSION = 5.1.0;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
@@ -2290,7 +2294,7 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 5.0.3;
+				MARKETING_VERSION = 5.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2309,7 +2313,7 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 5.0.3;
+				MARKETING_VERSION = 5.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2474,7 +2478,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 5.0.3;
+				MARKETING_VERSION = 5.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.Intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -2505,7 +2509,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 5.0.3;
+				MARKETING_VERSION = 5.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.Intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -2586,7 +2590,7 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 5.0.3;
+				MARKETING_VERSION = 5.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2623,7 +2627,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.0.3;
+				MARKETING_VERSION = 5.1.0;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
@@ -2660,7 +2664,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 5.0.3;
+				MARKETING_VERSION = 5.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.Intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
