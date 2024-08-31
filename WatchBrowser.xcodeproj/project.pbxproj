@@ -679,6 +679,7 @@
 		8C3A5FFD2C6C8CD1002097A8 /* WKWebViewConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKWebViewConfiguration.h; sourceTree = "<group>"; };
 		8C3A5FFE2C6C8CD1002097A8 /* WKWindowFeatures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKWindowFeatures.h; sourceTree = "<group>"; };
 		8C3E839C2C82246B00686E9C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		8C3E83A02C82B45600686E9C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8C40D4C52C33DE5E00C4221C /* TopLevelDomainList.drkdatat */ = {isa = PBXFileReference; lastKnownFileType = text; path = TopLevelDomainList.drkdatat; sourceTree = "<group>"; };
 		8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TripleQuestionmarkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5281242C22FA5600392315 /* TripleQuestionmarkCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripleQuestionmarkCore.h; sourceTree = "<group>"; };
@@ -834,6 +835,7 @@
 		6BF209E12990E61C00E623FC = {
 			isa = PBXGroup;
 			children = (
+				8C3E83A02C82B45600686E9C /* README.md */,
 				8C3E839C2C82246B00686E9C /* LICENSE */,
 				8C5869C72C3165E400A18923 /* Intents.intentdefinition */,
 				8CDE9B8E2C3959DE0083B09E /* .swiftlint.yml */,

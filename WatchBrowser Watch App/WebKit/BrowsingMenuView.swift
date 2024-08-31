@@ -229,7 +229,8 @@ struct BrowsingMenuView: View {
                                     Image(systemName: "bookmark")
                                 }
                             })
-                            if !(UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()).contains(AdvancedWebViewController.shared.currentUrl) {
+                            if !(UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]())
+                                .contains(AdvancedWebViewController.shared.currentUrl) {
                                 Button(action: {
                                     WEBackSwift.createWebArchive()
                                     presentationMode.wrappedValue.dismiss()
