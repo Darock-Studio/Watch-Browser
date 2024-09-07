@@ -362,6 +362,12 @@
             "state" : "translated",
             "value" : "“Feedback Assistant” is unavailable"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“使用者意見”不可用"
+          }
         }
       }
     },
@@ -478,7 +484,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“反饋助理”不可用，因為暗礁瀏覽器有更新可用"
+            "value" : "“使用者意見”不可用，因為暗礁瀏覽器有更新可用"
           }
         }
       }
@@ -10850,7 +10856,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "設置"
+            "value" : "設定"
           }
         }
       }
@@ -16165,7 +16171,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "個人信息"
+            "value" : "個人資訊"
           }
         }
       }
@@ -16401,7 +16407,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "主屏幕"
+            "value" : "主畫面"
           }
         }
       }
@@ -16637,12 +16643,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "二維碼"
+            "value" : "QR 碼"
           }
         }
       }
     },
     "互点两下" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -16765,7 +16772,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "互聯網"
+            "value" : "網際網路"
           }
         }
       }
@@ -16883,7 +16890,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "互聯網：在線"
+            "value" : "網際網路：在線"
           }
         }
       }
@@ -17001,7 +17008,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "互聯網：正在檢查"
+            "value" : "網際網路：正在檢查"
           }
         }
       }
@@ -17119,7 +17126,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "互聯網：離線"
+            "value" : "網際網路：離線"
           }
         }
       }
@@ -17591,7 +17598,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "僅作示例，請支持正版圖書。"
+            "value" : "僅作示例，請支持正版書籍。"
           }
         }
       }
@@ -18069,6 +18076,7 @@
       }
     },
     "从历史记录选择" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -18653,7 +18661,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "你已登錄"
+            "value" : "你已登入"
           }
         }
       }
@@ -18787,6 +18795,7 @@
       }
     },
     "使用“互点两下”手势以显示空屏幕" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -20237,12 +20246,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "允許背景播放"
           }
         }
       }
     },
     "全局操作" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -21203,11 +21213,18 @@
       }
     },
     "关闭" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Off"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "關閉"
           }
         }
       }
@@ -23831,7 +23848,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "前往登錄 Darock 賬戶"
+            "value" : "前往登入 Darock 賬戶"
           }
         }
       }
@@ -24807,7 +24824,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "反饋助理"
+            "value" : "使用者意見"
           }
         }
       }
@@ -25757,7 +25774,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "可在%@設置中打開“請求桌面網站”"
+            "value" : "可在%@設置中打開“切換為電腦版網站”"
           }
         }
       }
@@ -27655,7 +27672,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "書籍"
           }
         }
       }
@@ -27891,7 +27908,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "書籍列表"
           }
         }
       }
@@ -28245,7 +28262,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "圖書閱讀器設置"
+            "value" : "書籍閱讀器設置"
           }
         }
       }
@@ -30407,6 +30424,7 @@
       }
     },
     "如果误触发手势，所有未保存的更改也将丢失！" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -34321,7 +34339,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "嘗試在 iPhone 設置中關閉無線局域網與藍牙"
+            "value" : "嘗試在 iPhone 設定中關閉 WLAN 與藍牙"
           }
         }
       }
@@ -35629,7 +35647,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "已清除"
           }
         }
       }
@@ -35763,7 +35781,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已還原"
+            "value" : "已重置"
           }
         }
       }
@@ -35881,7 +35899,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "常用設置"
+            "value" : "常用設定"
           }
         }
       }
@@ -36477,6 +36495,7 @@
       }
     },
     "开启" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -38841,7 +38860,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "您可以隨時在“設置”中重新打開此頁"
+            "value" : "您可以隨時在“設定”中重新打開此頁"
           }
         }
       }
@@ -39437,6 +39456,7 @@
       }
     },
     "手势" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -39931,6 +39951,7 @@
       }
     },
     "打开网页" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -39941,6 +39962,7 @@
       }
     },
     "打开网页行为" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -40063,7 +40085,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "清除"
           }
         }
       }
@@ -40181,7 +40203,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "清除所有內容和設定"
           }
         }
       }
@@ -43323,7 +43345,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "斷開 Apple Watch 與 iPhone 的連接"
+            "value" : "斷開 Apple Watch 與 iPhone 的連線"
           }
         }
       }
@@ -44421,7 +44443,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無本地圖書"
+            "value" : "無本地書籍"
           }
         }
       }
@@ -44677,7 +44699,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法連接互聯網"
+            "value" : "無網際網路連線"
           }
         }
       }
@@ -45053,6 +45075,12 @@
             "state" : "translated",
             "value" : "Display & Brightness"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "螢幕顯示與亮度"
+          }
         }
       }
     },
@@ -45175,11 +45203,18 @@
       }
     },
     "显示空屏幕" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Display Blank Screen"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示空螢幕"
           }
         }
       }
@@ -45297,7 +45332,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "顯示繙譯歌詞"
+            "value" : "顯示翻譯歌詞"
           }
         }
       }
@@ -46523,7 +46558,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "服務器錯誤"
+            "value" : "伺服器錯誤"
           }
         }
       }
@@ -47349,7 +47384,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "本地圖書"
+            "value" : "本地書籍"
           }
         }
       }
@@ -51626,7 +51661,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "法律與監管"
+            "value" : "法律資訊與電信規範"
           }
         }
       }
@@ -54599,7 +54634,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "由“反饋助理”收集的診斷數據可能包含個人信息。你可以在提交前輕點查看附加數據，或向左輕掃刪除。"
+            "value" : "由“使用者意見”收集的診斷數據可能包含個人信息。你可以在提交前輕點查看附加數據，或向左輕掃刪除。"
           }
         }
       }
@@ -54953,7 +54988,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "電子郵件可用於登錄。"
+            "value" : "電子郵件可用於登入。"
           }
         }
       }
@@ -55431,7 +55466,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "登錄"
+            "value" : "登入"
           }
         }
       }
@@ -55549,7 +55584,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "登錄與安全性"
+            "value" : "登入與安全性"
           }
         }
       }
@@ -55667,7 +55702,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "登錄以為今後賬戶相關功能做好準備。"
+            "value" : "登入以為今後賬戶相關功能做好準備。"
           }
         }
       }
@@ -57335,7 +57370,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "视频"
+            "value" : "視頻"
           }
         }
       }
@@ -58063,7 +58098,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "空圖書列錶"
+            "value" : "空書籍列錶"
           }
         }
       }
@@ -58653,7 +58688,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "站點安全"
+            "value" : "網域安全"
           }
         }
       }
@@ -59249,6 +59284,7 @@
       }
     },
     "紧急回避" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -59259,6 +59295,7 @@
       }
     },
     "紧急回避行为" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -60099,7 +60136,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "網絡"
+            "value" : "網路"
           }
         }
       }
@@ -60217,7 +60254,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "網絡檢查"
+            "value" : "網路檢查"
           }
         }
       }
@@ -60335,12 +60372,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "網絡問題"
+            "value" : "網路問題"
           }
         }
       }
     },
     "网页内操作" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -60951,6 +60989,7 @@
       }
     },
     "网页链接无效" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -61669,7 +61708,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "若要使用網頁檢查器，通過線纜將此 Apple Watch 配對的 iPhone 與 Mac 連接，在 Safari 的“開發”菜單中訪問此 Apple Watch。你可以在 Safari 設置中的“高級”選項卡中打開開發菜單。"
+            "value" : "若要使用網頁檢查器，通過線纜將此 Apple Watch 配對的 iPhone 與 Mac 連接，在 Safari 的“開發”菜單中訪問此 Apple Watch。你可以在 Safari 設定中的“高級”選項卡中打開開發菜單。"
           }
         }
       }
@@ -61787,7 +61826,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "要在背景播放，你需要在播放前與藍牙音頻裝置連線"
           }
         }
       }
@@ -62495,7 +62534,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "設置"
+            "value" : "設定"
           }
         }
       }
@@ -62613,7 +62652,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "設置清單"
+            "value" : "設定清單"
           }
         }
       }
@@ -63095,7 +63134,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "請求桌面網站"
+            "value" : "切換為電腦版網站"
           }
         }
       }
@@ -63603,7 +63642,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "軟件更新"
+            "value" : "軟體更新"
           }
         }
       }
@@ -63969,6 +64008,7 @@
       }
     },
     "轻触三下屏幕以恢复，或按下数码表冠以返回表盘。" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -66717,7 +66757,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "重置"
           }
         }
       }
@@ -66835,7 +66875,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "重置所有設定"
           }
         }
       }
@@ -66953,7 +66993,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "還原時齣錯"
+            "value" : "重置時齣錯"
           }
         }
       }
@@ -67789,7 +67829,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "連續互通"
+            "value" : "接續互通"
           }
         }
       }
@@ -67907,7 +67947,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "連續互通媒體"
+            "value" : "接續互通媒體"
           }
         }
       }
@@ -68267,6 +68307,7 @@
       }
     },
     "退出暗礁浏览器" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -68389,7 +68430,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "退出登錄"
+            "value" : "退出登入"
           }
         }
       }
@@ -68507,12 +68548,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "退出登錄？"
+            "value" : "退出登入？"
           }
         }
       }
     },
     "退出网页" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -68753,7 +68795,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "通用"
+            "value" : "一般"
           }
         }
       }
@@ -69237,6 +69279,7 @@
       }
     },
     "重新载入网页" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -69247,6 +69290,7 @@
       }
     },
     "链接" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -70559,7 +70603,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "鍵盤設置..."
+            "value" : "鍵盤設定..."
           }
         }
       }
@@ -71283,7 +71327,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "fu jian"
+            "value" : "附件"
           }
         }
       }
@@ -71647,7 +71691,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "除非設置為默認，此處設置的值將覆蓋%@設置"
+            "value" : "除非設置為默認，此處設置的值將覆蓋%@設定"
           }
         }
       }
@@ -72493,7 +72537,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "需要安全延時以清除所有設定"
           }
         }
       }
@@ -74043,6 +74087,7 @@
       }
     },
     "预览..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -74407,6 +74452,7 @@
       }
     },
     "食指和拇指互点两下以执行指定的操作。需要先在系统设置→辅助功能中启用“快速操作”。" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -74417,6 +74463,7 @@
       }
     },
     "食指和拇指互点两下以执行指定的操作。需要先在系统设置中启用“互点两下”手势。" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
