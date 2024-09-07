@@ -277,6 +277,9 @@ class BookmarkStackManager {
     }
     func getAll() -> [BookmarkData] {
         var result = [BookmarkData]()
+        
+        guard endIndex > 0 else { return result }
+        
         for i in 1...endIndex {
             result.append((UserDefaults.standard.string(forKey: "BookmarkName\(i)")!, UserDefaults.standard.string(forKey: "BookmarkLink\(i)")!))
         }

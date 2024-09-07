@@ -51,8 +51,6 @@ struct BookReaderView: View {
                     } else {
                         Text("正在载入...")
                         ProgressView(value: loadProgress)
-                        Text("首次载入可能需要一些时间，完成后将缓存数据以加快后续载入。")
-                            .padding(.vertical)
                     }
                 }
                 .scrollIndicators(.never)
@@ -125,31 +123,6 @@ struct BookReaderView: View {
             extendScreenIdleTime(1200)
             DispatchQueue(label: "com.darock.WatchBrowser.load-book-content", qos: .userInitiated).async {
                 do {
-                    if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/tmp/Book\(document.directory.lastPathComponent)Cache.drkdatae") {
-                        let data = try Data(contentsOf: URL(filePath: NSHomeDirectory() + "/tmp/Book\(document.directory.lastPathComponent)Cache.drkdatae"))
-                        let decoder = PropertyListDecoder()
-                        let decodeContents = try decoder.decode(CodableAttributedStringArray.self, from: data)
-                        DispatchQueue.main.async {
-                            contents = CodableAttributedStringArray(decodeContents.map { element in
-                                let mutable = NSMutableAttributedString(attributedString: element)
-                                let fullRange = NSMakeRange(0, element.length)
-                                mutable.setAttributes([.foregroundColor: UIColor.white,
-                                                       .font: UIFont.systemFont(ofSize: CGFloat(fontSize), weight: isBoldText ? .bold : .regular),
-                                                       .kern: CGFloat(characterSpacing)],
-                                                      range: fullRange
-                                )
-                                return NSAttributedString(attributedString: mutable)
-                            })
-                            recoverNormalIdleTime()
-                            toolbarVisibilityResetTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
-                                toolbarVisibility = .hidden
-                            }
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                isFullLoaded = true
-                            }
-                        }
-                        return
-                    }
                     let spines = document.spine.items
                     var tmpContents = [NSMutableAttributedString]()
                     for i in 0..<spines.count {
@@ -188,9 +161,6 @@ struct BookReaderView: View {
                             isFullLoaded = true
                         }
                     }
-                    let encoder = PropertyListEncoder()
-                    encoder.outputFormat = .binary
-                    try encoder.encode(contents).write(to: URL(filePath: NSHomeDirectory() + "/tmp/Book\(document.directory.lastPathComponent)Cache.drkdatae"))
                 } catch {
                     globalErrorHandler(error)
                 }

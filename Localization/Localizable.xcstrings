@@ -16649,7 +16649,6 @@
       }
     },
     "互点两下" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -18076,7 +18075,6 @@
       }
     },
     "从历史记录选择" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -18795,7 +18793,6 @@
       }
     },
     "使用“互点两下”手势以显示空屏幕" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -20252,7 +20249,6 @@
       }
     },
     "全局操作" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -21213,7 +21209,6 @@
       }
     },
     "关闭" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -30424,7 +30419,6 @@
       }
     },
     "如果误触发手势，所有未保存的更改也将丢失！" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -36495,7 +36489,6 @@
       }
     },
     "开启" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -39456,7 +39449,6 @@
       }
     },
     "手势" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -39951,7 +39943,6 @@
       }
     },
     "打开网页" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -39962,7 +39953,6 @@
       }
     },
     "打开网页行为" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -45203,7 +45193,6 @@
       }
     },
     "显示空屏幕" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -59284,7 +59273,6 @@
       }
     },
     "紧急回避" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -59295,7 +59283,6 @@
       }
     },
     "紧急回避行为" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -60378,7 +60365,6 @@
       }
     },
     "网页内操作" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -60989,7 +60975,6 @@
       }
     },
     "网页链接无效" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -64008,7 +63993,6 @@
       }
     },
     "轻触三下屏幕以恢复，或按下数码表冠以返回表盘。" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -68307,7 +68291,6 @@
       }
     },
     "退出暗礁浏览器" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -68554,7 +68537,6 @@
       }
     },
     "退出网页" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -69279,7 +69261,6 @@
       }
     },
     "重新载入网页" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -69290,7 +69271,6 @@
       }
     },
     "链接" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -74087,7 +74067,6 @@
       }
     },
     "预览..." : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -74452,7 +74431,6 @@
       }
     },
     "食指和拇指互点两下以执行指定的操作。需要先在系统设置→辅助功能中启用“快速操作”。" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -74463,7 +74441,6 @@
       }
     },
     "食指和拇指互点两下以执行指定的操作。需要先在系统设置中启用“互点两下”手势。" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -74474,6 +74451,7 @@
       }
     },
     "首次载入可能需要一些时间，完成后将缓存数据以加快后续载入。" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
