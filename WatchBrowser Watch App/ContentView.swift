@@ -777,7 +777,6 @@ func getWebSearchedURL(_ content: String, webSearch: String, isSearchEngineShort
 /// 获取URL的顶级域名称
 /// - Parameter url: 要处理的URL
 /// - Returns: 顶级域名称，e.g. com
-@_effects(readnone)
 func getTopLevel(from url: String) -> String? {
     if !url.contains(".") {
         return nil
@@ -804,20 +803,17 @@ func getTopLevel(from url: String) -> String? {
 
 extension String {
     /// 将原始的url编码为合法的url
-    @_effects(readnone)
     func urlEncoded() -> String {
         let encodeUrlString = self.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         return encodeUrlString ?? ""
     }
      
     /// 将编码后的url转换回原始的url
-    @_effects(readnone)
     func urlDecoded() -> String {
         return self.removingPercentEncoding ?? ""
     }
     
     /// 仅为要求手动编码URL的系统编码URL
-    @_effects(readnone)
     func compatibleUrlEncoded() -> String {
         if #available(watchOS 10.0, *) {
             return self
@@ -827,7 +823,6 @@ extension String {
     }
     
     /// 是否为URL
-    @_effects(readnone)
     func isURL() -> Bool {
         let dotSplited = self.split(separator: ".")
         if dotSplited.count == 4 {
