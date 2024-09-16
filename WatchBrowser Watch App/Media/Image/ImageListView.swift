@@ -27,7 +27,7 @@ struct ImageListView: View {
                                     .font(.system(size: 14))
                                     .lineLimit(1)
                                     .truncationMode(.middle)
-                                    .foregroundStyle(Color.gray)
+                                    .foregroundStyle(.gray)
                             }
                         } else {
                             Text(imageLinkLists[i])

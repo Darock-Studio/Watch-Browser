@@ -694,7 +694,7 @@ struct FeedbackView: View {
                                     return df.string(from: Date(timeIntervalSince1970: intt))
                                 }())
                                 .font(.system(size: 13))
-                                .foregroundStyle(Color.gray)
+                                .foregroundStyle(.gray)
                                 Spacer()
                             }
                         }
@@ -765,7 +765,7 @@ struct FeedbackView: View {
                                                 ForEach(0..<tags.count, id: \.self) { i in
                                                     Text(tags[i].name)
                                                         .font(.system(size: 15, weight: .semibold))
-                                                        .foregroundStyle(Color.white)
+                                                        .foregroundStyle(.white)
                                                         .padding(.horizontal, 8)
                                                         .padding(.vertical, 3)
                                                         .background {
@@ -854,12 +854,12 @@ private struct NewsView: View {
                                         return df.string(from: Date(timeIntervalSince1970: news[i].time))
                                     }())
                                     .font(.caption)
-                                    .foregroundStyle(Color.gray)
+                                    .foregroundStyle(.gray)
                                 }
                             })
                             Text(news[i].type)
                                 .font(.subheadline)
-                                .foregroundStyle(Color.gray)
+                                .foregroundStyle(.gray)
                         }
                     }
                 } else {
@@ -868,7 +868,7 @@ private struct NewsView: View {
                         VStack {
                             Image(systemName: "newspaper.fill")
                                 .font(.title)
-                                .foregroundStyle(Color.secondary)
+                                .foregroundStyle(.secondary)
                             Text("无新闻")
                                 .font(.headline)
                                 .padding(.vertical)

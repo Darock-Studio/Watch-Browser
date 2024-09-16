@@ -38,7 +38,7 @@ struct SwiftWebView: View {
                                     }, label: {
                                         Text("完成")
                                             .font(.system(size: 15, weight: .semibold))
-                                            .foregroundStyle(Color.white)
+                                            .foregroundStyle(.white)
                                     })
                                     .buttonStyle(.plain)
                                     .padding(5)
@@ -51,7 +51,7 @@ struct SwiftWebView: View {
                                     .frame(height: 5)
                             }
                             .font(.system(size: 12))
-                            .foregroundStyle(Color.accentColor)
+                            .foregroundStyle(.accent)
                             .padding(.vertical, 5)
                             .background {
                                 if #available(watchOS 10, *) {

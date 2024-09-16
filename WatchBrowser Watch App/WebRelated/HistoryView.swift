@@ -136,7 +136,7 @@ struct HistoryView: View {
                                                     .font(.system(size: 14))
                                                     .lineLimit(1)
                                                     .truncationMode(.middle)
-                                                    .foregroundStyle(Color.gray)
+                                                    .foregroundStyle(.gray)
                                             }
                                         } else {
                                             if histories[i].url.hasPrefix("https://www.bing.com/search?q=") {
@@ -220,11 +220,11 @@ struct HistoryView: View {
                             }, label: {
                                 HStack {
                                     Text("上一小时")
-                                        .foregroundStyle(Color.white)
+                                        .foregroundStyle(.white)
                                     Spacer()
                                     if selectedEmptyAction == 0 {
                                         Image(systemName: "checkmark")
-                                            .foregroundStyle(Color.blue)
+                                            .foregroundStyle(.blue)
                                     }
                                 }
                             })
@@ -233,11 +233,11 @@ struct HistoryView: View {
                             }, label: {
                                 HStack {
                                     Text("今天")
-                                        .foregroundStyle(Color.white)
+                                        .foregroundStyle(.white)
                                     Spacer()
                                     if selectedEmptyAction == 1 {
                                         Image(systemName: "checkmark")
-                                            .foregroundStyle(Color.blue)
+                                            .foregroundStyle(.blue)
                                     }
                                 }
                             })
@@ -246,11 +246,11 @@ struct HistoryView: View {
                             }, label: {
                                 HStack {
                                     Text("昨天和今天")
-                                        .foregroundStyle(Color.white)
+                                        .foregroundStyle(.white)
                                     Spacer()
                                     if selectedEmptyAction == 2 {
                                         Image(systemName: "checkmark")
-                                            .foregroundStyle(Color.blue)
+                                            .foregroundStyle(.blue)
                                     }
                                 }
                             })
@@ -259,11 +259,11 @@ struct HistoryView: View {
                             }, label: {
                                 HStack {
                                     Text("所有历史记录")
-                                        .foregroundStyle(Color.white)
+                                        .foregroundStyle(.white)
                                     Spacer()
                                     if selectedEmptyAction == 3 {
                                         Image(systemName: "checkmark")
-                                            .foregroundStyle(Color.blue)
+                                            .foregroundStyle(.blue)
                                     }
                                 }
                             })

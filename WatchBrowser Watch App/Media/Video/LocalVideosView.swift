@@ -49,7 +49,7 @@ struct LocalVideosView: View {
                                 HStack {
                                     if !videoNames[i].hasPrefix("http://") && !videoNames[i].hasPrefix("https://") {
                                         Image(systemName: "square.and.arrow.down.fill")
-                                            .foregroundStyle(Color.gray)
+                                            .foregroundStyle(.gray)
                                     }
                                     Text(videoHumanNameChart[videoNames[i]] ?? videoNames[i])
                                 }

@@ -6,27 +6,31 @@
 //
 
 import Charts
+import Pictor
 import SwiftUI
 import Cepheus
 import EFQRCode
 import DarockKit
 import SwiftDate
+import WidgetKit
 import CoreLocation
+import SwiftyStoreKit
 import NetworkExtension
 import UserNotifications
 import TripleQuestionmarkCore
 import AuthenticationServices
 
 struct SettingsView: View {
+    @AppStorage("IsProPurchased") var isProPurchased = false
     @AppStorage("DarockAccount") var darockAccount = ""
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("IsDeveloperModeEnabled") var isDeveloperModeEnabled = false
+    @AppStorage("DarockAccountCachedUsername") var accountUsername = ""
     @State var isNewFeaturesPresented = false
     @State var isPasscodeViewPresented = false
     @State var isEnterPasscodeViewInputPresented = false
     @State var passcodeInputTmp = ""
     @State var isDarockAccountLoginPresented = false
-    @State var accountUsername = ""
     var body: some View {
         ZStack {
             if #unavailable(watchOS 10.0) {
@@ -96,6 +100,15 @@ struct SettingsView: View {
                                 }
                             }
                         })
+                    }
+                }
+                Section {
+                    NavigationLink(destination: { ProPurchaseView() }, label: { SettingItemLabel(title: "暗礁浏览器 Pro", image: "sparkles", color: .blue) })
+                    if isProPurchased {
+                        if #available(watchOS 10.0, *) {
+                            NavigationLink(destination: { WidgetSettingsView() },
+                                           label: { SettingItemLabel(title: "小组件", image: "watchface.applewatch.case", color: .blue) })
+                        }
                     }
                 }
                 Section {
@@ -246,6 +259,313 @@ struct SettingsView: View {
         }
     }
     
+    @available(watchOS 10.0, *)
+    struct WidgetSettingsView: View {
+        var body: some View {
+            List {
+                Section {
+                    NavigationLink(destination: { BookmarkWidgetsView() }, label: {
+                        Label("书签", systemImage: "bookmark")
+                    })
+                }
+            }
+            .navigationTitle("小组件")
+        }
+        
+        struct BookmarkWidgetsView: View {
+            @State var bookmarks = [SingleWidgetBookmark]()
+            @State var isAddBookmarkPresented = false
+            var body: some View {
+                List {
+                    if !bookmarks.isEmpty {
+                        Section {
+                            ForEach(0..<bookmarks.count, id: \.self) { i in
+                                NavigationLink(destination: { ModifyBookmarkView(index: i) }, label: {
+                                    VStack(alignment: .leading) {
+                                        Text(bookmarks[i].displayName)
+                                        Text(bookmarks[i].link)
+                                            .font(.system(size: 14))
+                                            .lineLimit(1)
+                                            .truncationMode(.middle)
+                                            .foregroundStyle(.gray)
+                                    }
+                                })
+                                .swipeActions {
+                                    Button(role: .destructive, action: {
+                                        bookmarks.remove(at: i)
+                                        let containerPath = FileManager.default.containerURL(
+                                            forSecurityApplicationGroupIdentifier: "group.darock.WatchBrowser.Widgets"
+                                        )!.path
+                                        do {
+                                            try jsonString(from: bookmarks)?.write(
+                                                toFile: containerPath + "/WidgetBookmarks.drkdataw",
+                                                atomically: true,
+                                                encoding: .utf8
+                                            )
+                                        } catch {
+                                            globalErrorHandler(error)
+                                        }
+                                        WidgetCenter.shared.reloadTimelines(ofKind: "BookmarkWidgets")
+                                        WidgetCenter.shared.invalidateConfigurationRecommendations()
+                                    }, label: {
+                                        Image(systemName: "xmark.circle.fill")
+                                    })
+                                }
+                            }
+                        }
+                    } else {
+                        VStack {
+                            Image(systemName: "circle.slash")
+                                .font(.title)
+                                .foregroundStyle(.secondary)
+                            VStack {
+                                Text("无书签小组件")
+                                    .font(.headline)
+                                Text("轻触 \(Image(systemName: "plus")) 按钮以添加")
+                                    .font(.subheadline)
+                                    .multilineTextAlignment(.center)
+                            }
+                            .padding(.vertical)
+                        }
+                        .centerAligned()
+                        .listRowBackground(Color.clear)
+                    }
+                }
+                .navigationTitle("书签小组件")
+                .sheet(isPresented: $isAddBookmarkPresented, onDismiss: refreshBookmarks, content: { AddBookmarkView() })
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(action: {
+                            isAddBookmarkPresented = true
+                        }, label: {
+                            Image(systemName: "plus")
+                        })
+                    }
+                }
+                .onAppear {
+                    refreshBookmarks()
+                }
+            }
+            
+            func refreshBookmarks() {
+                let containerPath = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.darock.WatchBrowser.Widgets")!.path
+                if let _bookmarksStr = try? String(contentsOfFile: containerPath + "/WidgetBookmarks.drkdataw", encoding: .utf8),
+                   let fileBookmarks = getJsonData([SingleWidgetBookmark].self, from: _bookmarksStr) {
+                    bookmarks = fileBookmarks
+                }
+            }
+            
+            struct AddBookmarkView: View {
+                @Environment(\.presentationMode) var presentationMode
+                @State var nameInput = ""
+                @State var linkInput = ""
+                @State var symbolSelection = "bookmark.fill"
+                @State var isHistorySelectorPresented = false
+                @State var isBookmarkSelectorPresented = false
+                var body: some View {
+                    NavigationStack {
+                        List {
+                            Section {
+                                TextField("名称", text: $nameInput)
+                                TextField("链接", text: $linkInput) {
+                                    if !linkInput.hasPrefix("http://") && !linkInput.hasPrefix("https://") {
+                                        linkInput = "http://" + linkInput
+                                    }
+                                }
+                                .noAutoInput()
+                                PictorSymbolPicker(symbol: $symbolSelection, presentAsSheet: true, selectionColor: .white, aboutLinkIsHidden: true, label: {
+                                    VStack(alignment: .leading) {
+                                        Text("符号")
+                                        HStack(spacing: 2) {
+                                            Image(systemName: symbolSelection)
+                                            Text(symbolSelection)
+                                                .lineLimit(1)
+                                        }
+                                        .font(.system(size: 14))
+                                        .foregroundStyle(.gray)
+                                    }
+                                })
+                            }
+                            Section {
+                                Button(action: {
+                                    isHistorySelectorPresented = true
+                                }, label: {
+                                    Label("从历史记录选择", systemImage: "clock")
+                                })
+                                Button(action: {
+                                    isBookmarkSelectorPresented = true
+                                }, label: {
+                                    Label("从网页书签选择", systemImage: "bookmark")
+                                })
+                            }
+                        }
+                        .navigationTitle("添加书签小组件")
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .topBarTrailing) {
+                                Button(action: {
+                                    let containerPath = FileManager.default.containerURL(
+                                        forSecurityApplicationGroupIdentifier: "group.darock.WatchBrowser.Widgets"
+                                    )!.path
+                                    var bookmarks = [SingleWidgetBookmark]()
+                                    if let _bookmarksStr = try? String(contentsOfFile: containerPath + "/WidgetBookmarks.drkdataw", encoding: .utf8),
+                                       let fileBookmarks = getJsonData([SingleWidgetBookmark].self, from: _bookmarksStr) {
+                                        bookmarks = fileBookmarks
+                                    }
+                                    bookmarks.append(.init(displayName: nameInput, displaySymbol: symbolSelection, link: linkInput))
+                                    do {
+                                        try jsonString(from: bookmarks)?.write(
+                                            toFile: containerPath + "/WidgetBookmarks.drkdataw",
+                                            atomically: true,
+                                            encoding: .utf8
+                                        )
+                                    } catch {
+                                        globalErrorHandler(error)
+                                    }
+                                    WidgetCenter.shared.reloadTimelines(ofKind: "BookmarkWidgets")
+                                    WidgetCenter.shared.invalidateConfigurationRecommendations()
+                                    presentationMode.wrappedValue.dismiss()
+                                }, label: {
+                                    Image(systemName: "plus")
+                                })
+                                .disabled(nameInput.isEmpty || linkInput.isEmpty)
+                            }
+                        }
+                    }
+                    .sheet(isPresented: $isHistorySelectorPresented) {
+                        NavigationStack {
+                            HistoryView { sel in
+                                linkInput = sel
+                                isHistorySelectorPresented = false
+                            }
+                            .navigationTitle("选取历史记录")
+                        }
+                    }
+                    .sheet(isPresented: $isBookmarkSelectorPresented) {
+                        NavigationStack {
+                            BookmarkView { name, link in
+                                nameInput = name
+                                linkInput = link
+                                isBookmarkSelectorPresented = false
+                            }
+                            .navigationTitle("选取书签")
+                        }
+                    }
+                }
+            }
+            struct ModifyBookmarkView: View {
+                var index: Int
+                @Environment(\.presentationMode) var presentationMode
+                @State var nameInput = ""
+                @State var linkInput = ""
+                @State var symbolSelection = "bookmark.fill"
+                @State var isHistorySelectorPresented = false
+                @State var isBookmarkSelectorPresented = false
+                var body: some View {
+                    List {
+                        Section {
+                            TextField("名称", text: $nameInput)
+                            TextField("链接", text: $linkInput) {
+                                if !linkInput.hasPrefix("http://") && !linkInput.hasPrefix("https://") {
+                                    linkInput = "http://" + linkInput
+                                }
+                            }
+                            .noAutoInput()
+                            PictorSymbolPicker(symbol: $symbolSelection, presentAsSheet: true, selectionColor: .white, aboutLinkIsHidden: true, label: {
+                                VStack(alignment: .leading) {
+                                    Text("符号")
+                                    HStack(spacing: 2) {
+                                        Image(systemName: symbolSelection)
+                                        Text(symbolSelection)
+                                            .lineLimit(1)
+                                    }
+                                    .font(.system(size: 14))
+                                    .foregroundStyle(.gray)
+                                }
+                            })
+                        }
+                        Section {
+                            Button(action: {
+                                isHistorySelectorPresented = true
+                            }, label: {
+                                Label("从历史记录选择", systemImage: "clock")
+                            })
+                            Button(action: {
+                                isBookmarkSelectorPresented = true
+                            }, label: {
+                                Label("从网页书签选择", systemImage: "bookmark")
+                            })
+                        }
+                    }
+                    .navigationTitle("修改书签")
+                    .sheet(isPresented: $isHistorySelectorPresented) {
+                        NavigationStack {
+                            HistoryView { sel in
+                                linkInput = sel
+                                isHistorySelectorPresented = false
+                            }
+                            .navigationTitle("选取历史记录")
+                        }
+                    }
+                    .sheet(isPresented: $isBookmarkSelectorPresented) {
+                        NavigationStack {
+                            BookmarkView { name, link in
+                                nameInput = name
+                                linkInput = link
+                                isBookmarkSelectorPresented = false
+                            }
+                            .navigationTitle("选取书签")
+                        }
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button(action: {
+                                let containerPath = FileManager.default.containerURL(
+                                    forSecurityApplicationGroupIdentifier: "group.darock.WatchBrowser.Widgets"
+                                )!.path
+                                var bookmarks = [SingleWidgetBookmark]()
+                                if let _bookmarksStr = try? String(contentsOfFile: containerPath + "/WidgetBookmarks.drkdataw", encoding: .utf8),
+                                   let fileBookmarks = getJsonData([SingleWidgetBookmark].self, from: _bookmarksStr) {
+                                    bookmarks = fileBookmarks
+                                }
+                                bookmarks[index] = .init(displayName: nameInput, displaySymbol: symbolSelection, link: linkInput)
+                                do {
+                                    try jsonString(from: bookmarks)?.write(
+                                        toFile: containerPath + "/WidgetBookmarks.drkdataw",
+                                        atomically: true,
+                                        encoding: .utf8
+                                    )
+                                } catch {
+                                    globalErrorHandler(error)
+                                }
+                                WidgetCenter.shared.reloadTimelines(ofKind: "BookmarkWidgets")
+                                WidgetCenter.shared.invalidateConfigurationRecommendations()
+                                presentationMode.wrappedValue.dismiss()
+                            }, label: {
+                                Image(systemName: "checkmark")
+                            })
+                            .disabled(nameInput.isEmpty || linkInput.isEmpty)
+                        }
+                    }
+                    .onAppear {
+                        let containerPath = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.darock.WatchBrowser.Widgets")!.path
+                        if let _bookmarksStr = try? String(contentsOfFile: containerPath + "/WidgetBookmarks.drkdataw", encoding: .utf8),
+                           let fileBookmarks = getJsonData([SingleWidgetBookmark].self, from: _bookmarksStr) {
+                            if let bookmark = fileBookmarks[from: index] {
+                                nameInput = bookmark.displayName
+                                linkInput = bookmark.link
+                                symbolSelection = bookmark.displaySymbol
+                            } else {
+                                presentationMode.wrappedValue.dismiss()
+                                tipWithText("载入出错，请提交反馈", symbol: "xmark.circle.fill")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     struct StaredSettingsView: View {
         @AppStorage("RequestDesktopWeb") var requestDesktopWeb = false
         @AppStorage("ForceApplyDarkMode") var forceApplyDarkMode = false
@@ -255,14 +575,14 @@ struct SettingsView: View {
                     Toggle(isOn: $forceApplyDarkMode) {
                         HStack {
                             Image(systemName: "rectangle.inset.filled")
-                                .foregroundStyle(Color.gray.gradient)
+                                .foregroundStyle(.gray.gradient)
                             Text("强制深色模式")
                         }
                     }
                     Toggle(isOn: $requestDesktopWeb) {
                         HStack {
                             Image(systemName: "desktopcomputer")
-                                .foregroundStyle(Color.blue.gradient)
+                                .foregroundStyle(.blue.gradient)
                             Text("请求桌面网站")
                         }
                     }
@@ -326,6 +646,7 @@ struct SettingsView: View {
         }
         
         struct AboutView: View {
+            @AppStorage("IsProPurchased") var isProPurchased = false
             @State var songCount = 0
             @State var videoCount = 0
             @State var photoCount = 0
@@ -343,6 +664,12 @@ struct SettingsView: View {
                             Text("构建版本")
                             Spacer()
                             Text(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)
+                                .foregroundColor(.gray)
+                        }
+                        HStack {
+                            Text("功能")
+                            Spacer()
+                            Text(isProPurchased ? "Pro" : "标准")
                                 .foregroundColor(.gray)
                         }
                     }
@@ -1192,7 +1519,7 @@ struct SettingsView: View {
                                 VStack(alignment: .leading) {
                                     Text("字间距")
                                         .font(.system(size: 15))
-                                        .foregroundStyle(Color.gray)
+                                        .foregroundStyle(.gray)
                                     Slider(value: $characterSpacing, in: 0.8...2.5, step: 0.05)
                                         .onChange(of: characterSpacing) { _ in
                                             refreshAttributedExample()
@@ -1277,6 +1604,7 @@ struct SettingsView: View {
                         SinglePackageBlock(name: "EPUBKit", license: "MIT license")
                         SinglePackageBlock(name: "libwebp", license: "BSD-3-Clause license")
                         SinglePackageBlock(name: "NetworkImage", license: "MIT license")
+                        SinglePackageBlock(name: "Pictor", license: "Apache License 2.0")
                         SinglePackageBlock(name: "Punycode", license: "MIT license")
                         SinglePackageBlock(name: "SDWebImage", license: "MIT license")
                         SinglePackageBlock(name: "SDWebImagePDFCoder", license: "MIT license")
@@ -1469,21 +1797,21 @@ struct SettingsView: View {
                         Toggle(isOn: $requestDesktopWeb) {
                             HStack {
                                 Image(systemName: "desktopcomputer")
-                                    .foregroundStyle(Color.blue.gradient)
+                                    .foregroundStyle(.blue.gradient)
                                 Text("请求桌面网站")
                             }
                         }
                         Toggle(isOn: $useBackforwardGesture) {
                             HStack {
                                 Image(systemName: "hand.draw")
-                                    .foregroundStyle(Color.purple.gradient)
+                                    .foregroundStyle(.purple.gradient)
                                 Text("使用手势返回上一页")
                             }
                         }
                         Toggle(isOn: $hideDigitalTime) {
                             HStack {
                                 Image(systemName: "clock.badge.xmark")
-                                    .foregroundStyle(Color.blue.gradient)
+                                    .foregroundStyle(.blue.gradient)
                                 Text("隐藏时间")
                             }
                         }
@@ -1506,14 +1834,14 @@ struct SettingsView: View {
                         Toggle(isOn: $showFastExitButton) {
                             HStack {
                                 Image(systemName: "escape")
-                                    .foregroundStyle(Color.red.gradient)
+                                    .foregroundStyle(.red.gradient)
                                 Text("显示“快速退出”按钮")
                             }
                         }
                         Toggle(isOn: $alwaysReloadWebPageAfterCrash) {
                             HStack {
                                 Image(systemName: "arrow.counterclockwise")
-                                    .foregroundStyle(Color.blue.gradient)
+                                    .foregroundStyle(.blue.gradient)
                                 Text("网页崩溃后总是自动重新载入")
                             }
                         }
@@ -1521,7 +1849,7 @@ struct SettingsView: View {
                             Toggle(isOn: $preloadSearchContent) {
                                 HStack {
                                     Image(systemName: "sparkle.magnifyingglass")
-                                        .foregroundStyle(Color.orange.gradient)
+                                        .foregroundStyle(.orange.gradient)
                                     Text("预载入搜索内容")
                                 }
                             }
@@ -1529,7 +1857,7 @@ struct SettingsView: View {
                         Toggle(isOn: $forceApplyDarkMode) {
                             HStack {
                                 Image(systemName: "rectangle.inset.filled")
-                                    .foregroundStyle(Color.gray.gradient)
+                                    .foregroundStyle(.gray.gradient)
                                 Text("强制深色模式")
                             }
                         }
@@ -1539,7 +1867,7 @@ struct SettingsView: View {
                         Toggle(isOn: $isAutoEnterReader) {
                             HStack {
                                 Image(systemName: "doc.plaintext")
-                                    .foregroundStyle(Color.blue.gradient)
+                                    .foregroundStyle(.blue.gradient)
                                 Text("可用时自动进入阅读器")
                             }
                         }
@@ -1596,11 +1924,11 @@ struct SettingsView: View {
                                         VStack(alignment: .leading) {
                                             Text("自定义文本")
                                                 .font(.system(size: 13))
-                                                .foregroundStyle(Color.gray)
+                                                .foregroundStyle(.gray)
                                             Text(text)
                                             Text("轻触以编辑")
                                                 .font(.system(size: 12))
-                                                .foregroundStyle(Color.gray)
+                                                .foregroundStyle(.gray)
                                         }
                                     }, onSubmit: { str in
                                         homeScreenSorts[i] = .text(str)
@@ -1618,7 +1946,7 @@ struct SettingsView: View {
                                     VStack(alignment: .leading) {
                                         Text("导航到")
                                             .font(.system(size: 13))
-                                            .foregroundStyle(Color.gray)
+                                            .foregroundStyle(.gray)
                                         switch navigation {
                                         case .bookmark:
                                             Label("Home.bookmarks", systemImage: "bookmark")
@@ -1809,7 +2137,7 @@ struct SettingsView: View {
                                     VStack(alignment: .leading) {
                                         Text("导航到")
                                             .font(.system(size: 13))
-                                            .foregroundStyle(Color.gray)
+                                            .foregroundStyle(.gray)
                                         Label("Home.bookmarks", systemImage: "bookmark")
                                     }
                                 })
@@ -1820,7 +2148,7 @@ struct SettingsView: View {
                                     VStack(alignment: .leading) {
                                         Text("导航到")
                                             .font(.system(size: 13))
-                                            .foregroundStyle(Color.gray)
+                                            .foregroundStyle(.gray)
                                         Label("Home.history", systemImage: "clock")
                                     }
                                 })
@@ -1831,7 +2159,7 @@ struct SettingsView: View {
                                     VStack(alignment: .leading) {
                                         Text("导航到")
                                             .font(.system(size: 13))
-                                            .foregroundStyle(Color.gray)
+                                            .foregroundStyle(.gray)
                                         Label("网页归档", systemImage: "archivebox")
                                     }
                                 })
@@ -1842,7 +2170,7 @@ struct SettingsView: View {
                                     VStack(alignment: .leading) {
                                         Text("导航到")
                                             .font(.system(size: 13))
-                                            .foregroundStyle(Color.gray)
+                                            .foregroundStyle(.gray)
                                         Label("本地媒体", systemImage: "play.square.stack")
                                     }
                                 })
@@ -1853,7 +2181,7 @@ struct SettingsView: View {
                                     VStack(alignment: .leading) {
                                         Text("导航到")
                                             .font(.system(size: 13))
-                                            .foregroundStyle(Color.gray)
+                                            .foregroundStyle(.gray)
                                         Label("用户脚本", systemImage: "applescript")
                                     }
                                 })
@@ -1864,7 +2192,7 @@ struct SettingsView: View {
                                     VStack(alignment: .leading) {
                                         Text("导航到")
                                             .font(.system(size: 13))
-                                            .foregroundStyle(Color.gray)
+                                            .foregroundStyle(.gray)
                                         Label("反馈助理", systemImage: "exclamationmark.bubble")
                                     }
                                 })
@@ -1875,7 +2203,7 @@ struct SettingsView: View {
                                     VStack(alignment: .leading) {
                                         Text("导航到")
                                             .font(.system(size: 13))
-                                            .foregroundStyle(Color.gray)
+                                            .foregroundStyle(.gray)
                                         Label("提示", systemImage: "lightbulb")
                                     }
                                 })
@@ -1886,7 +2214,7 @@ struct SettingsView: View {
                                     VStack(alignment: .leading) {
                                         Text("导航到")
                                             .font(.system(size: 13))
-                                            .foregroundStyle(Color.gray)
+                                            .foregroundStyle(.gray)
                                         Label("Home.settings", systemImage: "gear")
                                     }
                                 })
@@ -2197,7 +2525,7 @@ struct SettingsView: View {
                         VStack(alignment: .leading) {
                             Text("互点两下")
                             Text(isDoubleTapEnabled ? "开启" : "关闭")
-                                .foregroundStyle(Color.gray)
+                                .foregroundStyle(.gray)
                         }
                     })
                 }
@@ -2286,7 +2614,7 @@ struct SettingsView: View {
                                     if quickAvoidanceAction == "ExitApp" {
                                         HStack {
                                             Image(systemName: "exclamationmark.triangle.fill")
-                                                .foregroundStyle(Color.yellow)
+                                                .foregroundStyle(.yellow)
                                             Text("如果误触发手势，所有未保存的更改也将丢失！")
                                         }
                                     }
@@ -2531,7 +2859,7 @@ struct SettingsView: View {
                             HStack(alignment: .top) {
                                 Image(systemName: "exclamationmark.triangle.fill")
                                     .font(.system(size: 15))
-                                    .foregroundStyle(Color.yellow)
+                                    .foregroundStyle(.yellow)
                                 Text("一旦开启安全延时，您将需要等待一小时才能够关闭。")
                                     .font(.system(size: 15))
                             }
@@ -2813,6 +3141,7 @@ struct SettingsView: View {
         @AppStorage("SecurityDelayStartTime") var securityDelayStartTime = -1.0
         @AppStorage("TQCIsColorChangeButtonUnlocked") var isColorChangeButtonUnlocked = false
         @AppStorage("TQCIsColorChangeButtonEntered") var isColorChangeButtonEntered = false
+        @AppStorage("IsProPurchased") var isProPurchased = false
         @State var isTestAppRemovalWarningPresented = false
         var body: some View {
             List {
@@ -2856,6 +3185,18 @@ struct SettingsView: View {
                     })
                 } header: {
                     Text("Data & Cloud")
+                }
+                Section {
+                    Button(action: {
+                        isProPurchased = false
+                        UserDefaults(suiteName: "group.darock.WatchBrowser.Widgets")!.set(false, forKey: "IsProWidgetsAvailable")
+                        WidgetCenter.shared.reloadAllTimelines()
+                        WidgetCenter.shared.invalidateConfigurationRecommendations()
+                    }, label: {
+                        Text("Reset Pro State")
+                    })
+                } header: {
+                    Text("Purchasing")
                 }
                 Section {
                     Button(action: {

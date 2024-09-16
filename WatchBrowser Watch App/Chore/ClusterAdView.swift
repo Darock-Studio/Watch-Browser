@@ -26,7 +26,7 @@ struct ClusterAdView: View {
                     session.start()
                 }, label: {
                     Text("前往 App Store 下载")
-                        .foregroundStyle(Color.blue)
+                        .foregroundStyle(.blue)
                 })
                 NavigationLink(destination: {
                     VStack {
@@ -40,7 +40,7 @@ struct ClusterAdView: View {
                     }
                 }, label: {
                     Text("或在 iPhone 上的 App Store 继续")
-                        .foregroundStyle(Color.blue)
+                        .foregroundStyle(.blue)
                 })
             }
             Section {
@@ -52,7 +52,7 @@ struct ClusterAdView: View {
                     presentationMode.wrappedValue.dismiss()
                 }, label: {
                     Text("退出并不再显示")
-                        .foregroundStyle(Color.blue)
+                        .foregroundStyle(.blue)
                 })
             }
         }

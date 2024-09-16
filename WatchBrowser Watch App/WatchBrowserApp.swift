@@ -12,6 +12,7 @@ import WatchKit
 import DarockKit
 import SDWebImage
 import AVFoundation
+import SwiftyStoreKit
 import SDWebImageSVGCoder
 import SDWebImagePDFCoder
 import SDWebImageWebPCoder
@@ -35,6 +36,7 @@ struct WatchBrowser_Watch_AppApp: App {
     @AppStorage("IsThisClusterInstalled") var isThisClusterInstalled = false
     @AppStorage("ABIsReduceBrightness") var isReduceBrightness = false
     @AppStorage("ABReduceBrightnessLevel") var reduceBrightnessLevel = 0.2
+    @AppStorage("IsBrowserProAdFirstTipped") var isBrowserProAdFirstTipped = false
     @State var showTipText: LocalizedStringKey = ""
     @State var showTipSymbol = ""
     @State var isShowingTip = false
@@ -43,6 +45,7 @@ struct WatchBrowser_Watch_AppApp: App {
     @State var tapToRadarAlertContent = ""
     @State var isTapToRadarAlertPresented = false
     @State var isClusterInstalledTipPresented = false
+    @State var isBrowserProAdPresented = false
     @State var isQuickAvoidanceShowingEmpty = false
     var body: some Scene {
         WindowGroup {
@@ -57,9 +60,17 @@ struct WatchBrowser_Watch_AppApp: App {
                     .allowsHitTesting(!(isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser))
                     .sheet(isPresented: $shouldTipNewFeatures, content: { NewFeaturesView() })
                     .sheet(isPresented: $isClusterInstalledTipPresented, content: { ClusterTipView() })
+                    .sheet(isPresented: $isBrowserProAdPresented, onDismiss: { isBrowserProAdFirstTipped = true }) {
+                        NavigationStack {
+                            ProPurchaseView()
+                        }
+                    }
                     .onAppear {
                         if userPasscodeEncrypted.isEmpty || !usePasscodeForLockDarockBrowser {
                             isBrowserLocked = false
+                        }
+                        if !isBrowserProAdFirstTipped {
+                            isBrowserProAdPresented = true
                         }
                     }
                 if isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser {
@@ -191,24 +202,21 @@ struct WatchBrowser_Watch_AppApp: App {
 class AppDelegate: NSObject, WKApplicationDelegate {
     func applicationDidFinishLaunching() {
         NSSetUncaughtExceptionHandler(nsErrorHandler(_:))
-//        INPreferences.requestSiriAuthorization { status in
-//            switch status {
-//            case .notDetermined:
-//                debugPrint("Siri Not Determined")
-//            case .restricted:
-//                debugPrint("Siri Restricted")
-//            case .denied:
-//                debugPrint("Siri Denied")
-//            case .authorized:
-//                debugPrint("Siri Authorized")
-//                let intent = SearchIntent()
-//                intent.content = "Test"
-//                let interaction = INInteraction(intent: intent, response: nil)
-//                interaction.donate()
-//            @unknown default:
-//                break
-//            }
-//        }
+
+        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
+            for purchase in purchases {
+                switch purchase.transaction.transactionState {
+                case .purchased, .restored:
+                    if purchase.needsFinishTransaction {
+                        SwiftyStoreKit.finishTransaction(purchase.transaction)
+                    }
+                case .failed, .purchasing, .deferred:
+                    break
+                @unknown default:
+                    break
+                }
+            }
+        }
     }
     
     func didRegisterForRemoteNotifications(withDeviceToken deviceToken: Data) {

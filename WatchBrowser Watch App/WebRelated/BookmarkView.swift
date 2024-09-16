@@ -10,6 +10,7 @@ import DarockKit
 import AuthenticationServices
 
 struct BookmarkView: View {
+    var selectionHandler: ((String, String) -> Void)?
     public static var editingBookmarkIndex = 0
     @AppStorage("IsAllowCookie") var isAllowCookie = false
     @AppStorage("WebSearch") var webSearch = "必应"
@@ -36,32 +37,38 @@ struct BookmarkView: View {
             .navigationBarBackButtonHidden()
         } else {
             List {
-                Section {
-                    Button(action: {
-                        isNewMarkPresented = true
-                    }, label: {
-                        HStack {
-                            Spacer()
-                            Label("Bookmark.add", systemImage: "plus")
-                            Spacer()
-                        }
-                    })
-                    .sheet(isPresented: $isNewMarkPresented, onDismiss: {
-                        bookmarks = BookmarkStackManager.shared.getAll()
-                    }, content: { AddBookmarkView() })
-                    NavigationLink(destination: { StaredBookmarksView() }, label: {
-                        HStack {
-                            Spacer()
-                            Label("快捷书签", systemImage: "star")
-                            Spacer()
-                        }
-                    })
+                if selectionHandler == nil {
+                    Section {
+                        Button(action: {
+                            isNewMarkPresented = true
+                        }, label: {
+                            HStack {
+                                Spacer()
+                                Label("Bookmark.add", systemImage: "plus")
+                                Spacer()
+                            }
+                        })
+                        .sheet(isPresented: $isNewMarkPresented, onDismiss: {
+                            bookmarks = BookmarkStackManager.shared.getAll()
+                        }, content: { AddBookmarkView() })
+                        NavigationLink(destination: { StaredBookmarksView() }, label: {
+                            HStack {
+                                Spacer()
+                                Label("快捷书签", systemImage: "star")
+                                Spacer()
+                            }
+                        })
+                    }
                 }
                 if !bookmarks.isEmpty {
                     Section {
                         ForEach(1...bookmarks.count, id: \.self) { i in
                             Button(action: {
-                                AdvancedWebViewController.shared.present(bookmarks[i - 1].link)
+                                if let handler = selectionHandler {
+                                    handler(bookmarks[i - 1].name, bookmarks[i - 1].link)
+                                } else {
+                                    AdvancedWebViewController.shared.present(bookmarks[i - 1].link)
+                                }
                             }, label: {
                                 Text(bookmarks[i - 1].name)
                             })

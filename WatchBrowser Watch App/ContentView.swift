@@ -32,6 +32,7 @@ struct ContentView: View {
     @AppStorage("TQCIsHomeBackgroundImageBlured") var isBackgroundImageBlured = true
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
+    @AppStorage("IsProPurchased") var isProPurchased = false
     @State var currentToolbar: HomeScreenToolbar?
     @State var mainTabSelection = 2
     @State var isVideoListPresented = false
@@ -146,6 +147,25 @@ struct ContentView: View {
                                 }
                             }
                         }
+                }
+                .onContinueUserActivity(BookmarkWidgetIntent.persistentIdentifier) { activity in
+                    if isProPurchased {
+                        if let intent = activity.widgetConfigurationIntent(of: BookmarkWidgetIntent.self), let openUrl = intent.url, openUrl.isURL() {
+                            AdvancedWebViewController.shared.present(openUrl)
+                        }
+                    }
+                }
+                .onContinueUserActivity("SearchWidgets") { _ in
+                    if isProPurchased {
+                        WKExtension.shared().visibleInterfaceController?.presentTextInputController(
+                            withSuggestions: nil,
+                            allowedInputMode: .allowEmoji
+                        ) { result in
+                            if let _texts = result as? [String], let text = _texts.first {
+                                startSearch(text, with: webSearch, allowPreload: false)
+                            }
+                        }
+                    }
                 }
             } else {
                 NavigationView {
@@ -292,9 +312,6 @@ struct MainView: View {
                 }
                 AdvancedWebViewController.shared.present(String(openUrl).urlEncoded())
             }
-        }
-        .onContinueUserActivity(NSStringFromClass(SearchIntent.self)) { userActivity in
-            debugPrint(userActivity)
         }
         .onAppear {
             if let currentPref = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/HomeScreen.drkdatah", encoding: .utf8),
@@ -483,7 +500,8 @@ struct MainView: View {
                         }
                     case .searchButton:
                         Button(action: {
-                            startSearch(with: webSearch)
+                            startSearch(textOrURL, with: webSearch, allowPreload: isPreloadedSearchWeb)
+                            isPreloadedSearchWeb = false
                         }, label: {
                             HStack {
                                 Spacer()
@@ -493,11 +511,12 @@ struct MainView: View {
                             }
                         })
                         .onTapGesture {
-                            startSearch(with: webSearch)
+                            startSearch(textOrURL, with: webSearch, allowPreload: isPreloadedSearchWeb)
+                            isPreloadedSearchWeb = false
                         }
                         .onLongPressGesture {
                             if isLongPressAlternativeSearch {
-                                startSearch(with: alternativeSearch, allowPreload: false)
+                                startSearch(textOrURL, with: alternativeSearch, allowPreload: false)
                             }
                         }
                     case .spacer:
@@ -607,7 +626,7 @@ struct MainView: View {
                                         Text("喜欢暗礁浏览器？前往 iPhone 上的 App Store 为我们评分！")
                                         Text("轻触以隐藏")
                                             .font(.system(size: 14))
-                                            .foregroundStyle(Color.gray)
+                                            .foregroundStyle(.gray)
                                     }
                                 })
                             }
@@ -676,63 +695,66 @@ struct MainView: View {
             }
         }
     }
-    
-    func startSearch(with engine: String, allowPreload: Bool = true) {
-        if textOrURL.hasSuffix(".mp4") {
-            if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                textOrURL = "http://" + textOrURL
-            }
-            videoLinkLists = [textOrURL]
-            pShouldPresentVideoList = true
-            dismissListsShouldRepresentWebView = false
-            recordHistory(textOrURL, webSearch: engine)
-            return
-        } else if textOrURL.hasSuffix(".mp3") {
-            if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                textOrURL = "http://" + textOrURL
-            }
-            audioLinkLists = [textOrURL]
-            pShouldPresentAudioList = true
-            dismissListsShouldRepresentWebView = false
-            recordHistory(textOrURL, webSearch: engine)
-            return
-        } else if textOrURL.hasSuffix(".png")
-                    || textOrURL.hasSuffix(".jpg")
-                    || textOrURL.hasSuffix(".webp")
-                    || textOrURL.hasSuffix(".pdf") {
-            if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                textOrURL = "http://" + textOrURL
-            }
-            imageLinkLists = [textOrURL]
-            pShouldPresentImageList = true
-            dismissListsShouldRepresentWebView = false
-            recordHistory(textOrURL, webSearch: engine)
-            return
-        } else if textOrURL.hasSuffix(".epub") {
-            if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                textOrURL = "http://" + textOrURL
-            }
-            bookLinkLists = [textOrURL]
-            pShouldPresentBookList = true
-            dismissListsShouldRepresentWebView = false
-            recordHistory(textOrURL, webSearch: engine)
-            return
+}
+
+func startSearch(_ textOrURL: String, with engine: String, allowPreload: Bool = true) {
+    var textOrURL = textOrURL
+    if textOrURL.hasSuffix(".mp4") {
+        if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+            textOrURL = "http://" + textOrURL
         }
-        if #available(watchOS 10, *), preloadSearchContent && !isUseOldWebView && isPreloadedSearchWeb && allowPreload {
-            AdvancedWebViewController.shared.present()
-            isPreloadedSearchWeb = false
-            return
+        videoLinkLists = [textOrURL]
+        pShouldPresentVideoList = true
+        dismissListsShouldRepresentWebView = false
+        recordHistory(textOrURL, webSearch: engine)
+        return
+    } else if textOrURL.hasSuffix(".mp3") {
+        if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+            textOrURL = "http://" + textOrURL
         }
-        if textOrURL.isURL() {
-            if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                textOrURL = "http://" + textOrURL
-            }
-            AdvancedWebViewController.shared.present(textOrURL.urlEncoded())
-        } else {
-            AdvancedWebViewController.shared.present(
-                getWebSearchedURL(textOrURL, webSearch: engine, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)
-            )
+        audioLinkLists = [textOrURL]
+        pShouldPresentAudioList = true
+        dismissListsShouldRepresentWebView = false
+        recordHistory(textOrURL, webSearch: engine)
+        return
+    } else if textOrURL.hasSuffix(".png")
+                || textOrURL.hasSuffix(".jpg")
+                || textOrURL.hasSuffix(".webp")
+                || textOrURL.hasSuffix(".pdf") {
+        if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+            textOrURL = "http://" + textOrURL
         }
+        imageLinkLists = [textOrURL]
+        pShouldPresentImageList = true
+        dismissListsShouldRepresentWebView = false
+        recordHistory(textOrURL, webSearch: engine)
+        return
+    } else if textOrURL.hasSuffix(".epub") {
+        if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+            textOrURL = "http://" + textOrURL
+        }
+        bookLinkLists = [textOrURL]
+        pShouldPresentBookList = true
+        dismissListsShouldRepresentWebView = false
+        recordHistory(textOrURL, webSearch: engine)
+        return
+    }
+    let preloadSearchContent = UserDefaults.standard.bool(forKey: "PreloadSearchContent")
+    let isUseOldWebView = UserDefaults.standard.bool(forKey: "isUseOldWebView")
+    let isSearchEngineShortcutEnabled = UserDefaults.standard.bool(forKey: "IsSearchEngineShortcutEnabled")
+    if #available(watchOS 10, *), preloadSearchContent && !isUseOldWebView && allowPreload {
+        AdvancedWebViewController.shared.present()
+        return
+    }
+    if textOrURL.isURL() {
+        if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+            textOrURL = "http://" + textOrURL
+        }
+        AdvancedWebViewController.shared.present(textOrURL.urlEncoded())
+    } else {
+        AdvancedWebViewController.shared.present(
+            getWebSearchedURL(textOrURL, webSearch: engine, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)
+        )
     }
 }
 

@@ -34,7 +34,7 @@ extension WKInterfaceDevice {
         return true
         #else
         let modelID = WKInterfaceDevice.modelIdentifier
-        let supportedIDs = ["Watch7,1", "Watch7,2", "Watch7,3", "Watch7,4", "Watch7,5"]
+        let supportedIDs = ["Watch7,1", "Watch7,2", "Watch7,3", "Watch7,4", "Watch7,5", "Watch7,8", "Watch7,9", "Watch7,10", "Watch7,11"]
         return supportedIDs.contains(modelID)
         #endif
     }()

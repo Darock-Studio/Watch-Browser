@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 import Dynamic
 import Combine
+import Network
 import SwiftSoup
 import DarockKit
 import AuthenticationServices
@@ -183,7 +184,6 @@ final class AdvancedWebViewController: NSObject {
                 globalErrorHandler(error)
             }
         } else {
-            _onFastPath()
             wkWebView.load(URLRequest(url: url))
         }
         

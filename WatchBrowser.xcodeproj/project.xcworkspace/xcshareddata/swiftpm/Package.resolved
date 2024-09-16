@@ -1,5 +1,5 @@
 {
-  "originHash" : "907494fcceebe5264dd253807d272562f8b206a9a1a3750b93db0e2258ddee07",
+  "originHash" : "f6fc0e91efd639e31b24a74fb38057c43f7bfd40854205e7047d099944a3b863",
   "pins" : [
     {
       "identity" : "aexml",
@@ -80,6 +80,15 @@
       "state" : {
         "revision" : "7aff8d1b31148d32c5933d75557d42f6323ee3d1",
         "version" : "6.0.0"
+      }
+    },
+    {
+      "identity" : "pictor",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Serene-Garden/Pictor",
+      "state" : {
+        "revision" : "7daae590a27cb35275ccb4a8288590fc7570769c",
+        "version" : "1.2.2"
       }
     },
     {
@@ -188,6 +197,15 @@
       "state" : {
         "revision" : "2b6054efa051565954e1d2b9da831680026cd768",
         "version" : "4.3.0"
+      }
+    },
+    {
+      "identity" : "swiftystorekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bizz84/SwiftyStoreKit",
+      "state" : {
+        "revision" : "9ce911639680113dac9b554d6243e406a9758ebe",
+        "version" : "0.16.4"
       }
     },
     {

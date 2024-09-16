@@ -29,7 +29,7 @@ struct JoinGroupView: View {
                             Text("Darock Community")
                             Text("轻触以查看二维码")
                                 .font(.system(size: 13))
-                                .foregroundStyle(Color.gray)
+                                .foregroundStyle(.gray)
                         }
                     })
                 } header: {
@@ -65,7 +65,7 @@ struct JoinGroupView: View {
                             Text("@DRKCOMU")
                             Text("轻触以查看二维码")
                                 .font(.system(size: 13))
-                                .foregroundStyle(Color.gray)
+                                .foregroundStyle(.gray)
                         }
                     })
                 }

@@ -325,7 +325,7 @@ struct PlaylistsView: View {
                             if isAddLinkInvalid {
                                 HStack {
                                     Image(systemName: "xmark.octagon.fill")
-                                        .foregroundStyle(Color.red)
+                                        .foregroundStyle(.red)
                                     Text("歌曲链接无效")
                                 }
                             }

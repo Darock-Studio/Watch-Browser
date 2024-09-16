@@ -663,7 +663,7 @@ struct DarockAccountManagementMain: View {
                         Toggle(isOn: $isSaveHistoryToCloud) {
                             HStack {
                                 Image(systemName: "clock")
-                                    .foregroundStyle(Color.blue.gradient)
+                                    .foregroundStyle(.blue.gradient)
                                 Text("历史记录")
                             }
                         }
@@ -744,6 +744,8 @@ extension WKInterfaceDevice {
             case "Watch7,1", "Watch7,2",
                  "Watch7,3", "Watch7,4":   return "Apple Watch Series 9"
             case "Watch7,5":               return "Apple Watch Ultra 2"
+            case "Watch7,8", "Watch7,9",
+                 "Watch7,10", "Watch7,11":   return "Apple Watch Series 10"
             default:                       return "Apple Watch"
             }
         }

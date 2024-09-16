@@ -132,7 +132,7 @@ struct LocalImageView: View {
                                 }
                             }, label: {
                                 Label("删除", systemImage: "trash")
-                                    .foregroundStyle(Color.red)
+                                    .foregroundStyle(.red)
                             })
                         }
                     }

@@ -11178,6 +11178,22 @@
     "Print NSHomeDirectory" : {
       "shouldTranslate" : false
     },
+    "Pro" : {
+      "shouldTranslate" : false
+    },
+    "Pro 功能" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro Features"
+          }
+        }
+      }
+    },
+    "Purchasing" : {
+      "shouldTranslate" : false
+    },
     "QQ" : {
       "localizations" : {
         "ar" : {
@@ -11298,6 +11314,9 @@
       "shouldTranslate" : false
     },
     "Reset All What's New Screen State" : {
+      "shouldTranslate" : false
+    },
+    "Reset Pro State" : {
       "shouldTranslate" : false
     },
     "Reset TQCAccentColorHiddenButton" : {
@@ -16412,6 +16431,26 @@
         }
       }
     },
+    "书签" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bookmark"
+          }
+        }
+      }
+    },
+    "书签小组件" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bookmark Widgets"
+          }
+        }
+      }
+    },
     "了解反馈状态" : {
       "localizations" : {
         "ar" : {
@@ -18428,6 +18467,16 @@
         }
       }
     },
+    "从网页书签选择" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select from Web Bookmarks"
+          }
+        }
+      }
+    },
     "从边缘\n向右滑动" : {
       "localizations" : {
         "ar" : {
@@ -18542,6 +18591,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "從邊緣\n向右滑動"
+          }
+        }
+      }
+    },
+    "以 %@ 购买" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase for %@"
           }
         }
       }
@@ -19520,6 +19579,16 @@
         }
       }
     },
+    "使用暗礁浏览器搜索" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Using Darock Browser"
+          }
+        }
+      }
+    },
     "保存" : {
       "localizations" : {
         "ar" : {
@@ -19988,6 +20057,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "信息"
+          }
+        }
+      }
+    },
+    "修改书签" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Bookmark"
           }
         }
       }
@@ -23976,6 +24055,16 @@
         }
       }
     },
+    "功能" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Features"
+          }
+        }
+      }
+    },
     "功能不可用时，项目可能仍然不会在主屏幕的对应位置显示。" : {
       "localizations" : {
         "ar" : {
@@ -24094,6 +24183,16 @@
         }
       }
     },
+    "功能持续更新" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep Update"
+          }
+        }
+      }
+    },
     "加入群聊" : {
       "localizations" : {
         "ar" : {
@@ -24208,6 +24307,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "升级到暗礁浏览器 Pro 以解锁更多高级功能" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upgrade to Darock Browser Pro to unlock more premium features"
           }
         }
       }
@@ -34102,6 +34211,16 @@
         }
       }
     },
+    "小组件" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widgets"
+          }
+        }
+      }
+    },
     "尝试一下？" : {
       "localizations" : {
         "ar" : {
@@ -38150,6 +38269,56 @@
         }
       }
     },
+    "快速开始搜索" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start a Search Quickly"
+          }
+        }
+      }
+    },
+    "快速打开书签" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open a Bookmark Quickly"
+          }
+        }
+      }
+    },
+    "快速打开网页" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open a Website Quickly"
+          }
+        }
+      }
+    },
+    "快速搜索不可用" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast Search is Unavailable"
+          }
+        }
+      }
+    },
+    "快速搜索小组件" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast Search Widget"
+          }
+        }
+      }
+    },
     "快速清除" : {
       "localizations" : {
         "ar" : {
@@ -38618,6 +38787,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "恢復"
+          }
+        }
+      }
+    },
+    "恢复购买" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore Purchase"
           }
         }
       }
@@ -44074,6 +44253,16 @@
         }
       }
     },
+    "无书签小组件" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Bookmark Widgets"
+          }
+        }
+      }
+    },
     "无打开的标签页" : {
       "localizations" : {
         "ar" : {
@@ -45814,6 +46003,26 @@
         }
       }
     },
+    "暗礁浏览器 Pro" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browser Pro"
+          }
+        }
+      }
+    },
+    "暗礁浏览器 Pro 已激活" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browser Pro is Actived"
+          }
+        }
+      }
+    },
     "暗礁浏览器已是最新版本" : {
       "localizations" : {
         "ar" : {
@@ -46410,6 +46619,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "更新 watchOS 以解锁更多功能" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upgrade watchOS to Unload More Features"
           }
         }
       }
@@ -48800,6 +49019,16 @@
         }
       }
     },
+    "标准" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard"
+          }
+        }
+      }
+    },
     "标签不会被本地化，因为它们是动态添加的。" : {
       "localizations" : {
         "en" : {
@@ -50947,6 +51176,16 @@
         }
       }
     },
+    "正在载入购买信息..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading Purchase Information..."
+          }
+        }
+      }
+    },
     "此 %@" : {
       "localizations" : {
         "ar" : {
@@ -52163,6 +52402,16 @@
         }
       },
       "shouldTranslate" : false
+    },
+    "添加书签小组件" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Bookmark Widgets"
+          }
+        }
+      }
     },
     "添加到书签" : {
       "localizations" : {
@@ -58682,6 +58931,16 @@
         }
       }
     },
+    "符号" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Symbol"
+          }
+        }
+      }
+    },
     "等待 Darock 修复" : {
       "localizations" : {
         "ar" : {
@@ -63750,6 +64009,16 @@
         }
       }
     },
+    "轻触 %@ 按钮以添加" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap %@ Button to Add"
+          }
+        }
+      }
+    },
     "轻触“播放网页中视频”" : {
       "localizations" : {
         "ar" : {
@@ -64952,6 +65221,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "载入出错，请提交反馈" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading Error, Please File a Feedback"
+          }
+        }
+      }
+    },
+    "载入购买信息时出错" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error loading purchase information."
           }
         }
       }
@@ -68542,6 +68831,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exit Webpage"
+          }
+        }
+      }
+    },
+    "选取书签" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Bookmark"
           }
         }
       }
@@ -74446,23 +74745,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tap twice with your index finger and thumb to perform a specified action. First, enable the \"Double Tap\" gesture in System Settings."
-          }
-        }
-      }
-    },
-    "首次载入可能需要一些时间，完成后将缓存数据以加快后续载入。" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The initial load may take some time. Once completed, the data will be cached to speed up future loads."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "首次載入可能需要一些時間，完成後將緩存數據以加快後續載入。"
           }
         }
       }

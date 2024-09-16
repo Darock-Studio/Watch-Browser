@@ -118,9 +118,9 @@ WK_EXTERN API_AVAILABLE(macos(10.11), ios(9.0))
  so it is encouraged to finish setting the proxy configurations before starting any page loads.
 */
 #if defined(OS_OBJECT_USE_OBJC) && OS_OBJECT_USE_OBJC
-@property (nullable, nonatomic, copy) NSArray<nw_proxy_config_t> *proxyConfigurations NS_REFINED_FOR_SWIFT API_AVAILABLE(macos(14.0), ios(17.0));
+@property (nullable, nonatomic, copy) NSArray<nw_proxy_config_t> *proxyConfigurations API_AVAILABLE(macos(14.0), ios(17.0));
 #else
-@property (nullable, nonatomic, copy) NSArray *proxyConfigurations NS_REFINED_FOR_SWIFT API_AVAILABLE(macos(14.0), ios(17.0));
+@property (nullable, nonatomic, copy) NSArray *proxyConfigurations API_AVAILABLE(macos(14.0), ios(17.0));
 #endif
 #endif
 
