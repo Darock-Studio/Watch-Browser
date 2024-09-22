@@ -1,0 +1,30 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0 effective-5.10 (swiftlang-6.0.0.9.10 clang-1600.0.26.2)
+// swift-module-flags: -target arm64-apple-watchos9.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name SaltUICore
+import OSLog
+@_exported import SaltUICore
+import Swift
+import SwiftUI
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@objc @_inheritsConvenienceInitializers @objcMembers public class SUICUI2SwiftConverter : ObjectiveC.NSObject {
+  public static func swiftUIView(fromUIView uiView: ObjectiveC.NSObject) -> some SwiftUICore.View
+  
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @objcMembers public class SUICButton : ObjectiveC.NSObject {
+  public init(titleKey: Foundation.LocalizedStringResource, frame: CoreFoundation.CGRect, action: @escaping () -> Swift.Void)
+  @objc public init(systemImage: Swift.String, frame: CoreFoundation.CGRect, action: @escaping () -> Swift.Void)
+  public func tintColor(_ color: SwiftUICore.Color) -> Self
+  public func tintColor(binding color: SwiftUICore.Binding<SwiftUICore.Color>) -> Self
+  @objc public func button() -> ObjectiveC.NSObject
+  @objc public func updateAll()
+  @objc deinit
+}
+public func _makeUIButton(title: SaltUICore._UIButtonTextOrImage, frame: CoreFoundation.CGRect, backgroundColor: SwiftUICore.Color? = nil, tintColor: SwiftUICore.Color? = nil, cornerRadius: CoreFoundation.CGFloat = 8, action: @escaping () -> Swift.Void) -> ObjectiveC.NSObject
+public enum _UIButtonTextOrImage {
+  case text(Swift.String)
+  case image(UIKit.UIImage)
+}

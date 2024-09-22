@@ -16,22 +16,6 @@
 
 @implementation WebExtension : NSObject
 
-+(id) getBindedButtonWithSelector: (NSString *)selector button:(UIButton *) button {
-    id cbtn = button;
-    [cbtn addTarget:self action:NSSelectorFromString(selector) forControlEvents:1 << 6];
-    
-    return cbtn;
-}
-
-// Externald Method Start
-+(void) menuButtonClicked {
-    [[AdvancedWebViewController shared] presentBrowsingMenu];
-}
-+(void) DismissWebView {
-    [[AdvancedWebViewController shared] dismissWebView];
-}
-// Externald Method End
-
 @end
 
 #pragma clang diagnostic pop

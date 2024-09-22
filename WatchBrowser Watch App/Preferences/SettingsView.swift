@@ -26,6 +26,7 @@ struct SettingsView: View {
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("IsDeveloperModeEnabled") var isDeveloperModeEnabled = false
     @AppStorage("DarockAccountCachedUsername") var accountUsername = ""
+    @AppStorage("INFFIsDarockIntelligenceEnabled") var _featureFlagIsDarockIntelligenceEnabled = false
     @State var isNewFeaturesPresented = false
     @State var isPasscodeViewPresented = false
     @State var isEnterPasscodeViewInputPresented = false
@@ -105,6 +106,17 @@ struct SettingsView: View {
                 Section {
                     NavigationLink(destination: { ProPurchaseView() }, label: { SettingItemLabel(title: "暗礁浏览器 Pro", image: "sparkles", color: .blue) })
                     if isProPurchased {
+                        if _featureFlagIsDarockIntelligenceEnabled {
+                            NavigationLink(destination: {}, label: {
+                                HStack {
+                                    Image("DarockIntelligenceIcon")
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                        .clipShape(Circle())
+                                    Text("Darock 智能")
+                                }
+                            })
+                        }
                         if #available(watchOS 10.0, *) {
                             NavigationLink(destination: { WidgetSettingsView() },
                                            label: { SettingItemLabel(title: "小组件", image: "watchface.applewatch.case", color: .blue) })
@@ -229,32 +241,6 @@ struct SettingsView: View {
                     .font(.system(size: symbolFontSize))
                 }
                 Text(title)
-            }
-        }
-    }
-    struct SettingsSectionInfoView: View {
-        var title: LocalizedStringKey
-        var description: LocalizedStringKey
-        var image: String
-        var color: Color
-        var body: some View {
-            VStack {
-                Spacer()
-                    .frame(height: 6)
-                ZStack {
-                    color
-                        .frame(width: 35, height: 35)
-                        .clipShape(Circle())
-                    Image(systemName: image)
-                        .font(.system(size: 25))
-                }
-                Text(title)
-                    .font(.system(size: 20, weight: .bold))
-                Text(description)
-                    .font(.system(size: 15))
-                    .padding(.vertical, 3)
-                Spacer()
-                    .frame(height: 6)
             }
         }
     }
@@ -3000,13 +2986,15 @@ struct SettingsView: View {
         }
     }
     struct PrivacySettingsView: View {
+        @State var isAboutPrivacyPresented = false
         var body: some View {
             List {
                 Section {
-                    SettingsSectionInfoView(title: "隐私与安全性",
-                                            description: "暗礁浏览器致力于保护您的隐私，Darock 不会未经同意收集任何信息。",
-                                            image: "hand.raised.fill",
-                                            color: .blue)
+                    Button(action: {
+                        isAboutPrivacyPresented = true
+                    }, label: {
+                        Text("关于暗礁浏览器与隐私")
+                    })
                 }
                 Section {
                     NavigationLink(destination: { CookieView() },
@@ -3023,6 +3011,13 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("隐私与安全性")
+            .sheet(isPresented: $isAboutPrivacyPresented) {
+                PrivacyAboutView(title: "关于暗礁浏览器与隐私", description: Text("\(Text("关于暗礁浏览器与隐私...").foregroundColor(.accentColor))"), detailText: """
+                **关于暗礁浏览器与隐私**
+                
+                暗礁浏览器致力于保护您的隐私，Darock 不会未经同意收集任何信息。
+                """)
+            }
         }
         
         struct CookieView: View {
@@ -3309,9 +3304,10 @@ struct SettingsView: View {
         }
         
         struct FeatureFlagsView: View {
+            @AppStorage("INFFIsDarockIntelligenceEnabled") var isDarockIntelligenceEnabled = false
             var body: some View {
                 List {
-                    
+                    Toggle("Darock Intelligence", isOn: $isDarockIntelligenceEnabled)
                 }
                 .navigationTitle("Feature Flags")
             }

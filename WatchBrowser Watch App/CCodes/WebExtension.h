@@ -24,9 +24,6 @@ NSUserActivity* globalWebBrowsingUserActivity;
 
 @interface WebExtension : NSObject
 
-+(id) getBindedButtonWithSelector: (NSString *)selector button:(id) button;
-+(void) menuButtonClicked;
-
 @end
 
 #endif /* WebExtension_h */

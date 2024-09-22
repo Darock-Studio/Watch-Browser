@@ -12,16 +12,19 @@ struct TipsView: View {
         List {
             Section {
                 NavigationLink(destination: { NewFeaturesView() }, label: {
-                    HStack {
+                    Label(title: {
+                        Text("新功能")
+                    }, icon: {
                         Image(systemName: "sparkles")
                             .foregroundColor(.yellow)
-                        Text("新功能")
-                    }
+                    })
                 })
             }
             Section {
                 NavigationLink(destination: { SetupChecklistView() }, label: {
-                    HStack {
+                    Label(title: {
+                        Text("设置清单")
+                    }, icon: {
                         Image(systemName: {
                             if #available(watchOS 10, *) {
                                 "checkmark.rectangle.stack"
@@ -30,58 +33,63 @@ struct TipsView: View {
                             }
                         }())
                         .foregroundColor(.yellow)
-                        Text("设置清单")
-                    }
+                    })
                 })
                 NavigationLink(destination: { PracticeKeyGesturesView() }, label: {
-                    HStack {
+                    Label(title: {
+                        Text("练习主要手势")
+                    }, icon: {
                         Image(systemName: "hand.draw")
                             .foregroundColor(.purple)
-                        Text("练习主要手势")
-                    }
+                    })
                 })
             } header: {
                 Text("开始")
             }
             Section {
                 NavigationLink(destination: { BeyondTheBasicsView() }, label: {
-                    HStack {
+                    Label(title: {
+                        Text("进阶技巧")
+                    }, icon: {
                         Image(systemName: "star")
                             .foregroundColor(.orange)
-                        Text("进阶技巧")
-                    }
+                    })
                 })
             } header: {
                 Text("发现更多")
             }
             Section {
                 NavigationLink(destination: { MusicView() }, label: {
-                    HStack {
+                    Label(title: {
+                        Text("音乐")
+                    }, icon: {
                         Image(systemName: "music.note")
                             .foregroundColor(.red)
-                        Text("音乐")
-                    }
+                    })
                 })
                 NavigationLink(destination: { PhotosView() }, label: {
-                    HStack {
+                    Label(title: {
+                        Text("图片")
+                    }, icon: {
                         Image(systemName: "photo")
                             .foregroundColor(.orange)
-                        Text("图片")
-                    }
+                    })
                 })
                 NavigationLink(destination: { BooksView() }, label: {
-                    HStack {
+                    Label(title: {
+                        Text("图书")
+                    }, icon: {
                         Image(systemName: "book")
                             .foregroundColor(.green)
-                        Text("图书")
-                    }
+                    })
                 })
                 NavigationLink(destination: { VideosView() }, label: {
-                    HStack {
+                    Label(title: {
+                        Text("视频")
+                    }, icon: {
                         Image(systemName: "film.stack")
                             .foregroundColor(.mint)
-                        Text("视频")
-                    }
+                    })
                 })
             } header: {
                 Text("媒体")

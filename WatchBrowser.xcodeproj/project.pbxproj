@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -43,6 +43,8 @@
 		8C7C4D3E2C2C999F00FD282B /* HYWenHei.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CCF13F32C20B31700F5E0D7 /* HYWenHei.ttf */; };
 		8C7C4D412C2D87B300FD282B /* EPUBKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C7C4D402C2D87B300FD282B /* EPUBKit */; };
 		8C7C4D432C2D898700FD282B /* BookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C4D422C2D898700FD282B /* BookListView.swift */; };
+		8C83457F2C9F0A6100311CE4 /* SaltUICore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8345502C9F06C500311CE4 /* SaltUICore.xcframework */; };
+		8C8345802C9F0A6100311CE4 /* SaltUICore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8345502C9F06C500311CE4 /* SaltUICore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C894B222BE7569300768B59 /* ExtKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C894B212BE7569300768B59 /* ExtKeyboardView.swift */; };
 		8C9188832C73A64200C64E70 /* WKWebView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9188822C73A64000C64E70 /* WKWebView+.swift */; };
 		8C96E34B2C15901400751FAF /* ClusterAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C96E34A2C15901400751FAF /* ClusterAdView.swift */; };
@@ -84,6 +86,7 @@
 		8CB9A10E2C6D229600E6A367 /* MarkdownUI+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9A10D2C6D229200E6A367 /* MarkdownUI+.swift */; };
 		8CBA140A2C7CEAD900D40EE5 /* View+CompatibleDoubleTapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA14092C7CEAC000D40EE5 /* View+CompatibleDoubleTapGesture.swift */; };
 		8CBA14102C7D1B4D00D40EE5 /* DoubleTapActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA140F2C7D1B4200D40EE5 /* DoubleTapActionButton.swift */; };
+		8CC3353A2C9954A60025B936 /* PrivacyAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC335392C99549A0025B936 /* PrivacyAboutView.swift */; };
 		8CCDABEF2C5674F100E29E3D /* ClusterTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCDABEE2C5674F100E29E3D /* ClusterTipView.swift */; };
 		8CCF13F22C20A4FF00F5E0D7 /* DarockAccountsUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCF13F12C20A4FF00F5E0D7 /* DarockAccountsUI.swift */; };
 		8CDE9B922C3AACDA0083B09E /* ___MesugakiAmane.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8CDE9B912C3AACDA0083B09E /* ___MesugakiAmane.drkdatau */; };
@@ -171,6 +174,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8C8345802C9F0A6100311CE4 /* SaltUICore.xcframework in Embed Frameworks */,
 				8C52811D2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -714,6 +718,10 @@
 		8C7353FB2C9899080062DC00 /* TestDynamic.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = TestDynamic.dylib; path = "../../Library/Developer/CoreSimulator/Devices/F15CE65A-CE18-42B8-878A-FBFC637CBDB6/data/Containers/Data/Application/A94D7B5E-577F-4670-BD2E-FEDD1116AD39/Documents/TestDynamic.dylib"; sourceTree = "<group>"; };
 		8C7353FE2C989B0D0062DC00 /* TestDynamic.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = TestDynamic.dylib; path = "../../Library/Developer/Xcode/DerivedData/TestDynamic-fzrcyqcbtexpqldmfpnthctiphih/Build/Products/Debug-watchos/TestDynamic.dylib"; sourceTree = "<group>"; };
 		8C7C4D422C2D898700FD282B /* BookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListView.swift; sourceTree = "<group>"; };
+		8C8345452C9F03EB00311CE4 /* SaltUICore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SaltUICore.framework; path = "../../Library/Developer/Xcode/DerivedData/SaltUICore-bojldjzbsenpcufsomovujkhghou/Build/Products/Debug-watchos/SaltUICore.framework"; sourceTree = "<group>"; };
+		8C83454A2C9F049700311CE4 /* SaltUICore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SaltUICore.framework; sourceTree = "<group>"; };
+		8C83454D2C9F04E800311CE4 /* SaltUICore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SaltUICore.framework; path = DarockFrameworks/SaltUICore.framework; sourceTree = "<group>"; };
+		8C8345502C9F06C500311CE4 /* SaltUICore.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:B57D8PP775:Yuxuan Chen"; lastKnownFileType = wrapper.xcframework; name = SaltUICore.xcframework; path = DarockFrameworks/SaltUICore.xcframework; sourceTree = "<group>"; };
 		8C894B212BE7569300768B59 /* ExtKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtKeyboardView.swift; sourceTree = "<group>"; };
 		8C9188822C73A64000C64E70 /* WKWebView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView+.swift"; sourceTree = "<group>"; };
 		8C96E34A2C15901400751FAF /* ClusterAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAdView.swift; sourceTree = "<group>"; };
@@ -754,6 +762,7 @@
 		8CB9A1222C6D2CCB00E6A367 /* glext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glext.h; sourceTree = "<group>"; };
 		8CBA14092C7CEAC000D40EE5 /* View+CompatibleDoubleTapGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CompatibleDoubleTapGesture.swift"; sourceTree = "<group>"; };
 		8CBA140F2C7D1B4200D40EE5 /* DoubleTapActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleTapActionButton.swift; sourceTree = "<group>"; };
+		8CC335392C99549A0025B936 /* PrivacyAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyAboutView.swift; sourceTree = "<group>"; };
 		8CCDABEE2C5674F100E29E3D /* ClusterTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterTipView.swift; sourceTree = "<group>"; };
 		8CCF13F12C20A4FF00F5E0D7 /* DarockAccountsUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarockAccountsUI.swift; sourceTree = "<group>"; };
 		8CCF13F32C20B31700F5E0D7 /* HYWenHei.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HYWenHei.ttf; sourceTree = "<group>"; };
@@ -815,6 +824,7 @@
 				8CA47C072C9823FE00753101 /* Pictor in Frameworks */,
 				8CA47BF52C972A9A00753101 /* SwiftyStoreKit in Frameworks */,
 				8CF8B9632C44FCAA0070F833 /* MarkdownUI in Frameworks */,
+				8C83457F2C9F0A6100311CE4 /* SaltUICore.xcframework in Frameworks */,
 				8C40D4C42C33DBE900C4221C /* SDWebImagePDFCoder in Frameworks */,
 				8CA4537B2AE3C5F600138CE4 /* EFQRCode in Frameworks */,
 				8CAF38F72BD4F960006B9B16 /* SwiftSoup in Frameworks */,
@@ -1447,6 +1457,10 @@
 		8C41F7E72C1439C90052A635 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C8345502C9F06C500311CE4 /* SaltUICore.xcframework */,
+				8C8345452C9F03EB00311CE4 /* SaltUICore.framework */,
+				8C83454A2C9F049700311CE4 /* SaltUICore.framework */,
+				8C83454D2C9F04E800311CE4 /* SaltUICore.framework */,
 				8C7353FB2C9899080062DC00 /* TestDynamic.dylib */,
 				8C7353FE2C989B0D0062DC00 /* TestDynamic.dylib */,
 				8CA47BF92C97666700753101 /* Translation.framework */,
@@ -1637,6 +1651,7 @@
 			isa = PBXGroup;
 			children = (
 				8C894B212BE7569300768B59 /* ExtKeyboardView.swift */,
+				8CC335392C99549A0025B936 /* PrivacyAboutView.swift */,
 				E296FE012A459C5D00331BD4 /* BulletinView.swift */,
 				8C96E34A2C15901400751FAF /* ClusterAdView.swift */,
 				8CA4537C2AE3C63900138CE4 /* JoinGroupView.swift */,
@@ -1995,6 +2010,7 @@
 				8CA47BFF2C9812BC00753101 /* Models.swift in Sources */,
 				8CE70DCB2C7A527E00EFB3AD /* BookReaderView.swift in Sources */,
 				8CF5DC4F2BAE04D5007F9974 /* ShareView.swift in Sources */,
+				8CC3353A2C9954A60025B936 /* PrivacyAboutView.swift in Sources */,
 				8C5930652C712F75004C79CE /* BrowsingMenuView.swift in Sources */,
 				8C6E11E12BDC0638005420C0 /* WebArchiveListView.swift in Sources */,
 				8C6D867B2C10CA680089CE67 /* BrowsingTabsView.swift in Sources */,
@@ -2270,6 +2286,11 @@
 				DEVELOPMENT_TEAM = B57D8PP775;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/DarockFrameworks",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_ERRORS = YES;
 				IBSC_OTHER_FLAGS = "--target-device iphone";
@@ -2312,6 +2333,11 @@
 				DEVELOPMENT_TEAM = B57D8PP775;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/DarockFrameworks",
+				);
 				GCC_OPTIMIZATION_LEVEL = z;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_ERRORS = YES;

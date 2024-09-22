@@ -42,7 +42,7 @@ struct HistoryView: View {
                 }
                 passcodeInputCache = ""
             }
-            .navigationBarBackButtonHidden()
+            .toolbar(.hidden)
         } else {
             List {
                 if selectionHandler == nil {

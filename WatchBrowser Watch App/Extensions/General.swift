@@ -80,10 +80,7 @@ struct TextField: View {
     }
 }
 
-// TODO: available(SwiftStdlib 6.0, *)
-// -           Identifiable
-// +           @retroactive Identifiable
-extension Int: Identifiable {
+extension Int: @retroactive Identifiable {
     public var id: Self { self }
 }
 

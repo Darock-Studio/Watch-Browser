@@ -12,6 +12,7 @@ import Combine
 import Network
 import SwiftSoup
 import DarockKit
+import SaltUICore
 import AuthenticationServices
 
 var videoLinkLists = [String]()
@@ -116,9 +117,7 @@ final class AdvancedWebViewController: NSObject {
             return Dynamic.WKWebView()
         }
         
-        let moreButton = makeUIButton(title: .image(UIImage(systemName: "ellipsis.circle")!),
-                                      frame: CGRect(x: 10, y: 10, width: 30, height: 30),
-                                      selector: "menuButtonClicked")
+        let moreButton = SUICButton(systemImage: "ellipsis.circle", frame: .init(x: 10, y: 10, width: 30, height: 30), action: presentBrowsingMenu).button()
         
         let sb = WKInterfaceDevice.current().screenBounds
         
@@ -161,10 +160,10 @@ final class AdvancedWebViewController: NSObject {
         }
         
         if _slowPath(showFastExitButton) {
-            let fastExitButton = makeUIButton(title: .image(UIImage(systemName: "escape")!),
-                                              frame: CGRect(x: 40, y: 10, width: 30, height: 30),
-                                              tintColor: .red,
-                                              selector: "DismissWebView")
+            let fastExitButton = SUICButton(systemImage: "escape", frame: .init(x: 40, y: 10, width: 30, height: 30), action: dismissWebView)
+                .tintColor(.red)
+                .button()
+            
             webViewHolder.addSubview(fastExitButton)
         }
         webViewHolder.addSubview(moreButton)
@@ -234,45 +233,11 @@ final class AdvancedWebViewController: NSObject {
         currentTabIndex = nil
     }
     
-    @_effects(readonly)
-    func makeUIButton(
-        title: TextOrImage,
-        frame: CGRect,
-        backgroundColor: Color? = nil,
-        tintColor: Color? = nil,
-        cornerRadius: CGFloat = 8,
-        selector: String? = nil
-    ) -> Dynamic {
-        var resultButton = Dynamic.UIButton.buttonWithType(1)
-        switch title {
-        case .text(let text):
-            resultButton.setTitle(text, forState: 0)
-        case .image(let image):
-            resultButton.setImage(image, forState: 0)
-        }
-        resultButton.setFrame(frame)
-        if let backgroundColor {
-            resultButton.setBackgroundColor(UIColor(backgroundColor))
-        }
-        if let tintColor {
-            resultButton.setTintColor(UIColor(tintColor))
-        }
-        resultButton.layer.cornerRadius = cornerRadius
-        if let selector {
-            resultButton = Dynamic(WebExtension.getBindedButton(withSelector: selector, button: resultButton.asObject!))
-        }
-        return resultButton
-    }
     func dismissController(_ controller: Dynamic, animated: Bool = true) {
         controller.dismissModalViewController(animated: animated)
     }
     func dismissControllersOnWebView(animated: Bool = true) {
         vc.dismissViewControllerAnimated(animated, completion: nil)
-    }
-    
-    enum TextOrImage {
-        case text(String)
-        case image(UIImage)
     }
     
     enum OverrideLegacyViewOptions {

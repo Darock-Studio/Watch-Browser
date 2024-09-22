@@ -979,6 +979,16 @@
     "@DRKCOMU" : {
       "shouldTranslate" : false
     },
+    "**关于暗礁浏览器与隐私**\n\n暗礁浏览器致力于保护您的隐私，Darock 不会未经同意收集任何信息。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**About Darock Browser & Privacy**\n\nDarock Browser is committed to protecting your privacy; Darock will not collect any information without consent."
+          }
+        }
+      }
+    },
     "**并非所有网页内的视频均能被解析**\n\n请**不要**提出网站视频无法播放之类的反馈" : {
       "localizations" : {
         "ar" : {
@@ -8214,6 +8224,9 @@
     "Darock Community" : {
       "shouldTranslate" : false
     },
+    "Darock Intelligence" : {
+      "shouldTranslate" : false
+    },
     "Darock Studio" : {
       "shouldTranslate" : false
     },
@@ -8331,6 +8344,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darock 始終重視您的隱私，所有 Cookie 僅在本地存儲"
+          }
+        }
+      }
+    },
+    "Darock 智能" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Intelligence"
           }
         }
       }
@@ -20693,6 +20716,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "關於"
+          }
+        }
+      }
+    },
+    "关于暗礁浏览器与隐私" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About Darock Browser & Privacy"
+          }
+        }
+      }
+    },
+    "关于暗礁浏览器与隐私..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About Darock Browser & Privacy…"
           }
         }
       }
@@ -46147,124 +46190,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darock Browser has an update available."
-          }
-        }
-      }
-    },
-    "暗礁浏览器致力于保护您的隐私，Darock 不会未经同意收集任何信息。" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "يلتزم متصفح ريف بحماية خصوصيتك ولن يجمع أي معلومات دون موافقة."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Browser verpflichtet sich, Ihre Privatsphäre zu schützen und wird keine Informationen ohne Zustimmung sammeln."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darock Browser is committed to protecting your privacy; Darock will not collect any information without consent."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Browser se compromete a proteger su privacidad y no recopilará ninguna información sin consentimiento."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Browser s'engage à protéger votre vie privée et ne collectera aucune information sans consentement."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "रीफ ब्राउज़र आपकी गोपनीयता की रक्षा के लिए प्रतिबद्ध है और सहमति के बिना कोई जानकारी एकत्र नहीं करेगा।"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Browser berkomitmen untuk melindungi privasi Anda dan tidak akan mengumpulkan informasi apa pun tanpa persetujuan."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Browser si impegna a proteggere la tua privacy e non raccoglierà alcuna informazione senza consenso."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darockブラウザはプライバシー保護に努めており、Darockは同意なしに情報を収集しません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "암초 브라우저는 귀하의 개인 정보를 보호하기 위해 최선을 다하고 있으며, Darock 동의 없이 어떠한 정보도 수집하지 않습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Browser zet zich in om uw privacy te beschermen en zal geen informatie verzamelen zonder toestemming."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Browser zobowiązuje się do ochrony Twojej prywatności i nie będzie zbierać żadnych informacji bez zgody."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O Reef Browser está comprometido em proteger sua privacidade e não coletará nenhuma informação sem consentimento."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Browser обязуется защищать вашу конфиденциальность, и Darock не будет собирать какую-либо информацию без согласия."
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Browser มุ่งมั่นที่จะปกป้องความเป็นส่วนตัวของคุณและจะไม่รวบรวมข้อมูลใด ๆ โดยไม่ได้รับความยินยอม"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Browser gizliliğinizi korumayı taahhüt eder ve izinsiz olarak herhangi bir bilgi toplamayacaktır."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Browser прагне захищати вашу конфіденційність і не збиратиме жодної інформації без згоди."
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reef Browser cam kết bảo vệ quyền riêng tư của bạn và sẽ không thu thập bất kỳ thông tin nào mà không có sự đồng ý."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "暗礁瀏覽器致力於保護您的隱私，Darock 不會未經同意收集任何信息。"
           }
         }
       }

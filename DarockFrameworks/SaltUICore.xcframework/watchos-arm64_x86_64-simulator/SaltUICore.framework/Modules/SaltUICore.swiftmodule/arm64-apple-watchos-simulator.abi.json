@@ -1,0 +1,738 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "SaltUICore",
+    "printedName": "SaltUICore",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "SaltUICore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SUICUI2SwiftConverter",
+        "printedName": "SUICUI2SwiftConverter",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "swiftUIView",
+            "printedName": "swiftUIView(fromUIView:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "OpaqueTypeArchetype",
+                "printedName": "some SwiftUI.View",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "View",
+                    "printedName": "SwiftUI.View",
+                    "usr": "s:7SwiftUI4ViewP"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NSObject",
+                "printedName": "ObjectiveC.NSObject",
+                "usr": "c:objc(cs)NSObject"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SaltUICore21SUICUI2SwiftConverterC11swiftUIView04fromG0QrSo8NSObjectC_tFZ",
+            "mangledName": "$s10SaltUICore21SUICUI2SwiftConverterC11swiftUIView04fromG0QrSo8NSObjectC_tFZ",
+            "moduleName": "SaltUICore",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SUICUI2SwiftConverter",
+                "printedName": "SaltUICore.SUICUI2SwiftConverter",
+                "usr": "c:@M@SaltUICore@objc(cs)SUICUI2SwiftConverter"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@SaltUICore@objc(cs)SUICUI2SwiftConverter(im)init",
+            "mangledName": "$s10SaltUICore21SUICUI2SwiftConverterCACycfc",
+            "moduleName": "SaltUICore",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@SaltUICore@objc(cs)SUICUI2SwiftConverter",
+        "mangledName": "$s10SaltUICore21SUICUI2SwiftConverterC",
+        "moduleName": "SaltUICore",
+        "declAttributes": [
+          "AccessControl",
+          "ObjCMembers",
+          "RawDocComment",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "OSLog",
+        "printedName": "OSLog",
+        "declKind": "Import",
+        "moduleName": "SaltUICore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "SaltUICore"
+      },
+      {
+        "kind": "Import",
+        "name": "Dynamic",
+        "printedName": "Dynamic",
+        "declKind": "Import",
+        "moduleName": "SaltUICore",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SUICButton",
+        "printedName": "SUICButton",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(titleKey:frame:action:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SUICButton",
+                "printedName": "SaltUICore.SUICButton",
+                "usr": "c:@M@SaltUICore@objc(cs)SUICButton"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "LocalizedStringResource",
+                "printedName": "Foundation.LocalizedStringResource",
+                "usr": "s:10Foundation23LocalizedStringResourceV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGRect",
+                "printedName": "CoreFoundation.CGRect",
+                "usr": "c:@S@CGRect"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:10SaltUICore10SUICButtonC8titleKey5frame6actionAC10Foundation23LocalizedStringResourceV_So6CGRectVyyctcfc",
+            "mangledName": "$s10SaltUICore10SUICButtonC8titleKey5frame6actionAC10Foundation23LocalizedStringResourceV_So6CGRectVyyctcfc",
+            "moduleName": "SaltUICore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(systemImage:frame:action:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SUICButton",
+                "printedName": "SaltUICore.SUICButton",
+                "usr": "c:@M@SaltUICore@objc(cs)SUICButton"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGRect",
+                "printedName": "CoreFoundation.CGRect",
+                "usr": "c:@S@CGRect"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@SaltUICore@objc(cs)SUICButton(im)initWithSystemImage:frame:action:",
+            "mangledName": "$s10SaltUICore10SUICButtonC11systemImage5frame6actionACSS_So6CGRectVyyctcfc",
+            "moduleName": "SaltUICore",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "tintColor",
+            "printedName": "tintColor(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DynamicSelf",
+                "printedName": "Self"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Color",
+                "printedName": "SwiftUI.Color",
+                "usr": "s:7SwiftUI5ColorV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SaltUICore10SUICButtonC9tintColoryACXD7SwiftUI0E0VF",
+            "mangledName": "$s10SaltUICore10SUICButtonC9tintColoryACXD7SwiftUI0E0VF",
+            "moduleName": "SaltUICore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "tintColor",
+            "printedName": "tintColor(binding:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DynamicSelf",
+                "printedName": "Self"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Binding",
+                "printedName": "SwiftUI.Binding<SwiftUI.Color>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Color",
+                    "printedName": "SwiftUI.Color",
+                    "usr": "s:7SwiftUI5ColorV"
+                  }
+                ],
+                "usr": "s:7SwiftUI7BindingV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SaltUICore10SUICButtonC9tintColor7bindingACXD7SwiftUI7BindingVyAF0E0VG_tF",
+            "mangledName": "$s10SaltUICore10SUICButtonC9tintColor7bindingACXD7SwiftUI7BindingVyAF0E0VG_tF",
+            "moduleName": "SaltUICore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "button",
+            "printedName": "button()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "NSObject",
+                "printedName": "ObjectiveC.NSObject",
+                "usr": "c:objc(cs)NSObject"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@SaltUICore@objc(cs)SUICButton(im)button",
+            "mangledName": "$s10SaltUICore10SUICButtonC6buttonSo8NSObjectCyF",
+            "moduleName": "SaltUICore",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "updateAll",
+            "printedName": "updateAll()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@SaltUICore@objc(cs)SUICButton(im)updateAll",
+            "mangledName": "$s10SaltUICore10SUICButtonC9updateAllyyF",
+            "moduleName": "SaltUICore",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SUICButton",
+                "printedName": "SaltUICore.SUICButton",
+                "usr": "c:@M@SaltUICore@objc(cs)SUICButton"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@SaltUICore@objc(cs)SUICButton(im)init",
+            "mangledName": "$s10SaltUICore10SUICButtonCACycfc",
+            "moduleName": "SaltUICore",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@SaltUICore@objc(cs)SUICButton",
+        "mangledName": "$s10SaltUICore10SUICButtonC",
+        "moduleName": "SaltUICore",
+        "declAttributes": [
+          "AccessControl",
+          "ObjCMembers",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Function",
+        "name": "_makeUIButton",
+        "printedName": "_makeUIButton(title:frame:backgroundColor:tintColor:cornerRadius:action:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "NSObject",
+            "printedName": "ObjectiveC.NSObject",
+            "usr": "c:objc(cs)NSObject"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "_UIButtonTextOrImage",
+            "printedName": "SaltUICore._UIButtonTextOrImage",
+            "usr": "s:10SaltUICore20_UIButtonTextOrImageO"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "CGRect",
+            "printedName": "CoreFoundation.CGRect",
+            "usr": "c:@S@CGRect"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "SwiftUI.Color?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Color",
+                "printedName": "SwiftUI.Color",
+                "usr": "s:7SwiftUI5ColorV"
+              }
+            ],
+            "hasDefaultArg": true,
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "SwiftUI.Color?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Color",
+                "printedName": "SwiftUI.Color",
+                "usr": "s:7SwiftUI5ColorV"
+              }
+            ],
+            "hasDefaultArg": true,
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "CGFloat",
+            "printedName": "CoreGraphics.CGFloat",
+            "hasDefaultArg": true,
+            "usr": "s:14CoreFoundation7CGFloatV"
+          },
+          {
+            "kind": "TypeFunc",
+            "name": "Function",
+            "printedName": "() -> ()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ]
+          }
+        ],
+        "declKind": "Func",
+        "usr": "s:10SaltUICore13_makeUIButton5title5frame15backgroundColor04tintH012cornerRadius6actionSo8NSObjectCAA01_D11TextOrImageO_So6CGRectV7SwiftUI0H0VSgAR14CoreFoundation7CGFloatVyyctF",
+        "mangledName": "$s10SaltUICore13_makeUIButton5title5frame15backgroundColor04tintH012cornerRadius6actionSo8NSObjectCAA01_D11TextOrImageO_So6CGRectV7SwiftUI0H0VSgAR12CoreGraphics7CGFloatVyyctF",
+        "moduleName": "SaltUICore",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "_UIButtonTextOrImage",
+        "printedName": "_UIButtonTextOrImage",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "text",
+            "printedName": "text",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SaltUICore._UIButtonTextOrImage.Type) -> (Swift.String) -> SaltUICore._UIButtonTextOrImage",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String) -> SaltUICore._UIButtonTextOrImage",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "_UIButtonTextOrImage",
+                        "printedName": "SaltUICore._UIButtonTextOrImage",
+                        "usr": "s:10SaltUICore20_UIButtonTextOrImageO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SaltUICore._UIButtonTextOrImage.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "_UIButtonTextOrImage",
+                        "printedName": "SaltUICore._UIButtonTextOrImage",
+                        "usr": "s:10SaltUICore20_UIButtonTextOrImageO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SaltUICore20_UIButtonTextOrImageO4textyACSScACmF",
+            "mangledName": "$s10SaltUICore20_UIButtonTextOrImageO4textyACSScACmF",
+            "moduleName": "SaltUICore"
+          },
+          {
+            "kind": "Var",
+            "name": "image",
+            "printedName": "image",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SaltUICore._UIButtonTextOrImage.Type) -> (UIKit.UIImage) -> SaltUICore._UIButtonTextOrImage",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(UIKit.UIImage) -> SaltUICore._UIButtonTextOrImage",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "_UIButtonTextOrImage",
+                        "printedName": "SaltUICore._UIButtonTextOrImage",
+                        "usr": "s:10SaltUICore20_UIButtonTextOrImageO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UIImage",
+                        "printedName": "UIKit.UIImage",
+                        "usr": "c:objc(cs)UIImage"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SaltUICore._UIButtonTextOrImage.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "_UIButtonTextOrImage",
+                        "printedName": "SaltUICore._UIButtonTextOrImage",
+                        "usr": "s:10SaltUICore20_UIButtonTextOrImageO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SaltUICore20_UIButtonTextOrImageO5imageyACSo7UIImageCcACmF",
+            "mangledName": "$s10SaltUICore20_UIButtonTextOrImageO5imageyACSo7UIImageCcACmF",
+            "moduleName": "SaltUICore"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:10SaltUICore20_UIButtonTextOrImageO",
+        "mangledName": "$s10SaltUICore20_UIButtonTextOrImageO",
+        "moduleName": "SaltUICore",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/memz233\/Desktop\/DarockFrameworks\/SaltUICore\/SaltUICore\/SUICButton.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1566,
+      "length": 1,
+      "value": "8"
+    }
+  ]
+}
