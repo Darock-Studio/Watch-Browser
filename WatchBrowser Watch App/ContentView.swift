@@ -45,6 +45,7 @@ struct ContentView: View {
     @State var isAudioControllerPresented = false
     @State var toolbarNavigationDestination: HomeScreenNavigationType?
     @State var showSettingsButtonInList = false
+    @State var isLowPowerReducingBackground = false
     var body: some View {
         Group {
             if #available(watchOS 10.0, *) {
@@ -210,7 +211,7 @@ struct ContentView: View {
             }
             
             // Cloud
-            if !darockAccount.isEmpty && isSaveHistoryToCloud {
+            if !darockAccount.isEmpty && isSaveHistoryToCloud && !ProcessInfo.processInfo.isLowPowerModeEnabled {
                 Task {
                     if let cloudHistories = await getWebHistoryFromCloud(with: darockAccount) {
                         let currentHistories = getWebHistory()
@@ -222,6 +223,11 @@ struct ContentView: View {
                 }
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: .NSProcessInfoPowerStateDidChange)) { processInfo in
+            if let processInfo = processInfo.object as? ProcessInfo {
+                isLowPowerReducingBackground = processInfo.isLowPowerModeEnabled
+            }
+        }
     }
     
     @available(watchOS 10.0, *) @ViewBuilder var mainWithBackground: some View {
@@ -230,24 +236,28 @@ struct ContentView: View {
            let image = UIImage(data: imageData) {
             MainView(withSetting: $showSettingsButtonInList)
                 .containerBackground(for: .navigation) {
-                    ZStack {
-                        Image(uiImage: image)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: WKInterfaceDevice.current().screenBounds.width, height: WKInterfaceDevice.current().screenBounds.height)
-                            .blur(radius: isBackgroundImageBlured ? 20 : 0)
-                        if isBackgroundImageBlured {
-                            Color.black
-                                .opacity(0.4)
+                    if !isLowPowerReducingBackground {
+                        ZStack {
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: WKInterfaceDevice.current().screenBounds.width, height: WKInterfaceDevice.current().screenBounds.height)
+                                .blur(radius: isBackgroundImageBlured ? 20 : 0)
+                            if isBackgroundImageBlured {
+                                Color.black
+                                    .opacity(0.4)
+                            }
                         }
                     }
                 }
         } else {
             MainView(withSetting: $showSettingsButtonInList)
                 .containerBackground(
-                    isOverrideAccentColor
+                    !isLowPowerReducingBackground
+                    ? (isOverrideAccentColor
                     ? Color(red: overrideAccentColorRed, green: overrideAccentColorGreen, blue: overrideAccentColorBlue).gradient
-                    : Color(hex: 0x13A4FF).gradient,
+                    : Color(hex: 0x13A4FF).gradient)
+                    : Color.black.gradient,
                     for: .navigation
                 )
         }
@@ -337,15 +347,17 @@ struct MainView: View {
             
             pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()
             webArchiveLinks = UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()
-            let feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
-            newFeedbackCount = 0
-            for id in feedbackIds {
-                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)".compatibleUrlEncoded()) { respStr, isSuccess in
-                    if isSuccess {
-                        let repCount = respStr.apiFixed().components(separatedBy: "---").count - 1
-                        let lastViewCount = UserDefaults.standard.integer(forKey: "RadarFB\(id)ReplyCount")
-                        if repCount > lastViewCount {
-                            newFeedbackCount++
+            if !ProcessInfo.processInfo.isLowPowerModeEnabled {
+                let feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
+                newFeedbackCount = 0
+                for id in feedbackIds {
+                    DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)".compatibleUrlEncoded()) { respStr, isSuccess in
+                        if isSuccess {
+                            let repCount = respStr.apiFixed().components(separatedBy: "---").count - 1
+                            let lastViewCount = UserDefaults.standard.integer(forKey: "RadarFB\(id)ReplyCount")
+                            if repCount > lastViewCount {
+                                newFeedbackCount++
+                            }
                         }
                     }
                 }

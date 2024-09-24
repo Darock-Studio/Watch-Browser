@@ -1562,13 +1562,11 @@ struct SettingsView: View {
                                 let session = ASWebAuthenticationSession(
                                     url: URL(string: "https://beian.miit.gov.cn")!,
                                     callbackURLScheme: nil
-                                ) { _, _ in
-                                    
-                                }
+                                ) { _, _ in }
                                 session.prefersEphemeralWebBrowserSession = true
                                 session.start()
                             }, label: {
-                                Text("浙ICP备2024071295号-2A")
+                                Text("蜀ICP备2024100233号-1A")
                             })
                         } header: {
                             Text("中国大陆ICP备案号")
@@ -3171,6 +3169,15 @@ struct SettingsView: View {
                     })
                 } header: {
                     Text("Security Delay")
+                }
+                Section {
+                    Button(action: {
+                        tipWithText("\(ProcessInfo.processInfo.thermalState)", symbol: "hammer.circle.fill")
+                    }, label: {
+                        Text("Present Thermal State")
+                    })
+                } header: {
+                    Text("Energy & Performance")
                 }
                 Section {
                     Button(action: {

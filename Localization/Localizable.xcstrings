@@ -8623,6 +8623,9 @@
     "Discord Server" : {
       "shouldTranslate" : false
     },
+    "Energy & Performance" : {
+      "shouldTranslate" : false
+    },
     "Error Handler" : {
       "shouldTranslate" : false
     },
@@ -11196,6 +11199,9 @@
       "shouldTranslate" : false
     },
     "Present Start Time" : {
+      "shouldTranslate" : false
+    },
+    "Present Thermal State" : {
       "shouldTranslate" : false
     },
     "Print NSHomeDirectory" : {
@@ -16332,6 +16338,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "中國大陸ICP備案號"
+          }
+        }
+      }
+    },
+    "为减少电量消耗，同步已暂停" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synchronization has been paused to reduce power consumption"
           }
         }
       }
@@ -52311,23 +52327,6 @@
         }
       }
     },
-    "浙ICP备2024071295号-2A" : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      },
-      "shouldTranslate" : false
-    },
     "添加书签小组件" : {
       "localizations" : {
         "en" : {
@@ -62117,6 +62116,9 @@
           }
         }
       }
+    },
+    "蜀ICP备2024100233号-1A" : {
+      "shouldTranslate" : false
     },
     "被删除" : {
       "localizations" : {

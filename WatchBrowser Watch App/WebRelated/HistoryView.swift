@@ -315,7 +315,7 @@ struct HistoryView: View {
                                     return false
                                 })
                                 writeWebHistory(from: histories)
-                                if UserDefaults.standard.bool(forKey: "DCSaveHistory"),
+                                if UserDefaults.standard.bool(forKey: "DCSaveHistory") && !ProcessInfo.processInfo.isLowPowerModeEnabled,
                                    let account = UserDefaults.standard.string(forKey: "DarockAccount"),
                                    !account.isEmpty {
                                     // Darock Cloud Upload
@@ -352,7 +352,7 @@ struct HistoryView: View {
             .onAppear {
                 histories = getWebHistory()
                 // Cloud
-                if !darockAccount.isEmpty && isSaveHistoryToCloud {
+                if !darockAccount.isEmpty && isSaveHistoryToCloud && !ProcessInfo.processInfo.isLowPowerModeEnabled {
                     Task {
                         if let cloudHistories = await getWebHistoryFromCloud(with: darockAccount) {
                             let mergedHistories = mergeWebHistoriesBetween(primary: histories, secondary: cloudHistories)
@@ -386,7 +386,7 @@ func recordHistory(_ inp: String, webSearch: String, showName: String? = nil) {
         fullHistory.insert(.init(url: rurl, title: showName, time: Date.now.timeIntervalSince1970), at: 0)
     }
     writeWebHistory(from: fullHistory)
-    if UserDefaults.standard.bool(forKey: "DCSaveHistory"),
+    if UserDefaults.standard.bool(forKey: "DCSaveHistory") && !ProcessInfo.processInfo.isLowPowerModeEnabled,
        let account = UserDefaults.standard.string(forKey: "DarockAccount"),
        !account.isEmpty {
         // Darock Cloud Upload

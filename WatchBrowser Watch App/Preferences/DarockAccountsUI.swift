@@ -657,8 +657,18 @@ struct DarockAccountManagementMain: View {
         struct SavedToDarockCloudView: View {
             @AppStorage("DarockAccount") var darockAccount = ""
             @AppStorage("DCSaveHistory") var isSaveHistoryToCloud = false
+            @State var isLowPowerModeEnabled = ProcessInfo.processInfo.isLowPowerModeEnabled
             var body: some View {
                 List {
+                    if isLowPowerModeEnabled {
+                        Section {
+                            Text("为减少电量消耗，同步已暂停")
+                                .font(.headline)
+                                .multilineTextAlignment(.center)
+                                .centerAligned()
+                        }
+                        .listRowBackground(Color.clear)
+                    }
                     Section {
                         Toggle(isOn: $isSaveHistoryToCloud) {
                             HStack {
@@ -672,6 +682,11 @@ struct DarockAccountManagementMain: View {
                     }
                 }
                 .navigationTitle("存储至 Darock Cloud")
+                .onReceive(NotificationCenter.default.publisher(for: .NSProcessInfoPowerStateDidChange)) { processInfo in
+                    if let processInfo = processInfo.object as? ProcessInfo {
+                        isLowPowerModeEnabled = processInfo.isLowPowerModeEnabled
+                    }
+                }
             }
         }
     }
