@@ -3130,7 +3130,6 @@ struct SettingsView: View {
         }
     }
     struct InternalDebuggingView: View {
-        @Environment(\.openURL) private var openURL
         @AppStorage("SecurityDelayStartTime") var securityDelayStartTime = -1.0
         @AppStorage("TQCIsColorChangeButtonUnlocked") var isColorChangeButtonUnlocked = false
         @AppStorage("TQCIsColorChangeButtonEntered") var isColorChangeButtonEntered = false
