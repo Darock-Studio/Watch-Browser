@@ -117,6 +117,10 @@ struct AudioControllerView: View {
                                     }
                                 }
                             }
+                            .onAppear {
+                                // rdar://FB268002074511
+                                isSoftScrolling = false
+                            }
                         } else {
                             ProgressView()
                         }

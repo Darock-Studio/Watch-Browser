@@ -17,14 +17,13 @@
 		6BF209F82990E61E00E623FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BF209F72990E61E00E623FC /* Assets.xcassets */; };
 		6BF20A0A299100AE00E623FC /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF20A09299100AE00E623FC /* BookmarkView.swift */; };
 		6BFFCC562A8A6CF3001175EE /* DarockKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6BFFCC552A8A6CF3001175EE /* DarockKit */; };
+		8C0373BA2CAAD24B0029F047 /* View+WrapIf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0373B92CAAD2460029F047 /* View+WrapIf.swift */; };
 		8C03B6E02C296338000770B4 /* NetworkCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C03B6DF2C296338000770B4 /* NetworkCheckView.swift */; };
 		8C03B70E2C29B2CE000770B4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8C03B70D2C29B2CE000770B4 /* Localizable.xcstrings */; };
 		8C1DED022C32AEBB0048A32A /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1DED012C32AEB00048A32A /* General.swift */; };
-		8C3432ED2C5972DF00DC3912 /* RadarKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C3432EC2C5972DF00DC3912 /* RadarKit */; };
 		8C3E839D2C82246B00686E9C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E839C2C82246B00686E9C /* LICENSE */; };
 		8C40D4C42C33DBE900C4221C /* SDWebImagePDFCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 8C40D4C32C33DBE900C4221C /* SDWebImagePDFCoder */; };
 		8C40D4C62C33DE6B00C4221C /* TopLevelDomainList.drkdatat in Resources */ = {isa = PBXBuildFile; fileRef = 8C40D4C52C33DE5E00C4221C /* TopLevelDomainList.drkdatat */; };
-		8C40D4C92C33EC9900C4221C /* Punnycode in Frameworks */ = {isa = PBXBuildFile; productRef = 8C40D4C82C33EC9900C4221C /* Punnycode */; };
 		8C52811C2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */; };
 		8C52811D2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C5281272C22FA5600392315 /* TripleQuestionmarkCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C5281242C22FA5600392315 /* TripleQuestionmarkCore.h */; };
@@ -86,9 +85,15 @@
 		8CB9A10E2C6D229600E6A367 /* MarkdownUI+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9A10D2C6D229200E6A367 /* MarkdownUI+.swift */; };
 		8CBA140A2C7CEAD900D40EE5 /* View+CompatibleDoubleTapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA14092C7CEAC000D40EE5 /* View+CompatibleDoubleTapGesture.swift */; };
 		8CBA14102C7D1B4D00D40EE5 /* DoubleTapActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA140F2C7D1B4200D40EE5 /* DoubleTapActionButton.swift */; };
+		8CC3060F2CAB08C000323034 /* Success.ahap in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3060E2CAB08C000323034 /* Success.ahap */; };
+		8CC306112CAB0ECD00323034 /* Failure.ahap in Resources */ = {isa = PBXBuildFile; fileRef = 8CC306102CAB0ECD00323034 /* Failure.ahap */; };
+		8CC306132CAB160F00323034 /* View+TouchZoomable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC306122CAB160200323034 /* View+TouchZoomable.swift */; };
+		8CC306152CAB9F1800323034 /* View+Introspect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC306142CAB9F1300323034 /* View+Introspect.swift */; };
 		8CC3353A2C9954A60025B936 /* PrivacyAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC335392C99549A0025B936 /* PrivacyAboutView.swift */; };
 		8CCDABEF2C5674F100E29E3D /* ClusterTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCDABEE2C5674F100E29E3D /* ClusterTipView.swift */; };
 		8CCF13F22C20A4FF00F5E0D7 /* DarockAccountsUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCF13F12C20A4FF00F5E0D7 /* DarockAccountsUI.swift */; };
+		8CD3D89B2CA7E5D9009276DD /* Punycode in Frameworks */ = {isa = PBXBuildFile; productRef = 8CD3D89A2CA7E5D9009276DD /* Punycode */; };
+		8CD3D8ED2CAA384A009276DD /* SuggestedResolvers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3D8EC2CAA383B009276DD /* SuggestedResolvers.swift */; };
 		8CDE9B922C3AACDA0083B09E /* ___MesugakiAmane.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8CDE9B912C3AACDA0083B09E /* ___MesugakiAmane.drkdatau */; };
 		8CDE9B942C3AE1610083B09E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE9B932C3AE15D0083B09E /* Extensions.swift */; };
 		8CDE9B9E2C3C19460083B09E /* AudioListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE9B9D2C3C19460083B09E /* AudioListView.swift */; };
@@ -192,6 +197,15 @@
 		6BF209F52990E61C00E623FC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6BF209F72990E61E00E623FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6BF20A09299100AE00E623FC /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
+		8C0373B92CAAD2460029F047 /* View+WrapIf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+WrapIf.swift"; sourceTree = "<group>"; };
+		8C0373BC2CAAFA020029F047 /* CHHapticDeviceCapability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHHapticDeviceCapability.h; sourceTree = "<group>"; };
+		8C0373BD2CAAFA020029F047 /* CHHapticEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHHapticEngine.h; sourceTree = "<group>"; };
+		8C0373BE2CAAFA020029F047 /* CHHapticErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHHapticErrors.h; sourceTree = "<group>"; };
+		8C0373BF2CAAFA020029F047 /* CHHapticEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHHapticEvent.h; sourceTree = "<group>"; };
+		8C0373C02CAAFA020029F047 /* CHHapticParameter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHHapticParameter.h; sourceTree = "<group>"; };
+		8C0373C12CAAFA020029F047 /* CHHapticPattern.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHHapticPattern.h; sourceTree = "<group>"; };
+		8C0373C22CAAFA020029F047 /* CHHapticPatternPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHHapticPatternPlayer.h; sourceTree = "<group>"; };
+		8C0373C32CAAFA020029F047 /* CoreHaptics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreHaptics.h; sourceTree = "<group>"; };
 		8C03B6DF2C296338000770B4 /* NetworkCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheckView.swift; sourceTree = "<group>"; };
 		8C03B70B2C29B201000770B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8C03B70C2C29B20B000770B4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -762,6 +776,10 @@
 		8CB9A1222C6D2CCB00E6A367 /* glext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glext.h; sourceTree = "<group>"; };
 		8CBA14092C7CEAC000D40EE5 /* View+CompatibleDoubleTapGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CompatibleDoubleTapGesture.swift"; sourceTree = "<group>"; };
 		8CBA140F2C7D1B4200D40EE5 /* DoubleTapActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleTapActionButton.swift; sourceTree = "<group>"; };
+		8CC3060E2CAB08C000323034 /* Success.ahap */ = {isa = PBXFileReference; lastKnownFileType = text; path = Success.ahap; sourceTree = "<group>"; };
+		8CC306102CAB0ECD00323034 /* Failure.ahap */ = {isa = PBXFileReference; lastKnownFileType = text; path = Failure.ahap; sourceTree = "<group>"; };
+		8CC306122CAB160200323034 /* View+TouchZoomable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+TouchZoomable.swift"; sourceTree = "<group>"; };
+		8CC306142CAB9F1300323034 /* View+Introspect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Introspect.swift"; sourceTree = "<group>"; };
 		8CC335392C99549A0025B936 /* PrivacyAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyAboutView.swift; sourceTree = "<group>"; };
 		8CCDABEE2C5674F100E29E3D /* ClusterTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterTipView.swift; sourceTree = "<group>"; };
 		8CCF13F12C20A4FF00F5E0D7 /* DarockAccountsUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarockAccountsUI.swift; sourceTree = "<group>"; };
@@ -780,6 +798,8 @@
 		8CCF901F2C5E1A760024901E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8CCF90202C5E1A7E0024901E /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8CCF90212C5E1A830024901E /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8CD3D7FE2CA7CBDE009276DD /* ClockKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ClockKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS11.0.sdk/System/Library/Frameworks/ClockKit.framework; sourceTree = DEVELOPER_DIR; };
+		8CD3D8EC2CAA383B009276DD /* SuggestedResolvers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedResolvers.swift; sourceTree = "<group>"; };
 		8CDE9B8E2C3959DE0083B09E /* .swiftlint.yml */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; tabWidth = 2; };
 		8CDE9B912C3AACDA0083B09E /* ___MesugakiAmane.drkdatau */ = {isa = PBXFileReference; lastKnownFileType = file; path = "___MesugakiAmane.drkdatau"; sourceTree = "<group>"; };
 		8CDE9B932C3AE15D0083B09E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -812,14 +832,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C3432ED2C5972DF00DC3912 /* RadarKit in Frameworks */,
 				8CA7B84F2BE3E053004643FE /* SDWebImageWebPCoder in Frameworks */,
 				8CA7B84C2BE3E025004643FE /* SDWebImageSwiftUI in Frameworks */,
-				8C40D4C92C33EC9900C4221C /* Punnycode in Frameworks */,
 				8CB803CC2BD3D776009B2FAC /* Dynamic in Frameworks */,
 				6B0253D82A4EFB0100567986 /* DarockKit in Frameworks */,
 				8C52811C2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Frameworks */,
 				6BFFCC562A8A6CF3001175EE /* DarockKit in Frameworks */,
+				8CD3D89B2CA7E5D9009276DD /* Punycode in Frameworks */,
 				8C7C4D412C2D87B300FD282B /* EPUBKit in Frameworks */,
 				8CA47C072C9823FE00753101 /* Pictor in Frameworks */,
 				8CA47BF52C972A9A00753101 /* SwiftyStoreKit in Frameworks */,
@@ -907,6 +926,7 @@
 				8CCF13F32C20B31700F5E0D7 /* HYWenHei.ttf */,
 				6BF209F32990E61C00E623FC /* WatchBrowserApp.swift */,
 				6BF209F52990E61C00E623FC /* ContentView.swift */,
+				8CC3060D2CAB088200323034 /* Haptics */,
 				8CB9A10A2C6D20E100E6A367 /* Extensions */,
 				8CB803D22BD3E6C0009B2FAC /* WebKit */,
 				8CB803CD2BD3DCD1009B2FAC /* CCodes */,
@@ -918,6 +938,21 @@
 				6BF209F72990E61E00E623FC /* Assets.xcassets */,
 			);
 			path = "WatchBrowser Watch App";
+			sourceTree = "<group>";
+		};
+		8C0373BB2CAAF9E80029F047 /* CoreHaptics */ = {
+			isa = PBXGroup;
+			children = (
+				8C0373BC2CAAFA020029F047 /* CHHapticDeviceCapability.h */,
+				8C0373BD2CAAFA020029F047 /* CHHapticEngine.h */,
+				8C0373BE2CAAFA020029F047 /* CHHapticErrors.h */,
+				8C0373BF2CAAFA020029F047 /* CHHapticEvent.h */,
+				8C0373C02CAAFA020029F047 /* CHHapticParameter.h */,
+				8C0373C12CAAFA020029F047 /* CHHapticPattern.h */,
+				8C0373C22CAAFA020029F047 /* CHHapticPatternPlayer.h */,
+				8C0373C32CAAFA020029F047 /* CoreHaptics.h */,
+			);
+			path = CoreHaptics;
 			sourceTree = "<group>";
 		};
 		8C3A5DEB2C6BCBC4002097A8 /* UIKit */ = {
@@ -1457,6 +1492,7 @@
 		8C41F7E72C1439C90052A635 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8CD3D7FE2CA7CBDE009276DD /* ClockKit.framework */,
 				8C8345502C9F06C500311CE4 /* SaltUICore.xcframework */,
 				8C8345452C9F03EB00311CE4 /* SaltUICore.framework */,
 				8C83454A2C9F049700311CE4 /* SaltUICore.framework */,
@@ -1529,6 +1565,7 @@
 				8C3A5F6D2C6BCE5B002097A8 /* QuartzCore */,
 				8C3A5F892C6BCE94002097A8 /* OpenGLES */,
 				8C3A5F982C6BCECB002097A8 /* Metal */,
+				8C0373BB2CAAF9E80029F047 /* CoreHaptics */,
 			);
 			path = CCodes;
 			sourceTree = "<group>";
@@ -1557,6 +1594,9 @@
 				8CE70DBD2C7A50FE00EFB3AD /* AVPlayer+PeriodicTimePublisher.swift */,
 				8CE70E122C7CD17D00EFB3AD /* ScrollView+WithScrollOffset.swift */,
 				8CBA14092C7CEAC000D40EE5 /* View+CompatibleDoubleTapGesture.swift */,
+				8C0373B92CAAD2460029F047 /* View+WrapIf.swift */,
+				8CC306142CAB9F1300323034 /* View+Introspect.swift */,
+				8CC306122CAB160200323034 /* View+TouchZoomable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1586,6 +1626,15 @@
 				8CB9A1222C6D2CCB00E6A367 /* glext.h */,
 			);
 			path = ES3;
+			sourceTree = "<group>";
+		};
+		8CC3060D2CAB088200323034 /* Haptics */ = {
+			isa = PBXGroup;
+			children = (
+				8CC3060E2CAB08C000323034 /* Success.ahap */,
+				8CC306102CAB0ECD00323034 /* Failure.ahap */,
+			);
+			path = Haptics;
 			sourceTree = "<group>";
 		};
 		8CD6711E2C7F2EF5004C5D08 /* Localization */ = {
@@ -1638,6 +1687,7 @@
 		8CDA8C802C67F038001D5770 /* Guiding */ = {
 			isa = PBXGroup;
 			children = (
+				8CD3D8EC2CAA383B009276DD /* SuggestedResolvers.swift */,
 				8CB0D01F2B889F3D0057EF1C /* FeedbackView.swift */,
 				8C6E11DC2BDBF464005420C0 /* NewFeaturesView.swift */,
 				8C5281282C23457F00392315 /* TipsView.swift */,
@@ -1772,11 +1822,10 @@
 				8C5D647F2C1D9D7C008E591B /* Cepheus */,
 				8C7C4D402C2D87B300FD282B /* EPUBKit */,
 				8C40D4C32C33DBE900C4221C /* SDWebImagePDFCoder */,
-				8C40D4C82C33EC9900C4221C /* Punnycode */,
 				8CF8B9622C44FCAA0070F833 /* MarkdownUI */,
-				8C3432EC2C5972DF00DC3912 /* RadarKit */,
 				8CA47BF42C972A9A00753101 /* SwiftyStoreKit */,
 				8CA47C062C9823FE00753101 /* Pictor */,
+				8CD3D89A2CA7E5D9009276DD /* Punycode */,
 			);
 			productName = "WatchBrowser Watch App";
 			productReference = 6BF209EE2990E61C00E623FC /* DarockBrowser.app */;
@@ -1912,7 +1961,6 @@
 				8C40D4C22C33DBE900C4221C /* XCRemoteSwiftPackageReference "SDWebImagePDFCoder" */,
 				8C40D4C72C33EC9900C4221C /* XCRemoteSwiftPackageReference "PunycodeSwift" */,
 				8CF8B9612C44FCAA0070F833 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
-				8C3432EB2C5972DF00DC3912 /* XCRemoteSwiftPackageReference "RadarKit" */,
 				8CA47BF32C972A9900753101 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 				8CA47C052C9823FE00753101 /* XCRemoteSwiftPackageReference "Pictor" */,
 			);
@@ -1941,6 +1989,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CC3060F2CAB08C000323034 /* Success.ahap in Resources */,
+				8CC306112CAB0ECD00323034 /* Failure.ahap in Resources */,
 				8C3E839D2C82246B00686E9C /* LICENSE in Resources */,
 				8C40D4C62C33DE6B00C4221C /* TopLevelDomainList.drkdatat in Resources */,
 				E25EA8382B70ABEF00BFEC6E /* InfoPlist.strings in Resources */,
@@ -2026,6 +2076,7 @@
 				8C7C4D432C2D898700FD282B /* BookListView.swift in Sources */,
 				E296FE022A459C5D00331BD4 /* BulletinView.swift in Sources */,
 				8CE70DB62C7A504100EFB3AD /* AudioControllerView.swift in Sources */,
+				8C0373BA2CAAD24B0029F047 /* View+WrapIf.swift in Sources */,
 				8CAF38F92BD4FC95006B9B16 /* VideoListView.swift in Sources */,
 				6B6DA6B72A0149EF00BBE6CA /* HistoryView.swift in Sources */,
 				8CA7B8492BE3DF47004643FE /* ImageListView.swift in Sources */,
@@ -2034,6 +2085,7 @@
 				6BF20A0A299100AE00E623FC /* BookmarkView.swift in Sources */,
 				8CE70DC92C7A525500EFB3AD /* BlurBackground.swift in Sources */,
 				8CE70DC52C7A51F800EFB3AD /* BookViewerView.swift in Sources */,
+				8CD3D8ED2CAA384A009276DD /* SuggestedResolvers.swift in Sources */,
 				8CA370E32B835AAD00CE0E9E /* NumberPadExt.swift in Sources */,
 				6BF209F62990E61C00E623FC /* ContentView.swift in Sources */,
 				8CE70DBA2C7A50A900EFB3AD /* PlaylistsView.swift in Sources */,
@@ -2046,9 +2098,11 @@
 				8C6E11DD2BDBF464005420C0 /* NewFeaturesView.swift in Sources */,
 				8CE70DC72C7A522700EFB3AD /* LocalBooksView.swift in Sources */,
 				8C9188832C73A64200C64E70 /* WKWebView+.swift in Sources */,
+				8CC306132CAB160F00323034 /* View+TouchZoomable.swift in Sources */,
 				8CB9A10E2C6D229600E6A367 /* MarkdownUI+.swift in Sources */,
 				8CE70DD02C7A536100EFB3AD /* LocalImageView.swift in Sources */,
 				8CE70DB82C7A507E00EFB3AD /* LocalAudiosView.swift in Sources */,
+				8CC306152CAB9F1800323034 /* View+Introspect.swift in Sources */,
 				8CA4537D2AE3C63900138CE4 /* JoinGroupView.swift in Sources */,
 				8C5930672C71CE51004C79CE /* SwiftWebView.swift in Sources */,
 				8CCDABEF2C5674F100E29E3D /* ClusterTipView.swift in Sources */,
@@ -2304,8 +2358,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.2.0;
-				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript";
+				MARKETING_VERSION = 5.3.0;
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_OBJC_CLASS_$_CLKUIWheelsOfTimeView,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -2352,8 +2406,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.2.0;
-				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript";
+				MARKETING_VERSION = 5.3.0;
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_OBJC_CLASS_$_CLKUIWheelsOfTimeView,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -2379,7 +2433,7 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 5.2.0;
+				MARKETING_VERSION = 5.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2398,7 +2452,7 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 5.2.0;
+				MARKETING_VERSION = 5.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2557,7 +2611,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProWidgets/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器 Pro";
+				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器 Pro Widgets";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2566,7 +2620,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 5.2.0;
+				MARKETING_VERSION = 5.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -2591,7 +2645,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProWidgets/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器 Pro";
+				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器 Pro Widgets";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2600,7 +2654,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 5.2.0;
+				MARKETING_VERSION = 5.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -2679,14 +2733,6 @@
 			requirement = {
 				branch = main;
 				kind = branch;
-			};
-		};
-		8C3432EB2C5972DF00DC3912 /* XCRemoteSwiftPackageReference "RadarKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Darock-Studio/RadarKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.8;
 			};
 		};
 		8C40D4C22C33DBE900C4221C /* XCRemoteSwiftPackageReference "SDWebImagePDFCoder" */ = {
@@ -2813,20 +2859,10 @@
 			package = 6BFFCC542A8A6CF3001175EE /* XCRemoteSwiftPackageReference "DarockKit" */;
 			productName = DarockKit;
 		};
-		8C3432EC2C5972DF00DC3912 /* RadarKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8C3432EB2C5972DF00DC3912 /* XCRemoteSwiftPackageReference "RadarKit" */;
-			productName = RadarKit;
-		};
 		8C40D4C32C33DBE900C4221C /* SDWebImagePDFCoder */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8C40D4C22C33DBE900C4221C /* XCRemoteSwiftPackageReference "SDWebImagePDFCoder" */;
 			productName = SDWebImagePDFCoder;
-		};
-		8C40D4C82C33EC9900C4221C /* Punnycode */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8C40D4C72C33EC9900C4221C /* XCRemoteSwiftPackageReference "PunycodeSwift" */;
-			productName = Punnycode;
 		};
 		8C5D647F2C1D9D7C008E591B /* Cepheus */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2882,6 +2918,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8CB803CA2BD3D776009B2FAC /* XCRemoteSwiftPackageReference "Dynamic" */;
 			productName = Dynamic;
+		};
+		8CD3D89A2CA7E5D9009276DD /* Punycode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C40D4C72C33EC9900C4221C /* XCRemoteSwiftPackageReference "PunycodeSwift" */;
+			productName = Punycode;
 		};
 		8CF8B9622C44FCAA0070F833 /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;

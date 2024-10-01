@@ -181,17 +181,18 @@ struct TipsView: View {
                             Text("导航手势")
                         }
                     })
-//                    NavigationLink(destination: { PinchZoomView() }, label: {
-//                        HStack {
-//                            Image(systemName: "hand.pinch")
-//                                .foregroundColor(.purple)
-//                            Text("缩放手势")
-//                        }
-//                    })
+                    NavigationLink(destination: { PinchZoomView() }, label: {
+                        HStack {
+                            Image(systemName: "hand.pinch")
+                                .foregroundColor(.purple)
+                            Text("缩放手势")
+                        }
+                    })
                 } header: {
                     Text("网页浏览中可用的手势")
                 }
             }
+            .navigationTitle("练习主要手势")
         }
         
         struct SwipeBackView: View {
@@ -211,6 +212,17 @@ struct TipsView: View {
                 }
             }
         }
+        struct PinchZoomView: View {
+            var body: some View {
+                VStack {
+                    Image(systemName: "hand.pinch.fill")
+                        .font(.system(size: 30, weight: .bold))
+                    Text("双指捏合以缩放")
+                        .padding()
+                }
+                .touchZoomable()
+            }
+        }
     }
     
     struct BeyondTheBasicsView: View {
@@ -218,24 +230,27 @@ struct TipsView: View {
             List {
                 Section {
                     NavigationLink(destination: { FastClearView() }, label: {
-                        HStack {
+                        Label(title: {
+                            Text("快速清除")
+                        }, icon: {
                             Image(systemName: "xmark.bin.fill")
                                 .foregroundColor(.red)
-                            Text("快速清除")
-                        }
+                        })
                     })
                     NavigationLink(destination: { FastBookmarkView() }, label: {
-                        HStack {
-                            Image(systemName: "bookmark.fill")
+                        Label(title: {
                             Text("快速书签")
-                        }
+                        }, icon: {
+                            Image(systemName: "bookmark.fill")
+                        })
                     })
                     NavigationLink(destination: { DownloadMediaView() }, label: {
-                        HStack {
+                        Label(title: {
+                            Text("下载媒体")
+                        }, icon: {
                             Image(systemName: "arrow.down.doc.fill")
                                 .foregroundColor(.green)
-                            Text("下载媒体")
-                        }
+                        })
                     })
                 }
             }

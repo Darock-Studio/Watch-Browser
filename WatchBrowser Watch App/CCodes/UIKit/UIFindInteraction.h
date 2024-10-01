@@ -62,7 +62,7 @@ UIKIT_EXTERN API_AVAILABLE(ios(16.0)) API_UNAVAILABLE(watchos, tvos) NS_SWIFT_UI
 
 /// Shows the find navigator panel, if not already visible.
 ///
-/// @param replaceVisible If the delegate supports text replacement, will make the replace text field
+/// @param showingReplace If the delegate supports text replacement, will make the replace text field
 ///                       visible on first appearance.
 - (void)presentFindNavigatorShowingReplace:(BOOL)showingReplace NS_SWIFT_NAME(presentFindNavigator(showingReplace:));
 

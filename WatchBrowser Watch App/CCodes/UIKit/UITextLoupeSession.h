@@ -15,9 +15,9 @@ UIKIT_EXTERN API_AVAILABLE(ios(17.0)) API_UNAVAILABLE(visionos) NS_SWIFT_UI_ACTO
 
 /// Begins a loupe session at the specified point. The system will animate the presentation of the loupe, as well as its position and hierarchy.
 ///
-/// @param at   The point in @c view's coordinate space where the loupe should begin.
-/// @param widgetView   Optionally, a system-provided selection view that the animation can start from.
-/// @param view         The coordinate space that all subsequent movement updates are provided in.
+/// @param point   The point in @c view's coordinate space where the loupe should begin.
+/// @param selectionWidget   Optionally, a system-provided selection view that the animation can start from.
+/// @param interactionView         The coordinate space that all subsequent movement updates are provided in.
 + (nullable instancetype)beginLoupeSessionAtPoint:(CGPoint)point
                           fromSelectionWidgetView:(nullable UIView *)selectionWidget
                                            inView:(UIView *)interactionView;
@@ -26,7 +26,7 @@ UIKIT_EXTERN API_AVAILABLE(ios(17.0)) API_UNAVAILABLE(visionos) NS_SWIFT_UI_ACTO
 ///
 /// @param point    The center point of the touch tracked by the gesture recognizer.
 /// @param caretRect    The current position of the caret/range handle. Pass in CGRectNull if there is no current selection/no caret rect visible.
-/// @param trackingCaret    Provide YES if the loupe should track the caret instead of the touch.
+/// @param tracksCaret    Provide YES if the loupe should track the caret instead of the touch.
 - (void)moveToPoint:(CGPoint)point withCaretRect:(CGRect)caretRect trackingCaret:(BOOL)tracksCaret;
 
 /// Invalidates the loupe session. Hides the loupe and cleans up transient state.

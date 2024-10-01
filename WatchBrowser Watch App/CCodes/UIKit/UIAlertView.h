@@ -26,12 +26,12 @@ typedef NS_ENUM(NSInteger, UIAlertViewStyle) {
 UIKIT_EXTERN API_DEPRECATED("UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead", ios(2.0, 9.0)) API_UNAVAILABLE(visionos) API_UNAVAILABLE(tvos) NS_SWIFT_UI_ACTOR
 @interface UIAlertView : UIView
 
-- (instancetype)initWithTitle:(nullable NSString *)title message:(nullable NSString *)message delegate:(nullable id /*<UIAlertViewDelegate>*/)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION;
+- (instancetype)initWithTitle:(nullable NSString *)title message:(nullable NSString *)message delegate:(nullable id)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION;
 
 - (id)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype) initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 
-@property(nullable,nonatomic,weak) id /*<UIAlertViewDelegate>*/ delegate;
+@property(nullable,nonatomic,weak) id delegate;
 @property(nonatomic,copy) NSString *title;
 @property(nullable,nonatomic,copy) NSString *message;   // secondary explanation text
 

@@ -109,7 +109,7 @@ UIKIT_EXTERN API_AVAILABLE(ios(9.0)) NS_SWIFT_UI_ACTOR
  A time varying differentiable Perlin simplex noise field. By default a smooth noise is calculated,
  and the field is time varying. To freeze the noise in place, set animationSpeed to 0.0. Mass is ignored.
  @param smoothness value of 0 means as noisy as possible, 1 means as smooth as possible
- @param animationSpeed is the general field rate of change in Hz
+ @param speed is the general field rate of change in Hz
  @see smoothness
  @see animationSpeed
  */
@@ -118,7 +118,7 @@ UIKIT_EXTERN API_AVAILABLE(ios(9.0)) NS_SWIFT_UI_ACTOR
 /*!
  Just like Noise, except the strength of the noise is proportional to the velocity of the object in the field.
  @param smoothness value of 0 means as noisy as possible, 1 means as smooth as possible
- @param animationSpeed is the general field rate of change in Hz
+ @param speed is the general field rate of change in Hz
  @see smoothness
  @see animationSpeed
  */
@@ -151,12 +151,6 @@ UIKIT_EXTERN API_AVAILABLE(ios(9.0)) NS_SWIFT_UI_ACTOR
 
 /*!
  A field force with a custom force evaluator.
- @param field the field being evaluated
- @param position The location to evaluate the force at
- @param velocity The velocity to be considered during force evaluation. Useful for calculating drag.
- @param mass The mass to be taken into account during force evaluation
- @param charge The charge to be taken into account during force evaluation
- @param deltaTime The current time step
  */
 + (instancetype)fieldWithEvaluationBlock:(CGVector(^)(UIFieldBehavior *field, CGPoint position, CGVector velocity, CGFloat mass, CGFloat charge, NSTimeInterval deltaTime))block;
 

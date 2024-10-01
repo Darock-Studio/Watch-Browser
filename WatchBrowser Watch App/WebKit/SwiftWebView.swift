@@ -9,14 +9,16 @@ import SwiftUI
 import Dynamic
 
 struct SwiftWebView: View {
-    var webView: NSObject
+    var webView: WKWebView
     @Environment(\.presentationMode) var presentationMode
+    @AppStorage("WebViewLayout") var webViewLayout = "MaximumViewport"
     @AppStorage("HideDigitalTime") var hideDigitalTime = false
     @AppStorage("ABIsReduceBrightness") var isReduceBrightness = false
     @AppStorage("ABReduceBrightnessLevel") var reduceBrightnessLevel = 0.2
     @State var isQuickAvoidanceShowingEmpty = false
     @State var isBrowsingMenuPresented = false
     @State var isHidingDistractingItems = false
+    @State var webCanGoBack = false
     var body: some View {
         ZStack {
             DoubleTapActionButton(forType: .inWeb, presentationModeForExitWeb: presentationMode) {
@@ -32,6 +34,7 @@ struct SwiftWebView: View {
                                 HStack {
                                     Text("轻触要移除的项目")
                                         .font(.system(size: 13, weight: .semibold))
+                                        .foregroundStyle(.white)
                                     Button(action: {
                                         webViewObject.configuration.userContentController.removeAllScriptMessageHandlers()
                                         isHidingDistractingItems = false
@@ -67,6 +70,38 @@ struct SwiftWebView: View {
                         .ignoresSafeArea()
                     }
                 }
+                .toolbar {
+                    if webViewLayout == "FastPrevious" {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button(action: {
+                                if webCanGoBack {
+                                    webView.goBack()
+                                } else {
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                            }, label: {
+                                if #available(watchOS 10, *) {
+                                    Image(systemName: webCanGoBack ? "chevron.backward" : "escape")
+                                        .foregroundStyle(webCanGoBack ? .accent : .red)
+                                        .contentTransition(.symbolEffect(.replace))
+                                } else {
+                                    Image(systemName: webCanGoBack ? "chevron.backward" : "escape")
+                                        .foregroundStyle(webCanGoBack ? .accent : .red)
+                                }
+                            })
+                        }
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button(action: {
+                                isBrowsingMenuPresented = true
+                            }, label: {
+                                Image(systemName: "ellipsis")
+                            })
+                        }
+                    }
+                }
+                .wrapIf(webViewLayout != "MaximumViewport") { content in
+                    NavigationStack { content }
+                }
             if isReduceBrightness {
                 Rectangle()
                     .fill(Color.black)
@@ -95,6 +130,9 @@ struct SwiftWebView: View {
         }
         .onReceive(AdvancedWebViewController.dismissWebViewPublisher) { _ in
             presentationMode.wrappedValue.dismiss()
+        }
+        .onReceive(webView.publisher(for: \.canGoBack)) { value in
+            webCanGoBack = value
         }
     }
 }

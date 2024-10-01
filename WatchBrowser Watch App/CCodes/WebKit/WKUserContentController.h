@@ -59,7 +59,7 @@ WK_EXTERN API_AVAILABLE(macos(10.10), ios(8.0))
 
 /*! @abstract Adds a script message handler.
  @param scriptMessageHandler The script message handler to add.
- @param contentWorld The WKContentWorld in which to add the script message handler.
+ @param world The WKContentWorld in which to add the script message handler.
  @param name The name of the message handler.
  @discussion Adding a script message handler adds a function
  window.webkit.messageHandlers.<name>.postMessage(<messageBody>) to all frames, available in the given WKContentWorld.

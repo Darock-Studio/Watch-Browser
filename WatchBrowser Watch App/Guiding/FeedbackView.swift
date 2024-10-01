@@ -7,7 +7,6 @@
 
 import SwiftUI
 import DarockKit
-import SwiftDate
 import MarkdownUI
 import UserNotifications
 
@@ -67,7 +66,7 @@ struct FeedbackView: View {
         List {
             Section {
                 NavigationLink(destination: { NewFeedbackView() }, label: {
-                    Label("新建反馈", systemImage: "exclamationmark.bubble.fill")
+                    Label("新建反馈", systemImage: "exclamationmark.bubble")
                 })
                 NavigationLink(destination: { NewsView() }, label: {
                     HStack {
@@ -190,8 +189,10 @@ struct FeedbackView: View {
     
     struct NewFeedbackView: View {
         @Environment(\.presentationMode) var presentationMode
+        @Namespace var issuePlaceSelectorId
         @State var titleInput = ""
         @State var contentInputs = [""]
+        @State var issuePlace = ""
         @State var feedbackType = 0
         @State var isSending = false
         @State var isDetailSelectorPresented = false
@@ -201,8 +202,8 @@ struct FeedbackView: View {
         @State var isDraftAlertPresented = false
         @State var isDraftLoaded = false
         var body: some View {
-            Form {
-                List {
+            ScrollViewReader { scrollProxy in
+                Form {
                     Section {
                         TextField("标题", text: $titleInput)
                     } header: {
@@ -240,8 +241,81 @@ struct FeedbackView: View {
                         """)
                     }
                     Section {
+                        Picker("问题区域", selection: $issuePlace) {
+                            Text("选择一项").tag("")
+                            Text("界面").tag("UI&&&0.03921568766236305,0.5176469087600708,1.0")
+                            Text("网络连接").tag("网络连接&&&0.19615289568901062,0.7796291708946228,0.34923407435417175")
+                            Text("浏览引擎").tag("浏览引擎&&&0.03921568766236305,0.5176469087600708,1.0")
+                            Text("旧版浏览引擎").tag("旧版浏览引擎&&&0.39999979734420776,0.6156863570213318,0.2039215862751007")
+                            Text("设置").tag("设置&&&0.20000001788139343,0.20000001788139343,0.20000001788139343")
+                            Text("辅助功能").tag("辅助功能&&&0.03921568766236305,0.5176469087600708,1.0")
+                            Text("个性化主屏幕").tag("个性化主屏幕&&&0.03921568766236305,0.5176469087600708,1.0")
+                            Text("搜索").tag("搜索&&&0.20000001788139343,0.20000001788139343,0.20000001788139343")
+                            Text("密码").tag("密码&&&0.886274516582489,0.14117646217346191,0.0")
+                            Text("隐私与安全性").tag("隐私与安全性&&&0.03921568766236305,0.5176469087600708,1.0")
+                            Text("开发者设置").tag("开发者设置&&&0.03921568766236305,0.5176469087600708,1.0")
+                            Text("实验室项目").tag("实验室项目&&&0.03921568766236305,0.5176469087600708,1.0")
+                            Text("连续互通").tag("连续互通&&&0.03921568766236305,0.5176469087600708,1.0")
+                            Text("第三方全键盘").tag("第三方全键盘&&&0.20000001788139343,0.20000001788139343,0.20000001788139343")
+                            Text("音乐播放器").tag("音乐播放器&&&0.886274516582489,0.14117646217346191,0.0")
+                            Text("图像查看器").tag("图像查看器&&&0.03921568766236305,0.5176469087600708,1.0")
+                            Text("阅读器").tag("阅读器&&&0.7686275243759155,0.7372550964355469,0.0")
+                            Text("视频播放器").tag("视频播放器&&&0.36078429222106934,0.36078429222106934,0.36078429222106934")
+                            Text("Darock 账户").tag("Darock 账户&&&0.03921568766236305,0.5176469087600708,1.0")
+                            Text("Darock Cloud").tag("Darock Cloud&&&0.03921568766236305,0.5176469087600708,1.0")
+                            Text("书签").tag("书签&&&0.03921568766236305,0.5176469087600708,1.0")
+                            Text("历史记录").tag("历史记录&&&0.03921568766236305,0.5176469087600708,1.0")
+                            Text("网页归档").tag("网页归档&&&0.03921568766236305,0.5176469087600708,1.0")
+                            Text("播放列表").tag("播放列表&&&0.03921568766236305,0.5176469087600708,1.0")
+                            Text("用户脚本").tag("用户脚本&&&0.03921568766236305,0.5176469087600708,1.0")
+                            Text("本地媒体").tag("本地媒体&&&0.03921568766236305,0.5176469087600708,1.0")
+                            Text("反馈助理").tag("反馈助理&&&0.5960784554481506,0.16470590233802795,0.7372550964355469")
+                            Text("不在此列表中的其他方面").tag("其他&&&0.5215685963630676,0.5215685963630676,0.5215685963630676")
+                        }
+                        .id(issuePlaceSelectorId)
+                    }
+                    switch issuePlace {
+                    case let s where s.hasPrefix("视频播放器"):
+                        Section {
+                            SuggestedResolver.reboot.viewBlock
+                            SuggestedResolver.networkCheck.viewBlock
+                        } header: {
+                            Text("先试试这些方案")
+                        }
+                    case let s where s.hasPrefix("网络连接"):
+                        Section {
+                            SuggestedResolver.networkCheck.viewBlock
+                        } header: {
+                            Text("先试试这个方案")
+                        }
+                    case let s where s.hasPrefix("密码"):
+                        Section {
+                            NavigationLink(destination: { SettingsView.GeneralSettingsView.ResetView() }, label: {
+                                HStack {
+                                    ZStack {
+                                        Color.gray
+                                            .frame(width: 20, height: 20)
+                                            .clipShape(Circle())
+                                        Image(systemName: "arrow.counterclockwise")
+                                            .font(.system(size: 12))
+                                    }
+                                    Text("查看还原选项")
+                                    Spacer()
+                                    Image(systemName: "chevron.forward")
+                                        .font(.system(size: 13))
+                                        .foregroundStyle(.gray)
+                                }
+                            })
+                        } header: {
+                            Text("反馈问题无法帮助您找回密码")
+                        }
+                    default: EmptyView()
+                    }
+                    Section {
                         Picker("反馈类型", selection: $feedbackType) {
                             Text("错误/异常行为").tag(0)
+                            Text("应用程序崩溃").tag(2)
+                            Text("速度缓慢/没有响应").tag(3)
                             Text("建议").tag(1)
                         }
                     }
@@ -326,12 +400,11 @@ struct FeedbackView: View {
                                                 })
                                             }
                                         }
-                                        .navigationTitle("appdiagnose_\(Date.now.toString(.custom("yyyy.MM.dd_HH-mm-ssZZZZ")))")
                                     }, label: {
                                         HStack {
                                             Image(systemName: "folder")
                                                 .foregroundColor(.purple)
-                                            Text("appdiagnose_\(Date.now.toString(.custom("yyyy.MM.dd_HH-mm-ssZZZZ")))")
+                                            Text("appdiagnose")
                                                 .font(.system(size: 12))
                                                 .lineLimit(1)
                                         }
@@ -377,10 +450,13 @@ struct FeedbackView: View {
                         .sheet(isPresented: $isDetailSelectorPresented, content: {
                             NavigationView {
                                 List {
-                                    NavigationLink(destination: {HistoryView(selectionHandler: { sel in
-                                        extHistories.append(sel)
-                                        isDetailSelectorPresented = false
-                                    }).navigationTitle("选取历史记录")}, label: {
+                                    NavigationLink(destination: {
+                                        HistoryView { sel in
+                                            extHistories.append(sel)
+                                            isDetailSelectorPresented = false
+                                        }
+                                        .navigationTitle("选取历史记录")
+                                    }, label: {
                                         HStack {
                                             Text("历史记录")
                                             Spacer()
@@ -398,8 +474,15 @@ struct FeedbackView: View {
                     }
                     Section {
                         Button(action: {
-                            if titleInput == "" {
+                            if titleInput.isEmpty {
                                 tipWithText("标题不能为空", symbol: "xmark.circle.fill")
+                                return
+                            }
+                            if issuePlace.isEmpty {
+                                tipWithText("需选择问题区域", symbol: "xmark.circle.fill")
+                                withAnimation {
+                                    scrollProxy.scrollTo(issuePlaceSelectorId)
+                                }
                                 return
                             }
                             isSending = true
@@ -410,6 +493,7 @@ struct FeedbackView: View {
                                     Version：v\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) Build \(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)
                                     NearestHistories：\(getWebHistory().map { $0.url.prefix(100) }.prefix(3))
                                     OS：\(WKInterfaceDevice.current().systemVersion)
+                                    DeviceModelName：\(WKInterfaceDevice.modelName) (\(WKInterfaceDevice.modelIdentifier))
                                     """
                                     if let settings = getAllSettingsForAppdiagnose() {
                                         _onFastPath()
@@ -460,6 +544,22 @@ struct FeedbackView: View {
                                     return ""
                                 }
                             }()
+                            var tagsString = ""
+                            switch feedbackType {
+                            case 0:
+                                tagsString += "bug&&&0.7098039388656616,0.10196077078580856,0.0"
+                            case 1:
+                                tagsString += "优化&&&0.03921568766236305,0.5176469087600708,1.0"
+                            case 2:
+                                tagsString += "bug&&&0.7098039388656616,0.10196077078580856,0.0<****>崩溃&&&0.7098039388656616,0.10196077078580856,0.0"
+                            case 3:
+                                tagsString += "App 无响应&&&0.7686275243759155,0.7372550368309021,0.0"
+                            default: break
+                            }
+                            if !tagsString.isEmpty {
+                                tagsString += "<****>"
+                            }
+                            tagsString += issuePlace
                             let msgToSend = """
                             \(titleInput)
                             State：0
@@ -468,6 +568,7 @@ struct FeedbackView: View {
                             Time：\(Date.now.timeIntervalSince1970)\(extDiags)\(!extHistories.isEmpty ? "\nExtHistories：" + extHistories.description : "")
                             NotificationToken：\(UserDefaults.standard.string(forKey: "UserNotificationToken") ?? "None")
                             Sender: User
+                            UpdateTags：\(tagsString)
                             """
                             DarockKit.Network.shared
                                 .requestString("https://fapi.darock.top:65535/feedback/submit/anony/Darock Browser/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))".compatibleUrlEncoded()) { respStr, isSuccess in
@@ -578,7 +679,9 @@ struct FeedbackView: View {
                 }
                 if !isNoReply {
                     ForEach(0..<replies.count, id: \.self) { i in
-                        getView(from: replies[i], isReply: true)
+                        if !replies[i].contains("\nSender：_") {
+                            getView(from: replies[i], isReply: true)
+                        }
                     }
                 }
                 Section {
@@ -712,9 +815,12 @@ struct FeedbackView: View {
                     Divider()
                 }
                 ForEach(0...from.count - 1, id: \.self) { i in
-                    if !(!from[i].contains("：") && !from[i].contains(":") && i == 0) && (!from[i].hasPrefix("Sender")) && (!from[i].hasPrefix("Time")) {
-                        // ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-                        //                     Not Title                                          Not Sender                         Not Time
+                    if !(!from[i].contains("：") && !from[i].contains(":") && i == 0)
+                        // ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                        //                       Not Title
+                        && (!from[i].hasPrefix("Sender")) && (!from[i].hasPrefix("Time")) && !from[i].hasPrefix("_") {
+                        // ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~      ^~~~~~~~~~~~~~~~~~~~~~~~~~~    ^~~~~~~~~~~~~~~~~~~~~~~
+                        //          Not Sender                         Not Time                 Not Internal Field
                         if (from[i].contains("：") && from[i] != "：" ? from[i].split(separator: "：")[0] : "") != "" {
                             HStack {
                                 Text(from[i].contains("：") && from[i] != "：" ? String(from[i].split(separator: "：")[0]).titleReadable() : "")

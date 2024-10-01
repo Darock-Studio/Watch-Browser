@@ -160,7 +160,7 @@ typedef NS_ENUM(NSInteger, WKDialogResult) {
 - (void)webView:(WKWebView *)webView requestMediaCapturePermissionForOrigin:(WKSecurityOrigin *)origin initiatedByFrame:(WKFrameInfo *)frame type:(WKMediaCaptureType)type decisionHandler:(void (^)(WKPermissionDecision decision))decisionHandler WK_SWIFT_ASYNC_NAME(webView(_:decideMediaCapturePermissionsFor:initiatedBy:type:)) WK_SWIFT_ASYNC(5) API_AVAILABLE(macos(12.0), ios(15.0));
 
 /*! @abstract Allows your app to determine whether or not the given security origin should have access to the device's orientation and motion.
- @param securityOrigin The security origin which requested access to the device's orientation and motion.
+ @param origin The security origin which requested access to the device's orientation and motion.
  @param frame The frame that initiated the request.
  @param decisionHandler The decision handler to call once the app has made its decision.
  */
@@ -183,7 +183,7 @@ typedef NS_ENUM(NSInteger, WKDialogResult) {
 /*! @abstract Allows your app to provide a custom view controller to show when the given element is peeked.
  @param webView The web view invoking the delegate method.
  @param elementInfo The elementInfo for the element the user is peeking.
- @param defaultActions An array of the actions that WebKit would use as previewActionItems for this element by 
+ @param previewActions An array of the actions that WebKit would use as previewActionItems for this element by 
  default. These actions would be used if allowsLinkPreview is YES but these delegate methods have not been 
  implemented, or if this delegate method returns nil.
  @discussion Returning a view controller will result in that view controller being displayed as a peek preview.

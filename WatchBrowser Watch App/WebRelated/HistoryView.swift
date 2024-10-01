@@ -22,7 +22,7 @@ struct HistoryView: View {
     @State var passcodeInputCache = ""
     @State var isSettingPresented = false
     @State var isStopRecordingPagePresenting = false
-    @State var histories = [SingleHistoryItem]()
+    @State var histories = [(dateString: String, histories: [SingleHistoryItem])]()
     @State var isSharePresented = false
     @State var isNewBookmarkPresented = false
     @State var isClearOptionsPresented = false
@@ -32,6 +32,9 @@ struct HistoryView: View {
     @State var newBookmarkLink = ""
     @State var selectedEmptyAction = 0
     @State var isAdditionalCloseAllTabs = false
+    @State var unfoldedIndexs: Set = [0, 1]
+    @State var pinnedTitle = ""
+    @State var pinnedTitleOffsetY: CGFloat = 0
     var body: some View {
         if isLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockHistories {
             PasswordInputView(text: $passcodeInputCache, placeholder: "输入密码", dismissAfterComplete: false) { pwd in
@@ -81,134 +84,230 @@ struct HistoryView: View {
                                 }
                             })
                             .sheet(isPresented: $isStopRecordingPagePresenting, onDismiss: {
-                                histories = getWebHistory()
+                                histories = getWebHistory().dateGrouped()
                             }, content: { CloseHistoryTipView() })
+                        if isHistoryRecording && !histories.isEmpty {
+                            TextField("搜索...", text: $searchText)
+                                .submitLabel(.search)
+                                .swipeActions {
+                                    if !searchText.isEmpty {
+                                        Button(action: {
+                                            searchText = ""
+                                        }, label: {
+                                            Image(systemName: "xmark.bin.fill")
+                                        })
+                                        .tint(.red)
+                                    }
+                                }
+                        }
                     }
                 }
-                Section {
-                    if isHistoryRecording {
-                        if histories.count != 0 {
-                            TextField("搜索", text: $searchText)
-                            ForEach(0..<histories.count, id: \.self) { i in
-                                if searchText.isEmpty || histories[i].url.contains(searchText) || (histories[i].title?.contains(searchText) ?? false) {
-                                    Button(action: {
-                                        if let selectionHandler {
-                                            selectionHandler(histories[i].url)
-                                        } else {
-                                            if histories[i].url.hasPrefix("file://") {
-                                                AdvancedWebViewController.shared.present("", archiveUrl: URL(string: histories[i].url)!)
-                                            } else if histories[i].url.hasSuffix(".mp4") {
-                                                videoLinkLists = [histories[i].url]
-                                                pShouldPresentVideoList = true
-                                                dismissListsShouldRepresentWebView = false
-                                            } else if histories[i].url.hasSuffix(".mp3") {
-                                                audioLinkLists = [histories[i].url]
-                                                pShouldPresentAudioList = true
-                                                dismissListsShouldRepresentWebView = false
-                                            } else if histories[i].url.hasSuffix(".png")
-                                                        || histories[i].url.hasSuffix(".jpg")
-                                                        || histories[i].url.hasSuffix(".webp") {
-                                                imageLinkLists = [histories[i].url]
-                                                pShouldPresentImageList = true
-                                                dismissListsShouldRepresentWebView = false
-                                            } else if histories[i].url.hasSuffix(".epub") {
-                                                bookLinkLists = [histories[i].url]
-                                                pShouldPresentBookList = true
-                                                dismissListsShouldRepresentWebView = false
-                                            } else {
-                                                AdvancedWebViewController.shared.present(histories[i].url.urlDecoded().urlEncoded())
-                                            }
-                                        }
-                                    }, label: {
-                                        if let showName = histories[i].title, !showName.isEmpty {
-                                            VStack(alignment: .leading) {
-                                                if histories[i].url.hasPrefix("https://www.bing.com/search?q=")
-                                                    || histories[i].url.hasPrefix("https://www.baidu.com/s?wd=")
-                                                    || histories[i].url.hasPrefix("https://www.google.com/search?q=")
-                                                    || histories[i].url.hasPrefix("https://www.sogou.com/web?query=") {
-                                                    Label(showName, systemImage: "magnifyingglass")
-                                                } else if histories[i].url.hasPrefix("file://") {
-                                                    Label(showName, systemImage: "archivebox")
-                                                } else {
-                                                    Label(showName, systemImage: "globe")
+                if isHistoryRecording {
+                    if !histories.isEmpty {
+                        ForEach(0..<histories.count, id: \.self) { i in
+                            if searchText.isEmpty || (!searchText.isEmpty && histories[i].histories.contains(where: {
+                                $0.url.lowercased().contains(searchText.lowercased()) || ($0.title?.lowercased().contains(searchText.lowercased()) ?? false)
+                            })) {
+                                Section {
+                                    if unfoldedIndexs.contains(i) || !searchText.isEmpty {
+                                        let histories = histories[i].histories
+                                        ForEach(0..<histories.count, id: \.self) { j in
+                                            if searchText.isEmpty
+                                                || histories[j].url.lowercased().contains(searchText.lowercased())
+                                                || (histories[j].title?.lowercased().contains(searchText.lowercased()) ?? false) {
+                                                Button(action: {
+                                                    if let selectionHandler {
+                                                        selectionHandler(histories[j].url)
+                                                    } else {
+                                                        if histories[j].url.hasPrefix("file://") {
+                                                            AdvancedWebViewController.shared.present("", archiveUrl: URL(string: histories[j].url)!)
+                                                        } else if histories[j].url.hasSuffix(".mp4") {
+                                                            videoLinkLists = [histories[j].url]
+                                                            pShouldPresentVideoList = true
+                                                            dismissListsShouldRepresentWebView = false
+                                                        } else if histories[j].url.hasSuffix(".mp3") {
+                                                            audioLinkLists = [histories[j].url]
+                                                            pShouldPresentAudioList = true
+                                                            dismissListsShouldRepresentWebView = false
+                                                        } else if histories[j].url.hasSuffix(".png")
+                                                                    || histories[j].url.hasSuffix(".jpg")
+                                                                    || histories[j].url.hasSuffix(".webp") {
+                                                            imageLinkLists = [histories[j].url]
+                                                            pShouldPresentImageList = true
+                                                            dismissListsShouldRepresentWebView = false
+                                                        } else if histories[j].url.hasSuffix(".epub") {
+                                                            bookLinkLists = [histories[j].url]
+                                                            pShouldPresentBookList = true
+                                                            dismissListsShouldRepresentWebView = false
+                                                        } else {
+                                                            AdvancedWebViewController.shared.present(histories[j].url.urlDecoded().urlEncoded())
+                                                        }
+                                                    }
+                                                }, label: {
+                                                    if let showName = histories[j].title, !showName.isEmpty {
+                                                        VStack(alignment: .leading) {
+                                                            if histories[j].url.hasPrefix("https://www.bing.com/search?q=")
+                                                                || histories[j].url.hasPrefix("https://www.baidu.com/s?wd=")
+                                                                || histories[j].url.hasPrefix("https://www.google.com/search?q=")
+                                                                || histories[j].url.hasPrefix("https://www.sogou.com/web?query=") {
+                                                                Label(showName, systemImage: "magnifyingglass")
+                                                            } else if histories[j].url.hasPrefix("file://") {
+                                                                Label(showName, systemImage: "archivebox")
+                                                            } else {
+                                                                Label(showName, systemImage: "globe")
+                                                            }
+                                                            Text(histories[j].url)
+                                                                .font(.footnote)
+                                                                .lineLimit(1)
+                                                                .truncationMode(.middle)
+                                                                .foregroundStyle(.gray)
+                                                        }
+                                                        .font(.caption)
+                                                    } else {
+                                                        Group {
+                                                            if histories[j].url.hasPrefix("https://www.bing.com/search?q=") {
+                                                                Label(String(histories[j].url.urlDecoded().dropFirst(30)), systemImage: "magnifyingglass")
+                                                            } else if histories[j].url.hasPrefix("https://www.baidu.com/s?wd=") {
+                                                                Label(String(histories[j].url.urlDecoded().dropFirst(27)), systemImage: "magnifyingglass")
+                                                            } else if histories[j].url.hasPrefix("https://www.google.com/search?q=") {
+                                                                Label(String(histories[j].url.urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
+                                                            } else if histories[j].url.hasPrefix("https://www.sogou.com/web?query=") {
+                                                                Label(String(histories[j].url.urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
+                                                            } else if histories[j].url.hasPrefix("file://") {
+                                                                Label(
+                                                                    String(histories[j].url.split(separator: "/").last!.split(separator: ".")[0])
+                                                                        .replacingOccurrences(of: "{slash}", with: "/")
+                                                                        .base64Decoded() ?? "[解析失败]",
+                                                                    systemImage: "archivebox"
+                                                                )
+                                                            } else if histories[j].url.hasSuffix(".mp4") {
+                                                                Label(histories[j].url, systemImage: "film")
+                                                            } else if histories[j].url.hasSuffix(".mp3") {
+                                                                Label(histories[j].url, systemImage: "music.note")
+                                                            } else if histories[j].url.hasSuffix(".png")
+                                                                        || histories[j].url.hasSuffix(".jpg")
+                                                                        || histories[j].url.hasSuffix(".webp") {
+                                                                Label(histories[j].url, systemImage: "photo")
+                                                            } else if histories[j].url.hasSuffix(".epub") {
+                                                                Label(histories[j].url, systemImage: "book")
+                                                            } else {
+                                                                Label(histories[j].url, systemImage: "globe")
+                                                            }
+                                                        }
+                                                        .font(.caption)
+                                                    }
+                                                })
+                                                .privacySensitive()
+                                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                                    Button(role: .destructive, action: {
+                                                        var removedHistories = histories
+                                                        removedHistories.remove(at: j)
+                                                        self.histories[i].histories = removedHistories
+                                                        writeWebHistory(from: self.histories.flatMap { $0.histories })
+                                                    }, label: {
+                                                        Image(systemName: "bin.xmark.fill")
+                                                    })
                                                 }
-                                                Text(histories[i].url)
-                                                    .font(.system(size: 14))
-                                                    .lineLimit(1)
-                                                    .truncationMode(.middle)
-                                                    .foregroundStyle(.gray)
-                                            }
-                                        } else {
-                                            if histories[i].url.hasPrefix("https://www.bing.com/search?q=") {
-                                                Label(String(histories[i].url.urlDecoded().dropFirst(30)), systemImage: "magnifyingglass")
-                                            } else if histories[i].url.hasPrefix("https://www.baidu.com/s?wd=") {
-                                                Label(String(histories[i].url.urlDecoded().dropFirst(27)), systemImage: "magnifyingglass")
-                                            } else if histories[i].url.hasPrefix("https://www.google.com/search?q=") {
-                                                Label(String(histories[i].url.urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
-                                            } else if histories[i].url.hasPrefix("https://www.sogou.com/web?query=") {
-                                                Label(String(histories[i].url.urlDecoded().dropFirst(32)), systemImage: "magnifyingglass")
-                                            } else if histories[i].url.hasPrefix("file://") {
-                                                Label(
-                                                    String(histories[i].url.split(separator: "/").last!.split(separator: ".")[0])
-                                                        .replacingOccurrences(of: "{slash}", with: "/")
-                                                        .base64Decoded() ?? "[解析失败]",
-                                                    systemImage: "archivebox"
-                                                )
-                                            } else if histories[i].url.hasSuffix(".mp4") {
-                                                Label(histories[i].url, systemImage: "film")
-                                            } else if histories[i].url.hasSuffix(".mp3") {
-                                                Label(histories[i].url, systemImage: "music.note")
-                                            } else if histories[i].url.hasSuffix(".png")
-                                                        || histories[i].url.hasSuffix(".jpg")
-                                                        || histories[i].url.hasSuffix(".webp") {
-                                                Label(histories[i].url, systemImage: "photo")
-                                            } else if histories[i].url.hasSuffix(".epub") {
-                                                Label(histories[i].url, systemImage: "book")
-                                            } else {
-                                                Label(histories[i].url, systemImage: "globe")
+                                                .swipeActions(edge: .leading) {
+                                                    Button(action: {
+                                                        if let showName = histories[i].title {
+                                                            newBookmarkName = showName
+                                                        } else {
+                                                            newBookmarkName = ""
+                                                        }
+                                                        newBookmarkLink = histories[i].url.urlDecoded().urlEncoded()
+                                                        isNewBookmarkPresented = true
+                                                    }, label: {
+                                                        Image(systemName: "bookmark")
+                                                    })
+                                                    Button(action: {
+                                                        shareLink = histories[i].url.urlDecoded().urlEncoded()
+                                                        isSharePresented = true
+                                                    }, label: {
+                                                        Image(systemName: "square.and.arrow.up.fill")
+                                                    })
+                                                }
                                             }
                                         }
-                                    })
-                                    .privacySensitive()
-                                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                        Button(role: .destructive, action: {
-                                            histories.remove(at: i)
-                                            writeWebHistory(from: histories)
-                                        }, label: {
-                                            Image(systemName: "bin.xmark.fill")
-                                        })
                                     }
-                                    .swipeActions(edge: .leading) {
-                                        Button(action: {
-                                            if let showName = histories[i].title {
-                                                newBookmarkName = showName
-                                            } else {
-                                                newBookmarkName = ""
+                                } header: {
+                                    HStack {
+                                        if unfoldedIndexs.contains(i) || !searchText.isEmpty {
+                                            GeometryReader { proxy in
+                                                Text(histories[i].dateString)
+                                                    .offset(y: -min(proxy.frame(in: .named("HistoryList")).minY - 55, 0))
+                                                    .onChange(of: proxy.frame(in: .named("HistoryList")).minY) { value in
+                                                        if value < 55 {
+                                                            pinnedTitle = histories[i].dateString
+                                                            pinnedTitleOffsetY = 0
+                                                        } else if i == 0 {
+                                                            pinnedTitle = ""
+                                                        } else if value < 120 {
+                                                            if unfoldedIndexs.contains(i - 1) || !searchText.isEmpty {
+                                                                pinnedTitle = histories[i - 1].dateString
+                                                            } else {
+                                                                pinnedTitle = ""
+                                                            }
+                                                            pinnedTitleOffsetY = value - 120
+                                                        } else {
+                                                            pinnedTitleOffsetY = 0
+                                                        }
+                                                    }
                                             }
-                                            newBookmarkLink = histories[i].url.urlDecoded().urlEncoded()
-                                            isNewBookmarkPresented = true
-                                        }, label: {
-                                            Image(systemName: "bookmark")
-                                        })
-                                        Button(action: {
-                                            shareLink = histories[i].url.urlDecoded().urlEncoded()
-                                            isSharePresented = true
-                                        }, label: {
-                                            Image(systemName: "square.and.arrow.up.fill")
-                                        })
+                                        } else {
+                                            Text(histories[i].dateString)
+                                        }
+                                        Spacer()
+                                        if searchText.isEmpty {
+                                            Button(action: {
+                                                if unfoldedIndexs.contains(i) {
+                                                    unfoldedIndexs.remove(i)
+                                                } else {
+                                                    unfoldedIndexs.update(with: i)
+                                                }
+                                            }, label: {
+                                                Image(systemName: "chevron.forward")
+                                                    .foregroundStyle(.accent)
+                                                    .rotationEffect(unfoldedIndexs.contains(i) ? .degrees(90) : .zero)
+                                                    .animation(.smooth, value: unfoldedIndexs)
+                                            })
+                                            .buttonStyle(.plain)
+                                        }
                                     }
                                 }
                             }
-                        } else {
-                            Text("History.nothing")
-                                .foregroundColor(.gray)
                         }
                     } else {
-                        Text("History.not-recording")
+                        Text("History.nothing")
                             .foregroundColor(.gray)
                     }
+                } else {
+                    Text("History.not-recording")
+                        .foregroundColor(.gray)
                 }
             }
+            .overlay {
+                VStack {
+                    HStack {
+                        Text(pinnedTitle)
+                            .font(.system(size: 13, weight: .medium))
+                            .background {
+                                if #available(watchOS 10, *) {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .fill(Material.ultraThin)
+                                        .blur(radius: 5)
+                                }
+                            }
+                            .offset(x: 13, y: 55 + pinnedTitleOffsetY)
+                        Spacer()
+                    }
+                    Spacer()
+                }
+                .ignoresSafeArea()
+                .allowsHitTesting(false)
+            }
+            .coordinateSpace(name: "HistoryList")
+            .animation(.smooth, value: unfoldedIndexs)
             .sheet(isPresented: $isSharePresented, content: { ShareView(linkToShare: $shareLink) })
             .sheet(isPresented: $isNewBookmarkPresented, content: { AddBookmarkView(initMarkName: $newBookmarkName, initMarkLink: $newBookmarkLink) })
             .sheet(isPresented: $isClearOptionsPresented) {
@@ -286,7 +385,7 @@ struct HistoryView: View {
                                 }
                                 if selectedEmptyAction == 3 {
                                     histories.removeAll()
-                                    writeWebHistory(from: histories)
+                                    writeWebHistory(from: [])
                                     isClearOptionsPresented = false
                                     return
                                 }
@@ -302,24 +401,25 @@ struct HistoryView: View {
                                 default:
                                     break
                                 }
-                                for i in 0..<histories.count {
-                                    let time = histories[i].time
+                                var flatHistories = histories.flatMap { $0.histories }
+                                for i in 0..<flatHistories.count {
+                                    let time = flatHistories[i].time
                                     if currentTime - time <= maxTimeDiff {
-                                        histories[i].url = "[History Remove Token]"
+                                        flatHistories[i].url = "[History Remove Token]"
                                     }
                                 }
-                                histories.removeAll(where: { element in
+                                flatHistories.removeAll(where: { element in
                                     if element.url == "[History Remove Token]" {
                                         return true
                                     }
                                     return false
                                 })
-                                writeWebHistory(from: histories)
+                                writeWebHistory(from: flatHistories)
                                 if UserDefaults.standard.bool(forKey: "DCSaveHistory") && !ProcessInfo.processInfo.isLowPowerModeEnabled,
                                    let account = UserDefaults.standard.string(forKey: "DarockAccount"),
                                    !account.isEmpty {
                                     // Darock Cloud Upload
-                                    let historiesToUpload = Array<SingleHistoryItem>(histories.prefix(50))
+                                    let historiesToUpload = Array<SingleHistoryItem>(flatHistories.prefix(50))
                                     if let uploadData = jsonString(from: historiesToUpload) {
                                         _onFastPath()
                                         let encodedData = uploadData.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
@@ -350,15 +450,16 @@ struct HistoryView: View {
                 }
             }
             .onAppear {
-                histories = getWebHistory()
+                histories = getWebHistory().dateGrouped()
                 // Cloud
                 if !darockAccount.isEmpty && isSaveHistoryToCloud && !ProcessInfo.processInfo.isLowPowerModeEnabled {
                     Task {
                         if let cloudHistories = await getWebHistoryFromCloud(with: darockAccount) {
-                            let mergedHistories = mergeWebHistoriesBetween(primary: histories, secondary: cloudHistories)
-                            if mergedHistories != histories {
-                                histories = mergedHistories
-                                writeWebHistory(from: histories)
+                            let flatHistories = histories.flatMap { $0.histories }
+                            let mergedHistories = mergeWebHistoriesBetween(primary: flatHistories, secondary: cloudHistories)
+                            if mergedHistories != flatHistories {
+                                histories = mergedHistories.dateGrouped()
+                                writeWebHistory(from: histories.flatMap { $0.histories })
                             }
                         }
                     }
@@ -555,24 +656,44 @@ struct SingleHistoryItem: Codable, Equatable {
     var title: String?
     var time: TimeInterval
 }
-
-func jsonString<T>(from value: T) -> String? where T: Encodable {
-    do {
-        let jsonEncoder = JSONEncoder()
-        let jsonData = try jsonEncoder.encode(value)
-        return String(decoding: jsonData, as: UTF8.self)
-    } catch {
-        print("Error encoding data to JSON: \(error)")
+extension [SingleHistoryItem] {
+    typealias GroupedHistory = (dateString: String, histories: Self)
+    
+    func dateGrouped() -> [GroupedHistory] {
+        let dateFormatter = DateFormatter()
+        let calendar = Calendar.current
+        var result = [GroupedHistory]()
+        let dateSortedHistories = self.sorted(by: { lhs, rhs in lhs.time > rhs.time })
+        var previousDateString = ""
+        if !dateSortedHistories.isEmpty {
+            let yearDateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMMd", options: 0, locale: .autoupdatingCurrent)
+            let withoutYearDateFormat = DateFormatter.dateFormat(fromTemplate: "MMMMdE", options: 0, locale: .autoupdatingCurrent)
+            var shouldShowYear = calendar.dateComponents([.year], from: .init(timeIntervalSince1970: dateSortedHistories[0].time)).year!
+            != calendar.dateComponents([.year], from: .now).year!
+            var thisGroupHistories = Self()
+            for history in dateSortedHistories {
+                shouldShowYear = calendar.dateComponents([.year], from: .init(timeIntervalSince1970: history.time)).year!
+                != calendar.dateComponents([.year], from: .now).year!
+                dateFormatter.dateFormat = shouldShowYear ? yearDateFormat : withoutYearDateFormat
+                let dateString = {
+                    let date = Date(timeIntervalSince1970: history.time)
+                    if _slowPath(calendar.isDateInToday(date)) {
+                        return String(localized: "今天")
+                    } else if calendar.isDateInYesterday(date) {
+                        return String(localized: "昨天")
+                    } else {
+                        return dateFormatter.string(from: date)
+                    }
+                }()
+                if dateString == previousDateString {
+                    thisGroupHistories.append(history)
+                } else if !thisGroupHistories.isEmpty {
+                    result.append((previousDateString, thisGroupHistories))
+                    thisGroupHistories.removeAll()
+                }
+                previousDateString = dateString
+            }
+        }
+        return result
     }
-    return nil
-}
-func getJsonData<T>(_ type: T.Type, from json: String) -> T? where T: Decodable {
-    do {
-        let jsonData = json.data(using: .utf8)!
-        let jsonDecoder = JSONDecoder()
-        return try jsonDecoder.decode(type, from: jsonData)
-    } catch {
-        print("Error decoding JSON to data: \(error)")
-    }
-    return nil
 }

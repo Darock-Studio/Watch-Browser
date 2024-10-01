@@ -9,6 +9,8 @@
 #import "UIKit/UITextCursorView.h"
 #import "UIKit/UITextInput.h"
 
+NS_HEADER_AUDIT_BEGIN(nullability, sendability)
+
 /// @class      @c UITextCursorDropPositionAnimator
 /// @abstract   Provides a mechanism for displaying and animating a temporary text cursor to indicate a drop location.
 /// @discussion For custom text view implementations that implement drag and drop functionality, use this animator providing either your own UITextCursorView
@@ -37,6 +39,8 @@ UIKIT_EXTERN API_AVAILABLE(ios(17.4)) NS_SWIFT_UI_ACTOR
 
 - (instancetype)init NS_UNAVAILABLE;
 @end
+
+NS_HEADER_AUDIT_END(nullability, sendability)
 
 #else
 #import "UIKitCore/UITextCursorDropPositionAnimator.h"

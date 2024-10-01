@@ -7,6 +7,7 @@
 //  Renamed WESwiftDelegate.swift -> WebViewDelegate on 2024/8/14
 //
 
+import OSLog
 import SwiftUI
 import Dynamic
 import Foundation
@@ -135,7 +136,7 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
                 globalWebBrowsingUserActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
                 globalWebBrowsingUserActivity.title = Dynamic(webViewObject).title.asString
                 globalWebBrowsingUserActivity.isEligibleForHandoff = true
-                globalWebBrowsingUserActivity.webpageURL = Dynamic(webViewObject).URL.asObject as? URL
+                globalWebBrowsingUserActivity.webpageURL = curl
                 globalWebBrowsingUserActivity.becomeCurrent()
             }
         }
@@ -149,9 +150,9 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     public func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: any Error) {
         debugPrint("Failed Early Navigation")
         AdvancedWebViewController.shared.loadProgressView.hidden = true
-        debugPrint(error)
-        errorLabel.text = "\(String(localized: "载入页面时出错"))\n\(error.localizedDescription)"
-        AdvancedWebViewController.shared.webViewHolder.addSubview(errorLabel)
+        os_log(.error, "\(error)")
+        errorLabel.text = String(localized: "暗礁浏览器打不开该网页。\n错误是：“\(error.localizedDescription)”。")
+        Dynamic(webViewObject).addSubview(errorLabel)
     }
     
     public func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {

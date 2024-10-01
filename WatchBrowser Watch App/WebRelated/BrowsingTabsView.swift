@@ -101,7 +101,6 @@ struct BrowsingTabsView: View {
 struct TabWebKitReference: Identifiable {
     let id = UUID()
     
-    var webViewHolder: Dynamic // UIView
     var vc: Dynamic // UIViewController
     var loadProgressView: Dynamic // UIProgressView
     var webViewObject: WKWebView

@@ -25,6 +25,10 @@ var pTapToRadarAlertContent = ""
 var pTapToRadarAttachText = ""
 var pIsTapToRadarAlertPresented = false
 
+#if !targetEnvironment(simulator)
+var globalHapticEngine: CHHapticEngine?
+#endif
+
 @main
 struct WatchBrowser_Watch_AppApp: App {
     let device = WKInterfaceDevice.current()
@@ -217,6 +221,8 @@ class AppDelegate: NSObject, WKApplicationDelegate {
                 }
             }
         }
+        
+        initHapticEngine()
     }
     
     func didRegisterForRemoteNotifications(withDeviceToken deviceToken: Data) {
@@ -233,6 +239,11 @@ public func tipWithText(_ text: LocalizedStringKey, symbol: String = "", time: D
     Timer.scheduledTimer(withTimeInterval: time, repeats: false) { _ in
         pIsShowingTip = false
     }
+    if symbol == "xmark.circle.fill" {
+        playHaptic(from: Bundle.main.url(forResource: "Failure", withExtension: "ahap")!)
+    } else {
+        playHaptic(from: Bundle.main.url(forResource: "Success", withExtension: "ahap")!)
+    }
 }
 @_disfavoredOverload
 public func tipWithText(_ text: String, symbol: String = "", time: Double = 3.0) {
@@ -241,6 +252,11 @@ public func tipWithText(_ text: String, symbol: String = "", time: Double = 3.0)
     pIsShowingTip = true
     Timer.scheduledTimer(withTimeInterval: time, repeats: false) { _ in
         pIsShowingTip = false
+    }
+    if symbol == "xmark.circle.fill" {
+        playHaptic(from: Bundle.main.url(forResource: "Failure", withExtension: "ahap")!)
+    } else {
+        playHaptic(from: Bundle.main.url(forResource: "Success", withExtension: "ahap")!)
     }
 }
 public func globalErrorHandler(_ error: Error, file: StaticString = #file, function: StaticString = #function, line: Int = #line) {
@@ -351,6 +367,43 @@ func resetGlobalAudioLooper() {
                 }
             }
     }
+}
+
+func initHapticEngine() {
+    #if !targetEnvironment(simulator)
+    dlopen("/System/Library/Frameworks/CoreHaptics.framework/CoreHaptics", RTLD_NOW)
+    do {
+        globalHapticEngine = try CHHapticEngine(audioSession: .sharedInstance())
+        try globalHapticEngine?.start()
+    } catch {
+        print("创建引擎时出现错误： \(error.localizedDescription)")
+    }
+    #endif
+}
+func playHaptic(sharpness: Float, intensity: Float) {
+    #if !targetEnvironment(simulator)
+    var events = [CHHapticEvent]()
+    let intensity = CHHapticEventParameter(parameterID: .hapticIntensity, value: intensity)
+    let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness, value: sharpness)
+    let event = CHHapticEvent(eventType: .hapticTransient, parameters: [intensity, sharpness], relativeTime: 0)
+    events.append(event)
+    do {
+        let pattern = try CHHapticPattern(events: events, parameters: [])
+        let player = try globalHapticEngine?.createPlayer(with: pattern)
+        try player?.start(atTime: 0)
+    } catch {
+        print("Failed to play pattern: \(error.localizedDescription).")
+    }
+    #endif
+}
+func playHaptic(from url: URL) {
+    #if !targetEnvironment(simulator)
+    do {
+        try globalHapticEngine?.playPattern(from: url)
+    } catch {
+        print("Failed to play pattern: \(error.localizedDescription).")
+    }
+    #endif
 }
 
 @_optimize(speed)

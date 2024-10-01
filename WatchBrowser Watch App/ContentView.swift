@@ -264,6 +264,8 @@ struct ContentView: View {
     }
 }
 
+
+
 struct MainView: View {
     @Binding var withSetting: Bool
     @AppStorage("WebSearch") var webSearch = "必应"
@@ -502,7 +504,7 @@ struct MainView: View {
                             }
                         }
                         .swipeActions {
-                            if textOrURL != "" {
+                            if !textOrURL.isEmpty {
                                 Button(action: {
                                     textOrURL = ""
                                     goToButtonLabelText = "Home.search"

@@ -106,6 +106,6 @@ typedef NS_ENUM(NSInteger, WKInactiveSchedulingPolicy) {
 @property (nonatomic) BOOL plugInsEnabled API_DEPRECATED("Plug-ins are no longer supported", macos(10.10, 10.15));
 #endif
 
-@property (nonatomic) BOOL javaScriptEnabled API_DEPRECATED("Use WKWebpagePreferences.allowsContentJavaScript to disable content JavaScript on a per-navigation basis", macos(10.10, 11.0), ios(8.0, 14.0));
+@property (nonatomic) BOOL javaScriptEnabled;
 
 @end

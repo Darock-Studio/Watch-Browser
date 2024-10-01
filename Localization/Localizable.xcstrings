@@ -2091,6 +2091,16 @@
         }
       }
     },
+    "%@以更改布局设置。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ to change layout settings."
+          }
+        }
+      }
+    },
     "%@已修复" : {
       "localizations" : {
         "ar" : {
@@ -4733,124 +4743,6 @@
         }
       }
     },
-    "3x" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3 مرات"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3 mal"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3x"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3 veces"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3 fois"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3 बार"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3 kali"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3 volte"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3x"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3x"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3 keer"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3 razy"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3 vezes"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3 раза"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3 ครั้ง"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3 kez"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3 рази"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3 lần"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3x"
-          }
-        }
-      }
-    },
     "4" : {
       "localizations" : {
         "ar" : {
@@ -5095,124 +4987,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "5"
-          }
-        }
-      }
-    },
-    "5x" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5 مرات"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5 mal"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5x"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5 veces"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5 fois"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5 बार"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5 kali"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5 volte"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5x"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5x"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5 keer"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5 razy"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5 vezes"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5 раз"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5 ครั้ง"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5 kez"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5 разів"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5 lần"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5x"
           }
         }
       }
@@ -5848,23 +5622,15 @@
         }
       }
     },
+    "appdiagnose" : {
+      "shouldTranslate" : false
+    },
     "appdiagnose Logs" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "appdiagnose Logs"
-          }
-        }
-      },
-      "shouldTranslate" : false
-    },
-    "appdiagnose_%@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "appdiagnose_%@"
           }
         }
       },
@@ -15152,6 +14918,16 @@
         }
       }
     },
+    "上次重新启动时间：\n%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Restart Time: \n%@"
+          }
+        }
+      }
+    },
     "下一页" : {
       "localizations" : {
         "ar" : {
@@ -15266,6 +15042,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "下一頁"
+          }
+        }
+      }
+    },
+    "下载%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download %@"
           }
         }
       }
@@ -15870,6 +15656,16 @@
         }
       }
     },
+    "不在此列表中的其他方面" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other Aspects not Listed Here"
+          }
+        }
+      }
+    },
     "与此反馈重复" : {
       "localizations" : {
         "ar" : {
@@ -16220,6 +16016,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "個人資訊"
+          }
+        }
+      }
+    },
+    "个性化主屏幕" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom Home Screen"
           }
         }
       }
@@ -18772,6 +18578,16 @@
         }
       }
     },
+    "你的设备无需连接蓝牙音频设备即可在后台播放音频。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your device can play audio in the background without connecting to a Bluetooth audio device."
+          }
+        }
+      }
+    },
     "你要存储当前的草稿吗？" : {
       "localizations" : {
         "ar" : {
@@ -20366,6 +20182,26 @@
         }
       }
     },
+    "先试试这个方案" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try This Solution First"
+          }
+        }
+      }
+    },
+    "先试试这些方案" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try These Solutions First"
+          }
+        }
+      }
+    },
     "全局操作" : {
       "localizations" : {
         "en" : {
@@ -21598,6 +21434,16 @@
         }
       }
     },
+    "最大可视区域" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximum Visible Area"
+          }
+        }
+      }
+    },
     "最大缩放倍数" : {
       "localizations" : {
         "ar" : {
@@ -21712,6 +21558,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最大縮放倍數"
+          }
+        }
+      }
+    },
+    "分享" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share"
           }
         }
       }
@@ -24868,6 +24724,16 @@
         }
       }
     },
+    "双指捏合以缩放" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pinch to Zoom"
+          }
+        }
+      }
+    },
     "反馈助理" : {
       "localizations" : {
         "ar" : {
@@ -25342,6 +25208,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "反饋問題"
+          }
+        }
+      }
+    },
+    "反馈问题无法帮助您找回密码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filing a feedback cannot help you recover your password"
           }
         }
       }
@@ -30468,6 +30344,16 @@
         }
       }
     },
+    "如果下载大小长时间未变化，说明此 M3U8 视频无法被下载。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If the download size remains unchanged for a long time, this M3U8 video cannot be downloaded."
+          }
+        }
+      }
+    },
     "如果你正在进行网页开发，开发者模式允许你使用开发所需的功能。" : {
       "localizations" : {
         "ar" : {
@@ -31080,6 +30966,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "存儲本頁離線歸檔"
+          }
+        }
+      }
+    },
+    "存储离线归档" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save Offline Page"
           }
         }
       }
@@ -32732,6 +32628,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "實驗室"
+          }
+        }
+      }
+    },
+    "实验室项目" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laboratory Items"
           }
         }
       }
@@ -35958,6 +35864,16 @@
         }
       }
     },
+    "布局" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Layout"
+          }
+        }
+      }
+    },
     "常用设置" : {
       "localizations" : {
         "ar" : {
@@ -36312,6 +36228,16 @@
         }
       }
     },
+    "应用程序崩溃" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Crash"
+          }
+        }
+      }
+    },
     "建议" : {
       "localizations" : {
         "ar" : {
@@ -36662,6 +36588,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "開發者模式"
+          }
+        }
+      }
+    },
+    "开发者设置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Developer Settings"
           }
         }
       }
@@ -38492,6 +38428,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "快速清除"
+          }
+        }
+      }
+    },
+    "快速返回" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick Return"
           }
         }
       }
@@ -45070,6 +45016,19 @@
         }
       }
     },
+    "旧版浏览引擎" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legacy Browsing Engine"
+          }
+        }
+      }
+    },
+    "昨天" : {
+
+    },
     "昨天和今天" : {
       "localizations" : {
         "ar" : {
@@ -46200,6 +46159,26 @@
         }
       }
     },
+    "暗礁浏览器打不开该网页。\n错误是：“%@”。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browser can’t open the page.\nThe error was: “%@”."
+          }
+        }
+      }
+    },
+    "暗礁浏览器无法载入此图片" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browser can’t load this image"
+          }
+        }
+      }
+    },
     "暗礁浏览器有更新可用。" : {
       "localizations" : {
         "en" : {
@@ -46560,6 +46539,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "更改网页视图与浏览菜单布局" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change the Web View and Browsing Menu Layout"
           }
         }
       }
@@ -48960,6 +48949,16 @@
         }
       }
     },
+    "查看还原选项" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check Restore Options"
+          }
+        }
+      }
+    },
     "标准" : {
       "localizations" : {
         "en" : {
@@ -49566,6 +49565,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "檢查更新時出錯"
+          }
+        }
+      }
+    },
+    "模糊顶部" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blur Top"
           }
         }
       }
@@ -53425,6 +53434,16 @@
         }
       }
     },
+    "激活暗礁浏览器 Pro " : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activate Darock Browser Pro"
+          }
+        }
+      }
+    },
     "版本：%@" : {
       "localizations" : {
         "ar" : {
@@ -55511,6 +55530,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "畫面"
+          }
+        }
+      }
+    },
+    "界面" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interface"
           }
         }
       }
@@ -57783,6 +57812,16 @@
         }
       }
     },
+    "视频播放器" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video Player"
+          }
+        }
+      }
+    },
     "视频直接跳转" : {
       "localizations" : {
         "ar" : {
@@ -58865,6 +58904,16 @@
         }
       }
     },
+    "第三方全键盘" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Third-party Full Keyboard"
+          }
+        }
+      }
+    },
     "等待 Darock 修复" : {
       "localizations" : {
         "ar" : {
@@ -59451,6 +59500,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "系统版本"
+          }
+        }
+      }
+    },
+    "紧凑" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compact"
           }
         }
       }
@@ -60065,6 +60124,16 @@
         }
       }
     },
+    "缩放手势" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zoom Gesture"
+          }
+        }
+      }
+    },
     "网易云音乐" : {
       "localizations" : {
         "ar" : {
@@ -60425,6 +60494,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "網路檢查"
+          }
+        }
+      }
+    },
+    "网络连接" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network Connection"
           }
         }
       }
@@ -61157,6 +61236,16 @@
         }
       }
     },
+    "网页视图" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web View"
+          }
+        }
+      }
+    },
     "网页链接无效" : {
       "localizations" : {
         "en" : {
@@ -61881,120 +61970,22 @@
         }
       }
     },
-    "若要在后台播放，你需要在播放前连接蓝牙音频设备。" : {
+    "若要在后台播放，你可能需要在播放前连接蓝牙音频设备。" : {
       "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "للعب في الخلفية، تحتاج إلى توصيل جهاز صوت Bluetooth قبل اللعب."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Um im Hintergrund zu spielen, müssen Sie vor dem Spielen ein Bluetooth-Audiogerät anschließen."
-          }
-        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "To play in the background, you need to connect a Bluetooth audio device before playing."
+            "value" : "To play in the background, you may need to connect to a Bluetooth audio device before playback."
           }
-        },
-        "es" : {
+        }
+      }
+    },
+    "若要在后台播放，你的设备需要在播放前连接蓝牙音频设备。" : {
+      "localizations" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Para reproducir en segundo plano, necesitas conectar un dispositivo de audio Bluetooth antes de reproducir."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pour jouer en arrière-plan, vous devez connecter un appareil audio Bluetooth avant de jouer."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "पृष्ठभूमि में चलाने के लिए, आपको चलाने से पहले एक ब्लूटूथ ऑडियो डिवाइस कनेक्ट करने की आवश्यकता है।"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Untuk bermain di latar belakang, Anda perlu menghubungkan perangkat audio Bluetooth sebelum bermain."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Per riprodurre in background, è necessario collegare un dispositivo audio Bluetooth prima di giocare."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "バックグラウンドで再生するには、再生前にBluetoothオーディオ機器を接続する必要があります。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "백그라운드에서 재생하려면 재생하기 전에 블루투스 오디오 장치를 연결해야 합니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Om op de achtergrond te spelen, moet je een Bluetooth-audioapparaat aansluiten voordat je gaat spelen."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aby grać w tle, musisz podłączyć urządzenie audio Bluetooth przed odtworzeniem."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Para tocar em segundo plano, você precisa conectar um dispositivo de áudio Bluetooth antes de tocar."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Чтобы играть в фоновом режиме, перед воспроизведением необходимо подключить аудиоустройство Bluetooth."
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "หากต้องการเล่นในพื้นหลัง คุณต้องเชื่อมต่ออุปกรณ์เสียงบลูทูธก่อนเล่น"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Arka planda çalmak için çalmadan önce bir Bluetooth ses cihazı bağlamanız gerekir."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Щоб грати у фоновому режимі, вам потрібно підключити аудіопристрій Bluetooth перед відтворенням."
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Để phát ở chế độ nền, bạn cần kết nối thiết bị âm thanh Bluetooth trước khi phát."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "要在背景播放，你需要在播放前與藍牙音頻裝置連線"
+            "value" : "To play in the background, your device needs to be connected to a Bluetooth audio device before playback."
           }
         }
       }
@@ -62834,6 +62825,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "This News is not Exist"
+          }
+        }
+      }
+    },
+    "详细" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detail"
           }
         }
       }
@@ -65172,12 +65173,12 @@
         }
       }
     },
-    "载入页面时出错" : {
+    "辅助功能" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "An error occurred when loading webpage"
+            "value" : "Accessibility"
           }
         }
       }
@@ -66716,6 +66717,26 @@
         }
       }
     },
+    "运行一个快速诊断程序以检查网络连接。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run a quick diagnostic to check the network connection."
+          }
+        }
+      }
+    },
+    "运行网络检查程序" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run Network Check"
+          }
+        }
+      }
+    },
     "返回" : {
       "localizations" : {
         "ar" : {
@@ -67676,6 +67697,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Try to clear texts here through Fast Clear"
+          }
+        }
+      }
+    },
+    "进一步了解..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Learn more..."
           }
         }
       }
@@ -68890,6 +68921,16 @@
         }
       }
     },
+    "选择一项" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select one…"
+          }
+        }
+      }
+    },
     "通用" : {
       "localizations" : {
         "ar" : {
@@ -69126,6 +69167,16 @@
         }
       }
     },
+    "速度缓慢/没有响应" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slow/Unresponsive"
+          }
+        }
+      }
+    },
     "重命名" : {
       "localizations" : {
         "ar" : {
@@ -69240,6 +69291,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "重新启动设备" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restart the Device"
+          }
+        }
+      }
+    },
+    "重新启动设备通常可以解决许多软件问题。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restarting the device can often resolve many software issues."
           }
         }
       }
@@ -70928,6 +70999,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "長按搜索按鈕使用次要搜索引擎"
+          }
+        }
+      }
+    },
+    "问题区域" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Issue Area"
           }
         }
       }
@@ -73688,6 +73769,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "需要進行安全延時以執行此操作，因為安全延時已啟用。"
+          }
+        }
+      }
+    },
+    "需选择问题区域" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select an Issue Area"
           }
         }
       }

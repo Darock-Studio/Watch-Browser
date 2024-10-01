@@ -156,7 +156,7 @@ typedef NS_ENUM(NSInteger, WKFullscreenState) {
 - (nullable WKNavigation *)goToBackForwardListItem:(WKBackForwardListItem *)item;
 
 /*! @abstract The page title.
- @discussion @link WKWebView @/link is key-value observing (KVO) compliant
+ @link WKWebView @/link is key-value observing (KVO) compliant
  for this property.
  */
 @property (nullable, nonatomic, readonly, copy) NSString *title;
@@ -171,7 +171,7 @@ typedef NS_ENUM(NSInteger, WKFullscreenState) {
 
 /*! @abstract A Boolean value indicating whether the view is currently
  loading content.
- @discussion @link WKWebView @/link is key-value observing (KVO) compliant
+ @link WKWebView @/link is key-value observing (KVO) compliant
  for this property.
  */
 @property (nonatomic, readonly, getter=isLoading) BOOL loading;
@@ -188,20 +188,20 @@ typedef NS_ENUM(NSInteger, WKFullscreenState) {
 
 /*! @abstract A Boolean value indicating whether all resources on the page
  have been loaded over securely encrypted connections.
- @discussion @link WKWebView @/link is key-value observing (KVO) compliant
+ @link WKWebView @/link is key-value observing (KVO) compliant
  for this property.
  */
 @property (nonatomic, readonly) BOOL hasOnlySecureContent;
 
 /*! @abstract A SecTrustRef for the currently committed navigation.
- @discussion @link WKWebView @/link is key-value observing (KVO) compliant 
+ @link WKWebView @/link is key-value observing (KVO) compliant
  for this property.
  */
 @property (nonatomic, readonly, nullable) SecTrustRef serverTrust API_AVAILABLE(macos(10.12), ios(10.0));
 
 /*! @abstract A Boolean value indicating whether there is a back item in
  the back-forward list that can be navigated to.
- @discussion @link WKWebView @/link is key-value observing (KVO) compliant
+ @link WKWebView @/link is key-value observing (KVO) compliant
  for this property.
  @seealso backForwardList.
  */
@@ -209,7 +209,7 @@ typedef NS_ENUM(NSInteger, WKFullscreenState) {
 
 /*! @abstract A Boolean value indicating whether there is a forward item in
  the back-forward list that can be navigated to.
- @discussion @link WKWebView @/link is key-value observing (KVO) compliant
+ @link WKWebView @/link is key-value observing (KVO) compliant
  for this property.
  @seealso backForwardList.
  */
@@ -383,13 +383,13 @@ typedef NS_ENUM(NSInteger, WKFullscreenState) {
 #endif
 
 /*! @abstract The state of camera capture on a web page.
- @discussion @link WKWebView @/link is key-value observing (KVO) compliant
+ @link WKWebView @/link is key-value observing (KVO) compliant
  for this property.
  */
 @property (nonatomic, readonly) WKMediaCaptureState cameraCaptureState API_AVAILABLE(macos(12.0), ios(15.0));
 
 /*! @abstract The state of microphone capture on a web page.
- @discussion @link WKWebView @/link is key-value observing (KVO) compliant
+ @link WKWebView @/link is key-value observing (KVO) compliant
  for this property.
  */
 @property (nonatomic, readonly) WKMediaCaptureState microphoneCaptureState API_AVAILABLE(macos(12.0), ios(15.0));
@@ -612,7 +612,7 @@ The uniform type identifier kUTTypeWebArchive can be used get the related pasteb
 #endif
 
 /*! @abstract A WKWebView's fullscreen state.
- @discussion @link WKWebView @link is key-value observing (KVO) compliant for this property. When an element
+ @link WKWebView @link is key-value observing (KVO) compliant for this property. When an element
  in the WKWebView enters fullscreen, WebKit will replace the WKWebView in the application view hierarchy with
  a "placeholder" view, and move the WKWebView into a fullscreen window. When the element exits fullscreen later,
  the WKWebView will be moved back into the application view hierarchy. An application may need to adjust/restore

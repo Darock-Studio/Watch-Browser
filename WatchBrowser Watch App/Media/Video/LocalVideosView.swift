@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DarockKit
 
 struct LocalVideosView: View {
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""

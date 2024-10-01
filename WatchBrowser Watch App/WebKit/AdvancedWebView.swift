@@ -31,7 +31,6 @@ final class AdvancedWebViewController: NSObject {
     
     var currentTabIndex: Int?
     
-    var webViewHolder = Dynamic.UIView()
     var vc = Dynamic.UIViewController()
     var loadProgressView = Dynamic.UIProgressView()
     
@@ -48,6 +47,7 @@ final class AdvancedWebViewController: NSObject {
     }
     
     @AppStorage("AllowCookies") var allowCookies = true
+    @AppStorage("WebViewLayout") var webViewLayout = "MaximumViewport"
     @AppStorage("RequestDesktopWeb") var requestDesktopWeb = false
     @AppStorage("UseBackforwardGesture") var useBackforwardGesture = true
     @AppStorage("KeepDigitalTime") var keepDigitalTime = false
@@ -100,7 +100,7 @@ final class AdvancedWebViewController: NSObject {
         
         let url = URL(string: iurl) ?? archiveUrl!
 
-        if _slowPath((isUseOldWebView && overrideOldWebView != .alwaysAdvanced) || overrideOldWebView == .alwaysLegacy) {
+        if _slowPath((isUseOldWebView && overrideOldWebView != .alwaysAdvanced) || overrideOldWebView == .alwaysLegacy && archiveUrl == nil) {
             // rdar://FB268002071845
             if _fastPath(presentController) {
                 let legacyConfiguration = Dynamic.SFSafariViewControllerConfiguration()
@@ -121,8 +121,7 @@ final class AdvancedWebViewController: NSObject {
         
         let sb = WKInterfaceDevice.current().screenBounds
         
-        let wkWebView = WKWebView()
-        wkWebView.frame = sb
+        let wkWebView = WKWebView(frame: sb)
         if _fastPath(customUserAgent.isEmpty) {
             if _slowPath(requestDesktopWeb) {
                 wkWebView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
@@ -149,27 +148,26 @@ final class AdvancedWebViewController: NSObject {
         loadProgressView.frame = CGRect(x: 0, y: 0, width: sb.width, height: 20)
         loadProgressView.progressTintColor = UIColor.blue
         
-        webViewHolder = Dynamic.UIView()
-        webViewHolder.addSubview(wkWebView)
+        vc = Dynamic(_makeUIHostingController(AnyView(SwiftWebView(webView: wkWebView))))
         
-        if _slowPath(keepDigitalTime) {
-            let timeBackground = Dynamic.UIView()
-            timeBackground.setBackgroundColor(UIColor.black)
-            timeBackground.setFrame(CGRect(x: sb.width - 50, y: 0, width: 70, height: 30))
-            webViewHolder.addSubview(timeBackground)
-        }
-        
-        if _slowPath(showFastExitButton) {
-            let fastExitButton = SUICButton(systemImage: "escape", frame: .init(x: 40, y: 10, width: 30, height: 30), action: dismissWebView)
-                .tintColor(.red)
-                .button()
+        if webViewLayout != "FastPrevious" {
+            if _slowPath(keepDigitalTime) {
+                let timeBackground = Dynamic.UIView()
+                timeBackground.setBackgroundColor(UIColor.black)
+                timeBackground.setFrame(CGRect(x: sb.width - 50, y: 0, width: 70, height: 30))
+                vc.view.addSubview(timeBackground)
+            }
             
-            webViewHolder.addSubview(fastExitButton)
+            if _slowPath(showFastExitButton) {
+                let fastExitButton = SUICButton(systemImage: "escape", frame: .init(x: 40, y: 10, width: 30, height: 30), action: dismissWebView)
+                    .tintColor(.red)
+                    .button()
+                
+                vc.view.addSubview(fastExitButton)
+            }
+            vc.view.addSubview(moreButton)
         }
-        webViewHolder.addSubview(moreButton)
-        webViewHolder.addSubview(loadProgressView)
-        
-        vc = Dynamic(_makeUIHostingController(AnyView(SwiftWebView(webView: webViewHolder.asObject!))))
+        vc.view.addSubview(loadProgressView)
 
         if _fastPath(presentController) {
             safePresent(vc)
@@ -205,7 +203,6 @@ final class AdvancedWebViewController: NSObject {
         return wkWebView
     }
     func recover(from ref: TabWebKitReference) {
-        webViewHolder = ref.webViewHolder
         vc = ref.vc
         loadProgressView = ref.loadProgressView
         webViewObject = ref.webViewObject
@@ -213,8 +210,7 @@ final class AdvancedWebViewController: NSObject {
         safePresent(vc)
     }
     func storeTab(in allTabs: [String], at index: Int? = nil) {
-        let recoverReference = TabWebKitReference(webViewHolder: webViewHolder,
-                                                  vc: vc,
+        let recoverReference = TabWebKitReference(vc: vc,
                                                   loadProgressView: loadProgressView,
                                                   webViewObject: webViewObject,
                                                   webViewParentController: webViewParentController)

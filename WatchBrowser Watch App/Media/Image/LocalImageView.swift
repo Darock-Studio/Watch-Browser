@@ -51,7 +51,7 @@ struct LocalImageView: View {
                                                 tabSelection = i
                                                 isImageViewerPresented = true
                                             }
-                                            .onLongPressGesture(minimumDuration: 1.0) {
+                                            .onLongPressGesture(minimumDuration: 0.4) {
                                                 indexForMenu = i
                                                 isMenuPresented = true
                                             }
@@ -91,8 +91,11 @@ struct LocalImageView: View {
             .sheet(isPresented: $isMenuPresented) {
                 NavigationStack {
                     List {
-                        if isThisClusterInstalled {
-                            Section {
+                        Section {
+                            ShareLink(item: URL(filePath: NSHomeDirectory() + "/Documents/LocalImages/" + images[indexForMenu])) {
+                                Label("分享", systemImage: "square.and.arrow.up")
+                            }
+                            if isThisClusterInstalled {
                                 Button(action: {
                                     do {
                                         let containerFilePath = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.darockst")!.path + "/TransferFile.drkdatat"

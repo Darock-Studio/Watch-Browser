@@ -44,6 +44,13 @@ struct ProPurchaseView: View {
                     Label("书签小组件", systemImage: "bookmark")
                     Label("快速搜索小组件", systemImage: "magnifyingglass")
                 }
+                Label("更改网页视图与浏览菜单布局", systemImage: {
+                    if #available(watchOS 11.0, *) {
+                        "square.grid.3x3.square.badge.ellipsis"
+                    } else {
+                        "square.fill.text.grid.1x2"
+                    }
+                }())
                 Label("功能持续更新", systemImage: "arrow.up.circle")
             } header: {
                 Text("Pro 功能")

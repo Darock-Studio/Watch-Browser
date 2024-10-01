@@ -170,7 +170,7 @@ struct DigitPadStyle: ButtonStyle {
                 .fill(!configuration.isPressed && isUnpressNoBackground ? Color.clear : Color.gray.opacity(configuration.isPressed ? 0.3 : 0.2))
                 .frame(width: geometry.size.width, height: geometry.size.height)
                 .scaleEffect(configuration.isPressed ? 1.2 : 1, anchor: scaleAnchor)
-                .animation(.easeOut(duration: 0.1), value: configuration.isPressed)
+                .animation(.easeOut(duration: configuration.isPressed ? 0 : 0.1), value: configuration.isPressed)
             configuration.label
                 .background(
                     ZStack {
@@ -184,7 +184,7 @@ struct DigitPadStyle: ButtonStyle {
                 )
                 .frame(width: geometry.size.width, height: geometry.size.height)
                 .scaleEffect(configuration.isPressed ? 1.2 : 1, anchor: scaleAnchor)
-                .animation(.easeOut(duration: 0.1), value: configuration.isPressed)
+                .animation(.easeOut(duration: configuration.isPressed ? 0 : 0.1), value: configuration.isPressed)
         }
         .onChange(of: configuration.isPressed) { value in
             if value {

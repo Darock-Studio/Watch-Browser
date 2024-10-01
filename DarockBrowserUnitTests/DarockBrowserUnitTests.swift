@@ -135,7 +135,7 @@ struct URLProcessorTests {
         GeneralTestArgument(input: "0.0.0.0", expectedOutput: true),
         GeneralTestArgument(input: "255.255.255.255", expectedOutput: true),
         GeneralTestArgument(input: "114.514.191.981", expectedOutput: false),
-        GeneralTestArgument(input: "999.999..999", expectedOutput: false),
+        GeneralTestArgument(input: "999.999..999", expectedOutput: false)
     ])
     func testStringIsUrl(by arg: GeneralTestArgument<String, Bool>) async throws {
         #expect(arg.input.isURL() == arg.expectedOutput)

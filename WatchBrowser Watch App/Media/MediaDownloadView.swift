@@ -12,7 +12,7 @@ import AVFoundation
 
 struct MediaDownloadView: View {
     @Binding var mediaLink: String
-    var mediaTypeName: LocalizedStringKey
+    var mediaTypeName: LocalizedStringResource
     var saveFolderName: String
     @Binding var saveFileName: String?
     @Environment(\.presentationMode) var presentationMode
@@ -28,26 +28,6 @@ struct MediaDownloadView: View {
         NavigationStack {
             List {
                 Section {
-                    HStack {
-                        Button(action: {
-                            if !isFinishedDownload {
-                                isTerminateDownloadingAlertPresented = true
-                            } else {
-                                presentationMode.wrappedValue.dismiss()
-                            }
-                        }, label: {
-                            Image(systemName: "xmark")
-                                .bold()
-                                .foregroundColor(.white)
-                        })
-                        .buttonStyle(.bordered)
-                        .buttonBorderShape(.roundedRectangle(radius: 100))
-                        .frame(width: 50, height: 50)
-                        Spacer()
-                    }
-                }
-                .listRowBackground(Color.clear)
-                Section {
                     if !isFinishedDownload {
                         VStack {
                             Text("正在下载...")
@@ -55,7 +35,6 @@ struct MediaDownloadView: View {
                             if mediaLink.hasSuffix(".m3u8"), #available(watchOS 10, *) {
                                 ProgressView()
                                 Text("已下载 \(m3u8DownloadedSize ~ 2)MB")
-                                Text("正在下载 M3U8 媒体，这可能需要较长时间，且暗礁浏览器无法报告进度。")
                             } else {
                                 ProgressView(value: Double(downloadProgress.completedUnitCount), total: Double(downloadProgress.totalUnitCount))
                                 Text("\((Double(downloadProgress.completedUnitCount) / Double(downloadProgress.totalUnitCount) * 100) ~ 2)%")
@@ -77,6 +56,10 @@ struct MediaDownloadView: View {
                         }
                     }
                 }
+                if mediaLink.hasSuffix(".m3u8") && !isFinishedDownload, #available(watchOS 10, *) {
+                    Text("正在下载 M3U8 媒体，这可能需要较长时间，且暗礁浏览器无法报告进度。")
+                    Text("如果下载大小长时间未变化，说明此 M3U8 视频无法被下载。")
+                }
                 if !errorText.isEmpty {
                     Section {
                         Text(errorText)
@@ -84,8 +67,20 @@ struct MediaDownloadView: View {
                     }
                 }
             }
-            .navigationTitle("下载\(mediaTypeName)")
-            .toolbar(.hidden, for: .navigationBar)
+            .navigationTitle("下载\(String(localized: mediaTypeName))")
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(action: {
+                        if !isFinishedDownload {
+                            isTerminateDownloadingAlertPresented = true
+                        } else {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    }, label: {
+                        Image(systemName: "xmark")
+                    })
+                }
+            }
             .alert("未完成的下载", isPresented: $isTerminateDownloadingAlertPresented, actions: {
                 Button(role: .destructive, action: {
                     presentationMode.wrappedValue.dismiss()

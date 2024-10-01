@@ -122,6 +122,7 @@ struct BookmarkView: View {
                     }
                 }
             }
+            .navigationTitle("书签")
             .sheet(isPresented: $isShareSheetPresented, content: { ShareView(linkToShare: $shareLink) })
             .sheet(isPresented: $isBookmarkEditPresented, onDismiss: {
                 bookmarks = BookmarkStackManager.shared.getAll()
@@ -183,7 +184,7 @@ struct AddBookmarkView: View {
                     .textInputAutocapitalization(.never)
                 Button(action: {
                     BookmarkStackManager.shared.push(
-                        (markName, markLink.hasPrefix("https://") || markLink.hasPrefix("http://") ? markLink.urlEncoded() : "http://" + markLink.urlEncoded())
+                        (markName, markLink.hasPrefix("https://") || markLink.hasPrefix("http://") ? markLink : "http://" + markLink)
                     )
                     self.presentationMode.wrappedValue.dismiss()
                 }, label: {
@@ -221,7 +222,7 @@ struct EditBookmarkView: View {
                     .textInputAutocapitalization(.never)
                 Button(action: {
                     BookmarkStackManager.shared[BookmarkView.editingBookmarkIndex]
-                    = (markName, markLink.hasPrefix("https://") || markLink.hasPrefix("http://") ? markLink.urlEncoded() : "http://" + markLink.urlEncoded())
+                    = (markName, markLink.hasPrefix("https://") || markLink.hasPrefix("http://") ? markLink : "http://" + markLink)
                     presentationMode.wrappedValue.dismiss()
                 }, label: {
                     HStack {

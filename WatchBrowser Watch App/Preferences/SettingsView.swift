@@ -10,8 +10,8 @@ import Pictor
 import SwiftUI
 import Cepheus
 import EFQRCode
+import AVFAudio
 import DarockKit
-import SwiftDate
 import WidgetKit
 import CoreLocation
 import SwiftyStoreKit
@@ -1390,8 +1390,22 @@ struct SettingsView: View {
                     }
                     Section {
                         Toggle("允许后台播放", isOn: $isAllowBackgroundPlay)
+                            .onChange(of: isAllowBackgroundPlay) { _ in
+                                if !isAllowBackgroundPlay {
+                                    try? AVAudioSession.sharedInstance().setActive(false)
+                                }
+                            }
                     } footer: {
-                        Text("若要在后台播放，你需要在播放前连接蓝牙音频设备。")
+                        if WKInterfaceDevice.modelName != "Apple Watch" {
+                            // Apple Watch Series 10
+                            if ["Watch7,8", "Watch7,9", "Watch7,10", "Watch7,11"].contains(WKInterfaceDevice.modelIdentifier) {
+                                Text("你的设备无需连接蓝牙音频设备即可在后台播放音频。")
+                            } else {
+                                Text("若要在后台播放，你的设备需要在播放前连接蓝牙音频设备。")
+                            }
+                        } else {
+                            Text("若要在后台播放，你可能需要在播放前连接蓝牙音频设备。")
+                        }
                     }
                 }
                 .navigationTitle("音乐播放器")
@@ -1597,7 +1611,6 @@ struct SettingsView: View {
                         SinglePackageBlock(name: "SDWebImageWebPCoder", license: "MIT license")
                         SinglePackageBlock(name: "swift_qrcodejs", license: "MIT license")
                         SinglePackageBlock(name: "swift-markdown-ui", license: "MIT license")
-                        SinglePackageBlock(name: "SwiftDate", license: "MIT license")
                         SinglePackageBlock(name: "SwiftSoup", license: "MIT license")
                         SinglePackageBlock(name: "SwiftyJSON", license: "MIT license")
                         SinglePackageBlock(name: "Vela", license: "Apache License 2.0")
@@ -1762,6 +1775,8 @@ struct SettingsView: View {
     }
     struct BrowsingEngineSettingsView: View {
         @AppStorage("isUseOldWebView") var isUseOldWebView = false
+        @AppStorage("WebViewLayout") var webViewLayout = "MaximumViewport"
+        @AppStorage("BrowsingMenuLayout") var browsingMenuLayout = "Detailed"
         @AppStorage("RequestDesktopWeb") var requestDesktopWeb = false
         @AppStorage("UseBackforwardGesture") var useBackforwardGesture = true
         @AppStorage("KeepDigitalTime") var keepDigitalTime = false
@@ -1771,12 +1786,35 @@ struct SettingsView: View {
         @AppStorage("PreloadSearchContent") var preloadSearchContent = true
         @AppStorage("ForceApplyDarkMode") var forceApplyDarkMode = false
         @AppStorage("LBIsAutoEnterReader") var isAutoEnterReader = true
+        @AppStorage("IsProPurchased") var isProPurchased = false
         var body: some View {
             List {
                 Section {
                     Toggle("使用旧版浏览引擎", isOn: $isUseOldWebView)
                 }
                 if !isUseOldWebView {
+                    Section {
+                        Picker("网页视图", selection: $webViewLayout) {
+                            Label("最大可视区域", systemImage: "applewatch.case.inset.filled").tag("MaximumViewport")
+                            Label("模糊顶部", systemImage: "platter.filled.top.applewatch.case").tag("BlurTopBar")
+                            Label("快速返回", systemImage: "chevron.backward.circle").tag("FastPrevious")
+                        }
+                        .disabled(!isProPurchased)
+                        Picker("浏览菜单", selection: $browsingMenuLayout) {
+                            Label("详细", systemImage: "list.bullet").tag("Detailed")
+                            Label("紧凑", systemImage: "circle.grid.3x3.fill").tag("Compact")
+                        }
+                        .disabled(!isProPurchased)
+                    } header: {
+                        Text("布局")
+                    } footer: {
+                        if !isProPurchased {
+                            NavigationLink(destination: { ProPurchaseView() }, label: {
+                                Text("\(Text("激活暗礁浏览器 Pro ").bold().foregroundColor(.blue))以更改布局设置。")
+                            })
+                            .buttonStyle(.plain)
+                        }
+                    }
                     Section {
                         Toggle(isOn: $requestDesktopWeb) {
                             HStack {
@@ -1810,6 +1848,7 @@ struct SettingsView: View {
                                 Text("保持时间可见")
                             }
                         }
+                        .disabled(webViewLayout == "FastPrevious")
                         .onChange(of: keepDigitalTime) { _ in
                             if keepDigitalTime {
                                 hideDigitalTime = false
@@ -1822,6 +1861,7 @@ struct SettingsView: View {
                                 Text("显示“快速退出”按钮")
                             }
                         }
+                        .disabled(webViewLayout == "FastPrevious")
                         Toggle(isOn: $alwaysReloadWebPageAfterCrash) {
                             HStack {
                                 Image(systemName: "arrow.counterclockwise")
@@ -3432,10 +3472,10 @@ struct SecurityDelayCounterView: View {
         }
         .onAppear {
             let calendar = Calendar.current
-            let components = calendar.dateComponents([.minute, .second], from: Date.now, to: Date(timeIntervalSince1970: securityDelayStartTime) + 1.hours)
+            let components = calendar.dateComponents([.minute, .second], from: Date.now, to: Date(timeIntervalSince1970: securityDelayStartTime + 3600))
             timeDiff = Time(minute: components.minute ?? 0, second: components.second ?? 0)
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
-                let components = calendar.dateComponents([.minute, .second], from: Date.now, to: Date(timeIntervalSince1970: securityDelayStartTime) + 1.hours)
+                let components = calendar.dateComponents([.minute, .second], from: Date.now, to: Date(timeIntervalSince1970: securityDelayStartTime + 3600))
                 timeDiff = Time(minute: components.minute ?? 0, second: components.second ?? 0)
             }
         }

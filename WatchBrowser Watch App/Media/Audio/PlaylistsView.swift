@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DarockKit
 
 struct PlaylistsView: View {
     var selectHandler: ((String) -> Void)?

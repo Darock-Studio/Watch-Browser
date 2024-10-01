@@ -45,7 +45,7 @@ API_AVAILABLE(ios(13.0)) NS_SWIFT_UI_ACTOR
 /// Replace an identified menu with a menu.
 ///
 /// @param replacedIdentifier The identifier of the menu to be replaced.
-/// @param replacementGroup The replacement menu.
+/// @param replacementMenu The replacement menu.
 - (void)replaceMenuForIdentifier:(UIMenuIdentifier)replacedIdentifier withMenu:(UIMenu *)replacementMenu NS_SWIFT_NAME(replace(menu:with:));
 
 /// Replace the children of an identified parent menu.
@@ -57,25 +57,25 @@ API_AVAILABLE(ios(13.0)) NS_SWIFT_UI_ACTOR
 
 /// Insert a sibling menu before an identified sibling menu.
 ///
-/// @param siblingGroup The sibling menu to insert.
+/// @param siblingMenu The sibling menu to insert.
 /// @param siblingIdentifier The identifier of the sibling menu to insert before.
 - (void)insertSiblingMenu:(UIMenu *)siblingMenu beforeMenuForIdentifier:(UIMenuIdentifier)siblingIdentifier NS_SWIFT_NAME(insertSibling(_:beforeMenu:));
 
 /// Insert a sibling menu after an identified sibling menu.
 ///
-/// @param siblingGroup The sibling menu to insert.
+/// @param siblingMenu The sibling menu to insert.
 /// @param siblingIdentifier The identifier of the sibling menu to insert after.
 - (void)insertSiblingMenu:(UIMenu *)siblingMenu afterMenuForIdentifier:(UIMenuIdentifier)siblingIdentifier NS_SWIFT_NAME(insertSibling(_:afterMenu:));
 
 /// Insert a child menu at the start of an identified parent menu.
 ///
-/// @param childGroup The child menu to insert.
+/// @param childMenu The child menu to insert.
 /// @param parentIdentifier The identifier of the parent menu to insert at the start of.
 - (void)insertChildMenu:(UIMenu *)childMenu atStartOfMenuForIdentifier:(UIMenuIdentifier)parentIdentifier NS_SWIFT_NAME(insertChild(_:atStartOfMenu:));
 
 /// Insert a child menu at the end of an identified parent menu.
 ///
-/// @param childGroup The child menu to insert.
+/// @param childMenu The child menu to insert.
 /// @param parentIdentifier The identifier of the parent menu to insert at the end of.
 - (void)insertChildMenu:(UIMenu *)childMenu atEndOfMenuForIdentifier:(UIMenuIdentifier)parentIdentifier NS_SWIFT_NAME(insertChild(_:atEndOfMenu:));
 

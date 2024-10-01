@@ -57,7 +57,7 @@ UIKIT_EXTERN API_AVAILABLE(ios(7.0)) NS_SWIFT_UI_ACTOR
 /*!
  A sliding attachment allows for translation of the item along a specified axis with respect to the anchor point. A sliding
  attachment prevents all relative rotation of the dynamic items.
- @param item1 The dynamic item connected by the attachment behavior.
+ @param item The dynamic item connected by the attachment behavior.
  @param point The point for the item will be anchored by the attachment.
  @param axis Axis of allowed translation for the item. Must be a unit vector.
  @see attachmentRange, Represents the slidable range of the attachment with respect to the anchor point along the specified axis, this range must include 0

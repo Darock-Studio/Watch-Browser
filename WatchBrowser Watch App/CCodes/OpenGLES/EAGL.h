@@ -73,7 +73,7 @@ OPENGLES_DEPRECATED(ios(2.0, 12.0), tvos(9.0, 12.0))
 	struct _EAGLContextPrivate *_private;
 }
 
-- (nullable instancetype) init NS_UNAVAILABLE;
+- (nonnull instancetype) init NS_UNAVAILABLE;
 - (nullable instancetype) initWithAPI:(EAGLRenderingAPI) api;
 - (nullable instancetype) initWithAPI:(EAGLRenderingAPI) api sharegroup:(EAGLSharegroup*) sharegroup NS_DESIGNATED_INITIALIZER;
 

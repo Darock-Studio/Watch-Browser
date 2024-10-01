@@ -46,7 +46,7 @@ typedef UISwipeActionsConfiguration *_Nullable (^UICollectionLayoutListSwipeActi
 
 /// A block that is executed by list sections to provide granular control over separator appearance.
 ///
-/// @param itemIndexPath The index path of the item for which separators are being configured.
+/// @param indexPath The index path of the item for which separators are being configured.
 /// @param sectionSeparatorConfiguration The list section's separator configuration for this cell. This configuration contains
 /// the values for separator visibility and insets according to the current state of the item.
 ///

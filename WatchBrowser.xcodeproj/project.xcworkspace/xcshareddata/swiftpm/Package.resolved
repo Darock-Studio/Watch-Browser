@@ -1,5 +1,5 @@
 {
-  "originHash" : "f6fc0e91efd639e31b24a74fb38057c43f7bfd40854205e7047d099944a3b863",
+  "originHash" : "08c712750eff9d66ef2de0ac0c8cfca2a76e1d2b7d7fbadf24f77f1c31ad88bb",
   "pins" : [
     {
       "identity" : "aexml",
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Serene-Garden/Cepheus",
       "state" : {
-        "revision" : "271eba038a2c74c47dc5067d62dd68fc346f6481",
-        "version" : "2.3.3"
+        "revision" : "17cef53e77b7b85297356a5b2b7f3627f6afb8ea",
+        "version" : "2.4.2"
       }
     },
     {
@@ -34,7 +34,7 @@
       "location" : "https://github.com/Darock-Studio/DarockKit",
       "state" : {
         "branch" : "main",
-        "revision" : "c36f40dc6174d729836a9fe1cb45bd18573589e5"
+        "revision" : "0c80f45f9b1e65903d11951f0172d1c0e4b5f270"
       }
     },
     {
@@ -51,7 +51,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/EFPrefix/EFQRCode",
       "state" : {
-        "revision" : "2991c2f318ad9529d93b2a73a382a3f9c72c64ce",
+        "revision" : "3a6c5012f1a0df404a92e55bb01b4b685ff5a2d1",
         "version" : "6.2.2"
       }
     },
@@ -96,17 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/gumob/PunycodeSwift",
       "state" : {
-        "revision" : "4356ec54e073741449640d3d50a1fd24fd1e1b8b",
-        "version" : "2.1.0"
-      }
-    },
-    {
-      "identity" : "radarkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Darock-Studio/RadarKit",
-      "state" : {
-        "revision" : "40da59275f288626eeec962a9262209c7ffb39d2",
-        "version" : "1.0.8"
+        "revision" : "7f2db0a965408a1bc81fb094d4a3f6680162687c",
+        "version" : "2.1.1"
       }
     },
     {
@@ -114,8 +105,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "5191b801aca999b704eb93f118f91468b4570571",
-        "version" : "5.19.6"
+        "revision" : "8a1be70a625683bc04d6903e2935bf23f3c6d609",
+        "version" : "5.19.7"
       }
     },
     {
@@ -141,8 +132,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI",
       "state" : {
-        "revision" : "5d462f7530677ae0c2b9510c26383aa25ba48751",
-        "version" : "3.1.1"
+        "revision" : "5aa947356f4ea49a0c3b9968564267f6ea5abea7",
+        "version" : "3.1.2"
       }
     },
     {
@@ -166,19 +157,10 @@
     {
       "identity" : "swift_qrcodejs",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ApolloZhu/swift_qrcodejs.git",
+      "location" : "https://github.com/EFPrefix/swift_qrcodejs.git",
       "state" : {
-        "revision" : "374dc7f7b9e76c6aeb393f6a84590c6d387e1ecb",
-        "version" : "2.2.2"
-      }
-    },
-    {
-      "identity" : "swiftdate",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/malcommac/SwiftDate",
-      "state" : {
-        "revision" : "5d943224c3bb173e6ecf27295611615eba90c80e",
-        "version" : "7.0.0"
+        "revision" : "817ba220a2eba840bae888e7eeb11207bec05f8c",
+        "version" : "2.3.0"
       }
     },
     {
