@@ -45027,7 +45027,14 @@
       }
     },
     "昨天" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yesterday"
+          }
+        }
+      }
     },
     "昨天和今天" : {
       "localizations" : {
