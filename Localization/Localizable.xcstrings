@@ -119,6 +119,9 @@
         }
       }
     },
+    ":" : {
+      "shouldTranslate" : false
+    },
     "“ALPHA”代表目前不成熟的功能，我们不接受与此相关的反馈" : {
       "localizations" : {
         "ar" : {
@@ -976,9 +979,6 @@
     "[Privacy Hidden]" : {
       "shouldTranslate" : false
     },
-    "@DRKCOMU" : {
-      "shouldTranslate" : false
-    },
     "**关于暗礁浏览器与隐私**\n\n暗礁浏览器致力于保护您的隐私，Darock 不会未经同意收集任何信息。" : {
       "localizations" : {
         "en" : {
@@ -1221,6 +1221,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "**根据日落与日出切换外观与隐私**\n\n暗礁浏览器和 Apple 天气旨在保护你的信息并可让你选择要共享的内容。\n\n在“定时切换外观”设置为“日落到日出”时，暗礁浏览器会在本地存储你当前的位置信息并向 Apple 天气发送副本以获取天气信息。位置信息仅被发送到 Apple 天气，不会与包括\n Darock 在内的任何第三方共享。\n\n你可以随时在暗礁浏览器的设置中关闭“根据日落与日出切换外观”，一旦此选项关闭，暗礁浏览器将立即停止收集你的位置信息且不会发送到 Apple 天气，直到再次启用。\n\n访问 https://www.apple.com/privacy 了解 Apple 对数据的管理方式。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Switch appearance according to sunrise and sunset & Privacy**\n\nDarock Browser and Apple Weather aims to protect your privacy and make you have control of what you wish to share.\n\nWhen Scheduled Appearance Switch is set to Sunset to Sunrise, Darock Browser will store your current location locally and send a copy to Apple Weather to get weather informations. Location informations are only sent to Apple Weather and will not include any third-party including Darock.\n\nYou can disable Switch Appearance According to Sunrise at anytime at Darock Browser’s Settings. Once disabled, Darock Browser will stop collecting your location information immediately and will not send to Apple Weather ever until the it is enabled again.\n\nVisit https://www.apple.com/privacy to learn more about how Apple manage users’ data."
           }
         }
       }
@@ -2097,6 +2107,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ to change layout settings."
+          }
+        }
+      }
+    },
+    "%@前保持浅色外观" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep Light Appearance before %@"
+          }
+        }
+      }
+    },
+    "%@前保持深色外观" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep Dark Appearance before %@"
           }
         }
       }
@@ -14372,6 +14402,7 @@
       "shouldTranslate" : false
     },
     "Telegram" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -18450,6 +18481,16 @@
         }
       }
     },
+    "以前的更新" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Previous Updates"
+          }
+        }
+      }
+    },
     "你已登录" : {
       "localizations" : {
         "ar" : {
@@ -18574,6 +18615,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Add the search result to bookmark"
+          }
+        }
+      }
+    },
+    "你的位置信息将被发送至 Apple 天气以获取日落与日出时间。%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your location information will be sent to Apple Weather to get sunrise and sunset times. %@"
           }
         }
       }
@@ -20592,6 +20643,26 @@
         }
       }
     },
+    "关于根据日落与日出切换外观与隐私" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About switch appearance according to sunrise and sunset & Privacy"
+          }
+        }
+      }
+    },
+    "关于根据日落与日出切换外观与隐私..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About switch appearance according to sunrise and sunset & Privacy…"
+          }
+        }
+      }
+    },
     "关于特定网页优化..." : {
       "localizations" : {
         "ar" : {
@@ -22046,6 +22117,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "分享網頁"
+          }
+        }
+      }
+    },
+    "分钟" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minute"
           }
         }
       }
@@ -29748,6 +29829,26 @@
         }
       }
     },
+    "在设置→显示与亮度中更改外观切换定时设置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change appearance switch timing settings in Settings → Display & Brightness"
+          }
+        }
+      }
+    },
+    "在设置→浏览引擎中自定义网页视图和浏览菜单布局" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Customize web view and browsing menu layout in Settings → Browsing Engine"
+          }
+        }
+      }
+    },
     "基于位置" : {
       "localizations" : {
         "ar" : {
@@ -30340,6 +30441,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "聲音"
+          }
+        }
+      }
+    },
+    "外观" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appearance"
+          }
+        }
+      }
+    },
+    "外观作用域" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apply Appearance for"
+          }
+        }
+      }
+    },
+    "外观选项" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appearance Options"
+          }
+        }
+      }
+    },
+    "天气" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weather"
           }
         }
       }
@@ -32514,6 +32655,16 @@
         }
       }
     },
+    "定时切换外观" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scheduled Appearance Switch"
+          }
+        }
+      }
+    },
     "实验室" : {
       "localizations" : {
         "ar" : {
@@ -34172,6 +34323,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "小时" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hour"
           }
         }
       }
@@ -38806,238 +38967,12 @@
         }
       }
     },
-    "您可以随时在“提示->新功能”中重新打开此页" : {
+    "您可以随时在“提示→新功能”中重新打开此页" : {
       "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "يمكنك إعادة فتح هذه الصفحة في أي وقت في \"المطالبات -> الميزات الجديدة\""
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sie können diese Seite jederzeit in \"Eingaben -> Neue Funktionen\" erneut öffnen."
-          }
-        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You can reopen this page anytime in \"Tips -> New Features\"."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Puede volver a abrir esta página en cualquier momento en \"Pronciones -> Nuevas funciones\""
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vous pouvez rouvrir cette page à tout moment dans \"Prompts -> Nouvelles fonctionnalités\""
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "आप इस पृष्ठ को किसी भी समय \"प्रॉम्प्ट्स -> नई सुविधाएँ\" में फिर से खोल सकते हैं"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anda dapat membuka kembali halaman ini kapan saja di \"Prompts -> Fitur Baru\""
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Puoi riaprire questa pagina in qualsiasi momento in \"Prompt -> Nuove funzionalità\""
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "いつでも「ヒント->新機能」でこのページを再度開くことができます"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "당신은 언제든지 \"팁->새로운 기능\"에서 이 페이지를 다시 열 수 있습니다"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "U kunt deze pagina op elk gewenst moment opnieuw openen in \"Prompts -> Nieuwe functies\""
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Możesz ponownie otworzyć tę stronę w dowolnym momencie w \"Podpomniki -> Nowe funkcje\""
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Você pode reabrir esta página a qualquer momento em \"Prompts -> Novos Recursos\""
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вы можете повторно открыть эту страницу в любое время в разделе \"Подсказки -> Новые функции\""
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "คุณสามารถเปิดหน้านี้ใหม่ได้ตลอดเวลาใน \"พรอมต์ -> คุณสมบัติใหม่\""
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bu sayfayı istediğiniz zaman \"İstemler -> Yeni Özellikler\" bölümünden yeniden açabilirsiniz."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ви можете знову відкрити цю сторінку в будь-який час у розділі \"Підказки -> Нові функції\""
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bạn có thể mở lại trang này bất cứ lúc nào trong \"Nhời báo -> Tính năng mới\""
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "您可以隨時在“提示->新功能”中重新打開此頁"
-          }
-        }
-      }
-    },
-    "您可以随时在“设置”中重新打开此页" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "يمكنك إعادة فتح هذه الصفحة في \"الإعدادات\" في أي وقت."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sie können diese Seite jederzeit in \"Einstellungen\" wieder öffnen."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You can re-enter this page any time in Settings"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Puede volver a abrir esta página en \"Configuración\" en cualquier momento."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vous pouvez rouvrir cette page dans \"Paramètres\" à tout moment."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "आप इस पृष्ठ को किसी भी समय \"सेटिंग्स\" में फिर से खोल सकते हैं।"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anda dapat membuka kembali halaman ini di \"Pengaturan\" kapan saja."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Puoi riaprire questa pagina in \"Impostazioni\" in qualsiasi momento."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "「設定」でこのページを再度開くことができます"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "언제든지 '설정'에서 이 페이지를 다시 열 수 있습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "U kunt deze pagina op elk moment opnieuw openen in \"Instellingen\"."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Możesz ponownie otworzyć tę stronę w \"Ustawieniach\" w dowolnym momencie."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Você pode reabrir esta página em \"Configurações\" a qualquer momento."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вы можете снова открыть эту страницу в настройках в любое время."
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "คุณสามารถเปิดหน้านี้อีกครั้งใน \"การตั้งค่า\" ได้ตลอดเวลา"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bu sayfayı istediğiniz zaman \"Ayarlar\"da yeniden açabilirsiniz."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ви можете знову відкрити цю сторінку в \"налаштуваннях\" у будь-який час."
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bạn có thể mở lại trang này trong \"Cài đặt\" bất cứ lúc nào."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "您可以隨時在“設定”中重新打開此頁"
+            "value" : "You can reopen this page anytime in \"Tips→New Features\"."
           }
         }
       }
@@ -45002,6 +44937,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無網頁歸檔"
+          }
+        }
+      }
+    },
+    "日出前保持深色外观" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep Dark Appearance before Sunrise"
+          }
+        }
+      }
+    },
+    "日落到日出" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunset to Sunrise"
+          }
+        }
+      }
+    },
+    "日落前保持浅色外观" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep Light Appearance before Sunset"
           }
         }
       }
@@ -52087,6 +52052,16 @@
         }
       }
     },
+    "浅色" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Light"
+          }
+        }
+      }
+    },
     "浏览引擎" : {
       "localizations" : {
         "ar" : {
@@ -52339,6 +52314,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The browse menu is now more visually appealing and easier to use."
+          }
+        }
+      }
+    },
+    "深色" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dark"
           }
         }
       }
@@ -60771,6 +60756,16 @@
         }
       }
     },
+    "网页强制深色模式" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Force Dark Mode for Websites"
+          }
+        }
+      }
+    },
     "网页归档" : {
       "localizations" : {
         "ar" : {
@@ -61505,6 +61500,16 @@
         }
       }
     },
+    "自动" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto"
+          }
+        }
+      }
+    },
     "自定义名称" : {
       "localizations" : {
         "ar" : {
@@ -61623,6 +61628,16 @@
         }
       }
     },
+    "自定义布局" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom Layout"
+          }
+        }
+      }
+    },
     "自定义文本" : {
       "localizations" : {
         "ar" : {
@@ -61737,6 +61752,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "自定義文本"
+          }
+        }
+      }
+    },
+    "自定义时段" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom Time Period"
           }
         }
       }
@@ -62586,6 +62611,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "設備信息"
+          }
+        }
+      }
+    },
+    "设定时间让外观自动更改。暗礁浏览器可能会等到你不使用屏幕时才执行外观切换。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set a time for the appearance to change automatically. Darock Browser may wait until you are not using the screen to execute the appearance switch."
           }
         }
       }
@@ -68938,6 +68973,16 @@
         }
       }
     },
+    "选项" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Options"
+          }
+        }
+      }
+    },
     "通用" : {
       "localizations" : {
         "ar" : {
@@ -71754,6 +71799,16 @@
         }
       }
     },
+    "降低屏幕亮度" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dim Screen Brightness"
+          }
+        }
+      }
+    },
     "限制最小字体大小" : {
       "localizations" : {
         "ar" : {
@@ -73304,6 +73359,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "需要定位服務權限以使用基於位置的安全延時"
+          }
+        }
+      }
+    },
+    "需要定位服务权限以根据日落与日出切换外观" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location Services Permission is Needed to Switch Appearance According to Sunrise and Sunset"
           }
         }
       }

@@ -30,6 +30,8 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
     @AppStorage("WebSearch") var webSearch = "必应"
+    @AppStorage("DBIsAutoAppearence") var isAutoAppearence = false
+    @AppStorage("DBAutoAppearenceOptionEnableForWebForceDark") var autoAppearenceOptionEnableForWebForceDark = true
     
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         debugPrint("Start Navigation")
@@ -84,7 +86,8 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         debugPrint("Finish Navigation")
         AdvancedWebViewController.shared.loadProgressView.hidden = true
         // Dark Mode
-        if UserDefaults.standard.bool(forKey: "ForceApplyDarkMode") {
+        if UserDefaults.standard.bool(forKey: "ForceApplyDarkMode")
+            || (isAutoAppearence && autoAppearenceOptionEnableForWebForceDark && AppearenceManager.shared.currentAppearence == .dark) {
             DispatchQueue(label: "com.darock.WatchBrowser.wt.run-fit-dark-mode", qos: .userInitiated).async {
                 webView.evaluateJavaScript("""
                 const allElements = document.querySelectorAll('*');

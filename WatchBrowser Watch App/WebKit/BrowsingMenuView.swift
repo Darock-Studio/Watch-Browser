@@ -20,6 +20,8 @@ struct BrowsingMenuView: View {
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
     @AppStorage("ABIsReduceBrightness") var isReduceBrightness = false
     @AppStorage("ABReduceBrightnessLevel") var reduceBrightnessLevel = 0.2
+    @AppStorage("DBIsAutoAppearence") var isAutoAppearence = false
+    @AppStorage("DBAutoAppearenceOptionEnableForWebForceDark") var autoAppearenceOptionEnableForWebForceDark = true
     @State var webView = webViewObject!
     @State var webLinkInput = ""
     @State var isCheckingWebContent = true
@@ -162,6 +164,9 @@ struct BrowsingMenuView: View {
                         Section {
                             Button(role: .destructive, action: {
                                 webViewPresentationMode.dismiss()
+                                if isAutoAppearence && autoAppearenceOptionEnableForWebForceDark {
+                                    AppearenceManager.shared.updateAll()
+                                }
                             }, label: {
                                 HStack {
                                     Text("退出")
@@ -350,6 +355,9 @@ struct BrowsingMenuView: View {
                                 }
                                 Button(role: .destructive, action: {
                                     webViewPresentationMode.dismiss()
+                                    if isAutoAppearence && autoAppearenceOptionEnableForWebForceDark {
+                                        AppearenceManager.shared.updateAll()
+                                    }
                                 }, label: {
                                     HStack {
                                         Image(systemName: "escape")

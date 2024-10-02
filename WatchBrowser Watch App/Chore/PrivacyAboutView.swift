@@ -45,9 +45,12 @@ struct PrivacyAboutView: View {
                 .buttonStyle(.borderedProminent)
                 .padding(.vertical)
             }
+            .padding(.horizontal)
         }
         .sheet(isPresented: $isDetailPresented) {
             ScrollView {
+                Spacer()
+                    .frame(height: 50)
                 Markdown(String(localized: detailText))
                     .font(.system(size: 14))
                     .multilineTextAlignment(.center)

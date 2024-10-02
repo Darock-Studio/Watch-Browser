@@ -5,6 +5,7 @@
 //  Created by Windows MEMZ on 2023/2/6.
 //
 
+import OSLog
 import SwiftUI
 import Dynamic
 import Intents
@@ -34,13 +35,15 @@ struct WatchBrowser_Watch_AppApp: App {
     let device = WKInterfaceDevice.current()
     @WKApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) var scenePhase
-    @AppStorage("ShouldTipNewFeatures5") var shouldTipNewFeatures = true
+    @AppStorage("ShouldTipNewFeatures6") var shouldTipNewFeatures = true
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockDarockBrowser") var usePasscodeForLockDarockBrowser = false
     @AppStorage("IsThisClusterInstalled") var isThisClusterInstalled = false
     @AppStorage("ABIsReduceBrightness") var isReduceBrightness = false
     @AppStorage("ABReduceBrightnessLevel") var reduceBrightnessLevel = 0.2
     @AppStorage("IsBrowserProAdFirstTipped") var isBrowserProAdFirstTipped = false
+    @AppStorage("DBIsAutoAppearence") var isAutoAppearence = false
+    @AppStorage("DBAutoAppearenceOptionEnableForReduceBrightness") var autoAppearenceOptionEnableForReduceBrightness = false
     @State var showTipText: LocalizedStringKey = ""
     @State var showTipSymbol = ""
     @State var isShowingTip = false
@@ -186,7 +189,9 @@ struct WatchBrowser_Watch_AppApp: App {
                     isBrowserLocked = true
                 }
             case .inactive:
-                break
+                if isAutoAppearence {
+                    AppearenceManager.shared.updateAll()
+                }
             case .active:
                 SDImageCodersManager.shared.addCoder(SDImageWebPCoder.shared)
                 SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
@@ -195,6 +200,13 @@ struct WatchBrowser_Watch_AppApp: App {
                 if (UserDefaults(suiteName: "group.darockst")?.bool(forKey: "DCIsClusterInstalled") ?? false) && !isThisClusterInstalled {
                     isThisClusterInstalled = true
                     isClusterInstalledTipPresented = true
+                }
+                
+                if isAutoAppearence && autoAppearenceOptionEnableForReduceBrightness {
+                    isReduceBrightness = AppearenceManager.shared.currentAppearence == .dark
+                    AppearenceManager.shared.updateAll {
+                        isReduceBrightness = AppearenceManager.shared.currentAppearence == .dark
+                    }
                 }
             @unknown default:
                 break
@@ -223,6 +235,9 @@ class AppDelegate: NSObject, WKApplicationDelegate {
         }
         
         initHapticEngine()
+        _ = AppearenceManager.shared
+        _ = LocationManager.shared
+        _ = CachedLocationManager.shared
     }
     
     func didRegisterForRemoteNotifications(withDeviceToken deviceToken: Data) {
@@ -259,8 +274,8 @@ public func tipWithText(_ text: String, symbol: String = "", time: Double = 3.0)
         playHaptic(from: Bundle.main.url(forResource: "Success", withExtension: "ahap")!)
     }
 }
-public func globalErrorHandler(_ error: Error, file: StaticString = #file, function: StaticString = #function, line: Int = #line) {
-    print(error)
+public func globalErrorHandler(_ error: Error, file: StaticString = #fileID, function: StaticString = #function, line: Int = #line) {
+    os_log(.error, "\(error)")
     do {
         if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/SwiftErrorLogs") {
             try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/SwiftErrorLogs", withIntermediateDirectories: true)
@@ -277,8 +292,8 @@ public func globalErrorHandler(_ error: Error, file: StaticString = #file, funct
         print("Error in globalErrorHandler: \(error)")
     }
     if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "IsDarockInternalTap-to-RadarAvailable") {
-        pTapToRadarAlertContent = "Swift has catched an internal error.\nPlease help us make Darock Browser better by logging a bug. Thanks. (\(file):\(line) - \(function))"
-        pTapToRadarAttachText = "Auto-attachd DarockBrowser(\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)). At \(file):\(line) - \(function). LocdStr: \(error.localizedDescription) Add more infomation here: "
+        pTapToRadarAlertContent = "Swift has caught an internal error.\nPlease help us make Darock Browser better by logging a bug. Thanks. (\(file):\(line) - \(function))"
+        pTapToRadarAttachText = "Autoattachd DarockBrowser(\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)). At \(file):\(line) - \(function). LocdStr: \(error.localizedDescription) Add more infomation here: "
             .replacingOccurrences(of: "\n", with: "{LineBreak}")
             .replacingOccurrences(of: "/", with: "{slash}")
             .replacingOccurrences(of: "?", with: "{questionmark}")

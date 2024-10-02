@@ -113,6 +113,7 @@
 		8CE70DD02C7A536100EFB3AD /* LocalImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DCF2C7A535F00EFB3AD /* LocalImageView.swift */; };
 		8CE70E132C7CD19100EFB3AD /* ScrollView+WithScrollOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70E122C7CD17D00EFB3AD /* ScrollView+WithScrollOffset.swift */; };
 		8CF5DC4F2BAE04D5007F9974 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF5DC4E2BAE04D5007F9974 /* ShareView.swift */; };
+		8CF6361D2CAD56EF00ECE3B3 /* AppearenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6361C2CAD56EA00ECE3B3 /* AppearenceManager.swift */; };
 		8CF8B95D2C4280230070F833 /* MediaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B95C2C4280230070F833 /* MediaListView.swift */; };
 		8CF8B9632C44FCAA0070F833 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF8B9622C44FCAA0070F833 /* MarkdownUI */; };
 		E25EA8382B70ABEF00BFEC6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E25EA83A2B70ABEF00BFEC6E /* InfoPlist.strings */; };
@@ -821,6 +822,7 @@
 		8CE70DCF2C7A535F00EFB3AD /* LocalImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalImageView.swift; sourceTree = "<group>"; };
 		8CE70E122C7CD17D00EFB3AD /* ScrollView+WithScrollOffset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScrollView+WithScrollOffset.swift"; sourceTree = "<group>"; };
 		8CF5DC4E2BAE04D5007F9974 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		8CF6361C2CAD56EA00ECE3B3 /* AppearenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearenceManager.swift; sourceTree = "<group>"; };
 		8CF8B95C2C4280230070F833 /* MediaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListView.swift; sourceTree = "<group>"; };
 		E25EA8392B70ABEF00BFEC6E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E25EA83B2B70ABF000BFEC6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1677,6 +1679,7 @@
 			children = (
 				6BA7F79F2A2F6FC600FFEED0 /* SettingsView.swift */,
 				8CCF13F12C20A4FF00F5E0D7 /* DarockAccountsUI.swift */,
+				8CF6361C2CAD56EA00ECE3B3 /* AppearenceManager.swift */,
 				8CA47BF72C97586000753101 /* ProPurchaseView.swift */,
 				8C6D86782C10C6A70089CE67 /* LaboratoryView.swift */,
 				8CA370E22B835AAD00CE0E9E /* NumberPadExt.swift */,
@@ -2098,6 +2101,7 @@
 				8C6E11DD2BDBF464005420C0 /* NewFeaturesView.swift in Sources */,
 				8CE70DC72C7A522700EFB3AD /* LocalBooksView.swift in Sources */,
 				8C9188832C73A64200C64E70 /* WKWebView+.swift in Sources */,
+				8CF6361D2CAD56EF00ECE3B3 /* AppearenceManager.swift in Sources */,
 				8CC306132CAB160F00323034 /* View+TouchZoomable.swift in Sources */,
 				8CB9A10E2C6D229600E6A367 /* MarkdownUI+.swift in Sources */,
 				8CE70DD02C7A536100EFB3AD /* LocalImageView.swift in Sources */,
