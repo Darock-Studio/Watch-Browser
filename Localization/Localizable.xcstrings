@@ -5520,6 +5520,9 @@
     "A" : {
       "shouldTranslate" : false
     },
+    "Active Pro" : {
+      "shouldTranslate" : false
+    },
     "All data will be lost!" : {
       "shouldTranslate" : false
     },
@@ -23333,6 +23336,16 @@
         }
       }
     },
+    "前往 TestFlight" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to TestFlight"
+          }
+        }
+      }
+    },
     "前往“提示”了解更多" : {
       "localizations" : {
         "ar" : {
@@ -27325,6 +27338,16 @@
         }
       }
     },
+    "喵哩喵哩" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MeowBili"
+          }
+        }
+      }
+    },
     "回复" : {
       "localizations" : {
         "ar" : {
@@ -29215,6 +29238,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在受信任的位置時，暗礁瀏覽器將不會要求安全延時。"
+          }
+        }
+      }
+    },
+    "在喵哩喵哩中打开" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open in MeowBili"
           }
         }
       }
@@ -58902,6 +58935,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Third-party Full Keyboard"
+          }
+        }
+      }
+    },
+    "第三方哔哩哔哩客户端" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Third-party Bilibili Client"
           }
         }
       }

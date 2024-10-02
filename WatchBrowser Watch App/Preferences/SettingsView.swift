@@ -110,7 +110,7 @@ struct SettingsView: View {
                     NavigationLink(destination: { ProPurchaseView() }, label: { SettingItemLabel(title: "暗礁浏览器 Pro", image: "sparkles", color: .blue) })
                     if isProPurchased {
                         if _featureFlagIsDarockIntelligenceEnabled {
-                            NavigationLink(destination: {}, label: {
+                            NavigationLink(destination: { DarockIntelligenceView() }, label: {
                                 HStack {
                                     Image("DarockIntelligenceIcon")
                                         .resizable()
@@ -248,6 +248,14 @@ struct SettingsView: View {
         }
     }
     
+    struct DarockIntelligenceView: View {
+        var body: some View {
+            List {
+                
+            }
+            .navigationTitle("Darock 智能")
+        }
+    }
     @available(watchOS 10.0, *)
     struct WidgetSettingsView: View {
         var body: some View {
@@ -3463,6 +3471,14 @@ struct SettingsView: View {
                         WidgetCenter.shared.invalidateConfigurationRecommendations()
                     }, label: {
                         Text("Reset Pro State")
+                    })
+                    Button(action: {
+                        isProPurchased = true
+                        UserDefaults(suiteName: "group.darock.WatchBrowser.Widgets")!.set(true, forKey: "IsProWidgetsAvailable")
+                        WidgetCenter.shared.reloadAllTimelines()
+                        WidgetCenter.shared.invalidateConfigurationRecommendations()
+                    }, label: {
+                        Text("Active Pro")
                     })
                 } header: {
                     Text("Purchasing")

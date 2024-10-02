@@ -9,6 +9,7 @@ import SwiftUI
 import Dynamic
 import DarockKit
 import SwiftSoup
+import SDWebImageSwiftUI
 
 struct BrowsingMenuView: View {
     @Binding var webViewPresentationMode: PresentationMode
@@ -39,6 +40,60 @@ struct BrowsingMenuView: View {
         ZStack {
             NavigationStack {
                 List {
+                    if (webView.url?.absoluteString ?? "").contains("bilibili.com/") {
+                        Section {
+                            VStack {
+                                HStack {
+                                    WebImage(url: URL(string: "https://darock.top/meowbili/assetsv2/meow-93aa09e9.png")!)
+                                        .resizable()
+                                        .placeholder {
+                                            RoundedRectangle(cornerRadius: 12)
+                                                .fill(Color.gray)
+                                                .opacity(0.6)
+                                        }
+                                        .cornerRadius(12)
+                                        .frame(width: 50, height: 50)
+                                    VStack(alignment: .leading) {
+                                        Text("喵哩喵哩")
+                                        Text("第三方哔哩哔哩客户端")
+                                            .font(.footnote)
+                                            .opacity(0.6)
+                                    }
+                                    Spacer()
+                                }
+                                Group {
+                                    if UserDefaults(suiteName: "group.darockst")?.bool(forKey: "DCIsMeowBiliInstalled") ?? false {
+                                        Button(action: {
+                                            if let bvid = (webView.url?.absoluteString ?? "").split(separator: "bilibili.com/video/")[from: 1],
+                                               bvid.hasPrefix("BV") {
+                                                WKExtension.shared().openSystemURL(URL(string: "https://darock.top/meowbili/video/\(bvid)")!)
+                                            } else {
+                                                WKExtension.shared().openSystemURL(URL(string: "https://darock.top/meowbili/video")!)
+                                            }
+                                        }, label: {
+                                            HStack {
+                                                Text("在喵哩喵哩中打开")
+                                                Image(systemName: "arrow.up.forward.app")
+                                            }
+                                            .font(.headline)
+                                        })
+                                    } else {
+                                        Button(action: {
+                                            webView.load(URLRequest(url: URL(string: "https://testflight.apple.com/join/skaCe2L2")!))
+                                        }, label: {
+                                            HStack {
+                                                Text("前往 TestFlight")
+                                                Image(systemName: "arrow.up.right.square")
+                                            }
+                                            .font(.headline)
+                                        })
+                                    }
+                                }
+                                .buttonStyle(.borderedProminent)
+                                .buttonBorderShape(.roundedRectangle(radius: 12))
+                            }
+                        }
+                    }
                     Section {
                         TextField("页面链接", text: $webLinkInput, style: "field-page") {
                             if webLinkInput.isURL() {

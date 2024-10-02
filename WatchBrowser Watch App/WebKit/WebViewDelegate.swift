@@ -74,11 +74,6 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
                 dismissListsShouldRepresentWebView = true
                 return
             }
-            if _slowPath(curl.contains("bilibili.com/")) && (UserDefaults(suiteName: "group.darockst")?.bool(forKey: "DCIsMeowBiliInstalled") ?? false) {
-                if let bvid = curl.split(separator: "bilibili.com/video/")[from: 1], bvid.hasPrefix("BV") {
-                    WKExtension.shared().openSystemURL(URL(string: "https://darock.top/meowbili/video/\(bvid)")!)
-                }
-            }
         }
     }
     

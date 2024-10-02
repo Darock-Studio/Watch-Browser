@@ -22,7 +22,6 @@ struct ImageViewerView: View {
                         .onFailure { _ in
                             isFailedToLoad = true
                         }
-                        .indicator(.activity)
                         .transition(.fade(duration: 0.5))
                         .scaledToFit()
                         .frame(width: CGFloat(100), height: CGFloat(100), alignment: .center)
@@ -33,7 +32,6 @@ struct ImageViewerView: View {
                         .onFailure { _ in
                             isFailedToLoad = true
                         }
-                        .indicator(.activity)
                         .transition(.fade(duration: 0.5))
                         .scaledToFit()
                 }
