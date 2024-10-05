@@ -13,8 +13,6 @@ struct SwiftWebView: View {
     @Environment(\.presentationMode) var presentationMode
     @AppStorage("WebViewLayout") var webViewLayout = "MaximumViewport"
     @AppStorage("HideDigitalTime") var hideDigitalTime = false
-    @AppStorage("ABIsReduceBrightness") var isReduceBrightness = false
-    @AppStorage("ABReduceBrightnessLevel") var reduceBrightnessLevel = 0.2
     @State var isQuickAvoidanceShowingEmpty = false
     @State var isBrowsingMenuPresented = false
     @State var isHidingDistractingItems = false
@@ -102,13 +100,6 @@ struct SwiftWebView: View {
                 .wrapIf(webViewLayout != "MaximumViewport") { content in
                     NavigationStack { content }
                 }
-            if isReduceBrightness {
-                Rectangle()
-                    .fill(Color.black)
-                    .opacity(reduceBrightnessLevel)
-                    .ignoresSafeArea()
-                    .allowsHitTesting(false)
-            }
             if isQuickAvoidanceShowingEmpty {
                 Color.black
                     .ignoresSafeArea()
@@ -117,6 +108,7 @@ struct SwiftWebView: View {
                     }
             }
         }
+        .brightnessReducable()
         ._statusBarHidden(hideDigitalTime || isQuickAvoidanceShowingEmpty)
         .sheet(isPresented: $isBrowsingMenuPresented) {
             BrowsingMenuView(webViewPresentationMode: presentationMode, isHidingDistractingItems: $isHidingDistractingItems)
@@ -141,7 +133,5 @@ private struct WebView: _UIViewRepresentable {
     func makeUIView(context: Context) -> some NSObject {
         webView
     }
-    func updateUIView(_ uiView: UIViewType, context: Context) {
-        
-    }
+    func updateUIView(_ uiView: UIViewType, context: Context) {}
 }

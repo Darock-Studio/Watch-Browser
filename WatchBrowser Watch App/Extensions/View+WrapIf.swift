@@ -16,4 +16,13 @@ extension View {
             self
         }
     }
+    
+    @ViewBuilder
+    func wrapIf(_ condition: Bool, @ViewBuilder in container: (Self) -> some View, @ViewBuilder else elseContainer: (Self) -> some View) -> some View {
+        if condition {
+            container(self)
+        } else {
+            elseContainer(self)
+        }
+    }
 }

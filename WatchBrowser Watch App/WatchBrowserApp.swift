@@ -39,8 +39,8 @@ struct WatchBrowser_Watch_AppApp: App {
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockDarockBrowser") var usePasscodeForLockDarockBrowser = false
     @AppStorage("IsThisClusterInstalled") var isThisClusterInstalled = false
+    @AppStorage("IsProPurchased") var isProPurchased = false
     @AppStorage("ABIsReduceBrightness") var isReduceBrightness = false
-    @AppStorage("ABReduceBrightnessLevel") var reduceBrightnessLevel = 0.2
     @AppStorage("IsBrowserProAdFirstTipped") var isBrowserProAdFirstTipped = false
     @AppStorage("DBIsAutoAppearence") var isAutoAppearence = false
     @AppStorage("DBAutoAppearenceOptionEnableForReduceBrightness") var autoAppearenceOptionEnableForReduceBrightness = false
@@ -136,13 +136,6 @@ struct WatchBrowser_Watch_AppApp: App {
                 }
                 .ignoresSafeArea()
                 .allowsHitTesting(false)
-                if isReduceBrightness {
-                    Rectangle()
-                        .fill(Color.black)
-                        .opacity(reduceBrightnessLevel)
-                        .ignoresSafeArea()
-                        .allowsHitTesting(false)
-                }
                 if isQuickAvoidanceShowingEmpty {
                     Color.black
                         .ignoresSafeArea()
@@ -151,6 +144,7 @@ struct WatchBrowser_Watch_AppApp: App {
                         }
                 }
             }
+            .brightnessReducable()
             ._statusBarHidden(isQuickAvoidanceShowingEmpty)
             .alert("Runtime Error", isPresented: $isTapToRadarAlertPresented, actions: {
                 Button(role: .cancel, action: {
@@ -181,6 +175,21 @@ struct WatchBrowser_Watch_AppApp: App {
                     }
                 }
             }
+            .onOpenURL { url in
+                let urlString = url.absoluteString
+                if urlString.hasPrefix("wget://") {
+                    let splited = urlString.split(separator: "/", maxSplits: 2).map { String($0) }
+                    // rdar://FB268002075005
+                    if isProPurchased {
+                        // switches action string
+                        switch splited[1] {
+                        case "openURL" where splited[2].isURL():
+                            AdvancedWebViewController.shared.present(splited[2])
+                        default: break
+                        }
+                    }
+                }
+            }
         }
         .onChange(of: scenePhase) { value in
             switch value {
@@ -193,9 +202,7 @@ struct WatchBrowser_Watch_AppApp: App {
                     AppearenceManager.shared.updateAll()
                 }
             case .active:
-                SDImageCodersManager.shared.addCoder(SDImageWebPCoder.shared)
-                SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
-                SDImageCodersManager.shared.addCoder(SDImagePDFCoder.shared)
+                initHapticEngine()
                 
                 if (UserDefaults(suiteName: "group.darockst")?.bool(forKey: "DCIsClusterInstalled") ?? false) && !isThisClusterInstalled {
                     isThisClusterInstalled = true
@@ -216,6 +223,9 @@ struct WatchBrowser_Watch_AppApp: App {
 }
 
 class AppDelegate: NSObject, WKApplicationDelegate {
+    @AppStorage("WebSearch") var webSearch = "必应"
+    @AppStorage("IsProPurchased") var isProPurchased = false
+    
     func applicationDidFinishLaunching() {
         NSSetUncaughtExceptionHandler(nsErrorHandler(_:))
 
@@ -234,16 +244,40 @@ class AppDelegate: NSObject, WKApplicationDelegate {
             }
         }
         
-        initHapticEngine()
+        SDImageCodersManager.shared.addCoder(SDImageWebPCoder.shared)
+        SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
+        SDImageCodersManager.shared.addCoder(SDImagePDFCoder.shared)
+        
         _ = AppearenceManager.shared
         _ = LocationManager.shared
         _ = CachedLocationManager.shared
+        
+        DarockKit.Network.shared.requestString(
+            "https://fapi.darock.top:65535/analyze/add/DBStatsAppStartupCount/\(Date.now.timeIntervalSince1970)".compatibleUrlEncoded()
+        ) { _, _ in }
     }
     
     func didRegisterForRemoteNotifications(withDeviceToken deviceToken: Data) {
         let tokenString = deviceToken.hexEncodedString()
         debugPrint(tokenString)
         UserDefaults.standard.set(tokenString, forKey: "UserNotificationToken")
+    }
+    
+    func handle(_ userActivity: NSUserActivity) {
+        if #available(watchOS 10.0, *) {
+            if isProPurchased {
+                if userActivity.activityType == "SearchWidgets" {
+                    WKExtension.shared().visibleInterfaceController?.presentTextInputController(
+                        withSuggestions: nil,
+                        allowedInputMode: .allowEmoji
+                    ) { result in
+                        if let _texts = result as? [String], let text = _texts.first {
+                            startSearch(text, with: self.webSearch, allowPreload: false)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -421,15 +455,11 @@ func playHaptic(from url: URL) {
     #endif
 }
 
-@_optimize(speed)
 @inline(__always)
-@_silgen_name("InternalScriptESIT__T-D_DS-B-def-T")
 internal func extendScreenIdleTime(_ time: Double, disableSleep: Bool = true) {
     Dynamic.PUICApplication.sharedPUICApplication().setExtendedIdleTime(time, disablesSleepGesture: disableSleep, wantsAutorotation: false)
 }
-@_optimize(speed)
 @inline(__always)
-@_silgen_name("InternalScriptRNIT_V")
 internal func recoverNormalIdleTime() {
     Dynamic.PUICApplication.sharedPUICApplication().extendedIdleTime = 0.0
     Dynamic.PUICApplication.sharedPUICApplication().disablesSleepGesture = false

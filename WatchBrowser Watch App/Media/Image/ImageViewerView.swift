@@ -42,6 +42,7 @@ struct ImageViewerView: View {
                     .padding()
             }
         }
+        .brightnessReducable()
         ._statusBarHidden(true)
         .onAppear {
             if ((UserDefaults.standard.object(forKey: "CCIsContinuityMediaEnabled") as? Bool) ?? true)

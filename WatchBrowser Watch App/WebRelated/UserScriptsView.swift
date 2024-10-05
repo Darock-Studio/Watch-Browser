@@ -181,7 +181,7 @@ struct UserScriptsAddView: View {
                     if isSuccess {
                         do {
                             let doc = try SwiftSoup.parse(respStr)
-                            if let metadataBlock = try doc.body()?.getElementsByClass("script-meta-block").first() {
+                            if let metadataBlock = try doc.body()?.getElementsByClass("script-show-applies-to").first() {
                                 applyTo = try metadataBlock.getElementsByClass("block-list expandable").select("code").text()
                             }
                             if let addInfo = try doc.body()?.getElementById("additional-info") {

@@ -12,7 +12,6 @@ import SwiftyStoreKit
 
 struct ProPurchaseView: View {
     @AppStorage("IsProPurchased") var isProPurchased = false
-    @AppStorage("INFFIsDarockIntelligenceEnabled") var _featureFlagIsDarockIntelligenceEnabled = false
     @State var priceString = ""
     @State var isErrorLoadingPriceString = false
     @State var errorText = ""
@@ -30,16 +29,14 @@ struct ProPurchaseView: View {
                 .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
             }
             Section {
-                if _featureFlagIsDarockIntelligenceEnabled {
-                    Label(title: {
-                        Text("Darock 智能")
-                    }, icon: {
-                        Image("DarockIntelligenceIcon")
-                            .resizable()
-                            .frame(width: 25, height: 25)
-                            .clipShape(Circle())
-                    })
-                }
+                Label(title: {
+                    Text("Darock 智能")
+                }, icon: {
+                    Image("DarockIntelligenceIcon")
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                        .clipShape(Circle())
+                })
                 if #available(watchOS 10.0, *) {
                     Label("书签小组件", systemImage: "bookmark")
                     Label("快速搜索小组件", systemImage: "magnifyingglass")

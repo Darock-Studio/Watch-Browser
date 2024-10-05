@@ -52,6 +52,27 @@ struct JoinGroupView: View {
                 } header: {
                     Text("Discord")
                 }
+                Section {
+                    NavigationLink(destination: {
+                        VStack {
+                            Image(decorative: EFQRCode.generate(for: "https://t.me/darockcommunity")!, scale: 1)
+                                .resizable()
+                                .frame(width: 120, height: 120)
+                            Text("在 iPhone 上继续")
+                        }
+                        .navigationTitle("加入群聊")
+                        .navigationBarTitleDisplayMode(.inline)
+                    }, label: {
+                        VStack(alignment: .leading) {
+                            Text(verbatim: "@DAROCKCOMMUNITY")
+                            Text("轻触以查看二维码")
+                                .font(.system(size: 13))
+                                .foregroundStyle(.gray)
+                        }
+                    })
+                } header: {
+                    Text("Telegram")
+                }
             }
             Section {
                 Button(action: {

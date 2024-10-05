@@ -1,5 +1,5 @@
 {
-  "originHash" : "08c712750eff9d66ef2de0ac0c8cfca2a76e1d2b7d7fbadf24f77f1c31ad88bb",
+  "originHash" : "dba90df09981d8f0482d85525b0927a08a61acc622468a19cd1e3fd37c795757",
   "pins" : [
     {
       "identity" : "aexml",
@@ -20,12 +20,21 @@
       }
     },
     {
+      "identity" : "cache",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hyperoslo/Cache",
+      "state" : {
+        "revision" : "24e47109e31b2031cb26e25cc1b81b607496066c",
+        "version" : "7.4.0"
+      }
+    },
+    {
       "identity" : "cepheus",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Serene-Garden/Cepheus",
       "state" : {
-        "revision" : "17cef53e77b7b85297356a5b2b7f3627f6afb8ea",
-        "version" : "2.4.2"
+        "revision" : "242ec8bc458fb2c0ca1c749572e7582eef7f0696",
+        "version" : "2.5.0"
       }
     },
     {
@@ -87,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Serene-Garden/Pictor",
       "state" : {
-        "revision" : "7daae590a27cb35275ccb4a8288590fc7570769c",
-        "version" : "1.2.2"
+        "revision" : "4e6f6bff49f2248a137fb8e3d0b53e137ef05d84",
+        "version" : "1.3.0"
       }
     },
     {

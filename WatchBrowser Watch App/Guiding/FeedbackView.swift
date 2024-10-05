@@ -673,13 +673,13 @@ struct FeedbackView: View {
         @State var isReplySubmitted = false
         @State var isReplyDisabled = false
         var body: some View {
-            List {
+            Form {
                 if formattedTexts.count != 0 {
                     getView(from: formattedTexts)
                 }
                 if !isNoReply {
                     ForEach(0..<replies.count, id: \.self) { i in
-                        if !replies[i].contains("\nSender：_") {
+                        if !replies[i].contains(where: { $0.hasPrefix("Sender：_") }) {
                             getView(from: replies[i], isReply: true)
                         }
                     }
@@ -750,7 +750,6 @@ struct FeedbackView: View {
                         if text == "---" { break }
                         formattedTexts.append(String(text))
                     }
-                    debugPrint(formattedTexts)
                     if feedbackText.split(separator: "---").count > 1 {
                         let repliesText = Array(feedbackText.split(separator: "---").dropFirst()).map { String($0) }
                         for text in repliesText {
@@ -866,30 +865,32 @@ struct FeedbackView: View {
                                 if let combined = from[i].split(separator: "：")[from: 1] {
                                     let tags = Array<FeedbackTag>(fromCombined: String(combined))
                                     if !tags.isEmpty {
-                                        ScrollView(.horizontal) {
-                                            HStack {
-                                                ForEach(0..<tags.count, id: \.self) { i in
-                                                    Text(tags[i].name)
-                                                        .font(.system(size: 15, weight: .semibold))
-                                                        .foregroundStyle(.white)
-                                                        .padding(.horizontal, 8)
-                                                        .padding(.vertical, 3)
-                                                        .background {
-                                                            if #available(watchOS 10.0, *) {
-                                                                Capsule()
-                                                                    .fill(tags[i].color)
-                                                                    .stroke(Material.ultraThin.opacity(0.2), lineWidth: 2)
-                                                            } else {
-                                                                tags[i].color
-                                                                    .clipShape(Capsule())
+                                        VStack {
+                                            ScrollView(.horizontal) {
+                                                HStack {
+                                                    ForEach(0..<tags.count, id: \.self) { i in
+                                                        Text(tags[i].name)
+                                                            .font(.system(size: 15, weight: .semibold))
+                                                            .foregroundStyle(.white)
+                                                            .padding(.horizontal, 8)
+                                                            .padding(.vertical, 3)
+                                                            .background {
+                                                                if #available(watchOS 10.0, *) {
+                                                                    Capsule()
+                                                                        .fill(tags[i].color)
+                                                                        .stroke(Material.ultraThin.opacity(0.2), lineWidth: 2)
+                                                                } else {
+                                                                    tags[i].color
+                                                                        .clipShape(Capsule())
+                                                                }
                                                             }
-                                                        }
+                                                    }
                                                 }
                                             }
-                                        }
-                                        .scrollIndicators(.never)
-                                        if NSLocale.current.language.languageCode!.identifier != "zh" {
-                                            Text("标签不会被本地化，因为它们是动态添加的。")
+                                            .scrollIndicators(.never)
+                                            if NSLocale.current.language.languageCode!.identifier != "zh" {
+                                                Text("标签不会被本地化，因为它们是动态添加的。")
+                                            }
                                         }
                                     }
                                 }

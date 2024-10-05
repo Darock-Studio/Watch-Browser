@@ -11,6 +11,7 @@ import OSLog
 import SwiftUI
 import Dynamic
 import Foundation
+import DiagnosticsUI
 
 var pWebDelegateStartNavigationAutoViewport = false
 
@@ -32,6 +33,26 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("DBIsAutoAppearence") var isAutoAppearence = false
     @AppStorage("DBAutoAppearenceOptionEnableForWebForceDark") var autoAppearenceOptionEnableForWebForceDark = true
+    
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
+        // MARK: Handle Darock Custom URL Schemes
+        if let url = navigationAction.request.url?.absoluteString, !url.hasPrefix("http://") && !url.hasPrefix("https://") {
+            let schemeSplited = url.split(separator: "://", maxSplits: 1, omittingEmptySubsequences: false).map { String($0) }
+            if schemeSplited.count == 2 {
+                switch schemeSplited[0] {
+                case "diags" where schemeSplited[1].isEmpty || Int64(schemeSplited[1]) != nil:
+                    DispatchQueue.main.async {
+                        AdvancedWebViewController.dismissWebViewPublisher.send()
+                        DUIDiagnostics.shared.startDiagnostic(withID: schemeSplited[1].isEmpty ? nil : schemeSplited[1])
+                    }
+                    return .cancel
+                default: break
+                }
+            }
+        }
+        
+        return .allow
+    }
     
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         debugPrint("Start Navigation")

@@ -664,12 +664,12 @@ extension [SingleHistoryItem] {
         let calendar = Calendar.current
         var result = [GroupedHistory]()
         let dateSortedHistories = self.sorted(by: { lhs, rhs in lhs.time > rhs.time })
-        var previousDateString = ""
         if !dateSortedHistories.isEmpty {
             let yearDateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMMd", options: 0, locale: .autoupdatingCurrent)
             let withoutYearDateFormat = DateFormatter.dateFormat(fromTemplate: "MMMMdE", options: 0, locale: .autoupdatingCurrent)
             var shouldShowYear = calendar.dateComponents([.year], from: .init(timeIntervalSince1970: dateSortedHistories[0].time)).year!
             != calendar.dateComponents([.year], from: .now).year!
+            var previousDateString = String(localized: "今天")
             var thisGroupHistories = Self()
             for history in dateSortedHistories {
                 shouldShowYear = calendar.dateComponents([.year], from: .init(timeIntervalSince1970: history.time)).year!

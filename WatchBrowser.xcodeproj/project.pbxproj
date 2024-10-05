@@ -21,9 +21,12 @@
 		8C03B6E02C296338000770B4 /* NetworkCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C03B6DF2C296338000770B4 /* NetworkCheckView.swift */; };
 		8C03B70E2C29B2CE000770B4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8C03B70D2C29B2CE000770B4 /* Localizable.xcstrings */; };
 		8C1DED022C32AEBB0048A32A /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1DED012C32AEB00048A32A /* General.swift */; };
+		8C34D5C52CAFC45E009257D0 /* Pictor in Frameworks */ = {isa = PBXBuildFile; productRef = 8C34D5C42CAFC45E009257D0 /* Pictor */; };
 		8C3E839D2C82246B00686E9C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E839C2C82246B00686E9C /* LICENSE */; };
 		8C40D4C42C33DBE900C4221C /* SDWebImagePDFCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 8C40D4C32C33DBE900C4221C /* SDWebImagePDFCoder */; };
 		8C40D4C62C33DE6B00C4221C /* TopLevelDomainList.drkdatat in Resources */ = {isa = PBXBuildFile; fileRef = 8C40D4C52C33DE5E00C4221C /* TopLevelDomainList.drkdatat */; };
+		8C4E34992CB145210091AD22 /* DiagnosticsUI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4E34982CB145210091AD22 /* DiagnosticsUI.xcframework */; };
+		8C4E349A2CB145210091AD22 /* DiagnosticsUI.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4E34982CB145210091AD22 /* DiagnosticsUI.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C52811C2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */; };
 		8C52811D2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C5281272C22FA5600392315 /* TripleQuestionmarkCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C5281242C22FA5600392315 /* TripleQuestionmarkCore.h */; };
@@ -32,7 +35,6 @@
 		8C547B012C3296D40093D592 /* DarockBrowserUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C547B002C3296D40093D592 /* DarockBrowserUnitTests.swift */; };
 		8C5930652C712F75004C79CE /* BrowsingMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5930642C712F75004C79CE /* BrowsingMenuView.swift */; };
 		8C5930672C71CE51004C79CE /* SwiftWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5930662C71CE45004C79CE /* SwiftWebView.swift */; };
-		8C5D64802C1D9D7C008E591B /* Cepheus in Frameworks */ = {isa = PBXBuildFile; productRef = 8C5D647F2C1D9D7C008E591B /* Cepheus */; };
 		8C67C8F32C60DFF30091714D /* UIKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C67C8F22C60DFED0091714D /* UIKitHelper.swift */; };
 		8C6D86792C10C6A70089CE67 /* LaboratoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D86782C10C6A70089CE67 /* LaboratoryView.swift */; };
 		8C6D867B2C10CA680089CE67 /* BrowsingTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D867A2C10CA680089CE67 /* BrowsingTabsView.swift */; };
@@ -61,7 +63,6 @@
 		8CA47C002C9812C100753101 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA47BFE2C9812AC00753101 /* Models.swift */; };
 		8CA47C012C981FEB00753101 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6B7CA9042ABE7C05006FDCDA /* Localizable.xcstrings */; };
 		8CA47C022C98228B00753101 /* ProWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8CA47BDB2C9723F400753101 /* ProWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		8CA47C072C9823FE00753101 /* Pictor in Frameworks */ = {isa = PBXBuildFile; productRef = 8CA47C062C9823FE00753101 /* Pictor */; };
 		8CA47C092C98305600753101 /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA47C082C98305300753101 /* Intents.swift */; };
 		8CA47C0A2C98305600753101 /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA47C082C98305300753101 /* Intents.swift */; };
 		8CA47C0C2C9830F000753101 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA47C0B2C9830ED00753101 /* Bookmark.swift */; };
@@ -114,6 +115,16 @@
 		8CE70E132C7CD19100EFB3AD /* ScrollView+WithScrollOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70E122C7CD17D00EFB3AD /* ScrollView+WithScrollOffset.swift */; };
 		8CF5DC4F2BAE04D5007F9974 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF5DC4E2BAE04D5007F9974 /* ShareView.swift */; };
 		8CF6361D2CAD56EF00ECE3B3 /* AppearenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6361C2CAD56EA00ECE3B3 /* AppearenceManager.swift */; };
+		8CF6361F2CADC19200ECE3B3 /* WebAbstractView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6361E2CADC18C00ECE3B3 /* WebAbstractView.swift */; };
+		8CF636212CADC28E00ECE3B3 /* IntelligenceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF636202CADC28800ECE3B3 /* IntelligenceModels.swift */; };
+		8CF636232CADD7CC00ECE3B3 /* IntelligenceStart.ahap in Resources */ = {isa = PBXBuildFile; fileRef = 8CF636222CADD7CC00ECE3B3 /* IntelligenceStart.ahap */; };
+		8CF636262CADDB4E00ECE3B3 /* IntelligenceBegin.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8CF636252CADDB4E00ECE3B3 /* IntelligenceBegin.caf */; };
+		8CF636282CAE6B2900ECE3B3 /* View+BrightnessReducable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF636272CAE6B1D00ECE3B3 /* View+BrightnessReducable.swift */; };
+		8CF636372CAEB84A00ECE3B3 /* Cepheus in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF636362CAEB84A00ECE3B3 /* Cepheus */; };
+		8CF6363A2CAEB8AA00ECE3B3 /* Cepheus in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF636392CAEB8AA00ECE3B3 /* Cepheus */; };
+		8CF6363C2CAEC5D800ECE3B3 /* Pictor in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF6363B2CAEC5D800ECE3B3 /* Pictor */; };
+		8CF6363F2CAEC5E400ECE3B3 /* Pictor in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF6363E2CAEC5E400ECE3B3 /* Pictor */; };
+		8CF636422CAECA1800ECE3B3 /* Cepheus in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF636412CAECA1800ECE3B3 /* Cepheus */; };
 		8CF8B95D2C4280230070F833 /* MediaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B95C2C4280230070F833 /* MediaListView.swift */; };
 		8CF8B9632C44FCAA0070F833 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF8B9622C44FCAA0070F833 /* MarkdownUI */; };
 		E25EA8382B70ABEF00BFEC6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E25EA83A2B70ABEF00BFEC6E /* InfoPlist.strings */; };
@@ -182,6 +193,7 @@
 			files = (
 				8C8345802C9F0A6100311CE4 /* SaltUICore.xcframework in Embed Frameworks */,
 				8C52811D2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Embed Frameworks */,
+				8C4E349A2CB145210091AD22 /* DiagnosticsUI.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -711,6 +723,7 @@
 		8C3E839C2C82246B00686E9C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		8C3E83A02C82B45600686E9C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8C40D4C52C33DE5E00C4221C /* TopLevelDomainList.drkdatat */ = {isa = PBXFileReference; lastKnownFileType = text; path = TopLevelDomainList.drkdatat; sourceTree = "<group>"; };
+		8C4E34982CB145210091AD22 /* DiagnosticsUI.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DiagnosticsUI.xcframework; path = DarockFrameworks/DiagnosticsUI.xcframework; sourceTree = "<group>"; };
 		8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TripleQuestionmarkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5281242C22FA5600392315 /* TripleQuestionmarkCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripleQuestionmarkCore.h; sourceTree = "<group>"; };
 		8C5281282C23457F00392315 /* TipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsView.swift; sourceTree = "<group>"; };
@@ -823,6 +836,11 @@
 		8CE70E122C7CD17D00EFB3AD /* ScrollView+WithScrollOffset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScrollView+WithScrollOffset.swift"; sourceTree = "<group>"; };
 		8CF5DC4E2BAE04D5007F9974 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		8CF6361C2CAD56EA00ECE3B3 /* AppearenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearenceManager.swift; sourceTree = "<group>"; };
+		8CF6361E2CADC18C00ECE3B3 /* WebAbstractView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAbstractView.swift; sourceTree = "<group>"; };
+		8CF636202CADC28800ECE3B3 /* IntelligenceModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntelligenceModels.swift; sourceTree = "<group>"; };
+		8CF636222CADD7CC00ECE3B3 /* IntelligenceStart.ahap */ = {isa = PBXFileReference; lastKnownFileType = text; path = IntelligenceStart.ahap; sourceTree = "<group>"; };
+		8CF636252CADDB4E00ECE3B3 /* IntelligenceBegin.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IntelligenceBegin.caf; sourceTree = "<group>"; };
+		8CF636272CAE6B1D00ECE3B3 /* View+BrightnessReducable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+BrightnessReducable.swift"; sourceTree = "<group>"; };
 		8CF8B95C2C4280230070F833 /* MediaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListView.swift; sourceTree = "<group>"; };
 		E25EA8392B70ABEF00BFEC6E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E25EA83B2B70ABF000BFEC6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -836,21 +854,26 @@
 			files = (
 				8CA7B84F2BE3E053004643FE /* SDWebImageWebPCoder in Frameworks */,
 				8CA7B84C2BE3E025004643FE /* SDWebImageSwiftUI in Frameworks */,
+				8CF6363F2CAEC5E400ECE3B3 /* Pictor in Frameworks */,
+				8CF636372CAEB84A00ECE3B3 /* Cepheus in Frameworks */,
 				8CB803CC2BD3D776009B2FAC /* Dynamic in Frameworks */,
 				6B0253D82A4EFB0100567986 /* DarockKit in Frameworks */,
 				8C52811C2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Frameworks */,
 				6BFFCC562A8A6CF3001175EE /* DarockKit in Frameworks */,
+				8C4E34992CB145210091AD22 /* DiagnosticsUI.xcframework in Frameworks */,
+				8CF636422CAECA1800ECE3B3 /* Cepheus in Frameworks */,
+				8C34D5C52CAFC45E009257D0 /* Pictor in Frameworks */,
 				8CD3D89B2CA7E5D9009276DD /* Punycode in Frameworks */,
 				8C7C4D412C2D87B300FD282B /* EPUBKit in Frameworks */,
-				8CA47C072C9823FE00753101 /* Pictor in Frameworks */,
+				8CF6363C2CAEC5D800ECE3B3 /* Pictor in Frameworks */,
 				8CA47BF52C972A9A00753101 /* SwiftyStoreKit in Frameworks */,
 				8CF8B9632C44FCAA0070F833 /* MarkdownUI in Frameworks */,
+				8CF6363A2CAEB8AA00ECE3B3 /* Cepheus in Frameworks */,
 				8C83457F2C9F0A6100311CE4 /* SaltUICore.xcframework in Frameworks */,
 				8C40D4C42C33DBE900C4221C /* SDWebImagePDFCoder in Frameworks */,
 				8CA4537B2AE3C5F600138CE4 /* EFQRCode in Frameworks */,
 				8CAF38F72BD4F960006B9B16 /* SwiftSoup in Frameworks */,
 				8CA7B8522BE3E078004643FE /* SDWebImageSVGCoder in Frameworks */,
-				8C5D64802C1D9D7C008E591B /* Cepheus in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -929,6 +952,7 @@
 				6BF209F32990E61C00E623FC /* WatchBrowserApp.swift */,
 				6BF209F52990E61C00E623FC /* ContentView.swift */,
 				8CC3060D2CAB088200323034 /* Haptics */,
+				8CF636242CADDB4100ECE3B3 /* Sounds */,
 				8CB9A10A2C6D20E100E6A367 /* Extensions */,
 				8CB803D22BD3E6C0009B2FAC /* WebKit */,
 				8CB803CD2BD3DCD1009B2FAC /* CCodes */,
@@ -1494,6 +1518,7 @@
 		8C41F7E72C1439C90052A635 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C4E34982CB145210091AD22 /* DiagnosticsUI.xcframework */,
 				8CD3D7FE2CA7CBDE009276DD /* ClockKit.framework */,
 				8C8345502C9F06C500311CE4 /* SaltUICore.xcframework */,
 				8C8345452C9F03EB00311CE4 /* SaltUICore.framework */,
@@ -1581,6 +1606,7 @@
 				8C5930642C712F75004C79CE /* BrowsingMenuView.swift */,
 				8CB018992BDBC5C500982644 /* WebViewDelegate.swift */,
 				8C6E11DE2BDC029E005420C0 /* WEBackSwift.swift */,
+				8CF6361E2CADC18C00ECE3B3 /* WebAbstractView.swift */,
 			);
 			path = WebKit;
 			sourceTree = "<group>";
@@ -1591,10 +1617,12 @@
 				8C1DED012C32AEB00048A32A /* General.swift */,
 				8CE70DC82C7A524D00EFB3AD /* BlurBackground.swift */,
 				8CBA140F2C7D1B4200D40EE5 /* DoubleTapActionButton.swift */,
+				8CF636202CADC28800ECE3B3 /* IntelligenceModels.swift */,
 				8CB9A10D2C6D229200E6A367 /* MarkdownUI+.swift */,
 				8C9188822C73A64000C64E70 /* WKWebView+.swift */,
 				8CE70DBD2C7A50FE00EFB3AD /* AVPlayer+PeriodicTimePublisher.swift */,
 				8CE70E122C7CD17D00EFB3AD /* ScrollView+WithScrollOffset.swift */,
+				8CF636272CAE6B1D00ECE3B3 /* View+BrightnessReducable.swift */,
 				8CBA14092C7CEAC000D40EE5 /* View+CompatibleDoubleTapGesture.swift */,
 				8C0373B92CAAD2460029F047 /* View+WrapIf.swift */,
 				8CC306142CAB9F1300323034 /* View+Introspect.swift */,
@@ -1635,6 +1663,7 @@
 			children = (
 				8CC3060E2CAB08C000323034 /* Success.ahap */,
 				8CC306102CAB0ECD00323034 /* Failure.ahap */,
+				8CF636222CADD7CC00ECE3B3 /* IntelligenceStart.ahap */,
 			);
 			path = Haptics;
 			sourceTree = "<group>";
@@ -1763,6 +1792,14 @@
 			path = Image;
 			sourceTree = "<group>";
 		};
+		8CF636242CADDB4100ECE3B3 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				8CF636252CADDB4E00ECE3B3 /* IntelligenceBegin.caf */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1822,13 +1859,17 @@
 				8CA7B84B2BE3E025004643FE /* SDWebImageSwiftUI */,
 				8CA7B84E2BE3E053004643FE /* SDWebImageWebPCoder */,
 				8CA7B8512BE3E078004643FE /* SDWebImageSVGCoder */,
-				8C5D647F2C1D9D7C008E591B /* Cepheus */,
 				8C7C4D402C2D87B300FD282B /* EPUBKit */,
 				8C40D4C32C33DBE900C4221C /* SDWebImagePDFCoder */,
 				8CF8B9622C44FCAA0070F833 /* MarkdownUI */,
 				8CA47BF42C972A9A00753101 /* SwiftyStoreKit */,
-				8CA47C062C9823FE00753101 /* Pictor */,
 				8CD3D89A2CA7E5D9009276DD /* Punycode */,
+				8CF636362CAEB84A00ECE3B3 /* Cepheus */,
+				8CF636392CAEB8AA00ECE3B3 /* Cepheus */,
+				8CF6363B2CAEC5D800ECE3B3 /* Pictor */,
+				8CF6363E2CAEC5E400ECE3B3 /* Pictor */,
+				8CF636412CAECA1800ECE3B3 /* Cepheus */,
+				8C34D5C42CAFC45E009257D0 /* Pictor */,
 			);
 			productName = "WatchBrowser Watch App";
 			productReference = 6BF209EE2990E61C00E623FC /* DarockBrowser.app */;
@@ -1958,14 +1999,15 @@
 				8CA7B84A2BE3E025004643FE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				8CA7B84D2BE3E053004643FE /* XCRemoteSwiftPackageReference "SDWebImageWebPCoder" */,
 				8CA7B8502BE3E078004643FE /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */,
-				8C5D647E2C1D9D7C008E591B /* XCRemoteSwiftPackageReference "Cepheus" */,
 				8C7C4D3F2C2D87B200FD282B /* XCRemoteSwiftPackageReference "EPUBKit" */,
 				8CB349F12C32B87700CB6AC3 /* XCRemoteSwiftPackageReference "Vela" */,
 				8C40D4C22C33DBE900C4221C /* XCRemoteSwiftPackageReference "SDWebImagePDFCoder" */,
 				8C40D4C72C33EC9900C4221C /* XCRemoteSwiftPackageReference "PunycodeSwift" */,
 				8CF8B9612C44FCAA0070F833 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 				8CA47BF32C972A9900753101 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
-				8CA47C052C9823FE00753101 /* XCRemoteSwiftPackageReference "Pictor" */,
+				8CF636352CAEB84A00ECE3B3 /* XCRemoteSwiftPackageReference "Cache" */,
+				8CF636402CAECA1800ECE3B3 /* XCRemoteSwiftPackageReference "Cepheus" */,
+				8C34D5C32CAFC45E009257D0 /* XCRemoteSwiftPackageReference "Pictor" */,
 			);
 			productRefGroup = 6BF209E92990E61C00E623FC /* Products */;
 			projectDirPath = "";
@@ -1994,8 +2036,10 @@
 			files = (
 				8CC3060F2CAB08C000323034 /* Success.ahap in Resources */,
 				8CC306112CAB0ECD00323034 /* Failure.ahap in Resources */,
+				8CF636232CADD7CC00ECE3B3 /* IntelligenceStart.ahap in Resources */,
 				8C3E839D2C82246B00686E9C /* LICENSE in Resources */,
 				8C40D4C62C33DE6B00C4221C /* TopLevelDomainList.drkdatat in Resources */,
+				8CF636262CADDB4E00ECE3B3 /* IntelligenceBegin.caf in Resources */,
 				E25EA8382B70ABEF00BFEC6E /* InfoPlist.strings in Resources */,
 				6BF209F82990E61E00E623FC /* Assets.xcassets in Resources */,
 				6B7CA9052ABE7C05006FDCDA /* Localizable.xcstrings in Resources */,
@@ -2101,6 +2145,9 @@
 				8C6E11DD2BDBF464005420C0 /* NewFeaturesView.swift in Sources */,
 				8CE70DC72C7A522700EFB3AD /* LocalBooksView.swift in Sources */,
 				8C9188832C73A64200C64E70 /* WKWebView+.swift in Sources */,
+				8CF6361F2CADC19200ECE3B3 /* WebAbstractView.swift in Sources */,
+				8CF636282CAE6B2900ECE3B3 /* View+BrightnessReducable.swift in Sources */,
+				8CF636212CADC28E00ECE3B3 /* IntelligenceModels.swift in Sources */,
 				8CF6361D2CAD56EF00ECE3B3 /* AppearenceManager.swift in Sources */,
 				8CC306132CAB160F00323034 /* View+TouchZoomable.swift in Sources */,
 				8CB9A10E2C6D229600E6A367 /* MarkdownUI+.swift in Sources */,
@@ -2354,7 +2401,7 @@
 				IBSC_OTHER_FLAGS = "--target-device iphone";
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "暗礁浏览器需要获取您的位置信息以提供基于位置的“安全延时”功能，您的位置信息仅保存在您的本地设备上。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "暗礁浏览器需要获取您的位置信息以提供基于位置的“安全延时”以及根据日落与日出的外观切换，部分网页也有可能请求你的位置信息。";
 				INFOPLIST_KEY_NSSiriUsageDescription = "暗礁浏览器请求Siri权限使您能够通过Siri使用暗礁浏览器的一些便捷功能";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
@@ -2362,8 +2409,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.3.0;
-				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_OBJC_CLASS_$_CLKUIWheelsOfTimeView,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern";
+				MARKETING_VERSION = 6.0.0;
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_AudioServicesCreateSystemSoundID,-U,_AudioServicesPlaySystemSound";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -2402,7 +2449,7 @@
 				IBSC_OTHER_FLAGS = "--target-device iphone";
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "暗礁浏览器需要获取您的位置信息以提供基于位置的“安全延时”功能，您的位置信息仅保存在您的本地设备上。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "暗礁浏览器需要获取您的位置信息以提供基于位置的“安全延时”以及根据日落与日出的外观切换，部分网页也有可能请求你的位置信息。";
 				INFOPLIST_KEY_NSSiriUsageDescription = "暗礁浏览器请求Siri权限使您能够通过Siri使用暗礁浏览器的一些便捷功能";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
@@ -2410,8 +2457,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.3.0;
-				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_OBJC_CLASS_$_CLKUIWheelsOfTimeView,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern";
+				MARKETING_VERSION = 6.0.0;
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_AudioServicesCreateSystemSoundID,-U,_AudioServicesPlaySystemSound";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -2437,7 +2484,7 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 5.3.0;
+				MARKETING_VERSION = 6.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2456,7 +2503,7 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 5.3.0;
+				MARKETING_VERSION = 6.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2624,7 +2671,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 5.3.0;
+				MARKETING_VERSION = 6.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -2658,7 +2705,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 5.3.0;
+				MARKETING_VERSION = 6.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -2739,6 +2786,14 @@
 				kind = branch;
 			};
 		};
+		8C34D5C32CAFC45E009257D0 /* XCRemoteSwiftPackageReference "Pictor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Serene-Garden/Pictor";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.0;
+			};
+		};
 		8C40D4C22C33DBE900C4221C /* XCRemoteSwiftPackageReference "SDWebImagePDFCoder" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImagePDFCoder";
@@ -2753,14 +2808,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.1.0;
-			};
-		};
-		8C5D647E2C1D9D7C008E591B /* XCRemoteSwiftPackageReference "Cepheus" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Serene-Garden/Cepheus";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.1;
 			};
 		};
 		8C7C4D3F2C2D87B200FD282B /* XCRemoteSwiftPackageReference "EPUBKit" */ = {
@@ -2785,14 +2832,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.16.4;
-			};
-		};
-		8CA47C052C9823FE00753101 /* XCRemoteSwiftPackageReference "Pictor" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Serene-Garden/Pictor";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.2;
 			};
 		};
 		8CA7B84A2BE3E025004643FE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
@@ -2843,6 +2882,22 @@
 				minimumVersion = 1.2.0;
 			};
 		};
+		8CF636352CAEB84A00ECE3B3 /* XCRemoteSwiftPackageReference "Cache" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hyperoslo/Cache";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.4.0;
+			};
+		};
+		8CF636402CAECA1800ECE3B3 /* XCRemoteSwiftPackageReference "Cepheus" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Serene-Garden/Cepheus";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.0;
+			};
+		};
 		8CF8B9612C44FCAA0070F833 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
@@ -2863,15 +2918,15 @@
 			package = 6BFFCC542A8A6CF3001175EE /* XCRemoteSwiftPackageReference "DarockKit" */;
 			productName = DarockKit;
 		};
+		8C34D5C42CAFC45E009257D0 /* Pictor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C34D5C32CAFC45E009257D0 /* XCRemoteSwiftPackageReference "Pictor" */;
+			productName = Pictor;
+		};
 		8C40D4C32C33DBE900C4221C /* SDWebImagePDFCoder */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8C40D4C22C33DBE900C4221C /* XCRemoteSwiftPackageReference "SDWebImagePDFCoder" */;
 			productName = SDWebImagePDFCoder;
-		};
-		8C5D647F2C1D9D7C008E591B /* Cepheus */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8C5D647E2C1D9D7C008E591B /* XCRemoteSwiftPackageReference "Cepheus" */;
-			productName = Cepheus;
 		};
 		8C7C4D402C2D87B300FD282B /* EPUBKit */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2887,11 +2942,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8CA47BF32C972A9900753101 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
 			productName = SwiftyStoreKit;
-		};
-		8CA47C062C9823FE00753101 /* Pictor */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8CA47C052C9823FE00753101 /* XCRemoteSwiftPackageReference "Pictor" */;
-			productName = Pictor;
 		};
 		8CA7B84B2BE3E025004643FE /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2927,6 +2977,28 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8C40D4C72C33EC9900C4221C /* XCRemoteSwiftPackageReference "PunycodeSwift" */;
 			productName = Punycode;
+		};
+		8CF636362CAEB84A00ECE3B3 /* Cepheus */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CF636352CAEB84A00ECE3B3 /* XCRemoteSwiftPackageReference "Cache" */;
+			productName = Cepheus;
+		};
+		8CF636392CAEB8AA00ECE3B3 /* Cepheus */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Cepheus;
+		};
+		8CF6363B2CAEC5D800ECE3B3 /* Pictor */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Pictor;
+		};
+		8CF6363E2CAEC5E400ECE3B3 /* Pictor */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Pictor;
+		};
+		8CF636412CAECA1800ECE3B3 /* Cepheus */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CF636402CAECA1800ECE3B3 /* XCRemoteSwiftPackageReference "Cepheus" */;
+			productName = Cepheus;
 		};
 		8CF8B9622C44FCAA0070F833 /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;

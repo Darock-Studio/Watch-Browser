@@ -199,6 +199,7 @@ struct VideoPlayingView: View {
             }
         }
         .tabViewStyle(.page(indexDisplayMode: cachedPlayerTimeControlStatus != .playing ? .always : .never))
+        .brightnessReducable()
         .navigationBarHidden(true)
         .onAppear {
             let asset = AVURLAsset(

@@ -979,6 +979,16 @@
     "[Privacy Hidden]" : {
       "shouldTranslate" : false
     },
+    "**Darock 智能与隐私**\n\nDarock 智能旨在保护你的信息并可让你选择共享的内容。\n\n### 网页摘要\n使用网页摘要时，网页中的文本信息会被发送到设备外的 Darock 智能服务进行处理。这些信息不会被存储，且不会关联到个人。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Darock Intelligence & Privacy**\n\nDarock Intelligence is designed to protect your information while allowing you to choose what content you share.\n\n### Web Summary\nWhen using web summary, the textual information from the web page is sent to an external Darock Intelligence service for processing. This information is not stored and is not linked to individuals."
+          }
+        }
+      }
+    },
     "**关于暗礁浏览器与隐私**\n\n暗礁浏览器致力于保护您的隐私，Darock 不会未经同意收集任何信息。" : {
       "localizations" : {
         "en" : {
@@ -8023,9 +8033,6 @@
     "Darock Community" : {
       "shouldTranslate" : false
     },
-    "Darock Intelligence" : {
-      "shouldTranslate" : false
-    },
     "Darock Studio" : {
       "shouldTranslate" : false
     },
@@ -14405,7 +14412,6 @@
       "shouldTranslate" : false
     },
     "Telegram" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -18760,6 +18766,16 @@
         }
       }
     },
+    "使用 Darock 智能时，部分数据可能会在设备外处理。%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When using Darock Intelligence, some data may be processed outside the device. %@"
+          }
+        }
+      }
+    },
     "使用“互点两下”手势以显示空屏幕" : {
       "localizations" : {
         "en" : {
@@ -20622,6 +20638,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "關於"
+          }
+        }
+      }
+    },
+    "关于 Darock 智能与隐私" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About Darock Intelligence & Privacy"
           }
         }
       }
@@ -38104,6 +38130,9 @@
         }
       }
     },
+    "快捷按钮" : {
+
+    },
     "快进 10 秒" : {
       "localizations" : {
         "ar" : {
@@ -38868,6 +38897,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "總空間"
+          }
+        }
+      }
+    },
+    "总结摘要时出错" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error summarizing web summary"
           }
         }
       }
@@ -40585,6 +40624,9 @@
           }
         }
       }
+    },
+    "按钮 %lld" : {
+
     },
     "按章节划分" : {
       "localizations" : {
@@ -42526,6 +42568,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "摘要语言" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summary Language"
           }
         }
       }
@@ -50541,6 +50593,28 @@
         }
       }
     },
+    "正在批量下载 %lld 张图片" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Downloading %lld image"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Downloading %lld images"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "正在检查…" : {
       "localizations" : {
         "ar" : {
@@ -51127,6 +51201,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "正在载入摘要..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading Summary…"
           }
         }
       }
@@ -56894,7 +56978,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "e.g. History is lack of recent browsing datas"
+            "value" : "Example: Recent browsing data is missing in history"
           }
         },
         "es" : {
@@ -59539,6 +59623,16 @@
         }
       }
     },
+    "系统语言" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System Language"
+          }
+        }
+      }
+    },
     "紧凑" : {
       "localizations" : {
         "en" : {
@@ -60927,6 +61021,16 @@
         }
       }
     },
+    "网页摘要" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web Summary"
+          }
+        }
+      }
+    },
     "网页检查器" : {
       "localizations" : {
         "ar" : {
@@ -61287,6 +61391,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Web View"
+          }
+        }
+      }
+    },
+    "网页语言" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web Language"
           }
         }
       }
@@ -69662,6 +69776,16 @@
         }
       }
     },
+    "重试" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry"
+          }
+        }
+      }
+    },
     "链接" : {
       "localizations" : {
         "ar" : {
@@ -70622,6 +70746,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "鎖定網頁歸檔"
+          }
+        }
+      }
+    },
+    "错误：账号或密码错误" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error: Incorrect account or password"
           }
         }
       }
@@ -74497,6 +74631,9 @@
           }
         }
       }
+    },
+    "预览" : {
+
     },
     "预览..." : {
       "localizations" : {

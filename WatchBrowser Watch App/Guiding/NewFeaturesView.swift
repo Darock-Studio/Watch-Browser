@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NewFeaturesView: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack {
                     Text("“暗礁浏览器”新功能")

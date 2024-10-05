@@ -29,177 +29,175 @@ struct SettingsView: View {
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("IsDeveloperModeEnabled") var isDeveloperModeEnabled = false
     @AppStorage("DarockAccountCachedUsername") var accountUsername = ""
-    @AppStorage("INFFIsDarockIntelligenceEnabled") var _featureFlagIsDarockIntelligenceEnabled = false
     @State var isNewFeaturesPresented = false
     @State var isPasscodeViewPresented = false
     @State var isEnterPasscodeViewInputPresented = false
     @State var passcodeInputTmp = ""
     @State var isDarockAccountLoginPresented = false
     var body: some View {
-        ZStack {
-            if #unavailable(watchOS 10.0) {
-                NavigationLink("", isActive: $isPasscodeViewPresented, destination: { PasswordSettingsView() })
-                    .frame(width: 0, height: 0)
-                    .hidden()
-            }
-            List {
-                Section {
-                    if darockAccount.isEmpty {
-                        Button(action: {
-                            isDarockAccountLoginPresented = true
-                        }, label: {
-                            HStack {
-                                ZStack {
-                                    Image(systemName: "circle.dotted")
-                                        .font(.system(size: 40, weight: .bold))
-                                        .foregroundColor(.init(hex: 0x144683))
-                                    Image(systemName: "circle.dotted")
-                                        .font(.system(size: 30, weight: .light))
-                                        .rotationEffect(.degrees(8))
-                                        .foregroundColor(.init(hex: 0x144683))
-                                    Text("D")
-                                        .font(.custom("HYWenHei-85W", size: 14))
-                                        .foregroundColor(.init(hex: 0x0c79ff))
-                                        .scaleEffect(1.2)
-                                }
-                                VStack(alignment: .leading) {
-                                    Text("Darock 账户")
-                                        .font(.system(size: 15, weight: .semibold))
-                                    Text("登录以为今后账户相关功能做好准备。")
-                                        .font(.system(size: 12))
-                                        .foregroundColor(.gray)
-                                }
-                            }
-                        })
-                        .sheet(isPresented: $isDarockAccountLoginPresented, onDismiss: {
-                            if !darockAccount.isEmpty {
-                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
-                                    if isSuccess {
-                                        accountUsername = respStr.apiFixed()
-                                    }
-                                }
-                            }
-                        }, content: { DarockAccountLogin() })
-                    } else {
-                        NavigationLink(destination: { DarockAccountManagementMain(username: accountUsername) }, label: {
-                            HStack {
-                                Image(systemName: "person.crop.circle")
-                                    .font(.system(size: 32))
-                                    .foregroundColor(.blue)
-                                VStack(alignment: .leading) {
-                                    Group {
-                                        if !accountUsername.isEmpty {
-                                            Text(accountUsername)
-                                                .lineLimit(1)
-                                                .minimumScaleFactor(accountUsername.count <= 20 ? 0.1 : 0.5)
-                                        } else {
-                                            Text(verbatim: "loading")
-                                                .redacted(reason: .placeholder)
-                                        }
-                                    }
-                                    .font(.system(size: 16, weight: .semibold))
-                                    Text("Darock 账户以及更多")
-                                        .font(.system(size: 12))
-                                        .foregroundColor(.gray)
-                                }
-                            }
-                        })
-                    }
-                }
-                Section {
-                    NavigationLink(destination: { ProPurchaseView() }, label: { SettingItemLabel(title: "暗礁浏览器 Pro", image: "sparkles", color: .blue) })
-                    if isProPurchased {
-                        if _featureFlagIsDarockIntelligenceEnabled {
-                            NavigationLink(destination: { DarockIntelligenceView() }, label: {
-                                HStack {
-                                    Image("DarockIntelligenceIcon")
-                                        .resizable()
-                                        .frame(width: 20, height: 20)
-                                        .clipShape(Circle())
-                                    Text("Darock 智能")
-                                }
-                            })
-                        }
-                        if #available(watchOS 10.0, *) {
-                            NavigationLink(destination: { WidgetSettingsView() },
-                                           label: { SettingItemLabel(title: "小组件", image: "watchface.applewatch.case", color: .blue) })
-                        }
-                    }
-                }
-                Section {
-                    NavigationLink(destination: { StaredSettingsView() }, label: { SettingItemLabel(title: "常用设置", image: "star", color: .orange) })
-                    NavigationLink(destination: { NetworkSettingsView() }, label: { SettingItemLabel(title: "网络", image: "network", color: .blue) })
-                }
-                Section {
-                    NavigationLink(destination: { GeneralSettingsView() },
-                                   label: { SettingItemLabel(title: "通用", image: "gear", color: .gray) })
-                    NavigationLink(destination: { DisplaySettingsView() },
-                                   label: { SettingItemLabel(title: "显示与亮度", image: "sun.max.fill", color: .blue) })
-                    NavigationLink(destination: { BrowsingEngineSettingsView() },
-                                   label: { SettingItemLabel(title: "浏览引擎", image: "globe", color: .blue) })
-                    NavigationLink(destination: { HomeScreenSettingsView() },
-                                   label: { SettingItemLabel(title: "主屏幕", image: "list.bullet.rectangle.portrait", color: .blue) })
-                    NavigationLink(destination: { SearchSettingsView() },
-                                   label: { SettingItemLabel(title: "搜索", image: "magnifyingglass", color: .gray) })
-                    #if compiler(>=6)
-                    NavigationLink(destination: { GesturesSettingsView() },
-                                   label: { SettingItemLabel(title: "手势", privateImage: "hand.side.pinch.fill", color: .blue) })
-                    #endif
-                }
-                Section {
+        List {
+            Section {
+                if darockAccount.isEmpty {
                     Button(action: {
-                        if userPasscodeEncrypted.isEmpty {
-                            isPasscodeViewPresented = true
-                        } else {
-                            isEnterPasscodeViewInputPresented = true
-                        }
+                        isDarockAccountLoginPresented = true
                     }, label: {
-                        SettingItemLabel(title: "密码", image: "lock.fill", color: .red)
-                    })
-                    NavigationLink(destination: { PrivacySettingsView() },
-                                   label: { SettingItemLabel(title: "隐私与安全性", image: "hand.raised.fill", color: .blue) })
-                }
-                Section {
-                    if isDeveloperModeEnabled {
-                        NavigationLink(destination: { DeveloperSettingsView() }, label: {
-                            SettingItemLabel(title: "开发者", image: "hammer.fill", color: .blue, symbolFontSize: 10)
-                        })
-                    }
-                    NavigationLink(destination: { LaboratoryView() }, label: {
-                        SettingItemLabel(title: "实验室", image: {
-                            if #available(watchOS 10, *) {
-                                "flask.fill"
-                            } else {
-                                "hammer.fill"
+                        HStack {
+                            ZStack {
+                                Image(systemName: "circle.dotted")
+                                    .font(.system(size: 40, weight: .bold))
+                                    .foregroundColor(.init(hex: 0x144683))
+                                Image(systemName: "circle.dotted")
+                                    .font(.system(size: 30, weight: .light))
+                                    .rotationEffect(.degrees(8))
+                                    .foregroundColor(.init(hex: 0x144683))
+                                Text("D")
+                                    .font(.custom("HYWenHei-85W", size: 14))
+                                    .foregroundColor(.init(hex: 0x0c79ff))
+                                    .scaleEffect(1.2)
                             }
-                        }(), color: .blue)
+                            VStack(alignment: .leading) {
+                                Text("Darock 账户")
+                                    .font(.system(size: 15, weight: .semibold))
+                                Text("登录以为今后账户相关功能做好准备。")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.gray)
+                            }
+                        }
                     })
-                    if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "IsDarockInternalTap-to-RadarAvailable") {
-                        NavigationLink(destination: { InternalDebuggingView() }, label: {
-                            SettingItemLabel(title: "Debugging", image: "ant.fill", color: .purple)
-                        })
+                    .sheet(isPresented: $isDarockAccountLoginPresented, onDismiss: {
+                        if !darockAccount.isEmpty {
+                            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
+                                if isSuccess {
+                                    accountUsername = respStr.apiFixed()
+                                }
+                            }
+                        }
+                    }, content: { DarockAccountLogin() })
+                } else {
+                    NavigationLink(destination: { DarockAccountManagementMain(username: accountUsername) }, label: {
+                        HStack {
+                            Image(systemName: "person.crop.circle")
+                                .font(.system(size: 32))
+                                .foregroundColor(.blue)
+                            VStack(alignment: .leading) {
+                                Group {
+                                    if !accountUsername.isEmpty {
+                                        Text(accountUsername)
+                                            .lineLimit(1)
+                                            .minimumScaleFactor(accountUsername.count <= 20 ? 0.1 : 0.5)
+                                    } else {
+                                        Text(verbatim: "loading")
+                                            .redacted(reason: .placeholder)
+                                    }
+                                }
+                                .font(.system(size: 16, weight: .semibold))
+                                Text("Darock 账户以及更多")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.gray)
+                            }
+                        }
+                    })
+                }
+            }
+            Section {
+                NavigationLink(destination: { ProPurchaseView() }, label: { SettingItemLabel(title: "暗礁浏览器 Pro", image: "sparkles", color: .blue) })
+                if isProPurchased {
+                    NavigationLink(destination: { DarockIntelligenceView() }, label: {
+                        HStack {
+                            Image("DarockIntelligenceIcon")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .clipShape(Circle())
+                            Text("Darock 智能")
+                        }
+                    })
+                    if #available(watchOS 10.0, *) {
+                        NavigationLink(destination: { WidgetSettingsView() },
+                                       label: { SettingItemLabel(title: "小组件", image: "watchface.applewatch.case", color: .blue) })
                     }
                 }
             }
-            .navigationTitle("设置")
-            .navigationDestination(isPresented: $isPasscodeViewPresented, destination: { PasswordSettingsView() })
-            .sheet(isPresented: $isEnterPasscodeViewInputPresented) {
-                PasswordInputView(text: $passcodeInputTmp, placeholder: "输入你的密码") { pwd in
-                    if pwd.md5 == userPasscodeEncrypted {
+            Section {
+                NavigationLink(destination: { StaredSettingsView() }, label: { SettingItemLabel(title: "常用设置", image: "star", color: .orange) })
+                NavigationLink(destination: { NetworkSettingsView() }, label: { SettingItemLabel(title: "网络", image: "network", color: .blue) })
+            }
+            Section {
+                NavigationLink(destination: { GeneralSettingsView() },
+                               label: { SettingItemLabel(title: "通用", image: "gear", color: .gray) })
+                NavigationLink(destination: { DisplaySettingsView() },
+                               label: { SettingItemLabel(title: "显示与亮度", image: "sun.max.fill", color: .blue) })
+                NavigationLink(destination: { BrowsingEngineSettingsView() },
+                               label: { SettingItemLabel(title: "浏览引擎", image: "globe", color: .blue) })
+                NavigationLink(destination: { HomeScreenSettingsView() },
+                               label: { SettingItemLabel(title: "主屏幕", image: "list.bullet.rectangle.portrait", color: .blue) })
+                NavigationLink(destination: { SearchSettingsView() },
+                               label: { SettingItemLabel(title: "搜索", image: "magnifyingglass", color: .gray) })
+                #if compiler(>=6)
+                NavigationLink(destination: { GesturesSettingsView() },
+                               label: { SettingItemLabel(title: "手势", privateImage: "hand.side.pinch.fill", color: .blue) })
+                #endif
+            }
+            Section {
+                Button(action: {
+                    if userPasscodeEncrypted.isEmpty {
                         isPasscodeViewPresented = true
                     } else {
-                        tipWithText("密码错误", symbol: "xmark.circle.fill")
+                        isEnterPasscodeViewInputPresented = true
                     }
-                    passcodeInputTmp = ""
-                }
-                .toolbar(.hidden, for: .navigationBar)
+                }, label: {
+                    SettingItemLabel(title: "密码", image: "lock.fill", color: .red)
+                })
+                NavigationLink(destination: { PrivacySettingsView() },
+                               label: { SettingItemLabel(title: "隐私与安全性", image: "hand.raised.fill", color: .blue) })
             }
-            .onAppear {
-                if !darockAccount.isEmpty {
-                    DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
-                        if isSuccess {
-                            accountUsername = respStr.apiFixed()
+            Section {
+                if isDeveloperModeEnabled {
+                    NavigationLink(destination: { DeveloperSettingsView() }, label: {
+                        SettingItemLabel(title: "开发者", image: "hammer.fill", color: .blue, symbolFontSize: 10)
+                    })
+                }
+                NavigationLink(destination: { LaboratoryView() }, label: {
+                    SettingItemLabel(title: "实验室", image: {
+                        if #available(watchOS 10, *) {
+                            "flask.fill"
+                        } else {
+                            "hammer.fill"
                         }
+                    }(), color: .blue)
+                })
+                if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "IsDarockInternalTap-to-RadarAvailable") {
+                    NavigationLink(destination: { InternalDebuggingView() }, label: {
+                        SettingItemLabel(title: "Debugging", image: "ant.fill", color: .purple)
+                    })
+                }
+            }
+        }
+        .navigationTitle("设置")
+        .wrapIf({
+            if #available(watchOS 10, *) { true } else { false }
+        }()) { content in
+            content
+                .navigationDestination(isPresented: $isPasscodeViewPresented, destination: { PasswordSettingsView() })
+        } else: { content in
+            content
+                ._navigationDestination(isPresented: $isPasscodeViewPresented, content: { PasswordSettingsView() })
+        }
+        .sheet(isPresented: $isEnterPasscodeViewInputPresented) {
+            PasswordInputView(text: $passcodeInputTmp, placeholder: "输入你的密码") { pwd in
+                if pwd.md5 == userPasscodeEncrypted {
+                    isPasscodeViewPresented = true
+                } else {
+                    tipWithText("密码错误", symbol: "xmark.circle.fill")
+                }
+                passcodeInputTmp = ""
+            }
+            .toolbar(.hidden, for: .navigationBar)
+        }
+        .onAppear {
+            if !darockAccount.isEmpty {
+                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
+                    if isSuccess {
+                        accountUsername = respStr.apiFixed()
                     }
                 }
             }
@@ -249,11 +247,41 @@ struct SettingsView: View {
     }
     
     struct DarockIntelligenceView: View {
+        @AppStorage("DIWebAbstractLangOption") var webAbstractLangOption = "Web"
+        @State var isPrivacySplashPresented = false
         var body: some View {
             List {
-                
+                Section {
+                    Picker("摘要语言", selection: $webAbstractLangOption) {
+                        Text("网页语言").tag("Web")
+                        Text("系统语言").tag("System")
+                    }
+                } header: {
+                    Text("网页摘要")
+                }
+                Section {
+                    Button(action: {
+                        isPrivacySplashPresented = true
+                    }, label: {
+                        Text("关于 Darock 智能与隐私")
+                    })
+                }
             }
             .navigationTitle("Darock 智能")
+            .sheet(isPresented: $isPrivacySplashPresented) {
+                PrivacyAboutView(
+                    title: "关于 Darock 智能与隐私",
+                    description: Text("使用 Darock 智能时，部分数据可能会在设备外处理。\(Text("进一步了解...").foregroundColor(.blue))"),
+                    detailText: """
+                    **Darock 智能与隐私**
+                    
+                    Darock 智能旨在保护你的信息并可让你选择共享的内容。
+                    
+                    ### 网页摘要
+                    使用网页摘要时，网页中的文本信息会被发送到设备外的 Darock 智能服务进行处理。这些信息不会被存储，且不会关联到个人。
+                    """
+                )
+            }
         }
     }
     @available(watchOS 10.0, *)
@@ -2048,6 +2076,17 @@ struct SettingsView: View {
                             Label("紧凑", systemImage: "circle.grid.3x3.fill").tag("Compact")
                         }
                         .disabled(!isProPurchased)
+//                        NavigationLink(destination: { FastButtonsView() }, label: {
+//                            VStack(alignment: .leading) {
+//                                Text("快捷按钮")
+//                                if webViewLayout == "FastPrevious" {
+//                                    Text("网页视图布局为“快速返回”时，快捷按钮不可用")
+//                                        .font(.footnote)
+//                                        .foregroundStyle(.gray)
+//                                }
+//                            }
+//                        })
+//                        .disabled(!isProPurchased || webViewLayout == "FastPrevious")
                     } header: {
                         Text("布局")
                     } footer: {
@@ -2142,6 +2181,56 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("浏览引擎")
+        }
+        
+        struct FastButtonsView: View {
+            @State var buttons = [WebViewFastButton].getCurrentFastButtons()
+            var body: some View {
+                List {
+                    Section {
+                        HStack {
+                            Image(systemName: "ellipsis.circle")
+                            ForEach(0..<buttons.count, id: \.self) { i in
+                                Spacer()
+                                Image(systemName: {
+                                    switch buttons[i] {
+                                    case .nextPage: "chevron.forward"
+                                    case .previousPage: "chevron.backward"
+                                    case .refresh: "arrow.clockwise"
+                                    case .decodeVideo: "film.stack"
+                                    case .decodeImage: "photo.stack"
+                                    case .decodeMusic: "music.quarternote.3"
+                                    case .exit: "escape"
+                                    case .empty: "ellipsis.circle"
+                                    }
+                                }())
+                                .opacity(buttons[i] == .empty ? 0.0100000002421438702673861521 : 1)
+                                .foregroundStyle(buttons[i] == .exit ? .red : .blue)
+                            }
+                        }
+                        .font(.system(size: 18))
+                        .foregroundStyle(.blue)
+                    } header: {
+                        Text("预览")
+                    }
+                    .listRowBackground(Color.clear)
+                    Section {
+                        ForEach(0..<buttons.count, id: \.self) { i in
+                            Picker("按钮 \(i + 1)", selection: $buttons[i]) {
+                                Text("无").tag(WebViewFastButton.empty)
+                                Text("上一页").tag(WebViewFastButton.previousPage)
+                                Text("下一页").tag(WebViewFastButton.nextPage)
+                                Text("重新载入").tag(WebViewFastButton.refresh)
+                                Text("退出网页").tag(WebViewFastButton.exit)
+                                Text("播放网页视频").tag(WebViewFastButton.decodeVideo)
+                                Text("查看网页图片").tag(WebViewFastButton.decodeImage)
+                                Text("播放网页音频").tag(WebViewFastButton.decodeMusic)
+                            }
+                        }
+                    }
+                }
+                .navigationTitle("快捷按钮")
+            }
         }
     }
     struct HomeScreenSettingsView: View {
@@ -3594,10 +3683,9 @@ struct SettingsView: View {
         }
         
         struct FeatureFlagsView: View {
-            @AppStorage("INFFIsDarockIntelligenceEnabled") var isDarockIntelligenceEnabled = false
             var body: some View {
                 List {
-                    Toggle("Darock Intelligence", isOn: $isDarockIntelligenceEnabled)
+                    
                 }
                 .navigationTitle("Feature Flags")
             }
@@ -4008,4 +4096,36 @@ enum EngineNames: String, CaseIterable {
     case baidu = "百度"
     case google = "谷歌"
     case sougou = "搜狗"
+}
+
+enum WebViewFastButton: Codable {
+    case previousPage
+    case nextPage
+    case refresh
+    case decodeVideo
+    case decodeImage
+    case decodeMusic
+    case exit
+    case empty
+}
+extension [WebViewFastButton] {
+    static func getCurrentFastButtons() -> Self {
+        if let jsonStr = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/WebViewFastButtons.drkdataw", encoding: .utf8),
+           let data = getJsonData(Self.self, from: jsonStr) {
+            if data.count == 4 {
+                return data
+            }
+        }
+        return [.empty, .empty, .empty, .empty]
+    }
+    
+    func updateFastButtons() {
+        if let jsonStr = jsonString(from: self) {
+            do {
+                try jsonStr.write(toFile: NSHomeDirectory() + "/Documents/WebViewFastButtons.drkdataw", atomically: true, encoding: .utf8)
+            } catch {
+                globalErrorHandler(error)
+            }
+        }
+    }
 }

@@ -289,6 +289,7 @@ struct AudioControllerView: View {
                 #endif
             }())
         }
+        .brightnessReducable()
         .onAppear {
             isPlaying = globalAudioPlayer.timeControlStatus == .playing
             currentItemTotalTime = globalAudioPlayer.currentItem?.duration.seconds ?? 0.0

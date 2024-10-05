@@ -97,7 +97,7 @@ CH_EXPORT API_AVAILABLE(ios(13.0), macos(10.15), tvos(14.0), macCatalyst(13.0))
  */
 @property (readwrite) NSTimeInterval duration;
 
-- (nullable instancetype)init NS_UNAVAILABLE;
+- (nonnull instancetype)init NS_UNAVAILABLE;
 
 /*! @method initWithEventType:parameters:relativeTime
 	@abstract

@@ -102,5 +102,6 @@ private struct BookmarkWidgetsEntryView: View {
             default: EmptyView()
             }
         }
+        .widgetURL(URL(string: "wget://openURL/\(entry.url)"))
     }
 }

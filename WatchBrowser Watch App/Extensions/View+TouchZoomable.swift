@@ -20,31 +20,31 @@ extension View {
     }
 }
 
-private struct ZoomableRepresent<T>: _UIViewRepresentable where T: View {
+private struct ZoomableRepresent<T>: _UIViewControllerRepresentable where T: View {
     let sourceView: T
     var onPositionChange: ((CGPoint) -> Void)?
     var onScaleChange: ((CGFloat) -> Void)?
     
-    func makeUIView(context: Context) -> some NSObject {
-        let hostingSource = Dynamic(_makeUIHostingView(sourceView))
-        hostingSource.userInteractionEnabled = true
+    func makeUIViewController(context: Context) -> some NSObject {
+        let hostingSource = Dynamic(_makeUIHostingController(AnyView(sourceView)))
+        hostingSource.view.userInteractionEnabled = true
         
         let panGesture = Dynamic.UIPanGestureRecognizer.initWithTarget(context.coordinator, action: #selector(Coordinator.handlePanGesture(_:)))
         panGesture.delegate = context.coordinator
         panGesture.cancelsTouchesInView = false
-        hostingSource.addGestureRecognizer(panGesture)
+        hostingSource.view.addGestureRecognizer(panGesture)
         
         let pinchGesture = Dynamic.UIPinchGestureRecognizer.initWithTarget(context.coordinator, action: #selector(Coordinator.handlePinchGesture(_:)))
         panGesture.delegate = context.coordinator
         panGesture.cancelsTouchesInView = false
-        hostingSource.addGestureRecognizer(pinchGesture)
+        hostingSource.view.addGestureRecognizer(pinchGesture)
         
         return hostingSource.asObject!
     }
-    func updateUIView(_ uiView: UIViewType, context: Context) {}
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(_makeUIHostingView(sourceView), onPositionChange: onPositionChange, onScaleChange: onScaleChange)
+        Coordinator(Dynamic(_makeUIHostingController(AnyView(sourceView))).view.asObject!, onPositionChange: onPositionChange, onScaleChange: onScaleChange)
     }
     
     @objcMembers

@@ -23,6 +23,7 @@ struct BrowsingMenuView: View {
     @AppStorage("ABReduceBrightnessLevel") var reduceBrightnessLevel = 0.2
     @AppStorage("DBIsAutoAppearence") var isAutoAppearence = false
     @AppStorage("DBAutoAppearenceOptionEnableForWebForceDark") var autoAppearenceOptionEnableForWebForceDark = true
+    @AppStorage("IsProPurchased") var isProPurchased = false
     @State var webView = webViewObject!
     @State var webLinkInput = ""
     @State var isCheckingWebContent = true
@@ -36,6 +37,7 @@ struct BrowsingMenuView: View {
     @State var isForwardListPresented = false
     @State var isNewBookmarkCreated = false
     @State var isNewBookmarkAnimating = false
+    @State var isWebAbstractPresented = false
     var body: some View {
         ZStack {
             NavigationStack {
@@ -230,6 +232,32 @@ struct BrowsingMenuView: View {
                                 }
                             })
                         }
+                        if isProPurchased {
+                            Section {
+                                Button(action: {
+                                    isWebAbstractPresented = true
+                                }, label: {
+                                    HStack {
+                                        Text("网页摘要")
+                                        Spacer()
+                                        Image(systemName: "doc.plaintext")
+                                    }
+                                })
+                                .listRowBackground(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(LinearGradient(
+                                            colors: [.init(hex: 0xf0aa3d), .init(hex: 0xce96f9)],
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomTrailing
+                                        ))
+                                        .background {
+                                            RoundedRectangle(cornerRadius: 12)
+                                                .fill(Color.gray)
+                                                .opacity(0.3)
+                                        }
+                                )
+                            }
+                        }
                         if !isHidingDistractingItems && labHideDistractingItemsEnabled {
                             Section {
                                 Button(action: {
@@ -419,6 +447,30 @@ struct BrowsingMenuView: View {
                                         Text("退出")
                                     }
                                 })
+                                if isProPurchased {
+                                    Button(action: {
+                                        isWebAbstractPresented = true
+                                    }, label: {
+                                        HStack {
+                                            Text("网页摘要")
+                                            Spacer()
+                                            Image(systemName: "doc.plaintext")
+                                        }
+                                    })
+                                    .background(
+                                        Capsule()
+                                            .stroke(LinearGradient(
+                                                colors: [.init(hex: 0xf0aa3d), .init(hex: 0xce96f9)],
+                                                startPoint: .topLeading,
+                                                endPoint: .bottomTrailing
+                                            ))
+                                            .background {
+                                                Capsule()
+                                                    .fill(Color.gray)
+                                                    .opacity(0.15)
+                                            }
+                                    )
+                                }
                                 if !AdvancedWebViewController.shared.currentUrl.isEmpty && !AdvancedWebViewController.shared.currentUrl.hasPrefix("file://") {
                                     HStack {
                                         ZStack {
@@ -512,6 +564,7 @@ struct BrowsingMenuView: View {
         }
         .sheet(isPresented: $isBackListPresented, content: { BackForwardListView(type: .back, menuPresentationMode: presentationMode) })
         .sheet(isPresented: $isForwardListPresented, content: { BackForwardListView(type: .forward, menuPresentationMode: presentationMode) })
+        .sheet(isPresented: $isWebAbstractPresented, content: { WebAbstractView(webView: webView) })
         .onAppear {
             if webLinkInput.isEmpty {
                 webLinkInput = webView.url?.absoluteString ?? ""

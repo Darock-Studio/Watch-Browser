@@ -194,6 +194,22 @@ final class AdvancedWebViewController: NSObject {
         wkWebView.navigationDelegate = WebViewNavigationDelegate.shared
         wkWebView.uiDelegate = WebViewUIDelegate.shared
         
+        // Disable WebGL to prevent web view from crashing
+        let _webGLDisableScript = """
+        (function() {
+            var getContext = HTMLCanvasElement.prototype.getContext;
+            HTMLCanvasElement.prototype.getContext = function(type) {
+                if (type === 'webgl2' || type === 'experimental-webgl') {
+                    console.log('WebGL is disabled');
+                    return null;
+                }
+                return getContext.apply(this, arguments);
+            };
+        })();
+        """
+        let webGLDisableScript = WKUserScript(source: _webGLDisableScript, injectionTime: .atDocumentStart, forMainFrameOnly: true)
+        wkWebView.configuration.userContentController.addUserScript(webGLDisableScript)
+        
         if #available(watchOS 9.4, *) {
             if _slowPath(isAllowWebInspector) {
                 wkWebView.isInspectable = true

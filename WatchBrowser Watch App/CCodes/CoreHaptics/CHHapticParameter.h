@@ -197,7 +197,7 @@ CH_EXPORT API_AVAILABLE(ios(13.0), macos(10.15), tvos(14.0), macCatalyst(13.0))
  */
 @property (readwrite) float value;
 
-- (nullable instancetype)init NS_UNAVAILABLE;
+- (nonnull instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithParameterID:(CHHapticEventParameterID)parameterID
 							  value:(float)value NS_DESIGNATED_INITIALIZER;
 
@@ -229,7 +229,7 @@ CH_EXPORT API_AVAILABLE(ios(13.0), macos(10.15), tvos(14.0), macCatalyst(13.0))
  */
 @property (readwrite) NSTimeInterval relativeTime;
 
-- (nullable instancetype)init NS_UNAVAILABLE;
+- (nonnull instancetype)init NS_UNAVAILABLE;
 
 /*! @method initWithParameterID:value:relativeTime
 	@abstract
@@ -259,7 +259,7 @@ CH_EXPORT API_AVAILABLE(ios(13.0), macos(10.15), tvos(14.0), macCatalyst(13.0))
 @property (readwrite) NSTimeInterval	relativeTime;
 @property (readwrite) float 			value;
 
-- (nullable instancetype)init NS_UNAVAILABLE;
+- (nonnull instancetype)init NS_UNAVAILABLE;
 
 /*! @method initWithRelativeTime:value
  	@abstract
@@ -289,7 +289,7 @@ CH_EXPORT API_AVAILABLE(ios(13.0), macos(10.15), tvos(14.0), macCatalyst(13.0))
 @property (readwrite) NSTimeInterval									relativeTime;
 @property (readonly)  NSArray<CHHapticParameterCurveControlPoint*> * controlPoints;
 
-- (nullable instancetype)init NS_UNAVAILABLE;
+- (nonnull instancetype)init NS_UNAVAILABLE;
 
 /*! @method initWithParameterID:controlPoints:relativeTime
  	@abstract

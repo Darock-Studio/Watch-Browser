@@ -43,7 +43,7 @@ struct DarockAccountLogin: View {
                                     darockAccount = accountCache
                                     presentationMode.wrappedValue.dismiss()
                                 } else {
-                                    alertTipText = "错误：账号或密码错误"
+                                    alertTipText = String(localized: "错误：账号或密码错误")
                                     isAlertPresented = true
                                     isLoading = false
                                 }

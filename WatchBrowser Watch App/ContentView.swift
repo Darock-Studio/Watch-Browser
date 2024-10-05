@@ -150,25 +150,6 @@ struct ContentView: View {
                             }
                         }
                 }
-                .onContinueUserActivity(BookmarkWidgetIntent.persistentIdentifier) { activity in
-                    if isProPurchased {
-                        if let intent = activity.widgetConfigurationIntent(of: BookmarkWidgetIntent.self), let openUrl = intent.url, openUrl.isURL() {
-                            AdvancedWebViewController.shared.present(openUrl)
-                        }
-                    }
-                }
-                .onContinueUserActivity("SearchWidgets") { _ in
-                    if isProPurchased {
-                        WKExtension.shared().visibleInterfaceController?.presentTextInputController(
-                            withSuggestions: nil,
-                            allowedInputMode: .allowEmoji
-                        ) { result in
-                            if let _texts = result as? [String], let text = _texts.first {
-                                startSearch(text, with: webSearch, allowPreload: false)
-                            }
-                        }
-                    }
-                }
             } else {
                 NavigationView {
                     MainView(withSetting: .constant(true))
@@ -415,6 +396,125 @@ struct MainView: View {
         }
     }
     
+    @ViewBuilder var searchField: some View {
+        TextField("Home.search-or-URL", text: $textOrURL) {
+            if textOrURL.isURL() {
+                goToButtonLabelText = "Home.go"
+                if preloadSearchContent && !isUseOldWebView {
+                    var tmpUrl = textOrURL
+                    if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+                        if !textOrURL.contains("://") {
+                            tmpUrl = "http://" + textOrURL
+                        } else {
+                            return
+                        }
+                    }
+                    AdvancedWebViewController.shared.present(tmpUrl.urlEncoded(), presentController: false)
+                    isPreloadedSearchWeb = true
+                }
+            } else {
+                if isSearchEngineShortcutEnabled {
+                    if textOrURL.hasPrefix("bing") {
+                        goToButtonLabelText = "Home.search.bing"
+                    } else if textOrURL.hasPrefix("baidu") {
+                        goToButtonLabelText = "Home.search.baidu"
+                    } else if textOrURL.hasPrefix("google") {
+                        goToButtonLabelText = "Home.search.google"
+                    } else if textOrURL.hasPrefix("sogou") {
+                        goToButtonLabelText = "Home.search.sogou"
+                    } else {
+                        goToButtonLabelText = "Home.search"
+                    }
+                } else {
+                    goToButtonLabelText = "Home.search"
+                }
+                if preloadSearchContent && !isUseOldWebView {
+                    AdvancedWebViewController.shared.present(
+                        getWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
+                        presentController: false
+                    )
+                    isPreloadedSearchWeb = true
+                }
+            }
+        }
+        .autocorrectionDisabled()
+        .textInputAutocapitalization(.never)
+        .privacySensitive()
+        .swipeActions(edge: .leading, allowsFullSwipe: true) {
+            if textOrURL != "" {
+                Button(action: {
+                    let userdefault = UserDefaults.standard
+                    let total = userdefault.integer(forKey: "BookmarkTotal") &+ 1
+                    let markName = { () -> String in
+                        if textOrURL.isURL() {
+                            if textOrURL.hasPrefix("https://") || textOrURL.hasPrefix("http://") {
+                                let ped = textOrURL.split(separator: "://")[1]
+                                let sed = ped.split(separator: "/")[0]
+                                let ded = sed.split(separator: ".")
+                                return String(ded[ded.count - 2])
+                            } else {
+                                let sed = textOrURL.split(separator: "/")[0]
+                                let ded = sed.split(separator: ".")
+                                return String(ded[ded.count - 2])
+                            }
+                        } else {
+                            return textOrURL
+                        }
+                    }()
+                    userdefault.set(markName, forKey: "BookmarkName\(total)")
+                    if textOrURL.isURL() {
+                        userdefault.set(
+                            (textOrURL.hasPrefix("https://") || textOrURL.hasPrefix("http://"))
+                            ? textOrURL
+                            : "http://" + textOrURL,
+                            forKey: "BookmarkLink\(total)"
+                        )
+                    } else {
+                        userdefault.set(
+                            getWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
+                            forKey: "BookmarkLink\(total)"
+                        )
+                    }
+                    userdefault.set(total, forKey: "BookmarkTotal")
+                }, label: {
+                    Image(systemName: "bookmark.fill")
+                })
+            }
+        }
+        .swipeActions {
+            if !textOrURL.isEmpty {
+                Button(action: {
+                    textOrURL = ""
+                    goToButtonLabelText = "Home.search"
+                }, label: {
+                    Image(systemName: "xmark.bin.fill")
+                })
+            }
+        }
+    }
+    @ViewBuilder var searchButton: some View {
+        Button(action: {
+            startSearch(textOrURL, with: webSearch, allowPreload: isPreloadedSearchWeb)
+            isPreloadedSearchWeb = false
+        }, label: {
+            HStack {
+                Spacer()
+                Label(goToButtonLabelText, systemImage: goToButtonLabelText == "Home.search" ? "magnifyingglass" : "globe")
+                    .font(.system(size: 18))
+                Spacer()
+            }
+        })
+        .onTapGesture {
+            startSearch(textOrURL, with: webSearch, allowPreload: isPreloadedSearchWeb)
+            isPreloadedSearchWeb = false
+        }
+        .onLongPressGesture {
+            if isLongPressAlternativeSearch {
+                startSearch(textOrURL, with: alternativeSearch, allowPreload: false)
+            }
+        }
+    }
+    
     @ViewBuilder
     func getMainView(by controls: [HomeScreenControlType]) -> some View {
         let dividedControls = controls.split(separator: .spacer).map { Array<HomeScreenControlType>($0) }
@@ -423,117 +523,9 @@ struct MainView: View {
                 ForEach(0..<dividedControls[i].count, id: \.self) { j in
                     switch dividedControls[i][j] {
                     case .searchField:
-                        TextField("Home.search-or-URL", text: $textOrURL) {
-                            if textOrURL.isURL() {
-                                goToButtonLabelText = "Home.go"
-                                if preloadSearchContent && !isUseOldWebView {
-                                    var tmpUrl = textOrURL
-                                    if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                                        tmpUrl = "http://" + textOrURL
-                                    }
-                                    AdvancedWebViewController.shared.present(tmpUrl.urlEncoded(), presentController: false)
-                                    isPreloadedSearchWeb = true
-                                }
-                            } else {
-                                if isSearchEngineShortcutEnabled {
-                                    if textOrURL.hasPrefix("bing") {
-                                        goToButtonLabelText = "Home.search.bing"
-                                    } else if textOrURL.hasPrefix("baidu") {
-                                        goToButtonLabelText = "Home.search.baidu"
-                                    } else if textOrURL.hasPrefix("google") {
-                                        goToButtonLabelText = "Home.search.google"
-                                    } else if textOrURL.hasPrefix("sogou") {
-                                        goToButtonLabelText = "Home.search.sogou"
-                                    } else {
-                                        goToButtonLabelText = "Home.search"
-                                    }
-                                } else {
-                                    goToButtonLabelText = "Home.search"
-                                }
-                                if preloadSearchContent && !isUseOldWebView {
-                                    AdvancedWebViewController.shared.present(
-                                        getWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
-                                        presentController: false
-                                    )
-                                    isPreloadedSearchWeb = true
-                                }
-                            }
-                        }
-                        .autocorrectionDisabled()
-                        .textInputAutocapitalization(.never)
-                        .privacySensitive()
-                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                            if textOrURL != "" {
-                                Button(action: {
-                                    let userdefault = UserDefaults.standard
-                                    let total = userdefault.integer(forKey: "BookmarkTotal") &+ 1
-                                    let markName = { () -> String in
-                                        if textOrURL.isURL() {
-                                            if textOrURL.hasPrefix("https://") || textOrURL.hasPrefix("http://") {
-                                                let ped = textOrURL.split(separator: "://")[1]
-                                                let sed = ped.split(separator: "/")[0]
-                                                let ded = sed.split(separator: ".")
-                                                return String(ded[ded.count - 2])
-                                            } else {
-                                                let sed = textOrURL.split(separator: "/")[0]
-                                                let ded = sed.split(separator: ".")
-                                                return String(ded[ded.count - 2])
-                                            }
-                                        } else {
-                                            return textOrURL
-                                        }
-                                    }()
-                                    userdefault.set(markName, forKey: "BookmarkName\(total)")
-                                    if textOrURL.isURL() {
-                                        userdefault.set(
-                                            (textOrURL.hasPrefix("https://") || textOrURL.hasPrefix("http://"))
-                                            ? textOrURL
-                                            : "http://" + textOrURL,
-                                            forKey: "BookmarkLink\(total)"
-                                        )
-                                    } else {
-                                        userdefault.set(
-                                            getWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
-                                            forKey: "BookmarkLink\(total)"
-                                        )
-                                    }
-                                    userdefault.set(total, forKey: "BookmarkTotal")
-                                }, label: {
-                                    Image(systemName: "bookmark.fill")
-                                })
-                            }
-                        }
-                        .swipeActions {
-                            if !textOrURL.isEmpty {
-                                Button(action: {
-                                    textOrURL = ""
-                                    goToButtonLabelText = "Home.search"
-                                }, label: {
-                                    Image(systemName: "xmark.bin.fill")
-                                })
-                            }
-                        }
+                        searchField
                     case .searchButton:
-                        Button(action: {
-                            startSearch(textOrURL, with: webSearch, allowPreload: isPreloadedSearchWeb)
-                            isPreloadedSearchWeb = false
-                        }, label: {
-                            HStack {
-                                Spacer()
-                                Label(goToButtonLabelText, systemImage: goToButtonLabelText == "Home.search" ? "magnifyingglass" : "globe")
-                                    .font(.system(size: 18))
-                                Spacer()
-                            }
-                        })
-                        .onTapGesture {
-                            startSearch(textOrURL, with: webSearch, allowPreload: isPreloadedSearchWeb)
-                            isPreloadedSearchWeb = false
-                        }
-                        .onLongPressGesture {
-                            if isLongPressAlternativeSearch {
-                                startSearch(textOrURL, with: alternativeSearch, allowPreload: false)
-                            }
-                        }
+                        searchButton
                     case .spacer:
                         EmptyView()
                     case .pinnedBookmarks:
@@ -556,80 +548,54 @@ struct MainView: View {
                             NavigationLink(destination: {
                                 BookmarkView()
                             }, label: {
-                                HStack {
-                                    Spacer()
-                                    Label("Home.bookmarks", systemImage: "bookmark")
-                                    Spacer()
-                                }
+                                Label("Home.bookmarks", systemImage: "bookmark")
+                                    .centerAligned()
                             })
                         case .history:
                             NavigationLink(destination: {
                                 HistoryView()
                             }, label: {
-                                HStack {
-                                    Spacer()
-                                    Label("Home.history", systemImage: "clock")
-                                    Spacer()
-                                }
+                                Label("Home.history", systemImage: "clock")
+                                    .centerAligned()
                             })
                         case .webarchive:
                             if !webArchiveLinks.isEmpty {
                                 NavigationLink(destination: { WebArchiveListView() }, label: {
                                     VStack {
-                                        HStack {
-                                            Spacer()
-                                            Label("网页归档", systemImage: "archivebox")
-                                            Spacer()
-                                        }
+                                        Label("网页归档", systemImage: "archivebox")
                                         if isUseOldWebView {
-                                            HStack {
-                                                Spacer()
-                                                Text("使用旧版引擎时，网页归档不可用")
-                                                    .font(.system(size: 12))
-                                                    .multilineTextAlignment(.center)
-                                                Spacer()
-                                            }
+                                            Text("使用旧版引擎时，网页归档不可用")
+                                                .font(.system(size: 12))
+                                                .multilineTextAlignment(.center)
                                         }
                                     }
+                                    .centerAligned()
                                 })
                                 .disabled(isUseOldWebView)
                             }
                         case .musicPlaylist:
                             NavigationLink(destination: { PlaylistsView() }, label: {
-                                HStack {
-                                    Spacer()
-                                    Label("播放列表", systemImage: "music.note.list")
-                                    Spacer()
-                                }
+                                Label("播放列表", systemImage: "music.note.list")
+                                    .centerAligned()
                             })
                         case .localMedia:
                             if isHaveDownloadedAudio || isHaveLocalImage || isOfflineBooksAvailable || isHaveDownloadedVideo {
                                 NavigationLink(destination: { MediaListView() }, label: {
-                                    HStack {
-                                        Spacer()
-                                        Label("媒体列表", systemImage: "play.square.stack")
-                                        Spacer()
-                                    }
+                                    Label("媒体列表", systemImage: "play.square.stack")
+                                        .centerAligned()
                                 })
                             }
                         case .userscript:
                             NavigationLink(destination: { UserScriptsView() }, label: {
                                 VStack {
-                                    HStack {
-                                        Spacer()
-                                        Label("用户脚本", systemImage: "applescript")
-                                        Spacer()
-                                    }
+                                    Label("用户脚本", systemImage: "applescript")
                                     if isUseOldWebView {
-                                        HStack {
-                                            Spacer()
-                                            Text("使用旧版引擎时，用户脚本不可用")
-                                                .font(.system(size: 12))
-                                                .multilineTextAlignment(.center)
-                                            Spacer()
-                                        }
+                                        Text("使用旧版引擎时，用户脚本不可用")
+                                            .font(.system(size: 12))
+                                            .multilineTextAlignment(.center)
                                     }
                                 }
+                                .centerAligned()
                             })
                             .disabled(isUseOldWebView)
                         case .chores:
@@ -647,20 +613,14 @@ struct MainView: View {
                             }
                             if #available(watchOS 10, *), isShowClusterAd {
                                 NavigationLink(destination: { ClusterAdView() }, label: {
-                                    HStack {
-                                        Spacer()
-                                        Label("推荐 - 暗礁文件", systemImage: "sparkles")
-                                        Spacer()
-                                    }
+                                    Label("推荐 - 暗礁文件", systemImage: "sparkles")
+                                        .centerAligned()
                                 })
                             }
                             if isShowJoinGroup {
                                 NavigationLink(destination: { JoinGroupView() }, label: {
-                                    HStack {
-                                        Spacer()
-                                        Label("欢迎加入群聊", systemImage: "bubble.left.and.bubble.right")
-                                        Spacer()
-                                    }
+                                    Label("欢迎加入群聊", systemImage: "bubble.left.and.bubble.right")
+                                        .centerAligned()
                                 })
                             }
                         case .feedbackAssistant:
@@ -697,11 +657,7 @@ struct MainView: View {
                                 NavigationLink(destination: {
                                     SettingsView()
                                 }, label: {
-                                    HStack {
-                                        Spacer()
-                                        Label("Home.settings", systemImage: "gear")
-                                        Spacer()
-                                    }
+                                    Label("Home.settings", systemImage: "gear")
                                 })
                             }
                         }
@@ -762,7 +718,7 @@ func startSearch(_ textOrURL: String, with engine: String, allowPreload: Bool = 
         return
     }
     if textOrURL.isURL() {
-        if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
+        if !textOrURL.contains("://") {
             textOrURL = "http://" + textOrURL
         }
         AdvancedWebViewController.shared.present(textOrURL.urlEncoded())
@@ -880,7 +836,7 @@ extension String {
         topLevelDomainList.removeAll(where: { str in str.hasPrefix("#") || str.isEmpty })
         if let topLevel = getTopLevel(from: self)?.idnaEncoded, topLevelDomainList.contains(topLevel.uppercased().replacingOccurrences(of: " ", with: "")) {
             return true
-        } else if self.hasPrefix("http://") || self.hasPrefix("https://") {
+        } else if self.contains("://") {
             return true
         } else {
             return false
