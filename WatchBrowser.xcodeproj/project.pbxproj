@@ -191,9 +191,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8C4E349A2CB145210091AD22 /* DiagnosticsUI.xcframework in Embed Frameworks */,
 				8C8345802C9F0A6100311CE4 /* SaltUICore.xcframework in Embed Frameworks */,
 				8C52811D2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Embed Frameworks */,
-				8C4E349A2CB145210091AD22 /* DiagnosticsUI.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -852,15 +852,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C4E34992CB145210091AD22 /* DiagnosticsUI.xcframework in Frameworks */,
+				8C83457F2C9F0A6100311CE4 /* SaltUICore.xcframework in Frameworks */,
+				8C52811C2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Frameworks */,
 				8CA7B84F2BE3E053004643FE /* SDWebImageWebPCoder in Frameworks */,
 				8CA7B84C2BE3E025004643FE /* SDWebImageSwiftUI in Frameworks */,
 				8CF6363F2CAEC5E400ECE3B3 /* Pictor in Frameworks */,
 				8CF636372CAEB84A00ECE3B3 /* Cepheus in Frameworks */,
 				8CB803CC2BD3D776009B2FAC /* Dynamic in Frameworks */,
 				6B0253D82A4EFB0100567986 /* DarockKit in Frameworks */,
-				8C52811C2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Frameworks */,
 				6BFFCC562A8A6CF3001175EE /* DarockKit in Frameworks */,
-				8C4E34992CB145210091AD22 /* DiagnosticsUI.xcframework in Frameworks */,
 				8CF636422CAECA1800ECE3B3 /* Cepheus in Frameworks */,
 				8C34D5C52CAFC45E009257D0 /* Pictor in Frameworks */,
 				8CD3D89B2CA7E5D9009276DD /* Punycode in Frameworks */,
@@ -869,7 +870,6 @@
 				8CA47BF52C972A9A00753101 /* SwiftyStoreKit in Frameworks */,
 				8CF8B9632C44FCAA0070F833 /* MarkdownUI in Frameworks */,
 				8CF6363A2CAEB8AA00ECE3B3 /* Cepheus in Frameworks */,
-				8C83457F2C9F0A6100311CE4 /* SaltUICore.xcframework in Frameworks */,
 				8C40D4C42C33DBE900C4221C /* SDWebImagePDFCoder in Frameworks */,
 				8CA4537B2AE3C5F600138CE4 /* EFQRCode in Frameworks */,
 				8CAF38F72BD4F960006B9B16 /* SwiftSoup in Frameworks */,
