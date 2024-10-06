@@ -89,21 +89,25 @@ struct ProPurchaseView: View {
                             WidgetCenter.shared.invalidateConfigurationRecommendations()
                             #endif
                         }, label: {
-                            if !isPurchasing {
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text("以 \(priceString) 购买")
-                                    #if targetEnvironment(simulator)
-                                    Text(verbatim: "Simulator Mode")
-                                        .font(.system(size: 14))
-                                        .foregroundStyle(.gray)
-                                    #endif
+                            if !isAppBetaBuild {
+                                if !isPurchasing {
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text("以 \(priceString) 购买")
+                                        #if targetEnvironment(simulator)
+                                        Text(verbatim: "Simulator Mode")
+                                            .font(.system(size: 14))
+                                            .foregroundStyle(.gray)
+                                        #endif
+                                    }
+                                } else {
+                                    ProgressView()
+                                        .centerAligned()
                                 }
                             } else {
-                                ProgressView()
-                                    .centerAligned()
+                                Text("无法使用 Beta 版本购买暗礁浏览器 Pro")
                             }
                         })
-                        .disabled(isPurchasing)
+                        .disabled(isPurchasing || isAppBetaBuild)
                     } else {
                         if !isErrorLoadingPriceString {
                             HStack {

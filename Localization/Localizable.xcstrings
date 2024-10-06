@@ -5932,6 +5932,9 @@
       },
       "shouldTranslate" : false
     },
+    "Beta 构建" : {
+
+    },
     "bing" : {
       "localizations" : {
         "ar" : {
@@ -44314,6 +44317,9 @@
         }
       }
     },
+    "无法使用 Beta 版本购买暗礁浏览器 Pro" : {
+
+    },
     "无法修复" : {
       "localizations" : {
         "ar" : {
@@ -44865,6 +44871,9 @@
           }
         }
       }
+    },
+    "是" : {
+
     },
     "显示“快速退出”按钮" : {
       "localizations" : {

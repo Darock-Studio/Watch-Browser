@@ -691,6 +691,14 @@ struct SettingsView: View {
                             Text(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)
                                 .foregroundColor(.gray)
                         }
+                        if isAppBetaBuild {
+                            HStack {
+                                Text("Beta 构建")
+                                Spacer()
+                                Text("是")
+                                    .foregroundColor(.gray)
+                            }
+                        }
                         HStack {
                             Text("功能")
                             Spacer()

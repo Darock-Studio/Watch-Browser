@@ -30,6 +30,12 @@ var pIsTapToRadarAlertPresented = false
 var globalHapticEngine: CHHapticEngine?
 #endif
 
+#if BETA
+let isAppBetaBuild = true
+#else
+let isAppBetaBuild = false
+#endif
+
 @main
 struct WatchBrowser_Watch_AppApp: App {
     let device = WKInterfaceDevice.current()
