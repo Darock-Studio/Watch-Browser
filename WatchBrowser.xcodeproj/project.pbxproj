@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -750,7 +750,7 @@
 		8C8345452C9F03EB00311CE4 /* SaltUICore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SaltUICore.framework; path = "../../Library/Developer/Xcode/DerivedData/SaltUICore-bojldjzbsenpcufsomovujkhghou/Build/Products/Debug-watchos/SaltUICore.framework"; sourceTree = "<group>"; };
 		8C83454A2C9F049700311CE4 /* SaltUICore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SaltUICore.framework; sourceTree = "<group>"; };
 		8C83454D2C9F04E800311CE4 /* SaltUICore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SaltUICore.framework; path = DarockFrameworks/SaltUICore.framework; sourceTree = "<group>"; };
-		8C8345502C9F06C500311CE4 /* SaltUICore.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:B57D8PP775:Yuxuan Chen"; lastKnownFileType = wrapper.xcframework; name = SaltUICore.xcframework; path = DarockFrameworks/SaltUICore.xcframework; sourceTree = "<group>"; };
+		8C8345502C9F06C500311CE4 /* SaltUICore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SaltUICore.xcframework; path = DarockFrameworks/SaltUICore.xcframework; sourceTree = "<group>"; };
 		8C894B212BE7569300768B59 /* ExtKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtKeyboardView.swift; sourceTree = "<group>"; };
 		8C9188822C73A64000C64E70 /* WKWebView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView+.swift"; sourceTree = "<group>"; };
 		8C96E34A2C15901400751FAF /* ClusterAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAdView.swift; sourceTree = "<group>"; };
