@@ -256,6 +256,7 @@ struct MainView: View {
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
     @AppStorage("IsShowJoinGroup") var isShowJoinGroup = true
     @AppStorage("IsShowClusterAd") var isShowClusterAd = true
+    @AppStorage("IsBetaJoinAvailable") var isBetaJoinAvailable = false
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
     @AppStorage("PreloadSearchContent") var preloadSearchContent = true
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
@@ -364,6 +365,11 @@ struct MainView: View {
                             }
                         }
                     }
+                }
+            }
+            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/tf/get/DarockBrowser") { respStr, isSuccess in
+                if isSuccess {
+                    isBetaJoinAvailable = respStr.apiFixed() != "[None]"
                 }
             }
             do {
@@ -609,6 +615,12 @@ struct MainView: View {
                                             .font(.system(size: 14))
                                             .foregroundStyle(.gray)
                                     }
+                                })
+                            }
+                            if isBetaJoinAvailable {
+                                NavigationLink(destination: { BetaJoinView() }, label: {
+                                    Label("参与 Beta 测试", systemImage: "person.badge.clock")
+                                        .centerAligned()
                                 })
                             }
                             if #available(watchOS 10, *), isShowClusterAd {
