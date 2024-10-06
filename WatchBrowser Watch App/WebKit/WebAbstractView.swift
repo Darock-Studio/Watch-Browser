@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Dynamic
 import DarockKit
 import SwiftSoup
 
@@ -41,7 +40,7 @@ struct WebAbstractView: View {
             }
         }
         .overlay {
-            RoundedRectangle(cornerRadius: Dynamic.UIScreen.mainScreen._displayCornerRadius.asDouble!)
+            RoundedRectangle(cornerRadius: WKInterfaceDevice.current().screenCornerRadius)
                 .stroke(AngularGradient(
                     colors: [.init(hex: 0xf0aa3d), .init(hex: 0xef4b62), .init(hex: 0x9ec8e1), .init(hex: 0xce96f9)],
                     center: .center,
@@ -132,4 +131,19 @@ private func webAbstract(from sourceText: String) async -> String? {
         SingleIntelligenceMessage(role: .user, content: sourceText)
     ]
     return await getRawIntelligenceCompletionData(from: messages)
+}
+
+extension WKInterfaceDevice {
+    var screenCornerRadius: Double {
+        switch self.screenBounds {
+        case .init(x: 0, y: 0, width: 162, height: 197): 28   // 40mm
+        case .init(x: 0, y: 0, width: 176, height: 215): 38.5 // 41mm
+        case .init(x: 0, y: 0, width: 187, height: 223): 44   // 42mm
+        case .init(x: 0, y: 0, width: 184, height: 224): 34   // 44mm
+        case .init(x: 0, y: 0, width: 198, height: 242): 42.5 // 45mm
+        case .init(x: 0, y: 0, width: 208, height: 248): 50   // 46mm
+        case .init(x: 0, y: 0, width: 205, height: 251): 54   // 49mm
+        default: 45
+        }
+    }
 }
