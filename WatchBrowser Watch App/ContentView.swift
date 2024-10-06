@@ -836,7 +836,7 @@ extension String {
         topLevelDomainList.removeAll(where: { str in str.hasPrefix("#") || str.isEmpty })
         if let topLevel = getTopLevel(from: self)?.idnaEncoded, topLevelDomainList.contains(topLevel.uppercased().replacingOccurrences(of: " ", with: "")) {
             return true
-        } else if self.contains("://") {
+        } else if self.split(separator: ".").first?.contains("://") ?? false {
             return true
         } else {
             return false
