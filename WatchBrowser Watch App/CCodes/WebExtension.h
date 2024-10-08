@@ -26,7 +26,4 @@ NSUserActivity* globalWebBrowsingUserActivity;
 
 @end
 
-FOUNDATION_EXPORT OSStatus AudioServicesCreateSystemSoundID(CFURLRef inFileURL, UInt32 *outSystemSoundID);
-FOUNDATION_EXPORT void AudioServicesPlaySystemSound(UInt32 inSystemSoundID);
-
 #endif /* WebExtension_h */
