@@ -119,7 +119,6 @@
 		8CF6361F2CADC19200ECE3B3 /* WebAbstractView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6361E2CADC18C00ECE3B3 /* WebAbstractView.swift */; };
 		8CF636212CADC28E00ECE3B3 /* IntelligenceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF636202CADC28800ECE3B3 /* IntelligenceModels.swift */; };
 		8CF636232CADD7CC00ECE3B3 /* IntelligenceStart.ahap in Resources */ = {isa = PBXBuildFile; fileRef = 8CF636222CADD7CC00ECE3B3 /* IntelligenceStart.ahap */; };
-		8CF636262CADDB4E00ECE3B3 /* IntelligenceBegin.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8CF636252CADDB4E00ECE3B3 /* IntelligenceBegin.caf */; };
 		8CF636282CAE6B2900ECE3B3 /* View+BrightnessReducable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF636272CAE6B1D00ECE3B3 /* View+BrightnessReducable.swift */; };
 		8CF636372CAEB84A00ECE3B3 /* Cepheus in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF636362CAEB84A00ECE3B3 /* Cepheus */; };
 		8CF6363A2CAEB8AA00ECE3B3 /* Cepheus in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF636392CAEB8AA00ECE3B3 /* Cepheus */; };
@@ -840,7 +839,6 @@
 		8CF6361E2CADC18C00ECE3B3 /* WebAbstractView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAbstractView.swift; sourceTree = "<group>"; };
 		8CF636202CADC28800ECE3B3 /* IntelligenceModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntelligenceModels.swift; sourceTree = "<group>"; };
 		8CF636222CADD7CC00ECE3B3 /* IntelligenceStart.ahap */ = {isa = PBXFileReference; lastKnownFileType = text; path = IntelligenceStart.ahap; sourceTree = "<group>"; };
-		8CF636252CADDB4E00ECE3B3 /* IntelligenceBegin.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IntelligenceBegin.caf; sourceTree = "<group>"; };
 		8CF636272CAE6B1D00ECE3B3 /* View+BrightnessReducable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+BrightnessReducable.swift"; sourceTree = "<group>"; };
 		8CF8B95C2C4280230070F833 /* MediaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListView.swift; sourceTree = "<group>"; };
 		E25EA8392B70ABEF00BFEC6E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -1792,14 +1790,6 @@
 			path = Image;
 			sourceTree = "<group>";
 		};
-		8CF636242CADDB4100ECE3B3 /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-				8CF636252CADDB4E00ECE3B3 /* IntelligenceBegin.caf */,
-			);
-			path = Sounds;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -2039,7 +2029,6 @@
 				8CF636232CADD7CC00ECE3B3 /* IntelligenceStart.ahap in Resources */,
 				8C3E839D2C82246B00686E9C /* LICENSE in Resources */,
 				8C40D4C62C33DE6B00C4221C /* TopLevelDomainList.drkdatat in Resources */,
-				8CF636262CADDB4E00ECE3B3 /* IntelligenceBegin.caf in Resources */,
 				E25EA8382B70ABEF00BFEC6E /* InfoPlist.strings in Resources */,
 				6BF209F82990E61E00E623FC /* Assets.xcassets in Resources */,
 				6B7CA9052ABE7C05006FDCDA /* Localizable.xcstrings in Resources */,
