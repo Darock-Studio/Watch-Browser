@@ -299,12 +299,8 @@ struct AudioControllerView: View {
             resetMenuDismissTimer()
             resetGlobalAudioLooper()
             pIsAudioControllerAvailable = true
-            extendScreenIdleTime(3600)
             audioHumanNameChart = (UserDefaults.standard.dictionary(forKey: "AudioHumanNameChart") as? [String: String]) ?? [:]
             currentPlaylistContent = getCurrentPlaylistContents() ?? []
-        }
-        .onDisappear {
-            recoverNormalIdleTime()
         }
         .onReceive(globalAudioPlayer.publisher(for: \.timeControlStatus)) { status in
             isPlaying = status == .playing
