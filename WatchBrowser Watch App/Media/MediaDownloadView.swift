@@ -97,7 +97,6 @@ struct MediaDownloadView: View {
             })
         }
         .onAppear {
-            extendScreenIdleTime(3600)
             do {
                 if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)") {
                     try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/\(saveFolderName)", withIntermediateDirectories: true)
@@ -265,7 +264,6 @@ struct MediaDownloadView: View {
             }
         }
         .onDisappear {
-            recoverNormalIdleTime()
             m3u8DownloadObservation?.invalidate()
             m3u8DownloadTimer?.invalidate()
         }
