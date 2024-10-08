@@ -56,9 +56,6 @@ struct WebAbstractView: View {
         .onAppear {
             getAbstract()
             playHaptic(from: Bundle.main.url(forResource: "IntelligenceStart", withExtension: "ahap")!)
-            var soundId: UInt32 = 0
-            AudioServicesCreateSystemSoundID(Bundle.main.url(forResource: "IntelligenceBegin", withExtension: "caf")! as CFURL, &soundId)
-            AudioServicesPlaySystemSound(soundId)
         }
     }
     
@@ -67,9 +64,6 @@ struct WebAbstractView: View {
         abstractString = ""
         animateTimer = Timer.scheduledTimer(withTimeInterval: 0.02, repeats: true) { _ in
             animateAngle += 1
-        }
-        DispatchQueue.main.async {
-            extendScreenIdleTime(300)
         }
         webView.evaluateJavaScript("document.documentElement.outerHTML") { obj, _ in
             DispatchQueue(label: "com.darock.WatchBrowser.Intelligence.Abstract", qos: .userInitiated).async {
@@ -94,21 +88,18 @@ struct WebAbstractView: View {
                             }
                             DispatchQueue.main.async {
                                 animateTimer?.invalidate()
-                                recoverNormalIdleTime()
                             }
                         }
                     } catch {
                         DispatchQueue.main.async {
                             isFailedLoading = true
                             animateTimer?.invalidate()
-                            recoverNormalIdleTime()
                         }
                     }
                 } else {
                     DispatchQueue.main.async {
                         isFailedLoading = true
                         animateTimer?.invalidate()
-                        recoverNormalIdleTime()
                     }
                 }
             }
