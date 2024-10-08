@@ -454,13 +454,3 @@ func playHaptic(from url: URL) {
     }
     #endif
 }
-
-@inline(__always)
-internal func extendScreenIdleTime(_ time: Double, disableSleep: Bool = true) {
-    Dynamic.PUICApplication.sharedPUICApplication().setExtendedIdleTime(time, disablesSleepGesture: disableSleep, wantsAutorotation: false)
-}
-@inline(__always)
-internal func recoverNormalIdleTime() {
-    Dynamic.PUICApplication.sharedPUICApplication().extendedIdleTime = 0.0
-    Dynamic.PUICApplication.sharedPUICApplication().disablesSleepGesture = false
-}
