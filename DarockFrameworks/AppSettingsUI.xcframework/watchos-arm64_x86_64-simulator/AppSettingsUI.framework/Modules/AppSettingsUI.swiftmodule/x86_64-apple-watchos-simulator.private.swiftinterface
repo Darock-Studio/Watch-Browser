@@ -1,0 +1,137 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0 effective-5.10 (swiftlang-6.0.0.9.10 clang-1600.0.26.2)
+// swift-module-flags: -target x86_64-apple-watchos9.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name AppSettingsUI
+@_exported import AppSettingsUI
+import Foundation
+import Swift
+import SwiftUI
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_typeEraser(ASUIAnyLabel) public protocol ASUILabel {
+  associatedtype ViewType : SwiftUICore.View
+  var titleKey: SwiftUICore.LocalizedStringKey { get }
+  @SwiftUICore.ViewBuilder func _makeView() -> Self.ViewType
+}
+public struct ASUIAnyLabel : AppSettingsUI.ASUILabel {
+  public var titleKey: SwiftUICore.LocalizedStringKey
+  public init<T>(_ label: T) where T : AppSettingsUI.ASUILabel
+  public init<T>(erasing label: T) where T : AppSettingsUI.ASUILabel
+  public func _makeView() -> some SwiftUICore.View
+  
+  public typealias ViewType = @_opaqueReturnTypeOf("$s13AppSettingsUI12ASUIAnyLabelV9_makeViewQryF", 0) __
+}
+public struct ASUIColoredLabel : AppSettingsUI.ASUILabel {
+  public var titleKey: SwiftUICore.LocalizedStringKey
+  public init(titleKey: SwiftUICore.LocalizedStringKey, systemImage: Swift.String, color: SwiftUICore.Color, symbolFontSize: CoreFoundation.CGFloat = 12)
+  public init(titleKey: SwiftUICore.LocalizedStringKey, _internalSystemImage: Swift.String, color: SwiftUICore.Color, symbolFontSize: CoreFoundation.CGFloat = 12)
+  public func _makeView() -> some SwiftUICore.View
+  
+  public typealias ViewType = @_opaqueReturnTypeOf("$s13AppSettingsUI16ASUIColoredLabelV9_makeViewQryF", 0) __
+}
+public struct ASUIEmptyLabel : AppSettingsUI.ASUILabel {
+  public var titleKey: SwiftUICore.LocalizedStringKey
+  public init()
+  public func _makeView() -> some SwiftUICore.View
+  
+  public typealias ViewType = @_opaqueReturnTypeOf("$s13AppSettingsUI14ASUIEmptyLabelV9_makeViewQryF", 0) __
+}
+@_typeEraser(ASUIAnySettingControl) public protocol ASUISettingControl : SwiftUICore.View {
+}
+@_Concurrency.MainActor @preconcurrency public struct ASUIAnySettingControl : AppSettingsUI.ASUISettingControl {
+  @_Concurrency.MainActor @preconcurrency public init<T>(_ control: T) where T : AppSettingsUI.ASUISettingControl
+  @_Concurrency.MainActor @preconcurrency public init<T>(erasing control: T) where T : AppSettingsUI.ASUISettingControl
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias Body = @_opaqueReturnTypeOf("$s13AppSettingsUI21ASUIAnySettingControlV4bodyQrvp", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct ASUISettingToggleControl : AppSettingsUI.ASUISettingControl {
+  @_Concurrency.MainActor @preconcurrency public init<Label>(_ defaultsKey: Swift.String, defaultValue: Swift.Bool = false, @SwiftUICore.ViewBuilder label: @escaping () -> Label) where Label : SwiftUICore.View
+  @_Concurrency.MainActor @preconcurrency public init(_ defaultsKey: Swift.String, defaultValue: Swift.Bool = false, titleKey: SwiftUICore.LocalizedStringKey)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias Body = @_opaqueReturnTypeOf("$s13AppSettingsUI24ASUISettingToggleControlV4bodyQrvp", 0) __
+}
+@_functionBuilder public struct ASUISettingsBuilder {
+  public static func buildBlock(_ components: AppSettingsUI.ASUISettingsSection...) -> [AppSettingsUI.ASUISettingsSection]
+  public static func buildBlock(_ components: AppSettingsUI.ASUISettingsRow...) -> [AppSettingsUI.ASUISettingsRow]
+  public static func buildBlock(_ components: AppSettingsUI.ASUISettingControlSection...) -> [AppSettingsUI.ASUISettingControlSection]
+  public static func buildBlock<T>(_ components: T...) -> [AppSettingsUI.ASUIAnySettingControl] where T : AppSettingsUI.ASUISettingControl
+  public static func buildBlock<T>(_ components: T...) -> AppSettingsUI.ASUIAnyLabel where T : AppSettingsUI.ASUILabel
+}
+@_Concurrency.MainActor @preconcurrency public struct ASUISettingsSection : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init(rows: [AppSettingsUI.ASUISettingsRow], header: SwiftUICore.LocalizedStringKey? = nil, @SwiftUICore.ViewBuilder footer: @escaping () -> some View)
+  @_Concurrency.MainActor @preconcurrency public init(rows: [AppSettingsUI.ASUISettingsRow], header: SwiftUICore.LocalizedStringKey? = nil)
+  @_Concurrency.MainActor @preconcurrency public init(@AppSettingsUI.ASUISettingsBuilder content: @escaping () -> [AppSettingsUI.ASUISettingsRow], header: SwiftUICore.LocalizedStringKey? = nil, @SwiftUICore.ViewBuilder footer: @escaping () -> some View)
+  @_Concurrency.MainActor @preconcurrency public init(@AppSettingsUI.ASUISettingsBuilder content: @escaping () -> [AppSettingsUI.ASUISettingsRow], header: SwiftUICore.LocalizedStringKey? = nil)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias Body = @_opaqueReturnTypeOf("$s13AppSettingsUI19ASUISettingsSectionV4bodyQrvp", 0) __
+}
+public struct ASUISettingsRow {
+  public var destination: AppSettingsUI.ASUISettingsRow.Destination
+  public var label: AppSettingsUI.ASUISettingsRow.Label
+  public init(destination: AppSettingsUI.ASUISettingsRow.Destination, label: AppSettingsUI.ASUISettingsRow.Label)
+  public init(@AppSettingsUI.ASUISettingsBuilder destination: () -> [AppSettingsUI.ASUISettingsSection], label: AppSettingsUI.ASUISettingsRow.Label)
+  public init(@AppSettingsUI.ASUISettingsBuilder destination: () -> [AppSettingsUI.ASUISettingControlSection], label: AppSettingsUI.ASUISettingsRow.Label)
+  public init(@SwiftUICore.ViewBuilder destination: () -> some View, label: AppSettingsUI.ASUISettingsRow.Label)
+  public init(destination: AppSettingsUI.ASUISettingsRow.Destination, @AppSettingsUI.ASUISettingsBuilder label: () -> AppSettingsUI.ASUIAnyLabel)
+  public init(destination: AppSettingsUI.ASUISettingsRow.Destination, @SwiftUICore.ViewBuilder label: () -> some View)
+  public init(@AppSettingsUI.ASUISettingsBuilder destination: () -> [AppSettingsUI.ASUISettingsSection], @AppSettingsUI.ASUISettingsBuilder label: () -> AppSettingsUI.ASUIAnyLabel)
+  public init(@AppSettingsUI.ASUISettingsBuilder destination: () -> [AppSettingsUI.ASUISettingsSection], @SwiftUICore.ViewBuilder label: () -> some View)
+  public init(@AppSettingsUI.ASUISettingsBuilder destination: () -> [AppSettingsUI.ASUISettingControlSection], @AppSettingsUI.ASUISettingsBuilder label: () -> AppSettingsUI.ASUIAnyLabel)
+  public init(@AppSettingsUI.ASUISettingsBuilder destination: () -> [AppSettingsUI.ASUISettingControlSection], @SwiftUICore.ViewBuilder label: () -> some View)
+  public init(@SwiftUICore.ViewBuilder destination: () -> some View, @AppSettingsUI.ASUISettingsBuilder label: () -> AppSettingsUI.ASUIAnyLabel)
+  public init(@SwiftUICore.ViewBuilder destination: () -> some View, @SwiftUICore.ViewBuilder label: () -> some View)
+  public func _makeView() -> some SwiftUICore.View
+  
+  public enum Label {
+    case `default`(AppSettingsUI.ASUIAnyLabel)
+    case custom(SwiftUICore.AnyView)
+    public func _makeView() -> some SwiftUICore.View
+    
+    public func _textKey() -> SwiftUICore.LocalizedStringKey?
+  }
+  @_Concurrency.MainActor @preconcurrency public enum Destination : SwiftUICore.View {
+    case settingSections([AppSettingsUI.ASUISettingsSection])
+    case controls([AppSettingsUI.ASUISettingControlSection])
+    case custom(SwiftUICore.AnyView)
+    @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+      get
+    }
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Body = @_opaqueReturnTypeOf("$s13AppSettingsUI15ASUISettingsRowV11DestinationO4bodyQrvp", 0) __
+  }
+}
+@_Concurrency.MainActor @preconcurrency public struct ASUISettingControlSection : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init(controls: [AppSettingsUI.ASUIAnySettingControl], header: SwiftUICore.LocalizedStringKey? = nil, @SwiftUICore.ViewBuilder footer: @escaping () -> some View)
+  @_Concurrency.MainActor @preconcurrency public init(controls: [AppSettingsUI.ASUIAnySettingControl], header: SwiftUICore.LocalizedStringKey? = nil)
+  @_Concurrency.MainActor @preconcurrency public init(@AppSettingsUI.ASUISettingsBuilder content: @escaping () -> [AppSettingsUI.ASUIAnySettingControl], header: SwiftUICore.LocalizedStringKey? = nil, @SwiftUICore.ViewBuilder footer: @escaping () -> some View)
+  @_Concurrency.MainActor @preconcurrency public init(@AppSettingsUI.ASUISettingsBuilder content: @escaping () -> [AppSettingsUI.ASUIAnySettingControl], header: SwiftUICore.LocalizedStringKey? = nil)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias Body = @_opaqueReturnTypeOf("$s13AppSettingsUI25ASUISettingControlSectionV4bodyQrvp", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct ASUISettingsView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init(sections: [AppSettingsUI.ASUISettingsSection])
+  @_Concurrency.MainActor @preconcurrency public init(@AppSettingsUI.ASUISettingsBuilder content: () -> [AppSettingsUI.ASUISettingsSection])
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias Body = @_opaqueReturnTypeOf("$s13AppSettingsUI16ASUISettingsViewV4bodyQrvp", 0) __
+}
+extension AppSettingsUI.ASUIAnySettingControl : Swift.Sendable {}
+extension AppSettingsUI.ASUISettingToggleControl : Swift.Sendable {}
+extension AppSettingsUI.ASUISettingsSection : Swift.Sendable {}
+extension AppSettingsUI.ASUISettingsRow.Destination : Swift.Sendable {}
+extension AppSettingsUI.ASUISettingControlSection : Swift.Sendable {}
+extension AppSettingsUI.ASUISettingsView : Swift.Sendable {}

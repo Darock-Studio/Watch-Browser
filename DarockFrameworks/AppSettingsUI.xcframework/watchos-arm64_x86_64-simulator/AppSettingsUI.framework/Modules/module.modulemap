@@ -1,0 +1,6 @@
+framework module AppSettingsUI {
+  umbrella header "AppSettingsUI.h"
+  export *
+
+  module * { export * }
+}

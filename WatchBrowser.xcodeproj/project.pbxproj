@@ -21,6 +21,8 @@
 		8C03B6E02C296338000770B4 /* NetworkCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C03B6DF2C296338000770B4 /* NetworkCheckView.swift */; };
 		8C03B70E2C29B2CE000770B4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8C03B70D2C29B2CE000770B4 /* Localizable.xcstrings */; };
 		8C1DED022C32AEBB0048A32A /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1DED012C32AEB00048A32A /* General.swift */; };
+		8C207DCE2CBA8F650054D687 /* RadarKitCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C207DCD2CBA8F650054D687 /* RadarKitCore.xcframework */; };
+		8C207DCF2CBA8F650054D687 /* RadarKitCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C207DCD2CBA8F650054D687 /* RadarKitCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C34D5C52CAFC45E009257D0 /* Pictor in Frameworks */ = {isa = PBXBuildFile; productRef = 8C34D5C42CAFC45E009257D0 /* Pictor */; };
 		8C3E839D2C82246B00686E9C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E839C2C82246B00686E9C /* LICENSE */; };
 		8C40D4C42C33DBE900C4221C /* SDWebImagePDFCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 8C40D4C32C33DBE900C4221C /* SDWebImagePDFCoder */; };
@@ -36,6 +38,8 @@
 		8C547B012C3296D40093D592 /* DarockBrowserUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C547B002C3296D40093D592 /* DarockBrowserUnitTests.swift */; };
 		8C5930652C712F75004C79CE /* BrowsingMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5930642C712F75004C79CE /* BrowsingMenuView.swift */; };
 		8C5930672C71CE51004C79CE /* SwiftWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5930662C71CE45004C79CE /* SwiftWebView.swift */; };
+		8C66AD652CB3C2D700FEA489 /* AppSettingsUI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB4DE932CB325740081AE72 /* AppSettingsUI.xcframework */; };
+		8C66AD662CB3C2D700FEA489 /* AppSettingsUI.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB4DE932CB325740081AE72 /* AppSettingsUI.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C67C8F32C60DFF30091714D /* UIKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C67C8F22C60DFED0091714D /* UIKitHelper.swift */; };
 		8C6D86792C10C6A70089CE67 /* LaboratoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D86782C10C6A70089CE67 /* LaboratoryView.swift */; };
 		8C6D867B2C10CA680089CE67 /* BrowsingTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D867A2C10CA680089CE67 /* BrowsingTabsView.swift */; };
@@ -190,9 +194,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8C66AD662CB3C2D700FEA489 /* AppSettingsUI.xcframework in Embed Frameworks */,
 				8C8345802C9F0A6100311CE4 /* SaltUICore.xcframework in Embed Frameworks */,
 				8C52811D2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Embed Frameworks */,
 				8C4E349A2CB145210091AD22 /* DiagnosticsUI.xcframework in Embed Frameworks */,
+				8C207DCF2CBA8F650054D687 /* RadarKitCore.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,6 +229,7 @@
 		8C03B70C2C29B20B000770B4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		8C03B70D2C29B2CE000770B4 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		8C1DED012C32AEB00048A32A /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
+		8C207DCD2CBA8F650054D687 /* RadarKitCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RadarKitCore.xcframework; path = DarockFrameworks/RadarKitCore.xcframework; sourceTree = "<group>"; };
 		8C3A5DEC2C6BCBDB002097A8 /* DocumentManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentManager.h; sourceTree = "<group>"; };
 		8C3A5DEE2C6BCBDB002097A8 /* NSDataAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDataAsset.h; sourceTree = "<group>"; };
 		8C3A5DEF2C6BCBDB002097A8 /* NSDiffableDataSourceSectionSnapshot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDiffableDataSourceSectionSnapshot.h; sourceTree = "<group>"; };
@@ -776,6 +783,7 @@
 		8CB349F62C32E05300CB6AC3 /* ___0721NeneChan.drkdatau */ = {isa = PBXFileReference; lastKnownFileType = file; path = "___0721NeneChan.drkdatau"; sourceTree = "<group>"; };
 		8CB349F72C32E05300CB6AC3 /* ___KawaiiChieriChan.drkdatau */ = {isa = PBXFileReference; lastKnownFileType = file; path = "___KawaiiChieriChan.drkdatau"; sourceTree = "<group>"; };
 		8CB349F82C32E05300CB6AC3 /* ___YoutouMurasameChan.drkdatau */ = {isa = PBXFileReference; lastKnownFileType = file; path = "___YoutouMurasameChan.drkdatau"; sourceTree = "<group>"; };
+		8CB4DE932CB325740081AE72 /* AppSettingsUI.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AppSettingsUI.xcframework; path = DarockFrameworks/AppSettingsUI.xcframework; sourceTree = "<group>"; };
 		8CB803CE2BD3DCE4009B2FAC /* WatchBrowser Watch App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WatchBrowser Watch App-Bridging-Header.h"; sourceTree = "<group>"; };
 		8CB803CF2BD3DCE4009B2FAC /* WebExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebExtension.m; sourceTree = "<group>"; };
 		8CB803D12BD3DCEE009B2FAC /* WebExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebExtension.h; sourceTree = "<group>"; };
@@ -852,6 +860,7 @@
 			files = (
 				8CA7B84F2BE3E053004643FE /* SDWebImageWebPCoder in Frameworks */,
 				8CA7B84C2BE3E025004643FE /* SDWebImageSwiftUI in Frameworks */,
+				8C207DCE2CBA8F650054D687 /* RadarKitCore.xcframework in Frameworks */,
 				8CF6363F2CAEC5E400ECE3B3 /* Pictor in Frameworks */,
 				8CF636372CAEB84A00ECE3B3 /* Cepheus in Frameworks */,
 				8CB803CC2BD3D776009B2FAC /* Dynamic in Frameworks */,
@@ -867,6 +876,7 @@
 				8CA47BF52C972A9A00753101 /* SwiftyStoreKit in Frameworks */,
 				8CF8B9632C44FCAA0070F833 /* MarkdownUI in Frameworks */,
 				8CF6363A2CAEB8AA00ECE3B3 /* Cepheus in Frameworks */,
+				8C66AD652CB3C2D700FEA489 /* AppSettingsUI.xcframework in Frameworks */,
 				8C83457F2C9F0A6100311CE4 /* SaltUICore.xcframework in Frameworks */,
 				8C40D4C42C33DBE900C4221C /* SDWebImagePDFCoder in Frameworks */,
 				8CA4537B2AE3C5F600138CE4 /* EFQRCode in Frameworks */,
@@ -950,7 +960,6 @@
 				6BF209F32990E61C00E623FC /* WatchBrowserApp.swift */,
 				6BF209F52990E61C00E623FC /* ContentView.swift */,
 				8CC3060D2CAB088200323034 /* Haptics */,
-				8CF636242CADDB4100ECE3B3 /* Sounds */,
 				8CB9A10A2C6D20E100E6A367 /* Extensions */,
 				8CB803D22BD3E6C0009B2FAC /* WebKit */,
 				8CB803CD2BD3DCD1009B2FAC /* CCodes */,
@@ -1516,6 +1525,8 @@
 		8C41F7E72C1439C90052A635 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C207DCD2CBA8F650054D687 /* RadarKitCore.xcframework */,
+				8CB4DE932CB325740081AE72 /* AppSettingsUI.xcframework */,
 				8C4E34982CB145210091AD22 /* DiagnosticsUI.xcframework */,
 				8CD3D7FE2CA7CBDE009276DD /* ClockKit.framework */,
 				8C8345502C9F06C500311CE4 /* SaltUICore.xcframework */,

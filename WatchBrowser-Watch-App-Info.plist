@@ -40,6 +40,12 @@
 		<string>SearchIntent</string>
 		<string>NSUserActivityTypeBrowsingWeb</string>
 	</array>
+	<key>PUICApplicationMaxZoomLevel</key>
+	<integer>5</integer>
+	<key>PUICApplicationSupportsAlwaysOn</key>
+	<true/>
+	<key>PUICApplicationSupportsInAppZoom</key>
+	<true/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>HYWenHei.ttf</string>
@@ -50,6 +56,28 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>UNUserNotificationCenter</key>
+	<dict>
+		<key>UNAutomaticallyShowSettings</key>
+		<true/>
+		<key>UNDaemonShouldReceiveApplicationEvents</key>
+		<true/>
+		<key>UNDaemonShouldReceiveBackgroundResponses</key>
+		<true/>
+		<key>UNDefaultSettings</key>
+		<dict>
+			<key>UNSettingAlerts</key>
+			<true/>
+			<key>UNSettingLockScreen</key>
+			<true/>
+			<key>UNSettingNotificationCenter</key>
+			<true/>
+			<key>UNSettingSounds</key>
+			<true/>
+		</dict>
+		<key>UNUniversalApplicationIdentifier</key>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	</dict>
 	<key>WKApplication</key>
 	<true/>
 	<key>WKPrefersNetworkUponForeground</key>
