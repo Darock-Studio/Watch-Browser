@@ -8,6 +8,7 @@
 import SwiftUI
 import DarockKit
 import MarkdownUI
+import RadarKitCore
 import UserNotifications
 
 fileprivate let globalStates: [LocalizedStringKey] = [
@@ -560,30 +561,29 @@ struct FeedbackView: View {
                                 tagsString += "<****>"
                             }
                             tagsString += issuePlace
-                            let msgToSend = """
-                            \(titleInput)
-                            State：0
-                            Type：\(feedbackType)
-                            Content：\(contentInputs.joined(separator: "\\n"))
-                            Time：\(Date.now.timeIntervalSince1970)\(extDiags)\(!extHistories.isEmpty ? "\nExtHistories：" + extHistories.description : "")
-                            NotificationToken：\(UserDefaults.standard.string(forKey: "UserNotificationToken") ?? "None")
-                            Sender: User
-                            UpdateTags：\(tagsString)
-                            """
-                            DarockKit.Network.shared
-                                .requestString("https://fapi.darock.top:65535/feedback/submit/anony/Darock Browser/\(msgToSend.base64Encoded().replacingOccurrences(of: "/", with: "{slash}"))".compatibleUrlEncoded()) { respStr, isSuccess in
-                                    if isSuccess {
-                                        if Int(respStr) != nil {
-                                            var arr = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
-                                            arr.insert(respStr, at: 0)
-                                            UserDefaults.standard.set(arr, forKey: "RadarFBIDs")
-                                            tipWithText("已发送", symbol: "paperplane.fill")
-                                            presentationMode.wrappedValue.dismiss()
-                                        } else {
-                                            tipWithText("服务器错误", symbol: "xmark.circle.fill")
-                                        }
-                                    }
+                            Task {
+                                let feedbackManager = RKCFeedbackManager(projectName: "Darock Browser")
+                                let newFeedbackID = await feedbackManager.newFeedback(try! .init(
+                                    title: titleInput,
+                                    content: contentInputs.joined(separator: "\\n"),
+                                    sender: "User",
+                                    additionalData: .rawString("""
+                                    Type：\(feedbackType)\(extDiags)\(!extHistories.isEmpty ? "\nExtHistories：" + extHistories.description : "")
+                                    NotificationToken：\(UserDefaults.standard.string(forKey: "UserNotificationToken") ?? "None")
+                                    UpdateTags：\(tagsString)
+                                    """)
+                                ))
+                                if let id = newFeedbackID {
+                                    var arr = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
+                                    arr.insert(String(id), at: 0)
+                                    UserDefaults.standard.set(arr, forKey: "RadarFBIDs")
+                                    tipWithText("已发送", symbol: "paperplane.fill")
+                                    presentationMode.wrappedValue.dismiss()
+                                } else {
+                                    tipWithText("服务器错误", symbol: "xmark.circle.fill")
+                                    isSending = false
                                 }
+                            }
                         }, label: {
                             if !isSending {
                                 Text("提交")
@@ -706,24 +706,18 @@ struct FeedbackView: View {
                     }
                     isReplySubmitted = true
                     if replyInput != "" {
-                        let enced = """
-                        Content：\(replyInput)
-                        Sender：User
-                        Time：\(Date.now.timeIntervalSince1970)
-                        """.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
-                        DarockKit.Network.shared
-                            .requestString("https://fapi.darock.top:65535/radar/reply/Darock Browser/\(id)/\(enced)".compatibleUrlEncoded()) { respStr, isSuccess in
-                                if isSuccess {
-                                    if respStr.apiFixed() == "Success" {
-                                        refresh()
-                                        replyInput = ""
-                                        isReplyPresented = false
-                                    } else {
-                                        tipWithText("未知错误", symbol: "xmark.circle.fill")
-                                    }
-                                    isReplySubmitted = false
-                                }
+                        let feedbackManager = RKCFeedbackManager(projectName: "Darock Browser")
+                        Task {
+                            let isSuccess = await feedbackManager.replyFeedback(toId: id, withContent: replyInput, bySender: "User")
+                            if isSuccess {
+                                refresh()
+                                replyInput = ""
+                                isReplyPresented = false
+                            } else {
+                                tipWithText("未知错误", symbol: "xmark.circle.fill")
                             }
+                            isReplySubmitted = false
+                        }
                     }
                 }
             })
