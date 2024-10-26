@@ -8048,6 +8048,9 @@
     "Data & Cloud" : {
       "shouldTranslate" : false
     },
+    "Debug" : {
+
+    },
     "Debugger" : {
       "shouldTranslate" : false
     },

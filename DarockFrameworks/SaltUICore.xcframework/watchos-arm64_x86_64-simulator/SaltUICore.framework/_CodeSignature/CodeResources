@@ -10,23 +10,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		dCyS4eA6eJPIGjYAtz4OBwUQp7Y=
+		47RVhxW/UnzL/RQjaYlVXwmkFok=
 		</data>
 		<key>Modules/SaltUICore.swiftmodule/Project/arm64-apple-watchos-simulator.swiftsourceinfo</key>
 		<data>
-		OxboR7qTi/ji/UltiFMjCSl7WUY=
+		IErVcqfEBB+d26iXbBYhF5kackE=
 		</data>
 		<key>Modules/SaltUICore.swiftmodule/Project/x86_64-apple-watchos-simulator.swiftsourceinfo</key>
 		<data>
-		xjs7rwpvPd9ORK1/mULvkkY7lD8=
+		BFAGd8IwMMrCNgCHBAUFcb1cDK8=
 		</data>
 		<key>Modules/SaltUICore.swiftmodule/arm64-apple-watchos-simulator.abi.json</key>
 		<data>
-		H87NeM6th58JBv93BcJem+3+cSI=
+		gcwBsH4BgyFY4sVtNt+/xOKS3vY=
 		</data>
 		<key>Modules/SaltUICore.swiftmodule/arm64-apple-watchos-simulator.private.swiftinterface</key>
 		<data>
-		qMmJ+h3EE6Ta9UuvZ70gF2n353M=
+		swE6S++bA6Uk4WLxgiT77/FqR7w=
 		</data>
 		<key>Modules/SaltUICore.swiftmodule/arm64-apple-watchos-simulator.swiftdoc</key>
 		<data>
@@ -34,19 +34,19 @@
 		</data>
 		<key>Modules/SaltUICore.swiftmodule/arm64-apple-watchos-simulator.swiftinterface</key>
 		<data>
-		qMmJ+h3EE6Ta9UuvZ70gF2n353M=
+		swE6S++bA6Uk4WLxgiT77/FqR7w=
 		</data>
 		<key>Modules/SaltUICore.swiftmodule/arm64-apple-watchos-simulator.swiftmodule</key>
 		<data>
-		Qco8p64WaZQpANJqlTtY+eYUeqc=
+		L+fVh6YfAcbAMiCbaG9ybGUFOtM=
 		</data>
 		<key>Modules/SaltUICore.swiftmodule/x86_64-apple-watchos-simulator.abi.json</key>
 		<data>
-		H87NeM6th58JBv93BcJem+3+cSI=
+		gcwBsH4BgyFY4sVtNt+/xOKS3vY=
 		</data>
 		<key>Modules/SaltUICore.swiftmodule/x86_64-apple-watchos-simulator.private.swiftinterface</key>
 		<data>
-		1SjIPNLHpQRwrYvHLURFqcBClaM=
+		qbVESWYO91ROngfQCxhVRJ0FVUU=
 		</data>
 		<key>Modules/SaltUICore.swiftmodule/x86_64-apple-watchos-simulator.swiftdoc</key>
 		<data>
@@ -54,11 +54,11 @@
 		</data>
 		<key>Modules/SaltUICore.swiftmodule/x86_64-apple-watchos-simulator.swiftinterface</key>
 		<data>
-		1SjIPNLHpQRwrYvHLURFqcBClaM=
+		qbVESWYO91ROngfQCxhVRJ0FVUU=
 		</data>
 		<key>Modules/SaltUICore.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule</key>
 		<data>
-		y35BndDvPZhsQJrh/89SHk6sipg=
+		4OUY4H45o6QOy3fXIod85phEQzI=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -78,28 +78,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			yK3mHuzNqcam5qp6e3nDVeDskFVh/xv0I5ENh9SjWyg=
+			mZMH67+Vg6u41vX06kIRJubSHz46Hkh+ZjzDVBXvdio=
 			</data>
 		</dict>
 		<key>Modules/SaltUICore.swiftmodule/Project/x86_64-apple-watchos-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			2fMQeB6vnml8HYQdB5TW5OoP+keS/ST4xsWeT3Rfnxo=
+			CW1AO9S93HfhHJhrqhQ6SUvauZF8qZRBBQxA2Za+Nyc=
 			</data>
 		</dict>
 		<key>Modules/SaltUICore.swiftmodule/arm64-apple-watchos-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3g7hapv5av6hQTqG+fgKHtLeFfuQnuGTriM/tQhp9hU=
+			Qnesa0n4URGWAopawg9bGx36dUwkYV00BoCJ8LFzlyg=
 			</data>
 		</dict>
 		<key>Modules/SaltUICore.swiftmodule/arm64-apple-watchos-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			OS6UclvvynWFnW+f/IDF9QGMjfa6l2mk80r6LU+hUgU=
+			2j/09KNcW0NIoFa23QqYyO8Q8vuzT1Y1g9/MAKtxIuA=
 			</data>
 		</dict>
 		<key>Modules/SaltUICore.swiftmodule/arm64-apple-watchos-simulator.swiftdoc</key>
@@ -113,28 +113,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			OS6UclvvynWFnW+f/IDF9QGMjfa6l2mk80r6LU+hUgU=
+			2j/09KNcW0NIoFa23QqYyO8Q8vuzT1Y1g9/MAKtxIuA=
 			</data>
 		</dict>
 		<key>Modules/SaltUICore.swiftmodule/arm64-apple-watchos-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XLOTLYCeENcWXLl2mcH1xncAoBPuEZVmLJmvJcGH8vI=
+			a2anvOWQtbFI2NtBKrAsuBUxyeuNzgi3ktBRCZdcPTY=
 			</data>
 		</dict>
 		<key>Modules/SaltUICore.swiftmodule/x86_64-apple-watchos-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3g7hapv5av6hQTqG+fgKHtLeFfuQnuGTriM/tQhp9hU=
+			Qnesa0n4URGWAopawg9bGx36dUwkYV00BoCJ8LFzlyg=
 			</data>
 		</dict>
 		<key>Modules/SaltUICore.swiftmodule/x86_64-apple-watchos-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			iZb9puRTa1GqrqRUYVLH3kL7QiRs66YZrarNZTA6xbw=
+			m4VKDPlJF3fiqcekC4jsPw0tzcn3fcWcdHl7e8OC1XQ=
 			</data>
 		</dict>
 		<key>Modules/SaltUICore.swiftmodule/x86_64-apple-watchos-simulator.swiftdoc</key>
@@ -148,14 +148,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			iZb9puRTa1GqrqRUYVLH3kL7QiRs66YZrarNZTA6xbw=
+			m4VKDPlJF3fiqcekC4jsPw0tzcn3fcWcdHl7e8OC1XQ=
 			</data>
 		</dict>
 		<key>Modules/SaltUICore.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			IVrv6U6ZfSfEGe7DH7Nb3GOm+LfGIvJFOd1FDCv5BNM=
+			EiN67J0z5T/CALjOdxyL6dUUhnPikxN6fbXUcVU6sSQ=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

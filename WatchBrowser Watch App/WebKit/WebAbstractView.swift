@@ -56,9 +56,6 @@ struct WebAbstractView: View {
         .onAppear {
             getAbstract()
             playHaptic(from: Bundle.main.url(forResource: "IntelligenceStart", withExtension: "ahap")!)
-            var soundId: UInt32 = 0
-            AudioServicesCreateSystemSoundID(Bundle.main.url(forResource: "IntelligenceBegin", withExtension: "caf")! as CFURL, &soundId)
-            AudioServicesPlaySystemSound(soundId)
         }
     }
     
