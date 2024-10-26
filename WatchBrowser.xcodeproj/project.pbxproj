@@ -38,8 +38,6 @@
 		8C547B012C3296D40093D592 /* DarockBrowserUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C547B002C3296D40093D592 /* DarockBrowserUnitTests.swift */; };
 		8C5930652C712F75004C79CE /* BrowsingMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5930642C712F75004C79CE /* BrowsingMenuView.swift */; };
 		8C5930672C71CE51004C79CE /* SwiftWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5930662C71CE45004C79CE /* SwiftWebView.swift */; };
-		8C66AD652CB3C2D700FEA489 /* AppSettingsUI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB4DE932CB325740081AE72 /* AppSettingsUI.xcframework */; };
-		8C66AD662CB3C2D700FEA489 /* AppSettingsUI.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB4DE932CB325740081AE72 /* AppSettingsUI.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C67C8F32C60DFF30091714D /* UIKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C67C8F22C60DFED0091714D /* UIKitHelper.swift */; };
 		8C6D86792C10C6A70089CE67 /* LaboratoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D86782C10C6A70089CE67 /* LaboratoryView.swift */; };
 		8C6D867B2C10CA680089CE67 /* BrowsingTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D867A2C10CA680089CE67 /* BrowsingTabsView.swift */; };
@@ -194,7 +192,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8C66AD662CB3C2D700FEA489 /* AppSettingsUI.xcframework in Embed Frameworks */,
 				8C8345802C9F0A6100311CE4 /* SaltUICore.xcframework in Embed Frameworks */,
 				8C52811D2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Embed Frameworks */,
 				8C4E349A2CB145210091AD22 /* DiagnosticsUI.xcframework in Embed Frameworks */,
@@ -876,7 +873,6 @@
 				8CA47BF52C972A9A00753101 /* SwiftyStoreKit in Frameworks */,
 				8CF8B9632C44FCAA0070F833 /* MarkdownUI in Frameworks */,
 				8CF6363A2CAEB8AA00ECE3B3 /* Cepheus in Frameworks */,
-				8C66AD652CB3C2D700FEA489 /* AppSettingsUI.xcframework in Frameworks */,
 				8C83457F2C9F0A6100311CE4 /* SaltUICore.xcframework in Frameworks */,
 				8C40D4C42C33DBE900C4221C /* SDWebImagePDFCoder in Frameworks */,
 				8CA4537B2AE3C5F600138CE4 /* EFQRCode in Frameworks */,

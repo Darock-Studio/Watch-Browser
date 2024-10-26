@@ -14,11 +14,11 @@
 		</data>
 		<key>Modules/AppSettingsUI.swiftmodule/Project/arm64-apple-watchos.swiftsourceinfo</key>
 		<data>
-		H2C5ZmVuPY/lkXfF5u6Vt0I0iRU=
+		zrolSfjUYC9/5V4U3uZcMkJd+Dg=
 		</data>
 		<key>Modules/AppSettingsUI.swiftmodule/Project/arm64_32-apple-watchos.swiftsourceinfo</key>
 		<data>
-		W5uXESm/9pAnmBqVA3gDhH3FjLY=
+		ipJk6W5fOgh8NHy1MZK++32eCXI=
 		</data>
 		<key>Modules/AppSettingsUI.swiftmodule/arm64-apple-watchos.abi.json</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Modules/AppSettingsUI.swiftmodule/arm64-apple-watchos.private.swiftinterface</key>
 		<data>
-		c3nMCQxe2RYw0F1SwbscQZmuwAQ=
+		0MTlWnl1IQf41HUM8bOUfRpZSh0=
 		</data>
 		<key>Modules/AppSettingsUI.swiftmodule/arm64-apple-watchos.swiftdoc</key>
 		<data>
@@ -34,11 +34,11 @@
 		</data>
 		<key>Modules/AppSettingsUI.swiftmodule/arm64-apple-watchos.swiftinterface</key>
 		<data>
-		c3nMCQxe2RYw0F1SwbscQZmuwAQ=
+		0MTlWnl1IQf41HUM8bOUfRpZSh0=
 		</data>
 		<key>Modules/AppSettingsUI.swiftmodule/arm64-apple-watchos.swiftmodule</key>
 		<data>
-		8l6UZA9WkKAtGoxPM8YKk3uDhXA=
+		zh1gWxrK0rG7B19V1Tz7tT3rVac=
 		</data>
 		<key>Modules/AppSettingsUI.swiftmodule/arm64_32-apple-watchos.abi.json</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Modules/AppSettingsUI.swiftmodule/arm64_32-apple-watchos.private.swiftinterface</key>
 		<data>
-		iE9/t/j7OSBx5uoJt6SsUXyRY1w=
+		IO2P7NjRq4Oq+esgEakwAkXp8v0=
 		</data>
 		<key>Modules/AppSettingsUI.swiftmodule/arm64_32-apple-watchos.swiftdoc</key>
 		<data>
@@ -54,11 +54,11 @@
 		</data>
 		<key>Modules/AppSettingsUI.swiftmodule/arm64_32-apple-watchos.swiftinterface</key>
 		<data>
-		iE9/t/j7OSBx5uoJt6SsUXyRY1w=
+		IO2P7NjRq4Oq+esgEakwAkXp8v0=
 		</data>
 		<key>Modules/AppSettingsUI.swiftmodule/arm64_32-apple-watchos.swiftmodule</key>
 		<data>
-		XfQMOdMQjWXAzPlInnI20yvNXDQ=
+		aMSaKr77CFInmXsN2b0lFddk/Gs=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -91,22 +91,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			H2C5ZmVuPY/lkXfF5u6Vt0I0iRU=
+			zrolSfjUYC9/5V4U3uZcMkJd+Dg=
 			</data>
 			<key>hash2</key>
 			<data>
-			RaWlxMt4v6iMplqLVi4LW/AOBpFYi8EUQgTqTrHLDR4=
+			tzGWn6cFFgXWfFG5y8iJrAkGTCPxohLO7YyT8mAGdao=
 			</data>
 		</dict>
 		<key>Modules/AppSettingsUI.swiftmodule/Project/arm64_32-apple-watchos.swiftsourceinfo</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			W5uXESm/9pAnmBqVA3gDhH3FjLY=
+			ipJk6W5fOgh8NHy1MZK++32eCXI=
 			</data>
 			<key>hash2</key>
 			<data>
-			sL1beBX6g4AzVUAXRHuzjExIZRcBr6JB34dN+JVnOGc=
+			g7AhW76Jo6etwgfth5nY8oLE+GLoX7yWPPYc+9M3CeY=
 			</data>
 		</dict>
 		<key>Modules/AppSettingsUI.swiftmodule/arm64-apple-watchos.abi.json</key>
@@ -124,11 +124,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			c3nMCQxe2RYw0F1SwbscQZmuwAQ=
+			0MTlWnl1IQf41HUM8bOUfRpZSh0=
 			</data>
 			<key>hash2</key>
 			<data>
-			Bp0nswPuyWmawtd1VFyo2B8OcBY78OW+6XQiNM85nqA=
+			vKVGzbva4C3e1p0KXsqLkEsEwi0BiZMYVu9Piyr1pew=
 			</data>
 		</dict>
 		<key>Modules/AppSettingsUI.swiftmodule/arm64-apple-watchos.swiftdoc</key>
@@ -146,22 +146,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			c3nMCQxe2RYw0F1SwbscQZmuwAQ=
+			0MTlWnl1IQf41HUM8bOUfRpZSh0=
 			</data>
 			<key>hash2</key>
 			<data>
-			Bp0nswPuyWmawtd1VFyo2B8OcBY78OW+6XQiNM85nqA=
+			vKVGzbva4C3e1p0KXsqLkEsEwi0BiZMYVu9Piyr1pew=
 			</data>
 		</dict>
 		<key>Modules/AppSettingsUI.swiftmodule/arm64-apple-watchos.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			8l6UZA9WkKAtGoxPM8YKk3uDhXA=
+			zh1gWxrK0rG7B19V1Tz7tT3rVac=
 			</data>
 			<key>hash2</key>
 			<data>
-			TIOESbojujHosS1dBCMbSdHWKkILtVtxkcD45N0aXz4=
+			PstZAnMq+Qy3vFv1WztLAD+Zf63Xjtf5HK9/2BVtVJ8=
 			</data>
 		</dict>
 		<key>Modules/AppSettingsUI.swiftmodule/arm64_32-apple-watchos.abi.json</key>
@@ -179,11 +179,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			iE9/t/j7OSBx5uoJt6SsUXyRY1w=
+			IO2P7NjRq4Oq+esgEakwAkXp8v0=
 			</data>
 			<key>hash2</key>
 			<data>
-			Pl2WhO/eA48Hc9/1nzPRnZlO0gNdwaAsvulpLkyS+7M=
+			fgE0QVkBGOUxYTsKid207d2SoHRclgxw8bXO+5B+2Ak=
 			</data>
 		</dict>
 		<key>Modules/AppSettingsUI.swiftmodule/arm64_32-apple-watchos.swiftdoc</key>
@@ -201,22 +201,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			iE9/t/j7OSBx5uoJt6SsUXyRY1w=
+			IO2P7NjRq4Oq+esgEakwAkXp8v0=
 			</data>
 			<key>hash2</key>
 			<data>
-			Pl2WhO/eA48Hc9/1nzPRnZlO0gNdwaAsvulpLkyS+7M=
+			fgE0QVkBGOUxYTsKid207d2SoHRclgxw8bXO+5B+2Ak=
 			</data>
 		</dict>
 		<key>Modules/AppSettingsUI.swiftmodule/arm64_32-apple-watchos.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			XfQMOdMQjWXAzPlInnI20yvNXDQ=
+			aMSaKr77CFInmXsN2b0lFddk/Gs=
 			</data>
 			<key>hash2</key>
 			<data>
-			ad6H/F7sQjruPbPLoV/TAfH/+LGRq6DrNu1nSuCqLo0=
+			VqXaockFW3FDZAsYyHkFhYskHU36L0kZsvNm+FYtrXM=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

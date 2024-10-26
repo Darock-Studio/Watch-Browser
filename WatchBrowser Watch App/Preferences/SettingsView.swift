@@ -17,7 +17,6 @@ import DarockKit
 import WidgetKit
 import WeatherKit
 import CoreLocation
-import AppSettingsUI
 import SwiftyStoreKit
 import NetworkExtension
 import UserNotifications
@@ -4126,77 +4125,6 @@ extension [WebViewFastButton] {
                 try jsonStr.write(toFile: NSHomeDirectory() + "/Documents/WebViewFastButtons.drkdataw", atomically: true, encoding: .utf8)
             } catch {
                 globalErrorHandler(error)
-            }
-        }
-    }
-}
-
-struct NewSettingsView: View {
-    var body: some View {
-        ASUISettingsView {
-            ASUISettingsSection {
-                ASUISettingsRow(destination: {
-                    ASUISettingsSection {
-                        ASUISettingsRow(destination: { SettingsView.GeneralSettingsView.AboutView() }, label: {
-                            ASUIColoredLabel(titleKey: "关于", systemImage: "applewatch", color: .gray)
-                        })
-                        ASUISettingsRow(destination: { SettingsView.GeneralSettingsView.SoftwareUpdateView() }, label: {
-                            ASUIColoredLabel(titleKey: "软件更新", systemImage: "gear.badge", color: .gray)
-                        })
-                        ASUISettingsRow(destination: { SettingsView.GeneralSettingsView.StorageView() }, label: {
-                            ASUIColoredLabel(titleKey: "储存空间", systemImage: "externaldrive.fill", color: .gray)
-                        })
-                    }
-                    ASUISettingsSection {
-                        ASUISettingsRow(destination: {
-                            ASUISettingControlSection {
-                                ASUISettingToggleControl("CCIsHandoffEnabled", defaultValue: true, titleKey: "接力")
-                            } footer: {
-                                Text("接力让你能够快速在另一设备上继续浏览暗礁浏览器中的网页。在暗礁浏览器浏览网页时，带有 Apple Watch 角标的 Safari 图标会出现在 iPhone 的 App 切换器或 iPad 和 Mac 的 Dock 栏中。")
-                            }
-                            ASUISettingControlSection {
-                                ASUISettingToggleControl("CCIsContinuityMediaEnabled", defaultValue: true, titleKey: "连续互通媒体")
-                            } footer: {
-                                Text("在使用暗礁浏览器查看媒体时，可在其他设备上继续查看媒体。")
-                            }
-                        }, label: {
-                            ASUIColoredLabel(titleKey: "连续互通", systemImage: "point.3.filled.connected.trianglepath.dotted", color: .blue)
-                        })
-                    }
-                    ASUISettingsSection {
-                        ASUISettingsRow(destination: { SettingsView.GeneralSettingsView.KeyboardView() }, label: {
-                            ASUIColoredLabel(titleKey: "键盘", systemImage: "keyboard.fill", color: .gray)
-                        })
-                        ASUISettingsRow(destination: {
-                            ASUISettingControlSection {
-                                ASUISettingToggleControl("MPIsShowTranslatedLyrics", defaultValue: true, titleKey: "显示翻译歌词")
-                            }
-                            ASUISettingControlSection {
-                                ASUISettingToggleControl("MPBackgroundPlay", titleKey: "允许后台播放")
-                            } footer: {
-                                if WKInterfaceDevice.modelName != "Apple Watch" {
-                                    // Apple Watch Series 10
-                                    if ["Watch7,8", "Watch7,9", "Watch7,10", "Watch7,11"].contains(WKInterfaceDevice.modelIdentifier) {
-                                        Text("你的设备无需连接蓝牙音频设备即可在后台播放音频。")
-                                    } else {
-                                        Text("若要在后台播放，你的设备需要在播放前连接蓝牙音频设备。")
-                                    }
-                                } else {
-                                    Text("若要在后台播放，你可能需要在播放前连接蓝牙音频设备。")
-                                }
-                            }
-                        }, label: {
-                            ASUIColoredLabel(titleKey: "音乐播放器", systemImage: "music.note.list", color: .red)
-                        })
-//                        ASUISettingsRow(destination: {
-//                            
-//                        }, label: {
-//                            ASUIColoredLabel(titleKey: "图像查看器", systemImage: "photo.fill.on.rectangle.fill", color: .blue)
-//                        })
-                    }
-                }, label: {
-                    ASUIColoredLabel(titleKey: "通用", systemImage: "gear", color: .gray)
-                })
             }
         }
     }

@@ -15,7 +15,6 @@ import DarockKit
 import Alamofire
 import SwiftyJSON
 import SaltUICore
-import AppSettingsUI
 import AuthenticationServices
 
 var pIsAudioControllerAvailable = false
@@ -281,9 +280,6 @@ struct MainView: View {
     @State var isAudioControllerAvailable = false
     var body: some View {
         List {
-//            NavigationLink(destination: { NewSettingsView() }, label: {
-//                Text("Debug")
-//            })
             if isAudioControllerAvailable {
                 Button(action: {
                     pShouldPresentAudioController = true

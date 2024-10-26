@@ -29,6 +29,14 @@ public struct ASUIColoredLabel : AppSettingsUI.ASUILabel {
   
   public typealias ViewType = @_opaqueReturnTypeOf("$s13AppSettingsUI16ASUIColoredLabelV9_makeViewQryF", 0) __
 }
+public struct ASUIPlainLabel : AppSettingsUI.ASUILabel {
+  public var titleKey: SwiftUICore.LocalizedStringKey
+  public init(titleKey: SwiftUICore.LocalizedStringKey, systemImage: Swift.String)
+  public init(titleKey: SwiftUICore.LocalizedStringKey, _internalSystemImage: Swift.String)
+  public func _makeView() -> some SwiftUICore.View
+  
+  public typealias ViewType = @_opaqueReturnTypeOf("$s13AppSettingsUI14ASUIPlainLabelV9_makeViewQryF", 0) __
+}
 public struct ASUIEmptyLabel : AppSettingsUI.ASUILabel {
   public var titleKey: SwiftUICore.LocalizedStringKey
   public init()
@@ -55,6 +63,36 @@ public struct ASUIEmptyLabel : AppSettingsUI.ASUILabel {
   }
   @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
   public typealias Body = @_opaqueReturnTypeOf("$s13AppSettingsUI24ASUISettingToggleControlV4bodyQrvp", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct ASUISettingPickerControl<Content> : AppSettingsUI.ASUISettingControl where Content : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init(_ defaultsKey: Swift.String, defaultValue: Swift.String, titleKey: SwiftUICore.LocalizedStringKey, @SwiftUICore.ViewBuilder content: @escaping () -> Content)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias Body = @_opaqueReturnTypeOf("$s13AppSettingsUI24ASUISettingPickerControlV4bodyQrvp", 0) __<Content>
+}
+@_Concurrency.MainActor @preconcurrency public struct ASUISettingSliderControl : AppSettingsUI.ASUISettingControl {
+  @_Concurrency.MainActor @preconcurrency public init(_ defaultsKey: Swift.String, defaultValue: Swift.Double, titleKey: SwiftUICore.LocalizedStringKey? = nil, range: Swift.ClosedRange<Swift.Double>, step: Swift.Double, showValueText: Swift.Bool = true, valueTextFormat: Swift.String = "%.2f", valueTextTransform: ((inout Swift.String) -> Swift.Void)? = nil)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias Body = @_opaqueReturnTypeOf("$s13AppSettingsUI24ASUISettingSliderControlV4bodyQrvp", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct ASUISettingConditionControl<T> : AppSettingsUI.ASUISettingControl where T : Swift.Equatable {
+  @_Concurrency.MainActor @preconcurrency public init(_ defaultsKey: Swift.String, defaultValue: T, condition: @escaping (T) -> Swift.Bool, @AppSettingsUI.ASUISettingsBuilder trueControls: () -> [AppSettingsUI.ASUIAnySettingControl], @AppSettingsUI.ASUISettingsBuilder falseControls: () -> [AppSettingsUI.ASUIAnySettingControl] = { [] })
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias Body = @_opaqueReturnTypeOf("$s13AppSettingsUI27ASUISettingConditionControlV4bodyQrvp", 0) __<T>
+}
+extension AppSettingsUI.ASUISettingConditionControl where T == Swift.Bool {
+  @_Concurrency.MainActor @preconcurrency public init(_ defaultsKey: Swift.String, defaultValue: Swift.Bool, revertValue: Swift.Bool = false, @AppSettingsUI.ASUISettingsBuilder trueControls: () -> [AppSettingsUI.ASUIAnySettingControl], @AppSettingsUI.ASUISettingsBuilder falseControls: () -> [AppSettingsUI.ASUIAnySettingControl] = { [] })
+}
+extension AppSettingsUI.ASUISettingConditionControl where T : Swift.Comparable {
+  @_Concurrency.MainActor @preconcurrency public init(_ defaultsKey: Swift.String, defaultValue: T, comparing: T, by condition: @escaping (T, T) -> Swift.Bool, @AppSettingsUI.ASUISettingsBuilder trueControls: () -> [AppSettingsUI.ASUIAnySettingControl], @AppSettingsUI.ASUISettingsBuilder falseControls: () -> [AppSettingsUI.ASUIAnySettingControl] = { [] })
 }
 @_functionBuilder public struct ASUISettingsBuilder {
   public static func buildBlock(_ components: AppSettingsUI.ASUISettingsSection...) -> [AppSettingsUI.ASUISettingsSection]
@@ -131,6 +169,9 @@ public struct ASUISettingsRow {
 }
 extension AppSettingsUI.ASUIAnySettingControl : Swift.Sendable {}
 extension AppSettingsUI.ASUISettingToggleControl : Swift.Sendable {}
+extension AppSettingsUI.ASUISettingPickerControl : Swift.Sendable {}
+extension AppSettingsUI.ASUISettingSliderControl : Swift.Sendable {}
+extension AppSettingsUI.ASUISettingConditionControl : Swift.Sendable {}
 extension AppSettingsUI.ASUISettingsSection : Swift.Sendable {}
 extension AppSettingsUI.ASUISettingsRow.Destination : Swift.Sendable {}
 extension AppSettingsUI.ASUISettingControlSection : Swift.Sendable {}
