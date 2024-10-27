@@ -12,8 +12,10 @@ import SwiftSoup
 import SDWebImageSwiftUI
 
 struct BrowsingMenuView: View {
+    var webView: WKWebView
     @Binding var webViewPresentationMode: PresentationMode
     @Binding var isHidingDistractingItems: Bool
+    var customDismissAction: (() -> Void)?
     @Environment(\.presentationMode) var presentationMode
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("BrowsingMenuLayout") var browsingMenuLayout = "Detailed"
@@ -24,7 +26,6 @@ struct BrowsingMenuView: View {
     @AppStorage("DBIsAutoAppearence") var isAutoAppearence = false
     @AppStorage("DBAutoAppearenceOptionEnableForWebForceDark") var autoAppearenceOptionEnableForWebForceDark = true
     @AppStorage("IsProPurchased") var isProPurchased = false
-    @State var webView = webViewObject!
     @State var webLinkInput = ""
     @State var isCheckingWebContent = true
     @State var linksUpdateTimer: Timer?
@@ -99,6 +100,9 @@ struct BrowsingMenuView: View {
                     Section {
                         TextField("页面链接", text: $webLinkInput, style: "field-page") {
                             if webLinkInput.isURL() {
+                                if !(webLinkInput.split(separator: ".").first?.contains("://") ?? false) {
+                                    webLinkInput = "http://" + webLinkInput
+                                }
                                 if let url = URL(string: webLinkInput) {
                                     webView.load(URLRequest(url: url))
                                 }
@@ -220,7 +224,11 @@ struct BrowsingMenuView: View {
                         }
                         Section {
                             Button(role: .destructive, action: {
-                                webViewPresentationMode.dismiss()
+                                if let customDismissAction {
+                                    customDismissAction()
+                                } else {
+                                    webViewPresentationMode.dismiss()
+                                }
                                 if isAutoAppearence && autoAppearenceOptionEnableForWebForceDark {
                                     AppearenceManager.shared.updateAll()
                                 }
@@ -305,12 +313,12 @@ struct BrowsingMenuView: View {
                                 })
                             }
                         }
-                        if !AdvancedWebViewController.shared.currentUrl.isEmpty && !AdvancedWebViewController.shared.currentUrl.hasPrefix("file://") {
+                        if let currentUrl = webView.url?.absoluteString, !currentUrl.hasPrefix("file://") {
                             Section {
                                 Button(action: {
                                     let userdefault = UserDefaults.standard
                                     let total = userdefault.integer(forKey: "BookmarkTotal") &+ 1
-                                    let markLink = AdvancedWebViewController.shared.currentUrl
+                                    let markLink = currentUrl
                                     let markName = webView.title ?? markLink
                                     userdefault.set(markName, forKey: "BookmarkName\(total)")
                                     userdefault.set(markLink, forKey: "BookmarkLink\(total)")
@@ -323,10 +331,9 @@ struct BrowsingMenuView: View {
                                         Image(systemName: "bookmark")
                                     }
                                 })
-                                if !(UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]())
-                                    .contains(AdvancedWebViewController.shared.currentUrl) {
+                                if !(UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()).contains(currentUrl) {
                                     Button(action: {
-                                        WEBackSwift.createWebArchive()
+                                        WEBackSwift.createWebArchive(for: webView)
                                         presentationMode.wrappedValue.dismiss()
                                     }, label: {
                                         HStack {
@@ -338,20 +345,20 @@ struct BrowsingMenuView: View {
                                 }
                             }
                             Section {
-                                Button(action: {
-                                    AdvancedWebViewController.shared.isOverrideDesktopWeb.toggle()
-                                    presentationMode.wrappedValue.dismiss()
-                                }, label: {
-                                    HStack {
-                                        Text(AdvancedWebViewController.shared.isOverrideDesktopWeb ? "请求移动网站" : "请求桌面网站")
-                                        Spacer()
-                                        Image(systemName: AdvancedWebViewController.shared.isOverrideDesktopWeb ? "applewatch" : "desktopcomputer")
-                                    }
-                                })
+//                                Button(action: {
+//                                    AdvancedWebViewController.shared.isOverrideDesktopWeb.toggle()
+//                                    presentationMode.wrappedValue.dismiss()
+//                                }, label: {
+//                                    HStack {
+//                                        Text(AdvancedWebViewController.shared.isOverrideDesktopWeb ? "请求移动网站" : "请求桌面网站")
+//                                        Spacer()
+//                                        Image(systemName: AdvancedWebViewController.shared.isOverrideDesktopWeb ? "applewatch" : "desktopcomputer")
+//                                    }
+//                                })
                                 Button(action: {
                                     webViewPresentationMode.dismiss()
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                                        AdvancedWebViewController.shared.present(AdvancedWebViewController.shared.currentUrl, overrideOldWebView: .alwaysLegacy)
+                                        AdvancedWebViewController.shared.present(currentUrl, overrideOldWebView: .alwaysLegacy)
                                     }
                                 }, label: {
                                     HStack {
@@ -437,7 +444,11 @@ struct BrowsingMenuView: View {
                                     .disabled(!webView.canGoForward)
                                 }
                                 Button(role: .destructive, action: {
-                                    webViewPresentationMode.dismiss()
+                                    if let customDismissAction {
+                                        customDismissAction()
+                                    } else {
+                                        webViewPresentationMode.dismiss()
+                                    }
                                     if isAutoAppearence && autoAppearenceOptionEnableForWebForceDark {
                                         AppearenceManager.shared.updateAll()
                                     }
@@ -471,14 +482,14 @@ struct BrowsingMenuView: View {
                                             }
                                     )
                                 }
-                                if !AdvancedWebViewController.shared.currentUrl.isEmpty && !AdvancedWebViewController.shared.currentUrl.hasPrefix("file://") {
+                                if let currentUrl = webView.url?.absoluteString, !currentUrl.hasPrefix("file://") {
                                     HStack {
                                         ZStack {
                                             Button(action: {
                                                 if !isNewBookmarkCreated {
                                                     let userdefault = UserDefaults.standard
                                                     let total = userdefault.integer(forKey: "BookmarkTotal") &+ 1
-                                                    let markLink = AdvancedWebViewController.shared.currentUrl
+                                                    let markLink = currentUrl
                                                     let markName = webView.title ?? markLink
                                                     userdefault.set(markName, forKey: "BookmarkName\(total)")
                                                     userdefault.set(markLink, forKey: "BookmarkLink\(total)")
@@ -504,36 +515,32 @@ struct BrowsingMenuView: View {
                                                 .opacity(isNewBookmarkCreated ? 1 : 0)
                                                 .allowsHitTesting(false)
                                         }
-                                        Button(action: {
-                                            AdvancedWebViewController.shared.isOverrideDesktopWeb.toggle()
-                                            presentationMode.wrappedValue.dismiss()
-                                        }, label: {
-                                            Image(systemName: AdvancedWebViewController.shared.isOverrideDesktopWeb ? "applewatch" : "desktopcomputer")
-                                        })
+//                                        Button(action: {
+//                                            AdvancedWebViewController.shared.isOverrideDesktopWeb.toggle()
+//                                            presentationMode.wrappedValue.dismiss()
+//                                        }, label: {
+//                                            Image(systemName: AdvancedWebViewController.shared.isOverrideDesktopWeb ? "applewatch" : "desktopcomputer")
+//                                        })
                                         Button(action: {
                                             webViewPresentationMode.dismiss()
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                                                AdvancedWebViewController.shared.present(
-                                                    AdvancedWebViewController.shared.currentUrl,
-                                                    overrideOldWebView: .alwaysLegacy
-                                                )
+                                                AdvancedWebViewController.shared.present(currentUrl, overrideOldWebView: .alwaysLegacy)
                                             }
                                         }, label: {
                                             Image(systemName: "globe.badge.chevron.backward")
                                         })
                                     }
-                                }
-                                if !(UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]())
-                                    .contains(AdvancedWebViewController.shared.currentUrl) {
-                                    Button(action: {
-                                        WEBackSwift.createWebArchive()
-                                        presentationMode.wrappedValue.dismiss()
-                                    }, label: {
-                                        HStack {
-                                            Image(systemName: "archivebox")
-                                            Text("存储离线归档")
-                                        }
-                                    })
+                                    if !(UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()).contains(currentUrl) {
+                                        Button(action: {
+                                            WEBackSwift.createWebArchive(for: webView)
+                                            presentationMode.wrappedValue.dismiss()
+                                        }, label: {
+                                            HStack {
+                                                Image(systemName: "archivebox")
+                                                Text("存储离线归档")
+                                            }
+                                        })
+                                    }
                                 }
                             }
                             .buttonStyle(.bordered)
@@ -562,8 +569,8 @@ struct BrowsingMenuView: View {
                     .allowsHitTesting(false)
             }
         }
-        .sheet(isPresented: $isBackListPresented, content: { BackForwardListView(type: .back, menuPresentationMode: presentationMode) })
-        .sheet(isPresented: $isForwardListPresented, content: { BackForwardListView(type: .forward, menuPresentationMode: presentationMode) })
+        .sheet(isPresented: $isBackListPresented, content: { BackForwardListView(webView: webView, type: .back, menuPresentationMode: presentationMode) })
+        .sheet(isPresented: $isForwardListPresented, content: { BackForwardListView(webView: webView, type: .forward, menuPresentationMode: presentationMode) })
         .sheet(isPresented: $isWebAbstractPresented, content: { WebAbstractView(webView: webView) })
         .onAppear {
             if webLinkInput.isEmpty {
@@ -588,7 +595,14 @@ struct BrowsingMenuView: View {
     }
     
     func checkWebContent() {
-        let currentUrl = AdvancedWebViewController.shared.currentUrl
+        guard let currentUrl = webView.url?.absoluteString else {
+            videoLinkLists.removeAll()
+            imageLinkLists.removeAll()
+            imageAltTextLists.removeAll()
+            audioLinkLists.removeAll()
+            isCheckingWebContent = false
+            return
+        }
         webView.evaluateJavaScript("document.documentElement.outerHTML", completionHandler: { obj, error in
             DispatchQueue(label: "com.darock.WatchBrowser.wt.media-check", qos: .userInitiated).async {
                 if let htmlStr = obj as? String {
@@ -744,6 +758,7 @@ struct BrowsingMenuView: View {
 }
 
 private struct BackForwardListView: View {
+    var webView: WKWebView
     var type: `Type`
     @Binding var menuPresentationMode: PresentationMode
     @State var list = [WKBackForwardListItem]()
@@ -753,7 +768,7 @@ private struct BackForwardListView: View {
                 if !list.isEmpty {
                     ForEach(0..<list.count, id: \.self) { i in
                         Button(action: {
-                            webViewObject.go(to: list[i])
+                            webView.go(to: list[i])
                             menuPresentationMode.dismiss()
                         }, label: {
                             if let title = list[i].title {
@@ -780,9 +795,9 @@ private struct BackForwardListView: View {
         }
         .onAppear {
             if type == .back {
-                list = webViewObject.backForwardList.backList
+                list = webView.backForwardList.backList
             } else {
-                list = webViewObject.backForwardList.forwardList
+                list = webView.backForwardList.forwardList
             }
         }
     }

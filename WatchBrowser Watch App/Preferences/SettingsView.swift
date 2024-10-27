@@ -4065,23 +4065,10 @@ func getFullToolbar(
             action(controls.topLeading, .topLeading, object)
         }
     }
-    if UserDefaults.standard.bool(forKey: "LabTabBrowsingEnabled") {
-        ToolbarItem(placement: .topBarTrailing) {
-            Button(action: {
-                action(controls.topTrailing, .topTrailing, nil)
-            }, label: {
-                Image(systemName: "square.on.square.dashed")
-                    .symbolRenderingMode(.hierarchical)
-                    .foregroundColor(.white)
-            })
-            .disabled(type == .preference)
-        }
-    } else {
-        ToolbarItem(placement: .topBarTrailing) {
-            if controls.topTrailing != .spacer {
-                getToolbarButton(by: controls.topTrailing, with: type) { object in
-                    action(controls.topTrailing, .topTrailing, object)
-                }
+    ToolbarItem(placement: .topBarTrailing) {
+        if controls.topTrailing != .spacer {
+            getToolbarButton(by: controls.topTrailing, with: type) { object in
+                action(controls.topTrailing, .topTrailing, object)
             }
         }
     }

@@ -18,7 +18,6 @@ bool pShouldPresentImageList;
 bool pShouldPresentBookList;
 bool pShouldPresentAudioList;
 bool dismissListsShouldRepresentWebView;
-WKWebView* webViewObject;
 id webViewParentController;
 NSUserActivity* globalWebBrowsingUserActivity;
 

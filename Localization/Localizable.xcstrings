@@ -3675,6 +3675,9 @@
         }
       }
     },
+    "%lld 个标签页" : {
+
+    },
     "%lld秒" : {
       "localizations" : {
         "en" : {
@@ -5933,7 +5936,14 @@
       "shouldTranslate" : false
     },
     "Beta 构建" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta Build"
+          }
+        }
+      }
     },
     "bing" : {
       "localizations" : {
@@ -8047,9 +8057,6 @@
     },
     "Data & Cloud" : {
       "shouldTranslate" : false
-    },
-    "Debug" : {
-
     },
     "Debugger" : {
       "shouldTranslate" : false
@@ -44321,7 +44328,14 @@
       }
     },
     "无法使用 Beta 版本购买暗礁浏览器 Pro" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can’t purchase Darock Browser Pro through beta versions of Darock Browser."
+          }
+        }
+      }
     },
     "无法修复" : {
       "localizations" : {
@@ -44876,7 +44890,14 @@
       }
     },
     "是" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes"
+          }
+        }
+      }
     },
     "显示“快速退出”按钮" : {
       "localizations" : {
@@ -54506,7 +54527,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The diagnose datas collected by Feedback Assistant may contains personal informations. You can tap to check attached datas before submitting, or swipe left to delete."
+            "value" : "The diagnose data collected by Feedback Assistant may contains personal informations. You can tap to check attached datas before submitting, or swipe left to delete."
           }
         },
         "es" : {
@@ -57868,7 +57889,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Removing diagnose datas will limit Darock's ability of understanding and resolving the issue."
+            "value" : "Removing diagnose data will limit Darock's ability of understanding and resolving the issue."
           }
         },
         "es" : {
@@ -63195,6 +63216,7 @@
       }
     },
     "请求移动网站" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -68823,6 +68845,9 @@
           }
         }
       }
+    },
+    "选择标签页..." : {
+
     },
     "选项" : {
       "localizations" : {

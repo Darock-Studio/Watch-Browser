@@ -10,6 +10,7 @@ import DarockKit
 import AuthenticationServices
 
 struct BookmarkView: View {
+    var showAllControls: Bool = false
     var selectionHandler: ((String, String) -> Void)?
     public static var editingBookmarkIndex = 0
     @AppStorage("IsAllowCookie") var isAllowCookie = false
@@ -37,7 +38,7 @@ struct BookmarkView: View {
             .navigationBarBackButtonHidden()
         } else {
             List {
-                if selectionHandler == nil {
+                if selectionHandler == nil || showAllControls {
                     Section {
                         Button(action: {
                             isNewMarkPresented = true
@@ -51,7 +52,7 @@ struct BookmarkView: View {
                         .sheet(isPresented: $isNewMarkPresented, onDismiss: {
                             bookmarks = BookmarkStackManager.shared.getAll()
                         }, content: { AddBookmarkView() })
-                        NavigationLink(destination: { StaredBookmarksView() }, label: {
+                        NavigationLink(destination: { StaredBookmarksView(selectionHandler: selectionHandler) }, label: {
                             HStack {
                                 Spacer()
                                 Label("快捷书签", systemImage: "star")
@@ -135,6 +136,7 @@ struct BookmarkView: View {
     }
     
     struct StaredBookmarksView: View {
+        var selectionHandler: ((String, String) -> Void)?
         @State var staredBookmarks = [String: String]()
         var body: some View {
             List {
@@ -142,7 +144,11 @@ struct BookmarkView: View {
                     if !staredBookmarks.isEmpty {
                         ForEach(Array<String>(staredBookmarks.keys).sorted(), id: \.self) { key in
                             Button(action: {
-                                AdvancedWebViewController.shared.present(staredBookmarks[key]!)
+                                if let selectionHandler {
+                                    selectionHandler(key, staredBookmarks[key]!)
+                                } else {
+                                    AdvancedWebViewController.shared.present(staredBookmarks[key]!)
+                                }
                             }, label: {
                                 Text(key)
                             })

@@ -153,7 +153,7 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
             if _fastPath((curl?.absoluteString.hasPrefix("http") ?? false) || (curl?.absoluteString.hasPrefix("https") ?? false)) {
                 // User Activity
                 globalWebBrowsingUserActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
-                globalWebBrowsingUserActivity.title = Dynamic(webViewObject).title.asString
+                globalWebBrowsingUserActivity.title = Dynamic(webView).title.asString
                 globalWebBrowsingUserActivity.isEligibleForHandoff = true
                 globalWebBrowsingUserActivity.webpageURL = curl
                 globalWebBrowsingUserActivity.becomeCurrent()
@@ -171,7 +171,7 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         AdvancedWebViewController.shared.loadProgressView.hidden = true
         os_log(.error, "\(error)")
         errorLabel.text = String(localized: "暗礁浏览器打不开该网页。\n错误是：“\(error.localizedDescription)”。")
-        Dynamic(webViewObject).addSubview(errorLabel)
+        Dynamic(webView).addSubview(errorLabel)
     }
     
     public func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
@@ -207,10 +207,10 @@ public final class WebViewScriptMessageHandler: NSObject, WKScriptMessageHandler
         debugPrint(message.body)
         if message.name == "HDIDCallback", let content = message.body as? String {
             debugPrint("Hiding ID: \(content)")
-            webViewObject.changeCSSVisibility(elementID: content, isVisible: false, elementType: .id)
+//            webViewObject.changeCSSVisibility(elementID: content, isVisible: false, elementType: .id)
         } else if message.name == "HDClassCallback", let content = message.body as? String {
             debugPrint("Hiding Class: \(content)")
-            webViewObject.changeCSSVisibility(elementID: content, isVisible: false, elementType: .class)
+//            webViewObject.changeCSSVisibility(elementID: content, isVisible: false, elementType: .class)
 //            webViewObject.evaluateJavaScript("""
 //            [].forEach.call(document.querySelectorAll('.\(content)'), function(el) {
 //                el.style.filter = 'blur(20px)';

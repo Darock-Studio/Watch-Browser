@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WebArchiveListView: View {
+    var selectionHandler: ((String?, String) -> Void)?
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForWebArchives") var usePasscodeForWebArchives = false
     @State var isLocked = true
@@ -34,13 +35,23 @@ struct WebArchiveListView: View {
                     Section {
                         ForEach(0..<archiveLinks.count, id: \.self) { i in
                             Button(action: {
-                                AdvancedWebViewController.shared.present(
-                                    "",
-                                    archiveUrl: URL(
-                                        fileURLWithPath: NSHomeDirectory()
-                                        + "/Documents/WebArchives/\(archiveLinks[i].base64Encoded().replacingOccurrences(of: "/", with: "{slash}").prefix(Int(NAME_MAX - 9))).drkdataw"
+                                if let selectionHandler {
+                                    selectionHandler(
+                                        archiveCustomNameChart[archiveLinks[i]],
+                                        URL(
+                                            fileURLWithPath: NSHomeDirectory()
+                                            + "/Documents/WebArchives/\(archiveLinks[i].base64Encoded().replacingOccurrences(of: "/", with: "{slash}").prefix(Int(NAME_MAX - 9))).drkdataw"
+                                        ).absoluteString
                                     )
-                                )
+                                } else {
+                                    AdvancedWebViewController.shared.present(
+                                        "",
+                                        archiveUrl: URL(
+                                            fileURLWithPath: NSHomeDirectory()
+                                            + "/Documents/WebArchives/\(archiveLinks[i].base64Encoded().replacingOccurrences(of: "/", with: "{slash}").prefix(Int(NAME_MAX - 9))).drkdataw"
+                                        )
+                                    )
+                                }
                             }, label: {
                                 Text(archiveCustomNameChart[archiveLinks[i]] ?? archiveLinks[i])
                             })

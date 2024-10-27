@@ -560,6 +560,9 @@ struct FeedbackView: View {
                             if !tagsString.isEmpty {
                                 tagsString += "<****>"
                             }
+                            if isAppBetaBuild {
+                                tagsString += "Beta 版本&&&0.0,0.4784314036369324,1.0<****>"
+                            }
                             tagsString += issuePlace
                             Task {
                                 let feedbackManager = RKCFeedbackManager(projectName: "Darock Browser")

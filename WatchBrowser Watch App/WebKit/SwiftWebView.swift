@@ -10,6 +10,7 @@ import Dynamic
 
 struct SwiftWebView: View {
     var webView: WKWebView
+    var customDismissAction: (() -> Void)?
     @Environment(\.presentationMode) var presentationMode
     @AppStorage("WebViewLayout") var webViewLayout = "MaximumViewport"
     @AppStorage("HideDigitalTime") var hideDigitalTime = false
@@ -19,7 +20,7 @@ struct SwiftWebView: View {
     @State var webCanGoBack = false
     var body: some View {
         ZStack {
-            DoubleTapActionButton(forType: .inWeb, presentationModeForExitWeb: presentationMode) {
+            DoubleTapActionButton(forType: .inWeb, webView: webView, presentationModeForExitWeb: presentationMode) {
                 isQuickAvoidanceShowingEmpty = true
             }
             WebView(webView: webView)
@@ -34,7 +35,7 @@ struct SwiftWebView: View {
                                         .font(.system(size: 13, weight: .semibold))
                                         .foregroundStyle(.white)
                                     Button(action: {
-                                        webViewObject.configuration.userContentController.removeAllScriptMessageHandlers()
+                                        webView.configuration.userContentController.removeAllScriptMessageHandlers()
                                         isHidingDistractingItems = false
                                     }, label: {
                                         Text("完成")
@@ -70,7 +71,13 @@ struct SwiftWebView: View {
                 }
                 .toolbar {
                     if webViewLayout == "FastPrevious" {
-                        ToolbarItem(placement: .cancellationAction) {
+                        ToolbarItem(placement: {
+                            if #available(watchOS 10, *) {
+                                ToolbarItemPlacement.topBarLeading
+                            } else {
+                                ToolbarItemPlacement.cancellationAction
+                            }
+                        }()) {
                             Button(action: {
                                 if webCanGoBack {
                                     webView.goBack()
@@ -88,7 +95,13 @@ struct SwiftWebView: View {
                                 }
                             })
                         }
-                        ToolbarItem(placement: .confirmationAction) {
+                        ToolbarItem(placement: {
+                            if #available(watchOS 10, *) {
+                                ToolbarItemPlacement.topBarTrailing
+                            } else {
+                                ToolbarItemPlacement.confirmationAction
+                            }
+                        }()) {
                             Button(action: {
                                 isBrowsingMenuPresented = true
                             }, label: {
@@ -98,7 +111,8 @@ struct SwiftWebView: View {
                     }
                 }
                 .wrapIf(webViewLayout != "MaximumViewport") { content in
-                    NavigationStack { content }
+                    content
+                        .toolbar(.visible, for: .navigationBar)
                 }
             if isQuickAvoidanceShowingEmpty {
                 Color.black
@@ -111,17 +125,25 @@ struct SwiftWebView: View {
         .brightnessReducable()
         ._statusBarHidden(hideDigitalTime || isQuickAvoidanceShowingEmpty)
         .sheet(isPresented: $isBrowsingMenuPresented) {
-            BrowsingMenuView(webViewPresentationMode: presentationMode, isHidingDistractingItems: $isHidingDistractingItems)
+            BrowsingMenuView(
+                webView: webView,
+                webViewPresentationMode: presentationMode,
+                isHidingDistractingItems: $isHidingDistractingItems,
+                customDismissAction: customDismissAction
+            )
         }
         .onDisappear {
-            WEBackSwift.storeWebTab()
             globalWebBrowsingUserActivity?.invalidate()
         }
         .onReceive(AdvancedWebViewController.presentBrowsingMenuPublisher) { _ in
             isBrowsingMenuPresented = true
         }
         .onReceive(AdvancedWebViewController.dismissWebViewPublisher) { _ in
-            presentationMode.wrappedValue.dismiss()
+            if let customDismissAction {
+                customDismissAction()
+            } else {
+                presentationMode.wrappedValue.dismiss()
+            }
         }
         .onReceive(webView.publisher(for: \.canGoBack)) { value in
             webCanGoBack = value

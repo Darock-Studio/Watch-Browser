@@ -278,7 +278,7 @@ class AppDelegate: NSObject, WKApplicationDelegate {
                         allowedInputMode: .allowEmoji
                     ) { result in
                         if let _texts = result as? [String], let text = _texts.first {
-                            startSearch(text, with: self.webSearch, allowPreload: false)
+                            startSearch(text, with: self.webSearch)
                         }
                     }
                 }

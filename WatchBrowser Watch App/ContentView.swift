@@ -21,16 +21,9 @@ var pIsAudioControllerAvailable = false
 var pShouldPresentAudioController = false
 
 struct ContentView: View {
-    @AppStorage("LabTabBrowsingEnabled") var labTabBrowsingEnabled = false
     @AppStorage("IsHistoryTransferNeeded") var isHistoryTransferNeeded = true
     @AppStorage("DarockAccount") var darockAccount = ""
     @AppStorage("DCSaveHistory") var isSaveHistoryToCloud = false
-    @AppStorage("TQCIsOverrideAccentColor") var isOverrideAccentColor = false
-    @AppStorage("TQCOverrideAccentColorRed") var overrideAccentColorRed = 0.0
-    @AppStorage("TQCOverrideAccentColorGreen") var overrideAccentColorGreen = 0.0
-    @AppStorage("TQCOverrideAccentColorBlue") var overrideAccentColorBlue = 0.0
-    @AppStorage("TQCHomeBackgroundOverrideType") var overrideType = "color"
-    @AppStorage("TQCIsHomeBackgroundImageBlured") var isBackgroundImageBlured = true
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
     @AppStorage("IsProPurchased") var isProPurchased = false
@@ -45,110 +38,96 @@ struct ContentView: View {
     @State var isAudioControllerPresented = false
     @State var toolbarNavigationDestination: HomeScreenNavigationType?
     @State var showSettingsButtonInList = false
-    @State var isLowPowerReducingBackground = false
     var body: some View {
         Group {
             if #available(watchOS 10.0, *) {
-                NavigationStack {
-                    mainWithBackground
-                        .toolbar {
-                            if let currentToolbar {
-                                getFullToolbar(by: currentToolbar, with: .main) { type, position, obj in
-                                    if labTabBrowsingEnabled && position == .topTrailing {
-                                        isTabsPresented = true
-                                    } else {
-                                        switch type {
-                                        case .searchField, .searchButton:
-                                            if var content = obj as? String {
-                                                if content.isURL() {
-                                                    if !content.hasPrefix("http://") && !content.hasPrefix("https://") {
-                                                        content = "http://" + content
-                                                    }
-                                                    AdvancedWebViewController.shared.present(content.urlEncoded())
-                                                } else {
-                                                    AdvancedWebViewController.shared.present(
-                                                        getWebSearchedURL(content,
-                                                                          webSearch: webSearch,
-                                                                          isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)
-                                                    )
-                                                }
-                                            }
-                                        case .spacer, .pinnedBookmarks, .text:
-                                            break
-                                        case .navigationLink(let navigation):
-                                            toolbarNavigationDestination = navigation
+                TabsListView { onCreate in
+                    MainView(withSetting: $showSettingsButtonInList, createPageAction: onCreate)
+                        .modifier(UserDefinedBackground())
+                }
+                .toolbar {
+                    if let currentToolbar {
+                        getFullToolbar(by: currentToolbar, with: .main) { type, _, obj in
+                            switch type {
+                            case .searchField, .searchButton:
+                                if var content = obj as? String {
+                                    if content.isURL() {
+                                        if !content.hasPrefix("http://") && !content.hasPrefix("https://") {
+                                            content = "http://" + content
                                         }
+                                        AdvancedWebViewController.shared.present(content.urlEncoded())
+                                    } else {
+                                        AdvancedWebViewController.shared.present(
+                                            getWebSearchedURL(content,
+                                                              webSearch: webSearch,
+                                                              isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)
+                                        )
                                     }
                                 }
-                            } else {
-                                ToolbarItem(placement: .topBarLeading) {
-                                    Button(action: {
-                                        isSettingsPresented = true
-                                    }, label: {
-                                        Image(systemName: "gear")
-                                    })
-                                }
-                                if labTabBrowsingEnabled {
-                                    ToolbarItem(placement: .topBarTrailing) {
-                                        Button(action: {
-                                            isTabsPresented = true
-                                        }, label: {
-                                            Image(systemName: "square.on.square.dashed")
-                                                .symbolRenderingMode(.hierarchical)
-                                                .foregroundColor(.white)
-                                        })
-                                    }
-                                }
+                            case .spacer, .pinnedBookmarks, .text:
+                                break
+                            case .navigationLink(let navigation):
+                                toolbarNavigationDestination = navigation
                             }
                         }
-                        .navigationDestination(isPresented: $isVideoListPresented, destination: { VideoListView() })
-                        .navigationDestination(isPresented: $isImageListPresented, destination: { ImageListView() })
-                        .navigationDestination(isPresented: $isAudioListPresented, destination: { AudioListView() })
-                        .navigationDestination(isPresented: $isBookListPresented, destination: { BookListView() })
-                        .navigationDestination(isPresented: $isSettingsPresented, destination: { SettingsView() })
-                        .navigationDestination(isPresented: $isTabsPresented, destination: { BrowsingTabsView() })
-                        .navigationDestination(item: $toolbarNavigationDestination) { destination in
-                            switch destination {
-                            case .bookmark:
-                                BookmarkView()
-                            case .history:
-                                HistoryView()
-                            case .webarchive:
-                                WebArchiveListView()
-                            case .musicPlaylist:
-                                PlaylistsView()
-                            case .localMedia:
-                                MediaListView()
-                            case .userscript:
-                                UserScriptsView()
-                            case .chores:
-                                EmptyView()
-                            case .feedbackAssistant:
-                                FeedbackView()
-                            case .tips:
-                                TipsView()
-                            case .settings:
-                                SettingsView()
-                            }
+                    } else {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button(action: {
+                                isSettingsPresented = true
+                            }, label: {
+                                Image(systemName: "gear")
+                            })
                         }
-                        .onAppear {
-                            if let currentPref = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/MainToolbar.drkdatam", encoding: .utf8),
-                               let data = getJsonData(HomeScreenToolbar.self, from: currentPref) {
-                                currentToolbar = data
-                            } else {
-                                currentToolbar = HomeScreenToolbar.default
-                            }
-                            if let currentToolbar {
-                                if currentToolbar.topLeading == .navigationLink(.settings)
-                                    || currentToolbar.topTrailing == .navigationLink(.settings)
-                                    || currentToolbar.bottomLeading == .navigationLink(.settings)
-                                    || currentToolbar.bottomTrailing == .navigationLink(.settings) {
-                                    showSettingsButtonInList = false
-                                } else {
-                                    showSettingsButtonInList = true
-                                }
-                            }
+                    }
+                }
+                // FIXME: Deprecate `navigationDestination` style media list presentation, use `sheet` style instead.
+                .navigationDestination(isPresented: $isVideoListPresented, destination: { VideoListView() })
+                .navigationDestination(isPresented: $isImageListPresented, destination: { ImageListView() })
+                .navigationDestination(isPresented: $isAudioListPresented, destination: { AudioListView() })
+                .navigationDestination(isPresented: $isBookListPresented, destination: { BookListView() })
+                .navigationDestination(isPresented: $isSettingsPresented, destination: { SettingsView() })
+                .navigationDestination(isPresented: $isTabsPresented, destination: { BrowsingTabsView() })
+                .navigationDestination(item: $toolbarNavigationDestination) { destination in
+                    switch destination {
+                    case .bookmark:
+                        BookmarkView()
+                    case .history:
+                        HistoryView()
+                    case .webarchive:
+                        WebArchiveListView()
+                    case .musicPlaylist:
+                        PlaylistsView()
+                    case .localMedia:
+                        MediaListView()
+                    case .userscript:
+                        UserScriptsView()
+                    case .chores:
+                        EmptyView()
+                    case .feedbackAssistant:
+                        FeedbackView()
+                    case .tips:
+                        TipsView()
+                    case .settings:
+                        SettingsView()
+                    }
+                }
+                .onAppear {
+                    if let currentPref = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/MainToolbar.drkdatam", encoding: .utf8),
+                       let data = getJsonData(HomeScreenToolbar.self, from: currentPref) {
+                        currentToolbar = data
+                    } else {
+                        currentToolbar = HomeScreenToolbar.default
+                    }
+                    if let currentToolbar {
+                        if currentToolbar.topLeading == .navigationLink(.settings)
+                            || currentToolbar.topTrailing == .navigationLink(.settings)
+                            || currentToolbar.bottomLeading == .navigationLink(.settings)
+                            || currentToolbar.bottomTrailing == .navigationLink(.settings) {
+                            showSettingsButtonInList = false
+                        } else {
+                            showSettingsButtonInList = true
                         }
+                    }
                 }
             } else {
                 NavigationView {
@@ -204,51 +183,12 @@ struct ContentView: View {
                 }
             }
         }
-        .onReceive(NotificationCenter.default.publisher(for: .NSProcessInfoPowerStateDidChange)) { processInfo in
-            if let processInfo = processInfo.object as? ProcessInfo {
-                isLowPowerReducingBackground = processInfo.isLowPowerModeEnabled
-            }
-        }
-    }
-    
-    @available(watchOS 10.0, *) @ViewBuilder var mainWithBackground: some View {
-        if overrideType == "image" && isOverrideAccentColor,
-           let imageData = NSData(contentsOfFile: NSHomeDirectory() + "/Documents/CustomHomeBackground.drkdatac") as? Data,
-           let image = UIImage(data: imageData) {
-            MainView(withSetting: $showSettingsButtonInList)
-                .containerBackground(for: .navigation) {
-                    if !isLowPowerReducingBackground {
-                        ZStack {
-                            Image(uiImage: image)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: WKInterfaceDevice.current().screenBounds.width, height: WKInterfaceDevice.current().screenBounds.height)
-                                .blur(radius: isBackgroundImageBlured ? 20 : 0)
-                            if isBackgroundImageBlured {
-                                Color.black
-                                    .opacity(0.4)
-                            }
-                        }
-                    }
-                }
-        } else {
-            MainView(withSetting: $showSettingsButtonInList)
-                .containerBackground(
-                    !isLowPowerReducingBackground
-                    ? (isOverrideAccentColor
-                    ? Color(red: overrideAccentColorRed, green: overrideAccentColorGreen, blue: overrideAccentColorBlue).gradient
-                    : Color(hex: 0x13A4FF).gradient)
-                    : Color.black.gradient,
-                    for: .navigation
-                )
-        }
     }
 }
 
-
-
 struct MainView: View {
     @Binding var withSetting: Bool
+    var createPageAction: ((NewWebTabConfiguration) -> Void)?
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("IsLongPressAlternativeSearch") var isLongPressAlternativeSearch = false
     @AppStorage("AlternativeSearch") var alternativeSearch = "必应"
@@ -258,7 +198,6 @@ struct MainView: View {
     @AppStorage("IsShowClusterAd") var isShowClusterAd = true
     @AppStorage("IsBetaJoinAvailable") var isBetaJoinAvailable = false
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
-    @AppStorage("PreloadSearchContent") var preloadSearchContent = true
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
     @AppStorage("LabTabBrowsingEnabled") var labTabBrowsingEnabled = false
     @AppStorage("ShouldShowRatingRequest") var shouldShowRatingRequest = false
@@ -272,10 +211,9 @@ struct MainView: View {
     @State var webArchiveLinks = [String]()
     @State var newFeedbackCount = 0
     @State var isNewVerAvailable = false
-    @State var isHaveDownloadedVideo = false
-    @State var isHaveDownloadedAudio = false
-    @State var isHaveLocalImage = false
-    @State var isPreloadedSearchWeb = false
+    @State var hasDownloadedVideo = false
+    @State var hasDownloadedAudio = false
+    @State var hasLocalImage = false
     @State var isOfflineBooksAvailable = false
     @State var isAudioControllerAvailable = false
     var body: some View {
@@ -374,21 +312,21 @@ struct MainView: View {
             }
             do {
                 if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos") {
-                    isHaveDownloadedVideo = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos").isEmpty
+                    hasDownloadedVideo = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos").isEmpty
                 }
             } catch {
                 globalErrorHandler(error)
             }
             do {
                 if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios") {
-                    isHaveDownloadedAudio = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios").isEmpty
+                    hasDownloadedAudio = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios").isEmpty
                 }
             } catch {
                 globalErrorHandler(error)
             }
             do {
                 if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/LocalImages") {
-                    isHaveLocalImage = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/LocalImages").isEmpty
+                    hasLocalImage = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/LocalImages").isEmpty
                 }
             } catch {
                 globalErrorHandler(error)
@@ -406,18 +344,6 @@ struct MainView: View {
         TextField("Home.search-or-URL", text: $textOrURL) {
             if textOrURL.isURL() {
                 goToButtonLabelText = "Home.go"
-                if preloadSearchContent && !isUseOldWebView {
-                    var tmpUrl = textOrURL
-                    if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                        if !textOrURL.contains("://") {
-                            tmpUrl = "http://" + textOrURL
-                        } else {
-                            return
-                        }
-                    }
-                    AdvancedWebViewController.shared.present(tmpUrl.urlEncoded(), presentController: false)
-                    isPreloadedSearchWeb = true
-                }
             } else {
                 if isSearchEngineShortcutEnabled {
                     if textOrURL.hasPrefix("bing") {
@@ -433,13 +359,6 @@ struct MainView: View {
                     }
                 } else {
                     goToButtonLabelText = "Home.search"
-                }
-                if preloadSearchContent && !isUseOldWebView {
-                    AdvancedWebViewController.shared.present(
-                        getWebSearchedURL(textOrURL, webSearch: webSearch, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled),
-                        presentController: false
-                    )
-                    isPreloadedSearchWeb = true
                 }
             }
         }
@@ -500,8 +419,7 @@ struct MainView: View {
     }
     @ViewBuilder var searchButton: some View {
         Button(action: {
-            startSearch(textOrURL, with: webSearch, allowPreload: isPreloadedSearchWeb)
-            isPreloadedSearchWeb = false
+            startSearch(textOrURL, with: webSearch, createPageAction: createPageAction)
         }, label: {
             HStack {
                 Spacer()
@@ -511,12 +429,11 @@ struct MainView: View {
             }
         })
         .onTapGesture {
-            startSearch(textOrURL, with: webSearch, allowPreload: isPreloadedSearchWeb)
-            isPreloadedSearchWeb = false
+            startSearch(textOrURL, with: webSearch, createPageAction: createPageAction)
         }
         .onLongPressGesture {
             if isLongPressAlternativeSearch {
-                startSearch(textOrURL, with: alternativeSearch, allowPreload: false)
+                startSearch(textOrURL, with: alternativeSearch, createPageAction: createPageAction)
             }
         }
     }
@@ -552,21 +469,41 @@ struct MainView: View {
                         switch navigation {
                         case .bookmark:
                             NavigationLink(destination: {
-                                BookmarkView()
+                                if let createPageAction {
+                                    BookmarkView(showAllControls: true) { name, link in
+                                        createPageAction(.init(url: link, title: name))
+                                    }
+                                } else {
+                                    BookmarkView()
+                                }
                             }, label: {
                                 Label("Home.bookmarks", systemImage: "bookmark")
                                     .centerAligned()
                             })
                         case .history:
                             NavigationLink(destination: {
-                                HistoryView()
+                                if let createPageAction {
+                                    HistoryView(showAllControls: true) { link in
+                                        createPageAction(.init(url: link))
+                                    }
+                                } else {
+                                    HistoryView()
+                                }
                             }, label: {
                                 Label("Home.history", systemImage: "clock")
                                     .centerAligned()
                             })
                         case .webarchive:
                             if !webArchiveLinks.isEmpty {
-                                NavigationLink(destination: { WebArchiveListView() }, label: {
+                                NavigationLink(destination: {
+                                    if let createPageAction {
+                                        WebArchiveListView { name, link in
+                                            createPageAction(.init(url: link, title: name))
+                                        }
+                                    } else {
+                                        WebArchiveListView()
+                                    }
+                                }, label: {
                                     VStack {
                                         Label("网页归档", systemImage: "archivebox")
                                         if isUseOldWebView {
@@ -585,7 +522,7 @@ struct MainView: View {
                                     .centerAligned()
                             })
                         case .localMedia:
-                            if isHaveDownloadedAudio || isHaveLocalImage || isOfflineBooksAvailable || isHaveDownloadedVideo {
+                            if hasDownloadedAudio || hasLocalImage || isOfflineBooksAvailable || hasDownloadedVideo {
                                 NavigationLink(destination: { MediaListView() }, label: {
                                     Label("媒体列表", systemImage: "play.square.stack")
                                         .centerAligned()
@@ -680,7 +617,7 @@ struct MainView: View {
     }
 }
 
-func startSearch(_ textOrURL: String, with engine: String, allowPreload: Bool = true) {
+func startSearch(_ textOrURL: String, with engine: String, createPageAction: ((NewWebTabConfiguration) -> Void)? = nil) {
     var textOrURL = textOrURL
     if textOrURL.hasSuffix(".mp4") {
         if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
@@ -722,22 +659,24 @@ func startSearch(_ textOrURL: String, with engine: String, allowPreload: Bool = 
         recordHistory(textOrURL, webSearch: engine)
         return
     }
-    let preloadSearchContent = UserDefaults.standard.bool(forKey: "PreloadSearchContent")
-    let isUseOldWebView = UserDefaults.standard.bool(forKey: "isUseOldWebView")
     let isSearchEngineShortcutEnabled = UserDefaults.standard.bool(forKey: "IsSearchEngineShortcutEnabled")
-    if #available(watchOS 10, *), preloadSearchContent && !isUseOldWebView && allowPreload {
-        AdvancedWebViewController.shared.present()
-        return
-    }
     if textOrURL.isURL() {
         if !textOrURL.contains("://") {
             textOrURL = "http://" + textOrURL
         }
-        AdvancedWebViewController.shared.present(textOrURL.urlEncoded())
+        if let createPageAction {
+            createPageAction(.init(url: textOrURL.urlEncoded()))
+        } else {
+            AdvancedWebViewController.shared.present(textOrURL.urlEncoded())
+        }
     } else {
-        AdvancedWebViewController.shared.present(
-            getWebSearchedURL(textOrURL, webSearch: engine, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)
-        )
+        if let createPageAction {
+            createPageAction(.init(url: getWebSearchedURL(textOrURL, webSearch: engine, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)))
+        } else {
+            AdvancedWebViewController.shared.present(
+                getWebSearchedURL(textOrURL, webSearch: engine, isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)
+            )
+        }
     }
 }
 

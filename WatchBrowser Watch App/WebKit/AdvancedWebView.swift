@@ -34,17 +34,17 @@ final class AdvancedWebViewController: NSObject {
     var vc = Dynamic.UIViewController()
     var loadProgressView = Dynamic.UIProgressView()
     
-    var isOverrideDesktopWeb = false {
-        didSet {
-            if isOverrideDesktopWeb {
-                webViewObject?.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
-                webViewObject?.reload()
-            } else {
-                webViewObject?.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
-                webViewObject?.reload()
-            }
-        }
-    }
+//    var isOverrideDesktopWeb = false {
+//        didSet {
+//            if isOverrideDesktopWeb {
+//                webViewObject?.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+//                webViewObject?.reload()
+//            } else {
+//                webViewObject?.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+//                webViewObject?.reload()
+//            }
+//        }
+//    }
     
     @AppStorage("AllowCookies") var allowCookies = true
     @AppStorage("WebViewLayout") var webViewLayout = "MaximumViewport"
@@ -64,64 +64,22 @@ final class AdvancedWebViewController: NSObject {
     @AppStorage("WKJavaScriptEnabled") var isJavaScriptEnabled = true
     @AppStorage("LBIsAutoEnterReader") var isAutoEnterReader = true
     
-    var currentUrl: String {
-        if let url = Dynamic(webViewObject).URL.asObject {
-            _onFastPath()
-            return (url as! NSURL).absoluteString!
-        } else {
-            return ""
-        }
-    }
-    var isVideoChecking = false
+//    var currentUrl: String {
+//        if let url = Dynamic(webViewObject).URL.asObject {
+//            _onFastPath()
+//            return (url as! NSURL).absoluteString!
+//        } else {
+//            return ""
+//        }
+//    }
     
     override init() {
         super.init()
         dlopen("/System/Library/Frameworks/SafariServices.framework/SafariServices", RTLD_NOW)
     }
     
-    /// 显示 WebView 视图
-    /// - Parameters:
-    ///   - iurl: 网页 URL
-    ///   - archiveUrl: 网页归档 URL
-    ///   - presentController: 是否将 WebView 推送到屏幕
-    ///   - loadMimeType: 载入内容的 Mime Type
-    ///   - overrideOldWebView: 覆盖使用旧版引擎设置
-    /// - Returns: WebView Object
-    @discardableResult
-    func present(_ iurl: String = "",
-                 archiveUrl: URL? = nil,
-                 presentController: Bool = true,
-                 loadMimeType: String = "application/x-webarchive",
-                 overrideOldWebView: OverrideLegacyViewOptions = .default) -> WKWebView? {
-        if iurl.isEmpty && archiveUrl == nil {
-            safePresent(self.vc)
-            return webViewObject
-        }
-        
-        let url = URL(string: iurl) ?? archiveUrl!
-
-        if _slowPath((isUseOldWebView && overrideOldWebView != .alwaysAdvanced) || overrideOldWebView == .alwaysLegacy && archiveUrl == nil) {
-            // rdar://FB268002071845
-            if _fastPath(presentController) {
-                let legacyConfiguration = Dynamic.SFSafariViewControllerConfiguration()
-                legacyConfiguration.entersReaderIfAvailable = isAutoEnterReader
-                let legacyViewController = Dynamic.SFSafariViewController.initWithURL(url, configuration: legacyConfiguration)
-                legacyViewController.delegate = SafariViewDelegate.shared
-                safePresent(legacyViewController)
-                
-                if _fastPath(isHistoryRecording) {
-                    recordHistory(iurl, webSearch: webSearch)
-                }
-            }
-            
-            return Dynamic.WKWebView()
-        }
-        
-        let moreButton = SUICButton(systemImage: "ellipsis.circle", frame: .init(x: 10, y: 10, width: 30, height: 30), action: presentBrowsingMenu).button()
-        
-        let sb = WKInterfaceDevice.current().screenBounds
-        
-        let wkWebView = WKWebView(frame: sb)
+    func newWebView(_ url: URL?, archiveURL: URL? = nil, loadMimeType: String = "application/x-webarchive") -> WKWebView {
+        let wkWebView = WKWebView(frame: WKInterfaceDevice.current().screenBounds)
         if _fastPath(customUserAgent.isEmpty) {
             if _slowPath(requestDesktopWeb) {
                 wkWebView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
@@ -144,53 +102,16 @@ final class AdvancedWebViewController: NSObject {
         wkWebView.configuration.preferences.javaScriptEnabled = isJavaScriptEnabled
         wkWebView.configuration.preferences.isFraudulentWebsiteWarningEnabled = isShowFraudulentWebsiteWarning
         
-        // Load Progress Bar
-        loadProgressView.frame = CGRect(x: 0, y: 0, width: sb.width, height: 20)
-        loadProgressView.progressTintColor = UIColor.blue
-        
-        vc = Dynamic(_makeUIHostingController(AnyView(SwiftWebView(webView: wkWebView))))
-        
-        if webViewLayout != "FastPrevious" {
-            if _slowPath(keepDigitalTime) {
-                let timeBackground = Dynamic.UIView()
-                timeBackground.setBackgroundColor(UIColor.black)
-                timeBackground.setFrame(CGRect(x: sb.width - 50, y: 0, width: 70, height: 30))
-                vc.view.addSubview(timeBackground)
-            }
-            
-            if _slowPath(showFastExitButton) {
-                let fastExitButton = SUICButton(systemImage: "escape", frame: .init(x: 40, y: 10, width: 30, height: 30), action: dismissWebView)
-                    .tintColor(.red)
-                    .button()
-                
-                vc.view.addSubview(fastExitButton)
-            }
-            vc.view.addSubview(moreButton)
-        }
-        vc.view.addSubview(loadProgressView)
-
-        if _fastPath(presentController) {
-            safePresent(vc)
-        }
-        webViewParentController = vc.asObject!
-        
-        if let archiveUrl {
+        if let archiveURL {
             do {
-                wkWebView.load(try Data(contentsOf: archiveUrl), mimeType: loadMimeType, characterEncodingName: "utf-8", baseURL: archiveUrl)
+                wkWebView.load(try Data(contentsOf: archiveURL), mimeType: loadMimeType, characterEncodingName: "utf-8", baseURL: archiveURL)
             } catch {
                 globalErrorHandler(error)
             }
-        } else {
+        } else if let url {
             wkWebView.load(URLRequest(url: url))
         }
         
-        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
-            if _slowPath(wkWebView.isLoading) {
-                self.loadProgressView.setProgress(Float(wkWebView.estimatedProgress), animated: true)
-            }
-        }
-        
-        webViewObject = wkWebView
         wkWebView.navigationDelegate = WebViewNavigationDelegate.shared
         wkWebView.uiDelegate = WebViewUIDelegate.shared
         
@@ -218,31 +139,122 @@ final class AdvancedWebViewController: NSObject {
         
         return wkWebView
     }
+    
+    func swiftWebView(from wkWebView: WKWebView, customDismissAction: (() -> Void)? = nil) -> AnyView {
+        let moreButton = SUICButton(systemImage: "ellipsis.circle", frame: .init(x: 10, y: 10, width: 30, height: 30), action: presentBrowsingMenu).button()
+        
+        let sb = WKInterfaceDevice.current().screenBounds
+        
+        // Load Progress Bar
+        let loadProgressView = Dynamic.UIProgressView()
+        loadProgressView.frame = CGRect(x: 0, y: 0, width: sb.width, height: 20)
+        loadProgressView.progressTintColor = UIColor.blue
+        
+        let vc = Dynamic(_makeUIHostingController(AnyView(SwiftWebView(webView: wkWebView, customDismissAction: customDismissAction))))
+        
+        if webViewLayout != "FastPrevious" {
+            if _slowPath(keepDigitalTime) {
+                let timeBackground = Dynamic.UIView()
+                timeBackground.setBackgroundColor(UIColor.black)
+                timeBackground.setFrame(CGRect(x: sb.width - 50, y: 0, width: 70, height: 30))
+                vc.view.addSubview(timeBackground)
+            }
+            
+            if _slowPath(showFastExitButton) {
+                let fastExitButton = SUICButton(systemImage: "escape", frame: .init(x: 40, y: 10, width: 30, height: 30), action: dismissWebView)
+                    .tintColor(.red)
+                    .button()
+                
+                vc.view.addSubview(fastExitButton)
+            }
+            vc.view.addSubview(moreButton)
+        }
+        vc.view.addSubview(loadProgressView)
+        
+        return AnyView(GeneralUIViewControllerRepresenting(viewController: vc.asObject!))
+    }
+    
+    /// 显示 WebView 视图
+    /// - Parameters:
+    ///   - iurl: 网页 URL
+    ///   - archiveUrl: 网页归档 URL
+    ///   - presentController: 是否将 WebView 推送到屏幕
+    ///   - loadMimeType: 载入内容的 Mime Type
+    ///   - overrideOldWebView: 覆盖使用旧版引擎设置
+    /// - Returns: WebView Object
+    @discardableResult
+    func present(_ iurl: String = "",
+                 archiveUrl: URL? = nil,
+                 presentController: Bool = true,
+                 loadMimeType: String = "application/x-webarchive",
+                 overrideOldWebView: OverrideLegacyViewOptions = .default) -> WKWebView? {
+        if iurl.isEmpty && archiveUrl == nil {
+            safePresent(self.vc)
+            return WKWebView()
+        }
+        
+        let url = URL(string: iurl) ?? archiveUrl!
+
+        if _slowPath((isUseOldWebView && overrideOldWebView != .alwaysAdvanced) || overrideOldWebView == .alwaysLegacy && archiveUrl == nil) {
+            // rdar://FB268002071845
+            if _fastPath(presentController) {
+                let legacyConfiguration = Dynamic.SFSafariViewControllerConfiguration()
+                legacyConfiguration.entersReaderIfAvailable = isAutoEnterReader
+                let legacyViewController = Dynamic.SFSafariViewController.initWithURL(url, configuration: legacyConfiguration)
+                legacyViewController.delegate = SafariViewDelegate.shared
+                safePresent(legacyViewController)
+                
+                if _fastPath(isHistoryRecording) {
+                    recordHistory(iurl, webSearch: webSearch)
+                }
+            }
+            
+            return WKWebView()
+        }
+        
+        let sb = WKInterfaceDevice.current().screenBounds
+        
+        let wkWebView = newWebView(URL(string: iurl), archiveURL: archiveUrl, loadMimeType: loadMimeType)
+        
+        vc = Dynamic(_makeUIHostingController(AnyView(swiftWebView(from: wkWebView))))
+
+        if _fastPath(presentController) {
+            safePresent(vc)
+        }
+        
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
+            if _slowPath(wkWebView.isLoading) {
+                self.loadProgressView.setProgress(Float(wkWebView.estimatedProgress), animated: true)
+            }
+        }
+        
+        return wkWebView
+    }
     func recover(from ref: TabWebKitReference) {
-        vc = ref.vc
-        loadProgressView = ref.loadProgressView
-        webViewObject = ref.webViewObject
-        webViewParentController = ref.webViewParentController
-        safePresent(vc)
+//        vc = ref.vc
+//        loadProgressView = ref.loadProgressView
+//        webViewObject = ref.webViewObject
+//        webViewParentController = ref.webViewParentController
+//        safePresent(vc)
     }
     func storeTab(in allTabs: [String], at index: Int? = nil) {
-        let recoverReference = TabWebKitReference(vc: vc,
-                                                  loadProgressView: loadProgressView,
-                                                  webViewObject: webViewObject,
-                                                  webViewParentController: webViewParentController)
-        var updateUrl = currentUrl
-        if let index {
-            updateUrl = allTabs[index]
-        }
-        tabCurrentReferences.updateValue(recoverReference, forKey: updateUrl)
-        var tabsCopy = allTabs
-        if let index {
-            tabsCopy[index] = updateUrl
-        } else {
-            tabsCopy.insert(updateUrl, at: 0)
-        }
-        UserDefaults.standard.set(tabsCopy, forKey: "CurrentTabs")
-        currentTabIndex = nil
+//        let recoverReference = TabWebKitReference(vc: vc,
+//                                                  loadProgressView: loadProgressView,
+//                                                  webViewObject: webViewObject,
+//                                                  webViewParentController: webViewParentController)
+//        var updateUrl = currentUrl
+//        if let index {
+//            updateUrl = allTabs[index]
+//        }
+//        tabCurrentReferences.updateValue(recoverReference, forKey: updateUrl)
+//        var tabsCopy = allTabs
+//        if let index {
+//            tabsCopy[index] = updateUrl
+//        } else {
+//            tabsCopy.insert(updateUrl, at: 0)
+//        }
+//        UserDefaults.standard.set(tabsCopy, forKey: "CurrentTabs")
+//        currentTabIndex = nil
     }
     
     func dismissController(_ controller: Dynamic, animated: Bool = true) {
@@ -272,4 +284,12 @@ final class AdvancedWebViewController: NSObject {
 func getMiddleRect(y: CGFloat, height: CGFloat) -> CGRect {
     let sb = WKInterfaceDevice.current().screenBounds
     return CGRect(x: (sb.width - (sb.width - 40)) / 2, y: y, width: sb.width - 40, height: height)
+}
+
+private struct GeneralUIViewControllerRepresenting: _UIViewControllerRepresentable {
+    var viewController: NSObject
+    func makeUIViewController(context: Context) -> some NSObject {
+        viewController
+    }
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
 }

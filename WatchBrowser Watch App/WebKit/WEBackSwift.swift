@@ -10,9 +10,9 @@ import Foundation
 
 @objcMembers
 public final class WEBackSwift: NSObject {
-    public static func createWebArchive() {
-        webViewObject.createWebArchiveData { data, error in
-            if let url = webViewObject.url {
+    public static func createWebArchive(for webView: WKWebView) {
+        webView.createWebArchiveData { data, error in
+            if let url = webView.url {
                 let curl = url.absoluteString
                 do {
                     if _slowPath(!FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/WebArchives")) {
@@ -32,13 +32,6 @@ public final class WEBackSwift: NSObject {
                     globalErrorHandler(error)
                 }
             }
-        }
-    }
-    
-    public static func storeWebTab() {
-        if UserDefaults.standard.bool(forKey: "LabTabBrowsingEnabled") {
-            AdvancedWebViewController.shared.storeTab(in: UserDefaults.standard.stringArray(forKey: "CurrentTabs") ?? [String](),
-                                                      at: AdvancedWebViewController.shared.currentTabIndex)
         }
     }
 }

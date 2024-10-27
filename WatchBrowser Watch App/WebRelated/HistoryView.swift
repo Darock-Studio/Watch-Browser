@@ -10,6 +10,7 @@ import DarockKit
 import AuthenticationServices
 
 struct HistoryView: View {
+    var showAllControls: Bool = false
     var selectionHandler: ((String) -> Void)?
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
     @AppStorage("LabTabBrowsingEnabled") var labTabBrowsingEnabled = false
@@ -48,7 +49,7 @@ struct HistoryView: View {
             .toolbar(.hidden)
         } else {
             List {
-                if selectionHandler == nil {
+                if selectionHandler == nil || showAllControls {
                     if isHistoryTransferNeeded {
                         NavigationLink(destination: { HistoryTransferView() }, label: {
                             VStack {

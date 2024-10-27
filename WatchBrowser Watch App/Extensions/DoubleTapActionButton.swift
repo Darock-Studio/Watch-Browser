@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DoubleTapActionButton: View {
     var forType: ButtonType
+    var webView: WKWebView?
     var presentationModeForExitWeb: Binding<PresentationMode>?
     var quickShowEmptyAction: (() -> Void)?
     @AppStorage("GSIsDoubleTapEnabled") var isDoubleTapEnabled = false
@@ -34,7 +35,7 @@ struct DoubleTapActionButton: View {
                     case "ExitWeb":
                         presentationModeForExitWeb?.wrappedValue.dismiss()
                     case "ReloadWeb":
-                        webViewObject.reload()
+                        webView?.reload()
                     case "QuickAvoidance":
                         doQuickAvoidance()
                     default: break
