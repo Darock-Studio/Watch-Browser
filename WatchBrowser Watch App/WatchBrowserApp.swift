@@ -7,7 +7,6 @@
 
 import OSLog
 import SwiftUI
-import Dynamic
 import Intents
 import WatchKit
 import DarockKit
@@ -227,8 +226,6 @@ class AppDelegate: NSObject, WKApplicationDelegate {
     @AppStorage("IsProPurchased") var isProPurchased = false
     
     func applicationDidFinishLaunching() {
-        NSSetUncaughtExceptionHandler(nsErrorHandler(_:))
-
         SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
             for purchase in purchases {
                 switch purchase.transaction.transactionState {
@@ -336,51 +333,6 @@ public func globalErrorHandler(_ error: Error, file: StaticString = #fileID, fun
         pIsTapToRadarAlertPresented = true
     }
 }
-public func nsErrorHandler(_ exception: NSException) {
-    print(exception)
-    do {
-        if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/NSExceptionLogs") {
-            try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/NSExceptionLogs", withIntermediateDirectories: true)
-        }
-        var hierarchyStack = [(String, (String, [String]))]()
-        //            View Controller    view   subviews
-        if var topController = Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController.asObject {
-            hierarchyStack.append(
-                (topController.description,
-                 (Dynamic(topController).view.asObject?.description ?? "nil",
-                  (Dynamic(topController).view.asArray as? [NSObject])?.map { $0.description } ?? ["nil"]))
-            )
-            while let presentedViewController = Dynamic(topController).presentedViewController.asObject {
-                topController = presentedViewController
-                hierarchyStack.append(
-                    (topController.description,
-                     (Dynamic(topController).view.asObject?.description ?? "nil",
-                      (Dynamic(topController).view.asArray as? [NSObject])?.map { $0.description } ?? ["nil"]))
-                )
-            }
-        }
-        try """
-        Name: \(exception.name)
-        Reason: \(exception.reason ?? "nil")
-        UserInfo: \(exception.userInfo ?? ["nil": "nil"])
-        Last Exception Backtrace:
-        \(exception.callStackSymbols.joined(separator: "\n"))
-        
-        Thread Call Stack Symbols:
-        \(Thread.callStackSymbols.joined(separator: "\n"))
-        
-        View Hierarchy:
-        \(hierarchyStack.map { "\($0.0)||\($0.1.0)||\($0.1.1)" }.joined(separator: "\n"))
-        """.write(
-            toFile: NSHomeDirectory() + "/Documents/NSExceptionLogs/\(Date().timeIntervalSince1970).txt",
-            atomically: true,
-            encoding: .utf8
-        )
-        UserDefaults.standard.set(true, forKey: "AppNewNSExceptionLogged")
-    } catch {
-        print(error)
-    }
-}
 func resetGlobalAudioLooper() {
     if let currentLooper = globalAudioLooper {
         NotificationCenter.default.removeObserver(currentLooper)
@@ -453,14 +405,4 @@ func playHaptic(from url: URL) {
         print("Failed to play pattern: \(error.localizedDescription).")
     }
     #endif
-}
-
-@inline(__always)
-internal func extendScreenIdleTime(_ time: Double, disableSleep: Bool = true) {
-    Dynamic.PUICApplication.sharedPUICApplication().setExtendedIdleTime(time, disablesSleepGesture: disableSleep, wantsAutorotation: false)
-}
-@inline(__always)
-internal func recoverNormalIdleTime() {
-    Dynamic.PUICApplication.sharedPUICApplication().extendedIdleTime = 0.0
-    Dynamic.PUICApplication.sharedPUICApplication().disablesSleepGesture = false
 }

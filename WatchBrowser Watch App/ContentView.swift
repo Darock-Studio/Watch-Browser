@@ -7,21 +7,18 @@
 
 import UIKit
 import SwiftUI
-import Dynamic
 import Cepheus
 import EFQRCode
 import Punycode
 import DarockKit
 import Alamofire
 import SwiftyJSON
-import SaltUICore
 import AuthenticationServices
 
 var pIsAudioControllerAvailable = false
 var pShouldPresentAudioController = false
 
 struct ContentView: View {
-    @AppStorage("LabTabBrowsingEnabled") var labTabBrowsingEnabled = false
     @AppStorage("IsHistoryTransferNeeded") var isHistoryTransferNeeded = true
     @AppStorage("DarockAccount") var darockAccount = ""
     @AppStorage("DCSaveHistory") var isSaveHistoryToCloud = false
@@ -41,7 +38,6 @@ struct ContentView: View {
     @State var isAudioListPresented = false
     @State var isBookListPresented = false
     @State var isSettingsPresented = false
-    @State var isTabsPresented = false
     @State var isAudioControllerPresented = false
     @State var toolbarNavigationDestination: HomeScreenNavigationType?
     @State var showSettingsButtonInList = false
@@ -53,31 +49,27 @@ struct ContentView: View {
                     mainWithBackground
                         .toolbar {
                             if let currentToolbar {
-                                getFullToolbar(by: currentToolbar, with: .main) { type, position, obj in
-                                    if labTabBrowsingEnabled && position == .topTrailing {
-                                        isTabsPresented = true
-                                    } else {
-                                        switch type {
-                                        case .searchField, .searchButton:
-                                            if var content = obj as? String {
-                                                if content.isURL() {
-                                                    if !content.hasPrefix("http://") && !content.hasPrefix("https://") {
-                                                        content = "http://" + content
-                                                    }
-                                                    AdvancedWebViewController.shared.present(content.urlEncoded())
-                                                } else {
-                                                    AdvancedWebViewController.shared.present(
-                                                        getWebSearchedURL(content,
-                                                                          webSearch: webSearch,
-                                                                          isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)
-                                                    )
+                                getFullToolbar(by: currentToolbar, with: .main) { type, _, obj in
+                                    switch type {
+                                    case .searchField, .searchButton:
+                                        if var content = obj as? String {
+                                            if content.isURL() {
+                                                if !content.hasPrefix("http://") && !content.hasPrefix("https://") {
+                                                    content = "http://" + content
                                                 }
+                                                AdvancedWebViewController.shared.present(content.urlEncoded())
+                                            } else {
+                                                AdvancedWebViewController.shared.present(
+                                                    getWebSearchedURL(content,
+                                                                      webSearch: webSearch,
+                                                                      isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)
+                                                )
                                             }
-                                        case .spacer, .pinnedBookmarks, .text:
-                                            break
-                                        case .navigationLink(let navigation):
-                                            toolbarNavigationDestination = navigation
                                         }
+                                    case .spacer, .pinnedBookmarks, .text:
+                                        break
+                                    case .navigationLink(let navigation):
+                                        toolbarNavigationDestination = navigation
                                     }
                                 }
                             } else {
@@ -88,17 +80,6 @@ struct ContentView: View {
                                         Image(systemName: "gear")
                                     })
                                 }
-                                if labTabBrowsingEnabled {
-                                    ToolbarItem(placement: .topBarTrailing) {
-                                        Button(action: {
-                                            isTabsPresented = true
-                                        }, label: {
-                                            Image(systemName: "square.on.square.dashed")
-                                                .symbolRenderingMode(.hierarchical)
-                                                .foregroundColor(.white)
-                                        })
-                                    }
-                                }
                             }
                         }
                         .navigationDestination(isPresented: $isVideoListPresented, destination: { VideoListView() })
@@ -106,7 +87,6 @@ struct ContentView: View {
                         .navigationDestination(isPresented: $isAudioListPresented, destination: { AudioListView() })
                         .navigationDestination(isPresented: $isBookListPresented, destination: { BookListView() })
                         .navigationDestination(isPresented: $isSettingsPresented, destination: { SettingsView() })
-                        .navigationDestination(isPresented: $isTabsPresented, destination: { BrowsingTabsView() })
                         .navigationDestination(item: $toolbarNavigationDestination) { destination in
                             switch destination {
                             case .bookmark:
@@ -244,8 +224,6 @@ struct ContentView: View {
         }
     }
 }
-
-
 
 struct MainView: View {
     @Binding var withSetting: Bool

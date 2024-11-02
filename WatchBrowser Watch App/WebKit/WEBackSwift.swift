@@ -5,7 +5,6 @@
 //  Created by memz233 on 2024/4/26.
 //
 
-import Dynamic
 import Foundation
 
 @objcMembers
@@ -36,9 +35,9 @@ public final class WEBackSwift: NSObject {
     }
     
     public static func storeWebTab() {
-        if UserDefaults.standard.bool(forKey: "LabTabBrowsingEnabled") {
-            AdvancedWebViewController.shared.storeTab(in: UserDefaults.standard.stringArray(forKey: "CurrentTabs") ?? [String](),
-                                                      at: AdvancedWebViewController.shared.currentTabIndex)
-        }
+//        if UserDefaults.standard.bool(forKey: "LabTabBrowsingEnabled") {
+//            AdvancedWebViewController.shared.storeTab(in: UserDefaults.standard.stringArray(forKey: "CurrentTabs") ?? [String](),
+//                                                      at: AdvancedWebViewController.shared.currentTabIndex)
+//        }
     }
 }

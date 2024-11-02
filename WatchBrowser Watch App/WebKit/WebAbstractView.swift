@@ -65,9 +65,6 @@ struct WebAbstractView: View {
         animateTimer = Timer.scheduledTimer(withTimeInterval: 0.02, repeats: true) { _ in
             animateAngle += 1
         }
-        DispatchQueue.main.async {
-            extendScreenIdleTime(300)
-        }
         webView.evaluateJavaScript("document.documentElement.outerHTML") { obj, _ in
             DispatchQueue(label: "com.darock.WatchBrowser.Intelligence.Abstract", qos: .userInitiated).async {
                 if let sourceCode = obj as? String {
@@ -91,21 +88,18 @@ struct WebAbstractView: View {
                             }
                             DispatchQueue.main.async {
                                 animateTimer?.invalidate()
-                                recoverNormalIdleTime()
                             }
                         }
                     } catch {
                         DispatchQueue.main.async {
                             isFailedLoading = true
                             animateTimer?.invalidate()
-                            recoverNormalIdleTime()
                         }
                     }
                 } else {
                     DispatchQueue.main.async {
                         isFailedLoading = true
                         animateTimer?.invalidate()
-                        recoverNormalIdleTime()
                     }
                 }
             }

@@ -9,21 +9,10 @@
 
 import OSLog
 import SwiftUI
-import Dynamic
 import Foundation
 import DiagnosticsUI
 
 var pWebDelegateStartNavigationAutoViewport = false
-
-fileprivate var errorLabel = { () -> Dynamic in
-    let errorLabel = Dynamic.UILabel()
-    errorLabel.setFrame(getMiddleRect(y: 30, height: 60))
-    errorLabel.setFont(UIFont(name: "Helvetica", size: 13))
-    errorLabel.setNumberOfLines(4)
-    errorLabel.setTextColor(UIColor.black)
-    errorLabel.setTextAlignment(NSTextAlignment.center)
-    return errorLabel
-}()
 
 @objcMembers
 public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
@@ -43,7 +32,9 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
                 case "diags" where schemeSplited[1].isEmpty || Int64(schemeSplited[1]) != nil:
                     DispatchQueue.main.async {
                         AdvancedWebViewController.dismissWebViewPublisher.send()
-                        DUIDiagnostics.shared.startDiagnostic(withID: schemeSplited[1].isEmpty ? nil : schemeSplited[1])
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            DUIDiagnostics.shared.startDiagnostic(withID: schemeSplited[1].isEmpty ? nil : schemeSplited[1])
+                        }
                     }
                     return .cancel
                 default: break
@@ -56,8 +47,8 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         debugPrint("Start Navigation")
-        errorLabel.removeFromSuperview()
-        AdvancedWebViewController.shared.loadProgressView.hidden = false
+        SwiftWebView.webErrorText.send(nil)
+        SwiftWebView.loadingProgressHidden.send(false)
         if _slowPath(pWebDelegateStartNavigationAutoViewport) {
             pWebDelegateStartNavigationAutoViewport = false
             DispatchQueue(label: "com.darock.WatchBrowser.wt.run-auto-viewport", qos: .userInitiated).async {
@@ -100,7 +91,7 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         debugPrint("Finish Navigation")
-        AdvancedWebViewController.shared.loadProgressView.hidden = true
+        SwiftWebView.loadingProgressHidden.send(true)
         // Dark Mode
         if UserDefaults.standard.bool(forKey: "ForceApplyDarkMode")
             || (isAutoAppearence && autoAppearenceOptionEnableForWebForceDark && AppearenceManager.shared.currentAppearence == .dark) {
@@ -153,7 +144,7 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
             if _fastPath((curl?.absoluteString.hasPrefix("http") ?? false) || (curl?.absoluteString.hasPrefix("https") ?? false)) {
                 // User Activity
                 globalWebBrowsingUserActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
-                globalWebBrowsingUserActivity.title = Dynamic(webViewObject).title.asString
+                globalWebBrowsingUserActivity.title = webViewObject.title
                 globalWebBrowsingUserActivity.isEligibleForHandoff = true
                 globalWebBrowsingUserActivity.webpageURL = curl
                 globalWebBrowsingUserActivity.becomeCurrent()
@@ -168,10 +159,9 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     
     public func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: any Error) {
         debugPrint("Failed Early Navigation")
-        AdvancedWebViewController.shared.loadProgressView.hidden = true
+        SwiftWebView.loadingProgressHidden.send(true)
         os_log(.error, "\(error)")
-        errorLabel.text = String(localized: "暗礁浏览器打不开该网页。\n错误是：“\(error.localizedDescription)”。")
-        Dynamic(webViewObject).addSubview(errorLabel)
+        SwiftWebView.webErrorText.send(String(localized: "暗礁浏览器打不开该网页。\n错误是：“\(error.localizedDescription)”。"))
     }
     
     public func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
@@ -221,14 +211,14 @@ public final class WebViewScriptMessageHandler: NSObject, WKScriptMessageHandler
     }
 }
 
-public final class SafariViewDelegate: NSObject, SFSafariViewControllerDelegate {
-    public static let shared = SafariViewDelegate()
+final class SafariViewDelegate: NSObject, SFSafariViewControllerDelegate {
+    static let shared = SafariViewDelegate()
     
-    public func safariViewController(_ controller: Any, didCompleteInitialLoad didLoadSuccessfully: Bool) {
+    func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool) {
         debugPrint("SF Complete Load")
     }
     
-    public func safariViewController(_ controller: Any, initialLoadDidRedirectTo URL: URL) {
-        debugPrint("Redirect to: \(URL)")
+    func safariViewController(_ controller: SFSafariViewController, initialLoadDidRedirectTo url: URL) {
+        debugPrint("Redirect to: \(url)")
     }
 }

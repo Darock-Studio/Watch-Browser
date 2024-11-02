@@ -29,20 +29,20 @@ struct VideoPlayingView: View {
         TabView(selection: $mainTabViewSelection) {
             VideoPlayer(player: player)
                 .ignoresSafeArea()
-                .withTouchZoomGesture(onPositionChange: { translation in
-                    if playerScale > 1.1 {
-                        playerScaledOffset = .init(width: playerScaledOffset.width + translation.x, height: playerScaledOffset.height + translation.y)
-                    }
-                }, onScaleChange: { scale in
-                    if scale >= 1.0 {
-                        playerScale = scale
-                    } else {
-                        playerScale = 1.0
-                    }
-                    if scale <= 1.1 {
-                        playerScaledOffset = .zero
-                    }
-                })
+//                .withTouchZoomGesture(onPositionChange: { translation in
+//                    if playerScale > 1.1 {
+//                        playerScaledOffset = .init(width: playerScaledOffset.width + translation.x, height: playerScaledOffset.height + translation.y)
+//                    }
+//                }, onScaleChange: { scale in
+//                    if scale >= 1.0 {
+//                        playerScale = scale
+//                    } else {
+//                        playerScale = 1.0
+//                    }
+//                    if scale <= 1.1 {
+//                        playerScaledOffset = .zero
+//                    }
+//                })
                 .rotationEffect(.degrees(isFullScreen ? 90 : 0))
                 .frame(
                     width: isFullScreen ? WKInterfaceDevice.current().screenBounds.height : nil,

@@ -27,6 +27,8 @@
 		8C3E839D2C82246B00686E9C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E839C2C82246B00686E9C /* LICENSE */; };
 		8C40D4C42C33DBE900C4221C /* SDWebImagePDFCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 8C40D4C32C33DBE900C4221C /* SDWebImagePDFCoder */; };
 		8C40D4C62C33DE6B00C4221C /* TopLevelDomainList.drkdatat in Resources */ = {isa = PBXBuildFile; fileRef = 8C40D4C52C33DE5E00C4221C /* TopLevelDomainList.drkdatat */; };
+		8C4B9D9E2CD6399D008D0A52 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4B9D9D2CD6399C008D0A52 /* AuthenticationServices.framework */; };
+		8C4B9DA22CD63B45008D0A52 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4B9DA12CD63B45008D0A52 /* SafariServices.framework */; };
 		8C4E34992CB145210091AD22 /* DiagnosticsUI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4E34982CB145210091AD22 /* DiagnosticsUI.xcframework */; };
 		8C4E349A2CB145210091AD22 /* DiagnosticsUI.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4E34982CB145210091AD22 /* DiagnosticsUI.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C4E349E2CB2B7A20091AD22 /* BetaJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4E349D2CB2B79C0091AD22 /* BetaJoinView.swift */; };
@@ -40,15 +42,12 @@
 		8C5930672C71CE51004C79CE /* SwiftWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5930662C71CE45004C79CE /* SwiftWebView.swift */; };
 		8C67C8F32C60DFF30091714D /* UIKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C67C8F22C60DFED0091714D /* UIKitHelper.swift */; };
 		8C6D86792C10C6A70089CE67 /* LaboratoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D86782C10C6A70089CE67 /* LaboratoryView.swift */; };
-		8C6D867B2C10CA680089CE67 /* BrowsingTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D867A2C10CA680089CE67 /* BrowsingTabsView.swift */; };
 		8C6E11DD2BDBF464005420C0 /* NewFeaturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E11DC2BDBF464005420C0 /* NewFeaturesView.swift */; };
 		8C6E11DF2BDC029E005420C0 /* WEBackSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E11DE2BDC029E005420C0 /* WEBackSwift.swift */; };
 		8C6E11E12BDC0638005420C0 /* WebArchiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E11E02BDC0638005420C0 /* WebArchiveListView.swift */; };
 		8C7C4D3E2C2C999F00FD282B /* HYWenHei.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CCF13F32C20B31700F5E0D7 /* HYWenHei.ttf */; };
 		8C7C4D412C2D87B300FD282B /* EPUBKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C7C4D402C2D87B300FD282B /* EPUBKit */; };
 		8C7C4D432C2D898700FD282B /* BookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C4D422C2D898700FD282B /* BookListView.swift */; };
-		8C83457F2C9F0A6100311CE4 /* SaltUICore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8345502C9F06C500311CE4 /* SaltUICore.xcframework */; };
-		8C8345802C9F0A6100311CE4 /* SaltUICore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8345502C9F06C500311CE4 /* SaltUICore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C894B222BE7569300768B59 /* ExtKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C894B212BE7569300768B59 /* ExtKeyboardView.swift */; };
 		8C9188832C73A64200C64E70 /* WKWebView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9188822C73A64000C64E70 /* WKWebView+.swift */; };
 		8C96E34B2C15901400751FAF /* ClusterAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C96E34A2C15901400751FAF /* ClusterAdView.swift */; };
@@ -83,7 +82,6 @@
 		8CB349F92C32E05300CB6AC3 /* ___KawaiiChieriChan.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8CB349F72C32E05300CB6AC3 /* ___KawaiiChieriChan.drkdatau */; };
 		8CB349FA2C32E05300CB6AC3 /* ___YoutouMurasameChan.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8CB349F82C32E05300CB6AC3 /* ___YoutouMurasameChan.drkdatau */; };
 		8CB349FB2C32E05300CB6AC3 /* ___0721NeneChan.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8CB349F62C32E05300CB6AC3 /* ___0721NeneChan.drkdatau */; };
-		8CB803CC2BD3D776009B2FAC /* Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 8CB803CB2BD3D776009B2FAC /* Dynamic */; };
 		8CB803D02BD3DCE4009B2FAC /* WebExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB803CF2BD3DCE4009B2FAC /* WebExtension.m */; };
 		8CB803D42BD3E6D1009B2FAC /* AdvancedWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB803D32BD3E6D1009B2FAC /* AdvancedWebView.swift */; };
 		8CB9A10E2C6D229600E6A367 /* MarkdownUI+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9A10D2C6D229200E6A367 /* MarkdownUI+.swift */; };
@@ -92,7 +90,6 @@
 		8CC3060F2CAB08C000323034 /* Success.ahap in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3060E2CAB08C000323034 /* Success.ahap */; };
 		8CC306112CAB0ECD00323034 /* Failure.ahap in Resources */ = {isa = PBXBuildFile; fileRef = 8CC306102CAB0ECD00323034 /* Failure.ahap */; };
 		8CC306132CAB160F00323034 /* View+TouchZoomable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC306122CAB160200323034 /* View+TouchZoomable.swift */; };
-		8CC306152CAB9F1800323034 /* View+Introspect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC306142CAB9F1300323034 /* View+Introspect.swift */; };
 		8CC3353A2C9954A60025B936 /* PrivacyAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC335392C99549A0025B936 /* PrivacyAboutView.swift */; };
 		8CCDABEF2C5674F100E29E3D /* ClusterTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCDABEE2C5674F100E29E3D /* ClusterTipView.swift */; };
 		8CCF13F22C20A4FF00F5E0D7 /* DarockAccountsUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCF13F12C20A4FF00F5E0D7 /* DarockAccountsUI.swift */; };
@@ -192,7 +189,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8C8345802C9F0A6100311CE4 /* SaltUICore.xcframework in Embed Frameworks */,
 				8C52811D2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Embed Frameworks */,
 				8C4E349A2CB145210091AD22 /* DiagnosticsUI.xcframework in Embed Frameworks */,
 				8C207DCF2CBA8F650054D687 /* RadarKitCore.xcframework in Embed Frameworks */,
@@ -726,6 +722,23 @@
 		8C3E839C2C82246B00686E9C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		8C3E83A02C82B45600686E9C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8C40D4C52C33DE5E00C4221C /* TopLevelDomainList.drkdatat */ = {isa = PBXFileReference; lastKnownFileType = text; path = TopLevelDomainList.drkdatat; sourceTree = "<group>"; };
+		8C4B9D8F2CD6346F008D0A52 /* SafariServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafariServices.h; sourceTree = "<group>"; };
+		8C4B9D902CD6346F008D0A52 /* SFAddToHomeScreenActivityItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFAddToHomeScreenActivityItem.h; sourceTree = "<group>"; };
+		8C4B9D912CD6346F008D0A52 /* SFAuthenticationSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFAuthenticationSession.h; sourceTree = "<group>"; };
+		8C4B9D922CD6346F008D0A52 /* SFContentBlockerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFContentBlockerManager.h; sourceTree = "<group>"; };
+		8C4B9D932CD6346F008D0A52 /* SFContentBlockerState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFContentBlockerState.h; sourceTree = "<group>"; };
+		8C4B9D942CD6346F008D0A52 /* SFError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFError.h; sourceTree = "<group>"; };
+		8C4B9D952CD6346F008D0A52 /* SFFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFFoundation.h; sourceTree = "<group>"; };
+		8C4B9D962CD6346F008D0A52 /* SFSafariApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSafariApplication.h; sourceTree = "<group>"; };
+		8C4B9D972CD6346F008D0A52 /* SFSafariViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSafariViewController.h; sourceTree = "<group>"; };
+		8C4B9D982CD6346F008D0A52 /* SFSafariViewControllerActivityButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSafariViewControllerActivityButton.h; sourceTree = "<group>"; };
+		8C4B9D992CD6346F008D0A52 /* SFSafariViewControllerConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSafariViewControllerConfiguration.h; sourceTree = "<group>"; };
+		8C4B9D9A2CD6346F008D0A52 /* SFSafariViewControllerDataStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSafariViewControllerDataStore.h; sourceTree = "<group>"; };
+		8C4B9D9B2CD6346F008D0A52 /* SFSafariViewControllerPrewarmingToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSafariViewControllerPrewarmingToken.h; sourceTree = "<group>"; };
+		8C4B9D9C2CD6346F008D0A52 /* SSReadingList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSReadingList.h; sourceTree = "<group>"; };
+		8C4B9D9D2CD6399C008D0A52 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS11.1.sdk/System/Library/Frameworks/AuthenticationServices.framework; sourceTree = DEVELOPER_DIR; };
+		8C4B9D9F2CD639D2008D0A52 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Cryptexes/OS/System/Library/Frameworks/SafariServices.framework; sourceTree = DEVELOPER_DIR; };
+		8C4B9DA12CD63B45008D0A52 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SafariServices.framework; sourceTree = "<group>"; };
 		8C4E34982CB145210091AD22 /* DiagnosticsUI.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DiagnosticsUI.xcframework; path = DarockFrameworks/DiagnosticsUI.xcframework; sourceTree = "<group>"; };
 		8C4E349D2CB2B79C0091AD22 /* BetaJoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaJoinView.swift; sourceTree = "<group>"; };
 		8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TripleQuestionmarkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -736,14 +749,12 @@
 		8C547B002C3296D40093D592 /* DarockBrowserUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarockBrowserUnitTests.swift; sourceTree = "<group>"; };
 		8C5869CE2C316A2100A18923 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		8C5930602C711C22004C79CE /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = "../../../../Library/Developer/CoreSimulator/Volumes/watchOS_22R5328f/Library/Developer/CoreSimulator/Profiles/Runtimes/watchOS 11.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/Frameworks/SafariServices.framework"; sourceTree = "<group>"; };
-		8C5930632C7124B2004C79CE /* SFSafariViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSafariViewControllerDelegate.h; sourceTree = "<group>"; };
 		8C5930642C712F75004C79CE /* BrowsingMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowsingMenuView.swift; sourceTree = "<group>"; };
 		8C5930662C71CE45004C79CE /* SwiftWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftWebView.swift; sourceTree = "<group>"; };
 		8C67C8F22C60DFED0091714D /* UIKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitHelper.swift; sourceTree = "<group>"; };
 		8C6C698F2C416AA000E7C01E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		8C6C69912C416AA000E7C01E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		8C6D86782C10C6A70089CE67 /* LaboratoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaboratoryView.swift; sourceTree = "<group>"; };
-		8C6D867A2C10CA680089CE67 /* BrowsingTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowsingTabsView.swift; sourceTree = "<group>"; };
 		8C6E11DC2BDBF464005420C0 /* NewFeaturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFeaturesView.swift; sourceTree = "<group>"; };
 		8C6E11DE2BDC029E005420C0 /* WEBackSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WEBackSwift.swift; sourceTree = "<group>"; };
 		8C6E11E02BDC0638005420C0 /* WebArchiveListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebArchiveListView.swift; sourceTree = "<group>"; };
@@ -798,7 +809,6 @@
 		8CC3060E2CAB08C000323034 /* Success.ahap */ = {isa = PBXFileReference; lastKnownFileType = text; path = Success.ahap; sourceTree = "<group>"; };
 		8CC306102CAB0ECD00323034 /* Failure.ahap */ = {isa = PBXFileReference; lastKnownFileType = text; path = Failure.ahap; sourceTree = "<group>"; };
 		8CC306122CAB160200323034 /* View+TouchZoomable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+TouchZoomable.swift"; sourceTree = "<group>"; };
-		8CC306142CAB9F1300323034 /* View+Introspect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Introspect.swift"; sourceTree = "<group>"; };
 		8CC335392C99549A0025B936 /* PrivacyAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyAboutView.swift; sourceTree = "<group>"; };
 		8CCDABEE2C5674F100E29E3D /* ClusterTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterTipView.swift; sourceTree = "<group>"; };
 		8CCF13F12C20A4FF00F5E0D7 /* DarockAccountsUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarockAccountsUI.swift; sourceTree = "<group>"; };
@@ -855,12 +865,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C4B9D9E2CD6399D008D0A52 /* AuthenticationServices.framework in Frameworks */,
 				8CA7B84F2BE3E053004643FE /* SDWebImageWebPCoder in Frameworks */,
 				8CA7B84C2BE3E025004643FE /* SDWebImageSwiftUI in Frameworks */,
 				8C207DCE2CBA8F650054D687 /* RadarKitCore.xcframework in Frameworks */,
+				8C4B9DA22CD63B45008D0A52 /* SafariServices.framework in Frameworks */,
 				8CF6363F2CAEC5E400ECE3B3 /* Pictor in Frameworks */,
 				8CF636372CAEB84A00ECE3B3 /* Cepheus in Frameworks */,
-				8CB803CC2BD3D776009B2FAC /* Dynamic in Frameworks */,
 				6B0253D82A4EFB0100567986 /* DarockKit in Frameworks */,
 				8C52811C2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Frameworks */,
 				6BFFCC562A8A6CF3001175EE /* DarockKit in Frameworks */,
@@ -873,7 +884,6 @@
 				8CA47BF52C972A9A00753101 /* SwiftyStoreKit in Frameworks */,
 				8CF8B9632C44FCAA0070F833 /* MarkdownUI in Frameworks */,
 				8CF6363A2CAEB8AA00ECE3B3 /* Cepheus in Frameworks */,
-				8C83457F2C9F0A6100311CE4 /* SaltUICore.xcframework in Frameworks */,
 				8C40D4C42C33DBE900C4221C /* SDWebImagePDFCoder in Frameworks */,
 				8CA4537B2AE3C5F600138CE4 /* EFQRCode in Frameworks */,
 				8CAF38F72BD4F960006B9B16 /* SwiftSoup in Frameworks */,
@@ -1521,6 +1531,9 @@
 		8C41F7E72C1439C90052A635 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C4B9D9F2CD639D2008D0A52 /* SafariServices.framework */,
+				8C4B9DA12CD63B45008D0A52 /* SafariServices.framework */,
+				8C4B9D9D2CD6399C008D0A52 /* AuthenticationServices.framework */,
 				8C207DCD2CBA8F650054D687 /* RadarKitCore.xcframework */,
 				8CB4DE932CB325740081AE72 /* AppSettingsUI.xcframework */,
 				8C4E34982CB145210091AD22 /* DiagnosticsUI.xcframework */,
@@ -1538,6 +1551,27 @@
 				8C6C69912C416AA000E7C01E /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C4B9D8E2CD6345C008D0A52 /* SafariServices */ = {
+			isa = PBXGroup;
+			children = (
+				8C4B9D8F2CD6346F008D0A52 /* SafariServices.h */,
+				8C4B9D902CD6346F008D0A52 /* SFAddToHomeScreenActivityItem.h */,
+				8C4B9D912CD6346F008D0A52 /* SFAuthenticationSession.h */,
+				8C4B9D922CD6346F008D0A52 /* SFContentBlockerManager.h */,
+				8C4B9D932CD6346F008D0A52 /* SFContentBlockerState.h */,
+				8C4B9D942CD6346F008D0A52 /* SFError.h */,
+				8C4B9D952CD6346F008D0A52 /* SFFoundation.h */,
+				8C4B9D962CD6346F008D0A52 /* SFSafariApplication.h */,
+				8C4B9D972CD6346F008D0A52 /* SFSafariViewController.h */,
+				8C4B9D982CD6346F008D0A52 /* SFSafariViewControllerActivityButton.h */,
+				8C4B9D992CD6346F008D0A52 /* SFSafariViewControllerConfiguration.h */,
+				8C4B9D9A2CD6346F008D0A52 /* SFSafariViewControllerDataStore.h */,
+				8C4B9D9B2CD6346F008D0A52 /* SFSafariViewControllerPrewarmingToken.h */,
+				8C4B9D9C2CD6346F008D0A52 /* SSReadingList.h */,
+			);
+			path = SafariServices;
 			sourceTree = "<group>";
 		};
 		8C5281172C22FA3C00392315 /* TripleQuestionmarkCore */ = {
@@ -1591,8 +1625,8 @@
 				8CB803CE2BD3DCE4009B2FAC /* WatchBrowser Watch App-Bridging-Header.h */,
 				8CB803D12BD3DCEE009B2FAC /* WebExtension.h */,
 				8CB803CF2BD3DCE4009B2FAC /* WebExtension.m */,
-				8C5930632C7124B2004C79CE /* SFSafariViewControllerDelegate.h */,
 				8C3A5FD12C6C8CB8002097A8 /* WebKit */,
+				8C4B9D8E2CD6345C008D0A52 /* SafariServices */,
 				8C3A5DEB2C6BCBC4002097A8 /* UIKit */,
 				8C3A5F6D2C6BCE5B002097A8 /* QuartzCore */,
 				8C3A5F892C6BCE94002097A8 /* OpenGLES */,
@@ -1630,7 +1664,6 @@
 				8CF636272CAE6B1D00ECE3B3 /* View+BrightnessReducable.swift */,
 				8CBA14092C7CEAC000D40EE5 /* View+CompatibleDoubleTapGesture.swift */,
 				8C0373B92CAAD2460029F047 /* View+WrapIf.swift */,
-				8CC306142CAB9F1300323034 /* View+Introspect.swift */,
 				8CC306122CAB160200323034 /* View+TouchZoomable.swift */,
 			);
 			path = Extensions;
@@ -1701,7 +1734,6 @@
 				6BF20A09299100AE00E623FC /* BookmarkView.swift */,
 				6B6DA6B62A0149EF00BBE6CA /* HistoryView.swift */,
 				8C6E11E02BDC0638005420C0 /* WebArchiveListView.swift */,
-				8C6D867A2C10CA680089CE67 /* BrowsingTabsView.swift */,
 				8CA7B8382BE397D1004643FE /* UserScriptsView.swift */,
 				8CF5DC4E2BAE04D5007F9974 /* ShareView.swift */,
 			);
@@ -1851,7 +1883,6 @@
 				6B0253D72A4EFB0100567986 /* DarockKit */,
 				6BFFCC552A8A6CF3001175EE /* DarockKit */,
 				8CA4537A2AE3C5F600138CE4 /* EFQRCode */,
-				8CB803CB2BD3D776009B2FAC /* Dynamic */,
 				8CAF38F62BD4F960006B9B16 /* SwiftSoup */,
 				8CA7B84B2BE3E025004643FE /* SDWebImageSwiftUI */,
 				8CA7B84E2BE3E053004643FE /* SDWebImageWebPCoder */,
@@ -1991,7 +2022,6 @@
 			packageReferences = (
 				6BFFCC542A8A6CF3001175EE /* XCRemoteSwiftPackageReference "DarockKit" */,
 				8CA453792AE3C5F600138CE4 /* XCRemoteSwiftPackageReference "EFQRCode" */,
-				8CB803CA2BD3D776009B2FAC /* XCRemoteSwiftPackageReference "Dynamic" */,
 				8CAF38F52BD4F960006B9B16 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				8CA7B84A2BE3E025004643FE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				8CA7B84D2BE3E053004643FE /* XCRemoteSwiftPackageReference "SDWebImageWebPCoder" */,
@@ -2107,7 +2137,6 @@
 				8C5930652C712F75004C79CE /* BrowsingMenuView.swift in Sources */,
 				8C4E349E2CB2B7A20091AD22 /* BetaJoinView.swift in Sources */,
 				8C6E11E12BDC0638005420C0 /* WebArchiveListView.swift in Sources */,
-				8C6D867B2C10CA680089CE67 /* BrowsingTabsView.swift in Sources */,
 				8CE70DBE2C7A510400EFB3AD /* AVPlayer+PeriodicTimePublisher.swift in Sources */,
 				8CA7B8392BE397D1004643FE /* UserScriptsView.swift in Sources */,
 				6BA7F7A02A2F6FC600FFEED0 /* SettingsView.swift in Sources */,
@@ -2149,7 +2178,6 @@
 				8CB9A10E2C6D229600E6A367 /* MarkdownUI+.swift in Sources */,
 				8CE70DD02C7A536100EFB3AD /* LocalImageView.swift in Sources */,
 				8CE70DB82C7A507E00EFB3AD /* LocalAudiosView.swift in Sources */,
-				8CC306152CAB9F1800323034 /* View+Introspect.swift in Sources */,
 				8CA4537D2AE3C63900138CE4 /* JoinGroupView.swift in Sources */,
 				8C5930672C71CE51004C79CE /* SwiftWebView.swift in Sources */,
 				8CCDABEF2C5674F100E29E3D /* ClusterTipView.swift in Sources */,
@@ -2406,7 +2434,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.0.0;
-				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_AudioServicesCreateSystemSoundID,-U,_AudioServicesPlaySystemSound";
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_SFSafariViewController,-U,_OBJC_CLASS_$_SFSafariViewControllerConfiguration";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -2454,7 +2482,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.0.0;
-				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_AudioServicesCreateSystemSoundID,-U,_AudioServicesPlaySystemSound";
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_SFSafariViewController,-U,_OBJC_CLASS_$_SFSafariViewControllerConfiguration";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -2870,14 +2898,6 @@
 				minimumVersion = 2.0.1;
 			};
 		};
-		8CB803CA2BD3D776009B2FAC /* XCRemoteSwiftPackageReference "Dynamic" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mhdhejazi/Dynamic";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.0;
-			};
-		};
 		8CF636352CAEB84A00ECE3B3 /* XCRemoteSwiftPackageReference "Cache" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hyperoslo/Cache";
@@ -2963,11 +2983,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8CB349F12C32B87700CB6AC3 /* XCRemoteSwiftPackageReference "Vela" */;
 			productName = Vela;
-		};
-		8CB803CB2BD3D776009B2FAC /* Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8CB803CA2BD3D776009B2FAC /* XCRemoteSwiftPackageReference "Dynamic" */;
-			productName = Dynamic;
 		};
 		8CD3D89A2CA7E5D9009276DD /* Punycode */ = {
 			isa = XCSwiftPackageProductDependency;

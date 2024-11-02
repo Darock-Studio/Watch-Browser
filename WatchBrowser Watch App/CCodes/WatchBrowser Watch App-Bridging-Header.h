@@ -4,5 +4,5 @@
 
 #include "WebExtension.h"
 #include "WebKit/WebKit.h"
-#include "SFSafariViewControllerDelegate.h"
 #include "CoreHaptics/CoreHaptics.h"
+#include "SafariServices/SafariServices.h"

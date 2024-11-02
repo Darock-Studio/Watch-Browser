@@ -5,18 +5,26 @@
 //  Created by memz233 on 2024/8/18.
 //
 
+import Combine
 import SwiftUI
-import Dynamic
 
 struct SwiftWebView: View {
+    static let loadingProgressHidden = CurrentValueSubject<Bool, Never>(true)
+    static let webErrorText = CurrentValueSubject<String?, Never>(nil)
+    
     var webView: WKWebView
     @Environment(\.presentationMode) var presentationMode
     @AppStorage("WebViewLayout") var webViewLayout = "MaximumViewport"
     @AppStorage("HideDigitalTime") var hideDigitalTime = false
+    @AppStorage("KeepDigitalTime") var keepDigitalTime = false
+    @AppStorage("ShowFastExitButton") var showFastExitButton = false
     @State var isQuickAvoidanceShowingEmpty = false
     @State var isBrowsingMenuPresented = false
     @State var isHidingDistractingItems = false
     @State var webCanGoBack = false
+    @State var loadingProgress = 0.0
+    @State var isLoadingProgressHidden = true
+    @State var webErrorText: String?
     var body: some View {
         ZStack {
             DoubleTapActionButton(forType: .inWeb, presentationModeForExitWeb: presentationMode) {
@@ -100,6 +108,74 @@ struct SwiftWebView: View {
                 .wrapIf(webViewLayout != "MaximumViewport") { content in
                     NavigationStack { content }
                 }
+            if let errorText = webErrorText {
+                Text(errorText)
+                    .padding()
+                    .allowsHitTesting(false)
+            }
+            VStack {
+                ProgressView(value: loadingProgress)
+                    .tint(Color(hex: 0x00aad7))
+                    .opacity(isLoadingProgressHidden ? 0 : 1)
+                    .animation(.easeOut(duration: 0.2), value: isLoadingProgressHidden)
+                    .animation(.smooth, value: loadingProgress)
+                    .offset(y: -8)
+                Spacer()
+            }
+            .ignoresSafeArea()
+            if webViewLayout != "FastPrevious" {
+                if keepDigitalTime {
+                    HStack {
+                        Spacer()
+                        VStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(.black)
+                                .frame(width: 60, height: 30)
+                                .offset(y: 8)
+                            Spacer()
+                        }
+                    }
+                    .ignoresSafeArea()
+                    .allowsHitTesting(false)
+                }
+                VStack {
+                    HStack {
+                        Button(action: {
+                            isBrowsingMenuPresented = true
+                        }, label: {
+                            ZStack {
+                                Rectangle()
+                                    .fill(Color.gray)
+                                    .frame(width: 50, height: 50)
+                                    .opacity(0.0100000002421438702673861521)
+                                Image(systemName: "ellipsis.circle")
+                                    .font(.system(size: 20, weight: .light))
+                                    .foregroundStyle(Color(hex: 0x00aad7))
+                            }
+                        })
+                        .buttonStyle(.plain)
+                        if showFastExitButton {
+                            Button(action: {
+                                presentationMode.wrappedValue.dismiss()
+                            }, label: {
+                                ZStack {
+                                    Rectangle()
+                                        .fill(Color.gray)
+                                        .frame(width: 50, height: 50)
+                                        .opacity(0.0100000002421438702673861521)
+                                    Image(systemName: "escape")
+                                        .font(.system(size: 20, weight: .light))
+                                        .foregroundStyle(.red)
+                                }
+                            })
+                            .buttonStyle(.plain)
+                        }
+                        Spacer()
+                    }
+                    Spacer()
+                }
+                .ignoresSafeArea()
+            }
             if isQuickAvoidanceShowingEmpty {
                 Color.black
                     .ignoresSafeArea()
@@ -117,6 +193,12 @@ struct SwiftWebView: View {
             WEBackSwift.storeWebTab()
             globalWebBrowsingUserActivity?.invalidate()
         }
+        .onReceive(SwiftWebView.loadingProgressHidden) { isHidden in
+            isLoadingProgressHidden = isHidden
+        }
+        .onReceive(SwiftWebView.webErrorText) { text in
+            webErrorText = text
+        }
         .onReceive(AdvancedWebViewController.presentBrowsingMenuPublisher) { _ in
             isBrowsingMenuPresented = true
         }
@@ -125,6 +207,9 @@ struct SwiftWebView: View {
         }
         .onReceive(webView.publisher(for: \.canGoBack)) { value in
             webCanGoBack = value
+        }
+        .onReceive(webView.publisher(for: \.estimatedProgress)) { value in
+            loadingProgress = value
         }
     }
 }
