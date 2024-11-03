@@ -2902,7 +2902,12 @@ struct SettingsView: View {
                             Toggle("互点两下", isOn: $isDoubleTapEnabled)
                         } footer: {
                             if #available(watchOS 11.0, *), WKInterfaceDevice.supportsDoubleTapGesture {
-                                Text("食指和拇指互点两下以执行指定的操作。需要先在系统设置中启用“互点两下”手势。")
+                                Button(action: {
+                                    WKExtension.shared().openSystemURL(URL(string: "prefs:root=ELTON_SETTINGS_ID")!)
+                                }, label: {
+                                    Text("食指和拇指互点两下以执行指定的操作。互点两下必须已在系统“\(Text("手势").foregroundColor(.blue))”设置中打开。")
+                                })
+                                .buttonStyle(.plain)
                             } else {
                                 Text("食指和拇指互点两下以执行指定的操作。需要先在系统设置→辅助功能中启用“快速操作”。")
                             }
