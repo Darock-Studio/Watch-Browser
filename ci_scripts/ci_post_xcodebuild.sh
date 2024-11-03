@@ -12,8 +12,8 @@ if [[ "$CI_WORKFLOW" == *" Beta" ]]; then
   deletions=$(echo "$response" | jq -r '.stats.deletions')
   changed_file_count=$(echo "$response" | jq -r '.files | length')
   changed_files=""
-  for file in $(echo "$response" | jq -c '.files[]'); do
-    changed_files+="    - $(echo "$file" | jq -r '.filename')"
+  echo "$response" | jq -c '.files[]' | while IFS= read -r file; do
+    changed_files+="    - $(echo "$file" | jq -r '.filename')\n"
   done
   xcodebuild_version=$(xcodebuild -version)
   swver=$(sw_vers)
@@ -31,7 +31,6 @@ if [[ "$CI_WORKFLOW" == *" Beta" ]]; then
 $changed_file_count 个文件被更改, $additions 个添加(+), $deletions 个删除(-)
 被更改的文件：
 $changed_files
-
 前往 https://github.com/Darock-Studio/Watch-Browser/commit/$CI_COMMIT 以查看完整提交信息
 
 构建启动条件：$CI_START_CONDITION
@@ -51,7 +50,6 @@ Commit Message：
 $changed_file_count files changed, $additions additions(+), $deletions deletions(-)
 Files Changed：
 $changed_files
-
 Visit https://github.com/Darock-Studio/Watch-Browser/commit/$CI_COMMIT for full commit information.
 
 Building Start Condition：$CI_START_CONDITION
