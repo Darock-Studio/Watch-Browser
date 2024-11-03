@@ -18,7 +18,7 @@
                BlueprintIdentifier = "8C5281152C22FA3C00392315"
                BuildableName = "TripleQuestionmarkCore.framework"
                BlueprintName = "TripleQuestionmarkCore"
-               ReferencedContainer = "container:WatchBrowser.xcodeproj">
+               ReferencedContainer = "container:DarockBrowser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -53,7 +53,7 @@
             BlueprintIdentifier = "8C5281152C22FA3C00392315"
             BuildableName = "TripleQuestionmarkCore.framework"
             BlueprintName = "TripleQuestionmarkCore"
-            ReferencedContainer = "container:WatchBrowser.xcodeproj">
+            ReferencedContainer = "container:DarockBrowser.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

@@ -19,7 +19,7 @@
                BlueprintIdentifier = "8CA47BDA2C9723F400753101"
                BuildableName = "ProWidgetsExtension.appex"
                BlueprintName = "ProWidgetsExtension"
-               ReferencedContainer = "container:WatchBrowser.xcodeproj">
+               ReferencedContainer = "container:DarockBrowser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -33,7 +33,7 @@
                BlueprintIdentifier = "8CA47B5C2C971E9C00753101"
                BuildableName = "DarockBrowser Pro Watch App.app"
                BlueprintName = "DarockBrowser Pro Watch App"
-               ReferencedContainer = "container:WatchBrowser.xcodeproj">
+               ReferencedContainer = "container:DarockBrowser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -47,7 +47,7 @@
                BlueprintIdentifier = "8CA47B572C971E9C00753101"
                BuildableName = "DarockBrowser Pro.app"
                BlueprintName = "DarockBrowser Pro"
-               ReferencedContainer = "container:WatchBrowser.xcodeproj">
+               ReferencedContainer = "container:DarockBrowser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -78,7 +78,7 @@
             BlueprintIdentifier = "8CA47BDA2C9723F400753101"
             BuildableName = "ProWidgetsExtension.appex"
             BlueprintName = "ProWidgetsExtension"
-            ReferencedContainer = "container:WatchBrowser.xcodeproj">
+            ReferencedContainer = "container:DarockBrowser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <MacroExpansion>
@@ -87,7 +87,7 @@
             BlueprintIdentifier = "8CA47B5C2C971E9C00753101"
             BuildableName = "DarockBrowser Pro Watch App.app"
             BlueprintName = "DarockBrowser Pro Watch App"
-            ReferencedContainer = "container:WatchBrowser.xcodeproj">
+            ReferencedContainer = "container:DarockBrowser.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <EnvironmentVariables>
@@ -121,7 +121,7 @@
             BlueprintIdentifier = "8CA47BDA2C9723F400753101"
             BuildableName = "ProWidgetsExtension.appex"
             BlueprintName = "ProWidgetsExtension"
-            ReferencedContainer = "container:WatchBrowser.xcodeproj">
+            ReferencedContainer = "container:DarockBrowser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

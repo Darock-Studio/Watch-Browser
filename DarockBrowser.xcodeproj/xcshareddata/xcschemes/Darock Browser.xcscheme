@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6BF209ED2990E61C00E623FC"
                BuildableName = "DarockBrowser.app"
-               BlueprintName = "WatchBrowser Watch App"
-               ReferencedContainer = "container:WatchBrowser.xcodeproj">
+               BlueprintName = "DarockBrowser Watch App"
+               ReferencedContainer = "container:DarockBrowser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -30,8 +30,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6BF209E72990E61C00E623FC"
                BuildableName = "DarockBrowser.app"
-               BlueprintName = "WatchBrowser"
-               ReferencedContainer = "container:WatchBrowser.xcodeproj">
+               BlueprintName = "DarockBrowser"
+               ReferencedContainer = "container:DarockBrowser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -51,7 +51,7 @@
                BlueprintIdentifier = "8CA1E0BC2C13DD620092DFCA"
                BuildableName = "DarockBrowserUITests.xctest"
                BlueprintName = "DarockBrowserUITests"
-               ReferencedContainer = "container:WatchBrowser.xcodeproj">
+               ReferencedContainer = "container:DarockBrowser.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -62,7 +62,7 @@
                BlueprintIdentifier = "8C547AFD2C3296D40093D592"
                BuildableName = "DarockBrowserUnitTests.xctest"
                BlueprintName = "DarockBrowserUnitTests"
-               ReferencedContainer = "container:WatchBrowser.xcodeproj">
+               ReferencedContainer = "container:DarockBrowser.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -84,8 +84,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6BF209ED2990E61C00E623FC"
             BuildableName = "DarockBrowser.app"
-            BlueprintName = "WatchBrowser Watch App"
-            ReferencedContainer = "container:WatchBrowser.xcodeproj">
+            BlueprintName = "DarockBrowser Watch App"
+            ReferencedContainer = "container:DarockBrowser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -112,8 +112,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6BF209ED2990E61C00E623FC"
             BuildableName = "DarockBrowser.app"
-            BlueprintName = "WatchBrowser Watch App"
-            ReferencedContainer = "container:WatchBrowser.xcodeproj">
+            BlueprintName = "DarockBrowser Watch App"
+            ReferencedContainer = "container:DarockBrowser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
