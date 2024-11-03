@@ -7,12 +7,10 @@
 
 import UIKit
 import SwiftUI
-import Dynamic
 import Combine
 import Network
 import SwiftSoup
 import DarockKit
-import SaltUICore
 import AuthenticationServices
 
 var videoLinkLists = [String]()
@@ -31,8 +29,7 @@ final class AdvancedWebViewController: NSObject {
     
     var currentTabIndex: Int?
     
-    var vc = Dynamic.UIViewController()
-    var loadProgressView = Dynamic.UIProgressView()
+    var vc = NSObject()
     
 //    var isOverrideDesktopWeb = false {
 //        didSet {
@@ -50,8 +47,6 @@ final class AdvancedWebViewController: NSObject {
     @AppStorage("WebViewLayout") var webViewLayout = "MaximumViewport"
     @AppStorage("RequestDesktopWeb") var requestDesktopWeb = false
     @AppStorage("UseBackforwardGesture") var useBackforwardGesture = true
-    @AppStorage("KeepDigitalTime") var keepDigitalTime = false
-    @AppStorage("ShowFastExitButton") var showFastExitButton = false
     @AppStorage("ForceApplyDarkMode") var forceApplyDarkMode = false
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
@@ -72,11 +67,6 @@ final class AdvancedWebViewController: NSObject {
 //            return ""
 //        }
 //    }
-    
-    override init() {
-        super.init()
-        dlopen("/System/Library/Frameworks/SafariServices.framework/SafariServices", RTLD_NOW)
-    }
     
     func newWebView(_ url: URL?, archiveURL: URL? = nil, loadMimeType: String = "application/x-webarchive") -> WKWebView {
         let wkWebView = WKWebView(frame: WKInterfaceDevice.current().screenBounds)
@@ -141,37 +131,8 @@ final class AdvancedWebViewController: NSObject {
     }
     
     func swiftWebView(from wkWebView: WKWebView, customDismissAction: (() -> Void)? = nil) -> AnyView {
-        let moreButton = SUICButton(systemImage: "ellipsis.circle", frame: .init(x: 10, y: 10, width: 30, height: 30), action: presentBrowsingMenu).button()
-        
-        let sb = WKInterfaceDevice.current().screenBounds
-        
-        // Load Progress Bar
-        let loadProgressView = Dynamic.UIProgressView()
-        loadProgressView.frame = CGRect(x: 0, y: 0, width: sb.width, height: 20)
-        loadProgressView.progressTintColor = UIColor.blue
-        
-        let vc = Dynamic(_makeUIHostingController(AnyView(SwiftWebView(webView: wkWebView, customDismissAction: customDismissAction))))
-        
-        if webViewLayout != "FastPrevious" {
-            if _slowPath(keepDigitalTime) {
-                let timeBackground = Dynamic.UIView()
-                timeBackground.setBackgroundColor(UIColor.black)
-                timeBackground.setFrame(CGRect(x: sb.width - 50, y: 0, width: 70, height: 30))
-                vc.view.addSubview(timeBackground)
-            }
-            
-            if _slowPath(showFastExitButton) {
-                let fastExitButton = SUICButton(systemImage: "escape", frame: .init(x: 40, y: 10, width: 30, height: 30), action: dismissWebView)
-                    .tintColor(.red)
-                    .button()
-                
-                vc.view.addSubview(fastExitButton)
-            }
-            vc.view.addSubview(moreButton)
-        }
-        vc.view.addSubview(loadProgressView)
-        
-        return AnyView(GeneralUIViewControllerRepresenting(viewController: vc.asObject!))
+        let vc = _makeUIHostingController(AnyView(SwiftWebView(webView: wkWebView, customDismissAction: customDismissAction)))
+        return AnyView(GeneralUIViewControllerRepresenting(viewController: vc))
     }
     
     /// 显示 WebView 视图
@@ -198,9 +159,9 @@ final class AdvancedWebViewController: NSObject {
         if _slowPath((isUseOldWebView && overrideOldWebView != .alwaysAdvanced) || overrideOldWebView == .alwaysLegacy && archiveUrl == nil) {
             // rdar://FB268002071845
             if _fastPath(presentController) {
-                let legacyConfiguration = Dynamic.SFSafariViewControllerConfiguration()
+                let legacyConfiguration = SFSafariViewController.Configuration()
                 legacyConfiguration.entersReaderIfAvailable = isAutoEnterReader
-                let legacyViewController = Dynamic.SFSafariViewController.initWithURL(url, configuration: legacyConfiguration)
+                let legacyViewController = SFSafariViewController(url: url, configuration: legacyConfiguration)
                 legacyViewController.delegate = SafariViewDelegate.shared
                 safePresent(legacyViewController)
                 
@@ -216,52 +177,20 @@ final class AdvancedWebViewController: NSObject {
         
         let wkWebView = newWebView(URL(string: iurl), archiveURL: archiveUrl, loadMimeType: loadMimeType)
         
-        vc = Dynamic(_makeUIHostingController(AnyView(swiftWebView(from: wkWebView))))
+        vc = _makeUIHostingController(AnyView(SwiftWebView(webView: wkWebView)))
 
         if _fastPath(presentController) {
             safePresent(vc)
         }
         
-        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
-            if _slowPath(wkWebView.isLoading) {
-                self.loadProgressView.setProgress(Float(wkWebView.estimatedProgress), animated: true)
-            }
-        }
-        
         return wkWebView
     }
-    func recover(from ref: TabWebKitReference) {
-//        vc = ref.vc
-//        loadProgressView = ref.loadProgressView
-//        webViewObject = ref.webViewObject
-//        webViewParentController = ref.webViewParentController
-//        safePresent(vc)
-    }
-    func storeTab(in allTabs: [String], at index: Int? = nil) {
-//        let recoverReference = TabWebKitReference(vc: vc,
-//                                                  loadProgressView: loadProgressView,
-//                                                  webViewObject: webViewObject,
-//                                                  webViewParentController: webViewParentController)
-//        var updateUrl = currentUrl
-//        if let index {
-//            updateUrl = allTabs[index]
-//        }
-//        tabCurrentReferences.updateValue(recoverReference, forKey: updateUrl)
-//        var tabsCopy = allTabs
-//        if let index {
-//            tabsCopy[index] = updateUrl
-//        } else {
-//            tabsCopy.insert(updateUrl, at: 0)
-//        }
-//        UserDefaults.standard.set(tabsCopy, forKey: "CurrentTabs")
-//        currentTabIndex = nil
-    }
     
-    func dismissController(_ controller: Dynamic, animated: Bool = true) {
-        controller.dismissModalViewController(animated: animated)
+    func dismissController(_ controller: NSObject, animated: Bool = true) {
+        controller.perform(NSSelectorFromString("dismissModalViewControllerAnimated:"), with: animated)
     }
     func dismissControllersOnWebView(animated: Bool = true) {
-        vc.dismissViewControllerAnimated(animated, completion: nil)
+        vc.perform(NSSelectorFromString("dismissViewControllerAnimated:completion:"), with: animated, with: nil)
     }
     
     enum OverrideLegacyViewOptions {

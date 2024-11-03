@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Dynamic
 import DarockKit
 import SwiftSoup
 import SDWebImageSwiftUI

@@ -6,25 +6,34 @@
 //
 
 import OSLog
-import Dynamic
 
 /// 安全推出 ViewController
 /// - Parameters:
 ///   - controller: 要推出的 ViewController
 ///   - parentController: 父 ViewController
 ///   - completion: 完成回调，参数指示是否成功推出
-@_optimize(speed)
 @usableFromInline
-func safePresent(_ controller: Dynamic,
-                 on parentController: Dynamic = Dynamic.UIApplication.sharedApplication.keyWindow.rootViewController,
+func safePresent(_ controller: NSObject,
+                 on parentController: NSObject? = nil,
                  completion: (Bool) -> Void = { _ in }) {
-    if _fastPath(controller.presentingViewController.asObject == nil) {
+    let parentController = parentController ?? WKApplication.shared().rootInterfaceController?.value(forKey: "underlyingUIHostingController") as? NSObject
+    if _slowPath(!(parentController?.responds(to: NSSelectorFromString("presentModalViewController:animated:")) ?? false)) {
+        os_log(.fault, "Invalid parent controller.")
+        completion(false)
+        return
+    }
+    guard controller.responds(to: NSSelectorFromString("presentModalViewController:animated:")) else {
+        os_log(.fault, "Invalid presenting controller.")
+        completion(false)
+        return
+    }
+    if controller.value(forKey: "presentingViewController") == nil {
         DispatchQueue.main.async {
-            parentController.presentViewController(controller, animated: true, completion: nil)
+            parentController?.perform(NSSelectorFromString("presentModalViewController:animated:"), with: controller, with: true)
         }
         completion(true)
         return
     }
-    Logger().warning("Trying to present a ViewController which is already being presented, rejecting.")
+    os_log(.error, "Trying to present a ViewController which is already being presented, rejecting.")
     completion(false)
 }

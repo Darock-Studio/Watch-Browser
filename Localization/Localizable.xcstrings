@@ -43964,6 +43964,7 @@
       }
     },
     "无打开的标签页" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -48732,6 +48733,7 @@
       }
     },
     "标签页" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -48850,6 +48852,7 @@
       }
     },
     "标签页浏览" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -56067,6 +56070,7 @@
       }
     },
     "确定吗？" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -59959,6 +59963,7 @@
       }
     },
     "缩放手势" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

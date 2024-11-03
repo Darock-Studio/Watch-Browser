@@ -1,5 +1,5 @@
 {
-  "originHash" : "17da52225b983bf3c166dd4cb62101b2ffd2d197668e116bb12911b5c228c154",
+  "originHash" : "cd701a3d5815e49b4b1694a43efccd11d55e2f01d0463780d469eb590149d2c9",
   "pins" : [
     {
       "identity" : "aexml",
@@ -44,15 +44,6 @@
       "state" : {
         "branch" : "main",
         "revision" : "0c80f45f9b1e65903d11951f0172d1c0e4b5f270"
-      }
-    },
-    {
-      "identity" : "dynamic",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mhdhejazi/Dynamic",
-      "state" : {
-        "revision" : "ab9a2570862d54aed2663691bb767f881226a12f",
-        "version" : "1.2.0"
       }
     },
     {

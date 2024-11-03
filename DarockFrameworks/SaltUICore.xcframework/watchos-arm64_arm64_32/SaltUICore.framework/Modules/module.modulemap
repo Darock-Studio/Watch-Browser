@@ -1,6 +1,0 @@
-framework module SaltUICore {
-  umbrella header "SaltUICore.h"
-  export *
-
-  module * { export * }
-}

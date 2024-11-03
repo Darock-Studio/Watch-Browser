@@ -7,14 +7,12 @@
 
 import UIKit
 import SwiftUI
-import Dynamic
 import Cepheus
 import EFQRCode
 import Punycode
 import DarockKit
 import Alamofire
 import SwiftyJSON
-import SaltUICore
 import AuthenticationServices
 
 var pIsAudioControllerAvailable = false
@@ -34,7 +32,6 @@ struct ContentView: View {
     @State var isAudioListPresented = false
     @State var isBookListPresented = false
     @State var isSettingsPresented = false
-    @State var isTabsPresented = false
     @State var isAudioControllerPresented = false
     @State var toolbarNavigationDestination: HomeScreenNavigationType?
     @State var showSettingsButtonInList = false
@@ -86,7 +83,6 @@ struct ContentView: View {
                 .navigationDestination(isPresented: $isAudioListPresented, destination: { AudioListView() })
                 .navigationDestination(isPresented: $isBookListPresented, destination: { BookListView() })
                 .navigationDestination(isPresented: $isSettingsPresented, destination: { SettingsView() })
-                .navigationDestination(isPresented: $isTabsPresented, destination: { BrowsingTabsView() })
                 .navigationDestination(item: $toolbarNavigationDestination) { destination in
                     switch destination {
                     case .bookmark:

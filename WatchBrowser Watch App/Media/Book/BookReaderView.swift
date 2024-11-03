@@ -120,7 +120,6 @@ struct BookReaderView: View {
             }
         }
         .onAppear {
-            extendScreenIdleTime(1200)
             DispatchQueue(label: "com.darock.WatchBrowser.load-book-content", qos: .userInitiated).async {
                 do {
                     let spines = document.spine.items
@@ -153,7 +152,6 @@ struct BookReaderView: View {
                     }
                     DispatchQueue.main.async {
                         contents = .init(tmpContents)
-                        recoverNormalIdleTime()
                         toolbarVisibilityResetTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
                             toolbarVisibility = .hidden
                         }

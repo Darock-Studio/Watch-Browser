@@ -181,13 +181,13 @@ struct TipsView: View {
                             Text("导航手势")
                         }
                     })
-                    NavigationLink(destination: { PinchZoomView() }, label: {
-                        HStack {
-                            Image(systemName: "hand.pinch")
-                                .foregroundColor(.purple)
-                            Text("缩放手势")
-                        }
-                    })
+//                    NavigationLink(destination: { PinchZoomView() }, label: {
+//                        HStack {
+//                            Image(systemName: "hand.pinch")
+//                                .foregroundColor(.purple)
+//                            Text("缩放手势")
+//                        }
+//                    })
                 } header: {
                     Text("网页浏览中可用的手势")
                 }
@@ -220,7 +220,7 @@ struct TipsView: View {
                     Text("双指捏合以缩放")
                         .padding()
                 }
-                .touchZoomable()
+//                .touchZoomable()
             }
         }
     }

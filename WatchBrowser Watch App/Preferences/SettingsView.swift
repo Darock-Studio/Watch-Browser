@@ -10,7 +10,6 @@ import Charts
 import Pictor
 import SwiftUI
 import Cepheus
-import Dynamic
 import EFQRCode
 import AVFAudio
 import DarockKit
