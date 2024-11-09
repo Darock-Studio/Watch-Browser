@@ -11,10 +11,10 @@ if [[ "$CI_WORKFLOW" == *" Beta" ]]; then
   additions=$(echo "$response" | jq -r '.stats.additions')
   deletions=$(echo "$response" | jq -r '.stats.deletions')
   changed_file_count=$(echo "$response" | jq -r '.files | length')
-  changed_files=""
-  echo "$response" | jq -c '.files[]' | while IFS= read -r file; do
-    changed_files+="    - $(echo "$file" | jq -r '.filename')\n"
-  done
+  changed_files=$(echo "$response" | jq -c '.files[]' | while IFS= read -r file; do
+    _single_changed_file=$(echo "$file" | jq -r '.filename')
+    echo "    - $_single_changed_file\n"
+  done)
   xcodebuild_version=$(xcodebuild -version)
   swver=$(sw_vers)
   swver=${swver//$'ProductName:		'/}
