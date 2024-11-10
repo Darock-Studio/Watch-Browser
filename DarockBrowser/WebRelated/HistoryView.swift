@@ -664,37 +664,50 @@ extension [SingleHistoryItem] {
         let dateFormatter = DateFormatter()
         let calendar = Calendar.current
         var result = [GroupedHistory]()
+        
         let dateSortedHistories = self.sorted(by: { lhs, rhs in lhs.time > rhs.time })
-        if !dateSortedHistories.isEmpty {
-            let yearDateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMMd", options: 0, locale: .autoupdatingCurrent)
-            let withoutYearDateFormat = DateFormatter.dateFormat(fromTemplate: "MMMMdE", options: 0, locale: .autoupdatingCurrent)
-            var shouldShowYear = calendar.dateComponents([.year], from: .init(timeIntervalSince1970: dateSortedHistories[0].time)).year!
-            != calendar.dateComponents([.year], from: .now).year!
-            var previousDateString = String(localized: "今天")
-            var thisGroupHistories = Self()
-            for history in dateSortedHistories {
-                shouldShowYear = calendar.dateComponents([.year], from: .init(timeIntervalSince1970: history.time)).year!
-                != calendar.dateComponents([.year], from: .now).year!
-                dateFormatter.dateFormat = shouldShowYear ? yearDateFormat : withoutYearDateFormat
-                let dateString = {
-                    let date = Date(timeIntervalSince1970: history.time)
-                    if _slowPath(calendar.isDateInToday(date)) {
-                        return String(localized: "今天")
-                    } else if calendar.isDateInYesterday(date) {
-                        return String(localized: "昨天")
-                    } else {
-                        return dateFormatter.string(from: date)
-                    }
-                }()
-                if dateString == previousDateString {
-                    thisGroupHistories.append(history)
-                } else if !thisGroupHistories.isEmpty {
-                    result.append((previousDateString, thisGroupHistories))
-                    thisGroupHistories.removeAll()
+        guard !dateSortedHistories.isEmpty else { return result }
+        
+        // 确定是否显示年份
+        let firstHistoryDate = Date(timeIntervalSince1970: dateSortedHistories[0].time)
+        let shouldShowYear = calendar.dateComponents([.year], from: firstHistoryDate).year != calendar.dateComponents([.year], from: .now).year
+        let yearDateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMMd", options: 0, locale: .autoupdatingCurrent)
+        let withoutYearDateFormat = DateFormatter.dateFormat(fromTemplate: "MMMMdE", options: 0, locale: .autoupdatingCurrent)
+        dateFormatter.dateFormat = shouldShowYear ? yearDateFormat : withoutYearDateFormat
+        
+        var previousDateString = String(localized: "今天")
+        var thisGroupHistories = Self()
+        
+        for history in dateSortedHistories {
+            let dateString: String = {
+                let date = Date(timeIntervalSince1970: history.time)
+                if calendar.isDateInToday(date) {
+                    return String(localized: "今天")
+                } else if calendar.isDateInYesterday(date) {
+                    return String(localized: "昨天")
+                } else {
+                    return dateFormatter.string(from: date)
                 }
+            }()
+            
+            if dateString == previousDateString {
+                thisGroupHistories.append(history)
+            } else {
+                // 将前一个分组添加到结果中
+                if !thisGroupHistories.isEmpty {
+                    result.append((previousDateString, thisGroupHistories))
+                }
+                // 更新当前分组
                 previousDateString = dateString
+                thisGroupHistories = [history]
             }
         }
+        
+        // 添加最后一个分组
+        if !thisGroupHistories.isEmpty {
+            result.append((previousDateString, thisGroupHistories))
+        }
+        
         return result
     }
 }

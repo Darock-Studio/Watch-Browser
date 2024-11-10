@@ -25,24 +25,55 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
         // MARK: Handle Darock Custom URL Schemes
-        if let url = navigationAction.request.url?.absoluteString, !url.hasPrefix("http://") && !url.hasPrefix("https://") {
-            let schemeSplited = url.split(separator: "://", maxSplits: 1, omittingEmptySubsequences: false).map { String($0) }
-            if schemeSplited.count == 2 {
-                switch schemeSplited[0] {
-                case "diags" where schemeSplited[1].isEmpty || Int64(schemeSplited[1]) != nil:
-                    DispatchQueue.main.async {
-                        AdvancedWebViewController.dismissWebViewPublisher.send()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            DUIDiagnostics.shared.startDiagnostic(withID: schemeSplited[1].isEmpty ? nil : schemeSplited[1])
+        if let url = navigationAction.request.url?.absoluteString {
+            if !url.hasPrefix("http://") && !url.hasPrefix("https://") {
+                let schemeSplited = url.split(separator: "://", maxSplits: 1, omittingEmptySubsequences: false).map { String($0) }
+                if schemeSplited.count == 2 {
+                    switch schemeSplited[0] {
+                    case "diags" where schemeSplited[1].isEmpty || Int64(schemeSplited[1]) != nil:
+                        DispatchQueue.main.async {
+                            AdvancedWebViewController.dismissWebViewPublisher.send()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                DUIDiagnostics.shared.startDiagnostic(withID: schemeSplited[1].isEmpty ? nil : schemeSplited[1])
+                            }
                         }
+                        return .cancel
+                    default: break
                     }
-                    return .cancel
-                default: break
                 }
             }
         }
         
         return .allow
+    }
+    
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse) async -> WKNavigationResponsePolicy {
+        let nativeSupportedTypes = [".mp3", ".mp4", ".png", ".epub"]
+        if let url = navigationResponse.response.url?.absoluteString,
+           (url.hasPrefix("http://") || url.hasPrefix("https://"))
+            && !nativeSupportedTypes.contains(where: { url.contains($0) })
+            && !navigationResponse.canShowMIMEType {
+            DispatchQueue.main.async {
+                let externalDownloadViewController = _makeUIHostingController(AnyView(DownloadToExternalView(url: url)))
+                safePresent(
+                    externalDownloadViewController,
+                    on: WKApplication.shared().visibleInterfaceController?.value(forKey: "underlyingUIHostingController") as? NSObject
+                )
+            }
+            
+            return .cancel
+        } else {
+            return .allow
+        }
+    }
+    
+    public func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        if let url = webView.url {
+            let curl = url.absoluteString
+            if _fastPath(isHistoryRecording) {
+                recordHistory(curl, webSearch: webSearch, showName: webView.title)
+            }
+        }
     }
     
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
@@ -62,9 +93,6 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         }
         if let url = webView.url {
             let curl = url.absoluteString
-            if _fastPath(isHistoryRecording) {
-                recordHistory(curl, webSearch: webSearch, showName: webView.title)
-            }
             if _slowPath(curl.hasSuffix(".mp3")) {
                 audioLinkLists = [curl]
                 AdvancedWebViewController.shared.dismissWebView()

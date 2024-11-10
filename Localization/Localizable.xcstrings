@@ -989,12 +989,12 @@
         }
       }
     },
-    "**关于暗礁浏览器与隐私**\n\n暗礁浏览器致力于保护您的隐私，Darock 不会未经同意收集任何信息。" : {
+    "**关于暗礁浏览器与隐私**\n\n暗礁浏览器旨在保护你的信息并可让你选择共享的内容。\n\n## 数据收集与使用\n本节中列出了暗礁浏览器 App 可能收集个人数据的功能及其对应的数据类别和用途。\n\n### App\n暗礁浏览器 App 会收集少量的、与隐私信息无关的、不与你身份关联的交互数据（例如 App 启动）。这些数据将与其他人的数据汇总，仅用于 App 分析。\n\n### Darock 账户\n在注册 Darock 账户时，Darock 会收集你的电子邮件地址。作为 Darock 账户凭据的一部分，电子邮件地址用于识别你的身份，以提供需要账户支持的 Darock 服务。\n\n### 存储至 Darock Cloud\n#### 历史记录\n如果你选择将历史记录存储至 Darock Cloud，你最近的浏览历史记录将会自动上传至 Darock Cloud。这些信息将在受保护的区域存储，且不会用于向你提供历史记录同步功能以外的用途。\n\n### 反馈助理\n在通过反馈助理提交反馈时，反馈助理会收集基于 IP 的大致位置。此信息被隔离存储，且不与你的身份关联，并会在合理的时间内被删除。这些信息仅用于保护 Darock 服务器和反馈助理，以及防止欺诈行为。\n\n反馈助理还会收集 App 诊断信息，你可以在每次提交前查看这些信息，并可选择删除。\n\n仅在你在反馈助理中选择“提交”后，这些信息才会被收集和发送。" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**About Darock Browser & Privacy**\n\nDarock Browser is committed to protecting your privacy; Darock will not collect any information without consent."
+            "value" : "**About Darock Browser & Privacy**\n\nDarock Browser is designed to protect your information and allow you to choose what to share.\n\n## Data Collection and Use\nThis section lists the features of the Darock Browser app that may collect personal data, along with their corresponding data categories and uses.\n\n### App\nThe Darock Browser app collects a small amount of non-personally identifiable interaction data (e.g., app launches) that is unrelated to privacy. This data will be aggregated with others' data and used only for app analytics.\n\n### Darock Account\nWhen you register for a Darock account, Darock collects your email address. As part of the Darock account credentials, the email address is used to verify your identity for providing Darock services that require account support.\n\n### Storage to Darock Cloud\n#### Browsing History\nIf you choose to store your browsing history in Darock Cloud, your recent browsing history will be automatically uploaded to Darock Cloud. This information will be stored in a protected area and will not be used for purposes other than providing you with the browsing history sync feature.\n\n### Feedback Assistant\nWhen submitting feedback through the Feedback Assistant, it collects approximate location data based on your IP address. This information is stored in isolation and is not linked to your identity, and it will be deleted within a reasonable time frame. This information is used solely to protect Darock's servers and the Feedback Assistant, as well as to prevent fraud.\n\nThe Feedback Assistant also collects app diagnostic information, which you can review before each submission and choose to delete.\n\nOnly after you select \"Submit\" in the Feedback Assistant will this information be collected and sent."
           }
         }
       }
@@ -15087,6 +15087,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "下載已完成"
+          }
+        }
+      }
+    },
+    "下载文件" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download File"
           }
         }
       }
@@ -29303,6 +29313,16 @@
         }
       }
     },
+    "在暗礁文件中下载" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download in Cluster"
+          }
+        }
+      }
+    },
     "在浏览中隐藏时间" : {
       "localizations" : {
         "en" : {
@@ -34063,6 +34083,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Widgets"
+          }
+        }
+      }
+    },
+    "尚未安装暗礁文件" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cluster is not installed"
           }
         }
       }
@@ -45938,6 +45968,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darock Browser has an update available."
+          }
+        }
+      }
+    },
+    "暗礁浏览器的本地图片" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Local Image from Darock Browser"
           }
         }
       }
@@ -69100,6 +69140,16 @@
         }
       }
     },
+    "通过暗礁文件下载" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download through Cluster"
+          }
+        }
+      }
+    },
     "速度缓慢/没有响应" : {
       "localizations" : {
         "en" : {
@@ -74730,22 +74780,22 @@
         }
       }
     },
+    "食指和拇指互点两下以执行指定的操作。互点两下必须已在系统“手势”设置中打开。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap twice with your index finger and thumb to perform a specified action. Double Tap must be enabled in system gesture settings."
+          }
+        }
+      }
+    },
     "食指和拇指互点两下以执行指定的操作。需要先在系统设置→辅助功能中启用“快速操作”。" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tap twice with your index finger and thumb to perform a specified action. First, enable \"Quick Actions\" in System Settings → Accessibility."
-          }
-        }
-      }
-    },
-    "食指和拇指互点两下以执行指定的操作。需要先在系统设置中启用“互点两下”手势。" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tap twice with your index finger and thumb to perform a specified action. First, enable the \"Double Tap\" gesture in System Settings."
           }
         }
       }

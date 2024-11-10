@@ -9,6 +9,7 @@ import OSLog
 import SwiftUI
 import Intents
 import WatchKit
+import NotifKit
 import DarockKit
 import SDWebImage
 import AVFoundation
@@ -18,9 +19,6 @@ import SDWebImagePDFCoder
 import SDWebImageWebPCoder
 import AuthenticationServices
 
-var pShowTipText: LocalizedStringKey = ""
-var pShowTipSymbol = ""
-var pIsShowingTip = false
 var pTapToRadarAlertContent = ""
 var pTapToRadarAttachText = ""
 var pIsTapToRadarAlertPresented = false
@@ -37,7 +35,6 @@ let isAppBetaBuild = false
 
 @main
 struct WatchBrowser_Watch_AppApp: App {
-    let device = WKInterfaceDevice.current()
     @WKApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) var scenePhase
     @AppStorage("ShouldTipNewFeatures6") var shouldTipNewFeatures = true
@@ -49,9 +46,6 @@ struct WatchBrowser_Watch_AppApp: App {
     @AppStorage("IsBrowserProAdFirstTipped") var isBrowserProAdFirstTipped = false
     @AppStorage("DBIsAutoAppearence") var isAutoAppearence = false
     @AppStorage("DBAutoAppearenceOptionEnableForReduceBrightness") var autoAppearenceOptionEnableForReduceBrightness = false
-    @State var showTipText: LocalizedStringKey = ""
-    @State var showTipSymbol = ""
-    @State var isShowingTip = false
     @State var isBrowserLocked = true
     @State var passcodeInputCache = ""
     @State var tapToRadarAlertContent = ""
@@ -95,52 +89,6 @@ struct WatchBrowser_Watch_AppApp: App {
                         passcodeInputCache = ""
                     }
                 }
-                VStack {
-                    Spacer()
-                    if isShowingTip {
-                        Group {
-                            if #available(watchOS 10, *) {
-                                HStack {
-                                    Image(systemName: showTipSymbol)
-                                    Text(showTipText)
-                                }
-                                .font(.system(size: 14, weight: .bold))
-                                .frame(width: WKInterfaceDevice.current().screenBounds.width - 20, height: 50)
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.1)
-                                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
-                            } else {
-                                HStack {
-                                    Image(systemName: showTipSymbol)
-                                    Text(showTipText)
-                                }
-                                .font(.system(size: 14, weight: .bold))
-                                .foregroundColor(.black)
-                                .frame(width: WKInterfaceDevice.current().screenBounds.width - 20, height: 50)
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.1)
-                                .background {
-                                    Color.white
-                                        .ignoresSafeArea()
-                                        .frame(width: WKInterfaceDevice.current().screenBounds.width - 20, height: 40)
-                                        .cornerRadius(14)
-                                        .foregroundColor(Color(hex: 0xF5F5F5))
-                                        .opacity(0.95)
-                                }
-                            }
-                        }
-                        .transition(
-                            AnyTransition
-                                .opacity
-                                .combined(with: .scale)
-                                .animation(.bouncy(duration: 0.35))
-                        )
-                    }
-                    Spacer()
-                        .frame(height: 15)
-                }
-                .ignoresSafeArea()
-                .allowsHitTesting(false)
                 if isQuickAvoidanceShowingEmpty {
                     Color.black
                         .ignoresSafeArea()
@@ -150,7 +98,7 @@ struct WatchBrowser_Watch_AppApp: App {
                 }
             }
             .brightnessReducable()
-            ._statusBarHidden(isQuickAvoidanceShowingEmpty)
+            ._statusBarHidden((isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser) || isQuickAvoidanceShowingEmpty)
             .alert("Runtime Error", isPresented: $isTapToRadarAlertPresented, actions: {
                 Button(role: .cancel, action: {
                     
@@ -167,12 +115,6 @@ struct WatchBrowser_Watch_AppApp: App {
             })
             .onAppear {
                 Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { _ in
-                    showTipText = pShowTipText
-                    showTipSymbol = pShowTipSymbol
-                    Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { _ in
-                        isShowingTip = pIsShowingTip
-                    }
-                    
                     tapToRadarAlertContent = pTapToRadarAlertContent
                     if _slowPath(pIsTapToRadarAlertPresented) {
                         isTapToRadarAlertPresented = true
@@ -284,13 +226,8 @@ class AppDelegate: NSObject, WKApplicationDelegate {
     }
 }
 
-public func tipWithText(_ text: LocalizedStringKey, symbol: String = "", time: Double = 3.0) {
-    pShowTipText = text
-    pShowTipSymbol = symbol
-    pIsShowingTip = true
-    Timer.scheduledTimer(withTimeInterval: time, repeats: false) { _ in
-        pIsShowingTip = false
-    }
+public func tipWithText(_ text: LocalizedStringResource, symbol: String = "", time: Double = 3.0) {
+    NKTipper.scaleStyle.present(text: text, symbol: symbol, duration: time)
     if symbol == "xmark.circle.fill" {
         playHaptic(from: Bundle.main.url(forResource: "Failure", withExtension: "ahap")!)
     } else {
@@ -299,12 +236,7 @@ public func tipWithText(_ text: LocalizedStringKey, symbol: String = "", time: D
 }
 @_disfavoredOverload
 public func tipWithText(_ text: String, symbol: String = "", time: Double = 3.0) {
-    pShowTipText = "\(text)"
-    pShowTipSymbol = symbol
-    pIsShowingTip = true
-    Timer.scheduledTimer(withTimeInterval: time, repeats: false) { _ in
-        pIsShowingTip = false
-    }
+    NKTipper.scaleStyle.present(text: text, symbol: symbol, duration: time)
     if symbol == "xmark.circle.fill" {
         playHaptic(from: Bundle.main.url(forResource: "Failure", withExtension: "ahap")!)
     } else {

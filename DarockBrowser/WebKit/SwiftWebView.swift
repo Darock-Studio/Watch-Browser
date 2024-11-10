@@ -124,6 +124,7 @@ struct SwiftWebView: View {
                 }
             if let errorText = webErrorText {
                 Text(errorText)
+                    .foregroundStyle(.black)
                     .padding()
                     .allowsHitTesting(false)
             }

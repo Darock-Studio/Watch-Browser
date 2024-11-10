@@ -77,7 +77,7 @@ struct WebAbstractView: View {
                         }
                         let visibleText = texts.joined(separator: " ")
                         Task {
-                            if let abstract = await webAbstract(from: String(visibleText.prefix(7000))) {
+                            if let abstract = await webAbstract(from: String(visibleText.prefix(2000))) {
                                 DispatchQueue.main.async {
                                     abstractString = abstract
                                 }

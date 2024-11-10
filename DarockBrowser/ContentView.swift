@@ -657,7 +657,7 @@ func startSearch(_ textOrURL: String, with engine: String, createPageAction: ((N
     }
     let isSearchEngineShortcutEnabled = UserDefaults.standard.bool(forKey: "IsSearchEngineShortcutEnabled")
     if textOrURL.isURL() {
-        if !textOrURL.contains("://") {
+        if !textOrURL.contains(":") {
             textOrURL = "http://" + textOrURL
         }
         if let createPageAction {
@@ -777,6 +777,7 @@ extension String {
                 return true
             }
         }
+        guard URL(string: self) != nil else { return false }
         var topLevelDomainList = (try! String(contentsOf: Bundle.main.url(forResource: "TopLevelDomainList", withExtension: "drkdatat")!, encoding: .utf8))
             .split(separator: "\n")
             .map { String($0) }
