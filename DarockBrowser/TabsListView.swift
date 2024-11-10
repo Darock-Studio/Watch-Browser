@@ -155,7 +155,9 @@ struct TabsListView<StartPage>: View where StartPage: View {
         }
         .onChange(of: tabs) { _ in
             if let jsonStr = jsonString(from: tabs.map { $0.metadata }) {
-                try? jsonStr.write(toFile: NSHomeDirectory() + "/Documents/Tabs/Tabs.drkdatat", atomically: true, encoding: .utf8)
+                if getJsonData([WebViewTab.Metadata].self, from: jsonStr) != nil {
+                    try? jsonStr.write(toFile: NSHomeDirectory() + "/Documents/Tabs/Tabs.drkdatat", atomically: true, encoding: .utf8)
+                }
             }
         }
         .onChange(of: selectedTab) { _ in
