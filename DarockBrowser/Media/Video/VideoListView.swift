@@ -74,11 +74,6 @@ struct VideoListView: View {
                     saveFileName: $downloadVideoSaveName
                 )
             }
-            .onDisappear {
-                if dismissListsShouldRepresentWebView {
-                    safePresent(AdvancedWebViewController.shared.vc)
-                }
-            }
         } else {
             Text("空视频列表")
                 .onAppear {

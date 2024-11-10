@@ -8,11 +8,13 @@
 import SwiftUI
 import DarockKit
 import SwiftSoup
+import MarqueeText
 import SDWebImageSwiftUI
 
 struct BrowsingMenuView: View {
     var webView: WKWebView
     @Binding var webViewPresentationMode: PresentationMode
+    @Binding var presentingMediaList: WebViewMediaListPresentation?
     @Binding var isHidingDistractingItems: Bool
     var customDismissAction: (() -> Void)?
     @Environment(\.presentationMode) var presentationMode
@@ -25,7 +27,7 @@ struct BrowsingMenuView: View {
     @AppStorage("DBIsAutoAppearence") var isAutoAppearence = false
     @AppStorage("DBAutoAppearenceOptionEnableForWebForceDark") var autoAppearenceOptionEnableForWebForceDark = true
     @AppStorage("IsProPurchased") var isProPurchased = false
-    @State var webLinkInput = ""
+    @State var isHomeViewPresented = false
     @State var isCheckingWebContent = true
     @State var linksUpdateTimer: Timer?
     @State var videoLinks = [String]()
@@ -97,36 +99,59 @@ struct BrowsingMenuView: View {
                         }
                     }
                     Section {
-                        TextField("页面链接", text: $webLinkInput, style: "field-page") {
-                            if webLinkInput.isURL() {
-                                if !(webLinkInput.split(separator: ".").first?.contains("://") ?? false) {
-                                    webLinkInput = "http://" + webLinkInput
-                                }
-                                if let url = URL(string: webLinkInput) {
-                                    webView.load(URLRequest(url: url))
-                                }
-                            } else {
-                                webView.load(
-                                    URLRequest(url: URL(string: getWebSearchedURL(
-                                        webLinkInput,
-                                        webSearch: webSearch,
-                                        isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled
-                                    ))!)
+                        HStack {
+                            TextFieldLink(label: {
+                                MarqueeText(
+                                    text: webView.url?.absoluteString ?? "",
+                                    font: .systemFont(ofSize: 14),
+                                    leftFade: 5,
+                                    rightFade: 5,
+                                    startDelay: 1.5,
+                                    alignment: .leading
                                 )
-                            }
-                            presentationMode.wrappedValue.dismiss()
+                            }, onSubmit: { input in
+                                if input.isURL() {
+                                    var input = input
+                                    if !(input.split(separator: ".").first?.contains("://") ?? false) {
+                                        input = "http://" + input
+                                    }
+                                    if let url = URL(string: input) {
+                                        webView.load(URLRequest(url: url))
+                                    }
+                                } else {
+                                    webView.load(
+                                        URLRequest(url: URL(string: getWebSearchedURL(
+                                            input,
+                                            webSearch: webSearch,
+                                            isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled
+                                        ))!)
+                                    )
+                                }
+                                presentationMode.wrappedValue.dismiss()
+                            })
+                            .noAutoInput()
+                            .submitLabel(.go)
+                            .buttonStyle(.bordered)
+                            .buttonBorderShape(.roundedRectangle(radius: 14))
+                            Button(action: {
+                                isHomeViewPresented = true
+                            }, label: {
+                                Image(systemName: "house.fill")
+                            })
+                            .buttonStyle(.bordered)
+                            .buttonBorderShape(.roundedRectangle(radius: 14))
+                            .frame(width: 55)
                         }
-                        .noAutoInput()
-                        .submitLabel(.go)
+                        .listRowBackground(Color.clear)
+                        .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
                     }
                     if browsingMenuLayout != "Compact" {
                         Section {
                             if !isCheckingWebContent {
                                 if !videoLinks.isEmpty {
                                     Button(action: {
-                                        webViewPresentationMode.dismiss()
-                                        pShouldPresentVideoList = true
-                                        dismissListsShouldRepresentWebView = true
+                                        presentationMode.wrappedValue.dismiss()
+                                        presentingMediaList = .video
                                     }, label: {
                                         HStack {
                                             Text("播放网页视频")
@@ -137,9 +162,8 @@ struct BrowsingMenuView: View {
                                 }
                                 if !imageLinks.isEmpty {
                                     Button(action: {
-                                        webViewPresentationMode.dismiss()
-                                        pShouldPresentImageList = true
-                                        dismissListsShouldRepresentWebView = true
+                                        presentationMode.wrappedValue.dismiss()
+                                        presentingMediaList = .image
                                     }, label: {
                                         HStack {
                                             Text("查看网页图片")
@@ -150,9 +174,8 @@ struct BrowsingMenuView: View {
                                 }
                                 if !audioLinks.isEmpty {
                                     Button(action: {
-                                        webViewPresentationMode.dismiss()
-                                        pShouldPresentAudioList = true
-                                        dismissListsShouldRepresentWebView = true
+                                        presentationMode.wrappedValue.dismiss()
+                                        presentingMediaList = .music
                                     }, label: {
                                         HStack {
                                             Text("播放网页音频")
@@ -374,25 +397,22 @@ struct BrowsingMenuView: View {
                                 if !isCheckingWebContent {
                                     HStack {
                                         Button(action: {
-                                            webViewPresentationMode.dismiss()
-                                            pShouldPresentVideoList = true
-                                            dismissListsShouldRepresentWebView = true
+                                            presentationMode.wrappedValue.dismiss()
+                                            presentingMediaList = .video
                                         }, label: {
                                             Image(systemName: "film.stack")
                                         })
                                         .disabled(videoLinks.isEmpty)
                                         Button(action: {
-                                            webViewPresentationMode.dismiss()
-                                            pShouldPresentImageList = true
-                                            dismissListsShouldRepresentWebView = true
+                                            presentationMode.wrappedValue.dismiss()
+                                            presentingMediaList = .image
                                         }, label: {
                                             Image(systemName: "photo.stack")
                                         })
                                         .disabled(imageLinks.isEmpty)
                                         Button(action: {
-                                            webViewPresentationMode.dismiss()
-                                            pShouldPresentAudioList = true
-                                            dismissListsShouldRepresentWebView = true
+                                            presentationMode.wrappedValue.dismiss()
+                                            presentingMediaList = .music
                                         }, label: {
                                             Image(systemName: "music.quarternote.3")
                                         })
@@ -571,10 +591,25 @@ struct BrowsingMenuView: View {
         .sheet(isPresented: $isBackListPresented, content: { BackForwardListView(webView: webView, type: .back, menuPresentationMode: presentationMode) })
         .sheet(isPresented: $isForwardListPresented, content: { BackForwardListView(webView: webView, type: .forward, menuPresentationMode: presentationMode) })
         .sheet(isPresented: $isWebAbstractPresented, content: { WebAbstractView(webView: webView) })
-        .onAppear {
-            if webLinkInput.isEmpty {
-                webLinkInput = webView.url?.absoluteString ?? ""
+        .sheet(isPresented: $isHomeViewPresented) {
+            NavigationStack {
+                MainView { configuration in
+                    if let url = URL(string: configuration.url) {
+                        if !configuration.isWebArchive {
+                            webView.load(URLRequest(url: url))
+                        } else {
+                            do {
+                                webView.load(try Data(contentsOf: url), mimeType: "application/x-webarchive", characterEncodingName: "utf-8", baseURL: url)
+                            } catch {
+                                globalErrorHandler(error)
+                            }
+                        }
+                    }
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
+        }
+        .onAppear {
             isLoading = webView.isLoading
             linksUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
                 videoLinks = videoLinkLists
@@ -804,5 +839,37 @@ private struct BackForwardListView: View {
     enum `Type` {
         case back
         case forward
+    }
+}
+
+struct WebViewMediaListPresentation: Identifiable {
+    static let video = WebViewMediaListPresentation(.video)
+    static let image = WebViewMediaListPresentation(.image)
+    static let music = WebViewMediaListPresentation(.music)
+    
+    let id: String
+    private let underlyingType: UnderlyingPresentationType
+    
+    private init(_ underlyingType: UnderlyingPresentationType) {
+        self.id = underlyingType.rawValue
+        self.underlyingType = underlyingType
+    }
+    
+    @ViewBuilder
+    func callAsFunction() -> some View {
+        switch underlyingType {
+        case .video:
+            VideoListView()
+        case .image:
+            ImageListView()
+        case .music:
+            AudioListView()
+        }
+    }
+    
+    private enum UnderlyingPresentationType: String {
+        case video
+        case image
+        case music
     }
 }

@@ -130,8 +130,8 @@ final class AdvancedWebViewController: NSObject {
         return wkWebView
     }
     
-    func swiftWebView(from wkWebView: WKWebView, customDismissAction: (() -> Void)? = nil) -> AnyView {
-        let vc = _makeUIHostingController(AnyView(SwiftWebView(webView: wkWebView, customDismissAction: customDismissAction)))
+    func swiftWebView(from wkWebView: WKWebView, inside tab: Binding<WebViewTab>? = nil, customDismissAction: (() -> Void)? = nil) -> AnyView {
+        let vc = _makeUIHostingController(AnyView(SwiftWebView(webView: wkWebView, insideTab: tab, customDismissAction: customDismissAction)))
         return AnyView(GeneralUIViewControllerRepresenting(viewController: vc))
     }
     

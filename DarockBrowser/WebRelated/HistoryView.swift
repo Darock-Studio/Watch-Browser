@@ -125,21 +125,17 @@ struct HistoryView: View {
                                                         } else if histories[j].url.hasSuffix(".mp4") {
                                                             videoLinkLists = [histories[j].url]
                                                             pShouldPresentVideoList = true
-                                                            dismissListsShouldRepresentWebView = false
                                                         } else if histories[j].url.hasSuffix(".mp3") {
                                                             audioLinkLists = [histories[j].url]
                                                             pShouldPresentAudioList = true
-                                                            dismissListsShouldRepresentWebView = false
                                                         } else if histories[j].url.hasSuffix(".png")
                                                                     || histories[j].url.hasSuffix(".jpg")
                                                                     || histories[j].url.hasSuffix(".webp") {
                                                             imageLinkLists = [histories[j].url]
                                                             pShouldPresentImageList = true
-                                                            dismissListsShouldRepresentWebView = false
                                                         } else if histories[j].url.hasSuffix(".epub") {
                                                             bookLinkLists = [histories[j].url]
                                                             pShouldPresentBookList = true
-                                                            dismissListsShouldRepresentWebView = false
                                                         } else {
                                                             AdvancedWebViewController.shared.present(histories[j].url.urlDecoded().urlEncoded())
                                                         }

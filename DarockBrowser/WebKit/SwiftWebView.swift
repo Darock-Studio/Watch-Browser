@@ -5,21 +5,26 @@
 //  Created by memz233 on 2024/8/18.
 //
 
+import OSLog
 import Combine
 import SwiftUI
 
 struct SwiftWebView: View {
     static let loadingProgressHidden = CurrentValueSubject<Bool, Never>(true)
     static let webErrorText = CurrentValueSubject<String?, Never>(nil)
+    static let webViewCrashNotification = PassthroughSubject<Void, Never>()
     
     var webView: WKWebView
+    var insideTab: Binding<WebViewTab>?
     var customDismissAction: (() -> Void)?
     @Environment(\.presentationMode) var presentationMode
     @AppStorage("WebViewLayout") var webViewLayout = "MaximumViewport"
     @AppStorage("HideDigitalTime") var hideDigitalTime = false
     @AppStorage("KeepDigitalTime") var keepDigitalTime = false
     @AppStorage("ShowFastExitButton") var showFastExitButton = false
+    @AppStorage("AlwaysReloadWebPageAfterCrash") var alwaysReloadWebPageAfterCrash = false
     @State var isQuickAvoidanceShowingEmpty = false
+    @State var presentingMediaList: WebViewMediaListPresentation?
     @State var isBrowsingMenuPresented = false
     @State var isHidingDistractingItems = false
     @State var webCanGoBack = false
@@ -90,7 +95,11 @@ struct SwiftWebView: View {
                                 if webCanGoBack {
                                     webView.goBack()
                                 } else {
-                                    presentationMode.wrappedValue.dismiss()
+                                    if let customDismissAction {
+                                        customDismissAction()
+                                    } else {
+                                        presentationMode.wrappedValue.dismiss()
+                                    }
                                 }
                             }, label: {
                                 if #available(watchOS 10, *) {
@@ -119,8 +128,11 @@ struct SwiftWebView: View {
                     }
                 }
                 .wrapIf(webViewLayout != "MaximumViewport") { content in
-                    content
-                        .toolbar(.visible, for: .navigationBar)
+                    NavigationView {
+                        content
+                    }
+                    .toolbar(.visible)
+                    .toolbarBackground(.hidden)
                 }
             if let errorText = webErrorText {
                 Text(errorText)
@@ -171,7 +183,11 @@ struct SwiftWebView: View {
                         .buttonStyle(.plain)
                         if showFastExitButton {
                             Button(action: {
-                                presentationMode.wrappedValue.dismiss()
+                                if let customDismissAction {
+                                    customDismissAction()
+                                } else {
+                                    presentationMode.wrappedValue.dismiss()
+                                }
                             }, label: {
                                 ZStack {
                                     Rectangle()
@@ -205,9 +221,28 @@ struct SwiftWebView: View {
             BrowsingMenuView(
                 webView: webView,
                 webViewPresentationMode: presentationMode,
+                presentingMediaList: $presentingMediaList,
                 isHidingDistractingItems: $isHidingDistractingItems,
                 customDismissAction: customDismissAction
             )
+        }
+        .sheet(item: $presentingMediaList) { type in
+            NavigationStack { type() }
+        }
+        .onAppear {
+            if let load = insideTab?.wrappedValue.shouldLoad {
+                switch load {
+                case .web(let url):
+                    webView.load(URLRequest(url: url))
+                case .webArchive(let url):
+                    do {
+                        webView.load(try Data(contentsOf: url), mimeType: "application/x-webarchive", characterEncodingName: "utf-8", baseURL: url)
+                    } catch {
+                        globalErrorHandler(error)
+                    }
+                }
+                insideTab?.wrappedValue.shouldLoad = nil
+            }
         }
         .onDisappear {
             globalWebBrowsingUserActivity?.invalidate()
@@ -217,6 +252,11 @@ struct SwiftWebView: View {
         }
         .onReceive(SwiftWebView.webErrorText) { text in
             webErrorText = text
+        }
+        .onReceive(SwiftWebView.webViewCrashNotification) { _ in
+            if alwaysReloadWebPageAfterCrash {
+                webView.reload()
+            }
         }
         .onReceive(AdvancedWebViewController.presentBrowsingMenuPublisher) { _ in
             isBrowsingMenuPresented = true
@@ -233,6 +273,40 @@ struct SwiftWebView: View {
         }
         .onReceive(webView.publisher(for: \.estimatedProgress)) { value in
             loadingProgress = value
+        }
+        .onReceive(webView.publisher(for: \.url)) { url in
+            if let url {
+                insideTab?.wrappedValue.metadata?.url = url
+            }
+        }
+        .onReceive(webView.publisher(for: \.title)) { title in
+            if let title {
+                insideTab?.wrappedValue.metadata?.title = title
+            }
+        }
+        .onReceive(webView.publisher(for: \.isLoading)) { loading in
+            if !loading, insideTab != nil {
+                let snapshotConfiguration = WKSnapshotConfiguration()
+                webView.takeSnapshot(with: snapshotConfiguration) { image, _ in
+                    DispatchQueue(label: "com.darock.WatchBrowser.tui.Snapshot", qos: .utility).async {
+                        if let image {
+                            do {
+                                if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/tmp/TabSnapshots") {
+                                    try FileManager.default.createDirectory(
+                                        atPath: NSHomeDirectory() + "/tmp/TabSnapshots",
+                                        withIntermediateDirectories: false
+                                    )
+                                }
+                                let snapshotFilePath = insideTab?.wrappedValue.metadata?.snapshotPath ?? "/tmp/TabSnapshots/\(UUID().uuidString).drkdatas"
+                                try image.pngData()?.write(to: URL(filePath: NSHomeDirectory() + snapshotFilePath))
+                                insideTab?.wrappedValue.metadata?.snapshotPath = snapshotFilePath
+                            } catch {
+                                os_log(.error, "\(error)")
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

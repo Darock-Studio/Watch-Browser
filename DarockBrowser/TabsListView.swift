@@ -16,40 +16,60 @@ struct TabsListView<StartPage>: View where StartPage: View {
     @State var tabs = [WebViewTab]()
     @State var selectedTab: WebViewTab?
     @State var currentColumn = NavigationSplitViewColumn.sidebar
+    @State var isAppSettingsPresented = false
     var body: some View {
         NavigationSplitView(preferredCompactColumn: $currentColumn, sidebar: {
-            List(selection: $selectedTab) {
-                ForEach(tabs, id: \.id) { tab in
-                    TabLink(for: tab)
+            NavigationStack {
+                List(selection: $selectedTab) {
+                    ForEach(tabs, id: \.id) { tab in
+                        TabLink(for: tab)
+                    }
+                    .onDelete { index in
+                        for i in index {
+                            tabs[i].webView?.stopLoading()
+                        }
+                        tabs.remove(atOffsets: index)
+                    }
+                    .onMove { source, destination in
+                        tabs.move(fromOffsets: source, toOffset: destination)
+                    }
                 }
-                .onDelete { index in
-                    tabs.remove(atOffsets: index)
-                }
-            }
-            .listStyle(.plain)
-            .navigationTitle("\(tabs.count) 个标签页")
-            .navigationBarTitleDisplayMode(.inline)
-            .modifier(UserDefinedBackground())
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    NavigationLink(destination: { SettingsView() }, label: {
-                        Image(systemName: "gear")
-                    })
-                }
-                ToolbarItemGroup(placement: .bottomBar) {
-                    Button(action: {
-                        tabs.append(.init(metadata: .init(url: nil)))
-                    }, label: {
-                        Image(systemName: "plus")
-                    })
-                    Spacer()
+                .listStyle(.plain)
+                .navigationTitle("\(tabs.count) 个标签页")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationDestination(isPresented: $isAppSettingsPresented, destination: { SettingsView() })
+                .modifier(UserDefinedBackground())
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button(action: {
+                            isAppSettingsPresented = true
+                        }, label: {
+                            Image(systemName: "gear")
+                        })
+                    }
+                    ToolbarItemGroup(placement: .bottomBar) {
+                        Button(action: {
+                            tabs.append(.init(metadata: .init(url: nil)))
+                            selectedTab = tabs.last
+                        }, label: {
+                            Image(systemName: "plus")
+                        })
+                        Spacer()
+                    }
                 }
             }
         }, detail: {
             if let selectedTab {
                 if let webView = selectedTab.webView {
-                    AdvancedWebViewController.shared.swiftWebView(from: webView) {
+                    AdvancedWebViewController.shared.swiftWebView(from: webView, inside: {
                         if let index = tabs.firstIndex(where: { $0.id == selectedTab.id }) {
+                            $tabs[index]
+                        } else {
+                            nil
+                        }
+                    }()) {
+                        if let index = tabs.firstIndex(where: { $0.id == selectedTab.id }) {
+                            tabs[index].shouldLoad = nil
                             if tabs[index].metadata == nil, let url = webView.url {
                                 tabs[index].metadata = .init(url: url)
                             }
@@ -78,6 +98,10 @@ struct TabsListView<StartPage>: View where StartPage: View {
                             }
                             tabs[index].metadata?.title = webView.title
                         }
+                        // Stop Loading
+                        if webView.isLoading {
+                            webView.stopLoading()
+                        }
                         self.selectedTab = nil
                     }
                     .ignoresSafeArea()
@@ -100,7 +124,8 @@ struct TabsListView<StartPage>: View where StartPage: View {
                     }
                 }
             } else {
-                Text("选择标签页...")
+                EmptyView()
+                    .modifier(UserDefinedBackground())
             }
         })
         .onAppear {
@@ -120,12 +145,24 @@ struct TabsListView<StartPage>: View where StartPage: View {
                 }
                 if tabs.isEmpty {
                     tabs.append(.init(metadata: .init(url: nil)))
+                } else {
+                    if let recoverIndex = UserDefaults.standard.object(forKey: "LastPresentingTabIndex") as? Int,
+                       recoverIndex >= 0 && recoverIndex < tabs.count {
+                        selectedTab = tabs[recoverIndex]
+                    }
                 }
             }
         }
         .onChange(of: tabs) { _ in
             if let jsonStr = jsonString(from: tabs.map { $0.metadata }) {
                 try? jsonStr.write(toFile: NSHomeDirectory() + "/Documents/Tabs/Tabs.drkdatat", atomically: true, encoding: .utf8)
+            }
+        }
+        .onChange(of: selectedTab) { _ in
+            if let tab = selectedTab, let index = tabs.firstIndex(where: { $0.id == tab.id }) {
+                UserDefaults.standard.set(index, forKey: "LastPresentingTabIndex")
+            } else {
+                UserDefaults.standard.removeObject(forKey: "LastPresentingTabIndex")
             }
         }
     }
@@ -177,6 +214,7 @@ struct WebViewTab: Identifiable, Hashable {
     
     var webView: WKWebView?
     var metadata: Metadata?
+    var shouldLoad: LoadResource?
     
     init(metadata: Metadata) {
         if metadata.url == nil {
@@ -184,9 +222,15 @@ struct WebViewTab: Identifiable, Hashable {
         }
         self.metadata = metadata
         if !metadata.isWebArchive {
-            self.webView = AdvancedWebViewController.shared.newWebView(metadata.url)
+            if let url = metadata.url {
+                self.shouldLoad = .web(url)
+            }
+            self.webView = AdvancedWebViewController.shared.newWebView(nil)
         } else {
-            self.webView = AdvancedWebViewController.shared.newWebView(nil, archiveURL: metadata.url)
+            if let url = metadata.url {
+                self.shouldLoad = .webArchive(url)
+            }
+            self.webView = AdvancedWebViewController.shared.newWebView(nil)
         }
     }
     
@@ -214,6 +258,11 @@ struct WebViewTab: Identifiable, Hashable {
         static func == (lhs: Metadata, rhs: Metadata) -> Bool {
             lhs.url == rhs.url && lhs.title == rhs.title && lhs.snapshotPath == rhs.snapshotPath && lhs.isWebArchive == rhs.isWebArchive
         }
+    }
+    
+    enum LoadResource {
+        case web(URL)
+        case webArchive(URL)
     }
 }
 

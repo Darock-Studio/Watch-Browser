@@ -1,5 +1,5 @@
 //
-//  WatchBrowserApp.swift
+//  DarockBrowserApp.swift
 //  WatchBrowser Watch App
 //
 //  Created by Windows MEMZ on 2023/2/6.
@@ -34,7 +34,7 @@ let isAppBetaBuild = false
 #endif
 
 @main
-struct WatchBrowser_Watch_AppApp: App {
+struct DarockBrowserApp: App {
     @WKApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) var scenePhase
     @AppStorage("ShouldTipNewFeatures6") var shouldTipNewFeatures = true

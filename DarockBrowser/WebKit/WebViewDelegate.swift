@@ -97,21 +97,18 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
                 audioLinkLists = [curl]
                 AdvancedWebViewController.shared.dismissWebView()
                 pShouldPresentAudioList = true
-                dismissListsShouldRepresentWebView = true
                 return
             }
             if _slowPath(curl.hasSuffix(".mp4")) {
                 videoLinkLists = [curl]
                 AdvancedWebViewController.shared.dismissWebView()
                 pShouldPresentVideoList = true
-                dismissListsShouldRepresentWebView = true
                 return
             }
             if _slowPath(curl.hasSuffix(".epub")) {
                 bookLinkLists = [curl]
                 AdvancedWebViewController.shared.dismissWebView()
                 pShouldPresentBookList = true
-                dismissListsShouldRepresentWebView = true
                 return
             }
         }
@@ -193,9 +190,8 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     }
     
     public func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
-        if UserDefaults.standard.bool(forKey: "AlwaysReloadWebPageAfterCrash") {
-            webView.reload()
-        }
+        // If always reload enabled and WebView is presenting currently, reload page.
+        SwiftWebView.webViewCrashNotification.send()
     }
 }
 

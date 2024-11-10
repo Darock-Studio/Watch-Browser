@@ -147,11 +147,6 @@ struct AudioListView: View {
                     }
                 }
             }
-            .onDisappear {
-                if dismissListsShouldRepresentWebView {
-                    safePresent(AdvancedWebViewController.shared.vc)
-                }
-            }
         } else {
             Text("空音频列表")
         }

@@ -1,5 +1,5 @@
 {
-  "originHash" : "cd701a3d5815e49b4b1694a43efccd11d55e2f01d0463780d469eb590149d2c9",
+  "originHash" : "34e10b18c5f33ac587e7eab1a5e261fb11ce1c167a0e620f5851060603b4bdba",
   "pins" : [
     {
       "identity" : "aexml",
@@ -71,6 +71,15 @@
       "state" : {
         "revision" : "b2b1d20a90b14d11f6ef4241da6b81c1d3f171e4",
         "version" : "1.3.2"
+      }
+    },
+    {
+      "identity" : "marqueetext",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/joekndy/MarqueeText",
+      "state" : {
+        "branch" : "master",
+        "revision" : "e18d514455563ad00581e0d825146c6f15b1c6c4"
       }
     },
     {

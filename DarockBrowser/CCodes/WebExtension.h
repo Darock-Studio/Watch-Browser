@@ -17,7 +17,6 @@ bool pShouldPresentVideoList;
 bool pShouldPresentImageList;
 bool pShouldPresentBookList;
 bool pShouldPresentAudioList;
-bool dismissListsShouldRepresentWebView;
 id webViewParentController;
 NSUserActivity* globalWebBrowsingUserActivity;
 

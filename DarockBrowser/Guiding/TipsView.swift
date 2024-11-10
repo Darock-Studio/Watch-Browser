@@ -366,7 +366,6 @@ struct TipsView: View {
                     Button(action: {
                         audioLinkLists = ["http://music.\(0b10100011).com/song/media/outer/url?id=411500345.mp3"]
                         pShouldPresentAudioList = true
-                        dismissListsShouldRepresentWebView = false
                     }, label: {
                         Text("查看示例音频")
                     })
@@ -395,7 +394,6 @@ struct TipsView: View {
                                 .absoluteString
                         ]
                         pShouldPresentImageList = true
-                        dismissListsShouldRepresentWebView = false
                     }, label: {
                         Text("查看示例图片")
                     })
@@ -436,7 +434,6 @@ struct TipsView: View {
                     Button(action: {
                         bookLinkLists = ["https://darock.storage.linecom.net.cn/darockbrowser/example/ThreeBody.epub"]
                         pShouldPresentBookList = true
-                        dismissListsShouldRepresentWebView = false
                     }, label: {
                         Text("查看示例图书 [《三体》(1.83 MB)]")
                     })
@@ -460,7 +457,6 @@ struct TipsView: View {
                     Button(action: {
                         videoLinkLists = ["https://darock.storage.linecom.net.cn/darockbrowser/example/Shiroko.mp4"]
                         pShouldPresentVideoList = true
-                        dismissListsShouldRepresentWebView = false
                     }, label: {
                         Text("查看示例视频 (41.4 MB)")
                     })

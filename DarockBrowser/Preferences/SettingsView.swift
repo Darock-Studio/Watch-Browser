@@ -1648,6 +1648,7 @@ struct SettingsView: View {
                         SinglePackageBlock(name: "EFQRCode", license: "MIT license")
                         SinglePackageBlock(name: "EPUBKit", license: "MIT license")
                         SinglePackageBlock(name: "libwebp", license: "BSD-3-Clause license")
+                        SinglePackageBlock(name: "MarqueeText", license: "MIT license")
                         SinglePackageBlock(name: "NetworkImage", license: "MIT license")
                         SinglePackageBlock(name: "Pictor", license: "Apache License 2.0")
                         SinglePackageBlock(name: "Punycode", license: "MIT license")
@@ -4080,11 +4081,6 @@ func getFullToolbar(
     with type: ToolbarButtonRenderType,
     action: @escaping (HomeScreenControlType, HomeScreenToolbarPosition, Any?) -> Void
 ) -> some ToolbarContent {
-    ToolbarItem(placement: .topBarLeading) {
-        getToolbarButton(by: controls.topLeading, with: type) { object in
-            action(controls.topLeading, .topLeading, object)
-        }
-    }
     ToolbarItem(placement: .topBarTrailing) {
         if controls.topTrailing != .spacer {
             getToolbarButton(by: controls.topTrailing, with: type) { object in

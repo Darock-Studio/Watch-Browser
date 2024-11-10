@@ -13,7 +13,7 @@ if [[ "$CI_WORKFLOW" == *" Beta" ]]; then
   changed_file_count=$(echo "$response" | jq -r '.files | length')
   changed_files=$(echo "$response" | jq -c '.files[]' | while IFS= read -r file; do
     _single_changed_file=$(echo "$file" | jq -r '.filename')
-    echo "    - $_single_changed_file\n"
+    echo "    - $_single_changed_file"
   done)
   xcodebuild_version=$(xcodebuild -version)
   swver=$(sw_vers)
