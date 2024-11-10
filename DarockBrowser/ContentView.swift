@@ -131,11 +131,6 @@ struct MainView: View {
     @State var toolbarNavigationDestination: HomeScreenNavigationType?
     var body: some View {
         List {
-            Button(action: {
-                debugPrint(try? String(contentsOfFile: "/private/var/db/eligibilityd/eligibility.plist", encoding: .utf8))
-            }, label: {
-                Text("Debug")
-            })
             if isAudioControllerAvailable {
                 Button(action: {
                     pShouldPresentAudioController = true
