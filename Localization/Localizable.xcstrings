@@ -8057,6 +8057,9 @@
     "Discord Server" : {
       "shouldTranslate" : false
     },
+    "Eligibility" : {
+
+    },
     "Energy & Performance" : {
       "shouldTranslate" : false
     },
@@ -10588,9 +10591,6 @@
           }
         }
       }
-    },
-    "LLDB" : {
-      "shouldTranslate" : false
     },
     "Microsoft Edge - macOS" : {
       "shouldTranslate" : false
@@ -14100,6 +14100,12 @@
         }
       },
       "shouldTranslate" : false
+    },
+    "View Eligibility Data" : {
+
+    },
+    "View MobileGestalt Data" : {
+
     },
     "What's New Screen & TQC" : {
       "shouldTranslate" : false

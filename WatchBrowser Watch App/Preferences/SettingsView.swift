@@ -3528,17 +3528,51 @@ struct SettingsView: View {
                     }, label: {
                         Text("Present Debugger Attach Status")
                     })
-                } header: {
-                    Text("Debugger")
-                }
-                Section {
                     Button(action: {
                         print(NSHomeDirectory())
                     }, label: {
                         Text("Print NSHomeDirectory")
                     })
                 } header: {
-                    Text("LLDB")
+                    Text("Debugger")
+                }
+                Section {
+                    NavigationLink(destination: {
+                        ScrollView {
+                            VStack {
+                                Text((
+                                    try! PropertyListSerialization
+                                        .propertyList(from: FileManager.default.contents(atPath: "/private/var/db/eligibilityd/eligibility.plist")!,
+                                                      options: [],
+                                                      format: nil
+                                                     ) as! [String: Any]
+                                ).description)
+                                .font(.system(size: 12, design: .monospaced))
+                            }
+                        }
+                    }, label: {
+                        Text("View Eligibility Data")
+                    })
+                    NavigationLink(destination: {
+                        ScrollView {
+                            VStack {
+                                Text((
+                                    try! PropertyListSerialization
+                                        .propertyList(from: FileManager.default.contents(
+                                            atPath: "/private/var/containers/Shared/SystemGroup/systemgroup.com.apple.mobilegestaltcache/Library/Caches/com.apple.MobileGestalt.plist"
+                                        )!,
+                                                      options: [],
+                                                      format: nil
+                                        ) as! [String: Any]
+                                ).description)
+                                .font(.system(size: 12, design: .monospaced))
+                            }
+                        }
+                    }, label: {
+                        Text("View MobileGestalt Data")
+                    })
+                } header: {
+                    Text("Eligibility")
                 }
                 Section {
                     Button(action: {
