@@ -31,9 +31,9 @@ struct LocalImageView: View {
             }
             .navigationBarBackButtonHidden()
         } else {
-            ScrollViewReader { scrollProxy in
-                List {
-                    Section {
+            List {
+                Section {
+                    VStack {
                         if !images.isEmpty {
                             LazyVGrid(columns: [
                                 .init(.fixed(WKInterfaceDevice.current().screenBounds.width / 3), spacing: 0),
@@ -55,20 +55,16 @@ struct LocalImageView: View {
                                                 indexForMenu = i
                                                 isMenuPresented = true
                                             }
-                                            .id(i)
                                     }
                                 }
                             }
-                            .onAppear {
-                                scrollProxy.scrollTo(images.count - 1)
-                            }
                         }
                     }
-                    .listRowBackground(Color.clear)
-                    .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
-                .scrollIndicators(.never)
+                .listRowBackground(Color.clear)
+                .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
             }
+            .scrollIndicators(.never)
             .navigationTitle("本地图片")
             .sheet(isPresented: $isImageViewerPresented) {
                 if useDigitalCrownFor == "zoom" {
@@ -92,8 +88,10 @@ struct LocalImageView: View {
                 NavigationStack {
                     List {
                         Section {
-                            ShareLink(item: URL(filePath: NSHomeDirectory() + "/Documents/LocalImages/" + images[indexForMenu])) {
-                                Label("分享", systemImage: "square.and.arrow.up")
+                            if let uiImage = UIImage(contentsOfFile: NSHomeDirectory() + "/Documents/LocalImages/" + images[indexForMenu]) {
+                                ShareLink(item: Image(uiImage: uiImage), preview: .init("暗礁浏览器的本地图片", image: Image(uiImage: uiImage))) {
+                                    Label("分享", systemImage: "square.and.arrow.up")
+                                }
                             }
                             if isThisClusterInstalled {
                                 Button(action: {

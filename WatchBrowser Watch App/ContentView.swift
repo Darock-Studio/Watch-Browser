@@ -387,7 +387,7 @@ struct MainView: View {
                 if preloadSearchContent && !isUseOldWebView {
                     var tmpUrl = textOrURL
                     if !textOrURL.hasPrefix("http://") && !textOrURL.hasPrefix("https://") {
-                        if !textOrURL.contains("://") {
+                        if !textOrURL.contains(":") {
                             tmpUrl = "http://" + textOrURL
                         } else {
                             return
@@ -708,7 +708,7 @@ func startSearch(_ textOrURL: String, with engine: String, allowPreload: Bool = 
         return
     }
     if textOrURL.isURL() {
-        if !textOrURL.contains("://") {
+        if !textOrURL.contains(":") {
             textOrURL = "http://" + textOrURL
         }
         AdvancedWebViewController.shared.present(textOrURL.urlEncoded())
@@ -820,6 +820,7 @@ extension String {
                 return true
             }
         }
+        guard URL(string: self) != nil else { return false }
         var topLevelDomainList = (try! String(contentsOf: Bundle.main.url(forResource: "TopLevelDomainList", withExtension: "drkdatat")!, encoding: .utf8))
             .split(separator: "\n")
             .map { String($0) }

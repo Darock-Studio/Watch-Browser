@@ -9,12 +9,12 @@ import OSLog
 import Alamofire
 import SwiftyJSON
 
-private let serviceAPIBaseURL = "https://free.gpt.ge"
-private let serviceAPIKey = "sk-agoNqqAc2mDo8A6U76Df7014956e445dB4AeB59fEe73C4F5"
+private let serviceAPIBaseURL = "https://api.chatanywhere.tech"
+private let serviceAPIKey = "sk-9qkHHIzQGIBDMohlF4cBM30gK13qvvBUH3Kwy8Q51dxRtGoq"
 
 struct IntelligenceMessagePostData: Encodable {
     var messages: [[String: String]]
-    var model: String = "gpt-3.5-turbo-16k"
+    var model: String = "gpt-3.5-turbo"
 }
 struct SingleIntelligenceMessage: Identifiable, Equatable, Codable, Hashable {
     var id = UUID()

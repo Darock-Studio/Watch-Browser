@@ -1220,6 +1220,7 @@ struct SettingsView: View {
                                 Text("正在载入")
                                 Spacer()
                                 ProgressView()
+                                    .frame(width: 20)
                             }
                             .listRowBackground(Color.clear)
                         }
@@ -1634,8 +1635,8 @@ struct SettingsView: View {
                     List {
                         SinglePackageBlock(name: "AEXML", license: "MIT license")
                         SinglePackageBlock(name: "Alamofire", license: "MIT license")
+                        SinglePackageBlock(name: "Cache", license: "MIT license")
                         SinglePackageBlock(name: "Cepheus", license: "Apache License 2.0")
-                        SinglePackageBlock(name: "Dynamic", license: "Apache License 2.0")
                         SinglePackageBlock(name: "EFQRCode", license: "MIT license")
                         SinglePackageBlock(name: "EPUBKit", license: "MIT license")
                         SinglePackageBlock(name: "libwebp", license: "BSD-3-Clause license")
@@ -2902,12 +2903,7 @@ struct SettingsView: View {
                             Toggle("互点两下", isOn: $isDoubleTapEnabled)
                         } footer: {
                             if #available(watchOS 11.0, *), WKInterfaceDevice.supportsDoubleTapGesture {
-                                Button(action: {
-                                    WKExtension.shared().openSystemURL(URL(string: "prefs:root=ELTON_SETTINGS_ID")!)
-                                }, label: {
-                                    Text("食指和拇指互点两下以执行指定的操作。互点两下必须已在系统“\(Text("手势").foregroundColor(.blue))”设置中打开。")
-                                })
-                                .buttonStyle(.plain)
+                                Text("食指和拇指互点两下以执行指定的操作。互点两下必须已在系统“手势”设置中打开。")
                             } else {
                                 Text("食指和拇指互点两下以执行指定的操作。需要先在系统设置→辅助功能中启用“快速操作”。")
                             }
@@ -3382,7 +3378,27 @@ struct SettingsView: View {
                 PrivacyAboutView(title: "关于暗礁浏览器与隐私", description: Text("\(Text("关于暗礁浏览器与隐私...").foregroundColor(.accentColor))"), detailText: """
                 **关于暗礁浏览器与隐私**
                 
-                暗礁浏览器致力于保护您的隐私，Darock 不会未经同意收集任何信息。
+                暗礁浏览器旨在保护你的信息并可让你选择共享的内容。
+                
+                ## 数据收集与使用
+                本节中列出了暗礁浏览器 App 可能收集个人数据的功能及其对应的数据类别和用途。
+                
+                ### App
+                暗礁浏览器 App 会收集少量的、与隐私信息无关的、不与你身份关联的交互数据（例如 App 启动）。这些数据将与其他人的数据汇总，仅用于 App 分析。
+                
+                ### Darock 账户
+                在注册 Darock 账户时，Darock 会收集你的电子邮件地址。作为 Darock 账户凭据的一部分，电子邮件地址用于识别你的身份，以提供需要账户支持的 Darock 服务。
+                
+                ### 存储至 Darock Cloud
+                #### 历史记录
+                如果你选择将历史记录存储至 Darock Cloud，你最近的浏览历史记录将会自动上传至 Darock Cloud。这些信息将在受保护的区域存储，且不会用于向你提供历史记录同步功能以外的用途。
+                
+                ### 反馈助理
+                在通过反馈助理提交反馈时，反馈助理会收集基于 IP 的大致位置。此信息被隔离存储，且不与你的身份关联，并会在合理的时间内被删除。这些信息仅用于保护 Darock 服务器和反馈助理，以及防止欺诈行为。
+                
+                反馈助理还会收集 App 诊断信息，你可以在每次提交前查看这些信息，并可选择删除。
+                
+                仅在你在反馈助理中选择“提交”后，这些信息才会被收集和发送。
                 """)
             }
         }
