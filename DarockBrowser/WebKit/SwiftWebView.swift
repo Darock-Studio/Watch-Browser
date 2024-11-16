@@ -131,7 +131,6 @@ struct SwiftWebView: View {
                     NavigationView {
                         content
                     }
-                    .toolbar(.visible)
                     .toolbarBackground(.hidden)
                 }
             if let errorText = webErrorText {

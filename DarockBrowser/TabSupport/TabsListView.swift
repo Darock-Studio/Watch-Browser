@@ -17,24 +17,70 @@ struct TabsListView<StartPage>: View where StartPage: View {
     @State var selectedTab: WebViewTab?
     @State var currentColumn = NavigationSplitViewColumn.sidebar
     @State var isAppSettingsPresented = false
+    @State var isCreateButtonPressed = false
+    @State var wristLocation = WKInterfaceDevice.current().wristLocation
+    @State var newFeedbackCount = 0
+    @State var isNewVerAvailable = false
     var body: some View {
         NavigationSplitView(preferredCompactColumn: $currentColumn, sidebar: {
             NavigationStack {
-                List(selection: $selectedTab) {
-                    ForEach(tabs, id: \.id) { tab in
-                        TabLink(for: tab)
-                    }
-                    .onDelete { index in
-                        for i in index {
-                            tabs[i].webView?.stopLoading()
+                ZStack {
+                    List(selection: $selectedTab) {
+                        Section {
+                            ForEach(tabs, id: \.id) { tab in
+                                TabLink(for: tab)
+                            }
+                            .onDelete { index in
+                                for i in index {
+                                    tabs[i].webView?.stopLoading()
+                                }
+                                tabs.remove(atOffsets: index)
+                            }
+                            .onMove { source, destination in
+                                tabs.move(fromOffsets: source, toOffset: destination)
+                            }
                         }
-                        tabs.remove(atOffsets: index)
+                        Section {
+                            NavigationLink(destination: { FeedbackView() }, label: {
+                                VStack {
+                                    HStack {
+                                        ZStack(alignment: .topTrailing) {
+                                            Image(systemName: "exclamationmark.bubble")
+                                                .font(.system(size: 20))
+                                            if newFeedbackCount > 0 {
+                                                Text("\(newFeedbackCount)")
+                                                    .font(.system(size: 12, weight: .medium))
+                                                    .background(Circle().fill(Color.red).frame(width: 15, height: 15).opacity(1.0))
+                                                    .offset(x: 3, y: -5)
+                                                    .truncationMode(.head)
+                                            }
+                                        }
+                                        Text("反馈助理")
+                                    }
+                                    if isNewVerAvailable {
+                                        Text("“反馈助理”不可用，因为暗礁浏览器有更新可用")
+                                            .font(.system(size: 12))
+                                            .multilineTextAlignment(.center)
+                                    }
+                                }
+                            })
+                            .disabled(isNewVerAvailable)
+                            NavigationLink(destination: { TipsView() }, label: {
+                                Label("提示", privateSystemImage: "tips")
+                            })
+                        }
+                        .listStyle(.carousel)
                     }
-                    .onMove { source, destination in
-                        tabs.move(fromOffsets: source, toOffset: destination)
+                    .listStyle(.plain)
+                    if isCreateButtonPressed {
+                        Color.black
+                            .opacity(0.5)
+                            .ignoresSafeArea()
+                            .onTapGesture {
+                                isCreateButtonPressed = false
+                            }
                     }
                 }
-                .listStyle(.plain)
                 .navigationTitle("\(tabs.count) 个标签页")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationDestination(isPresented: $isAppSettingsPresented, destination: { SettingsView() })
@@ -47,14 +93,93 @@ struct TabsListView<StartPage>: View where StartPage: View {
                             Image(systemName: "gear")
                         })
                     }
-                    ToolbarItemGroup(placement: .bottomBar) {
-                        Button(action: {
-                            tabs.append(.init(metadata: .init(url: nil)))
-                            selectedTab = tabs.last
-                        }, label: {
-                            Image(systemName: "plus")
-                        })
-                        Spacer()
+                    ToolbarItem(placement: .bottomBar) {
+                        ZStack {
+                            HStack {
+                                if wristLocation == .left {
+                                    Spacer()
+                                }
+                                if isCreateButtonPressed {
+                                    ZStack(alignment: wristLocation == .left ? .leading : .trailing) {
+                                        Capsule()
+                                            .fill(Color.gray.opacity(0.3))
+                                            .frame(width: 100, height: 32)
+                                        NavigationLink(destination: {
+                                            MediaMainView()
+                                                .onAppear {
+                                                    isCreateButtonPressed = false
+                                                }
+                                        }, label: {
+                                            Image(systemName: "movieclapper")
+                                                .font(.system(size: 13))
+                                        })
+                                        .buttonStyle(.plain)
+                                        .padding(.horizontal, 8)
+                                    }
+                                }
+                                if wristLocation == .right {
+                                    Spacer()
+                                }
+                            }
+                            HStack {
+                                if wristLocation == .left {
+                                    Spacer()
+                                }
+                                Button(action: {
+                                    if !isCreateButtonPressed {
+                                        isCreateButtonPressed = true
+                                    } else {
+                                        tabs.append(.init(metadata: .init(url: nil)))
+                                        selectedTab = tabs.last
+                                        isCreateButtonPressed = false
+                                    }
+                                }, label: {
+                                    Image(systemName: isCreateButtonPressed ? "macwindow.badge.plus" : "plus")
+                                })
+                                if wristLocation == .right {
+                                    Spacer()
+                                }
+                            }
+                        }
+                    }
+                }
+                .animation(.easeOut, value: isCreateButtonPressed)
+            }
+            .onAppear {
+                if !ProcessInfo.processInfo.isLowPowerModeEnabled {
+                    let feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
+                    newFeedbackCount = 0
+                    for id in feedbackIds {
+                        DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)".compatibleUrlEncoded()) { respStr, isSuccess in
+                            if isSuccess {
+                                let repCount = respStr.apiFixed().components(separatedBy: "---").count - 1
+                                let lastViewCount = UserDefaults.standard.integer(forKey: "RadarFB\(id)ReplyCount")
+                                if repCount > lastViewCount {
+                                    newFeedbackCount++
+                                }
+                            }
+                        }
+                    }
+                }
+                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
+                    if isSuccess {
+                        let spdVer = respStr.apiFixed().split(separator: ".")
+                        if spdVer.count == 3 {
+                            if let x = Int(spdVer[0]), let y = Int(spdVer[1]), let z = Int(spdVer[2]) {
+                                let currVerSpd = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).split(separator: ".")
+                                if currVerSpd.count == 3 {
+                                    if let cx = Int(currVerSpd[0]), let cy = Int(currVerSpd[1]), let cz = Int(currVerSpd[2]) {
+                                        if x > cx {
+                                            isNewVerAvailable = true
+                                        } else if x == cx && y > cy {
+                                            isNewVerAvailable = true
+                                        } else if x == cx && y == cy && z > cz {
+                                            isNewVerAvailable = true
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -169,6 +294,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
         }
     }
 }
+
 @available(watchOS 10.0, *)
 private struct TabLink: View {
     var tab: WebViewTab
@@ -188,12 +314,19 @@ private struct TabLink: View {
                         .cornerRadius(10)
                         .scaledToFit()
                 } else {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.gray.opacity(0.15))
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.gray.opacity(0.15))
+                        if tab.metadata?.url == nil {
+                            Image(systemName: "star.fill")
+                                .font(.system(size: 28))
+                                .padding(.vertical)
+                        }
+                    }
                 }
                 VStack {
                     Spacer()
-                    Text(tab.metadata?.title ?? tab.metadata?.url?.absoluteString ?? "起始页")
+                    Text(tab.metadata?.title ?? tab.metadata?.url?.absoluteString ?? String(localized: "起始页"))
                         .font(.system(size: 12))
                         .lineLimit(1)
                         .padding(.horizontal, 4)
@@ -209,69 +342,6 @@ private struct TabLink: View {
         .listRowBackground(Color.clear)
         .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
     }
-}
-
-struct WebViewTab: Identifiable, Hashable {
-    var id = UUID()
-    
-    var webView: WKWebView?
-    var metadata: Metadata?
-    var shouldLoad: LoadResource?
-    
-    init(metadata: Metadata) {
-        if metadata.url == nil {
-            return
-        }
-        self.metadata = metadata
-        if !metadata.isWebArchive {
-            if let url = metadata.url {
-                self.shouldLoad = .web(url)
-            }
-            self.webView = AdvancedWebViewController.shared.newWebView(nil)
-        } else {
-            if let url = metadata.url {
-                self.shouldLoad = .webArchive(url)
-            }
-            self.webView = AdvancedWebViewController.shared.newWebView(nil)
-        }
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(metadata)
-    }
-    
-    static func == (lhs: WebViewTab, rhs: WebViewTab) -> Bool {
-        lhs.metadata == rhs.metadata && lhs.webView === rhs.webView
-    }
-    
-    struct Metadata: Codable, Hashable, Equatable {
-        var url: URL?
-        var title: String?
-        var snapshotPath: String?
-        var isWebArchive: Bool = false
-        
-        init(url: URL?, title: String? = nil, snapshotPath: String? = nil, isWebArchive: Bool = false) {
-            self.url = url
-            self.title = title
-            self.snapshotPath = snapshotPath
-            self.isWebArchive = isWebArchive
-        }
-        
-        static func == (lhs: Metadata, rhs: Metadata) -> Bool {
-            lhs.url == rhs.url && lhs.title == rhs.title && lhs.snapshotPath == rhs.snapshotPath && lhs.isWebArchive == rhs.isWebArchive
-        }
-    }
-    
-    enum LoadResource {
-        case web(URL)
-        case webArchive(URL)
-    }
-}
-
-struct NewWebTabConfiguration {
-    var url: String
-    var title: String?
-    var isWebArchive: Bool = false
 }
 
 // MARK: Webpage snapshot auto update

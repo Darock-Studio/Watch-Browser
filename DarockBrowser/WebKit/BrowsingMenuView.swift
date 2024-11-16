@@ -136,7 +136,7 @@ struct BrowsingMenuView: View {
                             Button(action: {
                                 isHomeViewPresented = true
                             }, label: {
-                                Image(systemName: "house.fill")
+                                Image(systemName: "star.fill")
                             })
                             .buttonStyle(.bordered)
                             .buttonBorderShape(.roundedRectangle(radius: 14))

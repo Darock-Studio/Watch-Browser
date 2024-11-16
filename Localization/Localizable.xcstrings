@@ -10012,6 +10012,7 @@
       }
     },
     "Home.title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -29311,6 +29312,7 @@
       }
     },
     "媒体列表" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -29322,6 +29324,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "媒體列錶"
+          }
+        }
+      }
+    },
+    "媒体起始页" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Media Start Page"
           }
         }
       }
@@ -44256,6 +44268,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未能複現"
+          }
+        }
+      }
+    },
+    "本地" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Local"
           }
         }
       }
@@ -59371,6 +59393,16 @@
         }
       }
     },
+    "起始页" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start Page"
+          }
+        }
+      }
+    },
     "起点小说" : {
       "localizations" : {
         "en" : {
@@ -65118,9 +65150,6 @@
           }
         }
       }
-    },
-    "通过小组件查看定时更新的网页" : {
-
     },
     "通过暗礁文件下载" : {
       "localizations" : {

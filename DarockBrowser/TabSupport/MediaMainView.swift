@@ -1,62 +1,77 @@
 //
-//  LocalMediaView.swift
-//  WatchBrowser Watch App
+//  MediaMainView.swift
+//  DarockBrowser
 //
-//  Created by memz233 on 7/13/24.
+//  Created by memz233 on 11/16/24.
 //
 
 import SwiftUI
+import DarockKit
 
-struct MediaListView: View {
-    @State var isHaveDownloadedVideo = false
-    @State var isHaveDownloadedAudio = false
-    @State var isHaveLocalImage = false
+@available(watchOS 10.0, *)
+struct MediaMainView: View {
+    @State var hasDownloadedVideo = false
+    @State var hasDownloadedAudio = false
+    @State var hasLocalImage = false
     @State var isOfflineBooksAvailable = false
     var body: some View {
         List {
             Section {
-                if isHaveDownloadedAudio {
+                NavigationLink(destination: { PlaylistsView() }, label: {
+                    Label("播放列表", systemImage: "music.note.list")
+                        .centerAligned()
+                })
+            }
+            Section {
+                if hasDownloadedAudio {
                     NavigationLink(destination: { LocalAudiosView() }, label: {
                         Label("音频", systemImage: "music.quarternote.3")
+                            .centerAligned()
                     })
                 }
                 if isOfflineBooksAvailable {
                     NavigationLink(destination: { LocalBooksView() }, label: {
                         Label("图书", systemImage: "book.pages")
+                            .centerAligned()
                     })
                 }
-                if isHaveLocalImage {
+                if hasLocalImage {
                     NavigationLink(destination: { LocalImageView() }, label: {
                         Label("图片", systemImage: "photo.stack")
+                            .centerAligned()
                     })
                 }
-                if isHaveDownloadedVideo {
+                if hasDownloadedVideo {
                     NavigationLink(destination: { LocalVideosView() }, label: {
                         Label("视频", systemImage: "play.square")
+                            .centerAligned()
                     })
                 }
+            } header: {
+                Text("本地")
             }
         }
-        .navigationTitle("媒体列表")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("媒体起始页")
+        .navigationBarTitleDisplayMode(.large)
+        .modifier(UserDefinedBackground())
         .onAppear {
             do {
                 if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos") {
-                    isHaveDownloadedVideo = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos").isEmpty
+                    hasDownloadedVideo = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos").isEmpty
                 }
             } catch {
                 globalErrorHandler(error)
             }
             do {
                 if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios") {
-                    isHaveDownloadedAudio = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios").isEmpty
+                    hasDownloadedAudio = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios").isEmpty
                 }
             } catch {
                 globalErrorHandler(error)
             }
             do {
                 if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/LocalImages") {
-                    isHaveLocalImage = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/LocalImages").isEmpty
+                    hasLocalImage = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/LocalImages").isEmpty
                 }
             } catch {
                 globalErrorHandler(error)

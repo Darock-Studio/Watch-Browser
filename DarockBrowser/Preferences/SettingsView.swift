@@ -1849,18 +1849,10 @@ struct SettingsView: View {
                                             Label("Home.history", systemImage: "clock")
                                         case .webarchive:
                                             Label("网页归档", systemImage: "archivebox")
-                                        case .musicPlaylist:
-                                            Label("播放列表", systemImage: "music.note.list")
-                                        case .localMedia:
-                                            Label("本地媒体", systemImage: "play.square.stack")
                                         case .userscript:
                                             Label("用户脚本", systemImage: "applescript")
                                         case .chores:
                                             Label("杂项", systemImage: "square.on.square")
-                                        case .feedbackAssistant:
-                                            Label("反馈助理", systemImage: "exclamationmark.bubble")
-                                        case .tips:
-                                            Label("提示", systemImage: "lightbulb")
                                         case .settings:
                                             Label("Home.settings", systemImage: "gear")
                                         }
@@ -2059,17 +2051,6 @@ struct SettingsView: View {
                                     }
                                 })
                                 Button(action: {
-                                    completion(.navigationLink(.localMedia))
-                                    presentationMode.wrappedValue.dismiss()
-                                }, label: {
-                                    VStack(alignment: .leading) {
-                                        Text("导航到")
-                                            .font(.system(size: 13))
-                                            .foregroundStyle(.gray)
-                                        Label("本地媒体", systemImage: "play.square.stack")
-                                    }
-                                })
-                                Button(action: {
                                     completion(.navigationLink(.userscript))
                                     presentationMode.wrappedValue.dismiss()
                                 }, label: {
@@ -2078,28 +2059,6 @@ struct SettingsView: View {
                                             .font(.system(size: 13))
                                             .foregroundStyle(.gray)
                                         Label("用户脚本", systemImage: "applescript")
-                                    }
-                                })
-                                Button(action: {
-                                    completion(.navigationLink(.feedbackAssistant))
-                                    presentationMode.wrappedValue.dismiss()
-                                }, label: {
-                                    VStack(alignment: .leading) {
-                                        Text("导航到")
-                                            .font(.system(size: 13))
-                                            .foregroundStyle(.gray)
-                                        Label("反馈助理", systemImage: "exclamationmark.bubble")
-                                    }
-                                })
-                                Button(action: {
-                                    completion(.navigationLink(.tips))
-                                    presentationMode.wrappedValue.dismiss()
-                                }, label: {
-                                    VStack(alignment: .leading) {
-                                        Text("导航到")
-                                            .font(.system(size: 13))
-                                            .foregroundStyle(.gray)
-                                        Label("提示", systemImage: "lightbulb")
                                     }
                                 })
                                 Button(action: {
@@ -3114,16 +3073,11 @@ enum HomeScreenControlType: Codable, Equatable {
             .navigationLink(.bookmark),
             .navigationLink(.history),
             .navigationLink(.webarchive),
-            .navigationLink(.musicPlaylist),
-            .navigationLink(.localMedia),
             .navigationLink(.userscript),
             .spacer,
             .pinnedBookmarks,
             .spacer,
             .navigationLink(.settings),
-            .spacer,
-            .navigationLink(.feedbackAssistant),
-            .navigationLink(.tips),
             .spacer,
             .navigationLink(.chores)
         ]
@@ -3133,12 +3087,8 @@ enum HomeScreenNavigationType: Codable, Hashable {
     case bookmark
     case history
     case webarchive
-    case musicPlaylist
-    case localMedia
     case userscript
     case chores
-    case feedbackAssistant
-    case tips
     case settings
 }
 enum ToolbarButtonRenderType {
@@ -3210,18 +3160,10 @@ func getToolbarButton(by control: HomeScreenControlType, with type: ToolbarButto
                 Image(systemName: "clock")
             case .webarchive:
                 Image(systemName: "archivebox")
-            case .musicPlaylist:
-                Image(systemName: "music.note.list")
             case .userscript:
                 Image(systemName: "applescript")
-            case .localMedia:
-                Image(systemName: "play.square.stack")
             case .chores:
                 Spacer()
-            case .feedbackAssistant:
-                Image(systemName: "exclamationmark.bubble")
-            case .tips:
-                Image(systemName: "lightbulb")
             case .settings:
                 Image(systemName: "gear")
             }

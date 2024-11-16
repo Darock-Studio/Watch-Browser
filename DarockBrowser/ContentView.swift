@@ -120,12 +120,6 @@ struct MainView: View {
     @State var isCookieTipPresented = false
     @State var pinnedBookmarkIndexs = [Int]()
     @State var webArchiveLinks = [String]()
-    @State var newFeedbackCount = 0
-    @State var isNewVerAvailable = false
-    @State var hasDownloadedVideo = false
-    @State var hasDownloadedAudio = false
-    @State var hasLocalImage = false
-    @State var isOfflineBooksAvailable = false
     @State var isAudioControllerAvailable = false
     @State var currentToolbar: HomeScreenToolbar?
     @State var toolbarNavigationDestination: HomeScreenNavigationType?
@@ -188,25 +182,17 @@ struct MainView: View {
                             HistoryView()
                         case .webarchive:
                             WebArchiveListView()
-                        case .musicPlaylist:
-                            PlaylistsView()
-                        case .localMedia:
-                            MediaListView()
                         case .userscript:
                             UserScriptsView()
                         case .chores:
                             EmptyView()
-                        case .feedbackAssistant:
-                            FeedbackView()
-                        case .tips:
-                            TipsView()
                         case .settings:
                             SettingsView()
                         }
                     }
             }
         }
-        .navigationTitle("Home.title")
+        .navigationTitle("起始页")
         .navigationBarTitleDisplayMode(.large)
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
             if let url = userActivity.webpageURL, var openUrl = url.absoluteString.split(separator: "darock.top/darockbrowser/open/", maxSplits: 1)[from: 1] {
@@ -218,13 +204,7 @@ struct MainView: View {
         }
         .onAppear {
             if let currentPref = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/HomeScreen.drkdatah", encoding: .utf8),
-               var data = getJsonData([HomeScreenControlType].self, from: currentPref) {
-                if !data.contains(.navigationLink(.musicPlaylist)) {
-                    data.append(.navigationLink(.musicPlaylist))
-                }
-                if !data.contains(.navigationLink(.localMedia)) {
-                    data.append(.navigationLink(.localMedia))
-                }
+               let data = getJsonData([HomeScreenControlType].self, from: currentPref) {
                 if let newPref = jsonString(from: data) {
                     do {
                         try newPref.write(toFile: NSHomeDirectory() + "/Documents/HomeScreen.drkdatah", atomically: true, encoding: .utf8)
@@ -245,69 +225,11 @@ struct MainView: View {
             
             pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()
             webArchiveLinks = UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()
-            if !ProcessInfo.processInfo.isLowPowerModeEnabled {
-                let feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
-                newFeedbackCount = 0
-                for id in feedbackIds {
-                    DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)".compatibleUrlEncoded()) { respStr, isSuccess in
-                        if isSuccess {
-                            let repCount = respStr.apiFixed().components(separatedBy: "---").count - 1
-                            let lastViewCount = UserDefaults.standard.integer(forKey: "RadarFB\(id)ReplyCount")
-                            if repCount > lastViewCount {
-                                newFeedbackCount++
-                            }
-                        }
-                    }
-                }
-            }
-            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
-                if isSuccess {
-                    let spdVer = respStr.apiFixed().split(separator: ".")
-                    if spdVer.count == 3 {
-                        if let x = Int(spdVer[0]), let y = Int(spdVer[1]), let z = Int(spdVer[2]) {
-                            let currVerSpd = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).split(separator: ".")
-                            if currVerSpd.count == 3 {
-                                if let cx = Int(currVerSpd[0]), let cy = Int(currVerSpd[1]), let cz = Int(currVerSpd[2]) {
-                                    if x > cx {
-                                        isNewVerAvailable = true
-                                    } else if x == cx && y > cy {
-                                        isNewVerAvailable = true
-                                    } else if x == cx && y == cy && z > cz {
-                                        isNewVerAvailable = true
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
             DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/tf/get/DarockBrowser") { respStr, isSuccess in
                 if isSuccess {
                     isBetaJoinAvailable = respStr.apiFixed() != "[None]"
                 }
             }
-            do {
-                if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos") {
-                    hasDownloadedVideo = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos").isEmpty
-                }
-            } catch {
-                globalErrorHandler(error)
-            }
-            do {
-                if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios") {
-                    hasDownloadedAudio = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios").isEmpty
-                }
-            } catch {
-                globalErrorHandler(error)
-            }
-            do {
-                if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/LocalImages") {
-                    hasLocalImage = try !FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/LocalImages").isEmpty
-                }
-            } catch {
-                globalErrorHandler(error)
-            }
-            isOfflineBooksAvailable = !(UserDefaults.standard.stringArray(forKey: "EPUBFlieFolders") ?? [String]()).isEmpty
             isAudioControllerAvailable = pIsAudioControllerAvailable
             mainPageShowCount++
             if mainPageShowCount == 10 {
@@ -498,18 +420,6 @@ struct MainView: View {
                                 })
                                 .disabled(isUseOldWebView)
                             }
-                        case .musicPlaylist:
-                            NavigationLink(destination: { PlaylistsView() }, label: {
-                                Label("播放列表", systemImage: "music.note.list")
-                                    .centerAligned()
-                            })
-                        case .localMedia:
-                            if hasDownloadedAudio || hasLocalImage || isOfflineBooksAvailable || hasDownloadedVideo {
-                                NavigationLink(destination: { MediaListView() }, label: {
-                                    Label("媒体列表", systemImage: "play.square.stack")
-                                        .centerAligned()
-                                })
-                            }
                         case .userscript:
                             NavigationLink(destination: { UserScriptsView() }, label: {
                                 VStack {
@@ -554,35 +464,6 @@ struct MainView: View {
                                         .centerAligned()
                                 })
                             }
-                        case .feedbackAssistant:
-                            NavigationLink(destination: { FeedbackView() }, label: {
-                                VStack {
-                                    HStack {
-                                        ZStack(alignment: .topTrailing) {
-                                            Image(systemName: "exclamationmark.bubble")
-                                                .font(.system(size: 20))
-                                            if newFeedbackCount > 0 {
-                                                Text("\(newFeedbackCount)")
-                                                    .font(.system(size: 12, weight: .medium))
-                                                    .background(Circle().fill(Color.red).frame(width: 15, height: 15).opacity(1.0))
-                                                    .offset(x: 3, y: -5)
-                                                    .truncationMode(.head)
-                                            }
-                                        }
-                                        Text("反馈助理")
-                                    }
-                                    if isNewVerAvailable {
-                                        Text("“反馈助理”不可用，因为暗礁浏览器有更新可用")
-                                            .font(.system(size: 12))
-                                            .multilineTextAlignment(.center)
-                                    }
-                                }
-                            })
-                            .disabled(isNewVerAvailable)
-                        case .tips:
-                            NavigationLink(destination: { TipsView() }, label: {
-                                Label("提示", privateSystemImage: "tips")
-                            })
                         case .settings:
                             if #unavailable(watchOS 10.0) {
                                 NavigationLink(destination: {
