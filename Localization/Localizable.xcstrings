@@ -8101,9 +8101,6 @@
     "Data & Cloud" : {
       "shouldTranslate" : false
     },
-    "Debug" : {
-
-    },
     "Debugger" : {
       "shouldTranslate" : false
     },
@@ -68825,6 +68822,9 @@
           }
         }
       }
+    },
+    "通过小组件查看定时更新的网页" : {
+
     },
     "通过暗礁文件下载" : {
       "localizations" : {

@@ -92,6 +92,7 @@
 		8CBA14102C7D1B4D00D40EE5 /* DoubleTapActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA140F2C7D1B4200D40EE5 /* DoubleTapActionButton.swift */; };
 		8CC2842B2CE05D5C000B2E33 /* DownloadToExternalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC2842A2CE05D4E000B2E33 /* DownloadToExternalView.swift */; };
 		8CC284302CE09574000B2E33 /* MarqueeText in Frameworks */ = {isa = PBXBuildFile; productRef = 8CC2842F2CE09574000B2E33 /* MarqueeText */; };
+		8CC2844D2CE0B019000B2E33 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4B9D9D2CD6399C008D0A52 /* AuthenticationServices.framework */; };
 		8CC3060F2CAB08C000323034 /* Success.ahap in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3060E2CAB08C000323034 /* Success.ahap */; };
 		8CC306112CAB0ECD00323034 /* Failure.ahap in Resources */ = {isa = PBXBuildFile; fileRef = 8CC306102CAB0ECD00323034 /* Failure.ahap */; };
 		8CC306132CAB160F00323034 /* View+TouchZoomable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC306122CAB160200323034 /* View+TouchZoomable.swift */; };
@@ -925,6 +926,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CC2844D2CE0B019000B2E33 /* AuthenticationServices.framework in Frameworks */,
 				8CA47BDD2C9723F400753101 /* SwiftUI.framework in Frameworks */,
 				8CA47BDC2C9723F400753101 /* WidgetKit.framework in Frameworks */,
 			);
@@ -2461,7 +2463,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 7.0.0;
-				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_SFSafariViewController,-U,_OBJC_CLASS_$_SFSafariViewControllerConfiguration";
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -2509,7 +2511,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 7.0.0;
-				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_SFSafariViewController,-U,_OBJC_CLASS_$_SFSafariViewControllerConfiguration";
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
@@ -2721,14 +2723,17 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 7.0.0;
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "DarockBrowser/CCodes/DarockBrowser-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
+				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}/DarockBrowser/CCodes\"";
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = "Beta Debug";
@@ -2953,13 +2958,16 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 7.0.0;
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "DarockBrowser/CCodes/DarockBrowser-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
+				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}/DarockBrowser/CCodes\"";
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
@@ -3192,14 +3200,17 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 7.0.0;
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "DarockBrowser/CCodes/DarockBrowser-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
+				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}/DarockBrowser/CCodes\"";
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
@@ -3226,13 +3237,16 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 7.0.0;
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "DarockBrowser/CCodes/DarockBrowser-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
+				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}/DarockBrowser/CCodes\"";
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
