@@ -1,0 +1,6 @@
+framework module StorageUI {
+  umbrella header "StorageUI.h"
+  export *
+
+  module * { export * }
+}

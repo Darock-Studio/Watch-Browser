@@ -306,7 +306,7 @@ func initHapticEngine() {
     #if !targetEnvironment(simulator)
     dlopen("/System/Library/Frameworks/CoreHaptics.framework/CoreHaptics", RTLD_NOW)
     do {
-        globalHapticEngine = try CHHapticEngine(audioSession: .sharedInstance())
+        globalHapticEngine = try CHHapticEngine(audioSession: nil)
         try globalHapticEngine?.start()
     } catch {
         print("创建引擎时出现错误： \(error.localizedDescription)")

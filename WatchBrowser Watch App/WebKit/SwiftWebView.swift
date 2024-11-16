@@ -147,7 +147,7 @@ struct SwiftWebView: View {
                             ZStack {
                                 Rectangle()
                                     .fill(Color.gray)
-                                    .frame(width: 50, height: 50)
+                                    .frame(width: 40, height: 40)
                                     .opacity(0.0100000002421438702673861521)
                                 Image(systemName: "ellipsis.circle")
                                     .font(.system(size: 20, weight: .light))
@@ -155,6 +155,7 @@ struct SwiftWebView: View {
                             }
                         })
                         .buttonStyle(.plain)
+                        .padding(5)
                         if showFastExitButton {
                             Button(action: {
                                 presentationMode.wrappedValue.dismiss()
@@ -162,7 +163,7 @@ struct SwiftWebView: View {
                                 ZStack {
                                     Rectangle()
                                         .fill(Color.gray)
-                                        .frame(width: 50, height: 50)
+                                        .frame(width: 40, height: 40)
                                         .opacity(0.0100000002421438702673861521)
                                     Image(systemName: "escape")
                                         .font(.system(size: 20, weight: .light))
@@ -170,6 +171,7 @@ struct SwiftWebView: View {
                                 }
                             })
                             .buttonStyle(.plain)
+                            .padding(.vertical, 5)
                         }
                         Spacer()
                     }

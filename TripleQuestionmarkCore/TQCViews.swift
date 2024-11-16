@@ -26,7 +26,7 @@ public struct TQCOnaniiView: View {
                     }
                     .onSubmit {
                         result = to0721(from: numInput)
-                        navigationTitle = "Ciallo~"
+                        navigationTitle = "Ciallo～(∠・ω< )⌒☆"
                     }
                 }
                 Section {
@@ -240,7 +240,7 @@ public struct TQCAccentColorHiddenButton: View {
                     }
                 }
             }
-            .navigationTitle("主屏幕背景")
+            .navigationTitle(Text("主屏幕背景"))
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 inputColor = Color(red: overrideAccentColorRed, green: overrideAccentColorGreen, blue: overrideAccentColorBlue)

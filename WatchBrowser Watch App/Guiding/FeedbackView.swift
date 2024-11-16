@@ -1260,7 +1260,8 @@ func getAllSettingsForAppdiagnose() -> String? {
                 plistObject.removeValue(forKey: "CurrentTabs")
                 plistObject.removeValue(forKey: "WebHistory")
                 plistObject.removeValue(forKey: "UserPasscodeEncrypted")
-                let removeKeyPrefixs = ["VideoProgressForLink", "WebHistory", "VideoMarkForLink", "BookmarkLink", "BookmarkName"]
+                let removeKeyPrefixs = ["VideoProgressForLink", "WebHistory", "VideoMarkForLink", "BookmarkLink", "BookmarkName", "UserScript",
+                "VideoHumanName", "AudioHumanName", "Bookmark"]
                 for key in plistObject.keys where removeKeyPrefixs.contains(where: { key.hasPrefix($0) }) {
                     plistObject.removeValue(forKey: key)
                 }

@@ -41,20 +41,21 @@ struct LocalImageView: View {
                                 .init(.fixed(WKInterfaceDevice.current().screenBounds.width / 3), spacing: 0)
                             ], spacing: 0) {
                                 ForEach(0..<images.count, id: \.self) { i in
-                                    if let image = UIImage(contentsOfFile: NSHomeDirectory() + "/Documents/LocalImages/\(images[i])") {
-                                        Image(uiImage: image)
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(width: WKInterfaceDevice.current().screenBounds.width / 3, height: 80)
-                                            .clipped()
-                                            .onTapGesture {
-                                                tabSelection = i
-                                                isImageViewerPresented = true
-                                            }
-                                            .onLongPressGesture(minimumDuration: 0.4) {
-                                                indexForMenu = i
-                                                isMenuPresented = true
-                                            }
+                                    AsyncImage(url: URL(filePath: NSHomeDirectory() + "/Documents/LocalImages/\(images[i])")) { image in
+                                        image.resizable()
+                                    } placeholder: {
+                                        Color.gray
+                                    }
+                                    .scaledToFill()
+                                    .frame(width: WKInterfaceDevice.current().screenBounds.width / 3, height: 80)
+                                    .clipped()
+                                    .onTapGesture {
+                                        tabSelection = i
+                                        isImageViewerPresented = true
+                                    }
+                                    .onLongPressGesture(minimumDuration: 0.4) {
+                                        indexForMenu = i
+                                        isMenuPresented = true
                                     }
                                 }
                             }

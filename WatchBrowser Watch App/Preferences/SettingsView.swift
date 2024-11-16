@@ -14,6 +14,7 @@ import EFQRCode
 import AVFAudio
 import DarockKit
 import WidgetKit
+import StorageUI
 import WeatherKit
 import CoreLocation
 import SwiftyStoreKit
@@ -634,7 +635,40 @@ struct SettingsView: View {
                                    label: { SettingItemLabel(title: "关于", image: "applewatch", color: .gray) })
                     NavigationLink(destination: { SoftwareUpdateView() },
                                    label: { SettingItemLabel(title: "软件更新", image: "gear.badge", color: .gray) })
-                    NavigationLink(destination: { StorageView() },
+                    NavigationLink(destination: {
+                        SUIStorageManagementView {
+                            SUIStorageListFile(
+                                name: "视频",
+                                tintColor: .purple,
+                                path: NSHomeDirectory() + "/Documents/DownloadedVideos",
+                                allowDelete: true,
+                                customNameConverter: UserDefaults.standard.dictionary(forKey: "VideoHumanNameChart") as? [String: String]
+                            ) { name in
+                                if var dic = UserDefaults.standard.dictionary(forKey: "VideoHumanNameChart") as? [String: String] {
+                                    dic.removeValue(forKey: name)
+                                    UserDefaults.standard.set(dic, forKey: "VideoHumanNameChart")
+                                }
+                            }
+                            SUIStorageListFile(
+                                name: "音乐",
+                                tintColor: .red,
+                                path: NSHomeDirectory() + "/Documents/DownloadedAudios",
+                                allowDelete: true,
+                                customNameConverter: UserDefaults.standard.dictionary(forKey: "AudioHumanNameChart") as? [String: String]
+                            ) { name in
+                                if var dic = UserDefaults.standard.dictionary(forKey: "AudioHumanNameChart") as? [String: String] {
+                                    dic.removeValue(forKey: name)
+                                    UserDefaults.standard.set(dic, forKey: "AudioHumanNameChart")
+                                }
+                            }
+                            SUIStorageListFile(
+                                name: "图片",
+                                tintColor: .orange,
+                                path: NSHomeDirectory() + "/Documents/LocalImages",
+                                showFilesInList: false
+                            )
+                        }
+                    },
                                    label: { SettingItemLabel(title: "储存空间", image: "externaldrive.fill", color: .gray) })
                 }
                 Section {
@@ -849,504 +883,6 @@ struct SettingsView: View {
                         }
                     }
                 }
-            }
-        }
-        struct StorageView: View {
-            @State var isLoading = true
-            @State var mediaSize: UInt64 = 0
-            @State var webArchiveSize: UInt64 = 0
-            @State var bookSize: UInt64 = 0
-            @State var tmpSize: UInt64 = 0
-            @State var bundleSize: UInt64 = 0
-            @State var isClearingCache = false
-            @State var videoMetadatas = [[String: String]]()
-            @State var bookMetadatas = [[String: String]]()
-            @State var audioMetadatas = [[String: String]]()
-            var body: some View {
-                Form {
-                    List {
-                        if !isLoading {
-                            Section {
-                                VStack {
-                                    HStack {
-                                        Text("已使用 \(bytesToMegabytes(bytes: mediaSize + webArchiveSize + bookSize + tmpSize + bundleSize) ~ 2) MB")
-                                            .font(.system(size: 13))
-                                            .foregroundColor(.gray)
-                                        Spacer()
-                                    }
-                                    Chart {
-                                        BarMark(x: .value("", bundleSize))
-                                            .foregroundStyle(by: .value("", "Gray"))
-                                        BarMark(x: .value("", mediaSize))
-                                            .foregroundStyle(by: .value("", "Purple"))
-                                        BarMark(x: .value("", webArchiveSize))
-                                            .foregroundStyle(by: .value("", "Orange"))
-                                        BarMark(x: .value("", bookSize))
-                                            .foregroundStyle(by: .value("", "Green"))
-                                        BarMark(x: .value("", tmpSize))
-                                            .foregroundStyle(by: .value("", "Primary"))
-                                    }
-                                    .chartForegroundStyleScale(
-                                        ["Gray": .gray,
-                                         "Purple": .purple,
-                                         "Orange": .orange,
-                                         "Green": .green,
-                                         "Primary": .primary,
-                                         "Secondary": Color(hex: 0x333333)]
-                                    )
-                                    .chartXAxis(.hidden)
-                                    .chartLegend(.hidden)
-                                    .cornerRadius(2)
-                                    .frame(height: 15)
-                                    .padding(.vertical, 2)
-                                    Group {
-                                        HStack {
-                                            Circle()
-                                                .fill(Color.gray)
-                                                .frame(width: 10, height: 10)
-                                            Text("暗礁浏览器")
-                                                .font(.system(size: 14))
-                                                .foregroundColor(.gray)
-                                            Spacer()
-                                        }
-                                        if mediaSize > 0 {
-                                            HStack {
-                                                Circle()
-                                                    .fill(Color.purple)
-                                                    .frame(width: 10, height: 10)
-                                                Text("媒体")
-                                                    .font(.system(size: 14))
-                                                    .foregroundColor(.gray)
-                                                Spacer()
-                                            }
-                                        }
-                                        if bookSize > 0 {
-                                            HStack {
-                                                Circle()
-                                                    .fill(Color.green)
-                                                    .frame(width: 10, height: 10)
-                                                Text("图书")
-                                                    .font(.system(size: 14))
-                                                    .foregroundColor(.gray)
-                                                Spacer()
-                                            }
-                                        }
-                                        if webArchiveSize > 0 {
-                                            HStack {
-                                                Circle()
-                                                    .fill(Color.orange)
-                                                    .frame(width: 10, height: 10)
-                                                Text("网页归档")
-                                                    .font(.system(size: 14))
-                                                    .foregroundColor(.gray)
-                                                Spacer()
-                                            }
-                                        }
-                                        if tmpSize > 0 {
-                                            HStack {
-                                                Circle()
-                                                    .fill(Color.primary)
-                                                    .frame(width: 10, height: 10)
-                                                Text("缓存数据")
-                                                    .font(.system(size: 14))
-                                                    .foregroundColor(.gray)
-                                                Spacer()
-                                            }
-                                        }
-                                    }
-                                    .padding(.vertical, -1)
-                                }
-                            }
-                            .listRowBackground(Color.clear)
-                            .listRowInsets(EdgeInsets())
-                            if !videoMetadatas.isEmpty {
-                                Section {
-                                    ForEach(0..<videoMetadatas.count, id: \.self) { i in
-                                        VStack {
-                                            HStack {
-                                                Text(videoMetadatas[i]["Title"]!)
-                                                    .font(.system(size: 13, weight: .bold))
-                                                    .lineLimit(2)
-                                                Spacer()
-                                            }
-                                            HStack {
-                                                Text("\(bytesToMegabytes(bytes: UInt64(videoMetadatas[i]["Size"] ?? "0") ?? 0) ~ 2) MB")
-                                                    .font(.system(size: 15))
-                                                    .foregroundColor(.gray)
-                                                Spacer()
-                                            }
-                                        }
-                                        .swipeActions {
-                                            Button(role: .destructive, action: {
-                                                do {
-                                                    try FileManager.default.removeItem(
-                                                        atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/" + videoMetadatas[i]["FileName"]!
-                                                    )
-                                                    videoMetadatas.remove(at: i)
-                                                } catch {
-                                                    globalErrorHandler(error)
-                                                }
-                                            }, label: {
-                                                Image(systemName: "xmark.bin.fill")
-                                            })
-                                        }
-                                    }
-                                } header: {
-                                    Text("视频")
-                                }
-                            }
-                            if !audioMetadatas.isEmpty {
-                                Section {
-                                    ForEach(0..<audioMetadatas.count, id: \.self) { i in
-                                        VStack {
-                                            HStack {
-                                                Text(audioMetadatas[i]["Title"]!)
-                                                    .font(.system(size: 13, weight: .bold))
-                                                    .lineLimit(2)
-                                                Spacer()
-                                            }
-                                            HStack {
-                                                Text("\(bytesToMegabytes(bytes: UInt64(audioMetadatas[i]["Size"] ?? "0") ?? 0) ~ 2) MB")
-                                                    .font(.system(size: 15))
-                                                    .foregroundColor(.gray)
-                                                Spacer()
-                                            }
-                                        }
-                                        .swipeActions {
-                                            Button(role: .destructive, action: {
-                                                do {
-                                                    try FileManager.default.removeItem(
-                                                        atPath: NSHomeDirectory() + "/Documents/DownloadedAudios/" + audioMetadatas[i]["FileName"]!
-                                                    )
-                                                    audioMetadatas.remove(at: i)
-                                                } catch {
-                                                    globalErrorHandler(error)
-                                                }
-                                            }, label: {
-                                                Image(systemName: "xmark.bin.fill")
-                                            })
-                                        }
-                                    }
-                                } header: {
-                                    Text("音乐")
-                                }
-                            }
-                            if !bookMetadatas.isEmpty {
-                                Section {
-                                    ForEach(0..<bookMetadatas.count, id: \.self) { i in
-                                        if let name = bookMetadatas[i]["Name"], let sizeStr = bookMetadatas[i]["Size"], let size = UInt64(sizeStr) {
-                                            VStack {
-                                                HStack {
-                                                    Text(name)
-                                                        .font(.system(size: 13, weight: .bold))
-                                                        .lineLimit(2)
-                                                    Spacer()
-                                                }
-                                                HStack {
-                                                    Text("\(bytesToMegabytes(bytes: size) ~ 2) MB")
-                                                        .font(.system(size: 15))
-                                                        .foregroundColor(.gray)
-                                                    Spacer()
-                                                }
-                                            }
-                                            .swipeActions {
-                                                Button(role: .destructive, action: {
-                                                    do {
-                                                        var names = UserDefaults.standard.stringArray(forKey: "EPUBFlieFolders") ?? [String]()
-                                                        names.removeAll(where: { element in
-                                                            return if element == bookMetadatas[i]["Folder"]! { true } else { false }
-                                                        })
-                                                        try FileManager.default.removeItem(
-                                                            atPath: NSHomeDirectory() + "/Documents/" + bookMetadatas[i]["Folder"]!
-                                                        )
-                                                        bookMetadatas.remove(at: i)
-                                                    } catch {
-                                                        globalErrorHandler(error)
-                                                    }
-                                                }, label: {
-                                                    Image(systemName: "xmark.bin.fill")
-                                                })
-                                            }
-                                        }
-                                    }
-                                } header: {
-                                    Text("图书")
-                                }
-                            }
-                            Section {
-                                NavigationLink(destination: {
-                                    List {
-                                        Section {
-                                            HStack {
-                                                Image("AppIconImage")
-                                                    .resizable()
-                                                    .frame(width: 26, height: 26)
-                                                    .clipShape(Circle())
-                                                Spacer()
-                                                    .frame(width: 5)
-                                                VStack {
-                                                    HStack {
-                                                        Text("暗礁浏览器")
-                                                            .font(.system(size: 18))
-                                                        Spacer()
-                                                    }
-                                                    HStack {
-                                                        Text("Darock Studio")
-                                                            .font(.system(size: 14))
-                                                            .foregroundColor(.gray)
-                                                        Spacer()
-                                                    }
-                                                    HStack {
-                                                        Text("版本：\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)")
-                                                            .font(.system(size: 14))
-                                                            .foregroundColor(.gray)
-                                                        Spacer()
-                                                    }
-                                                }
-                                            }
-                                            HStack {
-                                                Text("总空间")
-                                                Spacer()
-                                                Text("\(bytesToMegabytes(bytes: bundleSize) ~ 2) MB")
-                                                    .foregroundColor(.gray)
-                                            }
-                                        }
-                                    }
-                                    .navigationTitle("暗礁浏览器")
-                                }, label: {
-                                    HStack {
-                                        Image("AppIconImage")
-                                            .resizable()
-                                            .frame(width: 20, height: 20)
-                                            .clipShape(Circle())
-                                        Spacer()
-                                            .frame(width: 5)
-                                        VStack {
-                                            HStack {
-                                                Text("暗礁浏览器 (\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String))")
-                                                Spacer()
-                                            }
-                                            HStack {
-                                                Text("\(bytesToMegabytes(bytes: bundleSize) ~ 2) MB")
-                                                    .font(.system(size: 15))
-                                                    .foregroundColor(.gray)
-                                                Spacer()
-                                            }
-                                        }
-                                    }
-                                })
-                                if bytesToMegabytes(bytes: tmpSize) > 0.2 {
-                                    NavigationLink(destination: {
-                                        List {
-                                            Section {
-                                                HStack {
-                                                    ZStack {
-                                                        Color.gray
-                                                            .frame(width: 20, height: 20)
-                                                            .clipShape(Circle())
-                                                        Image(systemName: "ellipsis.circle")
-                                                            .font(.system(size: 12))
-                                                    }
-                                                    Spacer()
-                                                        .frame(width: 5)
-                                                    VStack {
-                                                        HStack {
-                                                            Text("缓存数据")
-                                                            Spacer()
-                                                        }
-                                                        HStack {
-                                                            Text("\(bytesToMegabytes(bytes: tmpSize) ~ 2) MB")
-                                                                .font(.system(size: 15))
-                                                                .foregroundColor(.gray)
-                                                            Spacer()
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            Section {
-                                                if !isClearingCache {
-                                                    Button(action: {
-                                                        DispatchQueue(label: "com.darock.WatchBrowser.storage-clear-cache", qos: .userInitiated).async {
-                                                            do {
-                                                                isClearingCache = true
-                                                                let filePaths = try FileManager.default.contentsOfDirectory(atPath: NSTemporaryDirectory())
-                                                                for filePath in filePaths {
-                                                                    let fullPath = (NSTemporaryDirectory() as NSString).appendingPathComponent(filePath)
-                                                                    try FileManager.default.removeItem(atPath: fullPath)
-                                                                }
-                                                                isClearingCache = false
-                                                            } catch {
-                                                                globalErrorHandler(error)
-                                                            }
-                                                        }
-                                                    }, label: {
-                                                        Text("清除缓存")
-                                                    })
-                                                } else {
-                                                    ProgressView()
-                                                }
-                                            }
-                                        }
-                                        .navigationTitle("缓存数据")
-                                    }, label: {
-                                        HStack {
-                                            ZStack {
-                                                Color.gray
-                                                    .frame(width: 20, height: 20)
-                                                    .clipShape(Circle())
-                                                Image(systemName: "ellipsis")
-                                                    .font(.system(size: 12))
-                                            }
-                                            Spacer()
-                                                .frame(width: 5)
-                                            VStack {
-                                                HStack {
-                                                    Text("缓存数据")
-                                                    Spacer()
-                                                }
-                                                HStack {
-                                                    Text("\(bytesToMegabytes(bytes: tmpSize) ~ 2) MB")
-                                                        .font(.system(size: 15))
-                                                        .foregroundColor(.gray)
-                                                    Spacer()
-                                                }
-                                            }
-                                        }
-                                    })
-                                }
-                            }
-                        } else {
-                            HStack {
-                                Text("正在载入")
-                                Spacer()
-                                ProgressView()
-                                    .frame(width: 20)
-                            }
-                            .listRowBackground(Color.clear)
-                        }
-                    }
-                }
-                .navigationTitle("储存空间")
-                .onAppear {
-                    if isLoading {
-                        DispatchQueue(label: "com.darock.DarockBili.storage-load", qos: .userInitiated).async {
-                            do {
-                                // Size counting
-                                mediaSize = (folderSize(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos") ?? 0)
-                                + (folderSize(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios") ?? 0)
-                                webArchiveSize = folderSize(atPath: NSHomeDirectory() + "/Documents/WebArchives") ?? 0
-                                tmpSize = folderSize(atPath: NSTemporaryDirectory()) ?? 0
-                                bundleSize = folderSize(atPath: Bundle.main.bundlePath) ?? 0
-                                if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos") {
-                                    // Video Sizes
-                                    let files = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos")
-                                    let videoHumanNameChart = (
-                                        UserDefaults.standard.dictionary(forKey: "VideoHumanNameChart") as? [String: String]
-                                    ) ?? [String: String]()
-                                    for file in files {
-                                        var dicV = [String: String]()
-                                        dicV.updateValue(NSHomeDirectory() + "/Documents/DownloadedVideos/\(file)", forKey: "Path")
-                                        do {
-                                            let attributes = try FileManager.default.attributesOfItem(atPath: dicV["Path"]!)
-                                            if (attributes[.type] as! FileAttributeType) != .typeDirectory {
-                                                if let fileSize = attributes[.size] as? UInt64 {
-                                                    dicV.updateValue(String(fileSize), forKey: "Size")
-                                                }
-                                            } else {
-                                                if let fileSize = folderSize(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos/\(file)") {
-                                                    dicV.updateValue(String(fileSize), forKey: "Size")
-                                                }
-                                            }
-                                        } catch {
-                                            globalErrorHandler(error)
-                                        }
-                                        if let vn = videoHumanNameChart[file] {
-                                            dicV.updateValue(vn, forKey: "Title")
-                                        } else {
-                                            dicV.updateValue(file, forKey: "Title")
-                                        }
-                                        dicV.updateValue(file, forKey: "FileName")
-                                        videoMetadatas.append(dicV)
-                                    }
-                                    videoMetadatas.sort { UInt64($0["Size"] ?? "0")! > UInt64($1["Size"] ?? "0")! }
-                                }
-                                if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios") {
-                                    // Audio Sizes
-                                    let files = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/DownloadedAudios")
-                                    let audioHumanNameChart = (
-                                        UserDefaults.standard.dictionary(forKey: "AudioHumanNameChart") as? [String: String]
-                                    ) ?? [String: String]()
-                                    for file in files {
-                                        var dicV = [String: String]()
-                                        dicV.updateValue(NSHomeDirectory() + "/Documents/DownloadedAudios/\(file)", forKey: "Path")
-                                        do {
-                                            let attributes = try FileManager.default.attributesOfItem(atPath: dicV["Path"]!)
-                                            if let fileSize = attributes[.size] as? UInt64 {
-                                                dicV.updateValue(String(fileSize), forKey: "Size")
-                                            }
-                                        } catch {
-                                            globalErrorHandler(error)
-                                        }
-                                        if let vn = audioHumanNameChart[file] {
-                                            dicV.updateValue(vn, forKey: "Title")
-                                        } else {
-                                            dicV.updateValue(file, forKey: "Title")
-                                        }
-                                        dicV.updateValue(file, forKey: "FileName")
-                                        audioMetadatas.append(dicV)
-                                    }
-                                    audioMetadatas.sort { UInt64($0["Size"] ?? "0")! > UInt64($1["Size"] ?? "0")! }
-                                }
-                                let allDocumentFiles = try FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents")
-                                let bookNameChart = (UserDefaults.standard.dictionary(forKey: "EPUBFileNameChart") as? [String: String]) ?? [String: String]()
-                                for file in allDocumentFiles where file.hasPrefix("EPUB") {
-                                    // Books
-                                    var metadata = [String: String]()
-                                    metadata.updateValue(file, forKey: "Folder")
-                                    if let fileSize = folderSize(atPath: NSHomeDirectory() + "/Documents/\(file)") {
-                                        bookSize &+= fileSize
-                                        metadata.updateValue(String(fileSize), forKey: "Size")
-                                    }
-                                    if let name = bookNameChart[file] {
-                                        metadata.updateValue(name, forKey: "Name")
-                                    }
-                                    bookMetadatas.append(metadata)
-                                }
-                                bookMetadatas.sort { UInt64($0["Size"] ?? "0")! > UInt64($1["Size"] ?? "0")! }
-                                isLoading = false
-                            } catch {
-                                globalErrorHandler(error)
-                            }
-                        }
-                    }
-                }
-            }
-            
-            func folderSize(atPath path: String) -> UInt64? {
-                let fileManager = FileManager.default
-                guard let files = fileManager.enumerator(atPath: path) else {
-                    return nil
-                }
-                
-                var totalSize: UInt64 = 0
-                
-                for case let file as String in files {
-                    let filePath = "\(path)/\(file)"
-                    do {
-                        let attributes = try fileManager.attributesOfItem(atPath: filePath)
-                        if let fileSize = attributes[.size] as? UInt64 {
-                            totalSize &+= fileSize
-                        }
-                    } catch {
-                        globalErrorHandler(error)
-                    }
-                }
-                
-                return totalSize
-            }
-            func bytesToMegabytes(bytes: UInt64) -> Double {
-                let megabytes = Double(bytes) / (1024 * 1024)
-                return megabytes
             }
         }
         
@@ -1697,7 +1233,6 @@ struct SettingsView: View {
             @State var isResetSettingsWarningPresented = false
             @State var isResetAllWarningPresented = false
             @State var isResetSettingsPasscodePresented = false
-            @State var isResetSettingsDelayPresented = false
             @State var passcodeInputTmp = ""
             var body: some View {
                 List {
@@ -1706,11 +1241,7 @@ struct SettingsView: View {
                             if userPasscodeEncrypted.isEmpty {
                                 isResetSettingsWarningPresented = true
                             } else {
-                                if checkSecurityDelay() {
-                                    isResetSettingsPasscodePresented = true
-                                } else {
-                                    isResetSettingsDelayPresented = true
-                                }
+                                isResetSettingsPasscodePresented = true
                             }
                         }, label: {
                             Text("还原所有设置")
@@ -1764,7 +1295,6 @@ struct SettingsView: View {
                 }, message: {
                     Text("此操作不可逆\n确定吗？")
                 })
-                .sheet(isPresented: $isResetSettingsDelayPresented, content: { SecurityDelayRequiredView(reasonTitle: "需要安全延时以抹掉所有设置") })
                 .sheet(isPresented: $isResetSettingsPasscodePresented) {
                     PasswordInputView(text: $passcodeInputTmp, placeholder: "输入密码以继续") { pwd in
                         if pwd.md5 == userPasscodeEncrypted {
@@ -3048,8 +2578,6 @@ struct SettingsView: View {
         @State var isChangePasswordPresented = false
         @State var passcodeInputTmp = ""
         @State var passcodeInputTmp2 = ""
-        @State var isClosePasscodeDelayPresented = false
-        @State var isChangePasscodeDelayPresented = false
         var body: some View {
             List {
                 if !userPasscodeEncrypted.isEmpty {
@@ -3072,11 +2600,7 @@ struct SettingsView: View {
                 Section {
                     if !userPasscodeEncrypted.isEmpty {
                         Button(action: {
-                            if checkSecurityDelay() {
-                                isClosePasswordPresented = true
-                            } else {
-                                isClosePasscodeDelayPresented = true
-                            }
+                            isClosePasswordPresented = true
                         }, label: {
                             Text("关闭密码")
                         })
@@ -3093,11 +2617,7 @@ struct SettingsView: View {
                             .toolbar(.hidden, for: .navigationBar)
                         }
                         Button(action: {
-                            if checkSecurityDelay() {
-                                isChangePasswordPresented = true
-                            } else {
-                                isChangePasscodeDelayPresented = true
-                            }
+                            isChangePasswordPresented = true
                         }, label: {
                             Text("更改密码")
                         })
@@ -3160,192 +2680,8 @@ struct SettingsView: View {
                         }
                     }
                 }
-                if !userPasscodeEncrypted.isEmpty {
-                    Section {
-                        NavigationLink(destination: { SecurityDelayView() }, label: {
-                            HStack {
-                                Text("安全延时")
-                                Spacer()
-                                Text(isSecurityDelayEnabled ? "已启用" : "未启用")
-                                    .foregroundColor(.gray)
-                            }
-                        })
-                    }
-                }
             }
             .navigationTitle("密码")
-            .sheet(isPresented: $isClosePasscodeDelayPresented, content: { SecurityDelayRequiredView(reasonTitle: "需要安全延时以关闭密码") })
-            .sheet(isPresented: $isChangePasscodeDelayPresented, content: { SecurityDelayRequiredView(reasonTitle: "需要安全延时以更改密码") })
-        }
-        
-        struct SecurityDelayView: View {
-            @AppStorage("IsSecurityDelayEnabled") var isSecurityDelayEnabled = false
-            @AppStorage("SecurityDelayRequirement") var securityDelayRequirement = "always"
-            @AppStorage("IsFirstShowSecurityDelay") var isFirstShowSecurityDelay = true
-            @State var isDebugDelayPresented = false
-            @State var isTurnOffDelayPresented = false
-            @State var isChangeToByLocationPresented = false
-            @State var isAddLocationDelayPresented = false
-            @State var isLocationPermissionPresented = false
-            @State var addLocationCheckTimer: Timer?
-            @State var trustedLocations = [[Double]]()
-            var body: some View {
-                List {
-                    Section {
-                        Toggle("启用安全延时", isOn: $isSecurityDelayEnabled)
-                            .onChange(of: isSecurityDelayEnabled) { value in
-                                if !value {
-                                    isSecurityDelayEnabled = true
-                                    if !checkSecurityDelay() {
-                                        isTurnOffDelayPresented = true
-                                    } else {
-                                        isSecurityDelayEnabled = false
-                                    }
-                                }
-                                isFirstShowSecurityDelay = false
-                            }
-                        if isFirstShowSecurityDelay {
-                            HStack(alignment: .top) {
-                                Image(systemName: "exclamationmark.triangle.fill")
-                                    .font(.system(size: 15))
-                                    .foregroundStyle(.yellow)
-                                Text("一旦开启安全延时，您将需要等待一小时才能够关闭。")
-                                    .font(.system(size: 15))
-                            }
-                        }
-                    } footer: {
-                        Text("安全延时在您进行更改密码等敏感操作时要求额外的等待时间，以保护您的隐私安全。")
-                    }
-                    if isSecurityDelayEnabled {
-                        Section {
-                            Button(action: {
-                                if securityDelayRequirement != "byLocation" {
-                                    if CLLocationManager().authorizationStatus != .notDetermined {
-                                        if !checkSecurityDelay() {
-                                            isChangeToByLocationPresented = true
-                                        } else {
-                                            securityDelayRequirement = "byLocation"
-                                        }
-                                    } else {
-                                        isLocationPermissionPresented = true
-                                    }
-                                }
-                            }, label: {
-                                HStack {
-                                    Text("基于位置")
-                                    Spacer()
-                                    if securityDelayRequirement == "byLocation" {
-                                        Image(systemName: "checkmark")
-                                            .foregroundColor(.blue)
-                                    }
-                                }
-                            })
-                            Button(action: {
-                                if securityDelayRequirement != "always" {
-                                    securityDelayRequirement = "always"
-                                }
-                            }, label: {
-                                HStack {
-                                    Text("总是")
-                                    Spacer()
-                                    if securityDelayRequirement == "always" {
-                                        Image(systemName: "checkmark")
-                                            .foregroundColor(.blue)
-                                    }
-                                }
-                            })
-                        } header: {
-                            Text("要求安全延时")
-                        }
-                        if securityDelayRequirement == "byLocation" {
-                            Section {
-                                if !trustedLocations.isEmpty {
-                                    ForEach(0..<trustedLocations.count, id: \.self) { i in
-                                        Text("(\(String(format: "%.2f", trustedLocations[i][0])), \(String(format: "%.2f", trustedLocations[i][1])))")
-                                            .swipeActions {
-                                                Button(role: .destructive, action: {
-                                                    trustedLocations.remove(at: i)
-                                                    UserDefaults.standard.set(trustedLocations, forKey: "SecurityDelayTrustedLocations")
-                                                }, label: {
-                                                    Image(systemName: "xmark.bin.fill")
-                                                })
-                                            }
-                                    }
-                                }
-                                if addLocationCheckTimer == nil {
-                                    Button(action: {
-                                        if checkSecurityDelay() {
-                                            LocationManager.shared.manager.startUpdatingLocation()
-                                            addLocationCheckTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
-                                                if let location = LocationManager.shared.location {
-                                                    trustedLocations.append([location.latitude, location.longitude])
-                                                    UserDefaults.standard.set(trustedLocations, forKey: "SecurityDelayTrustedLocations")
-                                                    LocationManager.shared.location = nil
-                                                    addLocationCheckTimer?.invalidate()
-                                                    addLocationCheckTimer = nil
-                                                }
-                                            }
-                                        } else {
-                                            isAddLocationDelayPresented = true
-                                        }
-                                    }, label: {
-                                        Text("将当前位置添加为受信任位置")
-                                    })
-                                } else {
-                                    Text("正在获取位置...")
-                                }
-                            } header: {
-                                Text("受信任的位置")
-                            } footer: {
-                                Text("在受信任的位置时，暗礁浏览器将不会要求安全延时。")
-                            }
-                        }
-                    }
-                }
-                .navigationTitle("安全延时")
-                .sheet(isPresented: $isTurnOffDelayPresented, content: { SecurityDelayRequiredView(reasonTitle: "需要安全延时以关闭安全延时") })
-                .sheet(isPresented: $isChangeToByLocationPresented, content: { SecurityDelayRequiredView(reasonTitle: "需要安全延时以切换为“基于位置”") })
-                .sheet(isPresented: $isAddLocationDelayPresented, content: { SecurityDelayRequiredView(reasonTitle: "需要安全延时以添加受信任位置") })
-                .sheet(isPresented: $isLocationPermissionPresented, content: { LocationPremissionView() })
-                .onAppear {
-                    trustedLocations = (UserDefaults.standard.array(forKey: "SecurityDelayTrustedLocations") as? [[Double]]) ?? [[Double]]()
-                }
-                .onDisappear {
-                    isFirstShowSecurityDelay = false
-                }
-            }
-            
-            struct LocationPremissionView: View {
-                var body: some View {
-                    ScrollView {
-                        VStack {
-                            Image(systemName: "location.square.fill")
-                                .font(.system(size: 40))
-                                .foregroundColor(.blue)
-                            Text("需要定位服务权限以使用基于位置的安全延时")
-                                .font(.system(size: 22))
-                                .multilineTextAlignment(.center)
-                                .padding(.vertical)
-                            HStack {
-                                Image(systemName: "hand.raised.square.fill")
-                                    .font(.system(size: 28))
-                                    .foregroundColor(.blue)
-                                Text("所有定位信息仅保存在本地，不会与包括 Darock 在内的任何第三方共享。")
-                                Spacer()
-                            }
-                            Button(action: {
-                                CLLocationManager().requestWhenInUseAuthorization()
-                            }, label: {
-                                Text("使用定位服务")
-                            })
-                            .tint(.blue)
-                            .buttonStyle(.borderedProminent)
-                            .buttonBorderShape(.roundedRectangle(radius: 14))
-                        }
-                    }
-                    .navigationTitle("定位服务权限")
-                }
-            }
         }
     }
     struct PrivacySettingsView: View {
@@ -3537,58 +2873,6 @@ struct SettingsView: View {
                     Text("Debugger")
                 }
                 Section {
-                    NavigationLink(destination: {
-                        ScrollView {
-                            VStack {
-                                Text((
-                                    try! PropertyListSerialization
-                                        .propertyList(from: FileManager.default.contents(atPath: "/private/var/db/eligibilityd/eligibility.plist")!,
-                                                      options: [],
-                                                      format: nil
-                                                     ) as! [String: Any]
-                                ).description)
-                                .font(.system(size: 12, design: .monospaced))
-                            }
-                        }
-                    }, label: {
-                        Text("View Eligibility Data")
-                    })
-                    NavigationLink(destination: {
-                        ScrollView {
-                            VStack {
-                                Text((
-                                    try! PropertyListSerialization
-                                        .propertyList(from: FileManager.default.contents(
-                                            atPath: "/private/var/containers/Shared/SystemGroup/systemgroup.com.apple.mobilegestaltcache/Library/Caches/com.apple.MobileGestalt.plist"
-                                        )!,
-                                                      options: [],
-                                                      format: nil
-                                        ) as! [String: Any]
-                                ).description)
-                                .font(.system(size: 12, design: .monospaced))
-                            }
-                        }
-                    }, label: {
-                        Text("View MobileGestalt Data")
-                    })
-                } header: {
-                    Text("Eligibility")
-                }
-                Section {
-                    Button(action: {
-                        tipWithText("\(String(format: "%.2f", securityDelayStartTime))", symbol: "hammer.circle.fill")
-                    }, label: {
-                        Text("Present Start Time")
-                    })
-                    Button(action: {
-                        tipWithText("\(String(checkSecurityDelay()))", symbol: "hammer.circle.fill")
-                    }, label: {
-                        Text("Present Check Status")
-                    })
-                } header: {
-                    Text("Security Delay")
-                }
-                Section {
                     Button(action: {
                         tipWithText("\(ProcessInfo.processInfo.thermalState)", symbol: "hammer.circle.fill")
                     }, label: {
@@ -3745,168 +3029,6 @@ struct SettingsView: View {
             }
         }
     }
-}
-
-struct SecurityDelayRequiredView: View {
-    var reasonTitle: LocalizedStringKey
-    @Environment(\.presentationMode) var presentationMode
-    @AppStorage("SecurityDelayRequirement") var securityDelayRequirement = "always"
-    @AppStorage("SecurityDelayStartTime") var securityDelayStartTime = -1.0
-    @State var isCounterPresented = false
-    @State var isNotificationPermissionGranted = false
-    var body: some View {
-        ScrollView {
-            VStack {
-                Image(systemName: "lock.badge.clock.fill")
-                    .font(.system(size: 40))
-                    .foregroundColor(.blue)
-                Text(reasonTitle)
-                    .font(.system(size: 22))
-                    .multilineTextAlignment(.center)
-                Text(securityDelayRequirement == "always" ? "需要进行安全延时以执行此操作，因为安全延时已启用。" : "需要进行安全延时以执行此操作，因为安全延时已启用，且 Apple Watch 不在设定的允许位置。")
-                    .multilineTextAlignment(.center)
-                    .padding(.vertical)
-                HStack {
-                    Image(systemName: "lock.badge.clock.fill")
-                        .font(.system(size: 28))
-                        .foregroundColor(.blue)
-                    Text("安全延时会进行一个小时。")
-                    Spacer()
-                }
-                if isNotificationPermissionGranted {
-                    HStack {
-                        Image(systemName: "bell.badge.fill")
-                            .symbolRenderingMode(.hierarchical)
-                            .font(.system(size: 28))
-                            .foregroundColor(.blue)
-                        Text("安全延时结束后您将收到通知。")
-                        Spacer()
-                    }
-                }
-                HStack {
-                    Image(systemName: "applewatch")
-                        .font(.system(size: 28))
-                        .foregroundColor(.blue)
-                    Text("在安全延时期间您仍然可以使用暗礁浏览器。")
-                    Spacer()
-                }
-                Button(action: {
-                    securityDelayStartTime = Date.now.timeIntervalSince1970
-                    isCounterPresented = true
-                    let content = UNMutableNotificationContent()
-                    content.title = ""
-                    content.body = ""
-                    content.sound = UNNotificationSound.default
-                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: false)
-                    let request = UNNotificationRequest(identifier: "com.darock.WatchBrowser.securityDelay.notification", content: content, trigger: trigger)
-                    UNUserNotificationCenter.current().add(request) { _ in }
-                }, label: {
-                    Text("开始安全延时")
-                })
-                .tint(.blue)
-                .buttonStyle(.borderedProminent)
-                .buttonBorderShape(.roundedRectangle(radius: 14))
-            }
-        }
-        .navigationTitle("需要安全延时")
-        .sheet(isPresented: $isCounterPresented, onDismiss: {
-            presentationMode.wrappedValue.dismiss()
-        }, content: { SecurityDelayCounterView() })
-        .onAppear {
-            if securityDelayStartTime > 0 {
-                isCounterPresented = true
-            }
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
-                isNotificationPermissionGranted = granted
-            }
-        }
-    }
-}
-struct SecurityDelayCounterView: View {
-    @Environment(\.presentationMode) var presentationMode
-    @AppStorage("SecurityDelayStartTime") var securityDelayStartTime = -1.0
-    @State var timeDiff = Time(minute: 0, second: 0)
-    var body: some View {
-        ScrollView {
-            VStack {
-                Image(systemName: "lock.badge.clock.fill")
-                    .symbolRenderingMode(.hierarchical)
-                    .font(.system(size: 40))
-                    .foregroundColor(.blue)
-                Text("安全延时正在进行中")
-                    .font(.system(size: 20))
-                    .multilineTextAlignment(.center)
-                Text("在安全延时结束后，您可以继续之前的操作")
-                    .multilineTextAlignment(.center)
-                    .padding(.vertical)
-                HStack {
-                    Text("剩余时间")
-                    Spacer()
-                    Text("\(timeDiff.minute < 10 ? "0" : "")\(timeDiff.minute):\(timeDiff.second < 10 ? "0" : "")\(timeDiff.second)")
-                        .foregroundColor(.gray)
-                }
-                .padding()
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }, label: {
-                    Text("完成")
-                })
-                .tint(.blue)
-                .buttonStyle(.borderedProminent)
-                .buttonBorderShape(.roundedRectangle(radius: 14))
-            }
-        }
-        .onAppear {
-            let calendar = Calendar.current
-            let components = calendar.dateComponents([.minute, .second], from: Date.now, to: Date(timeIntervalSince1970: securityDelayStartTime + 3600))
-            timeDiff = Time(minute: components.minute ?? 0, second: components.second ?? 0)
-            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
-                let components = calendar.dateComponents([.minute, .second], from: Date.now, to: Date(timeIntervalSince1970: securityDelayStartTime + 3600))
-                timeDiff = Time(minute: components.minute ?? 0, second: components.second ?? 0)
-            }
-        }
-    }
-    
-    struct Time {
-        var minute: Int
-        var second: Int
-    }
-}
-
-/// 检查安全延时是否已完成
-/// - Returns: 是否已完成
-func checkSecurityDelay() -> Bool {
-    if !UserDefaults.standard.bool(forKey: "IsSecurityDelayEnabled") {
-        return true
-    }
-    
-    if let requirement = UserDefaults.standard.string(forKey: "SecurityDelayRequirement"),
-       let trustedLocations = UserDefaults.standard.array(forKey: "SecurityDelayTrustedLocations") as? [[Double]],
-       requirement == "byLocation" {
-        LocationManager.shared.manager.startUpdatingLocation()
-        if let location = LocationManager.shared.location {
-            let currArg1f = Double(String(format: "%.2f", location.latitude))!
-            let currArg2f = Double(String(format: "%.2f", location.longitude))!
-            for trustedLocation in trustedLocations {
-                let arg1f = Double(String(format: "%.2f", trustedLocation[0]))!
-                let arg2f = Double(String(format: "%.2f", trustedLocation[1]))!
-                if currArg1f == arg1f && currArg2f == arg2f {
-                    return true
-                }
-            }
-        }
-    }
-    
-    let startTime = UserDefaults.standard.double(forKey: "SecurityDelayStartTime")
-    let currentTime = Date.now.timeIntervalSince1970
-    let targetTime = startTime + 3600
-    let timeDiff = targetTime - currentTime
-    if timeDiff <= 0 && timeDiff >= -1800 {
-        return true
-    } else if timeDiff < -1800 {
-        UserDefaults.standard.set(-1.0, forKey: "SecurityDelayStartTime")
-    }
-    return false
 }
 
 final class LocationManager: NSObject, CLLocationManagerDelegate {

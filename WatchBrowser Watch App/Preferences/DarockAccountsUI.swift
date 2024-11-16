@@ -402,8 +402,6 @@ struct DarockAccountManagementMain: View {
     struct SigninAndSecurityView: View {
         @AppStorage("DarockAccount") var darockAccount = ""
         @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
-        @State var isChangePasswordDelayPresented = false
-        @State var isDeleteAccountDelayPresented = false
         @State var isPasscodeInputPresented = false
         @State var isAccountDeletionPasscodeInputPresented = false
         @State var devicePasscodeInputTmp = ""
@@ -423,10 +421,6 @@ struct DarockAccountManagementMain: View {
                 Section {
                     Button(action: {
                         if !userPasscodeEncrypted.isEmpty {
-                            if !checkSecurityDelay() {
-                                isChangePasswordDelayPresented = true
-                                return
-                            }
                             isPasscodeInputPresented = true
                             return
                         }
@@ -451,10 +445,6 @@ struct DarockAccountManagementMain: View {
                 Section {
                     Button(role: .destructive, action: {
                         if !userPasscodeEncrypted.isEmpty {
-                            if !checkSecurityDelay() {
-                                isDeleteAccountDelayPresented = true
-                                return
-                            }
                             isAccountDeletionPasscodeInputPresented = true
                             return
                         }
@@ -480,8 +470,6 @@ struct DarockAccountManagementMain: View {
             }
             .navigationTitle("登录与安全性")
             .navigationBarTitleDisplayMode(.inline)
-            .sheet(isPresented: $isChangePasswordDelayPresented, content: { SecurityDelayRequiredView(reasonTitle: "需要安全延时以更改 Darock 账户密码") })
-            .sheet(isPresented: $isDeleteAccountDelayPresented, content: { SecurityDelayRequiredView(reasonTitle: "需要安全延时以删除 Darock 账户") })
             .sheet(isPresented: $isChangePasswordPresented, content: { ChangePasswordView() })
             .sheet(isPresented: $isAccountDeletionPresented, content: { AccountDeletionView() })
         }

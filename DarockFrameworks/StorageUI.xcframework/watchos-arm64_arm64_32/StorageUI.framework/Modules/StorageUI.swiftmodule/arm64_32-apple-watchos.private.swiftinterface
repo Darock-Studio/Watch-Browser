@@ -1,0 +1,83 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.2 effective-5.10 (swiftlang-6.0.2.1.2 clang-1600.0.26.4)
+// swift-module-flags: -target arm64_32-apple-watchos9.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name StorageUI
+import Charts
+import Foundation
+import OSLog
+@_exported import StorageUI
+import Swift
+@_exported import SwiftUI
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_Concurrency.MainActor @preconcurrency public struct SUIStorageManagementView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init(@StorageUI.SUIStorageListBuilder categories: () -> [StorageUI.SUIStorageAnyListable])
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s9StorageUI24SUIStorageManagementViewV4bodyQrvp", 0) __
+}
+#if compiler(>=5.3) && $RetroactiveAttribute
+extension SwiftUICore.Color : @retroactive Charts.Plottable {
+  public var primitivePlottable: Swift.Int {
+    get
+  }
+  public init?(primitivePlottable: Swift.Int)
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias PrimitivePlottable = Swift.Int
+}
+#else
+extension SwiftUICore.Color : Charts.Plottable {
+  public var primitivePlottable: Swift.Int {
+    get
+  }
+  public init?(primitivePlottable: Swift.Int)
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias PrimitivePlottable = Swift.Int
+}
+#endif
+@_typeEraser(SUIStorageAnyListable) public protocol SUIStorageListable : Swift.Identifiable {
+  var id: Swift.String { get }
+  var name: SwiftUICore.LocalizedStringKey { get }
+  var tintColor: SwiftUICore.Color { get }
+  var path: Swift.String { get }
+  var totalSize: Swift.UInt64 { get }
+  associatedtype ViewType : SwiftUICore.View
+  @SwiftUICore.ViewBuilder func _makeFileListView() -> Self.ViewType
+}
+extension StorageUI.SUIStorageListable where Self.ViewType == SwiftUICore.EmptyView {
+  public func _makeFileListView() -> Self.ViewType
+}
+public struct SUIStorageAnyListable : StorageUI.SUIStorageListable {
+  public let id: Swift.String
+  public let name: SwiftUICore.LocalizedStringKey
+  public let tintColor: SwiftUICore.Color
+  public let path: Swift.String
+  public let totalSize: Swift.UInt64
+  public init<T>(_ listable: T) where T : StorageUI.SUIStorageListable
+  public init<T>(erasing: T) where T : StorageUI.SUIStorageListable
+  public func _makeFileListView() -> some SwiftUICore.View
+  
+  public typealias ID = Swift.String
+  public typealias ViewType = @_opaqueReturnTypeOf("$s9StorageUI21SUIStorageAnyListableV17_makeFileListViewQryF", 0) __
+}
+@_functionBuilder public struct SUIStorageListBuilder {
+  public static func buildBlock<T>(_ components: T...) -> [StorageUI.SUIStorageAnyListable] where T : StorageUI.SUIStorageListable
+}
+public struct SUIStorageListFile : StorageUI.SUIStorageListable {
+  public let id: Swift.String
+  public let name: SwiftUICore.LocalizedStringKey
+  public let tintColor: SwiftUICore.Color
+  public let path: Swift.String
+  public let totalSize: Swift.UInt64
+  public let allowDelete: Swift.Bool
+  public let showFilesInList: Swift.Bool
+  public let customNameConverter: [Swift.String : Swift.String]?
+  public let onDelete: (Swift.String) -> Swift.Void
+  public init(name: SwiftUICore.LocalizedStringKey, tintColor: SwiftUICore.Color, path: Swift.String, allowDelete: Swift.Bool = false, showFilesInList: Swift.Bool = true, customNameConverter: [Swift.String : Swift.String]? = nil, onDelete: @escaping (Swift.String) -> Swift.Void = { _ in })
+  public func _makeFileListView() -> some SwiftUICore.View
+  
+  public typealias ID = Swift.String
+  public typealias ViewType = @_opaqueReturnTypeOf("$s9StorageUI18SUIStorageListFileV05_makeeD4ViewQryF", 0) __
+}
+extension StorageUI.SUIStorageManagementView : Swift.Sendable {}
