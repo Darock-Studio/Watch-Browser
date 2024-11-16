@@ -7,4 +7,4 @@
 */
 
 CFBundleDisplayName = "暗礁瀏覽器";
-NSLocationWhenInUseUsageDescription = "暗礁瀏覽器需要獲取您的位置以提供基於位置的“安全延時”以及根據日落與日出的外觀切換，部分網頁也有可能請求你的位置。";
+NSLocationWhenInUseUsageDescription = "暗礁瀏覽器需要獲取您的位置以根據日落與日出切換外觀，部分網頁也有可能請求你的位置。";

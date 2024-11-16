@@ -7,4 +7,4 @@
 */
 
 CFBundleDisplayName = "Darock Browser";
-NSLocationWhenInUseUsageDescription = "Darock Browser needs to access your location information to provide location-based Security Delay and to switch appearance based on sunrise and sunset. Some websites may also request your location information.";
+NSLocationWhenInUseUsageDescription = "Darock Browser needs to access your location information to switch appearance based on sunrise and sunset. Some websites may also request your location information.";

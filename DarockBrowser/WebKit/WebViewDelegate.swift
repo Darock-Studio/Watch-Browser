@@ -33,7 +33,7 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
                     case "diags" where schemeSplited[1].isEmpty || Int64(schemeSplited[1]) != nil:
                         DispatchQueue.main.async {
                             AdvancedWebViewController.dismissWebViewPublisher.send()
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                                 DUIDiagnostics.shared.startDiagnostic(withID: schemeSplited[1].isEmpty ? nil : schemeSplited[1])
                             }
                         }
@@ -64,15 +64,6 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
             return .cancel
         } else {
             return .allow
-        }
-    }
-    
-    public func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        if let url = webView.url {
-            let curl = url.absoluteString
-            if _fastPath(isHistoryRecording) {
-                recordHistory(curl, webSearch: webSearch, showName: webView.title)
-            }
         }
     }
     
@@ -165,6 +156,9 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         }
         
         let curl = webView.url
+        if let url = curl?.absoluteString, _fastPath(isHistoryRecording) {
+            recordHistory(url, webSearch: webSearch, showName: webView.title)
+        }
         if (UserDefaults.standard.object(forKey: "CCIsHandoffEnabled") as? Bool) ?? true {
             if _fastPath((curl?.absoluteString.hasPrefix("http") ?? false) || (curl?.absoluteString.hasPrefix("https") ?? false)) {
                 // User Activity

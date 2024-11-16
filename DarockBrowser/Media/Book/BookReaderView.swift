@@ -14,7 +14,7 @@ struct BookReaderView: View {
     @AppStorage("RVFontSize") var fontSize = 14
     @AppStorage("RVIsBoldText") var isBoldText = false
     @AppStorage("RVCharacterSpacing") var characterSpacing = 1.0
-    @State private var contents = CodableAttributedStringArray()
+    @State private var contents = [String]()
     @State var loadProgress = 0.0
     @State var toolbarVisibility = Visibility.visible
     @State var toolbarVisibilityResetTimer: Timer?
@@ -34,7 +34,9 @@ struct BookReaderView: View {
                     if !contents.isEmpty {
                         LazyVStack(alignment: .leading) {
                             ForEach(0..<contents.count, id: \.self) { i in
-                                Text(AttributedString(contents[i]))
+                                Text(contents[i])
+                                    .font(.system(size: CGFloat(fontSize), weight: isBoldText ? .bold : .regular))
+                                    .kerning(characterSpacing)
                                     .onAppear {
                                         progressJumpSliderValue = Double(i)
                                         if _fastPath(isFullLoaded) {
@@ -123,32 +125,21 @@ struct BookReaderView: View {
             DispatchQueue(label: "com.darock.WatchBrowser.load-book-content", qos: .userInitiated).async {
                 do {
                     let spines = document.spine.items
-                    var tmpContents = [NSMutableAttributedString]()
+                    var tmpContents = [String]()
                     for i in 0..<spines.count {
                         let id = spines[i].idref
                         let idChart = document.manifest.items
                         if let path = idChart[id]?.path {
                             let rawStr = try String(contentsOf: document.contentDirectory.appending(path: path), encoding: .utf8)
-                            let splitedStrs = rawStr.components(separatedBy: .newlines)
-                            let progressAddPiece = 1.0 / Double(splitedStrs.count) * 1.0 / Double(spines.count)
-                            for j in 0..<splitedStrs.count {
-                                let attrStr = try NSMutableAttributedString(
-                                    data: splitedStrs[j].data(using: .utf8)!,
-                                    options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue],
-                                    documentAttributes: nil
-                                )
-                                tmpContents.append(attrStr)
-                                loadProgress += progressAddPiece
-                            }
+                            let attrStr = try NSMutableAttributedString(
+                                data: rawStr.data(using: .utf8)!,
+                                options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue],
+                                documentAttributes: nil
+                            )
+                            let progressAddPiece = 1.0 / Double(spines.count)
+                            tmpContents.append(contentsOf: attrStr.string.components(separatedBy: .newlines))
+                            loadProgress += progressAddPiece
                         }
-                    }
-                    tmpContents.forEach {
-                        let fullRange = NSMakeRange(0, $0.length)
-                        $0.setAttributes([.foregroundColor: UIColor.white,
-                                          .font: UIFont.systemFont(ofSize: CGFloat(fontSize), weight: isBoldText ? .bold : .regular),
-                                          .kern: CGFloat(characterSpacing)],
-                                         range: fullRange
-                        )
                     }
                     DispatchQueue.main.async {
                         contents = .init(tmpContents)
@@ -181,77 +172,5 @@ struct BookReaderView: View {
             largeJumpCheckTimer?.invalidate()
             largeJumpCheckTimer = nil
         }
-    }
-}
-
-private struct CodableAttributedString: Codable {
-    var attributedString: NSAttributedString = NSAttributedString()
-    
-    enum CodingKeys: String, CodingKey {
-        case string
-    }
-    
-    init() {}
-    init(_ attributedString: NSAttributedString) {
-        self.attributedString = attributedString
-    }
-    init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let attrStr = try container.decode(String.self, forKey: .string)
-        attributedString = .init(string: attrStr)
-    }
-    
-    func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(attributedString.string, forKey: .string)
-    }
-}
-private struct CodableAttributedStringArray: Codable {
-    private var array: [CodableAttributedString] = []
-    
-    enum CodingKeys: String, CodingKey {
-        case array
-    }
-    
-    init() {}
-    init(_ array: [NSAttributedString]) {
-        self.array = array.map { CodableAttributedString($0) }
-    }
-}
-private extension CodableAttributedStringArray {
-    subscript (index: Int) -> NSAttributedString {
-        get {
-            return array[index].attributedString
-        }
-        set {
-            array[index].attributedString = newValue
-        }
-    }
-    
-    func map<T>(_ transform: (NSAttributedString) throws -> T) rethrows -> [T] {
-        let initialCapacity = array.underestimatedCount
-        var result = ContiguousArray<T>()
-        result.reserveCapacity(initialCapacity)
-        
-        var iterator = array.makeIterator()
-        
-        // Add elements up to the initial capacity without checking for regrowth.
-        for _ in 0..<initialCapacity {
-            result.append(try transform(iterator.next()!.attributedString))
-        }
-        // Add remaining elements, if any.
-        while let element = iterator.next() {
-            result.append(try transform(element.attributedString))
-        }
-        
-        return Array(result)
-    }
-    
-    var isEmpty: Bool {
-        array.isEmpty
-    }
-    
-    var count: Int {
-        array.count
     }
 }

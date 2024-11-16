@@ -70,10 +70,17 @@ struct WebAbstractView: View {
                 if let sourceCode = obj as? String {
                     do {
                         let document = try SwiftSoup.parse(sourceCode)
-                        let textElements = try document.select("*").filter { try $0.text().trimmingCharacters(in: .whitespaces).isEmpty == false }
                         var texts = [String]()
-                        for text in try textElements.map({ try $0.text() }) where !texts.contains(text) {
-                            texts.append(text)
+                        var appendTextCount = 0
+                        for text in try document.select("*") {
+                            let text = try text.text()
+                            if text.trimmingCharacters(in: .whitespaces).isEmpty == false && !texts.contains(text) {
+                                texts.append(text)
+                                appendTextCount++
+                                if appendTextCount > 2000 {
+                                    break
+                                }
+                            }
                         }
                         let visibleText = texts.joined(separator: " ")
                         Task {
