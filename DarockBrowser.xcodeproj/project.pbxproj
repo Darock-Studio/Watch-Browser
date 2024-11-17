@@ -21,6 +21,8 @@
 		8C038A962CCD516E00BC0FB4 /* TabsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C038A952CCD516800BC0FB4 /* TabsListView.swift */; };
 		8C03B6E02C296338000770B4 /* NetworkCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C03B6DF2C296338000770B4 /* NetworkCheckView.swift */; };
 		8C03B70E2C29B2CE000770B4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8C03B70D2C29B2CE000770B4 /* Localizable.xcstrings */; };
+		8C0FDC752CE9ABBA00D741A0 /* WitchWebUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0FDC722CE9AB5E00D741A0 /* WitchWebUI.framework */; };
+		8C0FDC762CE9ABBA00D741A0 /* WitchWebUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0FDC722CE9AB5E00D741A0 /* WitchWebUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C1DED022C32AEBB0048A32A /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1DED012C32AEB00048A32A /* General.swift */; };
 		8C207DCE2CBA8F650054D687 /* RadarKitCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C207DCD2CBA8F650054D687 /* RadarKitCore.xcframework */; };
 		8C207DCF2CBA8F650054D687 /* RadarKitCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C207DCD2CBA8F650054D687 /* RadarKitCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -147,6 +149,13 @@
 			remoteGlobalIDString = 6BF209ED2990E61C00E623FC;
 			remoteInfo = "WatchBrowser Watch App";
 		};
+		8C0FDC712CE9AB5E00D741A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C0FDC6D2CE9AB5E00D741A0 /* WitchWebUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8C0FDC5F2CE9AB3900D741A0;
+			remoteInfo = WitchWebUI;
+		};
 		8C52811A2C22FA3C00392315 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6BF209E22990E61C00E623FC /* Project object */;
@@ -202,6 +211,7 @@
 				8CC267E22CE8D5C500AE03F0 /* StorageUI.xcframework in Embed Frameworks */,
 				8C4E349A2CB145210091AD22 /* DiagnosticsUI.xcframework in Embed Frameworks */,
 				8C52811D2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Embed Frameworks */,
+				8C0FDC762CE9ABBA00D741A0 /* WitchWebUI.framework in Embed Frameworks */,
 				8C207DCF2CBA8F650054D687 /* RadarKitCore.xcframework in Embed Frameworks */,
 				8C99B4772CDFDBBB008FE01F /* NotifKit.xcframework in Embed Frameworks */,
 			);
@@ -234,6 +244,7 @@
 		8C03B70B2C29B201000770B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8C03B70C2C29B20B000770B4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		8C03B70D2C29B2CE000770B4 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		8C0FDC6D2CE9AB5E00D741A0 /* WitchWebUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WitchWebUI.xcodeproj; path = DarockFrameworks/WitchWebUI/WitchWebUI.xcodeproj; sourceTree = "<group>"; };
 		8C1DED012C32AEB00048A32A /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		8C207DCD2CBA8F650054D687 /* RadarKitCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RadarKitCore.xcframework; path = DarockFrameworks/RadarKitCore.xcframework; sourceTree = "<group>"; };
 		8C298D9A2CCD1B2E0074A938 /* ci_post_xcodebuild.sh */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = text.script.sh; path = ci_post_xcodebuild.sh; sourceTree = "<group>"; };
@@ -887,6 +898,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C0FDC752CE9ABBA00D741A0 /* WitchWebUI.framework in Frameworks */,
 				8C4E34992CB145210091AD22 /* DiagnosticsUI.xcframework in Frameworks */,
 				8C52811C2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Frameworks */,
 				8C4B9D9E2CD6399D008D0A52 /* AuthenticationServices.framework in Frameworks */,
@@ -954,6 +966,7 @@
 		6BF209E12990E61C00E623FC = {
 			isa = PBXGroup;
 			children = (
+				8C0FDC6D2CE9AB5E00D741A0 /* WitchWebUI.xcodeproj */,
 				8C3E83A02C82B45600686E9C /* README.md */,
 				8C3E839C2C82246B00686E9C /* LICENSE */,
 				8CDE9B8E2C3959DE0083B09E /* .swiftlint.yml */,
@@ -1018,6 +1031,14 @@
 				8C0373C32CAAFA020029F047 /* CoreHaptics.h */,
 			);
 			path = CoreHaptics;
+			sourceTree = "<group>";
+		};
+		8C0FDC6E2CE9AB5E00D741A0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C0FDC722CE9AB5E00D741A0 /* WitchWebUI.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		8C3A5DEB2C6BCBC4002097A8 /* UIKit */ = {
@@ -2084,6 +2105,12 @@
 			);
 			productRefGroup = 6BF209E92990E61C00E623FC /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8C0FDC6E2CE9AB5E00D741A0 /* Products */;
+					ProjectRef = 8C0FDC6D2CE9AB5E00D741A0 /* WitchWebUI.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				6BF209E72990E61C00E623FC /* DarockBrowser */,
@@ -2094,6 +2121,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		8C0FDC722CE9AB5E00D741A0 /* WitchWebUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = WitchWebUI.framework;
+			remoteRef = 8C0FDC712CE9AB5E00D741A0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6BF209E62990E61C00E623FC /* Resources */ = {
