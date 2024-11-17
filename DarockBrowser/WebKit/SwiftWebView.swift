@@ -103,12 +103,12 @@ struct SwiftWebView: View {
                                 }
                             }, label: {
                                 if #available(watchOS 10, *) {
-                                    Image(systemName: webCanGoBack ? "chevron.backward" : "escape")
-                                        .foregroundStyle(webCanGoBack ? .accent : .red)
+                                    Image(systemName: webCanGoBack ? "chevron.backward" : "list.bullet")
+                                        .foregroundStyle(.accent)
                                         .contentTransition(.symbolEffect(.replace))
                                 } else {
-                                    Image(systemName: webCanGoBack ? "chevron.backward" : "escape")
-                                        .foregroundStyle(webCanGoBack ? .accent : .red)
+                                    Image(systemName: webCanGoBack ? "chevron.backward" : "list.bullet")
+                                        .foregroundStyle(.accent)
                                 }
                             })
                         }
@@ -131,6 +131,7 @@ struct SwiftWebView: View {
                     NavigationView {
                         content
                     }
+                    .toolbar(.hidden)
                     .toolbarBackground(.hidden)
                 }
             if let errorText = webErrorText {

@@ -245,7 +245,7 @@ struct BrowsingMenuView: View {
                             }
                         }
                         Section {
-                            Button(role: .destructive, action: {
+                            Button(action: {
                                 if let customDismissAction {
                                     customDismissAction()
                                 } else {
@@ -256,11 +256,12 @@ struct BrowsingMenuView: View {
                                 }
                             }, label: {
                                 HStack {
-                                    Text("退出")
+                                    Text("返回标签页列表")
                                     Spacer()
-                                    Image(systemName: "escape")
+                                    Image(systemName: "list.bullet")
                                 }
                             })
+                            .tint(.accentColor)
                         }
                         if isProPurchased {
                             Section {
@@ -462,7 +463,7 @@ struct BrowsingMenuView: View {
                                     }
                                     .disabled(!webView.canGoForward)
                                 }
-                                Button(role: .destructive, action: {
+                                Button(action: {
                                     if let customDismissAction {
                                         customDismissAction()
                                     } else {
@@ -473,10 +474,11 @@ struct BrowsingMenuView: View {
                                     }
                                 }, label: {
                                     HStack {
-                                        Image(systemName: "escape")
-                                        Text("退出")
+                                        Image(systemName: "list.bullet")
+                                        Text("返回标签页列表")
                                     }
                                 })
+                                .tint(.accentColor)
                                 if isProPurchased {
                                     Button(action: {
                                         isWebAbstractPresented = true

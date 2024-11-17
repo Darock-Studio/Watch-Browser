@@ -13,6 +13,11 @@ import DarockKit
 struct TabsListView<StartPage>: View where StartPage: View {
     var startPage: (@escaping (NewWebTabConfiguration) -> Void) -> StartPage
     @AppStorage("WebViewLayout") var webViewLayout = "MaximumViewport"
+    @AppStorage("ShouldShowRatingRequest") var shouldShowRatingRequest = false
+    @AppStorage("MainPageShowCount") var mainPageShowCount = 0
+    @AppStorage("IsShowJoinGroup") var isShowJoinGroup = true
+    @AppStorage("IsShowClusterAd") var isShowClusterAd = true
+    @AppStorage("IsBetaJoinAvailable") var isBetaJoinAvailable = false
     @State var tabs = [WebViewTab]()
     @State var selectedTab: WebViewTab?
     @State var currentColumn = NavigationSplitViewColumn.sidebar
@@ -69,7 +74,38 @@ struct TabsListView<StartPage>: View where StartPage: View {
                                 Label("提示", privateSystemImage: "tips")
                             })
                         }
-                        .listStyle(.carousel)
+                        Section {
+                            if shouldShowRatingRequest {
+                                Button(action: {
+                                    shouldShowRatingRequest = false
+                                }, label: {
+                                    VStack(alignment: .leading) {
+                                        Text("喜欢暗礁浏览器？前往 iPhone 上的 App Store 为我们评分！")
+                                        Text("轻触以隐藏")
+                                            .font(.system(size: 14))
+                                            .foregroundStyle(.gray)
+                                    }
+                                })
+                            }
+                            if isBetaJoinAvailable {
+                                NavigationLink(destination: { BetaJoinView() }, label: {
+                                    Label("参与 Beta 测试", systemImage: "person.badge.clock")
+                                        .centerAligned()
+                                })
+                            }
+                            if #available(watchOS 10, *), isShowClusterAd {
+                                NavigationLink(destination: { ClusterAdView() }, label: {
+                                    Label("推荐 - 暗礁文件", systemImage: "sparkles")
+                                        .centerAligned()
+                                })
+                            }
+                            if isShowJoinGroup {
+                                NavigationLink(destination: { JoinGroupView() }, label: {
+                                    Label("欢迎加入群聊", systemImage: "bubble.left.and.bubble.right")
+                                        .centerAligned()
+                                })
+                            }
+                        }
                     }
                     .listStyle(.plain)
                     if isCreateButtonPressed {
@@ -182,6 +218,15 @@ struct TabsListView<StartPage>: View where StartPage: View {
                         }
                     }
                 }
+                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/tf/get/DarockBrowser") { respStr, isSuccess in
+                    if isSuccess {
+                        isBetaJoinAvailable = respStr.apiFixed() != "[None]"
+                    }
+                }
+                mainPageShowCount++
+                if mainPageShowCount == 10 {
+                    shouldShowRatingRequest = true
+                }
             }
         }, detail: {
             if let selectedTab {
@@ -260,9 +305,13 @@ struct TabsListView<StartPage>: View where StartPage: View {
                         try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/Tabs", withIntermediateDirectories: false)
                     }
                     if let jsonStr = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/Tabs/Tabs.drkdatat", encoding: .utf8),
-                       let metadatas = getJsonData([WebViewTab.Metadata].self, from: jsonStr) {
+                       let metadatas = getJsonData([WebViewTab.Metadata?].self, from: jsonStr) {
                         for metadata in metadatas {
-                            tabs.append(.init(metadata: metadata))
+                            if let metadata {
+                                tabs.append(.init(metadata: metadata))
+                            } else {
+                                tabs.append(.init(metadata: .init(url: nil)))
+                            }
                         }
                     }
                 } catch {
@@ -280,8 +329,10 @@ struct TabsListView<StartPage>: View where StartPage: View {
         }
         .onChange(of: tabs) { _ in
             if let jsonStr = jsonString(from: tabs.map { $0.metadata }) {
-                if getJsonData([WebViewTab.Metadata].self, from: jsonStr) != nil {
+                if getJsonData([WebViewTab.Metadata?].self, from: jsonStr) != nil {
                     try? jsonStr.write(toFile: NSHomeDirectory() + "/Documents/Tabs/Tabs.drkdatat", atomically: true, encoding: .utf8)
+                } else {
+                    os_log(.fault, "Failed to store tabs while tabs array changing. Full data below:\n\(tabs.map { $0.metadata })")
                 }
             }
         }

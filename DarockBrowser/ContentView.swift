@@ -105,15 +105,9 @@ struct MainView: View {
     @AppStorage("AlternativeSearch") var alternativeSearch = "必应"
     @AppStorage("IsAllowCookie") var isAllowCookie = false
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
-    @AppStorage("IsShowJoinGroup") var isShowJoinGroup = true
-    @AppStorage("IsShowClusterAd") var isShowClusterAd = true
-    @AppStorage("IsBetaJoinAvailable") var isBetaJoinAvailable = false
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
     @AppStorage("LabTabBrowsingEnabled") var labTabBrowsingEnabled = false
-    @AppStorage("ShouldShowRatingRequest") var shouldShowRatingRequest = false
-    @AppStorage("MainPageShowCount") var mainPageShowCount = 0
-    @State var customControls = [HomeScreenControlType]()
     @State var textOrURL = ""
     @State var goToButtonLabelText: LocalizedStringKey = "Home.search"
     @State var isKeyboardPresented = false
@@ -121,8 +115,6 @@ struct MainView: View {
     @State var pinnedBookmarkIndexs = [Int]()
     @State var webArchiveLinks = [String]()
     @State var isAudioControllerAvailable = false
-    @State var currentToolbar: HomeScreenToolbar?
-    @State var toolbarNavigationDestination: HomeScreenNavigationType?
     var body: some View {
         List {
             if isAudioControllerAvailable {
@@ -137,59 +129,102 @@ struct MainView: View {
                     }
                 })
             }
-            if !customControls.isEmpty {
-                getMainView(by: customControls)
-            } else {
-                getMainView(by: HomeScreenControlType.defaultScreen)
+            Section {
+                searchField
+                searchButton
+            }
+            Section {
+                NavigationLink(destination: {
+                    if let createPageAction {
+                        BookmarkView(showAllControls: true) { name, link in
+                            createPageAction(.init(url: link, title: name))
+                        }
+                    } else {
+                        BookmarkView()
+                    }
+                }, label: {
+                    Label("Home.bookmarks", systemImage: "bookmark")
+                        .centerAligned()
+                })
+                NavigationLink(destination: {
+                    if let createPageAction {
+                        HistoryView(showAllControls: true) { link in
+                            createPageAction(.init(url: link))
+                        }
+                    } else {
+                        HistoryView()
+                    }
+                }, label: {
+                    Label("Home.history", systemImage: "clock")
+                        .centerAligned()
+                })
+                if !webArchiveLinks.isEmpty {
+                    NavigationLink(destination: {
+                        if let createPageAction {
+                            WebArchiveListView { name, link in
+                                createPageAction(.init(url: link, title: name))
+                            }
+                        } else {
+                            WebArchiveListView()
+                        }
+                    }, label: {
+                        VStack {
+                            Label("网页归档", systemImage: "archivebox")
+                            if isUseOldWebView {
+                                Text("使用旧版引擎时，网页归档不可用")
+                                    .font(.system(size: 12))
+                                    .multilineTextAlignment(.center)
+                            }
+                        }
+                        .centerAligned()
+                    })
+                    .disabled(isUseOldWebView)
+                }
+                NavigationLink(destination: { UserScriptsView() }, label: {
+                    VStack {
+                        Label("用户脚本", systemImage: "applescript")
+                        if isUseOldWebView {
+                            Text("使用旧版引擎时，用户脚本不可用")
+                                .font(.system(size: 12))
+                                .multilineTextAlignment(.center)
+                        }
+                    }
+                    .centerAligned()
+                })
+                .disabled(isUseOldWebView)
+            }
+            Section {
+                if pinnedBookmarkIndexs.count != 0 {
+                    ForEach(0..<pinnedBookmarkIndexs.count, id: \.self) { i in
+                        Button(action: {
+                            if let createPageAction {
+                                createPageAction(.init(url: UserDefaults.standard.string(forKey: "BookmarkLink\(pinnedBookmarkIndexs[i])")!))
+                            } else {
+                                AdvancedWebViewController.shared.present(
+                                    UserDefaults.standard.string(forKey: "BookmarkLink\(pinnedBookmarkIndexs[i])")!
+                                )
+                            }
+                        }, label: {
+                            Text(UserDefaults.standard.string(forKey: "BookmarkName\(pinnedBookmarkIndexs[i])") ?? "")
+                                .privacySensitive()
+                        })
+                    }
+                }
+            }
+            if #unavailable(watchOS 10.0) {
+                Section {
+                    NavigationLink(destination: {
+                        SettingsView()
+                    }, label: {
+                        Label("Home.settings", systemImage: "gear")
+                    })
+                }
             }
         }
         .wrapIf({ if #available(watchOS 10.0, *) { true } else { false } }()) { content in
             if #available(watchOS 10.0, *) {
                 content
                     .modifier(UserDefinedBackground())
-                    .toolbar {
-                        if let currentToolbar {
-                            getFullToolbar(by: currentToolbar, with: .main) { type, _, obj in
-                                switch type {
-                                case .searchField, .searchButton:
-                                    if var content = obj as? String {
-                                        if content.isURL() {
-                                            if !content.hasPrefix("http://") && !content.hasPrefix("https://") {
-                                                content = "http://" + content
-                                            }
-                                            createPageAction?(.init(url: content.urlEncoded()))
-                                        } else {
-                                            createPageAction?(.init(
-                                                url: getWebSearchedURL(content,
-                                                                       webSearch: webSearch,
-                                                                       isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled)
-                                            ))
-                                        }
-                                    }
-                                case .spacer, .pinnedBookmarks, .text:
-                                    break
-                                case .navigationLink(let navigation):
-                                    toolbarNavigationDestination = navigation
-                                }
-                            }
-                        }
-                    }
-                    .navigationDestination(item: $toolbarNavigationDestination) { destination in
-                        switch destination {
-                        case .bookmark:
-                            BookmarkView()
-                        case .history:
-                            HistoryView()
-                        case .webarchive:
-                            WebArchiveListView()
-                        case .userscript:
-                            UserScriptsView()
-                        case .chores:
-                            EmptyView()
-                        case .settings:
-                            SettingsView()
-                        }
-                    }
             }
         }
         .navigationTitle("起始页")
@@ -203,38 +238,9 @@ struct MainView: View {
             }
         }
         .onAppear {
-            if let currentPref = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/HomeScreen.drkdatah", encoding: .utf8),
-               let data = getJsonData([HomeScreenControlType].self, from: currentPref) {
-                if let newPref = jsonString(from: data) {
-                    do {
-                        try newPref.write(toFile: NSHomeDirectory() + "/Documents/HomeScreen.drkdatah", atomically: true, encoding: .utf8)
-                    } catch {
-                        globalErrorHandler(error)
-                    }
-                }
-                customControls = data
-            } else {
-                customControls = HomeScreenControlType.defaultScreen
-            }
-            if let currentPref = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/MainToolbar.drkdatam", encoding: .utf8),
-               let data = getJsonData(HomeScreenToolbar.self, from: currentPref) {
-                currentToolbar = data
-            } else {
-                currentToolbar = HomeScreenToolbar.default
-            }
-            
             pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()
             webArchiveLinks = UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()
-            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/tf/get/DarockBrowser") { respStr, isSuccess in
-                if isSuccess {
-                    isBetaJoinAvailable = respStr.apiFixed() != "[None]"
-                }
-            }
             isAudioControllerAvailable = pIsAudioControllerAvailable
-            mainPageShowCount++
-            if mainPageShowCount == 10 {
-                shouldShowRatingRequest = true
-            }
         }
     }
     
@@ -332,149 +338,6 @@ struct MainView: View {
         .onLongPressGesture {
             if isLongPressAlternativeSearch {
                 startSearch(textOrURL, with: alternativeSearch, createPageAction: createPageAction)
-            }
-        }
-    }
-    
-    @ViewBuilder
-    func getMainView(by controls: [HomeScreenControlType]) -> some View {
-        let dividedControls = controls.split(separator: .spacer).map { Array<HomeScreenControlType>($0) }
-        ForEach(0..<dividedControls.count, id: \.self) { i in
-            Section {
-                ForEach(0..<dividedControls[i].count, id: \.self) { j in
-                    switch dividedControls[i][j] {
-                    case .searchField:
-                        searchField
-                    case .searchButton:
-                        searchButton
-                    case .spacer:
-                        EmptyView()
-                    case .pinnedBookmarks:
-                        if pinnedBookmarkIndexs.count != 0 {
-                            ForEach(0..<pinnedBookmarkIndexs.count, id: \.self) { i in
-                                Button(action: {
-                                    if let createPageAction {
-                                        createPageAction(.init(url: UserDefaults.standard.string(forKey: "BookmarkLink\(pinnedBookmarkIndexs[i])")!))
-                                    } else {
-                                        AdvancedWebViewController.shared.present(
-                                            UserDefaults.standard.string(forKey: "BookmarkLink\(pinnedBookmarkIndexs[i])")!
-                                        )
-                                    }
-                                }, label: {
-                                    Text(UserDefaults.standard.string(forKey: "BookmarkName\(pinnedBookmarkIndexs[i])") ?? "")
-                                        .privacySensitive()
-                                })
-                            }
-                        }
-                    case .text(let text):
-                        Text(text)
-                            .listRowBackground(Color.clear)
-                    case .navigationLink(let navigation):
-                        switch navigation {
-                        case .bookmark:
-                            NavigationLink(destination: {
-                                if let createPageAction {
-                                    BookmarkView(showAllControls: true) { name, link in
-                                        createPageAction(.init(url: link, title: name))
-                                    }
-                                } else {
-                                    BookmarkView()
-                                }
-                            }, label: {
-                                Label("Home.bookmarks", systemImage: "bookmark")
-                                    .centerAligned()
-                            })
-                        case .history:
-                            NavigationLink(destination: {
-                                if let createPageAction {
-                                    HistoryView(showAllControls: true) { link in
-                                        createPageAction(.init(url: link))
-                                    }
-                                } else {
-                                    HistoryView()
-                                }
-                            }, label: {
-                                Label("Home.history", systemImage: "clock")
-                                    .centerAligned()
-                            })
-                        case .webarchive:
-                            if !webArchiveLinks.isEmpty {
-                                NavigationLink(destination: {
-                                    if let createPageAction {
-                                        WebArchiveListView { name, link in
-                                            createPageAction(.init(url: link, title: name))
-                                        }
-                                    } else {
-                                        WebArchiveListView()
-                                    }
-                                }, label: {
-                                    VStack {
-                                        Label("网页归档", systemImage: "archivebox")
-                                        if isUseOldWebView {
-                                            Text("使用旧版引擎时，网页归档不可用")
-                                                .font(.system(size: 12))
-                                                .multilineTextAlignment(.center)
-                                        }
-                                    }
-                                    .centerAligned()
-                                })
-                                .disabled(isUseOldWebView)
-                            }
-                        case .userscript:
-                            NavigationLink(destination: { UserScriptsView() }, label: {
-                                VStack {
-                                    Label("用户脚本", systemImage: "applescript")
-                                    if isUseOldWebView {
-                                        Text("使用旧版引擎时，用户脚本不可用")
-                                            .font(.system(size: 12))
-                                            .multilineTextAlignment(.center)
-                                    }
-                                }
-                                .centerAligned()
-                            })
-                            .disabled(isUseOldWebView)
-                        case .chores:
-                            if shouldShowRatingRequest {
-                                Button(action: {
-                                    shouldShowRatingRequest = false
-                                }, label: {
-                                    VStack(alignment: .leading) {
-                                        Text("喜欢暗礁浏览器？前往 iPhone 上的 App Store 为我们评分！")
-                                        Text("轻触以隐藏")
-                                            .font(.system(size: 14))
-                                            .foregroundStyle(.gray)
-                                    }
-                                })
-                            }
-                            if isBetaJoinAvailable {
-                                NavigationLink(destination: { BetaJoinView() }, label: {
-                                    Label("参与 Beta 测试", systemImage: "person.badge.clock")
-                                        .centerAligned()
-                                })
-                            }
-                            if #available(watchOS 10, *), isShowClusterAd {
-                                NavigationLink(destination: { ClusterAdView() }, label: {
-                                    Label("推荐 - 暗礁文件", systemImage: "sparkles")
-                                        .centerAligned()
-                                })
-                            }
-                            if isShowJoinGroup {
-                                NavigationLink(destination: { JoinGroupView() }, label: {
-                                    Label("欢迎加入群聊", systemImage: "bubble.left.and.bubble.right")
-                                        .centerAligned()
-                                })
-                            }
-                        case .settings:
-                            if #unavailable(watchOS 10.0) {
-                                NavigationLink(destination: {
-                                    SettingsView()
-                                }, label: {
-                                    Label("Home.settings", systemImage: "gear")
-                                })
-                            }
-                        }
-                    }
-                }
             }
         }
     }
