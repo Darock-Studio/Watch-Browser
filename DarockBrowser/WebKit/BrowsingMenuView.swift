@@ -27,6 +27,7 @@ struct BrowsingMenuView: View {
     @AppStorage("DBIsAutoAppearence") var isAutoAppearence = false
     @AppStorage("DBAutoAppearenceOptionEnableForWebForceDark") var autoAppearenceOptionEnableForWebForceDark = true
     @AppStorage("IsProPurchased") var isProPurchased = false
+    @State var linkInputOffset: CGFloat = 0
     @State var isHomeViewPresented = false
     @State var isCheckingWebContent = true
     @State var linksUpdateTimer: Timer?
@@ -368,16 +369,20 @@ struct BrowsingMenuView: View {
                                 }
                             }
                             Section {
-//                                Button(action: {
-//                                    AdvancedWebViewController.shared.isOverrideDesktopWeb.toggle()
-//                                    presentationMode.wrappedValue.dismiss()
-//                                }, label: {
-//                                    HStack {
-//                                        Text(AdvancedWebViewController.shared.isOverrideDesktopWeb ? "请求移动网站" : "请求桌面网站")
-//                                        Spacer()
-//                                        Image(systemName: AdvancedWebViewController.shared.isOverrideDesktopWeb ? "applewatch" : "desktopcomputer")
-//                                    }
-//                                })
+                                Button(action: {
+                                    if webView.customUserAgent?.contains("Macintosh; Intel Mac OS X") ?? false {
+                                        webView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+                                    } else {
+                                        webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+                                    }
+                                    presentationMode.wrappedValue.dismiss()
+                                }, label: {
+                                    HStack {
+                                        Text((webView.customUserAgent?.contains("Macintosh; Intel Mac OS X") ?? false) ? "请求移动网站" : "请求桌面网站")
+                                        Spacer()
+                                        Image(systemName: (webView.customUserAgent?.contains("Mac OS X") ?? false) ? "applewatch" : "desktopcomputer")
+                                    }
+                                })
                                 Button(action: {
                                     webViewPresentationMode.dismiss()
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
@@ -536,12 +541,20 @@ struct BrowsingMenuView: View {
                                                 .opacity(isNewBookmarkCreated ? 1 : 0)
                                                 .allowsHitTesting(false)
                                         }
-//                                        Button(action: {
-//                                            AdvancedWebViewController.shared.isOverrideDesktopWeb.toggle()
-//                                            presentationMode.wrappedValue.dismiss()
-//                                        }, label: {
-//                                            Image(systemName: AdvancedWebViewController.shared.isOverrideDesktopWeb ? "applewatch" : "desktopcomputer")
-//                                        })
+                                        Button(action: {
+                                            if webView.customUserAgent?.contains("Macintosh; Intel Mac OS X") ?? false {
+                                                webView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+                                            } else {
+                                                webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+                                            }
+                                            webView.reload()
+                                            presentationMode.wrappedValue.dismiss()
+                                        }, label: {
+                                            Image(systemName:
+                                                    (webView.customUserAgent?.contains("Macintosh; Intel Mac OS X") ?? false)
+                                                  ? "applewatch"
+                                                  : "desktopcomputer")
+                                        })
                                         Button(action: {
                                             webViewPresentationMode.dismiss()
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {

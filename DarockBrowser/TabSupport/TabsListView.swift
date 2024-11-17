@@ -22,6 +22,8 @@ struct TabsListView<StartPage>: View where StartPage: View {
     @State var selectedTab: WebViewTab?
     @State var currentColumn = NavigationSplitViewColumn.sidebar
     @State var isAppSettingsPresented = false
+    @State var createButtonVisibilityResetTimer: Timer?
+    @State var isCreateButtonVisible = true
     @State var isCreateButtonPressed = false
     @State var wristLocation = WKInterfaceDevice.current().wristLocation
     @State var newFeedbackCount = 0
@@ -87,7 +89,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                                     }
                                 })
                             }
-                            if isBetaJoinAvailable {
+                            if isBetaJoinAvailable && !isAppBetaBuild {
                                 NavigationLink(destination: { BetaJoinView() }, label: {
                                     Label("参与 Beta 测试", systemImage: "person.badge.clock")
                                         .centerAligned()
@@ -108,6 +110,22 @@ struct TabsListView<StartPage>: View where StartPage: View {
                         }
                     }
                     .listStyle(.plain)
+                    .wrapIf({ if #available(watchOS 11.0, *) { true } else { false } }()) { content in
+                        if #available(watchOS 11.0, *) {
+                            content
+                                .onScrollPhaseChange { _, after in
+                                    if after.isScrolling {
+                                        createButtonVisibilityResetTimer?.invalidate()
+                                        isCreateButtonVisible = false
+                                        isCreateButtonPressed = false
+                                    } else {
+                                        createButtonVisibilityResetTimer = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false) { _ in
+                                            isCreateButtonVisible = true
+                                        }
+                                    }
+                                }
+                        }
+                    }
                     if isCreateButtonPressed {
                         Color.black
                             .opacity(0.5)
@@ -176,6 +194,8 @@ struct TabsListView<StartPage>: View where StartPage: View {
                                     Spacer()
                                 }
                             }
+                            .opacity(isCreateButtonVisible ? 1 : 0)
+                            .animation(.easeIn(duration: 0.2), value: isCreateButtonVisible)
                         }
                     }
                 }
