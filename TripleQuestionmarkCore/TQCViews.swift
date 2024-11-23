@@ -9,6 +9,8 @@ import SwiftUI
 import PhotosUI
 internal import Vela
 
+let frameworkBundle = Bundle(url: Bundle.main.privateFrameworksURL!.appending(path: "TripleQuestionmarkCore.framework"))
+
 /// Get a view which can convert any natural number to 0, 7, 2 and 1. 😋
 public struct TQCOnaniiView: View {
     @State var numInput = ""
@@ -22,7 +24,7 @@ public struct TQCOnaniiView: View {
             List {
                 Section {
                     TextField(text: $numInput) {
-                        Text("输入一个自然数")
+                        Text("输入一个自然数", bundle: frameworkBundle)
                     }
                     .onSubmit {
                         result = to0721(from: numInput)
@@ -143,9 +145,9 @@ public struct TQCAccentColorHiddenButton: View {
         NavigationLink(destination: { AccentColorChangeView() }, label: {
             HStack {
                 if isColorChangeButtonEntered {
-                    Text("更改主屏幕背景")
+                    Text("更改主屏幕背景", bundle: frameworkBundle)
                 } else {
-                    Text("???")
+                    Text("???", bundle: frameworkBundle)
                 }
                 Spacer()
             }
@@ -185,14 +187,14 @@ public struct TQCAccentColorHiddenButton: View {
             List {
                 Section {
                     Toggle(isOn: $isOverrideAccentColor) {
-                        Text("更改默认背景")
+                        Text("更改默认背景", bundle: frameworkBundle)
                     }
                     if isOverrideAccentColor {
                         Picker(selection: $overrideType, content: {
-                            Text("新颜色").tag("color")
-                            Text("图片").tag("image")
+                            Text("新颜色", bundle: frameworkBundle).tag("color")
+                            Text("图片", bundle: frameworkBundle).tag("image")
                         }, label: {
-                            Text("更改为...")
+                            Text("更改为...", bundle: frameworkBundle)
                         })
                     }
                 }
@@ -200,7 +202,7 @@ public struct TQCAccentColorHiddenButton: View {
                     Section {
                         if overrideType == "image" {
                             PhotosPicker(selection: $selectedPhoto, matching: .images) {
-                                Text("选择图片...")
+                                Text("选择图片...", bundle: frameworkBundle)
                             }
                             if let currentImage {
                                 Image(uiImage: currentImage)
@@ -209,13 +211,13 @@ public struct TQCAccentColorHiddenButton: View {
                                     .frame(width: WKInterfaceDevice.current().screenBounds.width - 30)
                                     .listRowBackground(Color.clear)
                                 Toggle(isOn: $isBackgroundImageBlured) {
-                                    Text("模糊背景图")
+                                    Text("模糊背景图", bundle: frameworkBundle)
                                 }
                             }
                         } else {
                             VelaPicker(color: $inputColor, defaultColor: .accentColor, allowOpacity: false, label: {
                                 HStack {
-                                    Text("选择颜色...")
+                                    Text("选择颜色...", bundle: frameworkBundle)
                                     Spacer()
                                 }
                                 .frame(width: WKInterfaceDevice.current().screenBounds.width)
@@ -230,7 +232,7 @@ public struct TQCAccentColorHiddenButton: View {
                                 isOverrideAccentColor = true
                             })
                             HStack {
-                                Text("当前：")
+                                Text("当前：", bundle: frameworkBundle)
                                 (isOverrideAccentColor ? inputColor : Color.accentColor)
                                     .frame(width: 30, height: 30)
                                     .clipShape(Circle())
@@ -240,7 +242,7 @@ public struct TQCAccentColorHiddenButton: View {
                     }
                 }
             }
-            .navigationTitle(Text("主屏幕背景"))
+            .navigationTitle(Text("主屏幕背景", bundle: frameworkBundle))
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 inputColor = Color(red: overrideAccentColorRed, green: overrideAccentColorGreen, blue: overrideAccentColorBlue)
@@ -274,10 +276,3 @@ public struct TQCAccentColorHiddenButton: View {
         }
     }
 }
-
-// swiftlint:disable identifier_name
-@ViewBuilder
-internal func Text(_ key: LocalizedStringKey) -> some View {
-    Text(key, bundle: Bundle(url: Bundle.main.privateFrameworksURL!.appending(path: "TripleQuestionmarkCore.framework")))
-}
-// swiftlint:enable identifier_name
