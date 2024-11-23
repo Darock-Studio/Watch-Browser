@@ -51202,7 +51202,14 @@
       }
     },
     "请求移动网站" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Request Mobile Website"
+          }
+        }
+      }
     },
     "账户密码" : {
       "localizations" : {
