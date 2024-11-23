@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
+import RadarKit
 
-enum SuggestedResolver {
+enum SuggestedResolver: RKSuggestResolver {
     case reboot
     case networkCheck
     
@@ -68,6 +69,50 @@ enum SuggestedResolver {
                         .foregroundStyle(.gray)
                 }
             })
+        }
+    }
+    
+    static func suggestView(for place: String) -> AnyView {
+        AnyView(_suggestView(for: place))
+    }
+    @ViewBuilder
+    private static func _suggestView(for place: String) -> some View {
+        switch place {
+        case "视频播放器":
+            Section {
+                SuggestedResolver.reboot.viewBlock
+                SuggestedResolver.networkCheck.viewBlock
+            } header: {
+                Text("先试试这些方案")
+            }
+        case "网络连接":
+            Section {
+                SuggestedResolver.networkCheck.viewBlock
+            } header: {
+                Text("先试试这个方案")
+            }
+        case "密码":
+            Section {
+                NavigationLink(destination: { SettingsView.GeneralSettingsView.ResetView() }, label: {
+                    HStack {
+                        ZStack {
+                            Color.gray
+                                .frame(width: 20, height: 20)
+                                .clipShape(Circle())
+                            Image(systemName: "arrow.counterclockwise")
+                                .font(.system(size: 12))
+                        }
+                        Text("查看还原选项")
+                        Spacer()
+                        Image(systemName: "chevron.forward")
+                            .font(.system(size: 13))
+                            .foregroundStyle(.gray)
+                    }
+                })
+            } header: {
+                Text("反馈问题无法帮助您找回密码")
+            }
+        default: EmptyView()
         }
     }
 }
