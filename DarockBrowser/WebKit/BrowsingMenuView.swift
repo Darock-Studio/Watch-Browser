@@ -134,14 +134,16 @@ struct BrowsingMenuView: View {
                             .submitLabel(.go)
                             .buttonStyle(.bordered)
                             .buttonBorderShape(.roundedRectangle(radius: 14))
-                            Button(action: {
-                                isHomeViewPresented = true
-                            }, label: {
-                                Image(systemName: "star.fill")
-                            })
-                            .buttonStyle(.bordered)
-                            .buttonBorderShape(.roundedRectangle(radius: 14))
-                            .frame(width: 55)
+                            if #available(watchOS 10.0, *) {
+                                Button(action: {
+                                    isHomeViewPresented = true
+                                }, label: {
+                                    Image(systemName: "star.fill")
+                                })
+                                .buttonStyle(.bordered)
+                                .buttonBorderShape(.roundedRectangle(radius: 14))
+                                .frame(width: 55)
+                            }
                         }
                         .listRowBackground(Color.clear)
                         .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
@@ -257,12 +259,18 @@ struct BrowsingMenuView: View {
                                 }
                             }, label: {
                                 HStack {
-                                    Text("返回标签页列表")
-                                    Spacer()
-                                    Image(systemName: "list.bullet")
+                                    if #available(watchOS 10.0, *) {
+                                        Text("返回标签页列表")
+                                        Spacer()
+                                        Image(systemName: "list.bullet")
+                                    } else {
+                                        Text("退出")
+                                        Spacer()
+                                        Image(systemName: "escape")
+                                    }
                                 }
                             })
-                            .tint(.accentColor)
+                            .tint({ if #available(watchOS 10.0, *) { true } else { false } }() ? .accentColor : .red)
                         }
                         if isProPurchased {
                             Section {
@@ -479,11 +487,16 @@ struct BrowsingMenuView: View {
                                     }
                                 }, label: {
                                     HStack {
-                                        Image(systemName: "list.bullet")
-                                        Text("返回标签页列表")
+                                        if #available(watchOS 10.0, *) {
+                                            Image(systemName: "list.bullet")
+                                            Text("返回标签页列表")
+                                        } else {
+                                            Image(systemName: "escape")
+                                            Text("退出")
+                                        }
                                     }
                                 })
-                                .tint(.accentColor)
+                                .tint({ if #available(watchOS 10.0, *) { true } else { false } }() ? .accentColor : .red)
                                 if isProPurchased {
                                     Button(action: {
                                         isWebAbstractPresented = true

@@ -173,8 +173,6 @@ final class AdvancedWebViewController: NSObject {
             return WKWebView()
         }
         
-        let sb = WKInterfaceDevice.current().screenBounds
-        
         let wkWebView = newWebView(URL(string: iurl), archiveURL: archiveUrl, loadMimeType: loadMimeType)
         
         vc = _makeUIHostingController(AnyView(SwiftWebView(webView: wkWebView)))

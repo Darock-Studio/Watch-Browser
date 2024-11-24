@@ -114,21 +114,8 @@ struct MainView: View {
     @State var isCookieTipPresented = false
     @State var pinnedBookmarkIndexs = [Int]()
     @State var webArchiveLinks = [String]()
-    @State var isAudioControllerAvailable = false
     var body: some View {
         List {
-            if isAudioControllerAvailable {
-                Button(action: {
-                    pShouldPresentAudioController = true
-                }, label: {
-                    HStack {
-                        Spacer()
-                        AudioVisualizerView()
-                        Text("播放中")
-                        Spacer()
-                    }
-                })
-            }
             Section {
                 searchField
                 searchButton
@@ -192,9 +179,15 @@ struct MainView: View {
                     .centerAligned()
                 })
                 .disabled(isUseOldWebView)
+                if #unavailable(watchOS 10.0) {
+                    NavigationLink(destination: { MediaMainView() }, label: {
+                        Label("媒体", systemImage: "rectangle.stack")
+                            .centerAligned()
+                    })
+                }
             }
-            Section {
-                if pinnedBookmarkIndexs.count != 0 {
+            if pinnedBookmarkIndexs.count != 0 {
+                Section {
                     ForEach(0..<pinnedBookmarkIndexs.count, id: \.self) { i in
                         Button(action: {
                             if let createPageAction {
@@ -209,6 +202,8 @@ struct MainView: View {
                                 .privacySensitive()
                         })
                     }
+                } header: {
+                    Text("固定的书签")
                 }
             }
             if #unavailable(watchOS 10.0) {
@@ -227,7 +222,7 @@ struct MainView: View {
                     .modifier(UserDefinedBackground())
             }
         }
-        .navigationTitle("起始页")
+        .navigationTitle({ if #available(watchOS 10.0, *) { true } else { false } }() ? String(localized: "起始页") : String(localized: "暗礁浏览器"))
         .navigationBarTitleDisplayMode(.large)
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
             if let url = userActivity.webpageURL, var openUrl = url.absoluteString.split(separator: "darock.top/darockbrowser/open/", maxSplits: 1)[from: 1] {
@@ -240,7 +235,6 @@ struct MainView: View {
         .onAppear {
             pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()
             webArchiveLinks = UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()
-            isAudioControllerAvailable = pIsAudioControllerAvailable
         }
     }
     

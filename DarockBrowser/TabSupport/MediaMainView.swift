@@ -8,14 +8,28 @@
 import SwiftUI
 import DarockKit
 
-@available(watchOS 10.0, *)
 struct MediaMainView: View {
     @State var hasDownloadedVideo = false
     @State var hasDownloadedAudio = false
     @State var hasLocalImage = false
     @State var isOfflineBooksAvailable = false
+    @State var isAudioControllerAvailable = false
     var body: some View {
         List {
+            if isAudioControllerAvailable {
+                Section {
+                    Button(action: {
+                        pShouldPresentAudioController = true
+                    }, label: {
+                        HStack {
+                            Spacer()
+                            AudioVisualizerView()
+                            Text("播放中")
+                            Spacer()
+                        }
+                    })
+                }
+            }
             Section {
                 NavigationLink(destination: { PlaylistsView() }, label: {
                     Label("播放列表", systemImage: "music.note.list")
@@ -51,9 +65,14 @@ struct MediaMainView: View {
                 Text("本地")
             }
         }
-        .navigationTitle("媒体起始页")
+        .navigationTitle({ if #available(watchOS 10.0, *) { true } else { false } }() ? String(localized: "媒体起始页") : String(localized: "媒体"))
         .navigationBarTitleDisplayMode(.large)
-        .modifier(UserDefinedBackground())
+        .wrapIf({ if #available(watchOS 10.0, *) { true } else { false } }()) { content in
+            if #available(watchOS 10.0, *) {
+                content
+                    .modifier(UserDefinedBackground())
+            }
+        }
         .onAppear {
             do {
                 if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/DownloadedVideos") {
@@ -77,6 +96,7 @@ struct MediaMainView: View {
                 globalErrorHandler(error)
             }
             isOfflineBooksAvailable = !(UserDefaults.standard.stringArray(forKey: "EPUBFlieFolders") ?? [String]()).isEmpty
+            isAudioControllerAvailable = pIsAudioControllerAvailable
         }
     }
 }

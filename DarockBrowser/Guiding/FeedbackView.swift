@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
-import RadarKit
 import DarockKit
 import MarkdownUI
 import UserNotifications
+@_spi(_internal) import RadarKit
 
 struct FeedbackView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -18,6 +18,9 @@ struct FeedbackView: View {
         RKFeedbackView(projName: "Darock Browser")
             .radarAdditionalData(["NearestHistories": getWebHistory().map { $0.url.prefix(100) }.prefix(3).description])
             .radarTitleInputSample("示例：历史记录缺少最近的浏览数据")
+            .radarConstantTags({
+                if isAppBetaBuild { [.init(_fromCombined: "Beta 版本&&&0.0,0.4784314036369324,1.0")!] } else { [] }
+            }())
             .radarMessageHiddenKeys(["NearestHistories", "DeviceModelName", "LatestNSException", "LatestNSExceptionTime", "LatestSwiftError",
                                      "LatestSwiftErrorTime", "NotificationToken"])
             .radarFAQView(FAQView())
