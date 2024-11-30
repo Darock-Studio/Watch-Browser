@@ -61,6 +61,7 @@ struct UserScriptsAddView: View {
                 TextField("搜索...", text: $searchInput) {
                     if !searchInput.isEmpty {
                         isSearching = true
+                        searchResults.removeAll()
                         DarockKit.Network.shared
                             .requestString("https://greasyfork.org/\(NSLocale.current.language.languageCode!.identifier == "zh" ? "zh-CN" : "en")/scripts?q=\(searchInput)".compatibleUrlEncoded()) { respStr, isSuccess in
                                 if isSuccess {

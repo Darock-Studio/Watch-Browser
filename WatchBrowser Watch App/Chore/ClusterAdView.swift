@@ -17,6 +17,7 @@ struct ClusterAdView: View {
         List {
             Section {
                 Text("由 Darock 开发的暗礁暗礁文件让您能够在 Apple Watch 上轻松存储、管理和查看文件。")
+                    .listRowBackground(Color.clear)
                 Button(action: {
                     let session = ASWebAuthenticationSession(
                         url: URL(string: "https://apps.apple.com/app/cluster-files/id6581473546")!,
@@ -26,7 +27,6 @@ struct ClusterAdView: View {
                     session.start()
                 }, label: {
                     Text("前往 App Store 下载")
-                        .foregroundStyle(.blue)
                 })
                 NavigationLink(destination: {
                     VStack {
@@ -40,11 +40,11 @@ struct ClusterAdView: View {
                     }
                 }, label: {
                     Text("或在 iPhone 上的 App Store 继续")
-                        .foregroundStyle(.blue)
                 })
             }
             Section {
                 Text("暗礁文件可与暗礁浏览器配合使用，在安装暗礁文件后，您可以将暗礁浏览器中的本地媒体存储至暗礁文件。")
+                    .listRowBackground(Color.clear)
             }
             Section {
                 Button(action: {
@@ -52,11 +52,9 @@ struct ClusterAdView: View {
                     presentationMode.wrappedValue.dismiss()
                 }, label: {
                     Text("退出并不再显示")
-                        .foregroundStyle(.blue)
                 })
             }
         }
         .navigationTitle("推荐 - 暗礁文件")
-        .scrollIndicators(.visible, axes: .vertical)
     }
 }

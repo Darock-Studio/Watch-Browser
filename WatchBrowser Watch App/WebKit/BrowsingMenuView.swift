@@ -45,15 +45,15 @@ struct BrowsingMenuView: View {
                         Section {
                             VStack {
                                 HStack {
-                                    WebImage(url: URL(string: "https://darock.top/meowbili/assetsv2/meow-93aa09e9.png")!)
-                                        .resizable()
-                                        .placeholder {
-                                            RoundedRectangle(cornerRadius: 12)
-                                                .fill(Color.gray)
-                                                .opacity(0.6)
-                                        }
-                                        .cornerRadius(12)
-                                        .frame(width: 50, height: 50)
+                                    WebImage(url: URL(string: "https://darock.top/meowbili/assetsv2/meow-93aa09e9.png")!, content: { image in
+                                        image.resizable()
+                                    }, placeholder: {
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .fill(Color.gray)
+                                            .opacity(0.6)
+                                    })
+                                    .cornerRadius(12)
+                                    .frame(width: 50, height: 50)
                                     VStack(alignment: .leading) {
                                         Text("喵哩喵哩")
                                         Text("第三方哔哩哔哩客户端")
@@ -451,9 +451,9 @@ struct BrowsingMenuView: View {
                                         isWebAbstractPresented = true
                                     }, label: {
                                         HStack {
-                                            Text("网页摘要")
-                                            Spacer()
                                             Image(systemName: "doc.plaintext")
+                                            Text("网页摘要")
+                                            
                                         }
                                     })
                                     .background(

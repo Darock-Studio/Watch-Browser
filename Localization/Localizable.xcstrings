@@ -2604,6 +2604,9 @@
         }
       }
     },
+    "1.25x" : {
+      "shouldTranslate" : false
+    },
     "1x" : {
       "localizations" : {
         "ar" : {
@@ -21315,16 +21318,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
-          }
-        }
-      }
-    },
-    "功能持续更新" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Keep Update"
           }
         }
       }
@@ -42284,6 +42277,36 @@
         }
       }
     },
+    "此布局在网页视图顶部工具栏添加返回按钮，轻触可返回上一页直至退出网页。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This layout adds a back button to the top toolbar of the web view. Tap to go back to the previous page until exiting the web page."
+          }
+        }
+      }
+    },
+    "此布局在网页视图顶部添加模糊效果，轻触模糊区域可返回网页顶部。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This layout adds a blur effect to the top of the web view. Tap the blurred area to return to the top of the page."
+          }
+        }
+      }
+    },
+    "此布局紧凑排列浏览菜单中的各项目，网页浏览效率更高。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This layout arranges items in the browsing menu compactly, improving web browsing efficiency."
+          }
+        }
+      }
+    },
     "此操作不可逆\n确定吗？" : {
       "localizations" : {
         "ar" : {
@@ -43254,6 +43277,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Browsing Menu"
+          }
+        }
+      }
+    },
+    "浏览菜单布局 - 紧凑" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Browsing Menu Layout - Compact"
           }
         }
       }
@@ -44264,6 +44297,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Activate Darock Browser Pro"
+          }
+        }
+      }
+    },
+    "激活暗礁浏览器 Pro 后，在%@中更改布局设置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After activating Darock Browser Pro, layout settings are available in %@."
           }
         }
       }
@@ -51032,6 +51075,36 @@
         }
       }
     },
+    "网页视图与浏览菜单布局介绍" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web View and Browsing Menu Layout Introduction"
+          }
+        }
+      }
+    },
+    "网页视图布局 - 快速返回" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web View Layout - Quick Return"
+          }
+        }
+      }
+    },
+    "网页视图布局 - 模糊顶部" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web View Layout - Blur Top"
+          }
+        }
+      }
+    },
     "网页语言" : {
       "localizations" : {
         "en" : {
@@ -52297,6 +52370,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "設定"
+          }
+        }
+      }
+    },
+    "设置→浏览引擎" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings → Browsing Engine"
           }
         }
       }

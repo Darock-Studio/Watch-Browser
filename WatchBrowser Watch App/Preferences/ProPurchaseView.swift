@@ -41,14 +41,20 @@ struct ProPurchaseView: View {
                     Label("书签小组件", systemImage: "bookmark")
                     Label("快速搜索小组件", systemImage: "magnifyingglass")
                 }
-                Label("更改网页视图与浏览菜单布局", systemImage: {
-                    if #available(watchOS 11.0, *) {
-                        "square.grid.3x3.square.badge.ellipsis"
-                    } else {
-                        "square.fill.text.grid.1x2"
+                NavigationLink(destination: { WebLayoutDescriptionView() }, label: {
+                    HStack {
+                        Label("更改网页视图与浏览菜单布局", systemImage: {
+                            if #available(watchOS 11.0, *) {
+                                "square.grid.3x3.square.badge.ellipsis"
+                            } else {
+                                "square.fill.text.grid.1x2"
+                            }
+                        }())
+                        Spacer()
+                        Image(systemName: "chevron.forward")
+                            .opacity(0.6)
                     }
-                }())
-                Label("功能持续更新", systemImage: "arrow.up.circle")
+                })
             } header: {
                 Text("Pro 功能")
             }
@@ -170,6 +176,28 @@ struct ProPurchaseView: View {
     }
 }
 
-#Preview {
-    ProPurchaseView()
+private struct WebLayoutDescriptionView: View {
+    var body: some View {
+        Form {
+            Section {
+                Text("激活暗礁浏览器 Pro 后，在\(Text("设置→浏览引擎").bold().foregroundColor(.blue))中更改布局设置")
+            }
+            Section {
+                Text("此布局在网页视图顶部添加模糊效果，轻触模糊区域可返回网页顶部。")
+            } header: {
+                Text("网页视图布局 - 模糊顶部")
+            }
+            Section {
+                Text("此布局在网页视图顶部工具栏添加返回按钮，轻触可返回上一页直至退出网页。")
+            } header: {
+                Text("网页视图布局 - 快速返回")
+            }
+            Section {
+                Text("此布局紧凑排列浏览菜单中的各项目，网页浏览效率更高。")
+            } header: {
+                Text("浏览菜单布局 - 紧凑")
+            }
+        }
+        .navigationTitle("网页视图与浏览菜单布局介绍")
+    }
 }

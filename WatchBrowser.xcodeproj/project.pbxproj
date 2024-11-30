@@ -2465,7 +2465,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.1.2;
+				MARKETING_VERSION = 6.1.3;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_SFSafariViewController,-U,_OBJC_CLASS_$_SFSafariViewControllerConfiguration,-U,_OBJC_CLASS_$_PUICQuickboardController";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
@@ -2513,7 +2513,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.1.2;
+				MARKETING_VERSION = 6.1.3;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_SFSafariViewController,-U,_OBJC_CLASS_$_SFSafariViewControllerConfiguration,-U,_OBJC_CLASS_$_PUICQuickboardController";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
@@ -2540,7 +2540,7 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 6.1.2;
+				MARKETING_VERSION = 6.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2559,7 +2559,7 @@
 				INFOPLIST_FILE = "WatchBrowser-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 6.1.2;
+				MARKETING_VERSION = 6.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2727,7 +2727,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 6.1.2;
+				MARKETING_VERSION = 6.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -2761,7 +2761,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 6.1.2;
+				MARKETING_VERSION = 6.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -2895,7 +2895,7 @@
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.7;
+				minimumVersion = 3.1.3;
 			};
 		};
 		8CA7B84D2BE3E053004643FE /* XCRemoteSwiftPackageReference "SDWebImageWebPCoder" */ = {
