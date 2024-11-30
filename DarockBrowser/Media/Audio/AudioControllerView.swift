@@ -278,6 +278,9 @@ struct AudioControllerView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: isShowingControls || !isLyricsAvailable ? .always : .never))
             .modifier({ () -> BlurBackground in
+                // FIXME: WebImage here costs incredible much memory while loading some images.
+                // FIXME: E.g. Netease Music ID 1336856498, underlying image url is https://p2.music.126.net/wTO7xsKa9YbeZGtgMzDZGw==/109951163807651102.jpg
+                // FIXME: Originally reported at rdar://FB2680020710671
                 #if compiler(>=6.0)
                 if #available(watchOS 11.0, *) {
                     return BlurBackground(imageUrl: backgroundImageUrl, meshForUnavailable: .autoGradient)

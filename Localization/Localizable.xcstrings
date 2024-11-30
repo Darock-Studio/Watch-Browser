@@ -2650,6 +2650,9 @@
         }
       }
     },
+    "1.25x" : {
+      "shouldTranslate" : false
+    },
     "1x" : {
       "localizations" : {
         "ar" : {
@@ -21140,12 +21143,120 @@
         }
       }
     },
-    "功能持续更新" : {
+    "功能不可用时，项目可能仍然不会在主屏幕的对应位置显示。" : {
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عندما لا تكون الوظيفة متاحة، قد لا يتم عرض المشروع في الموضع المقابل على الشاشة الرئيسية."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wenn die Funktion nicht verfügbar ist, wird das Projekt möglicherweise immer noch nicht an der entsprechenden Position auf dem Startbildschirm angezeigt."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keep Update"
+            "value" : "When the feature is unavailable, the item may still not appear in the corresponding position on the home screen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuando la función no está disponible, es posible que el proyecto aún no se muestre en la posición correspondiente en la pantalla de inicio."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lorsque la fonction n'est pas disponible, le projet peut toujours ne pas être affiché dans la position correspondante sur l'écran d'accueil."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जब फ़ंक्शन उपलब्ध नहीं होता है, तो प्रोजेक्ट अभी भी होम स्क्रीन पर संबंधित स्थिति में प्रदर्शित नहीं हो सकता है।"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketika fungsi tidak tersedia, proyek mungkin masih tidak ditampilkan dalam posisi yang sesuai di layar beranda."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quando la funzione non è disponibile, il progetto potrebbe ancora non essere visualizzato nella posizione corrispondente nella schermata iniziale."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "機能が利用できない場合、項目は依然としてメイン画面の対応する位置に表示されない可能性があります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기능을 사용할 수 없는 경우 항목이 홈 화면의 해당 위치에 표시되지 않을 수 있습니다."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wanneer de functie niet beschikbaar is, wordt het project mogelijk nog steeds niet weergegeven in de overeenkomstige positie op het startscherm."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gdy funkcja nie jest dostępna, projekt może nadal nie być wyświetlany w odpowiedniej pozycji na ekranie głównym."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quando a função não está disponível, o projeto ainda pode não ser exibido na posição correspondente na tela inicial."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Когда функция недоступна, проект все еще может не отображаться в соответствующем положении на главном экране."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เมื่อฟังก์ชั่นไม่พร้อมใช้งาน โครงการอาจยังไม่แสดงในตําแหน่งที่สอดคล้องกันบนหน้าจอหลัก"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İşlev kullanılamadığında, proje yine de ana ekranda ilgili konumda görüntülenmeyebilir."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коли функція недоступна, проект все ще може не відображатися у відповідній позиції на головному екрані."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khi chức năng không khả dụng, dự án có thể vẫn không được hiển thị ở vị trí tương ứng trên màn hình chính."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
           }
         }
       }
@@ -41303,6 +41414,36 @@
         }
       }
     },
+    "此布局在网页视图顶部工具栏添加返回按钮，轻触可返回上一页直至退出网页。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This layout adds a back button to the top toolbar of the web view. Tap to go back to the previous page until exiting the web page."
+          }
+        }
+      }
+    },
+    "此布局在网页视图顶部添加模糊效果，轻触模糊区域可返回网页顶部。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This layout adds a blur effect to the top of the web view. Tap the blurred area to return to the top of the page."
+          }
+        }
+      }
+    },
+    "此布局紧凑排列浏览菜单中的各项目，网页浏览效率更高。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This layout arranges items in the browsing menu compactly, improving web browsing efficiency."
+          }
+        }
+      }
+    },
     "此操作不可逆\n确定吗？" : {
       "localizations" : {
         "ar" : {
@@ -42277,6 +42418,16 @@
         }
       }
     },
+    "浏览菜单布局 - 紧凑" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Browsing Menu Layout - Compact"
+          }
+        }
+      }
+    },
     "浏览菜单现在更美观并更易操作" : {
       "localizations" : {
         "en" : {
@@ -43165,6 +43316,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Activate Darock Browser Pro"
+          }
+        }
+      }
+    },
+    "激活暗礁浏览器 Pro 后，在%@中更改布局设置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After activating Darock Browser Pro, layout settings are available in %@."
           }
         }
       }
@@ -49815,6 +49976,36 @@
         }
       }
     },
+    "网页视图与浏览菜单布局介绍" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web View and Browsing Menu Layout Introduction"
+          }
+        }
+      }
+    },
+    "网页视图布局 - 快速返回" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web View Layout - Quick Return"
+          }
+        }
+      }
+    },
+    "网页视图布局 - 模糊顶部" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web View Layout - Blur Top"
+          }
+        }
+      }
+    },
     "网页语言" : {
       "localizations" : {
         "en" : {
@@ -50962,6 +51153,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "設定"
+          }
+        }
+      }
+    },
+    "设置→浏览引擎" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings → Browsing Engine"
           }
         }
       }

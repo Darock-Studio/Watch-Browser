@@ -41,21 +41,23 @@ struct LocalImageView: View {
                                 .init(.fixed(WKInterfaceDevice.current().screenBounds.width / 3), spacing: 0)
                             ], spacing: 0) {
                                 ForEach(0..<images.count, id: \.self) { i in
-                                    AsyncImage(url: URL(filePath: NSHomeDirectory() + "/Documents/LocalImages/\(images[i])")) { image in
-                                        image.resizable()
-                                    } placeholder: {
-                                        Color.gray
-                                    }
-                                    .scaledToFill()
-                                    .frame(width: WKInterfaceDevice.current().screenBounds.width / 3, height: 80)
-                                    .clipped()
-                                    .onTapGesture {
-                                        tabSelection = i
-                                        isImageViewerPresented = true
-                                    }
-                                    .onLongPressGesture(minimumDuration: 0.4) {
-                                        indexForMenu = i
-                                        isMenuPresented = true
+                                    if let _uiImage = UIImage(contentsOfFile: NSHomeDirectory() + "/Documents/LocalImages/\(images[i])"),
+                                       let thumbnail = generateThumbnail(
+                                        for: _uiImage, size: .init(width: WKInterfaceDevice.current().screenBounds.width / 1.5, height: 160)
+                                    ) {
+                                        Image(uiImage: thumbnail)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: WKInterfaceDevice.current().screenBounds.width / 3, height: 80)
+                                            .clipped()
+                                            .onTapGesture {
+                                                tabSelection = i
+                                                isImageViewerPresented = true
+                                            }
+                                            .onLongPressGesture(minimumDuration: 0.4) {
+                                                indexForMenu = i
+                                                isMenuPresented = true
+                                            }
                                     }
                                 }
                             }
@@ -156,5 +158,57 @@ struct LocalImageView: View {
                 }
             }
         }
+    }
+    
+    private func generateThumbnail(for image: UIImage, size: CGSize) -> UIImage? {
+        guard let cgImage = image.cgImage else { return nil }
+        
+        let originalWidth = CGFloat(cgImage.width)
+        let originalHeight = CGFloat(cgImage.height)
+        
+        let imageAspectRatio = originalWidth / originalHeight
+        let targetAspectRatio = size.width / size.height
+        
+        let scale: CGFloat
+        if imageAspectRatio > targetAspectRatio {
+            scale = size.height / originalHeight
+        } else {
+            scale = size.width / originalWidth
+        }
+        
+        let scaledWidth = originalWidth * scale
+        let scaledHeight = originalHeight * scale
+        
+        let xOffset = (scaledWidth - size.width) / 2
+        let yOffset = (scaledHeight - size.height) / 2
+        
+        let bitsPerComponent = cgImage.bitsPerComponent
+        let colorSpace = cgImage.colorSpace ?? CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = cgImage.bitmapInfo
+        
+        guard let context = CGContext(
+            data: nil,
+            width: Int(size.width),
+            height: Int(size.height),
+            bitsPerComponent: bitsPerComponent,
+            bytesPerRow: 0,
+            space: colorSpace,
+            bitmapInfo: bitmapInfo.rawValue
+        ) else { return nil }
+        
+        context.interpolationQuality = .high
+        
+        context.draw(
+            cgImage,
+            in: CGRect(
+                x: -xOffset,
+                y: -yOffset,
+                width: scaledWidth,
+                height: scaledHeight
+            )
+        )
+        
+        guard let scaledCgImage = context.makeImage() else { return nil }
+        return UIImage(cgImage: scaledCgImage)
     }
 }
