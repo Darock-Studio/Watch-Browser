@@ -6384,6 +6384,9 @@
     "Data & Cloud" : {
       "shouldTranslate" : false
     },
+    "Debug" : {
+
+    },
     "Debugger" : {
       "shouldTranslate" : false
     },
@@ -21144,6 +21147,7 @@
       }
     },
     "功能不可用时，项目可能仍然不会在主屏幕的对应位置显示。" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

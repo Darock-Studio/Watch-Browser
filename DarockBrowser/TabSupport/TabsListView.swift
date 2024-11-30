@@ -383,8 +383,10 @@ private struct TabLink: View {
                 if let image = imageLoader.image {
                     Image(uiImage: image)
                         .resizable()
+                        .scaledToFill()
+                        .frame(maxHeight: 100)
+                        .clipped()
                         .cornerRadius(10)
-                        .scaledToFit()
                 } else {
                     ZStack {
                         RoundedRectangle(cornerRadius: 10)
