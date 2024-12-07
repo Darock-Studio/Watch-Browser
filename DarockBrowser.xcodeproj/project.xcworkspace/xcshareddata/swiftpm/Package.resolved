@@ -1,5 +1,5 @@
 {
-  "originHash" : "34e10b18c5f33ac587e7eab1a5e261fb11ce1c167a0e620f5851060603b4bdba",
+  "originHash" : "40ab30eebe949d6834e5808b5523f4b72e55c508cd704db8802eed622b93642a",
   "pins" : [
     {
       "identity" : "aexml",
@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Serene-Garden/Cepheus",
       "state" : {
-        "revision" : "fc776af21b0df05238b6bc6c9143e493530e0be3",
-        "version" : "2.6.0"
+        "revision" : "04b049ba99021e821f3a3945aced4112c10bd0ae",
+        "version" : "3.0.1"
       }
     },
     {
