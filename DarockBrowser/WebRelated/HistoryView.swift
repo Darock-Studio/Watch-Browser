@@ -383,6 +383,16 @@ struct HistoryView: View {
                                 if selectedEmptyAction == 3 {
                                     histories.removeAll()
                                     writeWebHistory(from: [])
+                                    // rdar://FB2680020711287
+                                    if UserDefaults.standard.bool(forKey: "DCSaveHistory"),
+                                       let account = UserDefaults.standard.string(forKey: "DarockAccount"),
+                                       !account.isEmpty {
+                                        if let uploadData = jsonString(from: [SingleHistoryItem]()) {
+                                            let encodedData = uploadData.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
+                                            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/cloud/update/\(account)/WebHistory.drkdataw/\(encodedData)".compatibleUrlEncoded()) { _, _ in }
+                                        }
+                                    }
+                                    histories = getWebHistory().dateGrouped()
                                     isClearOptionsPresented = false
                                     return
                                 }
@@ -412,7 +422,7 @@ struct HistoryView: View {
                                     return false
                                 })
                                 writeWebHistory(from: flatHistories)
-                                if UserDefaults.standard.bool(forKey: "DCSaveHistory") && !ProcessInfo.processInfo.isLowPowerModeEnabled,
+                                if UserDefaults.standard.bool(forKey: "DCSaveHistory"),
                                    let account = UserDefaults.standard.string(forKey: "DarockAccount"),
                                    !account.isEmpty {
                                     // Darock Cloud Upload
@@ -423,6 +433,7 @@ struct HistoryView: View {
                                         DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/cloud/update/\(account)/WebHistory.drkdataw/\(encodedData)".compatibleUrlEncoded()) { _, _ in }
                                     }
                                 }
+                                histories = getWebHistory().dateGrouped()
                                 isClearOptionsPresented = false
                             }, label: {
                                 Text("清除历史记录")
