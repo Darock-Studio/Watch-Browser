@@ -41,6 +41,7 @@
 		8C5281292C23457F00392315 /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5281282C23457F00392315 /* TipsView.swift */; };
 		8C52812B2C25A07A00392315 /* TQCViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C52812A2C25A07A00392315 /* TQCViews.swift */; };
 		8C547B012C3296D40093D592 /* DarockBrowserUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C547B002C3296D40093D592 /* DarockBrowserUnitTests.swift */; };
+		8C5612442D0D8B41006C4BE9 /* ProUnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5612422D0D8B35006C4BE9 /* ProUnavailableView.swift */; };
 		8C5930652C712F75004C79CE /* BrowsingMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5930642C712F75004C79CE /* BrowsingMenuView.swift */; };
 		8C5930672C71CE51004C79CE /* SwiftWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5930662C71CE45004C79CE /* SwiftWebView.swift */; };
 		8C67C8F32C60DFF30091714D /* UIKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C67C8F22C60DFED0091714D /* UIKitHelper.swift */; };
@@ -138,9 +139,7 @@
 		8CF6363A2CAEB8AA00ECE3B3 /* Cepheus in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF636392CAEB8AA00ECE3B3 /* Cepheus */; };
 		8CF6363C2CAEC5D800ECE3B3 /* Pictor in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF6363B2CAEC5D800ECE3B3 /* Pictor */; };
 		8CF6363F2CAEC5E400ECE3B3 /* Pictor in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF6363E2CAEC5E400ECE3B3 /* Pictor */; };
-		8CF8B95D2C4280230070F833 /* MediaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B95C2C4280230070F833 /* MediaListView.swift */; };
 		8CF8B9632C44FCAA0070F833 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF8B9622C44FCAA0070F833 /* MarkdownUI */; };
-		8CF998DF2D04ADF7009C7A28 /* Cepheus in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF998DE2D04ADF7009C7A28 /* Cepheus */; };
 		8CF998E52D04C1D2009C7A28 /* Cepheus in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF998E42D04C1D2009C7A28 /* Cepheus */; };
 		E25EA8382B70ABEF00BFEC6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E25EA83A2B70ABEF00BFEC6E /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
@@ -778,6 +777,7 @@
 		8C53D7292CD757E1008E4F8B /* DarockBrowser-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DarockBrowser-Info.plist"; sourceTree = "<group>"; };
 		8C547AFE2C3296D40093D592 /* DarockBrowserUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DarockBrowserUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C547B002C3296D40093D592 /* DarockBrowserUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarockBrowserUnitTests.swift; sourceTree = "<group>"; };
+		8C5612422D0D8B35006C4BE9 /* ProUnavailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProUnavailableView.swift; sourceTree = "<group>"; };
 		8C5869CE2C316A2100A18923 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		8C5930602C711C22004C79CE /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = "../../../../Library/Developer/CoreSimulator/Volumes/watchOS_22R5328f/Library/Developer/CoreSimulator/Profiles/Runtimes/watchOS 11.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/Frameworks/SafariServices.framework"; sourceTree = "<group>"; };
 		8C5930642C712F75004C79CE /* BrowsingMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowsingMenuView.swift; sourceTree = "<group>"; };
@@ -1850,6 +1850,7 @@
 				8C4E349D2CB2B79C0091AD22 /* BetaJoinView.swift */,
 				8C96E34A2C15901400751FAF /* ClusterAdView.swift */,
 				8CA4537C2AE3C63900138CE4 /* JoinGroupView.swift */,
+				8C5612422D0D8B35006C4BE9 /* ProUnavailableView.swift */,
 			);
 			path = Chore;
 			sourceTree = "<group>";
@@ -2279,6 +2280,7 @@
 				8C5930672C71CE51004C79CE /* SwiftWebView.swift in Sources */,
 				8CCDABEF2C5674F100E29E3D /* ClusterTipView.swift in Sources */,
 				8C894B222BE7569300768B59 /* ExtKeyboardView.swift in Sources */,
+				8C5612442D0D8B41006C4BE9 /* ProUnavailableView.swift in Sources */,
 				8CE70DBC2C7A50C500EFB3AD /* AudioVisualizerView.swift in Sources */,
 				8CBA14102C7D1B4D00D40EE5 /* DoubleTapActionButton.swift in Sources */,
 				8CE70DB12C7A4F7300EFB3AD /* MediaDownloadView.swift in Sources */,
@@ -3615,10 +3617,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8CF8B9612C44FCAA0070F833 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
 			productName = MarkdownUI;
-		};
-		8CF998DE2D04ADF7009C7A28 /* Cepheus */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Cepheus;
 		};
 		8CF998E42D04C1D2009C7A28 /* Cepheus */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -24,7 +24,6 @@ import TripleQuestionmarkCore
 import AuthenticationServices
 
 struct SettingsView: View {
-    @AppStorage("IsProPurchased") var isProPurchased = false
     @AppStorage("DarockAccount") var darockAccount = ""
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("IsDeveloperModeEnabled") var isDeveloperModeEnabled = false
@@ -101,20 +100,18 @@ struct SettingsView: View {
             }
             Section {
                 NavigationLink(destination: { ProPurchaseView() }, label: { SettingItemLabel(title: "暗礁浏览器 Pro", image: "sparkles", color: .blue) })
-                if isProPurchased {
-                    NavigationLink(destination: { DarockIntelligenceView() }, label: {
-                        HStack {
-                            Image("DarockIntelligenceIcon")
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                                .clipShape(Circle())
-                            Text("Darock 智能")
-                        }
-                    })
-                    if #available(watchOS 10.0, *) {
-                        NavigationLink(destination: { WidgetSettingsView() },
-                                       label: { SettingItemLabel(title: "小组件", image: "watchface.applewatch.case", color: .blue) })
+                NavigationLink(destination: { DarockIntelligenceView() }, label: {
+                    HStack {
+                        Image("DarockIntelligenceIcon")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .clipShape(Circle())
+                        Text("Darock 智能")
                     }
+                })
+                if #available(watchOS 10.0, *) {
+                    NavigationLink(destination: { WidgetSettingsView() },
+                                   label: { SettingItemLabel(title: "小组件", image: "watchface.applewatch.case", color: .blue) })
                 }
             }
             Section {
@@ -245,54 +242,64 @@ struct SettingsView: View {
     }
     
     struct DarockIntelligenceView: View {
+        @AppStorage("IsProPurchased") var isProPurchased = false
         @AppStorage("DIWebAbstractLangOption") var webAbstractLangOption = "Web"
         @State var isPrivacySplashPresented = false
         var body: some View {
-            List {
-                Section {
-                    Picker("摘要语言", selection: $webAbstractLangOption) {
-                        Text("网页语言").tag("Web")
-                        Text("系统语言").tag("System")
+            if isProPurchased {
+                List {
+                    Section {
+                        Picker("摘要语言", selection: $webAbstractLangOption) {
+                            Text("网页语言").tag("Web")
+                            Text("系统语言").tag("System")
+                        }
+                    } header: {
+                        Text("网页摘要")
                     }
-                } header: {
-                    Text("网页摘要")
+                    Section {
+                        Button(action: {
+                            isPrivacySplashPresented = true
+                        }, label: {
+                            Text("关于 Darock 智能与隐私")
+                        })
+                    }
                 }
-                Section {
-                    Button(action: {
-                        isPrivacySplashPresented = true
-                    }, label: {
-                        Text("关于 Darock 智能与隐私")
-                    })
+                .navigationTitle("Darock 智能")
+                .sheet(isPresented: $isPrivacySplashPresented) {
+                    PrivacyAboutView(
+                        title: "关于 Darock 智能与隐私",
+                        description: Text("使用 Darock 智能时，部分数据可能会在设备外处理。\(Text("进一步了解...").foregroundColor(.blue))"),
+                        detailText: """
+                        **Darock 智能与隐私**
+                        
+                        Darock 智能旨在保护你的信息并可让你选择共享的内容。
+                        
+                        ### 网页摘要
+                        使用网页摘要时，网页中的文本信息会被发送到设备外的 Darock 智能服务进行处理。这些信息不会被存储，且不会关联到个人。
+                        """
+                    )
                 }
-            }
-            .navigationTitle("Darock 智能")
-            .sheet(isPresented: $isPrivacySplashPresented) {
-                PrivacyAboutView(
-                    title: "关于 Darock 智能与隐私",
-                    description: Text("使用 Darock 智能时，部分数据可能会在设备外处理。\(Text("进一步了解...").foregroundColor(.blue))"),
-                    detailText: """
-                    **Darock 智能与隐私**
-                    
-                    Darock 智能旨在保护你的信息并可让你选择共享的内容。
-                    
-                    ### 网页摘要
-                    使用网页摘要时，网页中的文本信息会被发送到设备外的 Darock 智能服务进行处理。这些信息不会被存储，且不会关联到个人。
-                    """
-                )
+            } else {
+                ProUnavailableView()
             }
         }
     }
     @available(watchOS 10.0, *)
     struct WidgetSettingsView: View {
+        @AppStorage("IsProPurchased") var isProPurchased = false
         var body: some View {
-            List {
-                Section {
-                    NavigationLink(destination: { BookmarkWidgetsView() }, label: {
-                        Label("书签", systemImage: "bookmark")
-                    })
+            if isProPurchased {
+                List {
+                    Section {
+                        NavigationLink(destination: { BookmarkWidgetsView() }, label: {
+                            Label("书签", systemImage: "bookmark")
+                        })
+                    }
                 }
+                .navigationTitle("小组件")
+            } else {
+                ProUnavailableView()
             }
-            .navigationTitle("小组件")
         }
         
         struct BookmarkWidgetsView: View {

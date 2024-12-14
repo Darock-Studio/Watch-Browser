@@ -14,8 +14,9 @@ struct NewFeaturesView: View {
                 VStack {
                     Text("“暗礁浏览器”新功能")
                         .font(.system(size: 18, weight: .bold))
-                    SingleFeatureRow(symbol: "_nightshift", mainText: "定时切换外观", detailText: "在设置→显示与亮度中更改外观切换定时设置")
-                    SingleFeatureRow(symbol: "squareshape.split.2x2.dotted", mainText: "自定义布局", detailText: "在设置→浏览引擎中自定义网页视图和浏览菜单布局")
+                    if #available(watchOS 10.0, *) {
+                        SingleFeatureRow(symbol: "macwindow.on.rectangle", mainText: "标签页浏览", detailText: "现可进行基于标签页的网页浏览")
+                    }
                     Text("您可以随时在“提示→新功能”中重新打开此页")
                         .multilineTextAlignment(.center)
                         .opacity(0.7)
@@ -32,6 +33,8 @@ struct NewFeaturesView: View {
         var body: some View {
             ScrollView {
                 VStack {
+                    SingleFeatureRow(symbol: "_nightshift", mainText: "定时切换外观", detailText: "在设置→显示与亮度中更改外观切换定时设置")
+                    SingleFeatureRow(symbol: "squareshape.split.2x2.dotted", mainText: "自定义布局", detailText: "在设置→浏览引擎中自定义网页视图和浏览菜单布局")
                     SingleFeatureRow(symbol: "list.bullet.rectangle.portrait", mainText: "更新的浏览菜单", detailText: "浏览菜单现在更美观并更易操作")
                     SingleFeatureRow(symbol: "globe.badge.chevron.backward", mainText: "旧版引擎设置", detailText: "现可设置是否为旧版浏览引擎自动启用阅读器模式")
                     SingleFeatureRow(symbol: "clock.badge.xmark", mainText: "在浏览中隐藏时间", detailText: "现可设置是否在网页中隐藏时间，减少干扰")

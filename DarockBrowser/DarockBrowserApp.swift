@@ -37,7 +37,7 @@ let isAppBetaBuild = false
 struct DarockBrowserApp: App {
     @WKApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) var scenePhase
-    @AppStorage("ShouldTipNewFeatures6") var shouldTipNewFeatures = true
+    @AppStorage("ShouldTipNewFeatures7") var shouldTipNewFeatures = if #available(watchOS 10, *) { true } else { false }
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockDarockBrowser") var usePasscodeForLockDarockBrowser = false
     @AppStorage("IsThisClusterInstalled") var isThisClusterInstalled = false
