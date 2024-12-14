@@ -20880,6 +20880,16 @@
         }
       }
     },
+    "前往激活" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to Activate"
+          }
+        }
+      }
+    },
     "前往登录 Darock 账户" : {
       "localizations" : {
         "ar" : {
@@ -39690,6 +39700,16 @@
         }
       }
     },
+    "标签页浏览" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tab-based Browsing"
+          }
+        }
+      }
+    },
     "标题" : {
       "localizations" : {
         "ar" : {
@@ -43499,6 +43519,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "You can now set whether to hide the time in web pages to reduce distractions."
+          }
+        }
+      }
+    },
+    "现可进行基于标签页的网页浏览" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can now browse the web using tabs."
           }
         }
       }
@@ -59096,6 +59126,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Location Services Permission is Needed to Switch Appearance According to Sunrise and Sunset"
+          }
+        }
+      }
+    },
+    "需要激活暗礁浏览器 Pro" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browser Pro Needs to Be Activated"
           }
         }
       }
