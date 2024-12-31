@@ -155,10 +155,19 @@ struct SwiftWebView: View {
                     HStack {
                         Spacer()
                         VStack {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(.black)
-                                .frame(width: 60, height: 30)
-                                .offset(y: 8)
+                            if #available(watchOS 10.0, *) {
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(Material.thin)
+                                    .frame(width: 46, height: 10)
+                                    .blur(radius: 5)
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 16)
+                            } else {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(.black)
+                                    .frame(width: 60, height: 30)
+                                    .offset(y: 8)
+                            }
                             Spacer()
                         }
                     }

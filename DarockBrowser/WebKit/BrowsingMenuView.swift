@@ -392,7 +392,11 @@ struct BrowsingMenuView: View {
                                     }
                                 })
                                 Button(action: {
-                                    webViewPresentationMode.dismiss()
+                                    if let customDismissAction {
+                                        customDismissAction()
+                                    } else {
+                                        webViewPresentationMode.dismiss()
+                                    }
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                                         AdvancedWebViewController.shared.present(currentUrl, overrideOldWebView: .alwaysLegacy)
                                     }
@@ -569,7 +573,11 @@ struct BrowsingMenuView: View {
                                                   : "desktopcomputer")
                                         })
                                         Button(action: {
-                                            webViewPresentationMode.dismiss()
+                                            if let customDismissAction {
+                                                customDismissAction()
+                                            } else {
+                                                webViewPresentationMode.dismiss()
+                                            }
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                                                 AdvancedWebViewController.shared.present(currentUrl, overrideOldWebView: .alwaysLegacy)
                                             }

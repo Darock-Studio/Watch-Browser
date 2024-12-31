@@ -114,6 +114,8 @@ struct MainView: View {
     @State var isCookieTipPresented = false
     @State var pinnedBookmarkIndexs = [Int]()
     @State var webArchiveLinks = [String]()
+    @State var newFeedbackCount = 0
+    @State var isNewVerAvailable = false
     var body: some View {
         List {
             Section {
@@ -214,6 +216,35 @@ struct MainView: View {
                         Label("Home.settings", systemImage: "gear")
                     })
                 }
+                Section {
+                    NavigationLink(destination: { FeedbackView() }, label: {
+                        VStack {
+                            HStack {
+                                ZStack(alignment: .topTrailing) {
+                                    Image(systemName: "exclamationmark.bubble")
+                                        .font(.system(size: 20))
+                                    if newFeedbackCount > 0 {
+                                        Text("\(newFeedbackCount)")
+                                            .font(.system(size: 12, weight: .medium))
+                                            .background(Circle().fill(Color.red).frame(width: 15, height: 15).opacity(1.0))
+                                            .offset(x: 3, y: -5)
+                                            .truncationMode(.head)
+                                    }
+                                }
+                                Text("反馈助理")
+                            }
+                            if isNewVerAvailable {
+                                Text("“反馈助理”不可用，因为暗礁浏览器有更新可用")
+                                    .font(.system(size: 12))
+                                    .multilineTextAlignment(.center)
+                            }
+                        }
+                    })
+                    .disabled(isNewVerAvailable)
+                    NavigationLink(destination: { TipsView() }, label: {
+                        Label("提示", privateSystemImage: "tips")
+                    })
+                }
             }
         }
         .wrapIf({ if #available(watchOS 10.0, *) { true } else { false } }()) { content in
@@ -235,6 +266,45 @@ struct MainView: View {
         .onAppear {
             pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()
             webArchiveLinks = UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()
+            
+            if #unavailable(watchOS 10) {
+                if !ProcessInfo.processInfo.isLowPowerModeEnabled {
+                    let feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
+                    newFeedbackCount = 0
+                    for id in feedbackIds {
+                        DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)".compatibleUrlEncoded()) { respStr, isSuccess in
+                            if isSuccess {
+                                let repCount = respStr.apiFixed().components(separatedBy: "---").count - 1
+                                let lastViewCount = UserDefaults.standard.integer(forKey: "RadarFB\(id)ReplyCount")
+                                if repCount > lastViewCount {
+                                    newFeedbackCount++
+                                }
+                            }
+                        }
+                    }
+                }
+                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
+                    if isSuccess {
+                        let spdVer = respStr.apiFixed().split(separator: ".")
+                        if spdVer.count == 3 {
+                            if let x = Int(spdVer[0]), let y = Int(spdVer[1]), let z = Int(spdVer[2]) {
+                                let currVerSpd = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).split(separator: ".")
+                                if currVerSpd.count == 3 {
+                                    if let cx = Int(currVerSpd[0]), let cy = Int(currVerSpd[1]), let cz = Int(currVerSpd[2]) {
+                                        if x > cx {
+                                            isNewVerAvailable = true
+                                        } else if x == cx && y > cy {
+                                            isNewVerAvailable = true
+                                        } else if x == cx && y == cy && z > cz {
+                                            isNewVerAvailable = true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     

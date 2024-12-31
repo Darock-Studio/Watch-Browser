@@ -21,8 +21,9 @@ struct TabsListView<StartPage>: View where StartPage: View {
     @AppStorage("IsBetaJoinAvailable") var isBetaJoinAvailable = false
     @State var tabs = [WebViewTab]()
     @State var selectedTab: WebViewTab?
-    @State var currentColumn = NavigationSplitViewColumn.sidebar
     @State var isAppSettingsPresented = false
+    @State var isFeedbackAssistantPresented = false
+    @State var isTipsPresented = false
     @State var createButtonVisibilityResetTimer: Timer?
     @State var isCreateButtonVisible = true
     @State var isCreateButtonPressed = false
@@ -30,7 +31,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
     @State var newFeedbackCount = 0
     @State var isNewVerAvailable = false
     var body: some View {
-        NavigationSplitView(preferredCompactColumn: $currentColumn, sidebar: {
+        NavigationSplitView(sidebar: {
             NavigationStack {
                 ZStack {
                     List(selection: $selectedTab) {
@@ -49,7 +50,9 @@ struct TabsListView<StartPage>: View where StartPage: View {
                             }
                         }
                         Section {
-                            NavigationLink(destination: { FeedbackView() }, label: {
+                            Button(action: {
+                                isFeedbackAssistantPresented = true
+                            }, label: {
                                 VStack {
                                     HStack {
                                         ZStack(alignment: .topTrailing) {
@@ -73,7 +76,9 @@ struct TabsListView<StartPage>: View where StartPage: View {
                                 }
                             })
                             .disabled(isNewVerAvailable)
-                            NavigationLink(destination: { TipsView() }, label: {
+                            Button(action: {
+                                isTipsPresented = true
+                            }, label: {
                                 Label("提示", privateSystemImage: "tips")
                             })
                         }
@@ -139,6 +144,8 @@ struct TabsListView<StartPage>: View where StartPage: View {
                 .navigationTitle("\(tabs.count) 个标签页")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationDestination(isPresented: $isAppSettingsPresented, destination: { SettingsView() })
+                .navigationDestination(isPresented: $isFeedbackAssistantPresented, destination: { FeedbackView() })
+                .navigationDestination(isPresented: $isTipsPresented, destination: { TipsView() })
                 .modifier(UserDefinedBackground())
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
