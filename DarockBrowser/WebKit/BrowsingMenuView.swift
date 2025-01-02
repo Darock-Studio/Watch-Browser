@@ -27,6 +27,7 @@ struct BrowsingMenuView: View {
     @AppStorage("DBIsAutoAppearence") var isAutoAppearence = false
     @AppStorage("DBAutoAppearenceOptionEnableForWebForceDark") var autoAppearenceOptionEnableForWebForceDark = true
     @AppStorage("IsProPurchased") var isProPurchased = false
+    @State var linkInput = ""
     @State var linkInputOffset: CGFloat = 0
     @State var isHomeViewPresented = false
     @State var isCheckingWebContent = true
@@ -101,18 +102,9 @@ struct BrowsingMenuView: View {
                     }
                     Section {
                         HStack {
-                            TextFieldLink(label: {
-                                MarqueeText(
-                                    text: webView.url?.absoluteString ?? "",
-                                    font: .systemFont(ofSize: 14),
-                                    leftFade: 5,
-                                    rightFade: 5,
-                                    startDelay: 1.5,
-                                    alignment: .leading
-                                )
-                            }, onSubmit: { input in
-                                if input.isURL() {
-                                    var input = input
+                            TextField("", text: $linkInput) {
+                                if linkInput.isURL() {
+                                    var input = linkInput
                                     if !(input.split(separator: ".").first?.contains("://") ?? false) {
                                         input = "http://" + input
                                     }
@@ -122,18 +114,34 @@ struct BrowsingMenuView: View {
                                 } else {
                                     webView.load(
                                         URLRequest(url: URL(string: getWebSearchedURL(
-                                            input,
+                                            linkInput,
                                             webSearch: webSearch,
                                             isSearchEngineShortcutEnabled: isSearchEngineShortcutEnabled
                                         ))!)
                                     )
                                 }
                                 presentationMode.wrappedValue.dismiss()
-                            })
+                            }
                             .noAutoInput()
                             .submitLabel(.go)
                             .buttonStyle(.bordered)
                             .buttonBorderShape(.roundedRectangle(radius: 14))
+                            .opacity(0.0100000002421438702673861521)
+                            .overlay {
+                                Button(action: {}, label: {
+                                    MarqueeText(
+                                        text: webView.url?.absoluteString ?? "",
+                                        font: .systemFont(ofSize: 14),
+                                        leftFade: 5,
+                                        rightFade: 5,
+                                        startDelay: 1.5,
+                                        alignment: .leading
+                                    )
+                                })
+                                .buttonStyle(.bordered)
+                                .buttonBorderShape(.roundedRectangle(radius: 14))
+                                .allowsHitTesting(false)
+                            }
                             if #available(watchOS 10.0, *) {
                                 Button(action: {
                                     isHomeViewPresented = true
@@ -647,6 +655,7 @@ struct BrowsingMenuView: View {
         }
         .onAppear {
             isLoading = webView.isLoading
+            linkInput = webView.url?.absoluteString ?? ""
             linksUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
                 videoLinks = videoLinkLists
                 imageLinks = imageLinkLists

@@ -30,11 +30,24 @@ struct TabsListView<StartPage>: View where StartPage: View {
     @State var wristLocation = WKInterfaceDevice.current().wristLocation
     @State var newFeedbackCount = 0
     @State var isNewVerAvailable = false
+    @State var isNewYearCelebrationPresented = false
     var body: some View {
         NavigationSplitView(sidebar: {
             NavigationStack {
                 ZStack {
                     List(selection: $selectedTab) {
+                        if isTodayNewYear() {
+                            Button(action: {
+                                isNewYearCelebrationPresented = true
+                            }, label: {
+                                HStack {
+                                    Image(systemName: "fireworks")
+                                        .symbolRenderingMode(.palette)
+                                        .foregroundStyle(.red, .yellow)
+                                    Text("新年快乐！")
+                                }
+                            })
+                        }
                         Section {
                             ForEach(tabs, id: \.id) { tab in
                                 TabLink(for: tab)
@@ -147,6 +160,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                 .navigationDestination(isPresented: $isFeedbackAssistantPresented, destination: { FeedbackView() })
                 .navigationDestination(isPresented: $isTipsPresented, destination: { TipsView() })
                 .modifier(UserDefinedBackground())
+                .sheet(isPresented: $isNewYearCelebrationPresented) { CelebrationFireworksView() }
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Button(action: {
@@ -284,7 +298,9 @@ struct TabsListView<StartPage>: View where StartPage: View {
                                         }
                                         let snapshotFilePath = selectedTab.metadata?.snapshotPath ?? "/tmp/TabSnapshots/\(UUID().uuidString).drkdatas"
                                         try image.pngData()?.write(to: URL(filePath: NSHomeDirectory() + snapshotFilePath))
-                                        tabs[index].metadata?.snapshotPath = snapshotFilePath
+                                        if _fastPath(index < tabs.count) {
+                                            tabs[index].metadata?.snapshotPath = snapshotFilePath
+                                        }
                                     } catch {
                                         os_log(.error, "\(error)")
                                     }
@@ -469,4 +485,19 @@ private class ImageLoader: ObservableObject {
             image = uiImage
         }
     }
+}
+
+private func isTodayNewYear() -> Bool {
+    let today = Date.now
+    let calendar = Calendar.current
+    let components = calendar.dateComponents([.month, .day], from: today)
+    if components.month == 1 && components.day == 1 {
+        return true
+    }
+    if NSLocale.current.language.languageCode!.identifier == "zh" {
+        let chineseCalendar = Calendar(identifier: .chinese)
+        let components = chineseCalendar.dateComponents([.month, .day], from: today)
+        return components.month == 1 && components.day == 1
+    }
+    return false
 }

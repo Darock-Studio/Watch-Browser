@@ -1203,6 +1203,7 @@ struct SettingsView: View {
                         SinglePackageBlock(name: "SwiftSoup", license: "MIT license")
                         SinglePackageBlock(name: "SwiftyJSON", license: "MIT license")
                         SinglePackageBlock(name: "Vela", license: "Apache License 2.0")
+                        SinglePackageBlock(name: "Vortex", license: "MIT license")
                         SinglePackageBlock(name: "Zip", license: "MIT license")
                         SinglePackageBlock(name: "???Core", license: "???")
                             .onTapGesture {
