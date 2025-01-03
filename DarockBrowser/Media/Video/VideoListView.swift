@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DarockKit
+import DarockFoundation
 
 struct VideoListView: View {
     @State var willPlayVideoLink = ""

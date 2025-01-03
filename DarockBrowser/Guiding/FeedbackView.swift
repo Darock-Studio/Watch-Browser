@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-import DarockKit
 import MarkdownUI
+import DarockFoundation
 import UserNotifications
 @_spi(_internal) import RadarKit
 
@@ -115,7 +115,7 @@ struct FeedbackView: View {
                 Text("暗礁浏览器有更新可用。")
             })
             .onAppear {
-                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
+                requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
                     if isSuccess {
                         let spdVer = respStr.apiFixed().split(separator: ".")
                         if spdVer.count == 3 {

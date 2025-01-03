@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-import DarockKit
 import MarkdownUI
+import DarockFoundation
 
 struct PrivacyAboutView: View {
     var title: LocalizedStringKey

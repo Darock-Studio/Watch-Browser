@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DarockKit
+import DarockUI
 import SDWebImageSwiftUI
 
 struct ImageViewerView: View {

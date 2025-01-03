@@ -7,7 +7,7 @@
 
 import AVKit
 import SwiftUI
-import DarockKit
+import DarockUI
 import AVFoundation
 
 struct VideoPlayingView: View {

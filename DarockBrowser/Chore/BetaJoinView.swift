@@ -7,7 +7,7 @@
 
 import SwiftUI
 import EFQRCode
-import DarockKit
+import DarockFoundation
 
 struct BetaJoinView: View {
     @State var isErrorLoading = false
@@ -48,7 +48,7 @@ struct BetaJoinView: View {
         }
         .navigationTitle("参与 Beta 测试")
         .onAppear {
-            DarockKit.Network.shared.requestString(
+            requestString(
                 "https://fapi.darock.top:65535/tf/get/DarockBrowser\(NSLocale.current.language.languageCode!.identifier == "zh" ? "" : "_en")"
             ) { respStr, isSuccess in
                 if isSuccess {

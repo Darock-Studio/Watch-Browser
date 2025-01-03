@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
-import DarockKit
 import WidgetKit
 import SwiftyStoreKit
+import DarockFoundation
 
 struct ProPurchaseView: View {
     @AppStorage("IsProPurchased") var isProPurchased = false

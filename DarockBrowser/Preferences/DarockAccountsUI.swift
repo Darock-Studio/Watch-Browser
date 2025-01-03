@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-import DarockKit
+import DarockUI
+import DarockFoundation
 
 struct DarockAccountLogin: View {
     @Environment(\.presentationMode) var presentationMode
@@ -37,7 +38,7 @@ struct DarockAccountLogin: View {
                         .textContentType(.password)
                     Button(action: {
                         isLoading = true
-                        DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/login/\(accountCache)/\(passwdCache)".compatibleUrlEncoded()) { respStr, isSuccess in
+                        requestString("https://fapi.darock.top:65535/user/login/\(accountCache)/\(passwdCache)".compatibleUrlEncoded()) { respStr, isSuccess in
                             if isSuccess {
                                 if respStr.apiFixed() == "Success" {
                                     darockAccount = accountCache
@@ -129,9 +130,9 @@ struct DarockAccountLogin: View {
                 Section {
                     Button(action: {
                         isRegistering = true
-                        DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/reg/\(mailInput)/\(passwordInput)".compatibleUrlEncoded()) { _, isSuccess in
+                        requestString("https://fapi.darock.top:65535/user/reg/\(mailInput)/\(passwordInput)".compatibleUrlEncoded()) { _, isSuccess in
                             if isSuccess {
-                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/set/\(mailInput)/\(usernameInput)".compatibleUrlEncoded()) { _, isSuccess in
+                                requestString("https://fapi.darock.top:65535/user/name/set/\(mailInput)/\(usernameInput)".compatibleUrlEncoded()) { _, isSuccess in
                                     if isSuccess {
                                         isRegistering = false
                                         presentationMode.wrappedValue.dismiss()
@@ -376,7 +377,7 @@ struct DarockAccountManagementMain: View {
                     ToolbarItem(placement: .confirmationAction) {
                         Button(action: {
                             isApplying = true
-                            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/set/\(darockAccount)/\(nameInput)".compatibleUrlEncoded()) { _, isSuccess in
+                            requestString("https://fapi.darock.top:65535/user/name/set/\(darockAccount)/\(nameInput)".compatibleUrlEncoded()) { _, isSuccess in
                                 if isSuccess {
                                     username = nameInput
                                     presentationMode.wrappedValue.dismiss()
@@ -493,7 +494,7 @@ struct DarockAccountManagementMain: View {
                         Section {
                             Button(action: {
                                 isApplying = true
-                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/modifypwd/\(darockAccount)/\(currentPasswordInput)/\(newPasswordInput)".compatibleUrlEncoded()) { respStr, isSuccess in
+                                requestString("https://fapi.darock.top:65535/user/modifypwd/\(darockAccount)/\(currentPasswordInput)/\(newPasswordInput)".compatibleUrlEncoded()) { respStr, isSuccess in
                                     if isSuccess {
                                         if respStr.apiFixed() == "Success" {
                                             tipWithText("密码已更改", symbol: "checkmark.circle.fill")
@@ -585,7 +586,7 @@ struct DarockAccountManagementMain: View {
                         Section {
                             Button(role: .destructive, action: {
                                 isDeleting = true
-                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/del/\(darockAccount)/\(passwordInput)".compatibleUrlEncoded()) { respStr, isSuccess in
+                                requestString("https://fapi.darock.top:65535/user/del/\(darockAccount)/\(passwordInput)".compatibleUrlEncoded()) { respStr, isSuccess in
                                     if isSuccess {
                                         if respStr.apiFixed() == "Success" {
                                             darockAccount = ""

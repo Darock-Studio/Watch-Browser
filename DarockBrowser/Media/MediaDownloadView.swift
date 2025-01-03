@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
-import DarockKit
 import Alamofire
 import AVFoundation
+import DarockFoundation
 
 struct MediaDownloadView: View {
     @Binding var mediaLink: String

@@ -35887,7 +35887,14 @@
       }
     },
     "新年快乐！" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Happy New Year!"
+          }
+        }
+      }
     },
     "新建播放列表" : {
       "localizations" : {

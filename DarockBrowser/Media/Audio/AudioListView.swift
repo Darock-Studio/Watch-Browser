@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DarockKit
+import DarockFoundation
 
 struct AudioListView: View {
     @AppStorage("MPIsShowTranslatedLyrics") var isShowTranslatedLyrics = true

@@ -10,9 +10,9 @@ import SwiftUI
 import Cepheus
 import EFQRCode
 import Punycode
-import DarockKit
 import Alamofire
 import SwiftyJSON
+import DarockFoundation
 import AuthenticationServices
 
 var pIsAudioControllerAvailable = false
@@ -272,7 +272,7 @@ struct MainView: View {
                     let feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
                     newFeedbackCount = 0
                     for id in feedbackIds {
-                        DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)".compatibleUrlEncoded()) { respStr, isSuccess in
+                        requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)".compatibleUrlEncoded()) { respStr, isSuccess in
                             if isSuccess {
                                 let repCount = respStr.apiFixed().components(separatedBy: "---").count - 1
                                 let lastViewCount = UserDefaults.standard.integer(forKey: "RadarFB\(id)ReplyCount")
@@ -283,7 +283,7 @@ struct MainView: View {
                         }
                     }
                 }
-                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
+                requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
                     if isSuccess {
                         let spdVer = respStr.apiFixed().split(separator: ".")
                         if spdVer.count == 3 {

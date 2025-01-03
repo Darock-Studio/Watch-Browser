@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-import DarockKit
 import SwiftSoup
+import DarockFoundation
 
 struct WebAbstractView: View {
     var webView: WKWebView

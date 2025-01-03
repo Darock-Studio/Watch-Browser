@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DarockKit
+import DarockFoundation
 import AuthenticationServices
 
 struct DownloadToExternalView: View {

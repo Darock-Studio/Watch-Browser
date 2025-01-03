@@ -7,7 +7,7 @@
 
 import SwiftUI
 import EPUBKit
-import DarockKit
+import DarockFoundation
 
 struct BookReaderView: View {
     var document: EPUBDocument

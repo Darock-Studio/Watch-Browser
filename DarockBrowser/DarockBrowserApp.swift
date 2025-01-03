@@ -10,10 +10,10 @@ import SwiftUI
 import Intents
 import WatchKit
 import NotifKit
-import DarockKit
 import SDWebImage
 import AVFoundation
 import SwiftyStoreKit
+import DarockFoundation
 import SDWebImageSVGCoder
 import SDWebImagePDFCoder
 import SDWebImageWebPCoder
@@ -197,8 +197,8 @@ class AppDelegate: NSObject, WKApplicationDelegate {
         _ = LocationManager.shared
         _ = CachedLocationManager.shared
         
-        DarockKit.Network.shared.requestString(
-            "https://fapi.darock.top:65535/analyze/add/DBStatsAppStartupCount/\(Date.now.timeIntervalSince1970)".compatibleUrlEncoded()
+        requestString(
+            "https://fapi.darock.top:65535/analyze/add/DBStatsAppStartupCount".compatibleUrlEncoded()
         ) { _, _ in }
     }
     

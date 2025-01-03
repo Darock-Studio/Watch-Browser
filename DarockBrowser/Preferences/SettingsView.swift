@@ -12,12 +12,12 @@ import SwiftUI
 import Cepheus
 import EFQRCode
 import AVFAudio
-import DarockKit
 import WidgetKit
 import StorageUI
 import WeatherKit
 import CoreLocation
 import SwiftyStoreKit
+import DarockFoundation
 import NetworkExtension
 import UserNotifications
 import TripleQuestionmarkCore
@@ -65,7 +65,7 @@ struct SettingsView: View {
                     })
                     .sheet(isPresented: $isDarockAccountLoginPresented, onDismiss: {
                         if !darockAccount.isEmpty {
-                            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
+                            requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
                                 if isSuccess {
                                     accountUsername = respStr.apiFixed()
                                 }
@@ -190,7 +190,7 @@ struct SettingsView: View {
         }
         .onAppear {
             if !darockAccount.isEmpty {
-                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
+                requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
                     if isSuccess {
                         accountUsername = respStr.apiFixed()
                     }
@@ -771,7 +771,7 @@ struct SettingsView: View {
                         }
                         if #available(watchOS 10, *) {
                             TQCAccentColorHiddenButton {
-                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/analyze/add/DBTQCAccentColor/\(Date.now.timeIntervalSince1970)".compatibleUrlEncoded()) { _, _ in }
+                                requestString("https://fapi.darock.top:65535/analyze/add/DBTQCAccentColor/\(Date.now.timeIntervalSince1970)".compatibleUrlEncoded()) { _, _ in }
                             }
                         }
                     }
@@ -862,7 +862,7 @@ struct SettingsView: View {
                 }
                 .navigationTitle("软件更新")
                 .onAppear {
-                    DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
+                    requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
                         if isSuccess {
                             let spdVer = respStr.apiFixed().split(separator: ".")
                             if spdVer.count == 3 {
@@ -1214,7 +1214,7 @@ struct SettingsView: View {
                     .sheet(isPresented: $isTQCView1Presented, content: {
                         TQCOnaniiView()
                             .onAppear {
-                                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/analyze/add/DBTQCOnanii/\(Date.now.timeIntervalSince1970)".compatibleUrlEncoded()) { _, _ in }
+                                requestString("https://fapi.darock.top:65535/analyze/add/DBTQCOnanii/\(Date.now.timeIntervalSince1970)".compatibleUrlEncoded()) { _, _ in }
                             }
                     })
                 }

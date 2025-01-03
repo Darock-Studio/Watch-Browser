@@ -1,5 +1,5 @@
 {
-  "originHash" : "e00153b5f61d37faceb1b4d287e4c7978c5a75c08fe9886b487e2f0295444ae0",
+  "originHash" : "411a2e043dff649408d59891520f136b63a0b79c7b7f0311faa78ea6439615a8",
   "pins" : [
     {
       "identity" : "aexml",
@@ -38,12 +38,21 @@
       }
     },
     {
-      "identity" : "darockkit",
+      "identity" : "darockfoundation",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Darock-Studio/DarockKit",
+      "location" : "https://github.com/Darock-Studio/DarockFoundation",
       "state" : {
         "branch" : "main",
-        "revision" : "0c80f45f9b1e65903d11951f0172d1c0e4b5f270"
+        "revision" : "861c49a38e4493fad4c8a8d11d1ccc7ce3588abe"
+      }
+    },
+    {
+      "identity" : "darockui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Darock-Studio/DarockUI",
+      "state" : {
+        "branch" : "main",
+        "revision" : "40832346ea32596f3cdbbc4c7005f8e70a7eec2e"
       }
     },
     {
@@ -195,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SwiftyJSON/SwiftyJSON",
       "state" : {
-        "revision" : "2b6054efa051565954e1d2b9da831680026cd768",
-        "version" : "4.3.0"
+        "revision" : "af76cf3ef710b6ca5f8c05f3a31307d44a3c5828",
+        "version" : "5.0.2"
       }
     },
     {

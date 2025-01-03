@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
-import DarockKit
+import DarockUI
 import MediaPlayer
 import AVFoundation
+import DarockFoundation
 
 let globalAudioPlayer = AVPlayer()
 var globalAudioLooper: Any?

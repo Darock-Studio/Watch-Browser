@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-import DarockKit
 import SwiftSoup
+import DarockFoundation
 
 struct UserScriptsView: View {
     @State var scriptNames = [String]()
@@ -62,27 +62,26 @@ struct UserScriptsAddView: View {
                     if !searchInput.isEmpty {
                         isSearching = true
                         searchResults.removeAll()
-                        DarockKit.Network.shared
-                            .requestString("https://greasyfork.org/\(NSLocale.current.language.languageCode!.identifier == "zh" ? "zh-CN" : "en")/scripts?q=\(searchInput)".compatibleUrlEncoded()) { respStr, isSuccess in
-                                if isSuccess {
-                                    do {
-                                        let doc = try SwiftSoup.parse(respStr)
-                                        let scripts = try doc.body()?.select("a")
-                                        if let scripts {
-                                            for script in scripts {
-                                                if try script.outerHtml().contains("class=\"script-link\""),
-                                                   let target = try? script.attr("href"),
-                                                   let title = try? script.text() {
-                                                    searchResults.append((title, target))
-                                                }
+                        requestString("https://greasyfork.org/\(NSLocale.current.language.languageCode!.identifier == "zh" ? "zh-CN" : "en")/scripts?q=\(searchInput)".compatibleUrlEncoded()) { respStr, isSuccess in
+                            if isSuccess {
+                                do {
+                                    let doc = try SwiftSoup.parse(respStr)
+                                    let scripts = try doc.body()?.select("a")
+                                    if let scripts {
+                                        for script in scripts {
+                                            if try script.outerHtml().contains("class=\"script-link\""),
+                                               let target = try? script.attr("href"),
+                                               let title = try? script.text() {
+                                                searchResults.append((title, target))
                                             }
                                         }
-                                        isSearching = false
-                                    } catch {
-                                        globalErrorHandler(error)
                                     }
+                                    isSearching = false
+                                } catch {
+                                    globalErrorHandler(error)
                                 }
                             }
+                        }
                     }
                 }
                 .submitLabel(.search)
@@ -133,7 +132,7 @@ struct UserScriptsAddView: View {
                             if !isInstalled {
                                 Button(action: {
                                     isInstalling = true
-                                    DarockKit.Network.shared.requestString(jsLink.compatibleUrlEncoded()) { respStr, isSuccess in
+                                    requestString(jsLink.compatibleUrlEncoded()) { respStr, isSuccess in
                                         if isSuccess {
                                             do {
                                                 try respStr.write(
@@ -178,7 +177,7 @@ struct UserScriptsAddView: View {
                 if (UserDefaults.standard.stringArray(forKey: "UserScriptNames") ?? [String]()).contains(title) {
                     isInstalled = true
                 }
-                DarockKit.Network.shared.requestString("https://greasyfork.org\(url)".compatibleUrlEncoded()) { respStr, isSuccess in
+                requestString("https://greasyfork.org\(url)".compatibleUrlEncoded()) { respStr, isSuccess in
                     if isSuccess {
                         do {
                             let doc = try SwiftSoup.parse(respStr)

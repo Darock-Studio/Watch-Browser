@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-import DarockKit
 import AVFoundation
+import DarockFoundation
 
 struct LocalAudiosView: View {
     var selectHandler: ((String) -> Void)?

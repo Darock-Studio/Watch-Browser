@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DarockKit
+import DarockFoundation
 
 struct NetworkCheckView: View {
     @State var progressTimer: Timer?
@@ -114,7 +114,7 @@ struct NetworkCheckView: View {
             networkState = 0
             darockAPIState = 0
             checkInternet()
-            DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
+            requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
                 if isSuccess {
                     let spdVer = respStr.apiFixed().split(separator: ".")
                     if spdVer.count == 3 {
@@ -145,7 +145,7 @@ struct NetworkCheckView: View {
         Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { timer in
             timer.invalidate()
             networkState = 1
-            DarockKit.Network.shared.requestString("https://apple.com.cn".compatibleUrlEncoded()) { _, isSuccess in
+            requestString("https://apple.com.cn".compatibleUrlEncoded()) { _, isSuccess in
                 if isSuccess {
                     checkDarock()
                     networkState = 3
@@ -158,7 +158,7 @@ struct NetworkCheckView: View {
         
         func checkDarock() {
             darockAPIState = 1
-            DarockKit.Network.shared.requestString("https://api.darock.top".compatibleUrlEncoded()) { respStr, isSuccess in
+            requestString("https://api.darock.top".compatibleUrlEncoded()) { respStr, isSuccess in
                 if isSuccess {
                     if respStr.apiFixed() == "OK" {
                         darockAPIState = 3

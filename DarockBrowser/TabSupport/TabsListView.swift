@@ -8,7 +8,7 @@
 import OSLog
 import Combine
 import SwiftUI
-import DarockKit
+import DarockFoundation
 
 @available(watchOS 10.0, *)
 struct TabsListView<StartPage>: View where StartPage: View {
@@ -228,7 +228,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                     let feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
                     newFeedbackCount = 0
                     for id in feedbackIds {
-                        DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)".compatibleUrlEncoded()) { respStr, isSuccess in
+                        requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)".compatibleUrlEncoded()) { respStr, isSuccess in
                             if isSuccess {
                                 let repCount = respStr.apiFixed().components(separatedBy: "---").count - 1
                                 let lastViewCount = UserDefaults.standard.integer(forKey: "RadarFB\(id)ReplyCount")
@@ -239,7 +239,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                         }
                     }
                 }
-                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
+                requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
                     if isSuccess {
                         let spdVer = respStr.apiFixed().split(separator: ".")
                         if spdVer.count == 3 {
@@ -260,7 +260,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                         }
                     }
                 }
-                DarockKit.Network.shared.requestString("https://fapi.darock.top:65535/tf/get/DarockBrowser") { respStr, isSuccess in
+                requestString("https://fapi.darock.top:65535/tf/get/DarockBrowser") { respStr, isSuccess in
                     if isSuccess {
                         isBetaJoinAvailable = respStr.apiFixed() != "[None]"
                     }

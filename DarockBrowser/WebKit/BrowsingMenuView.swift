@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
-import DarockKit
 import SwiftSoup
 import MarqueeText
+import DarockFoundation
 import SDWebImageSwiftUI
 
 struct BrowsingMenuView: View {

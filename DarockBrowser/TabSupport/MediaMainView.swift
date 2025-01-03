@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DarockKit
+import DarockFoundation
 
 struct MediaMainView: View {
     @State var hasDownloadedVideo = false

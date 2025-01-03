@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 import Network
 import SwiftSoup
-import DarockKit
+import DarockFoundation
 import AuthenticationServices
 
 var videoLinkLists = [String]()
