@@ -42,6 +42,8 @@ struct BrowsingMenuView: View {
     @State var isNewBookmarkCreated = false
     @State var isNewBookmarkAnimating = false
     @State var isWebAbstractPresented = false
+    @State var sharingLink = ""
+    @State var isSharePresented = false
     var body: some View {
         ZStack {
             NavigationStack {
@@ -383,6 +385,16 @@ struct BrowsingMenuView: View {
                                         }
                                     })
                                 }
+                                Button(action: {
+                                    sharingLink = currentUrl
+                                    isSharePresented = true
+                                }, label: {
+                                    HStack {
+                                        Text("共享")
+                                        Spacer()
+                                        Image(systemName: "square.and.arrow.up")
+                                    }
+                                })
                             }
                             Section {
                                 Button(action: {
@@ -593,14 +605,24 @@ struct BrowsingMenuView: View {
                                             Image(systemName: "globe.badge.chevron.backward")
                                         })
                                     }
-                                    if !(UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()).contains(currentUrl) {
+                                    HStack {
+                                        if !(UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()).contains(currentUrl) {
+                                            Button(action: {
+                                                WEBackSwift.createWebArchive(for: webView)
+                                                presentationMode.wrappedValue.dismiss()
+                                            }, label: {
+                                                Image(systemName: "archivebox")
+                                            })
+                                        }
                                         Button(action: {
-                                            WEBackSwift.createWebArchive(for: webView)
-                                            presentationMode.wrappedValue.dismiss()
+                                            sharingLink = currentUrl
+                                            isSharePresented = true
                                         }, label: {
                                             HStack {
-                                                Image(systemName: "archivebox")
-                                                Text("存储离线归档")
+                                                Image(systemName: "square.and.arrow.up")
+                                                if (UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()).contains(currentUrl) {
+                                                    Text("共享")
+                                                }
                                             }
                                         })
                                     }
@@ -635,6 +657,7 @@ struct BrowsingMenuView: View {
         .sheet(isPresented: $isBackListPresented, content: { BackForwardListView(webView: webView, type: .back, menuPresentationMode: presentationMode) })
         .sheet(isPresented: $isForwardListPresented, content: { BackForwardListView(webView: webView, type: .forward, menuPresentationMode: presentationMode) })
         .sheet(isPresented: $isWebAbstractPresented, content: { WebAbstractView(webView: webView) })
+        .sheet(isPresented: $isSharePresented, content: { ShareView(linkToShare: $sharingLink) })
         .sheet(isPresented: $isHomeViewPresented) {
             NavigationStack {
                 MainView { configuration in

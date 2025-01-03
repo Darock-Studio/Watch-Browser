@@ -6142,6 +6142,16 @@
         }
       }
     },
+    "Darock 短链接" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Short Link"
+          }
+        }
+      }
+    },
     "Darock 账户" : {
       "localizations" : {
         "ar" : {
@@ -43779,6 +43789,26 @@
         }
       }
     },
+    "生成短链接" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generate Short Link"
+          }
+        }
+      }
+    },
+    "生成短链接时出错" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error generating short link"
+          }
+        }
+      }
+    },
     "用户名" : {
       "localizations" : {
         "ar" : {
@@ -56748,6 +56778,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "一般"
+          }
+        }
+      }
+    },
+    "通过 Darock 短链接服务" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "via Darock short link service"
           }
         }
       }
