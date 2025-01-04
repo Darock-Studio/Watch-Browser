@@ -17694,6 +17694,16 @@
         }
       }
     },
+    "共享" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share"
+          }
+        }
+      }
+    },
     "共享表单" : {
       "localizations" : {
         "ar" : {
@@ -26706,16 +26716,6 @@
         }
       }
     },
-    "存储离线归档" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save Offline Page"
-          }
-        }
-      }
-    },
     "存储至 Darock Cloud" : {
       "localizations" : {
         "ar" : {
@@ -32464,6 +32464,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "You can reopen this page anytime in \"Tips→New Features\"."
+          }
+        }
+      }
+    },
+    "我们不会对特定的网站优化视频解析。\n以前能解析的网站不代表现在能解析，我们一般不会更改视频解析逻辑，某网站的视频无法解析是因为网站更新了，我们不可能追踪网站的更新来更新暗礁浏览器。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We do not optimize video parsing for specific websites.  \nWebsites that could be parsed before may not be parseable now. We generally do not change the video parsing logic. If a website's video cannot be parsed, it is because the website has been updated. It is not feasible for us to track website updates to update Darock Browser."
           }
         }
       }

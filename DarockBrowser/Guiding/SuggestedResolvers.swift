@@ -82,6 +82,10 @@ enum SuggestedResolver: RKSuggestResolver {
             Section {
                 SuggestedResolver.reboot.viewBlock
                 SuggestedResolver.networkCheck.viewBlock
+                Text("""
+                我们不会对特定的网站优化视频解析。
+                以前能解析的网站不代表现在能解析，我们一般不会更改视频解析逻辑，某网站的视频无法解析是因为网站更新了，我们不可能追踪网站的更新来更新暗礁浏览器。
+                """)
             } header: {
                 Text("先试试这些方案")
             }

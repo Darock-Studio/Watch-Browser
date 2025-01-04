@@ -131,14 +131,20 @@ struct BrowsingMenuView: View {
                             .opacity(0.0100000002421438702673861521)
                             .overlay {
                                 Button(action: {}, label: {
-                                    MarqueeText(
-                                        text: webView.url?.absoluteString ?? "",
-                                        font: .systemFont(ofSize: 14),
-                                        leftFade: 5,
-                                        rightFade: 5,
-                                        startDelay: 1.5,
-                                        alignment: .leading
-                                    )
+                                    HStack {
+                                        if webSearchString(from: webView.url?.absoluteString ?? "") != nil {
+                                            Image(systemName: "magnifyingglass")
+                                                .font(.system(size: 13))
+                                        }
+                                        MarqueeText(
+                                            text: linkInput,
+                                            font: .systemFont(ofSize: 14),
+                                            leftFade: 5,
+                                            rightFade: 5,
+                                            startDelay: 1.5,
+                                            alignment: .leading
+                                        )
+                                    }
                                 })
                                 .buttonStyle(.bordered)
                                 .buttonBorderShape(.roundedRectangle(radius: 14))
@@ -403,6 +409,7 @@ struct BrowsingMenuView: View {
                                     } else {
                                         webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
                                     }
+                                    webView.reload()
                                     presentationMode.wrappedValue.dismiss()
                                 }, label: {
                                     HStack {
@@ -678,7 +685,7 @@ struct BrowsingMenuView: View {
         }
         .onAppear {
             isLoading = webView.isLoading
-            linkInput = webView.url?.absoluteString ?? ""
+            linkInput = webSearchString(from: webView.url?.absoluteString ?? "") ?? webView.url?.absoluteString ?? ""
             linksUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
                 videoLinks = videoLinkLists
                 imageLinks = imageLinkLists
@@ -696,7 +703,7 @@ struct BrowsingMenuView: View {
         }
     }
     
-    func checkWebContent() {
+    private func checkWebContent() {
         guard let currentUrl = webView.url?.absoluteString else {
             videoLinkLists.removeAll()
             imageLinkLists.removeAll()
@@ -856,6 +863,29 @@ struct BrowsingMenuView: View {
                 }
             }
         })
+    }
+    private func webSearchString(from url: String) -> String? {
+        var searchPrefixes = [
+            "https://www.bing.com/search?q=",
+            "https://www.baidu.com/s?wd=",
+            "https://www.google.com/search?q=",
+            "https://www.sogou.com/web?query="
+        ]
+        if let customList = UserDefaults.standard.stringArray(forKey: "CustomSearchEngineList") {
+            searchPrefixes.append(contentsOf: customList.map {
+                if let range = $0.range(of: "%lld") {
+                    return String($0[..<range.lowerBound])
+                } else {
+                    return $0
+                }
+            })
+        }
+        for searchPrefix in searchPrefixes where url.hasPrefix(searchPrefix) {
+            if let dropped = url.dropFirst(searchPrefix.count).split(separator: "&").first {
+                return String(dropped).urlDecoded()
+            }
+        }
+        return nil
     }
 }
 

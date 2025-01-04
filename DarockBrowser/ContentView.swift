@@ -22,6 +22,7 @@ struct ContentView: View {
     @AppStorage("IsHistoryTransferNeeded") var isHistoryTransferNeeded = true
     @AppStorage("DarockAccount") var darockAccount = ""
     @AppStorage("DCSaveHistory") var isSaveHistoryToCloud = false
+    @AppStorage("isUseOldWebView") var isUseOldWebView = false
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
     @AppStorage("IsProPurchased") var isProPurchased = false
@@ -34,8 +35,17 @@ struct ContentView: View {
     var body: some View {
         Group {
             if #available(watchOS 10.0, *) {
-                TabsListView { onCreate in
-                    MainView(createPageAction: onCreate)
+                Group {
+                    if !isUseOldWebView {
+                        TabsListView { onCreate in
+                            MainView(createPageAction: onCreate)
+                        }
+                    } else {
+                        NavigationStack {
+                            MainView()
+                                .modifier(UserDefinedBackground())
+                        }
+                    }
                 }
                 .sheet(isPresented: $isVideoListPresented, content: { NavigationStack { VideoListView() } })
                 .sheet(isPresented: $isImageListPresented, content: { NavigationStack { ImageListView() } })
@@ -151,7 +161,7 @@ struct MainView: View {
                     NavigationLink(destination: {
                         if let createPageAction {
                             WebArchiveListView { name, link in
-                                createPageAction(.init(url: link, title: name))
+                                createPageAction(.init(url: link, title: name, isWebArchive: true))
                             }
                         } else {
                             WebArchiveListView()
@@ -216,6 +226,8 @@ struct MainView: View {
                         Label("Home.settings", systemImage: "gear")
                     })
                 }
+            }
+            if createPageAction == nil {
                 Section {
                     NavigationLink(destination: { FeedbackView() }, label: {
                         VStack {
@@ -255,6 +267,17 @@ struct MainView: View {
         }
         .navigationTitle({ if #available(watchOS 10.0, *) { true } else { false } }() ? String(localized: "起始页") : String(localized: "暗礁浏览器"))
         .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            if #available(watchOS 10.0, *), createPageAction == nil {
+                ToolbarItem(placement: .topBarLeading) {
+                    NavigationLink(destination: {
+                        SettingsView()
+                    }, label: {
+                        Image(systemName: "gear")
+                    })
+                }
+            }
+        }
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
             if let url = userActivity.webpageURL, var openUrl = url.absoluteString.split(separator: "darock.top/darockbrowser/open/", maxSplits: 1)[from: 1] {
                 if !openUrl.hasPrefix("http://") && !openUrl.hasPrefix("https://") {
