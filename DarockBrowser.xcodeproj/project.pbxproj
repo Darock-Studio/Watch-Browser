@@ -23,16 +23,12 @@
 		8C0FDC752CE9ABBA00D741A0 /* WitchWebUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0FDC722CE9AB5E00D741A0 /* WitchWebUI.framework */; };
 		8C0FDC762CE9ABBA00D741A0 /* WitchWebUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0FDC722CE9AB5E00D741A0 /* WitchWebUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C1DED022C32AEBB0048A32A /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1DED012C32AEB00048A32A /* General.swift */; };
-		8C207DCE2CBA8F650054D687 /* RadarKitCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C207DCD2CBA8F650054D687 /* RadarKitCore.xcframework */; };
-		8C207DCF2CBA8F650054D687 /* RadarKitCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C207DCD2CBA8F650054D687 /* RadarKitCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C34D5C52CAFC45E009257D0 /* Pictor in Frameworks */ = {isa = PBXBuildFile; productRef = 8C34D5C42CAFC45E009257D0 /* Pictor */; };
 		8C3E839D2C82246B00686E9C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E839C2C82246B00686E9C /* LICENSE */; };
 		8C40D4C42C33DBE900C4221C /* SDWebImagePDFCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 8C40D4C32C33DBE900C4221C /* SDWebImagePDFCoder */; };
 		8C40D4C62C33DE6B00C4221C /* TopLevelDomainList.drkdatat in Resources */ = {isa = PBXBuildFile; fileRef = 8C40D4C52C33DE5E00C4221C /* TopLevelDomainList.drkdatat */; };
 		8C4B9D9E2CD6399D008D0A52 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4B9D9D2CD6399C008D0A52 /* AuthenticationServices.framework */; };
 		8C4B9DA22CD63B45008D0A52 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4B9DA12CD63B45008D0A52 /* SafariServices.framework */; };
-		8C4E34992CB145210091AD22 /* DiagnosticsUI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4E34982CB145210091AD22 /* DiagnosticsUI.xcframework */; };
-		8C4E349A2CB145210091AD22 /* DiagnosticsUI.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4E34982CB145210091AD22 /* DiagnosticsUI.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C4E349E2CB2B7A20091AD22 /* BetaJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4E349D2CB2B79C0091AD22 /* BetaJoinView.swift */; };
 		8C52811C2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */; };
 		8C52811D2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5281162C22FA3C00392315 /* TripleQuestionmarkCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -109,6 +105,8 @@
 		8CCF13F22C20A4FF00F5E0D7 /* DarockAccountsUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCF13F12C20A4FF00F5E0D7 /* DarockAccountsUI.swift */; };
 		8CD3D89B2CA7E5D9009276DD /* Punycode in Frameworks */ = {isa = PBXBuildFile; productRef = 8CD3D89A2CA7E5D9009276DD /* Punycode */; };
 		8CD3D8ED2CAA384A009276DD /* SuggestedResolvers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3D8EC2CAA383B009276DD /* SuggestedResolvers.swift */; };
+		8CD6DA9E2D29AEBD00D3895F /* RadarKitCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8CD6DA9D2D29AEBD00D3895F /* RadarKitCore */; };
+		8CD6DAA12D29AEE700D3895F /* DiagnosticsUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8CD6DAA02D29AEE700D3895F /* DiagnosticsUI */; };
 		8CDE9B922C3AACDA0083B09E /* ___MesugakiAmane.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8CDE9B912C3AACDA0083B09E /* ___MesugakiAmane.drkdatau */; };
 		8CDE9B942C3AE1610083B09E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE9B932C3AE15D0083B09E /* Extensions.swift */; };
 		8CDE9B9E2C3C19460083B09E /* AudioListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE9B9D2C3C19460083B09E /* AudioListView.swift */; };
@@ -213,10 +211,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				8CC267E22CE8D5C500AE03F0 /* StorageUI.xcframework in Embed Frameworks */,
-				8C4E349A2CB145210091AD22 /* DiagnosticsUI.xcframework in Embed Frameworks */,
 				8C52811D2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Embed Frameworks */,
 				8C0FDC762CE9ABBA00D741A0 /* WitchWebUI.framework in Embed Frameworks */,
-				8C207DCF2CBA8F650054D687 /* RadarKitCore.xcframework in Embed Frameworks */,
 				8C99B4772CDFDBBB008FE01F /* NotifKit.xcframework in Embed Frameworks */,
 				8CA974562CF235980099D371 /* RadarKit.xcframework in Embed Frameworks */,
 			);
@@ -908,20 +904,19 @@
 			files = (
 				8C08B1C12D2781B500EF9804 /* DarockUI in Frameworks */,
 				8C0FDC752CE9ABBA00D741A0 /* WitchWebUI.framework in Frameworks */,
-				8C4E34992CB145210091AD22 /* DiagnosticsUI.xcframework in Frameworks */,
 				8C52811C2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Frameworks */,
 				8C4B9D9E2CD6399D008D0A52 /* AuthenticationServices.framework in Frameworks */,
 				8CA974552CF235980099D371 /* RadarKit.xcframework in Frameworks */,
 				8CA7B84F2BE3E053004643FE /* SDWebImageWebPCoder in Frameworks */,
 				8CF998E52D04C1D2009C7A28 /* Cepheus in Frameworks */,
 				8CA7B84C2BE3E025004643FE /* SDWebImageSwiftUI in Frameworks */,
-				8C207DCE2CBA8F650054D687 /* RadarKitCore.xcframework in Frameworks */,
 				8C4B9DA22CD63B45008D0A52 /* SafariServices.framework in Frameworks */,
 				8CF6363F2CAEC5E400ECE3B3 /* Pictor in Frameworks */,
 				8CF636372CAEB84A00ECE3B3 /* Cepheus in Frameworks */,
 				8C08B1CA2D2788F000EF9804 /* DarockFoundation in Frameworks */,
 				8CC284302CE09574000B2E33 /* MarqueeText in Frameworks */,
 				8CE867462D277FD9003CD685 /* DarockFoundation in Frameworks */,
+				8CD6DA9E2D29AEBD00D3895F /* RadarKitCore in Frameworks */,
 				8C99B4762CDFDBBB008FE01F /* NotifKit.xcframework in Frameworks */,
 				8C34D5C52CAFC45E009257D0 /* Pictor in Frameworks */,
 				8CD3D89B2CA7E5D9009276DD /* Punycode in Frameworks */,
@@ -930,6 +925,7 @@
 				8CA47BF52C972A9A00753101 /* SwiftyStoreKit in Frameworks */,
 				8CF8B9632C44FCAA0070F833 /* MarkdownUI in Frameworks */,
 				8CF6363A2CAEB8AA00ECE3B3 /* Cepheus in Frameworks */,
+				8CD6DAA12D29AEE700D3895F /* DiagnosticsUI in Frameworks */,
 				8C40D4C42C33DBE900C4221C /* SDWebImagePDFCoder in Frameworks */,
 				8CC267E12CE8D5C500AE03F0 /* StorageUI.xcframework in Frameworks */,
 				8CA4537B2AE3C5F600138CE4 /* EFQRCode in Frameworks */,
@@ -1979,6 +1975,8 @@
 				8CE867452D277FD9003CD685 /* DarockFoundation */,
 				8C08B1C02D2781B500EF9804 /* DarockUI */,
 				8C08B1C92D2788F000EF9804 /* DarockFoundation */,
+				8CD6DA9D2D29AEBD00D3895F /* RadarKitCore */,
+				8CD6DAA02D29AEE700D3895F /* DiagnosticsUI */,
 			);
 			productName = "WatchBrowser Watch App";
 			productReference = 6BF209EE2990E61C00E623FC /* DarockBrowser.app */;
@@ -2119,6 +2117,8 @@
 				8CE866EF2D270589003CD685 /* XCRemoteSwiftPackageReference "Vortex" */,
 				8C08B1BF2D2781B500EF9804 /* XCRemoteSwiftPackageReference "DarockUI" */,
 				8C08B1C82D2788F000EF9804 /* XCRemoteSwiftPackageReference "DarockFoundation" */,
+				8CD6DA9C2D29AEBD00D3895F /* XCRemoteSwiftPackageReference "RadarKitCore" */,
+				8CD6DA9F2D29AEE700D3895F /* XCRemoteSwiftPackageReference "_DiagnosticsUI" */,
 			);
 			productRefGroup = 6BF209E92990E61C00E623FC /* Products */;
 			projectDirPath = "";
@@ -3512,6 +3512,22 @@
 				kind = branch;
 			};
 		};
+		8CD6DA9C2D29AEBD00D3895F /* XCRemoteSwiftPackageReference "RadarKitCore" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Darock-Studio/RadarKitCore";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		8CD6DA9F2D29AEE700D3895F /* XCRemoteSwiftPackageReference "_DiagnosticsUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Darock-Studio/_DiagnosticsUI";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		8CE866EF2D270589003CD685 /* XCRemoteSwiftPackageReference "Vortex" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/twostraws/Vortex";
@@ -3616,6 +3632,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8C40D4C72C33EC9900C4221C /* XCRemoteSwiftPackageReference "PunycodeSwift" */;
 			productName = Punycode;
+		};
+		8CD6DA9D2D29AEBD00D3895F /* RadarKitCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CD6DA9C2D29AEBD00D3895F /* XCRemoteSwiftPackageReference "RadarKitCore" */;
+			productName = RadarKitCore;
+		};
+		8CD6DAA02D29AEE700D3895F /* DiagnosticsUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CD6DA9F2D29AEE700D3895F /* XCRemoteSwiftPackageReference "_DiagnosticsUI" */;
+			productName = DiagnosticsUI;
 		};
 		8CE866F02D270589003CD685 /* Vortex */ = {
 			isa = XCSwiftPackageProductDependency;

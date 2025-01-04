@@ -1,6 +1,15 @@
 {
-  "originHash" : "411a2e043dff649408d59891520f136b63a0b79c7b7f0311faa78ea6439615a8",
+  "originHash" : "b3a1b28c5b7ebffcf8240194515c25049f8e8b0520f3138f955baba2375d77b5",
   "pins" : [
+    {
+      "identity" : "_diagnosticsui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Darock-Studio/_DiagnosticsUI",
+      "state" : {
+        "branch" : "main",
+        "revision" : "3c0f73cdbe11f7dc200b34e59f2ef16063aa405f"
+      }
+    },
     {
       "identity" : "aexml",
       "kind" : "remoteSourceControl",
@@ -43,7 +52,7 @@
       "location" : "https://github.com/Darock-Studio/DarockFoundation",
       "state" : {
         "branch" : "main",
-        "revision" : "861c49a38e4493fad4c8a8d11d1ccc7ce3588abe"
+        "revision" : "914678eb6936130582e5e398754e2079c1f669a4"
       }
     },
     {
@@ -116,6 +125,15 @@
       "state" : {
         "revision" : "7f2db0a965408a1bc81fb094d4a3f6680162687c",
         "version" : "2.1.1"
+      }
+    },
+    {
+      "identity" : "radarkitcore",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Darock-Studio/RadarKitCore",
+      "state" : {
+        "branch" : "main",
+        "revision" : "0edc2cf9d07a0c52490060c95a7f44c94bf25ec1"
       }
     },
     {

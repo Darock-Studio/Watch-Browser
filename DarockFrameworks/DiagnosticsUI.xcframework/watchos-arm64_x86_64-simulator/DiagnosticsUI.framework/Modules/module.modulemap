@@ -1,6 +1,0 @@
-framework module DiagnosticsUI {
-  umbrella header "DiagnosticsUI.h"
-  export *
-
-  module * { export * }
-}

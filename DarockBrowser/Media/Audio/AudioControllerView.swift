@@ -332,7 +332,7 @@ struct AudioControllerView: View {
             HStack {
                 if !lyrics[lyricKeys[i]]!.isEmpty {
                     HStack {
-                        if ({ // swiftlint:disable:this control_statement
+                        if ({
                             var singerSplitCount = 0
                             for key in lyricKeys[0...i] {
                                 if let src = lyrics[key]!.components(separatedBy: "%tranlyric@")[from: 0], src.hasSuffix("：") {
@@ -370,7 +370,7 @@ struct AudioControllerView: View {
                             }
                             return singerSplitCount % 2 == 0 ? .leading : .trailing
                         }())
-                        if ({ // swiftlint:disable:this control_statement
+                        if ({
                             var singerSplitCount = 0
                             for key in lyricKeys[0...i] {
                                 if let src = lyrics[key]!.components(separatedBy: "%tranlyric@")[from: 0], src.hasSuffix("：") {
@@ -420,73 +420,71 @@ struct AudioControllerView: View {
         isSoftScrolling = true
         lyrics.removeAll()
         if !nowPlayingAudioId.isEmpty {
-            DarockKit.Network.shared
-                .requestJSON("https://music.\(0b10100011).com/api/song/lyric?id=\(nowPlayingAudioId)&lv=1&kv=1&tv=-1".compatibleUrlEncoded()) { respJson, isSuccess in
-                    if isSuccess {
-                        if let lyric = respJson["lrc"]["lyric"].string {
-                            let lineSpd = lyric.components(separatedBy: "\n")
+            requestJSON("https://music.\(0b10100011).com/api/song/lyric?id=\(nowPlayingAudioId)&lv=1&kv=1&tv=-1".compatibleUrlEncoded()) { respJson, isSuccess in
+                if isSuccess {
+                    if let lyric = respJson["lrc"]["lyric"].string {
+                        let lineSpd = lyric.components(separatedBy: "\n")
+                        for lineText in lineSpd {
+                            // swiftlint:disable:next for_where
+                            if lineText.contains(/\[[0-9]*:[0-9]*.[0-9]*\].*/) {
+                                if let text = lineText.components(separatedBy: "]")[from: 1],
+                                   let time = lineText.components(separatedBy: "[")[from: 1]?.components(separatedBy: "]")[from: 0],
+                                   let dTime = lyricTimeStringToSeconds(String(time)) {
+                                    lyrics.updateValue(String(text).removePrefix(" "), forKey: dTime)
+                                }
+                            }
+                        }
+                        if isShowTranslatedLyrics, let tlyric = respJson["tlyric"]["lyric"].string {
+                            let lineSpd = tlyric.components(separatedBy: "\n")
                             for lineText in lineSpd {
                                 // swiftlint:disable:next for_where
                                 if lineText.contains(/\[[0-9]*:[0-9]*.[0-9]*\].*/) {
                                     if let text = lineText.components(separatedBy: "]")[from: 1],
                                        let time = lineText.components(separatedBy: "[")[from: 1]?.components(separatedBy: "]")[from: 0],
-                                       let dTime = lyricTimeStringToSeconds(String(time)) {
-                                        lyrics.updateValue(String(text).removePrefix(" "), forKey: dTime)
+                                       let dTime = lyricTimeStringToSeconds(String(time)),
+                                       let sourceLyric = lyrics[dTime],
+                                       !sourceLyric.isEmpty && !text.isEmpty {
+                                        lyrics.updateValue("\(sourceLyric)%tranlyric@\(text.removePrefix(" "))", forKey: dTime)
                                     }
                                 }
                             }
-                            if isShowTranslatedLyrics, let tlyric = respJson["tlyric"]["lyric"].string {
-                                let lineSpd = tlyric.components(separatedBy: "\n")
-                                for lineText in lineSpd {
-                                    // swiftlint:disable:next for_where
-                                    if lineText.contains(/\[[0-9]*:[0-9]*.[0-9]*\].*/) {
-                                        if let text = lineText.components(separatedBy: "]")[from: 1],
-                                           let time = lineText.components(separatedBy: "[")[from: 1]?.components(separatedBy: "]")[from: 0],
-                                           let dTime = lyricTimeStringToSeconds(String(time)),
-                                           let sourceLyric = lyrics[dTime],
-                                           !sourceLyric.isEmpty && !text.isEmpty {
-                                            lyrics.updateValue("\(sourceLyric)%tranlyric@\(text.removePrefix(" "))", forKey: dTime)
-                                        }
-                                    }
-                                }
-                            }
-                            if lyrics.isEmpty {
-                                isLyricsAvailable = false
-                            }
-                        } else {
+                        }
+                        if lyrics.isEmpty {
                             isLyricsAvailable = false
                         }
                     } else {
-                        // Offline Lyrics
-                        if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/OfflineLyrics/\(nowPlayingAudioId).drkdatal") {
-                            do {
-                                let lrcFileStr = try String(
-                                    contentsOfFile: NSHomeDirectory() + "/Documents/OfflineLyrics/\(nowPlayingAudioId).drkdatal",
-                                    encoding: .utf8
-                                )
-                                if let lrcData = getJsonData([Double: String].self, from: lrcFileStr) {
-                                    lyrics = lrcData
-                                } else {
-                                    isLyricsAvailable = false
-                                }
-                            } catch {
+                        isLyricsAvailable = false
+                    }
+                } else {
+                    // Offline Lyrics
+                    if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/OfflineLyrics/\(nowPlayingAudioId).drkdatal") {
+                        do {
+                            let lrcFileStr = try String(
+                                contentsOfFile: NSHomeDirectory() + "/Documents/OfflineLyrics/\(nowPlayingAudioId).drkdatal",
+                                encoding: .utf8
+                            )
+                            if let lrcData = getJsonData([Double: String].self, from: lrcFileStr) {
+                                lyrics = lrcData
+                            } else {
                                 isLyricsAvailable = false
-                                globalErrorHandler(error)
                             }
-                        } else {
+                        } catch {
                             isLyricsAvailable = false
+                            globalErrorHandler(error)
                         }
+                    } else {
+                        isLyricsAvailable = false
                     }
                 }
-            DarockKit.Network.shared
-                .requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(nowPlayingAudioId)&ids=%5B\(nowPlayingAudioId)%5D".compatibleUrlEncoded()) { respJson, isSuccess in
-                    if isSuccess {
-                        if let imageUrl = respJson["songs"][0]["album"]["picUrl"].string {
-                            backgroundImageUrl = URL(string: imageUrl)
-                        }
-                        audioName = respJson["songs"][0]["name"].string ?? ""
+            }
+            requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(nowPlayingAudioId)&ids=%5B\(nowPlayingAudioId)%5D".compatibleUrlEncoded()) { respJson, isSuccess in
+                if isSuccess {
+                    if let imageUrl = respJson["songs"][0]["album"]["picUrl"].string {
+                        backgroundImageUrl = URL(string: imageUrl)
                     }
+                    audioName = respJson["songs"][0]["name"].string ?? ""
                 }
+            }
         } else {
             isLyricsAvailable = false
         }
@@ -747,22 +745,21 @@ func getCurrentPlaylistContents() -> [String]? {
 func updateNowPlaying() {
     var nowPlayingInfo = [String: Any]()
     if !nowPlayingAudioId.isEmpty {
-        DarockKit.Network.shared
-            .requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(nowPlayingAudioId)&ids=%5B\(nowPlayingAudioId)%5D".compatibleUrlEncoded()) { respJson, isSuccess in
-                if isSuccess {
-                    if let imageUrlString = respJson["songs"][0]["album"]["picUrl"].string,
-                       let imageUrl = URL(string: imageUrlString),
-                       let imageData = try? Data(contentsOf: imageUrl),
-                       let image = UIImage(data: imageData) {
-                        nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
-                    }
-                    nowPlayingInfo[MPMediaItemPropertyTitle] = respJson["songs"][0]["name"].string ?? String(localized: "暗礁浏览器 - 音频播放")
-                    nowPlayingInfo[MPMediaItemPropertyArtist] = respJson["songs"][0]["artists"][0]["name"].string ?? ""
-                    nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = respJson["songs"][0]["album"]["name"].string ?? ""
-                    nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = globalAudioPlayer.currentItem?.duration
-                    MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+        requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(nowPlayingAudioId)&ids=%5B\(nowPlayingAudioId)%5D".compatibleUrlEncoded()) { respJson, isSuccess in
+            if isSuccess {
+                if let imageUrlString = respJson["songs"][0]["album"]["picUrl"].string,
+                   let imageUrl = URL(string: imageUrlString),
+                   let imageData = try? Data(contentsOf: imageUrl),
+                   let image = UIImage(data: imageData) {
+                    nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
                 }
+                nowPlayingInfo[MPMediaItemPropertyTitle] = respJson["songs"][0]["name"].string ?? String(localized: "暗礁浏览器 - 音频播放")
+                nowPlayingInfo[MPMediaItemPropertyArtist] = respJson["songs"][0]["artists"][0]["name"].string ?? ""
+                nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = respJson["songs"][0]["album"]["name"].string ?? ""
+                nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = globalAudioPlayer.currentItem?.duration
+                MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
             }
+        }
     } else {
         nowPlayingInfo[MPMediaItemPropertyTitle] = String(localized: "暗礁浏览器 - 音频播放")
         nowPlayingInfo[MPMediaItemPropertyArtist] = ""

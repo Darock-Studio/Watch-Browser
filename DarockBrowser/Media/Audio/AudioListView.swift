@@ -31,70 +31,68 @@ struct AudioListView: View {
                             if audioLinkLists[i].contains(/music\..*\.com/) && audioLinkLists[i].contains(/(\?|&)id=[0-9]*\.mp3($|&)/),
                                let mid = audioLinkLists[i].split(separator: "id=")[from: 1]?.split(separator: ".mp3").first {
                                 downloadFileName = "\(mid).mp3"
-                                DarockKit.Network.shared
-                                    .requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(mid)&ids=%5B\(mid)%5D".compatibleUrlEncoded()) { respJson, isSuccess in
-                                        if isSuccess {
-                                            if let audioName = respJson["songs"][0]["name"].string {
-                                                var nameChart = (
-                                                    UserDefaults.standard.dictionary(forKey: "AudioHumanNameChart") as? [String: String]
-                                                ) ?? [String: String]()
-                                                nameChart.updateValue(audioName, forKey: "\(mid).mp3")
-                                                UserDefaults.standard.set(nameChart, forKey: "AudioHumanNameChart")
-                                            }
+                                requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(mid)&ids=%5B\(mid)%5D".compatibleUrlEncoded()) { respJson, isSuccess in
+                                    if isSuccess {
+                                        if let audioName = respJson["songs"][0]["name"].string {
+                                            var nameChart = (
+                                                UserDefaults.standard.dictionary(forKey: "AudioHumanNameChart") as? [String: String]
+                                            ) ?? [String: String]()
+                                            nameChart.updateValue(audioName, forKey: "\(mid).mp3")
+                                            UserDefaults.standard.set(nameChart, forKey: "AudioHumanNameChart")
                                         }
                                     }
-                                DarockKit.Network.shared
-                                    .requestJSON("https://music.\(0b10100011).com/api/song/lyric?id=\(mid)&lv=1&kv=1&tv=-1".compatibleUrlEncoded()) { respJson, isSuccess in
-                                        if isSuccess {
-                                            var lyrics = [Double: String]()
-                                            if let lyric = respJson["lrc"]["lyric"].string {
-                                                let lineSpd = lyric.components(separatedBy: "\n")
-                                                for lineText in lineSpd {
-                                                    // swiftlint:disable:next for_where
-                                                    if lineText.contains(/\[[0-9]*:[0-9]*.[0-9]*\].*/) {
-                                                        if let text = lineText.components(separatedBy: "]")[from: 1],
-                                                           let time = lineText.components(separatedBy: "[")[from: 1]?.components(separatedBy: "]")[from: 0],
-                                                           let dTime = lyricTimeStringToSeconds(String(time)) {
-                                                            lyrics.updateValue(String(text).removePrefix(" "), forKey: dTime)
-                                                        }
+                                }
+                                requestJSON("https://music.\(0b10100011).com/api/song/lyric?id=\(mid)&lv=1&kv=1&tv=-1".compatibleUrlEncoded()) { respJson, isSuccess in
+                                    if isSuccess {
+                                        var lyrics = [Double: String]()
+                                        if let lyric = respJson["lrc"]["lyric"].string {
+                                            let lineSpd = lyric.components(separatedBy: "\n")
+                                            for lineText in lineSpd {
+                                                // swiftlint:disable:next for_where
+                                                if lineText.contains(/\[[0-9]*:[0-9]*.[0-9]*\].*/) {
+                                                    if let text = lineText.components(separatedBy: "]")[from: 1],
+                                                       let time = lineText.components(separatedBy: "[")[from: 1]?.components(separatedBy: "]")[from: 0],
+                                                       let dTime = lyricTimeStringToSeconds(String(time)) {
+                                                        lyrics.updateValue(String(text).removePrefix(" "), forKey: dTime)
                                                     }
                                                 }
-                                                if isShowTranslatedLyrics {
-                                                    if let tlyric = respJson["tlyric"]["lyric"].string {
-                                                        let lineSpd = tlyric.components(separatedBy: "\n")
-                                                        for lineText in lineSpd {
-                                                            // swiftlint:disable:next for_where
-                                                            if lineText.contains(/\[[0-9]*:[0-9]*.[0-9]*\].*/) {
-                                                                if let text = lineText.components(separatedBy: "]")[from: 1],
-                                                                   let time = lineText.components(separatedBy: "[")[from: 1]?
-                                                                    .components(separatedBy: "]")[from: 0],
-                                                                   let dTime = lyricTimeStringToSeconds(String(time)),
-                                                                   let sourceLyric = lyrics[dTime],
-                                                                   !sourceLyric.isEmpty && !text.isEmpty {
-                                                                    lyrics.updateValue("\(sourceLyric)%tranlyric@\(text.removePrefix(" "))", forKey: dTime)
-                                                                }
+                                            }
+                                            if isShowTranslatedLyrics {
+                                                if let tlyric = respJson["tlyric"]["lyric"].string {
+                                                    let lineSpd = tlyric.components(separatedBy: "\n")
+                                                    for lineText in lineSpd {
+                                                        // swiftlint:disable:next for_where
+                                                        if lineText.contains(/\[[0-9]*:[0-9]*.[0-9]*\].*/) {
+                                                            if let text = lineText.components(separatedBy: "]")[from: 1],
+                                                               let time = lineText.components(separatedBy: "[")[from: 1]?
+                                                                .components(separatedBy: "]")[from: 0],
+                                                               let dTime = lyricTimeStringToSeconds(String(time)),
+                                                               let sourceLyric = lyrics[dTime],
+                                                               !sourceLyric.isEmpty && !text.isEmpty {
+                                                                lyrics.updateValue("\(sourceLyric)%tranlyric@\(text.removePrefix(" "))", forKey: dTime)
                                                             }
                                                         }
                                                     }
                                                 }
-                                                do {
-                                                    if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/OfflineLyrics") {
-                                                        try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/OfflineLyrics",
+                                            }
+                                            do {
+                                                if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/OfflineLyrics") {
+                                                    try FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Documents/OfflineLyrics",
                                                                                             withIntermediateDirectories: false)
-                                                    }
-                                                    if let jsonStr = jsonString(from: lyrics) {
-                                                        try jsonStr.write(
-                                                            toFile: NSHomeDirectory() + "/Documents/OfflineLyrics/\(mid).drkdatal",
-                                                            atomically: true,
-                                                            encoding: .utf8
-                                                        )
-                                                    }
-                                                } catch {
-                                                    globalErrorHandler(error)
                                                 }
+                                                if let jsonStr = jsonString(from: lyrics) {
+                                                    try jsonStr.write(
+                                                        toFile: NSHomeDirectory() + "/Documents/OfflineLyrics/\(mid).drkdatal",
+                                                        atomically: true,
+                                                        encoding: .utf8
+                                                    )
+                                                }
+                                            } catch {
+                                                globalErrorHandler(error)
                                             }
                                         }
                                     }
+                                }
                             } else {
                                 downloadFileName = "\(audioLinkLists[i].split(separator: "/").last!.split(separator: ".mp3")[0]).mp3"
                             }
@@ -126,18 +124,17 @@ struct AudioListView: View {
                                     try newStr.write(toFile: NSHomeDirectory() + "/Documents/Playlists/\(fileName)", atomically: true, encoding: .utf8)
                                     if addPlaylistUrl.contains(/music\..*\.com/) && addPlaylistUrl.contains(/(\?|&)id=[0-9]*\.mp3($|&)/),
                                        let mid = addPlaylistUrl.split(separator: "id=")[from: 1]?.split(separator: ".mp3").first {
-                                        DarockKit.Network.shared
-                                            .requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(mid)&ids=%5B\(mid)%5D".compatibleUrlEncoded()) { respJson, isSuccess in
-                                                if isSuccess {
-                                                    if let audioName = respJson["songs"][0]["name"].string {
-                                                        var nameChart = (
-                                                            UserDefaults.standard.dictionary(forKey: "AudioHumanNameChart") as? [String: String]
-                                                        ) ?? [String: String]()
-                                                        nameChart.updateValue(audioName, forKey: "\(mid).mp3")
-                                                        UserDefaults.standard.set(nameChart, forKey: "AudioHumanNameChart")
-                                                    }
+                                        requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(mid)&ids=%5B\(mid)%5D".compatibleUrlEncoded()) { respJson, isSuccess in
+                                            if isSuccess {
+                                                if let audioName = respJson["songs"][0]["name"].string {
+                                                    var nameChart = (
+                                                        UserDefaults.standard.dictionary(forKey: "AudioHumanNameChart") as? [String: String]
+                                                    ) ?? [String: String]()
+                                                    nameChart.updateValue(audioName, forKey: "\(mid).mp3")
+                                                    UserDefaults.standard.set(nameChart, forKey: "AudioHumanNameChart")
                                                 }
                                             }
+                                        }
                                     }
                                 }
                             }
