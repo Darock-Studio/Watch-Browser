@@ -10,6 +10,8 @@ import Combine
 import SwiftUI
 import DarockFoundation
 
+let createNewTabSubject = PassthroughSubject<NewWebTabConfiguration, Never>()
+
 @available(watchOS 10.0, *)
 struct TabsListView<StartPage>: View where StartPage: View {
     var startPage: (@escaping (NewWebTabConfiguration) -> Void) -> StartPage
@@ -25,12 +27,16 @@ struct TabsListView<StartPage>: View where StartPage: View {
     @State var isFeedbackAssistantPresented = false
     @State var isTipsPresented = false
     @State var createButtonVisibilityResetTimer: Timer?
+    @State var createButtonLongPressTimer: Timer?
     @State var isCreateButtonVisible = true
     @State var isCreateButtonPressed = false
     @State var wristLocation = WKInterfaceDevice.current().wristLocation
     @State var newFeedbackCount = 0
     @State var isNewVerAvailable = false
     @State var isNewYearCelebrationPresented = false
+    @State var isTabActionsPresented = false
+    @State var tabActionsRecentClosedTabs = [WebViewTab.Metadata]()
+    @State var tabActionsIsClearAlertPresented = false
     var body: some View {
         NavigationSplitView(sidebar: {
             NavigationStack {
@@ -55,8 +61,26 @@ struct TabsListView<StartPage>: View where StartPage: View {
                             .onDelete { index in
                                 for i in index {
                                     tabs[i].webView?.stopLoading()
+                                    guard tabs[i].metadata?.url != nil else { continue }
+                                    if let currentString = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/Tabs/RecentClosedTabs.drkdatar") {
+                                        if let data = getJsonData([WebViewTab.Metadata].self, from: currentString) {
+                                            if let jsonStr = jsonString(from: [tabs[i].metadata] + data) {
+                                                try? jsonStr.write(
+                                                    toFile: NSHomeDirectory() + "/Documents/Tabs/RecentClosedTabs.drkdatar", atomically: true, encoding: .utf8
+                                                )
+                                            }
+                                        }
+                                    } else if let jsonStr = jsonString(from: [tabs[i].metadata]) {
+                                        try? jsonStr.write(
+                                            toFile: NSHomeDirectory() + "/Documents/Tabs/RecentClosedTabs.drkdatar", atomically: true, encoding: .utf8
+                                        )
+                                    }
                                 }
                                 tabs.remove(atOffsets: index)
+                                if tabs.isEmpty {
+                                    tabs.append(.init(metadata: .init(url: nil)))
+                                    selectedTab = tabs.last
+                                }
                             }
                             .onMove { source, destination in
                                 tabs.move(fromOffsets: source, toOffset: destination)
@@ -161,6 +185,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                 .navigationDestination(isPresented: $isTipsPresented, destination: { TipsView() })
                 .modifier(UserDefinedBackground())
                 .sheet(isPresented: $isNewYearCelebrationPresented) { CelebrationFireworksView() }
+                .sheet(isPresented: $isTabActionsPresented, content: { tabActionsBody })
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Button(action: {
@@ -202,16 +227,26 @@ struct TabsListView<StartPage>: View where StartPage: View {
                                     Spacer()
                                 }
                                 Button(action: {
-                                    if !isCreateButtonPressed {
-                                        isCreateButtonPressed = true
-                                    } else {
-                                        tabs.append(.init(metadata: .init(url: nil)))
-                                        selectedTab = tabs.last
-                                        isCreateButtonPressed = false
+                                    if !isTabActionsPresented {
+                                        if !isCreateButtonPressed {
+                                            isCreateButtonPressed = true
+                                        } else {
+                                            tabs.append(.init(metadata: .init(url: nil)))
+                                            selectedTab = tabs.last
+                                            isCreateButtonPressed = false
+                                        }
                                     }
                                 }, label: {
                                     Image(systemName: isCreateButtonPressed ? "macwindow.badge.plus" : "plus")
                                 })
+                                ._onButtonGesture(pressing: { isPressing in
+                                    createButtonLongPressTimer?.invalidate()
+                                    if isPressing && !isCreateButtonPressed {
+                                        createButtonLongPressTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { _ in
+                                            isTabActionsPresented = true
+                                        })
+                                    }
+                                }, perform: {})
                                 if wristLocation == .right {
                                     Spacer()
                                 }
@@ -325,15 +360,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                 } else {
                     NavigationStack {
                         startPage { configuration in
-                            if let url = URL(string: configuration.url), let index = tabs.firstIndex(where: { $0.id == selectedTab.id }) {
-                                if !configuration.isWebArchive {
-                                    tabs[index].webView = AdvancedWebViewController.shared.newWebView(url)
-                                } else {
-                                    tabs[index].webView = AdvancedWebViewController.shared.newWebView(nil, archiveURL: url)
-                                }
-                                tabs[index].metadata = .init(url: url, title: configuration.title, isWebArchive: configuration.isWebArchive)
-                                self.selectedTab = tabs[index]
-                            }
+                            loadTab(from: configuration, replacing: selectedTab)
                         }
                     }
                 }
@@ -385,6 +412,97 @@ struct TabsListView<StartPage>: View where StartPage: View {
                 UserDefaults.standard.set(index, forKey: "LastPresentingTabIndex")
             } else {
                 UserDefaults.standard.removeObject(forKey: "LastPresentingTabIndex")
+            }
+        }
+        .onReceive(createNewTabSubject) { configuration in
+            loadTab(from: configuration)
+        }
+    }
+    
+    func loadTab(from configuration: NewWebTabConfiguration, replacing selectedTab: WebViewTab? = nil) {
+        if let url = URL(string: configuration.url) {
+            if let selectedTab, let index = tabs.firstIndex(where: { $0.id == selectedTab.id }) {
+                if !configuration.isWebArchive {
+                    tabs[index].webView = AdvancedWebViewController.shared.newWebView(url)
+                } else {
+                    tabs[index].webView = AdvancedWebViewController.shared.newWebView(nil, archiveURL: url)
+                }
+                tabs[index].metadata = .init(url: url, title: configuration.title, isWebArchive: configuration.isWebArchive)
+                self.selectedTab = tabs[index]
+            } else {
+                var newTab = WebViewTab(metadata: .init(url: url, title: configuration.title, isWebArchive: configuration.isWebArchive))
+                if !configuration.isWebArchive {
+                    newTab.webView = AdvancedWebViewController.shared.newWebView(url)
+                } else {
+                    newTab.webView = AdvancedWebViewController.shared.newWebView(nil, archiveURL: url)
+                }
+                tabs.append(newTab)
+                self.selectedTab = tabs.last
+            }
+        }
+    }
+    
+    var tabActionsBody: some View {
+        NavigationStack {
+            List {
+                Section {
+                    if !tabActionsRecentClosedTabs.isEmpty {
+                        ForEach(0..<tabActionsRecentClosedTabs.count, id: \.self) { i in
+                            if let url = tabActionsRecentClosedTabs[i].url {
+                                Button(action: {
+                                    loadTab(from: .init(url: url.absoluteString,
+                                                        title: tabActionsRecentClosedTabs[i].title,
+                                                        isWebArchive: tabActionsRecentClosedTabs[i].isWebArchive))
+                                    isTabActionsPresented = false
+                                }, label: {
+                                    VStack(alignment: .leading) {
+                                        Text(tabActionsRecentClosedTabs[i].title ?? url.absoluteString)
+                                            .font(.caption)
+                                            .lineLimit(2)
+                                        if tabActionsRecentClosedTabs[i].title != nil {
+                                            Text(url.absoluteString)
+                                                .font(.footnote)
+                                                .opacity(0.6)
+                                        }
+                                    }
+                                })
+                            }
+                        }
+                    }
+                } header: {
+                    Text("最近关闭")
+                }
+            }
+            .navigationTitle("标签页")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(role: .destructive, action: {
+                        tabActionsIsClearAlertPresented = true
+                    }, label: {
+                        Image(systemName: "clear")
+                    })
+                    .foregroundStyle(.red)
+                }
+            }
+            .alert("关闭所有标签页？", isPresented: $tabActionsIsClearAlertPresented, actions: {
+                Button(role: .destructive, action: {
+                    tabs.removeAll()
+                    isTabActionsPresented = false
+                }, label: {
+                    Text("删除")
+                })
+                Button(role: .cancel, action: {}, label: {
+                    Text("取消")
+                })
+            }, message: {
+                Text("此操作无法撤销。")
+            })
+        }
+        .onAppear {
+            if let _recentClosedTabsStr = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/Tabs/RecentClosedTabs.drkdatar"),
+               let recentClosedTabs = getJsonData([WebViewTab.Metadata].self, from: _recentClosedTabsStr) {
+                tabActionsRecentClosedTabs = recentClosedTabs
             }
         }
     }

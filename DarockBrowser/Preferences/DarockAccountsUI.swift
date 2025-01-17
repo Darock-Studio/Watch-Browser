@@ -370,32 +370,48 @@ struct DarockAccountManagementMain: View {
                             }
                         }
                     }
+                    if #unavailable(watchOS 10.0) {
+                        Section {
+                            Button(action: applyNewName) {
+                                if !isApplying {
+                                    Label("完成", systemImage: "checkmark")
+                                } else {
+                                    ProgressView()
+                                }
+                            }
+                            .disabled(isApplying || nameInput.isEmpty)
+                        }
+                    }
                 }
                 .navigationTitle("名称")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    ToolbarItem(placement: .confirmationAction) {
-                        Button(action: {
-                            isApplying = true
-                            requestString("https://fapi.darock.top:65535/user/name/set/\(darockAccount)/\(nameInput)".compatibleUrlEncoded()) { _, isSuccess in
-                                if isSuccess {
-                                    username = nameInput
-                                    presentationMode.wrappedValue.dismiss()
+                    if #available(watchOS 10.0, *) {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button(action: applyNewName) {
+                                if !isApplying {
+                                    Image(systemName: "checkmark")
+                                } else {
+                                    ProgressView()
                                 }
-                                isApplying = false
                             }
-                        }, label: {
-                            if !isApplying {
-                                Image(systemName: "checkmark")
-                            } else {
-                                ProgressView()
-                            }
-                        })
-                        .disabled(isApplying || nameInput.isEmpty)
+                            .disabled(isApplying || nameInput.isEmpty)
+                        }
                     }
                 }
                 .onAppear {
                     nameInput = username
+                }
+            }
+            
+            func applyNewName() {
+                isApplying = true
+                requestString("https://fapi.darock.top:65535/user/name/set/\(darockAccount)/\(nameInput)".compatibleUrlEncoded()) { _, isSuccess in
+                    if isSuccess {
+                        username = nameInput
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    isApplying = false
                 }
             }
         }

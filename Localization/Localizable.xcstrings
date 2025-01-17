@@ -175,7 +175,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "「ALPHA」は未成熟な機能を示し、この関連のフィードバックは受け付けません"
+            "value" : "「ALPHA」は現在未熟な機能を表し、これに関するフィードバックは受け付けていません。"
           }
         },
         "ko" : {
@@ -293,7 +293,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "「BETA」はほぼ完成していますが、検証が必要な機能を示しており、この種のプロジェクトに対するフィードバックを歓迎します"
+            "value" : "「BETA 」は、現時点では完成しているが、まだ検証が必要な機能を表し、そのようなプロジェクトに関するフィードバックを歓迎する！"
           }
         },
         "ko" : {
@@ -366,6 +366,12 @@
             "value" : "“Feedback Assistant” is unavailable"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「Feedback Assistant」は使用できません。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -427,7 +433,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "「フィードバックアシスタント」はDarockブラウザに更新があるため利用できません"
+            "value" : "Darock Browserのアップデートがあるため、「Feedback Assistant 」は使用できません。"
           }
         },
         "ko" : {
@@ -545,7 +551,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "「クイックブックマーク」は検索ボックスの内容をすばやくブックマークに追加できます"
+            "value" : "\"クイックブックマーク \"は、検索ボックスの内容を素早くブックマークすることができます。"
           }
         },
         "ko" : {
@@ -663,7 +669,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "「クイッククリア」は検索ボックスの内容をすばやくクリアできます"
+            "value" : "\"クイッククリア \"は、検索ボックスを素早くクリアすることができます。"
           }
         },
         "ko" : {
@@ -781,7 +787,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "「暗礁ブラウザ」の新機能"
+            "value" : "「Darock Browser」の新機能？"
           }
         },
         "ko" : {
@@ -853,6 +859,12 @@
             "state" : "translated",
             "value" : "**Darock Intelligence & Privacy**\n\nDarock Intelligence is designed to protect your information while allowing you to choose what content you share.\n\n### Web Summary\nWhen using web summary, the textual information from the web page is sent to an external Darock Intelligence service for processing. This information is not stored and is not linked to individuals."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**ダロックスマートとプライバシー**\n\nDarock Intelligenceはあなたの情報を保護し、共有する情報を選択できるように設計されています。\n\n### ウェブページの要約\nウェブページの要約を使用すると、ウェブページのテキスト情報がデバイスの外部に送信され、Darock Intelligenceサービスで処理されます。 この情報は保存されず、個人と関連付けられることもありません。"
+          }
         }
       }
     },
@@ -862,6 +874,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "**About Darock Browser & Privacy**\n\nDarock Browser is designed to protect your information and allow you to choose what to share.\n\n## Data Collection and Use\nThis section lists the features of the Darock Browser app that may collect personal data, along with their corresponding data categories and uses.\n\n### App\nThe Darock Browser app collects a small amount of non-personally identifiable interaction data (e.g., app launches) that is unrelated to privacy. This data will be aggregated with others' data and used only for app analytics.\n\n### Darock Account\nWhen you register for a Darock account, Darock collects your email address. As part of the Darock account credentials, the email address is used to verify your identity for providing Darock services that require account support.\n\n### Storage to Darock Cloud\n#### Browsing History\nIf you choose to store your browsing history in Darock Cloud, your recent browsing history will be automatically uploaded to Darock Cloud. This information will be stored in a protected area and will not be used for purposes other than providing you with the browsing history sync feature.\n\n### Feedback Assistant\nWhen submitting feedback through the Feedback Assistant, it collects approximate location data based on your IP address. This information is stored in isolation and is not linked to your identity, and it will be deleted within a reasonable time frame. This information is used solely to protect Darock's servers and the Feedback Assistant, as well as to prevent fraud.\n\nThe Feedback Assistant also collects app diagnostic information, which you can review before each submission and choose to delete.\n\nOnly after you select \"Submit\" in the Feedback Assistant will this information be collected and sent."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Darock Browserとプライバシーについて**\n\nDarock Browserは、あなたの情報を保護し、共有する内容を選択できるように設計されています。\n\n## データの収集と使用\nこのセクションでは、個人データを収集する可能性のあるDarock Browserアプリの機能と、対応するデータのカテゴリと用途を示します。\n\n### アプリ\nDarock Browserアプリは、プライバシー情報とは関係なく、お客様の身元とも関連しないやりとりに関する少量のデータを収集します（アプリの起動など）。 このデータは他の人のデータと集計され、アプリの分析にのみ使用されます。\n\n### Darockアカウント\nDarockは、お客様がDarockアカウントにサインアップする際にお客様のEメールアドレスを収集します。 Darockアカウントの認証情報の一部として、Eメールアドレスはアカウントサポートを必要とするDarockサービスのためにお客様を識別するために使用されます。\n\n### Darockクラウドへの保存\n#### 履歴\n履歴をDarock Cloudに保存することを選択した場合、最近の閲覧履歴が自動的にDarock Cloudにアップロードされます。 この情報は保護された領域に保存され、履歴の同期を提供する以外の目的で使用されることはありません。\n\n### フィードバックアシスタント\nFeedback Assistantを通じてフィードバックを送信する場合、Feedback AssistantはIPベースのおおよその位置情報を収集します。 この情報は隔離された場所に保存され、お客様の身元と関連付けられることはなく、合理的な期間内に削除されます。 この情報は、DarockのサーバーおよびFeedback Assistantを保護し、不正行為を防止するためにのみ使用されます。\n\nまた、Feedback Assistantでは、アプリの診断情報も収集されます。これらの情報は、毎回送信する前に確認し、任意で削除することができます。\n\nこの情報は、Feedback Assistantで「送信」を選択した後にのみ収集および送信されます。"
           }
         }
       }
@@ -919,7 +937,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**すべてのウェブページ内の動画が解析できるわけではない**\n\n****サイトの動画が再生できないなどのフィードバックを**しないでください"
+            "value" : "**ウェブページ内のすべての動画が解決できるわけではありません**\n\nサイトの動画が再生されないとか、そういうフィードバックはご遠慮ください"
           }
         },
         "ko" : {
@@ -1037,7 +1055,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**すべてのウェブページがApple Watchで正常に動作するわけではない**\n\n****ウェブサイト*が開かない*、*問題がある*などのフィードバックを**しないでください"
+            "value" : "**すべてのウェブページがApple Watchでうまく動作するわけではない**\n\nサイトが開かないとか、問題があるとか、そういうフィードバックはご遠慮ください"
           }
         },
         "ko" : {
@@ -1108,6 +1126,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "**Switch appearance according to sunrise and sunset & Privacy**\n\nDarock Browser and Apple Weather aims to protect your privacy and make you have control of what you wish to share.\n\nWhen Scheduled Appearance Switch is set to Sunset to Sunrise, Darock Browser will store your current location locally and send a copy to Apple Weather to get weather informations. Location informations are only sent to Apple Weather and will not include any third-party including Darock.\n\nYou can disable Switch Appearance According to Sunrise at anytime at Darock Browser’s Settings. Once disabled, Darock Browser will stop collecting your location information immediately and will not send to Apple Weather ever until the it is enabled again.\n\nVisit https://www.apple.com/privacy to learn more about how Apple manage users’ data."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**サンセットとサンライズによる外観とプライバシーの切り替え**\n\nDarock BrowserとApple Weatherは、あなたの情報を保護し、共有したい情報を選択できるように設計されています。\n\n日没から日の出までの外観切り替えが設定されている場合、Darock Browserは現在の位置情報をローカルに保存し、そのコピーをApple Weatherに送信して天気情報を取得します。 位置情報はApple Weatherのみに送信され、以下を含む第三者と共有されることはありません。\n ダロック\n\nこのオプションをオフにすると、Darock Browserは直ちに位置情報の収集を停止し、再度有効にするまでApple Weatherに位置情報を送信しません。\n\nAppleがどのようにデータを管理しているかについては、https://www.apple.com/privacy。"
           }
         }
       }
@@ -1721,6 +1745,12 @@
             "state" : "translated",
             "value" : "%@ to change layout settings."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@でレイアウト設定を変更します。"
+          }
         }
       }
     },
@@ -1731,6 +1761,12 @@
             "state" : "translated",
             "value" : "Keep Light Appearance before %@"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@の前に明るい色の外観を保つ。"
+          }
         }
       }
     },
@@ -1740,6 +1776,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Keep Dark Appearance before %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@の前に暗い外観を保つ"
           }
         }
       }
@@ -2006,6 +2048,24 @@
             }
           }
         },
+        "ja" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lldタブ"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "タブを開かない"
+                }
+              }
+            }
+          }
+        },
         "zh-Hans" : {
           "variations" : {
             "plural" : {
@@ -2044,6 +2104,12 @@
                 }
               }
             }
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld秒"
           }
         }
       }
@@ -18714,6 +18780,9 @@
         }
       }
     },
+    "关闭所有标签页？" : {
+
+    },
     "最大可视区域" : {
       "localizations" : {
         "en" : {
@@ -18841,6 +18910,9 @@
           }
         }
       }
+    },
+    "最近关闭" : {
+
     },
     "分享" : {
       "localizations" : {
@@ -33825,6 +33897,12 @@
             "state" : "translated",
             "value" : "Button %lld"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ボタン %lld"
+          }
         }
       }
     },
@@ -33834,6 +33912,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Split by Chapter"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支部別"
           }
         }
       }
@@ -37472,6 +37556,12 @@
             "value" : "Cluster can be used with Darock Browser. After installing Cluster, you can store local media from Darock Browser to Cluster."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ClusterはDarock Browserと連動しており、Clusterをインストールすると、Darock BrowserからClusterにローカルメディアを保存することができます。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37533,7 +37623,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Darockブラウザ"
+            "value" : "Darock Browser"
           }
         },
         "ko" : {
@@ -37651,7 +37741,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "暗礁ブラウザ - オーディオ再生"
+            "value" : "Darock Browser - オーディオ再生"
           }
         },
         "ko" : {
@@ -37723,6 +37813,12 @@
             "state" : "translated",
             "value" : "Darock Browser Pro"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browser Pro"
+          }
         }
       }
     },
@@ -37732,6 +37828,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darock Browser Pro is Actived"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browser Proの有効化"
           }
         }
       }
@@ -37861,6 +37963,12 @@
             "state" : "translated",
             "value" : "Darock Browser can’t open the page.\nThe error was: “%@”."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browserはページを開くことができません。\nエラーは「%@」です。"
+          }
         }
       }
     },
@@ -37870,6 +37978,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darock Browser can’t load this image"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browserはこの画像を読み込めません。"
           }
         }
       }
@@ -37881,6 +37995,12 @@
             "state" : "translated",
             "value" : "Darock Browser has an update available."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browserにアップデートがあります。"
+          }
         }
       }
     },
@@ -37890,6 +38010,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Local Image from Darock Browser"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browserの現地写真"
           }
         }
       }
@@ -39730,6 +39856,9 @@
         }
       }
     },
+    "标签页" : {
+
+    },
     "标签页浏览" : {
       "localizations" : {
         "en" : {
@@ -41368,6 +41497,9 @@
           }
         }
       }
+    },
+    "此操作无法撤销。" : {
+
     },
     "此脚本已安装" : {
       "localizations" : {

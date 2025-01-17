@@ -131,7 +131,7 @@ struct DarockBrowserApp: App {
                         // switches action string
                         switch splited[1] {
                         case "openURL" where splited[2].isURL():
-                            AdvancedWebViewController.shared.present(splited[2])
+                            createNewTabSubject.send(.init(url: splited[2]))
                         default: break
                         }
                     }

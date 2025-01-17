@@ -130,6 +130,7 @@ struct LocalImageView: View {
                             Button(role: .destructive, action: {
                                 do {
                                     try FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Documents/LocalImages/" + images[indexForMenu])
+                                    images.remove(at: indexForMenu)
                                     isMenuPresented = false
                                 } catch {
                                     globalErrorHandler(error)
