@@ -48,60 +48,7 @@ struct BrowsingMenuView: View {
         ZStack {
             NavigationStack {
                 List {
-                    if (webView.url?.absoluteString ?? "").contains("bilibili.com/") {
-                        Section {
-                            VStack {
-                                HStack {
-                                    WebImage(url: URL(string: "https://darock.top/meowbili/assetsv2/meow-93aa09e9.png")!, content: { image in
-                                        image.resizable()
-                                    }, placeholder: {
-                                        RoundedRectangle(cornerRadius: 12)
-                                            .fill(Color.gray)
-                                            .opacity(0.6)
-                                    })
-                                    .cornerRadius(12)
-                                    .frame(width: 50, height: 50)
-                                    VStack(alignment: .leading) {
-                                        Text("喵哩喵哩")
-                                        Text("第三方哔哩哔哩客户端")
-                                            .font(.footnote)
-                                            .opacity(0.6)
-                                    }
-                                    Spacer()
-                                }
-                                Group {
-                                    if UserDefaults(suiteName: "group.darockst")?.bool(forKey: "DCIsMeowBiliInstalled") ?? false {
-                                        Button(action: {
-                                            if let bvid = (webView.url?.absoluteString ?? "").split(separator: "bilibili.com/video/")[from: 1],
-                                               bvid.hasPrefix("BV") {
-                                                WKExtension.shared().openSystemURL(URL(string: "https://darock.top/meowbili/video/\(bvid)")!)
-                                            } else {
-                                                WKExtension.shared().openSystemURL(URL(string: "https://darock.top/meowbili/video")!)
-                                            }
-                                        }, label: {
-                                            HStack {
-                                                Text("在喵哩喵哩中打开")
-                                                Image(systemName: "arrow.up.forward.app")
-                                            }
-                                            .font(.headline)
-                                        })
-                                    } else {
-                                        Button(action: {
-                                            webView.load(URLRequest(url: URL(string: "https://testflight.apple.com/join/skaCe2L2")!))
-                                        }, label: {
-                                            HStack {
-                                                Text("前往 TestFlight")
-                                                Image(systemName: "arrow.up.right.square")
-                                            }
-                                            .font(.headline)
-                                        })
-                                    }
-                                }
-                                .buttonStyle(.borderedProminent)
-                                .buttonBorderShape(.roundedRectangle(radius: 12))
-                            }
-                        }
-                    }
+                    associatedWebApp(from: webView.url?.absoluteString ?? "")
                     Section {
                         HStack {
                             TextField("", text: $linkInput) {
@@ -700,6 +647,130 @@ struct BrowsingMenuView: View {
         }
         .onReceive(webView.publisher(for: \.isLoading)) { loading in
             isLoading = loading
+        }
+    }
+    
+    @ViewBuilder
+    private func associatedWebApp(from url: String) -> some View {
+        switch url {
+        case let x where x.contains("bilibili.com/"):
+            Section {
+                VStack {
+                    appHeadView(
+                        imageURL: "https://darock.top/meowbili/assetsv2/meow-93aa09e9.png",
+                        title: "喵哩喵哩",
+                        description: "第三方哔哩哔哩客户端"
+                    )
+                    Group {
+                        if UserDefaults(suiteName: "group.darockst")?.bool(forKey: "DCIsMeowBiliInstalled") ?? false {
+                            Button(action: {
+                                if let bvid = url.split(separator: "bilibili.com/video/")[from: 1],
+                                   bvid.hasPrefix("BV") {
+                                    WKExtension.shared().openSystemURL(URL(string: "https://darock.top/meowbili/video/\(bvid)")!)
+                                } else {
+                                    WKExtension.shared().openSystemURL(URL(string: "https://darock.top/meowbili/video")!)
+                                }
+                            }, label: {
+                                HStack {
+                                    Text("在喵哩喵哩中打开")
+                                    Image(systemName: "arrow.up.forward.app")
+                                }
+                                .font(.headline)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.3)
+                            })
+                        } else {
+                            Button(action: {
+                                webView.load(URLRequest(url: URL(string: "https://testflight.apple.com/join/skaCe2L2")!))
+                            }, label: {
+                                HStack {
+                                    Text("前往 TestFlight")
+                                    Image(systemName: "arrow.up.right.square")
+                                }
+                                .font(.headline)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.3)
+                            })
+                        }
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.roundedRectangle(radius: 12))
+                }
+            }
+        case let x where x.contains("t.me/"):
+            Section {
+                VStack {
+                    appHeadView(
+                        imageURL: "https://darock.top/darockbrowser/imgs/pigeon.webp",
+                        title: "Pigeon",
+                        description: "第三方 Telegram 客户端"
+                    )
+                    Group {
+                        Button(action: {
+                            let openURL = if url.hasPrefix("http://") {
+                                String(url.dropFirst("http://".count))
+                            } else if url.hasPrefix("https://") {
+                                String(url.dropFirst("https://".count))
+                            } else {
+                                url
+                            }
+                            WKExtension.shared().openSystemURL(URL(string: "https://services.pigeonwatch.app/\(openURL)")!)
+                        }, label: {
+                            HStack {
+                                Text("在 Pigeon 中打开")
+                                Image(systemName: "arrow.up.forward.app")
+                            }
+                            .font(.headline)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.3)
+                        })
+                        .buttonStyle(.borderedProminent)
+                        Button(action: {
+                            if let customDismissAction {
+                                customDismissAction()
+                            } else {
+                                webViewPresentationMode.dismiss()
+                            }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                                AdvancedWebViewController.shared.present("https://apps.apple.com/app/id1671939892", overrideOldWebView: .alwaysLegacy)
+                            }
+                        }, label: {
+                            HStack {
+                                Text("在 App Store 中查看")
+                                Image(_internalSystemName: "appstore.circle")
+                            }
+                            .font(.headline)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.3)
+                        })
+                        .buttonStyle(.bordered)
+                    }
+                    .buttonBorderShape(.roundedRectangle(radius: 12))
+                }
+            }
+        default:
+            EmptyView()
+        }
+    }
+    @ViewBuilder
+    private func appHeadView(imageURL: String, title: LocalizedStringKey, description: LocalizedStringKey) -> some View {
+        HStack {
+            WebImage(url: URL(string: imageURL)!, content: { image in
+                image.resizable()
+            }, placeholder: {
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color.gray)
+                    .opacity(0.6)
+            })
+            .cornerRadius(12)
+            .frame(width: 50, height: 50)
+            VStack(alignment: .leading) {
+                Text(title)
+                Text(description)
+                    .font(.footnote)
+                    .opacity(0.6)
+            }
+            Spacer()
         }
     }
     

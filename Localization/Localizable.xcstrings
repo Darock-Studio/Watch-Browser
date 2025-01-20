@@ -8858,6 +8858,9 @@
     "Microsoft Edge - Windows" : {
       "shouldTranslate" : false
     },
+    "Pigeon" : {
+      "shouldTranslate" : false
+    },
     "Powered by Cepheus Keyboard" : {
       "shouldTranslate" : false
     },
@@ -18781,7 +18784,14 @@
       }
     },
     "关闭所有标签页？" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close All Tabs?"
+          }
+        }
+      }
     },
     "最大可视区域" : {
       "localizations" : {
@@ -18912,7 +18922,14 @@
       }
     },
     "最近关闭" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Closed Recently"
+          }
+        }
+      }
     },
     "分享" : {
       "localizations" : {
@@ -25000,6 +25017,16 @@
         }
       }
     },
+    "在 App Store 中查看" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View in App Store"
+          }
+        }
+      }
+    },
     "在 iPhone 上继续" : {
       "localizations" : {
         "ar" : {
@@ -25114,6 +25141,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在 iPhone 上繼續"
+          }
+        }
+      }
+    },
+    "在 Pigeon 中打开" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open in Pigeon"
           }
         }
       }
@@ -39857,7 +39894,14 @@
       }
     },
     "标签页" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabs"
+          }
+        }
+      }
     },
     "标签页浏览" : {
       "localizations" : {
@@ -41499,7 +41543,14 @@
       }
     },
     "此操作无法撤销。" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This operation cannot be undone."
+          }
+        }
+      }
     },
     "此脚本已安装" : {
       "localizations" : {
@@ -48041,6 +48092,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Symbol"
+          }
+        }
+      }
+    },
+    "第三方 Telegram 客户端" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Third-party Telegram client."
           }
         }
       }

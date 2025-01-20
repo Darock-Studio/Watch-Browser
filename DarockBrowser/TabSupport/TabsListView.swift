@@ -417,6 +417,14 @@ struct TabsListView<StartPage>: View where StartPage: View {
         .onReceive(createNewTabSubject) { configuration in
             loadTab(from: configuration)
         }
+        .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
+            if let url = userActivity.webpageURL, var openUrl = url.absoluteString.split(separator: "darock.top/darockbrowser/open/", maxSplits: 1)[from: 1] {
+                if !openUrl.hasPrefix("http://") && !openUrl.hasPrefix("https://") {
+                    openUrl = "http://" + openUrl
+                }
+                loadTab(from: .init(url: String(openUrl).urlEncoded()))
+            }
+        }
     }
     
     func loadTab(from configuration: NewWebTabConfiguration, replacing selectedTab: WebViewTab? = nil) {

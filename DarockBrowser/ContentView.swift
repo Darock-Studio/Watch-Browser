@@ -278,14 +278,6 @@ struct MainView: View {
                 }
             }
         }
-        .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
-            if let url = userActivity.webpageURL, var openUrl = url.absoluteString.split(separator: "darock.top/darockbrowser/open/", maxSplits: 1)[from: 1] {
-                if !openUrl.hasPrefix("http://") && !openUrl.hasPrefix("https://") {
-                    openUrl = "http://" + openUrl
-                }
-                AdvancedWebViewController.shared.present(String(openUrl).urlEncoded())
-            }
-        }
         .onAppear {
             pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()
             webArchiveLinks = UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()
