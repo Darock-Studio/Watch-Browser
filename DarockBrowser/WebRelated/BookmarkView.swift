@@ -169,7 +169,7 @@ struct BookmarkView: View {
                 staredBookmarks.updateValue("https://music.163.com", forKey: String(localized: "网易云音乐"))
                 staredBookmarks.updateValue("https://bilibili.com", forKey: String(localized: "哔哩哔哩"))
                 staredBookmarks.updateValue("https://qidian.com", forKey: String(localized: "起点小说"))
-                staredBookmarks.updateValue("https://www.pixiv.pics", forKey: "Pixiv Viewer")
+                staredBookmarks.updateValue("https://www.pixiv.pictures", forKey: "Pixiv Viewer")
             }
         }
     }

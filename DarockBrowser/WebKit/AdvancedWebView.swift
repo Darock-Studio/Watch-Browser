@@ -31,18 +31,6 @@ final class AdvancedWebViewController: NSObject {
     
     var vc = NSObject()
     
-//    var isOverrideDesktopWeb = false {
-//        didSet {
-//            if isOverrideDesktopWeb {
-//                webViewObject?.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
-//                webViewObject?.reload()
-//            } else {
-//                webViewObject?.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
-//                webViewObject?.reload()
-//            }
-//        }
-//    }
-    
     @AppStorage("AllowCookies") var allowCookies = true
     @AppStorage("WebViewLayout") var webViewLayout = "MaximumViewport"
     @AppStorage("RequestDesktopWeb") var requestDesktopWeb = false
@@ -58,15 +46,6 @@ final class AdvancedWebViewController: NSObject {
     @AppStorage("IsShowFraudulentWebsiteWarning") var isShowFraudulentWebsiteWarning = true
     @AppStorage("WKJavaScriptEnabled") var isJavaScriptEnabled = true
     @AppStorage("LBIsAutoEnterReader") var isAutoEnterReader = true
-    
-//    var currentUrl: String {
-//        if let url = Dynamic(webViewObject).URL.asObject {
-//            _onFastPath()
-//            return (url as! NSURL).absoluteString!
-//        } else {
-//            return ""
-//        }
-//    }
     
     func newWebView(_ url: URL?, archiveURL: URL? = nil, loadMimeType: String = "application/x-webarchive") -> WKWebView {
         let wkWebView = WKWebView(frame: WKInterfaceDevice.current().screenBounds)
@@ -111,7 +90,6 @@ final class AdvancedWebViewController: NSObject {
             var getContext = HTMLCanvasElement.prototype.getContext;
             HTMLCanvasElement.prototype.getContext = function(type) {
                 if (type === 'webgl2' || type === 'experimental-webgl') {
-                    console.log('WebGL is disabled');
                     return null;
                 }
                 return getContext.apply(this, arguments);
@@ -213,7 +191,7 @@ func getMiddleRect(y: CGFloat, height: CGFloat) -> CGRect {
     return CGRect(x: (sb.width - (sb.width - 40)) / 2, y: y, width: sb.width - 40, height: height)
 }
 
-private struct GeneralUIViewControllerRepresenting: _UIViewControllerRepresentable {
+struct GeneralUIViewControllerRepresenting: _UIViewControllerRepresentable {
     var viewController: NSObject
     func makeUIViewController(context: Context) -> some NSObject {
         viewController

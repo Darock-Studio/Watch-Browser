@@ -2086,6 +2086,16 @@
         }
       }
     },
+    "%lld/%lld" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld"
+          }
+        }
+      }
+    },
     "%lld秒" : {
       "localizations" : {
         "en" : {
@@ -48101,7 +48111,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Third-party Telegram client."
+            "value" : "Third-party Telegram client"
           }
         }
       }

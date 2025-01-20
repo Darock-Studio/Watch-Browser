@@ -138,6 +138,7 @@
 		8CF6363A2CAEB8AA00ECE3B3 /* Cepheus in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF636392CAEB8AA00ECE3B3 /* Cepheus */; };
 		8CF6363C2CAEC5D800ECE3B3 /* Pictor in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF6363B2CAEC5D800ECE3B3 /* Pictor */; };
 		8CF6363F2CAEC5E400ECE3B3 /* Pictor in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF6363E2CAEC5E400ECE3B3 /* Pictor */; };
+		8CF87EDF2D3E8C5C00073C85 /* ImageGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF87EDD2D3E8C5800073C85 /* ImageGroupView.swift */; };
 		8CF8B9632C44FCAA0070F833 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF8B9622C44FCAA0070F833 /* MarkdownUI */; };
 		8CF998E52D04C1D2009C7A28 /* Cepheus in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF998E42D04C1D2009C7A28 /* Cepheus */; };
 		E25EA8382B70ABEF00BFEC6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E25EA83A2B70ABEF00BFEC6E /* InfoPlist.strings */; };
@@ -893,6 +894,7 @@
 		8CF636202CADC28800ECE3B3 /* IntelligenceModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntelligenceModels.swift; sourceTree = "<group>"; };
 		8CF636222CADD7CC00ECE3B3 /* IntelligenceStart.ahap */ = {isa = PBXFileReference; lastKnownFileType = text; path = IntelligenceStart.ahap; sourceTree = "<group>"; };
 		8CF636272CAE6B1D00ECE3B3 /* View+BrightnessReducable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+BrightnessReducable.swift"; sourceTree = "<group>"; };
+		8CF87EDD2D3E8C5800073C85 /* ImageGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGroupView.swift; sourceTree = "<group>"; };
 		E25EA8392B70ABEF00BFEC6E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E25EA83B2B70ABF000BFEC6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1900,6 +1902,7 @@
 				8CA7B8482BE3DF47004643FE /* ImageListView.swift */,
 				8CE70DCD2C7A533D00EFB3AD /* ImageViewerView.swift */,
 				8CE70DCF2C7A535F00EFB3AD /* LocalImageView.swift */,
+				8CF87EDD2D3E8C5800073C85 /* ImageGroupView.swift */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -2280,6 +2283,7 @@
 				8CB9A10E2C6D229600E6A367 /* MarkdownUI+.swift in Sources */,
 				8CE70DD02C7A536100EFB3AD /* LocalImageView.swift in Sources */,
 				8CE70DB82C7A507E00EFB3AD /* LocalAudiosView.swift in Sources */,
+				8CF87EDF2D3E8C5C00073C85 /* ImageGroupView.swift in Sources */,
 				8CA4537D2AE3C63900138CE4 /* JoinGroupView.swift in Sources */,
 				8C5930672C71CE51004C79CE /* SwiftWebView.swift in Sources */,
 				8CCDABEF2C5674F100E29E3D /* ClusterTipView.swift in Sources */,

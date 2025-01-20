@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Alamofire
+import DarockFoundation
 
 struct ImageListView: View {
     @AppStorage("IVUseDigitalCrownFor") var useDigitalCrownFor = "zoom"
@@ -112,24 +113,7 @@ struct ImageListView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isImageViewerPresented, content: {
-                if useDigitalCrownFor == "zoom" {
-                    TabView(selection: $tabSelection) {
-                        ForEach(0..<imageLinkLists.count, id: \.self) { i in
-                            ImageViewerView(url: imageLinkLists[i])
-                                .tag(i)
-                        }
-                    }
-                } else {
-                    TabView(selection: $tabSelection) {
-                        ForEach(0..<imageLinkLists.count, id: \.self) { i in
-                            ImageViewerView(url: imageLinkLists[i])
-                                .tag(i)
-                        }
-                    }
-                    .tabViewStyle(.carousel)
-                }
-            })
+            .sheet(isPresented: $isImageViewerPresented, content: { ImageGroupView(links: .constant(imageLinkLists), selection: tabSelection) })
             .onDisappear {
                 if (UserDefaults.standard.object(forKey: "CCIsContinuityMediaEnabled") as? Bool) ?? true {
                     globalMediaUserActivity?.invalidate()

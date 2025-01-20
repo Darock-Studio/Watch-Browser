@@ -70,22 +70,7 @@ struct LocalImageView: View {
             .scrollIndicators(.never)
             .navigationTitle("本地图片")
             .sheet(isPresented: $isImageViewerPresented) {
-                if useDigitalCrownFor == "zoom" {
-                    TabView(selection: $tabSelection) {
-                        ForEach(0..<images.count, id: \.self) { i in
-                            ImageViewerView(url: URL(filePath: NSHomeDirectory() + "/Documents/LocalImages/\(images[i])").absoluteString)
-                                .tag(i)
-                        }
-                    }
-                } else {
-                    TabView(selection: $tabSelection) {
-                        ForEach(0..<images.count, id: \.self) { i in
-                            ImageViewerView(url: URL(filePath: NSHomeDirectory() + "/Documents/LocalImages/\(images[i])").absoluteString)
-                                .tag(i)
-                        }
-                    }
-                    .tabViewStyle(.carousel)
-                }
+                ImageGroupView(links: .constant(images.map { NSHomeDirectory() + "/Documents/LocalImages/" + $0 }), selection: tabSelection)
             }
             .sheet(isPresented: $isMenuPresented) {
                 NavigationStack {
