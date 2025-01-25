@@ -1,5 +1,5 @@
 {
-  "originHash" : "126cb25f8aae0c2df0dcd92cd9919a89181257c40ee00d1e0d60a3b661501145",
+  "originHash" : "559008a9762d5ba0a9ab00f584684cde018f1030d2321f6046509046b4ae3cbc",
   "pins" : [
     {
       "identity" : "_diagnosticsui",
@@ -52,7 +52,7 @@
       "location" : "https://github.com/Darock-Studio/CorvusKit",
       "state" : {
         "branch" : "main",
-        "revision" : "05de869510bba729f5663f051e60fe1b6324a397"
+        "revision" : "24d70ea0920d8f0c4bde543ced9b8854b99403fa"
       }
     },
     {

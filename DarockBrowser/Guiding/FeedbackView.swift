@@ -204,7 +204,9 @@ private struct CorvusBannedView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var copyDeclarationInput = ""
     @State var descriptionInput = ""
+    @State var descriptionSnapshotCount = 0
     @State var isSubmitting = false
+    @State var descriptionClearTimer: Timer?
     var body: some View {
         List {
             Section {
@@ -265,6 +267,17 @@ private struct CorvusBannedView: View {
         }
         .listStyle(.plain)
         .navigationTitle("Corvus 封禁")
+        .onAppear {
+            descriptionClearTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                if (descriptionInput.count - descriptionSnapshotCount > 10) && !descriptionInput.isEmpty {
+                    descriptionInput = ""
+                }
+                descriptionSnapshotCount = descriptionInput.count
+            }
+        }
+        .onDisappear {
+            descriptionClearTimer?.invalidate()
+        }
     }
 }
 
