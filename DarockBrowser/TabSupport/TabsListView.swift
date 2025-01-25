@@ -268,7 +268,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                         for id in feedbackIds {
                             if let feedback = await manager.getFeedback(byId: id) {
                                 let formatter = RKCFileFormatter(for: feedback)
-                                let repCount = formatter.replies().removeAll(where: { $0.isInternalHidden }).count
+                                let repCount = formatter.replies().filter { !$0.isInternalHidden }.count
                                 let lastViewCount = UserDefaults.standard.integer(forKey: "RadarFB\(id)ReplyCount")
                                 if repCount > lastViewCount {
                                     newFeedbackCount++
