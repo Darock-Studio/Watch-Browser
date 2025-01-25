@@ -75,7 +75,7 @@ struct BrowsingMenuView: View {
                             .submitLabel(.go)
                             .buttonStyle(.bordered)
                             .buttonBorderShape(.roundedRectangle(radius: 14))
-                            .opacity(0.0100000002421438702673861521)
+                            .minimumRenderableOpacity()
                             .overlay {
                                 Button(action: {}, label: {
                                     HStack {
@@ -177,7 +177,7 @@ struct BrowsingMenuView: View {
                                     HStack {
                                         Text("上一页")
                                         Color.accentColor
-                                            .opacity(0.0100000002421438702673861521)
+                                            .minimumRenderableOpacity()
                                         Image(systemName: "chevron.backward")
                                     }
                                 })
@@ -197,7 +197,7 @@ struct BrowsingMenuView: View {
                                     HStack {
                                         Text("下一页")
                                         Color.accentColor
-                                            .opacity(0.0100000002421438702673861521)
+                                            .minimumRenderableOpacity()
                                         Image(systemName: "chevron.forward")
                                     }
                                 })

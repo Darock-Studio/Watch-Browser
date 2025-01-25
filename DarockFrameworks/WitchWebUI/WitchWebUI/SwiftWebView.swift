@@ -8,6 +8,7 @@
 import OSLog
 import Combine
 import SwiftUI
+import DarockUI
 
 struct SwiftWebView: View {
     static let loadingProgressHidden = CurrentValueSubject<Bool, Never>(true)
@@ -122,7 +123,7 @@ struct SwiftWebView: View {
                                 Rectangle()
                                     .fill(Color.gray)
                                     .frame(width: 40, height: 40)
-                                    .opacity(0.0100000002421438702673861521)
+                                    .minimumRenderableOpacity()
                                 Image(systemName: "ellipsis.circle")
                                     .font(.system(size: 20, weight: .light))
                                     .foregroundStyle(Color(red: 0, green: 170 / 255, blue: 215 / 255))

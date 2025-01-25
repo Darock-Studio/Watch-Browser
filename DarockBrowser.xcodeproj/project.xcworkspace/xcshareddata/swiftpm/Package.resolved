@@ -1,5 +1,5 @@
 {
-  "originHash" : "b3a1b28c5b7ebffcf8240194515c25049f8e8b0520f3138f955baba2375d77b5",
+  "originHash" : "126cb25f8aae0c2df0dcd92cd9919a89181257c40ee00d1e0d60a3b661501145",
   "pins" : [
     {
       "identity" : "_diagnosticsui",
@@ -47,6 +47,15 @@
       }
     },
     {
+      "identity" : "corvuskit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Darock-Studio/CorvusKit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "05de869510bba729f5663f051e60fe1b6324a397"
+      }
+    },
+    {
       "identity" : "darockfoundation",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Darock-Studio/DarockFoundation",
@@ -61,7 +70,7 @@
       "location" : "https://github.com/Darock-Studio/DarockUI",
       "state" : {
         "branch" : "main",
-        "revision" : "40832346ea32596f3cdbbc4c7005f8e70a7eec2e"
+        "revision" : "a7f4dc5ce3e7bd47f83e867b35b48e64144249cc"
       }
     },
     {
@@ -97,7 +106,7 @@
       "location" : "https://github.com/joekndy/MarqueeText",
       "state" : {
         "branch" : "master",
-        "revision" : "e18d514455563ad00581e0d825146c6f15b1c6c4"
+        "revision" : "a7cbf2182982f92488a137be6a20f9db257d545f"
       }
     },
     {
@@ -107,6 +116,15 @@
       "state" : {
         "revision" : "2849f5323265386e200484b0d0f896e73c3411b9",
         "version" : "6.0.1"
+      }
+    },
+    {
+      "identity" : "notifkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Darock-Studio/NotifKit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "3c866ddb7a4cf90d5ef4c81fc9eb7c1c4147bde3"
       }
     },
     {
@@ -128,12 +146,21 @@
       }
     },
     {
+      "identity" : "radarkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Darock-Studio/RadarKit/",
+      "state" : {
+        "branch" : "main",
+        "revision" : "c6af7779fb9e2fc5cd43de7cc20b0254f156f1ed"
+      }
+    },
+    {
       "identity" : "radarkitcore",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Darock-Studio/RadarKitCore",
       "state" : {
         "branch" : "main",
-        "revision" : "0edc2cf9d07a0c52490060c95a7f44c94bf25ec1"
+        "revision" : "e75b3d1bb38e0342349dbee59d909479dc9fca44"
       }
     },
     {
@@ -159,8 +186,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImageSVGCoder",
       "state" : {
-        "revision" : "950167445ab703740569869c8b7510efc9d09a26",
-        "version" : "1.7.0"
+        "revision" : "85b5d58ad02c207c496fa34426dc6560d6ae32f0",
+        "version" : "1.8.0"
       }
     },
     {

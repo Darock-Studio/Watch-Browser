@@ -11,6 +11,7 @@ import Intents
 import WatchKit
 import NotifKit
 import SDWebImage
+import RadarKitCore
 import AVFoundation
 import SwiftyStoreKit
 import DarockFoundation
@@ -18,6 +19,7 @@ import SDWebImageSVGCoder
 import SDWebImagePDFCoder
 import SDWebImageWebPCoder
 import AuthenticationServices
+@_spi(_internal) import CorvusKit
 
 var pTapToRadarAlertContent = ""
 var pTapToRadarAttachText = ""
@@ -196,6 +198,31 @@ class AppDelegate: NSObject, WKApplicationDelegate {
         _ = AppearenceManager.shared
         _ = LocationManager.shared
         _ = CachedLocationManager.shared
+        
+        Task {
+            do {
+                try await COKChecker.shared.appStartupAutoCheck()
+                let manager = RKCFeedbackManager(projectName: "Darock Browser")
+                let feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
+                for id in feedbackIds {
+                    if let feedback = await manager.getFeedback(byId: id) {
+                        let formatter = RKCFileFormatter(for: feedback)
+                        if let lastReply = formatter.replies().last {
+                            if _slowPath(lastReply.isInternalHidden),
+                               let state = lastReply.UpdateCorvusState,
+                               state == "true" {
+                                try await COKUpdater.shared.updateCOStatus(true)
+                                COKChecker.shared._applyWatermarkNow()
+                                COKChecker.shared.cachedCheckStatus = true
+                                break
+                            }
+                        }
+                    }
+                }
+            } catch {
+                print(error)
+            }
+        }
         
         requestString(
             "https://fapi.darock.top:65535/analyze/add/DBStatsAppStartupCount".compatibleUrlEncoded()

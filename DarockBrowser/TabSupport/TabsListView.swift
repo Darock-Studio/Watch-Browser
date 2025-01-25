@@ -8,6 +8,7 @@
 import OSLog
 import Combine
 import SwiftUI
+import RadarKitCore
 import DarockFoundation
 
 let createNewTabSubject = PassthroughSubject<NewWebTabConfiguration, Never>()
@@ -262,10 +263,12 @@ struct TabsListView<StartPage>: View where StartPage: View {
                 if !ProcessInfo.processInfo.isLowPowerModeEnabled {
                     let feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
                     newFeedbackCount = 0
-                    for id in feedbackIds {
-                        requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)".compatibleUrlEncoded()) { respStr, isSuccess in
-                            if isSuccess {
-                                let repCount = respStr.apiFixed().components(separatedBy: "---").count - 1
+                    Task {
+                        let manager = RKCFeedbackManager(projectName: "Darock Browser")
+                        for id in feedbackIds {
+                            if let feedback = await manager.getFeedback(byId: id) {
+                                let formatter = RKCFileFormatter(for: feedback)
+                                let repCount = formatter.replies().removeAll(where: { $0.isInternalHidden }).count
                                 let lastViewCount = UserDefaults.standard.integer(forKey: "RadarFB\(id)ReplyCount")
                                 if repCount > lastViewCount {
                                     newFeedbackCount++

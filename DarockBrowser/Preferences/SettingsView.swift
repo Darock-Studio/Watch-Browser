@@ -10,6 +10,7 @@ import Charts
 import Pictor
 import SwiftUI
 import Cepheus
+import DarockUI
 import EFQRCode
 import AVFAudio
 import WidgetKit
@@ -1749,7 +1750,7 @@ struct SettingsView: View {
                                     case .empty: "ellipsis.circle"
                                     }
                                 }())
-                                .opacity(buttons[i] == .empty ? 0.0100000002421438702673861521 : 1)
+                                .opacity(buttons[i] == .empty ? kViewMinimumRenderableOpacity : 1)
                                 .foregroundStyle(buttons[i] == .exit ? .red : .blue)
                             }
                         }
@@ -2189,7 +2190,7 @@ struct SettingsView: View {
                                 isScreenCleared = true
                             }
                             .compatibleDoubleTapGesture()
-                            .opacity(0.0100000002421438702673861521)
+                            .minimumRenderableOpacity()
                             .allowsHitTesting(false)
                         }
                         ScrollView {

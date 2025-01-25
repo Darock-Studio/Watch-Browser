@@ -11,7 +11,6 @@
 		8C0FDE252CE9AEAE00D741A0 /* UIKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0FDE242CE9AEAE00D741A0 /* UIKitHelper.swift */; };
 		8C0FDE272CE9AECD00D741A0 /* SwiftWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0FDE262CE9AECD00D741A0 /* SwiftWebView.swift */; };
 		8C0FDE292CE9AFA300D741A0 /* BrowsingMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0FDE282CE9AFA300D741A0 /* BrowsingMenuView.swift */; };
-		8C0FDE2B2CE9B17800D741A0 /* View+WrapIf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0FDE2A2CE9B17800D741A0 /* View+WrapIf.swift */; };
 		8C0FDE472CE9B24400D741A0 /* CAMetalDisplayLink.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C0FDE382CE9B24400D741A0 /* CAMetalDisplayLink.h */; };
 		8C0FDE482CE9B24400D741A0 /* CATransform3D.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C0FDE412CE9B24400D741A0 /* CATransform3D.h */; };
 		8C0FDE492CE9B24400D741A0 /* CAMediaTimingFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C0FDE372CE9B24400D741A0 /* CAMediaTimingFunction.h */; };
@@ -539,7 +538,6 @@
 		8C0FDE242CE9AEAE00D741A0 /* UIKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitHelper.swift; sourceTree = "<group>"; };
 		8C0FDE262CE9AECD00D741A0 /* SwiftWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftWebView.swift; sourceTree = "<group>"; };
 		8C0FDE282CE9AFA300D741A0 /* BrowsingMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowsingMenuView.swift; sourceTree = "<group>"; };
-		8C0FDE2A2CE9B17800D741A0 /* View+WrapIf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+WrapIf.swift"; sourceTree = "<group>"; };
 		8C0FDE2C2CE9B24400D741A0 /* CAAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAAnimation.h; sourceTree = "<group>"; };
 		8C0FDE2D2CE9B24400D741A0 /* CABase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CABase.h; sourceTree = "<group>"; };
 		8C0FDE2E2CE9B24400D741A0 /* CADisplayLink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CADisplayLink.h; sourceTree = "<group>"; };
@@ -674,7 +672,6 @@
 				8C0FDC732CE9AB8D00D741A0 /* WWUIWebController.swift */,
 				8C0FDE262CE9AECD00D741A0 /* SwiftWebView.swift */,
 				8C0FDE282CE9AFA300D741A0 /* BrowsingMenuView.swift */,
-				8C0FDE2A2CE9B17800D741A0 /* View+WrapIf.swift */,
 				8C0FDC772CE9ACE200D741A0 /* ObjC */,
 			);
 			path = WitchWebUI;
@@ -1463,7 +1460,6 @@
 				8C0FDE292CE9AFA300D741A0 /* BrowsingMenuView.swift in Sources */,
 				8C0FDE272CE9AECD00D741A0 /* SwiftWebView.swift in Sources */,
 				8C0FDE252CE9AEAE00D741A0 /* UIKitHelper.swift in Sources */,
-				8C0FDE2B2CE9B17800D741A0 /* View+WrapIf.swift in Sources */,
 				8C0FDC742CE9AB9000D741A0 /* WWUIWebController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

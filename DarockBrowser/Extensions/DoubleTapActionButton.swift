@@ -43,7 +43,7 @@ struct DoubleTapActionButton: View {
                 }
             }
             .compatibleDoubleTapGesture()
-            .opacity(0.0100000002421438702673861521)
+            .minimumRenderableOpacity()
             .allowsHitTesting(false)
         }
         #else

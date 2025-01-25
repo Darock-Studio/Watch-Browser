@@ -81,3 +81,10 @@ struct NewWebTabConfiguration {
     var title: String?
     var isWebArchive: Bool = false
 }
+extension NewWebTabConfiguration {
+    init(url: URL, title: String?, isWebArchive: Bool = false) {
+        self.url = url.absoluteString
+        self.title = title
+        self.isWebArchive = isWebArchive
+    }
+}

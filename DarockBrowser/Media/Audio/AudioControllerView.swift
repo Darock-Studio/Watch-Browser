@@ -521,7 +521,7 @@ struct AudioControllerView: View {
                 Spacer(minLength: 5)
             }
             .padding(.vertical, verticalPadding)
-            .opacity(isVisible ? 1.0 : 0.0100000002421438702673861521)
+            .opacity(isVisible ? 1.0 : kViewMinimumRenderableOpacity)
             .onAppear {
                 withAnimation(.easeInOut(duration: 2.0).repeatForever()) {
                     if scale > 1.0 {
@@ -610,7 +610,7 @@ struct AudioControllerView: View {
                 Circle()
                     .fill(Color.gray)
                     .scaleEffect(configuration.isPressed ? 0.9 : 1)
-                    .opacity(configuration.isPressed ? 0.4 : 0.0100000002421438702673861521)
+                    .opacity(configuration.isPressed ? 0.4 : kViewMinimumRenderableOpacity)
                 configuration.label
                     .scaleEffect(configuration.isPressed ? 0.9 : 1)
             }
@@ -624,7 +624,7 @@ struct AudioControllerView: View {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.gray)
                     .scaleEffect(isPressed ? 0.9 : 1)
-                    .opacity(isPressed ? 0.4 : 0.0100000002421438702673861521)
+                    .opacity(isPressed ? 0.4 : kViewMinimumRenderableOpacity)
                 content
                     .scaleEffect(isPressed ? 0.9 : 1)
             }

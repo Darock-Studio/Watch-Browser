@@ -2094,7 +2094,8 @@
             "value" : "%1$lld/%2$lld"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "%lld秒" : {
       "localizations" : {
@@ -5118,6 +5119,16 @@
         }
       },
       "shouldTranslate" : false
+    },
+    "Corvus 封禁" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Corvus Ban"
+          }
+        }
+      }
     },
     "Crash This App through NSException" : {
       "localizations" : {
@@ -15985,6 +15996,16 @@
         }
       }
     },
+    "你因为在“反馈助理”中发送不适宜的言论而被附加 Corvus 封禁。\n\n此封禁不会影响 App 功能，但会禁用你的“反馈助理”，以及在你的 App 内加上如你现在看到的水印。\n\n你可以通过下方的表单进行申诉。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You have been issued a Corvus ban for sending inappropriate remarks in \"Feedback Assistant.\"\n\nThis ban will not affect app functionality but will disable your \"Feedback Assistant\" and add a watermark in your app, like the one you are seeing now.\n\nYou can file an appeal using the form below."
+          }
+        }
+      }
+    },
     "你已登录" : {
       "localizations" : {
         "ar" : {
@@ -21123,6 +21144,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "前往登入 Darock 賬戶"
+          }
+        }
+      }
+    },
+    "前置条件" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precondition"
           }
         }
       }
@@ -29963,6 +29994,16 @@
         }
       }
     },
+    "已提交" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Submitted"
+          }
+        }
+      }
+    },
     "已添加到列表" : {
       "localizations" : {
         "en" : {
@@ -33937,6 +33978,16 @@
         }
       }
     },
+    "按原样抄写" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy exactly as is"
+          }
+        }
+      }
+    },
     "按钮 %lld" : {
       "localizations" : {
         "en" : {
@@ -34341,6 +34392,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "描述"
+          }
+        }
+      }
+    },
+    "描述文本" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Description Text"
+          }
+        }
+      }
+    },
+    "提交" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Submit"
+          }
+        }
+      }
+    },
+    "提交时出错" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error Submitting"
           }
         }
       }
@@ -41912,6 +41993,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "法律資訊與電信規範"
+          }
+        }
+      }
+    },
+    "法律之前人人平等，并有权享受法律的平等保护，不受任何歧视。人人有权享受平等保护，以免受违反本宣言的任何歧视行为以及煽动这种歧视的任何行为之害。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All are equal before the law and are entitled without any discrimination to equal protection of the law. All are entitled to equal protection against any discrimination in violation of this Declaration and against any incitement to such discrimination."
           }
         }
       }
@@ -51335,6 +51426,26 @@
         }
       }
     },
+    "请对本次申诉情况进行详细描述。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please provide a detailed description of your appeal."
+          }
+        }
+      }
+    },
+    "请按原样抄写上方文本。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please copy the text above exactly as is."
+          }
+        }
+      }
+    },
     "请求桌面网站" : {
       "localizations" : {
         "ar" : {
@@ -55151,6 +55262,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "重置時齣錯"
+          }
+        }
+      }
+    },
+    "还差 %lld 字" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld character remaining"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld characters remaining"
+                }
+              }
+            }
           }
         }
       }

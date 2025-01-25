@@ -7,9 +7,10 @@
 
 // Deprecated: Use Cepheus keyboard on watchOS 10 and newer OS.
 
-import Foundation
-import SwiftUI
 import Combine
+import SwiftUI
+import DarockUI
+import Foundation
 
 //有按钮点击的通知
 let keyTap = PassthroughSubject<Void, Never>()
@@ -80,7 +81,7 @@ struct ExtKeyboardView: View {
                     }, label: {
                         Color.gray
                             .cornerRadius(3)
-                            .opacity(0.0100000002421438702673861521)
+                            .minimumRenderableOpacity()
                             .frame(width: 20)
                             .overlay {
                                 if upper {
@@ -102,7 +103,7 @@ struct ExtKeyboardView: View {
                     }, label: {
                         Color.gray
                             .cornerRadius(3)
-                            .opacity(0.0100000002421438702673861521)
+                            .minimumRenderableOpacity()
                             .frame(width: 25)
                             .overlay {
                                 Text("#+=")
@@ -126,7 +127,7 @@ struct ExtKeyboardView: View {
                 }, label: {
                     Color.gray
                         .cornerRadius(3)
-                        .opacity(0.0100000002421438702673861521)
+                        .minimumRenderableOpacity()
                         .frame(width: 20)
                         .overlay {
                             if !isShowingNumber {
@@ -327,7 +328,7 @@ struct EachRowView: View {
                 }, label: {
                     Color.gray
                         .cornerRadius(3)
-                        .opacity(isKeyPressed[i] ? 0.8 : 0.0100000002421438702673861521)
+                        .opacity(isKeyPressed[i] ? 0.8 : kViewMinimumRenderableOpacity)
                         .frame(width: fullWidth / widthFix)
                         .overlay {
                             if isCapsLock {
