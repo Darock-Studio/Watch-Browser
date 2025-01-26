@@ -1,5 +1,5 @@
 {
-  "originHash" : "559008a9762d5ba0a9ab00f584684cde018f1030d2321f6046509046b4ae3cbc",
+  "originHash" : "92a3c75dd7bef9a5616e04f0b9ee9c8967ee0309ffe9461ca4a8fdb4a72c8cc9",
   "pins" : [
     {
       "identity" : "_diagnosticsui",
@@ -52,7 +52,16 @@
       "location" : "https://github.com/Darock-Studio/CorvusKit",
       "state" : {
         "branch" : "main",
-        "revision" : "24d70ea0920d8f0c4bde543ced9b8854b99403fa"
+        "revision" : "865481811cdc0d2e815c9a18be0bbda6878fb5f3"
+      }
+    },
+    {
+      "identity" : "darockaccountui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Darock-Studio/DarockAccountUI",
+      "state" : {
+        "branch" : "main",
+        "revision" : "2c094300f881b7de9e67f25a7435c44753caddc6"
       }
     },
     {
@@ -105,8 +114,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/joekndy/MarqueeText",
       "state" : {
-        "branch" : "master",
-        "revision" : "a7cbf2182982f92488a137be6a20f9db257d545f"
+        "revision" : "e18d514455563ad00581e0d825146c6f15b1c6c4"
       }
     },
     {
@@ -124,7 +132,7 @@
       "location" : "https://github.com/Darock-Studio/NotifKit",
       "state" : {
         "branch" : "main",
-        "revision" : "3c866ddb7a4cf90d5ef4c81fc9eb7c1c4147bde3"
+        "revision" : "b8c26ce4c4ce36845c2f30fbdbaab392f6065633"
       }
     },
     {
@@ -151,7 +159,7 @@
       "location" : "https://github.com/Darock-Studio/RadarKit/",
       "state" : {
         "branch" : "main",
-        "revision" : "c6af7779fb9e2fc5cd43de7cc20b0254f156f1ed"
+        "revision" : "3871fffdc949d5d8ca85dc4ed1bc4b0723c50b13"
       }
     },
     {
@@ -160,7 +168,7 @@
       "location" : "https://github.com/Darock-Studio/RadarKitCore",
       "state" : {
         "branch" : "main",
-        "revision" : "e75b3d1bb38e0342349dbee59d909479dc9fca44"
+        "revision" : "3a74b5742d4fc2725244095bf4768c8eacdf8aea"
       }
     },
     {

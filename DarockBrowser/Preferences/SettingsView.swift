@@ -18,6 +18,7 @@ import StorageUI
 import WeatherKit
 import CoreLocation
 import SwiftyStoreKit
+import DarockAccountUI
 import DarockFoundation
 import NetworkExtension
 import UserNotifications
@@ -34,6 +35,7 @@ struct SettingsView: View {
     @State var isEnterPasscodeViewInputPresented = false
     @State var passcodeInputTmp = ""
     @State var isDarockAccountLoginPresented = false
+    @State var darockAccountPasscodeInputTmp = ""
     var body: some View {
         List {
             Section {
@@ -72,9 +74,25 @@ struct SettingsView: View {
                                 }
                             }
                         }
-                    }, content: { DarockAccountLogin() })
+                    }, content: { DAUILoginView() })
                 } else {
-                    NavigationLink(destination: { DarockAccountManagementMain(username: accountUsername) }, label: {
+                    NavigationLink(destination: {
+                        DAUIAccountManagementView(username: accountUsername)
+                            .darockAccountPasswordProcessorForSensitiveOperations { completion in
+                                PasswordInputView(text: $darockAccountPasscodeInputTmp, placeholder: "输入锁定密码") { pwd in
+                                    if pwd.md5 == userPasscodeEncrypted {
+                                        completion()
+                                    } else {
+                                        tipWithText("密码错误", symbol: "xmark.circle.fill")
+                                    }
+                                    darockAccountPasscodeInputTmp = ""
+                                }
+                                .toolbar(.hidden, for: .navigationBar)
+                            }
+                            .darockAccountCloudView {
+                                DarockCloudView()
+                            }
+                    }, label: {
                         HStack {
                             Image(systemName: "person.crop.circle")
                                 .font(.system(size: 32))

@@ -38,6 +38,7 @@
 		8C5930652C712F75004C79CE /* BrowsingMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5930642C712F75004C79CE /* BrowsingMenuView.swift */; };
 		8C5930672C71CE51004C79CE /* SwiftWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5930662C71CE45004C79CE /* SwiftWebView.swift */; };
 		8C67C8F32C60DFF30091714D /* UIKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C67C8F22C60DFED0091714D /* UIKitHelper.swift */; };
+		8C6CC63C2D462EB0008309E5 /* DarockAccountUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8C6CC63B2D462EB0008309E5 /* DarockAccountUI */; };
 		8C6D86792C10C6A70089CE67 /* LaboratoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D86782C10C6A70089CE67 /* LaboratoryView.swift */; };
 		8C6E11DD2BDBF464005420C0 /* NewFeaturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E11DC2BDBF464005420C0 /* NewFeaturesView.swift */; };
 		8C6E11DF2BDC029E005420C0 /* WEBackSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E11DE2BDC029E005420C0 /* WEBackSwift.swift */; };
@@ -912,6 +913,7 @@
 				8CC284302CE09574000B2E33 /* MarqueeText in Frameworks */,
 				8CE867462D277FD9003CD685 /* DarockFoundation in Frameworks */,
 				8CD6DA9E2D29AEBD00D3895F /* RadarKitCore in Frameworks */,
+				8C6CC63C2D462EB0008309E5 /* DarockAccountUI in Frameworks */,
 				8C34D5C52CAFC45E009257D0 /* Pictor in Frameworks */,
 				8CD3D89B2CA7E5D9009276DD /* Punycode in Frameworks */,
 				8C7C4D412C2D87B300FD282B /* EPUBKit in Frameworks */,
@@ -1977,6 +1979,7 @@
 				8CF4E2462D45050700EA6EEF /* CorvusKit */,
 				8CF4E24B2D4543A400EA6EEF /* RadarKit */,
 				8CF4E24E2D4543BA00EA6EEF /* NotifKit */,
+				8C6CC63B2D462EB0008309E5 /* DarockAccountUI */,
 			);
 			productName = "WatchBrowser Watch App";
 			productReference = 6BF209EE2990E61C00E623FC /* DarockBrowser.app */;
@@ -2122,6 +2125,7 @@
 				8CF4E2452D45050700EA6EEF /* XCRemoteSwiftPackageReference "CorvusKit" */,
 				8CF4E24A2D4543A400EA6EEF /* XCRemoteSwiftPackageReference "RadarKit" */,
 				8CF4E24D2D4543BA00EA6EEF /* XCRemoteSwiftPackageReference "NotifKit" */,
+				8C6CC63A2D462EB0008309E5 /* XCRemoteSwiftPackageReference "DarockAccountUI" */,
 			);
 			productRefGroup = 6BF209E92990E61C00E623FC /* Products */;
 			projectDirPath = "";
@@ -3444,6 +3448,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		8C6CC63A2D462EB0008309E5 /* XCRemoteSwiftPackageReference "DarockAccountUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Darock-Studio/DarockAccountUI";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		8C7C4D3F2C2D87B200FD282B /* XCRemoteSwiftPackageReference "EPUBKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/witekbobrowski/EPUBKit";
@@ -3512,8 +3524,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/joekndy/MarqueeText";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = revision;
+				revision = e18d514455563ad00581e0d825146c6f15b1c6c4;
 			};
 		};
 		8CD6DA9C2D29AEBD00D3895F /* XCRemoteSwiftPackageReference "RadarKitCore" */ = {
@@ -3610,6 +3622,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8C40D4C22C33DBE900C4221C /* XCRemoteSwiftPackageReference "SDWebImagePDFCoder" */;
 			productName = SDWebImagePDFCoder;
+		};
+		8C6CC63B2D462EB0008309E5 /* DarockAccountUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C6CC63A2D462EB0008309E5 /* XCRemoteSwiftPackageReference "DarockAccountUI" */;
+			productName = DarockAccountUI;
 		};
 		8C7C4D402C2D87B300FD282B /* EPUBKit */ = {
 			isa = XCSwiftPackageProductDependency;
