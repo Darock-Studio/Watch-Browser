@@ -105,6 +105,7 @@
 		8CDE9B922C3AACDA0083B09E /* ___MesugakiAmane.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8CDE9B912C3AACDA0083B09E /* ___MesugakiAmane.drkdatau */; };
 		8CDE9B942C3AE1610083B09E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE9B932C3AE15D0083B09E /* Extensions.swift */; };
 		8CDE9B9E2C3C19460083B09E /* AudioListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE9B9D2C3C19460083B09E /* AudioListView.swift */; };
+		8CDFFF3A2D4837E900A76224 /* IfContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDFFF392D4837E400A76224 /* IfContainer.swift */; };
 		8CE3FCA82CCE12E3009E4EBB /* UserDefinedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE3FCA72CCE12DD009E4EBB /* UserDefinedBackground.swift */; };
 		8CE70DAF2C7A4F3500EFB3AD /* VideoPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DAE2C7A4F3100EFB3AD /* VideoPlayingView.swift */; };
 		8CE70DB12C7A4F7300EFB3AD /* MediaDownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DB02C7A4F6F00EFB3AD /* MediaDownloadView.swift */; };
@@ -867,6 +868,7 @@
 		8CDE9B932C3AE15D0083B09E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8CDE9B982C3BD7A40083B09E /* ci_pre_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_pre_xcodebuild.sh; sourceTree = "<group>"; };
 		8CDE9B9D2C3C19460083B09E /* AudioListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioListView.swift; sourceTree = "<group>"; };
+		8CDFFF392D4837E400A76224 /* IfContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfContainer.swift; sourceTree = "<group>"; };
 		8CE3FCA72CCE12DD009E4EBB /* UserDefinedBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefinedBackground.swift; sourceTree = "<group>"; };
 		8CE70DAE2C7A4F3100EFB3AD /* VideoPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayingView.swift; sourceTree = "<group>"; };
 		8CE70DB02C7A4F6F00EFB3AD /* MediaDownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDownloadView.swift; sourceTree = "<group>"; };
@@ -1719,6 +1721,7 @@
 				8CE3FCA72CCE12DD009E4EBB /* UserDefinedBackground.swift */,
 				8CBA140F2C7D1B4200D40EE5 /* DoubleTapActionButton.swift */,
 				8CF636202CADC28800ECE3B3 /* IntelligenceModels.swift */,
+				8CDFFF392D4837E400A76224 /* IfContainer.swift */,
 				8CB9A10D2C6D229200E6A367 /* MarkdownUI+.swift */,
 				8C9188822C73A64000C64E70 /* WKWebView+.swift */,
 				8CE70DBD2C7A50FE00EFB3AD /* AVPlayer+PeriodicTimePublisher.swift */,
@@ -2249,6 +2252,7 @@
 				8CA7B8392BE397D1004643FE /* UserScriptsView.swift in Sources */,
 				6BA7F7A02A2F6FC600FFEED0 /* SettingsView.swift in Sources */,
 				8C1DED022C32AEBB0048A32A /* General.swift in Sources */,
+				8CDFFF3A2D4837E900A76224 /* IfContainer.swift in Sources */,
 				8CB803D02BD3DCE4009B2FAC /* WebExtension.m in Sources */,
 				8CE70DB32C7A4FD100EFB3AD /* LocalVideosView.swift in Sources */,
 				8CB0189A2BDBC5C500982644 /* WebViewDelegate.swift in Sources */,

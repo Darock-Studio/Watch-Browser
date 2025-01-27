@@ -6475,9 +6475,6 @@
         }
       }
     },
-    "DarockConnect" : {
-      "shouldTranslate" : false
-    },
     "Data & Cloud" : {
       "shouldTranslate" : false
     },
@@ -7027,7 +7024,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No Histoty"
+            "value" : "No History"
           }
         },
         "es" : {
@@ -12327,6 +12324,7 @@
       "shouldTranslate" : false
     },
     "一个账户尽享 Darock 所有服务" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -13557,6 +13555,7 @@
       }
     },
     "两次密码不一致" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -13675,6 +13674,7 @@
       }
     },
     "个人信息" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -17257,6 +17257,7 @@
       }
     },
     "信息" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -20169,6 +20170,7 @@
       }
     },
     "删除账户" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -20287,6 +20289,7 @@
       }
     },
     "删除账户后，暗礁浏览器将关闭以应用更改，您需要手动重启暗礁浏览器。" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -21327,6 +21330,7 @@
       }
     },
     "危险区域" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -21687,6 +21691,7 @@
       }
     },
     "原密码错误" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -23037,6 +23042,7 @@
       }
     },
     "名称不能为空" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -27949,6 +27955,7 @@
       }
     },
     "密码不能为空" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -28185,6 +28192,7 @@
       }
     },
     "密码已更改" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -28539,6 +28547,7 @@
       }
     },
     "密码长度不能小于8位" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -29523,6 +29532,7 @@
       }
     },
     "已同步的数据将会被保留。" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -31467,6 +31477,7 @@
       }
     },
     "当前密码" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -41368,6 +41379,7 @@
       }
     },
     "此 %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -42008,6 +42020,7 @@
       }
     },
     "注册" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -42126,6 +42139,7 @@
       }
     },
     "注册 Darock 账户" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -44104,6 +44118,7 @@
       }
     },
     "用户名" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -44222,6 +44237,7 @@
       }
     },
     "用户名不能为空" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -44586,6 +44602,7 @@
       }
     },
     "电子邮件" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -44704,6 +44721,7 @@
       }
     },
     "电子邮件可用于登录。" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -44822,6 +44840,7 @@
       }
     },
     "电子邮件地址" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -44940,6 +44959,7 @@
       }
     },
     "电子邮件地址无效" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -45192,6 +45212,7 @@
       }
     },
     "登录" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -45310,6 +45331,7 @@
       }
     },
     "登录与安全性" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -46264,6 +46286,7 @@
       }
     },
     "确认文本不匹配" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -50804,6 +50827,7 @@
       }
     },
     "若要确认删除，请在上方输入“%@”" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -51043,6 +51067,7 @@
       }
     },
     "设备信息" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -51575,6 +51600,7 @@
       }
     },
     "账户密码" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -54047,6 +54073,7 @@
       }
     },
     "输入确认文本" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -55643,6 +55670,7 @@
       }
     },
     "这将删除账户下的所有数据！" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -56617,6 +56645,7 @@
       }
     },
     "退出登录" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -56735,6 +56764,7 @@
       }
     },
     "退出登录？" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -58513,6 +58543,7 @@
       }
     },
     "错误：账号或密码错误" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
