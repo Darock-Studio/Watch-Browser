@@ -41,7 +41,7 @@ struct BrowsingMenuView: View {
     @State var isForwardListPresented = false
     @State var isNewBookmarkCreated = false
     @State var isNewBookmarkAnimating = false
-    @State var isWebAbstractPresented = false
+    @State var isWebSummaryPresented = false
     @State var sharingLink = ""
     @State var isSharePresented = false
     var body: some View {
@@ -238,7 +238,7 @@ struct BrowsingMenuView: View {
                         if isProPurchased {
                             Section {
                                 Button(action: {
-                                    isWebAbstractPresented = true
+                                    isWebSummaryPresented = true
                                 }, label: {
                                     HStack {
                                         Text("网页摘要")
@@ -477,7 +477,7 @@ struct BrowsingMenuView: View {
                                 .tint({ if #available(watchOS 10.0, *) { true } else { false } }() ? .accentColor : .red)
                                 if isProPurchased {
                                     Button(action: {
-                                        isWebAbstractPresented = true
+                                        isWebSummaryPresented = true
                                     }, label: {
                                         HStack {
                                             Image(systemName: "doc.plaintext")
@@ -610,7 +610,7 @@ struct BrowsingMenuView: View {
         }
         .sheet(isPresented: $isBackListPresented, content: { BackForwardListView(webView: webView, type: .back, menuPresentationMode: presentationMode) })
         .sheet(isPresented: $isForwardListPresented, content: { BackForwardListView(webView: webView, type: .forward, menuPresentationMode: presentationMode) })
-        .sheet(isPresented: $isWebAbstractPresented, content: { WebAbstractView(webView: webView) })
+        .sheet(isPresented: $isWebSummaryPresented, content: { WebSummaryView(webView: webView) })
         .sheet(isPresented: $isSharePresented, content: { ShareView(linkToShare: $sharingLink) })
         .sheet(isPresented: $isHomeViewPresented) {
             NavigationStack {

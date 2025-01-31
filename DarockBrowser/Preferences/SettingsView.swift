@@ -263,6 +263,7 @@ struct SettingsView: View {
     struct DarockIntelligenceView: View {
         @AppStorage("IsProPurchased") var isProPurchased = false
         @AppStorage("DIWebAbstractLangOption") var webAbstractLangOption = "Web"
+        @AppStorage("DIWebAbstractModelOption") var webAbstractModelOption = "Faster"
         @State var isPrivacySplashPresented = false
         var body: some View {
             if isProPurchased {
@@ -271,6 +272,10 @@ struct SettingsView: View {
                         Picker("摘要语言", selection: $webAbstractLangOption) {
                             Text("网页语言").tag("Web")
                             Text("系统语言").tag("System")
+                        }
+                        Picker("摘要内容偏好", selection: $webAbstractModelOption) {
+                            Text("更快生成").tag("Faster")
+                            Text("更精确内容").tag("Accurater")
                         }
                     } header: {
                         Text("网页摘要")
@@ -1449,7 +1454,7 @@ struct SettingsView: View {
                                     Button(action: {
                                         isSunPrivacySplashPresented = true
                                     }, label: {
-                                        Text("关于根据日落与日出切换外观与隐私...")
+                                        Text("关于根据日落与日出切换外观与隐私…")
                                             .foregroundStyle(.blue)
                                     })
                                     .buttonStyle(.plain)
@@ -1581,7 +1586,7 @@ struct SettingsView: View {
                                     Text(String(i)).tag(String(i))
                                 }
                             }
-                            Text(":")
+                            Text(verbatim: ":")
                             Picker("分钟", selection: $minute) {
                                 ForEach(Array(0..<60).map {
                                     let str = String($0)
@@ -1863,10 +1868,10 @@ struct SettingsView: View {
                 }
                 Section {
                     NavigationLink(destination: { CustomSearchEngineSettingsView() }, label: {
-                        Text("管理自定搜索引擎...")
+                        Text("管理自定搜索引擎…")
                     })
                     NavigationLink(destination: { SearchEngineShortcutSettingsView() }, label: {
-                        Text("搜索引擎快捷方式...")
+                        Text("搜索引擎快捷方式…")
                     })
                 }
             }
@@ -2395,7 +2400,7 @@ struct SettingsView: View {
             }
             .navigationTitle("隐私与安全性")
             .sheet(isPresented: $isAboutPrivacyPresented) {
-                PrivacyAboutView(title: "关于暗礁浏览器与隐私", description: Text("\(Text("关于暗礁浏览器与隐私...").foregroundColor(.accentColor))"), detailText: """
+                PrivacyAboutView(title: "关于暗礁浏览器与隐私", description: Text("\(Text("关于暗礁浏览器与隐私…").foregroundColor(.accentColor))"), detailText: """
                 **关于暗礁浏览器与隐私**
                 
                 暗礁浏览器旨在保护你的信息并可让你选择共享的内容。
@@ -2614,7 +2619,7 @@ struct SettingsView: View {
                             UserDefaults.standard.removeObject(forKey: "ShouldTipNewFeatures\(i)")
                         }
                     }, label: {
-                        Text("Reset All What's New Screen State")
+                        Text("Reset All What‘s New Screen State")
                     })
                     Button(action: {
                         isColorChangeButtonUnlocked = false
@@ -2623,7 +2628,7 @@ struct SettingsView: View {
                         Text("Reset TQCAccentColorHiddenButton")
                     })
                 } header: {
-                    Text("What's New Screen & TQC")
+                    Text("What’s New Screen & TQC")
                 }
                 Section {
                     Button(role: .destructive, action: {

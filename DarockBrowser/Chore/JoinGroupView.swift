@@ -10,14 +10,14 @@ import EFQRCode
 
 struct JoinGroupView: View {
     @Environment(\.presentationMode) var presentationMode
-    @AppStorage("IsShowJoinGroup") var isShowJoinGroup = true
+    @AppStorage("IsShowJoinGroup2") var isShowJoinGroup = true
     var body: some View {
         List {
             if NSLocale.current.language.languageCode!.identifier == "zh" {
                 Section {
                     NavigationLink(destination: {
                         VStack {
-                            Image(decorative: EFQRCode.generate(for: "https://qm.qq.com/q/1q943WQLAo")!, scale: 1)
+                            Image(decorative: EFQRCode.generate(for: "https://qm.qq.com/q/M9Bd05kp6U")!, scale: 1)
                                 .resizable()
                                 .frame(width: 120, height: 120)
                             Text("在 iPhone 上继续")
@@ -25,7 +25,7 @@ struct JoinGroupView: View {
                         .navigationTitle("加入群聊")
                         .navigationBarTitleDisplayMode(.inline)
                     }, label: {
-                        Text("欢迎加入 QQ 群 248036605")
+                        Text("欢迎加入 QQ 群 1019196619")
                     })
                 } header: {
                     Text("QQ")

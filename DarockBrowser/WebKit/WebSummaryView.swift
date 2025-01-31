@@ -1,5 +1,5 @@
 //
-//  WebAbstractView.swift
+//  WebSummaryView.swift
 //  WatchBrowser
 //
 //  Created by memz233 on 10/3/24.
@@ -8,25 +8,26 @@
 import SwiftUI
 import SwiftSoup
 import DarockFoundation
+import DarockIntelligenceKit
 
-struct WebAbstractView: View {
+struct WebSummaryView: View {
     var webView: WKWebView
-    @State var abstractString = ""
+    @State var summaryString = ""
     @State var isFailedLoading = false
     @State var animateAngle: CGFloat = -45
     @State var animateTimer: Timer?
     var body: some View {
         NavigationStack {
             if !isFailedLoading {
-                if !abstractString.isEmpty {
+                if !summaryString.isEmpty {
                     ScrollView {
-                        Text(abstractString)
+                        Text(summaryString)
                     }
                     .navigationTitle("网页摘要")
                 } else {
                     ProgressView()
                         .controlSize(.large)
-                        .navigationTitle("正在载入摘要...")
+                        .navigationTitle("正在载入摘要…")
                 }
             } else {
                 VStack {
@@ -61,7 +62,7 @@ struct WebAbstractView: View {
     
     func getAbstract() {
         isFailedLoading = false
-        abstractString = ""
+        summaryString = ""
         animateTimer = Timer.scheduledTimer(withTimeInterval: 0.02, repeats: true) { _ in
             animateAngle += 1
         }
@@ -84,11 +85,11 @@ struct WebAbstractView: View {
                         }
                         let visibleText = texts.joined(separator: " ")
                         Task {
-                            if let abstract = await webAbstract(from: String(visibleText.prefix(2000))) {
+                            if !(await webSummary(from: String(visibleText.prefix(2000))) { str in
                                 DispatchQueue.main.async {
-                                    abstractString = abstract
+                                    summaryString += str
                                 }
-                            } else {
+                            }) {
                                 DispatchQueue.main.async {
                                     isFailedLoading = true
                                 }
@@ -114,10 +115,11 @@ struct WebAbstractView: View {
     }
 }
 
-private func webAbstract(from sourceText: String) async -> String? {
+private func webSummary(from sourceText: String, addingTo addingHandler: @escaping (String) -> Void) async -> Bool {
     let langOption = UserDefaults.standard.string(forKey: "DIWebAbstractLangOption") ?? "Web"
-    let messages: [SingleIntelligenceMessage] = [
-        SingleIntelligenceMessage(role: .system, content: """
+    let modelOption = UserDefaults.standard.string(forKey: "DIWebAbstractModelOption") ?? "Faster"
+    let messages: [IntelligenceChatMessage] = [
+        .init(role: .system, content: """
         你是一个网页摘要总结助手，我将向你发送一部分网页中的文本，直接回复文本所对应网页内容的摘要，以\({
         if langOption == "Web" {
             return "网页内容"
@@ -126,9 +128,22 @@ private func webAbstract(from sourceText: String) async -> String? {
         }
         }())语言总结摘要，不要回复任何多余文本。
         """),
-        SingleIntelligenceMessage(role: .user, content: sourceText)
+        .init(role: .user, content: sourceText)
     ]
-    return await getRawIntelligenceCompletionData(from: messages)
+    return await withCheckedContinuation { continuation in
+        intelligenceChat(with: modelOption == "Accurater" ? .deepseekR1_7b : .deepseekR1_1p5b, about: messages, handling: .mainOnly) { result in
+            switch result {
+            case let .success(response):
+                addingHandler(response.message.content)
+                if response.isRequestFinished {
+                    continuation.resume(returning: true)
+                }
+            case let .failure(error):
+                debugPrint(error)
+                continuation.resume(returning: false)
+            }
+        }
+    }
 }
 
 extension WKInterfaceDevice {

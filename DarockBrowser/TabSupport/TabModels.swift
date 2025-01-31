@@ -88,3 +88,17 @@ extension NewWebTabConfiguration {
         self.isWebArchive = isWebArchive
     }
 }
+
+enum TabMainPageSeletion: Hashable {
+    case webPage(WebViewTab)
+    case customView(HashableView)
+    
+    enum HashableView: Hashable {
+        case settings
+        case feedbackAssistant
+        case tips
+        case betaTesting
+        case clusterAd
+        case joinGroup
+    }
+}

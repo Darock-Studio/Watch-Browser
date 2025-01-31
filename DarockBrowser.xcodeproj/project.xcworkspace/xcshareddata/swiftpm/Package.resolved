@@ -1,5 +1,5 @@
 {
-  "originHash" : "92a3c75dd7bef9a5616e04f0b9ee9c8967ee0309ffe9461ca4a8fdb4a72c8cc9",
+  "originHash" : "016059aa0d8e9d501c099f5abeb733a752b1251bdb2843eb5b15fabc89cd2a25",
   "pins" : [
     {
       "identity" : "_diagnosticsui",
@@ -71,6 +71,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "914678eb6936130582e5e398754e2079c1f669a4"
+      }
+    },
+    {
+      "identity" : "darockintelligencekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Darock-Studio/DarockIntelligenceKit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "e3e5407101f545c9a26036026fee81a7812c3a28"
       }
     },
     {

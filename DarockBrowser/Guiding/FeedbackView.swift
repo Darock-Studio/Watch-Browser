@@ -157,7 +157,7 @@ struct FAQView: View {
                     """))
                 }
             }, label: {
-                Text("关于视频...")
+                Text("关于视频…")
             })
             NavigationLink(destination: {
                 ScrollView {
@@ -168,7 +168,7 @@ struct FAQView: View {
                     """))
                 }
             }, label: {
-                Text("关于视频播放卡住...")
+                Text("关于视频播放卡住…")
             })
             NavigationLink(destination: {
                 ScrollView {
@@ -179,7 +179,7 @@ struct FAQView: View {
                     """))
                 }
             }, label: {
-                Text("关于网页适配...")
+                Text("关于网页适配…")
             })
             NavigationLink(destination: {
                 ScrollView {
@@ -192,7 +192,7 @@ struct FAQView: View {
                     """))
                 }
             }, label: {
-                Text("关于特定网页优化...")
+                Text("关于特定网页优化…")
             })
         }
         .navigationTitle("常见问题")

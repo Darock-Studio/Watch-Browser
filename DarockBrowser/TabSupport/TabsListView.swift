@@ -19,14 +19,11 @@ struct TabsListView<StartPage>: View where StartPage: View {
     @AppStorage("WebViewLayout") var webViewLayout = "MaximumViewport"
     @AppStorage("ShouldShowRatingRequest") var shouldShowRatingRequest = false
     @AppStorage("MainPageShowCount") var mainPageShowCount = 0
-    @AppStorage("IsShowJoinGroup") var isShowJoinGroup = true
+    @AppStorage("IsShowJoinGroup2") var isShowJoinGroup = true
     @AppStorage("IsShowClusterAd") var isShowClusterAd = true
     @AppStorage("IsBetaJoinAvailable") var isBetaJoinAvailable = false
     @State var tabs = [WebViewTab]()
-    @State var selectedTab: WebViewTab?
-    @State var isAppSettingsPresented = false
-    @State var isFeedbackAssistantPresented = false
-    @State var isTipsPresented = false
+    @State var selectedTab: TabMainPageSeletion?
     @State var createButtonVisibilityResetTimer: Timer?
     @State var createButtonLongPressTimer: Timer?
     @State var isCreateButtonVisible = true
@@ -43,113 +40,118 @@ struct TabsListView<StartPage>: View where StartPage: View {
             NavigationStack {
                 ZStack {
                     List(selection: $selectedTab) {
-                        if isTodayNewYear() {
-                            Button(action: {
-                                isNewYearCelebrationPresented = true
-                            }, label: {
-                                HStack {
-                                    Image(systemName: "fireworks")
-                                        .symbolRenderingMode(.palette)
-                                        .foregroundStyle(.red, .yellow)
-                                    Text("新年快乐！")
-                                }
-                            })
-                        }
-                        Section {
-                            ForEach(tabs, id: \.id) { tab in
-                                TabLink(for: tab)
-                            }
-                            .onDelete { index in
-                                for i in index {
-                                    tabs[i].webView?.stopLoading()
-                                    guard tabs[i].metadata?.url != nil else { continue }
-                                    if let currentString = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/Tabs/RecentClosedTabs.drkdatar") {
-                                        if let data = getJsonData([WebViewTab.Metadata].self, from: currentString) {
-                                            if let jsonStr = jsonString(from: [tabs[i].metadata] + data) {
-                                                try? jsonStr.write(
-                                                    toFile: NSHomeDirectory() + "/Documents/Tabs/RecentClosedTabs.drkdatar", atomically: true, encoding: .utf8
-                                                )
-                                            }
-                                        }
-                                    } else if let jsonStr = jsonString(from: [tabs[i].metadata]) {
-                                        try? jsonStr.write(
-                                            toFile: NSHomeDirectory() + "/Documents/Tabs/RecentClosedTabs.drkdatar", atomically: true, encoding: .utf8
-                                        )
-                                    }
-                                }
-                                tabs.remove(atOffsets: index)
-                                if tabs.isEmpty {
-                                    tabs.append(.init(metadata: .init(url: nil)))
-                                    selectedTab = tabs.last
-                                }
-                            }
-                            .onMove { source, destination in
-                                tabs.move(fromOffsets: source, toOffset: destination)
-                            }
-                        }
-                        Section {
-                            Button(action: {
-                                isFeedbackAssistantPresented = true
-                            }, label: {
-                                VStack {
-                                    HStack {
-                                        ZStack(alignment: .topTrailing) {
-                                            Image(systemName: "exclamationmark.bubble")
-                                                .font(.system(size: 20))
-                                            if newFeedbackCount > 0 {
-                                                Text("\(newFeedbackCount)")
-                                                    .font(.system(size: 12, weight: .medium))
-                                                    .background(Circle().fill(Color.red).frame(width: 15, height: 15).opacity(1.0))
-                                                    .offset(x: 3, y: -5)
-                                                    .truncationMode(.head)
-                                            }
-                                        }
-                                        Text("反馈助理")
-                                    }
-                                    if isNewVerAvailable {
-                                        Text("“反馈助理”不可用，因为暗礁浏览器有更新可用")
-                                            .font(.system(size: 12))
-                                            .multilineTextAlignment(.center)
-                                    }
-                                }
-                            })
-                            .disabled(isNewVerAvailable)
-                            Button(action: {
-                                isTipsPresented = true
-                            }, label: {
-                                Label("提示", privateSystemImage: "tips")
-                            })
-                        }
-                        Section {
-                            if shouldShowRatingRequest {
+                        Group {
+                            if isTodayNewYear() {
                                 Button(action: {
-                                    shouldShowRatingRequest = false
+                                    isNewYearCelebrationPresented = true
                                 }, label: {
-                                    VStack(alignment: .leading) {
-                                        Text("喜欢暗礁浏览器？前往 iPhone 上的 App Store 为我们评分！")
-                                        Text("轻触以隐藏")
-                                            .font(.system(size: 14))
-                                            .foregroundStyle(.gray)
+                                    HStack {
+                                        Image(systemName: "fireworks")
+                                            .symbolRenderingMode(.palette)
+                                            .foregroundStyle(.red, .yellow)
+                                        Text("新年快乐！")
                                     }
                                 })
                             }
-                            if isBetaJoinAvailable && !isAppBetaBuild {
-                                NavigationLink(destination: { BetaJoinView() }, label: {
-                                    Label("参与 Beta 测试", systemImage: "person.badge.clock")
-                                        .centerAligned()
-                                })
+                            Section {
+                                ForEach(tabs, id: \.id) { tab in
+                                    TabLink(for: tab)
+                                }
+                                .onDelete { index in
+                                    for i in index {
+                                        tabs[i].webView?.stopLoading()
+                                        guard tabs[i].metadata?.url != nil else { continue }
+                                        if let currentString = try? String(contentsOfFile: NSHomeDirectory() + "/Documents/Tabs/RecentClosedTabs.drkdatar") {
+                                            if let data = getJsonData([WebViewTab.Metadata].self, from: currentString) {
+                                                if let jsonStr = jsonString(from: [tabs[i].metadata] + data) {
+                                                    try? jsonStr.write(
+                                                        toFile: NSHomeDirectory() + "/Documents/Tabs/RecentClosedTabs.drkdatar", atomically: true, encoding: .utf8
+                                                    )
+                                                }
+                                            }
+                                        } else if let jsonStr = jsonString(from: [tabs[i].metadata]) {
+                                            try? jsonStr.write(
+                                                toFile: NSHomeDirectory() + "/Documents/Tabs/RecentClosedTabs.drkdatar", atomically: true, encoding: .utf8
+                                            )
+                                        }
+                                    }
+                                    tabs.remove(atOffsets: index)
+                                    if tabs.isEmpty {
+                                        tabs.append(.init(metadata: .init(url: nil)))
+                                        selectedTab = .webPage(tabs.last!)
+                                    }
+                                }
+                                .onMove { source, destination in
+                                    tabs.move(fromOffsets: source, toOffset: destination)
+                                }
                             }
-                            if #available(watchOS 10, *), isShowClusterAd {
-                                NavigationLink(destination: { ClusterAdView() }, label: {
-                                    Label("推荐 - 暗礁文件", systemImage: "sparkles")
-                                        .centerAligned()
-                                })
+                            Section {
+                                NavigationLink(value: TabMainPageSeletion.customView(.feedbackAssistant)) {
+                                    VStack {
+                                        HStack {
+                                            ZStack(alignment: .topTrailing) {
+                                                Image(systemName: "exclamationmark.bubble")
+                                                    .font(.system(size: 20))
+                                                if newFeedbackCount > 0 {
+                                                    Text("\(newFeedbackCount)")
+                                                        .font(.system(size: 12, weight: .medium))
+                                                        .background(Circle().fill(Color.red).frame(width: 15, height: 15).opacity(1.0))
+                                                        .offset(x: 3, y: -5)
+                                                        .truncationMode(.head)
+                                                }
+                                            }
+                                            Text("反馈助理")
+                                        }
+                                        if isNewVerAvailable {
+                                            Text("“反馈助理”不可用，因为暗礁浏览器有更新可用")
+                                                .font(.system(size: 12))
+                                                .multilineTextAlignment(.center)
+                                        }
+                                    }
+                                }
+                                .disabled(isNewVerAvailable)
+                                NavigationLink(value: TabMainPageSeletion.customView(.tips)) {
+                                    Label("提示", privateSystemImage: "tips")
+                                }
                             }
-                            if isShowJoinGroup {
-                                NavigationLink(destination: { JoinGroupView() }, label: {
-                                    Label("欢迎加入群聊", systemImage: "bubble.left.and.bubble.right")
-                                        .centerAligned()
-                                })
+                            Section {
+                                if shouldShowRatingRequest {
+                                    Button(action: {
+                                        shouldShowRatingRequest = false
+                                    }, label: {
+                                        VStack(alignment: .leading) {
+                                            Text("喜欢暗礁浏览器？前往 iPhone 上的 App Store 为我们评分！")
+                                            Text("轻触以隐藏")
+                                                .font(.system(size: 14))
+                                                .foregroundStyle(.gray)
+                                        }
+                                    })
+                                }
+                                if isBetaJoinAvailable && !isAppBetaBuild {
+                                    NavigationLink(value: TabMainPageSeletion.customView(.betaTesting)) {
+                                        Label("参与 Beta 测试", systemImage: "person.badge.clock")
+                                            .centerAligned()
+                                    }
+                                }
+                                if #available(watchOS 10, *), isShowClusterAd {
+                                    NavigationLink(value: TabMainPageSeletion.customView(.clusterAd)) {
+                                        Label("推荐 - 暗礁文件", systemImage: "sparkles")
+                                            .centerAligned()
+                                    }
+                                }
+                                if isShowJoinGroup {
+                                    NavigationLink(value: TabMainPageSeletion.customView(.joinGroup)) {
+                                        Label("欢迎加入群聊", systemImage: "bubble.left.and.bubble.right")
+                                            .centerAligned()
+                                    }
+                                }
+                            }
+                        }
+                        .toolbar {
+                            ToolbarItem(placement: .topBarLeading) {
+                                NavigationLink(value: TabMainPageSeletion.customView(.settings)) {
+                                    Image(systemName: "gear")
+                                }
                             }
                         }
                     }
@@ -181,20 +183,10 @@ struct TabsListView<StartPage>: View where StartPage: View {
                 }
                 .navigationTitle("\(tabs.count) 个标签页")
                 .navigationBarTitleDisplayMode(.inline)
-                .navigationDestination(isPresented: $isAppSettingsPresented, destination: { SettingsView() })
-                .navigationDestination(isPresented: $isFeedbackAssistantPresented, destination: { FeedbackView() })
-                .navigationDestination(isPresented: $isTipsPresented, destination: { TipsView() })
                 .modifier(UserDefinedBackground())
-                .sheet(isPresented: $isNewYearCelebrationPresented) { CelebrationFireworksView() }
+                .sheet(isPresented: $isNewYearCelebrationPresented, content: { CelebrationFireworksView() })
                 .sheet(isPresented: $isTabActionsPresented, content: { tabActionsBody })
                 .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button(action: {
-                            isAppSettingsPresented = true
-                        }, label: {
-                            Image(systemName: "gear")
-                        })
-                    }
                     ToolbarItem(placement: .bottomBar) {
                         ZStack {
                             HStack {
@@ -233,7 +225,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                                             isCreateButtonPressed = true
                                         } else {
                                             tabs.append(.init(metadata: .init(url: nil)))
-                                            selectedTab = tabs.last
+                                            selectedTab = .webPage(tabs.last!)
                                             isCreateButtonPressed = false
                                         }
                                     }
@@ -309,7 +301,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                 }
             }
         }, detail: {
-            if let selectedTab {
+            if case let .webPage(selectedTab) = selectedTab {
                 if let webView = selectedTab.webView {
                     AdvancedWebViewController.shared.swiftWebView(from: webView, inside: {
                         if let index = tabs.firstIndex(where: { $0.id == selectedTab.id }) {
@@ -367,6 +359,8 @@ struct TabsListView<StartPage>: View where StartPage: View {
                         }
                     }
                 }
+            } else if case let .customView(view) = selectedTab {
+                mainCustomView(from: view)
             } else {
                 EmptyView()
                     .modifier(UserDefinedBackground())
@@ -396,7 +390,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                 } else {
                     if let recoverIndex = UserDefaults.standard.object(forKey: "LastPresentingTabIndex") as? Int,
                        recoverIndex >= 0 && recoverIndex < tabs.count {
-                        selectedTab = tabs[recoverIndex]
+                        selectedTab = .webPage(tabs[recoverIndex])
                     }
                 }
             }
@@ -411,7 +405,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
             }
         }
         .onChange(of: selectedTab) { _ in
-            if let tab = selectedTab, let index = tabs.firstIndex(where: { $0.id == tab.id }) {
+            if case let .webPage(tab) = selectedTab, let index = tabs.firstIndex(where: { $0.id == tab.id }) {
                 UserDefaults.standard.set(index, forKey: "LastPresentingTabIndex")
             } else {
                 UserDefaults.standard.removeObject(forKey: "LastPresentingTabIndex")
@@ -439,7 +433,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                     tabs[index].webView = AdvancedWebViewController.shared.newWebView(nil, archiveURL: url)
                 }
                 tabs[index].metadata = .init(url: url, title: configuration.title, isWebArchive: configuration.isWebArchive)
-                self.selectedTab = tabs[index]
+                self.selectedTab = .webPage(tabs[index])
             } else {
                 var newTab = WebViewTab(metadata: .init(url: url, title: configuration.title, isWebArchive: configuration.isWebArchive))
                 if !configuration.isWebArchive {
@@ -448,7 +442,32 @@ struct TabsListView<StartPage>: View where StartPage: View {
                     newTab.webView = AdvancedWebViewController.shared.newWebView(nil, archiveURL: url)
                 }
                 tabs.append(newTab)
-                self.selectedTab = tabs.last
+                if let tab = tabs.last {
+                    self.selectedTab = .webPage(tab)
+                } else {
+                    self.selectedTab = nil
+                }
+            }
+        }
+    }
+    
+    @inlinable
+    @ViewBuilder
+    func mainCustomView(from hashableView: TabMainPageSeletion.HashableView) -> some View {
+        NavigationStack {
+            switch hashableView {
+            case .settings:
+                SettingsView()
+            case .feedbackAssistant:
+                FeedbackView()
+            case .tips:
+                TipsView()
+            case .betaTesting:
+                BetaJoinView()
+            case .clusterAd:
+                ClusterAdView()
+            case .joinGroup:
+                JoinGroupView()
             }
         }
     }
@@ -530,7 +549,7 @@ private struct TabLink: View {
     }
     
     var body: some View {
-        NavigationLink(value: tab, label: {
+        NavigationLink(value: TabMainPageSeletion.webPage(tab), label: {
             ZStack {
                 if let image = imageLoader.image {
                     Image(uiImage: image)

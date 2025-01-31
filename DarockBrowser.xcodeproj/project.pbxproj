@@ -106,6 +106,7 @@
 		8CDE9B942C3AE1610083B09E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE9B932C3AE15D0083B09E /* Extensions.swift */; };
 		8CDE9B9E2C3C19460083B09E /* AudioListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE9B9D2C3C19460083B09E /* AudioListView.swift */; };
 		8CDFFF3A2D4837E900A76224 /* IfContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDFFF392D4837E400A76224 /* IfContainer.swift */; };
+		8CDFFF692D4962CC00A76224 /* DarockIntelligenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8CDFFF682D4962CC00A76224 /* DarockIntelligenceKit */; };
 		8CE3FCA82CCE12E3009E4EBB /* UserDefinedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE3FCA72CCE12DD009E4EBB /* UserDefinedBackground.swift */; };
 		8CE70DAF2C7A4F3500EFB3AD /* VideoPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DAE2C7A4F3100EFB3AD /* VideoPlayingView.swift */; };
 		8CE70DB12C7A4F7300EFB3AD /* MediaDownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DB02C7A4F6F00EFB3AD /* MediaDownloadView.swift */; };
@@ -129,8 +130,7 @@
 		8CF4E24F2D4543BA00EA6EEF /* NotifKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF4E24E2D4543BA00EA6EEF /* NotifKit */; };
 		8CF5DC4F2BAE04D5007F9974 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF5DC4E2BAE04D5007F9974 /* ShareView.swift */; };
 		8CF6361D2CAD56EF00ECE3B3 /* AppearenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6361C2CAD56EA00ECE3B3 /* AppearenceManager.swift */; };
-		8CF6361F2CADC19200ECE3B3 /* WebAbstractView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6361E2CADC18C00ECE3B3 /* WebAbstractView.swift */; };
-		8CF636212CADC28E00ECE3B3 /* IntelligenceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF636202CADC28800ECE3B3 /* IntelligenceModels.swift */; };
+		8CF6361F2CADC19200ECE3B3 /* WebSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6361E2CADC18C00ECE3B3 /* WebSummaryView.swift */; };
 		8CF636232CADD7CC00ECE3B3 /* IntelligenceStart.ahap in Resources */ = {isa = PBXBuildFile; fileRef = 8CF636222CADD7CC00ECE3B3 /* IntelligenceStart.ahap */; };
 		8CF636282CAE6B2900ECE3B3 /* View+BrightnessReducable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF636272CAE6B1D00ECE3B3 /* View+BrightnessReducable.swift */; };
 		8CF636372CAEB84A00ECE3B3 /* Cepheus in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF636362CAEB84A00ECE3B3 /* Cepheus */; };
@@ -847,20 +847,6 @@
 		8CCDABEE2C5674F100E29E3D /* ClusterTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterTipView.swift; sourceTree = "<group>"; };
 		8CCF13F12C20A4FF00F5E0D7 /* DarockAccountsUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarockAccountsUI.swift; sourceTree = "<group>"; };
 		8CCF13F32C20B31700F5E0D7 /* HYWenHei.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HYWenHei.ttf; sourceTree = "<group>"; };
-		8CCF90142C5E19C60024901E /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8CCF90152C5E19D10024901E /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8CCF90162C5E19ED0024901E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8CCF90172C5E1A010024901E /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8CCF90182C5E1A050024901E /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8CCF90192C5E1A0F0024901E /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8CCF901A2C5E1A180024901E /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8CCF901B2C5E1A1B0024901E /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8CCF901C2C5E1A540024901E /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8CCF901D2C5E1A650024901E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8CCF901E2C5E1A6E0024901E /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8CCF901F2C5E1A760024901E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8CCF90202C5E1A7E0024901E /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8CCF90212C5E1A830024901E /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8CD3D7FE2CA7CBDE009276DD /* ClockKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ClockKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS11.0.sdk/System/Library/Frameworks/ClockKit.framework; sourceTree = DEVELOPER_DIR; };
 		8CD3D8EC2CAA383B009276DD /* SuggestedResolvers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedResolvers.swift; sourceTree = "<group>"; };
 		8CDE9B8E2C3959DE0083B09E /* .swiftlint.yml */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; tabWidth = 2; };
@@ -887,8 +873,7 @@
 		8CE866F22D270698003CD685 /* CelebrationFireworksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CelebrationFireworksView.swift; sourceTree = "<group>"; };
 		8CF5DC4E2BAE04D5007F9974 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		8CF6361C2CAD56EA00ECE3B3 /* AppearenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearenceManager.swift; sourceTree = "<group>"; };
-		8CF6361E2CADC18C00ECE3B3 /* WebAbstractView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAbstractView.swift; sourceTree = "<group>"; };
-		8CF636202CADC28800ECE3B3 /* IntelligenceModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntelligenceModels.swift; sourceTree = "<group>"; };
+		8CF6361E2CADC18C00ECE3B3 /* WebSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSummaryView.swift; sourceTree = "<group>"; };
 		8CF636222CADD7CC00ECE3B3 /* IntelligenceStart.ahap */ = {isa = PBXFileReference; lastKnownFileType = text; path = IntelligenceStart.ahap; sourceTree = "<group>"; };
 		8CF636272CAE6B1D00ECE3B3 /* View+BrightnessReducable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+BrightnessReducable.swift"; sourceTree = "<group>"; };
 		8CF87EDD2D3E8C5800073C85 /* ImageGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGroupView.swift; sourceTree = "<group>"; };
@@ -905,6 +890,7 @@
 				8C08B1C12D2781B500EF9804 /* DarockUI in Frameworks */,
 				8C52811C2C22FA3C00392315 /* TripleQuestionmarkCore.framework in Frameworks */,
 				8C4B9D9E2CD6399D008D0A52 /* AuthenticationServices.framework in Frameworks */,
+				8CDFFF692D4962CC00A76224 /* DarockIntelligenceKit in Frameworks */,
 				8CA7B84F2BE3E053004643FE /* SDWebImageWebPCoder in Frameworks */,
 				8CF998E52D04C1D2009C7A28 /* Cepheus in Frameworks */,
 				8CA7B84C2BE3E025004643FE /* SDWebImageSwiftUI in Frameworks */,
@@ -1708,7 +1694,7 @@
 				8C5930642C712F75004C79CE /* BrowsingMenuView.swift */,
 				8CB018992BDBC5C500982644 /* WebViewDelegate.swift */,
 				8C6E11DE2BDC029E005420C0 /* WEBackSwift.swift */,
-				8CF6361E2CADC18C00ECE3B3 /* WebAbstractView.swift */,
+				8CF6361E2CADC18C00ECE3B3 /* WebSummaryView.swift */,
 			);
 			path = WebKit;
 			sourceTree = "<group>";
@@ -1720,7 +1706,6 @@
 				8CE70DC82C7A524D00EFB3AD /* BlurBackground.swift */,
 				8CE3FCA72CCE12DD009E4EBB /* UserDefinedBackground.swift */,
 				8CBA140F2C7D1B4200D40EE5 /* DoubleTapActionButton.swift */,
-				8CF636202CADC28800ECE3B3 /* IntelligenceModels.swift */,
 				8CDFFF392D4837E400A76224 /* IfContainer.swift */,
 				8CB9A10D2C6D229200E6A367 /* MarkdownUI+.swift */,
 				8C9188822C73A64000C64E70 /* WKWebView+.swift */,
@@ -1983,6 +1968,7 @@
 				8CF4E24B2D4543A400EA6EEF /* RadarKit */,
 				8CF4E24E2D4543BA00EA6EEF /* NotifKit */,
 				8C6CC63B2D462EB0008309E5 /* DarockAccountUI */,
+				8CDFFF682D4962CC00A76224 /* DarockIntelligenceKit */,
 			);
 			productName = "WatchBrowser Watch App";
 			productReference = 6BF209EE2990E61C00E623FC /* DarockBrowser.app */;
@@ -2086,22 +2072,6 @@
 				en,
 				ja,
 				"zh-Hant",
-				ru,
-				fr,
-				ar,
-				nl,
-				de,
-				hi,
-				id,
-				it,
-				ko,
-				pl,
-				pt,
-				es,
-				th,
-				tr,
-				uk,
-				vi,
 			);
 			mainGroup = 6BF209E12990E61C00E623FC;
 			packageReferences = (
@@ -2129,6 +2099,7 @@
 				8CF4E24A2D4543A400EA6EEF /* XCRemoteSwiftPackageReference "RadarKit" */,
 				8CF4E24D2D4543BA00EA6EEF /* XCRemoteSwiftPackageReference "NotifKit" */,
 				8C6CC63A2D462EB0008309E5 /* XCRemoteSwiftPackageReference "DarockAccountUI" */,
+				8CDFFF672D4962CC00A76224 /* XCRemoteSwiftPackageReference "DarockIntelligenceKit" */,
 			);
 			productRefGroup = 6BF209E92990E61C00E623FC /* Products */;
 			projectDirPath = "";
@@ -2282,10 +2253,9 @@
 				8C6E11DD2BDBF464005420C0 /* NewFeaturesView.swift in Sources */,
 				8CE70DC72C7A522700EFB3AD /* LocalBooksView.swift in Sources */,
 				8C9188832C73A64200C64E70 /* WKWebView+.swift in Sources */,
-				8CF6361F2CADC19200ECE3B3 /* WebAbstractView.swift in Sources */,
+				8CF6361F2CADC19200ECE3B3 /* WebSummaryView.swift in Sources */,
 				8CC267E52CE8F1A800AE03F0 /* TabModels.swift in Sources */,
 				8CF636282CAE6B2900ECE3B3 /* View+BrightnessReducable.swift in Sources */,
-				8CF636212CADC28E00ECE3B3 /* IntelligenceModels.swift in Sources */,
 				8CF6361D2CAD56EF00ECE3B3 /* AppearenceManager.swift in Sources */,
 				8CC306132CAB160F00323034 /* View+TouchZoomable.swift in Sources */,
 				8CB9A10E2C6D229600E6A367 /* MarkdownUI+.swift in Sources */,
@@ -2375,20 +2345,6 @@
 				E25EA83B2B70ABF000BFEC6E /* en */,
 				8C03B70B2C29B201000770B4 /* ja */,
 				8C03B70C2C29B20B000770B4 /* zh-Hant */,
-				8CCF90142C5E19C60024901E /* ar */,
-				8CCF90152C5E19D10024901E /* nl */,
-				8CCF90162C5E19ED0024901E /* de */,
-				8CCF90172C5E1A010024901E /* hi */,
-				8CCF90182C5E1A050024901E /* id */,
-				8CCF90192C5E1A0F0024901E /* it */,
-				8CCF901A2C5E1A180024901E /* ko */,
-				8CCF901B2C5E1A1B0024901E /* pl */,
-				8CCF901C2C5E1A540024901E /* pt */,
-				8CCF901D2C5E1A650024901E /* es */,
-				8CCF901E2C5E1A6E0024901E /* th */,
-				8CCF901F2C5E1A760024901E /* tr */,
-				8CCF90202C5E1A7E0024901E /* uk */,
-				8CCF90212C5E1A830024901E /* vi */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2550,7 +2506,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.4;
+				MARKETING_VERSION = 7.0.5;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
@@ -2598,7 +2554,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.4;
+				MARKETING_VERSION = 7.0.5;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
@@ -2625,7 +2581,7 @@
 				INFOPLIST_FILE = "DarockBrowser/DarockBrowser-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 7.0.4;
+				MARKETING_VERSION = 7.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2644,7 +2600,7 @@
 				INFOPLIST_FILE = "DarockBrowser/DarockBrowser-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 7.0.4;
+				MARKETING_VERSION = 7.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2729,7 +2685,7 @@
 				INFOPLIST_FILE = "DarockBrowser/DarockBrowser-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 7.0.4;
+				MARKETING_VERSION = 7.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2772,7 +2728,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.4;
+				MARKETING_VERSION = 7.0.5;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
@@ -2810,7 +2766,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 7.0.4;
+				MARKETING_VERSION = 7.0.5;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2963,7 +2919,7 @@
 				INFOPLIST_FILE = "DarockBrowser/DarockBrowser-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 7.0.4;
+				MARKETING_VERSION = 7.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -3006,7 +2962,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.4;
+				MARKETING_VERSION = 7.0.5;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
@@ -3045,7 +3001,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 7.0.4;
+				MARKETING_VERSION = 7.0.5;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3287,7 +3243,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 7.0.4;
+				MARKETING_VERSION = 7.0.5;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3324,7 +3280,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 7.0.4;
+				MARKETING_VERSION = 7.0.5;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3548,6 +3504,14 @@
 				kind = branch;
 			};
 		};
+		8CDFFF672D4962CC00A76224 /* XCRemoteSwiftPackageReference "DarockIntelligenceKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Darock-Studio/DarockIntelligenceKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		8CE866EF2D270589003CD685 /* XCRemoteSwiftPackageReference "Vortex" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/twostraws/Vortex";
@@ -3691,6 +3655,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8CD6DA9F2D29AEE700D3895F /* XCRemoteSwiftPackageReference "_DiagnosticsUI" */;
 			productName = DiagnosticsUI;
+		};
+		8CDFFF682D4962CC00A76224 /* DarockIntelligenceKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CDFFF672D4962CC00A76224 /* XCRemoteSwiftPackageReference "DarockIntelligenceKit" */;
+			productName = DarockIntelligenceKit;
 		};
 		8CE866F02D270589003CD685 /* Vortex */ = {
 			isa = XCSwiftPackageProductDependency;
