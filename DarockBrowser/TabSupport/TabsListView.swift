@@ -8,6 +8,7 @@
 import OSLog
 import Combine
 import SwiftUI
+import DarockUI
 import RadarKitCore
 import DarockFoundation
 
@@ -17,6 +18,7 @@ let createNewTabSubject = PassthroughSubject<NewWebTabConfiguration, Never>()
 struct TabsListView<StartPage>: View where StartPage: View {
     var startPage: (@escaping (NewWebTabConfiguration) -> Void) -> StartPage
     @AppStorage("WebViewLayout") var webViewLayout = "MaximumViewport"
+    @AppStorage("PCReopenPreviousWebTab") var reopenPreviousWebTab = true
     @AppStorage("ShouldShowRatingRequest") var shouldShowRatingRequest = false
     @AppStorage("MainPageShowCount") var mainPageShowCount = 0
     @AppStorage("IsShowJoinGroup2") var isShowJoinGroup = true
@@ -65,7 +67,9 @@ struct TabsListView<StartPage>: View where StartPage: View {
                                             if let data = getJsonData([WebViewTab.Metadata].self, from: currentString) {
                                                 if let jsonStr = jsonString(from: [tabs[i].metadata] + data) {
                                                     try? jsonStr.write(
-                                                        toFile: NSHomeDirectory() + "/Documents/Tabs/RecentClosedTabs.drkdatar", atomically: true, encoding: .utf8
+                                                        toFile: NSHomeDirectory() + "/Documents/Tabs/RecentClosedTabs.drkdatar",
+                                                        atomically: true,
+                                                        encoding: .utf8
                                                     )
                                                 }
                                             }
@@ -387,7 +391,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                 }
                 if tabs.isEmpty {
                     tabs.append(.init(metadata: .init(url: nil)))
-                } else {
+                } else if reopenPreviousWebTab {
                     if let recoverIndex = UserDefaults.standard.object(forKey: "LastPresentingTabIndex") as? Int,
                        recoverIndex >= 0 && recoverIndex < tabs.count {
                         selectedTab = .webPage(tabs[recoverIndex])

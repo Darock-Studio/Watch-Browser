@@ -111,54 +111,34 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         // Dark Mode
         if UserDefaults.standard.bool(forKey: "ForceApplyDarkMode")
             || (isAutoAppearence && autoAppearenceOptionEnableForWebForceDark && AppearenceManager.shared.currentAppearence == .dark) {
-            DispatchQueue(label: "com.darock.WatchBrowser.wt.run-fit-dark-mode", qos: .userInitiated).async {
-                webView.evaluateJavaScript("""
-                const allElements = document.querySelectorAll('*');
-                function applyDarkMode(element) {
-                    element.style.backgroundColor = '#121212';
-                    element.style.color = '#ffffff';
-                }
-                allElements.forEach(applyDarkMode);
-                const observer = new MutationObserver(mutations => {
-                    mutations.forEach(mutation => {
-                        if (mutation.type === 'childList') {
-                            mutation.addedNodes.forEach(node => {
-                                if (node.nodeType === Node.ELEMENT_NODE) {
-                                    applyDarkMode(node);
-                                    node.querySelectorAll('*').forEach(applyDarkMode);
-                                }
-                            });
-                        }
-                    });
+            webView.evaluateJavaScript("""
+            const allElements = document.querySelectorAll('*');
+            function applyDarkMode(element) {
+                element.style.backgroundColor = '#121212';
+                element.style.color = '#ffffff';
+            }
+            allElements.forEach(applyDarkMode);
+            const observer = new MutationObserver(mutations => {
+                mutations.forEach(mutation => {
+                    if (mutation.type === 'childList') {
+                        mutation.addedNodes.forEach(node => {
+                            if (node.nodeType === Node.ELEMENT_NODE) {
+                                applyDarkMode(node);
+                                node.querySelectorAll('*').forEach(applyDarkMode);
+                            }
+                        });
+                    }
                 });
-                observer.observe(document.documentElement, { childList: true, subtree: true });
-                """)
-            }
-        }
-        let userScriptNames = UserDefaults.standard.stringArray(forKey: "UserScriptNames") ?? [String]()
-        DispatchQueue(label: "com.darock.WatchBrowser.wt.run-user-script", qos: .userInitiated).async {
-            for userScriptName in userScriptNames {
-                do {
-                    let jsStr = String(
-                        decoding: try Data(
-                            contentsOf: URL(
-                                fileURLWithPath: NSHomeDirectory()
-                                + "/Documents/UserScripts/\(userScriptName.replacingOccurrences(of: "/", with: "{slash}")).js"
-                            )
-                        ),
-                        as: UTF8.self
-                    )
-                    webView.evaluateJavaScript(jsStr)
-                } catch {
-                    globalErrorHandler(error)
-                }
-            }
+            });
+            observer.observe(document.documentElement, { childList: true, subtree: true });
+            """)
         }
         
         let curl = webView.url
         if let url = curl?.absoluteString, _fastPath(isHistoryRecording) {
             recordHistory(url, webSearch: webSearch, showName: webView.title)
         }
+        checkWebContent(for: webView)
         if (UserDefaults.standard.object(forKey: "CCIsHandoffEnabled") as? Bool) ?? true {
             if _fastPath((curl?.absoluteString.hasPrefix("http") ?? false) || (curl?.absoluteString.hasPrefix("https") ?? false)) {
                 // User Activity

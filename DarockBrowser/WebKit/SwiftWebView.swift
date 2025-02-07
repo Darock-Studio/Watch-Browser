@@ -8,6 +8,7 @@
 import OSLog
 import Combine
 import SwiftUI
+import DarockUI
 
 struct SwiftWebView: View {
     static let loadingProgressHidden = CurrentValueSubject<Bool, Never>(true)
@@ -22,12 +23,16 @@ struct SwiftWebView: View {
     @AppStorage("HideDigitalTime") var hideDigitalTime = false
     @AppStorage("KeepDigitalTime") var keepDigitalTime = false
     @AppStorage("ShowFastExitButton") var showFastExitButton = false
+    @AppStorage("IsProPurchased") var isProPurchased = false
     @AppStorage("AlwaysReloadWebPageAfterCrash") var alwaysReloadWebPageAfterCrash = false
+    @State var fastButtons = [WebViewFastButton].getCurrentFastButtons()
     @State var isQuickAvoidanceShowingEmpty = false
     @State var presentingMediaList: WebViewMediaListPresentation?
     @State var isBrowsingMenuPresented = false
     @State var isHidingDistractingItems = false
     @State var webCanGoBack = false
+    @State var webCanGoForward = false
+    @State var webIsLoading = false
     @State var loadingProgress = 0.0
     @State var isLoadingProgressHidden = true
     @State var webErrorText: String?
@@ -131,9 +136,9 @@ struct SwiftWebView: View {
                     NavigationView {
                         content
                     }
-                    .toolbar(.hidden)
-                    .toolbarBackground(.hidden)
                 }
+                .toolbar(.hidden)
+                .toolbarBackground(.hidden)
             if let errorText = webErrorText {
                 Text(errorText)
                     .foregroundStyle(.black)
@@ -175,14 +180,14 @@ struct SwiftWebView: View {
                     .allowsHitTesting(false)
                 }
                 VStack {
-                    HStack {
+                    HStack(spacing: 0) {
                         Button(action: {
                             isBrowsingMenuPresented = true
                         }, label: {
-                            ZStack {
+                            ZStack(alignment: .trailing) {
                                 Rectangle()
                                     .fill(Color.gray)
-                                    .frame(width: 40, height: 40)
+                                    .frame(width: 30, height: 40)
                                     .minimumRenderableOpacity()
                                 Image(systemName: "ellipsis.circle")
                                     .font(.system(size: 20, weight: .light))
@@ -190,8 +195,69 @@ struct SwiftWebView: View {
                             }
                         })
                         .buttonStyle(.plain)
-                        .padding(5)
-                        if showFastExitButton {
+                        .padding(.vertical, 5)
+                        .padding(.leading, 5)
+                        if fastButtons != [.empty, .empty, .empty, .empty] {
+                            ForEach(0..<fastButtons.count, id: \.self) { i in
+                                Spacer()
+                                Button(action: {
+                                    switch fastButtons[i] {
+                                    case .previousPage:
+                                        webView.goBack()
+                                    case .nextPage:
+                                        webView.goForward()
+                                    case .refresh:
+                                        if webIsLoading {
+                                            webView.stopLoading()
+                                        } else {
+                                            webView.reload()
+                                        }
+                                    case .decodeVideo:
+                                        break
+                                    case .decodeImage:
+                                        break
+                                    case .decodeMusic:
+                                        break
+                                    case .exit:
+                                        if let customDismissAction {
+                                            customDismissAction()
+                                        } else {
+                                            presentationMode.wrappedValue.dismiss()
+                                        }
+                                    case .empty:
+                                        break
+                                    }
+                                }, label: {
+                                    ZStack {
+                                        Rectangle()
+                                            .fill(Color.gray)
+                                            .frame(width: 20, height: 40)
+                                            .minimumRenderableOpacity()
+                                        Image(systemName: {
+                                            switch fastButtons[i] {
+                                            case .nextPage: "chevron.forward"
+                                            case .previousPage: "chevron.backward"
+                                            case .refresh: webIsLoading ? "stop.fill" : "arrow.clockwise"
+                                            case .decodeVideo: "film.stack"
+                                            case .decodeImage: "photo.stack"
+                                            case .decodeMusic: "music.quarternote.3"
+                                            case .exit: "escape"
+                                            case .empty: "ellipsis.circle"
+                                            }
+                                        }())
+                                        .font(.system(size: 20, weight: .light))
+                                        .opacity(fastButtons[i] == .empty ? kViewMinimumRenderableOpacity : 1)
+                                        .foregroundStyle(fastButtons[i] == .exit ? .red : .blue)
+                                    }
+                                })
+                                .buttonStyle(.plain)
+                                .disabled(
+                                    (fastButtons[i] == .previousPage && !webCanGoBack)
+                                    || (fastButtons[i] == .nextPage && !webCanGoForward)
+                                    
+                                )
+                            }
+                        } else if showFastExitButton {
                             Button(action: {
                                 if let customDismissAction {
                                     customDismissAction()
@@ -227,7 +293,6 @@ struct SwiftWebView: View {
             }
         }
         .brightnessReducable()
-        ._statusBarHidden(hideDigitalTime || isQuickAvoidanceShowingEmpty)
         .sheet(isPresented: $isBrowsingMenuPresented) {
             BrowsingMenuView(
                 webView: webView,
@@ -254,9 +319,18 @@ struct SwiftWebView: View {
                 }
                 insideTab?.wrappedValue.shouldLoad = nil
             }
+            if hideDigitalTime {
+                setMainSceneHideStatusBarSubject.send(true)
+            }
         }
         .onDisappear {
+            if hideDigitalTime {
+                setMainSceneHideStatusBarSubject.send(false)
+            }
             globalWebBrowsingUserActivity?.invalidate()
+        }
+        .onChange(of: isQuickAvoidanceShowingEmpty) { _ in
+            setMainSceneHideStatusBarSubject.send(isQuickAvoidanceShowingEmpty)
         }
         .onReceive(SwiftWebView.loadingProgressHidden) { isHidden in
             isLoadingProgressHidden = isHidden
@@ -282,6 +356,9 @@ struct SwiftWebView: View {
         .onReceive(webView.publisher(for: \.canGoBack)) { value in
             webCanGoBack = value
         }
+        .onReceive(webView.publisher(for: \.canGoForward), perform: { value in
+            webCanGoForward = value
+        })
         .onReceive(webView.publisher(for: \.estimatedProgress)) { value in
             loadingProgress = value
         }
@@ -296,6 +373,7 @@ struct SwiftWebView: View {
             }
         }
         .onReceive(webView.publisher(for: \.isLoading)) { loading in
+            webIsLoading = loading
             if !loading, insideTab != nil {
                 let snapshotConfiguration = WKSnapshotConfiguration()
                 webView.takeSnapshot(with: snapshotConfiguration) { image, _ in

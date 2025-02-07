@@ -130,17 +130,27 @@ private func webSummary(from sourceText: String, addingTo addingHandler: @escapi
         """),
         .init(role: .user, content: sourceText)
     ]
+    var isFirstResponseAdded = false
+    var shouldStopResuming = false // rdar://FB2680020713268
     return await withCheckedContinuation { continuation in
         intelligenceChat(with: modelOption == "Accurater" ? .deepseekR1_7b : .deepseekR1_1p5b, about: messages, handling: .mainOnly) { result in
+            guard !shouldStopResuming else { return }
             switch result {
             case let .success(response):
                 addingHandler(response.message.content)
+                isFirstResponseAdded = true
                 if response.isRequestFinished {
                     continuation.resume(returning: true)
                 }
             case let .failure(error):
+                shouldStopResuming = true
                 debugPrint(error)
-                continuation.resume(returning: false)
+                if !isFirstResponseAdded {
+                    continuation.resume(returning: false)
+                } else {
+                    addingHandler(String(localized: "[生成中断]"))
+                    continuation.resume(returning: true)
+                }
             }
         }
     }

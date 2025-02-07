@@ -179,18 +179,6 @@ struct MainView: View {
                     })
                     .disabled(isUseOldWebView)
                 }
-                NavigationLink(destination: { UserScriptsView() }, label: {
-                    VStack {
-                        Label("用户脚本", systemImage: "applescript")
-                        if isUseOldWebView {
-                            Text("使用旧版引擎时，用户脚本不可用")
-                                .font(.system(size: 12))
-                                .multilineTextAlignment(.center)
-                        }
-                    }
-                    .centerAligned()
-                })
-                .disabled(isUseOldWebView)
                 if #unavailable(watchOS 10.0) {
                     NavigationLink(destination: { MediaMainView() }, label: {
                         Label("媒体", systemImage: "rectangle.stack")
@@ -583,13 +571,20 @@ extension String {
             }
         }
         guard URL(string: self) != nil else { return false }
-        var topLevelDomainList = (try! String(contentsOf: Bundle.main.url(forResource: "TopLevelDomainList", withExtension: "drkdatat")!, encoding: .utf8))
-            .split(separator: "\n")
-            .map { String($0) }
-        topLevelDomainList.removeAll(where: { str in str.hasPrefix("#") || str.isEmpty })
-        if let topLevel = getTopLevel(from: self)?.idnaEncoded, topLevelDomainList.contains(topLevel.uppercased().replacingOccurrences(of: " ", with: "")) {
-            return true
-        } else if self.split(separator: ".").first?.contains("://") ?? false {
+        if let topLevel = getTopLevel(from: self)?.idnaEncoded {
+            // Xcode organizer shows many sessions crashed here without reason, so use optional binding instead of force unwrapping.
+            if let _domainListURL = Bundle.main.url(forResource: "TopLevelDomainList", withExtension: "drkdatat"),
+               var topLevelDomainList = (try? String(contentsOf: _domainListURL, encoding: .utf8))?.split(separator: "\n").map({ String($0) }) {
+                topLevelDomainList.removeAll(where: { str in str.hasPrefix("#") || str.isEmpty })
+                if topLevelDomainList.contains(topLevel.uppercased().replacingOccurrences(of: " ", with: "")) {
+                    return true
+                }
+            } else {
+                // Character count as fallback
+                return (2...3).contains(topLevel.count)
+            }
+        }
+        if self.split(separator: ".").first?.contains("://") ?? false {
             return true
         } else {
             return false

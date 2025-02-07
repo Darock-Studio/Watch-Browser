@@ -1645,17 +1645,17 @@ struct SettingsView: View {
                             Label("紧凑", systemImage: "circle.grid.3x3.fill").tag("Compact")
                         }
                         .disabled(!isProPurchased)
-//                        NavigationLink(destination: { FastButtonsView() }, label: {
-//                            VStack(alignment: .leading) {
-//                                Text("快捷按钮")
-//                                if webViewLayout == "FastPrevious" {
-//                                    Text("网页视图布局为“快速返回”时，快捷按钮不可用")
-//                                        .font(.footnote)
-//                                        .foregroundStyle(.gray)
-//                                }
-//                            }
-//                        })
-//                        .disabled(!isProPurchased || webViewLayout == "FastPrevious")
+                        NavigationLink(destination: { FastButtonsView() }, label: {
+                            VStack(alignment: .leading) {
+                                Text("快捷按钮")
+                                if webViewLayout == "FastPrevious" {
+                                    Text("网页视图布局为“快速返回”时，快捷按钮不可用")
+                                        .font(.footnote)
+                                        .foregroundStyle(.gray)
+                                }
+                            }
+                        })
+                        .disabled(!isProPurchased || webViewLayout == "FastPrevious")
                     } header: {
                         Text("布局")
                     } footer: {
@@ -1799,6 +1799,9 @@ struct SettingsView: View {
                     }
                 }
                 .navigationTitle("快捷按钮")
+                .onChange(of: buttons) { _ in
+                    buttons.updateFastButtons()
+                }
             }
         }
     }
@@ -2375,6 +2378,7 @@ struct SettingsView: View {
     }
     struct PrivacySettingsView: View {
         @State var isAboutPrivacyPresented = false
+        @AppStorage("PCReopenPreviousWebTab") var reopenPreviousWebTab = true
         var body: some View {
             List {
                 Section {
@@ -2385,6 +2389,7 @@ struct SettingsView: View {
                     })
                 }
                 Section {
+                    Toggle("启动时恢复上次浏览的页面", isOn: $reopenPreviousWebTab)
                     NavigationLink(destination: { CookieView() },
                                    label: { SettingItemLabel(title: "Cookie", image: "doc.fill", color: .gray) })
                     NavigationLink(destination: { WebsiteSecurityView() },

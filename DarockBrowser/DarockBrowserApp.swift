@@ -6,6 +6,7 @@
 //
 
 import OSLog
+import Combine
 import SwiftUI
 import Intents
 import WatchKit
@@ -21,18 +22,20 @@ import SDWebImageWebPCoder
 import AuthenticationServices
 @_spi(_internal) import CorvusKit
 
+#if BETA
+let isAppBetaBuild = true
+#else
+let isAppBetaBuild = false
+#endif
+
+let setMainSceneHideStatusBarSubject = PassthroughSubject<Bool, Never>()
+
 var pTapToRadarAlertContent = ""
 var pTapToRadarAttachText = ""
 var pIsTapToRadarAlertPresented = false
 
 #if !targetEnvironment(simulator)
 var globalHapticEngine: CHHapticEngine?
-#endif
-
-#if BETA
-let isAppBetaBuild = true
-#else
-let isAppBetaBuild = false
 #endif
 
 @main
@@ -55,6 +58,7 @@ struct DarockBrowserApp: App {
     @State var isClusterInstalledTipPresented = false
     @State var isBrowserProAdPresented = false
     @State var isQuickAvoidanceShowingEmpty = false
+    @State var isRemoteStatusBarHidden = false
     var body: some Scene {
         WindowGroup {
             ZStack {
@@ -100,7 +104,11 @@ struct DarockBrowserApp: App {
                 }
             }
             .brightnessReducable()
-            ._statusBarHidden((isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser) || isQuickAvoidanceShowingEmpty)
+            ._statusBarHidden(
+                (isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser)
+                || isQuickAvoidanceShowingEmpty
+                || isRemoteStatusBarHidden
+            )
             .alert("Runtime Error", isPresented: $isTapToRadarAlertPresented, actions: {
                 Button(role: .cancel, action: {
                     
@@ -123,6 +131,9 @@ struct DarockBrowserApp: App {
                         pIsTapToRadarAlertPresented = false
                     }
                 }
+            }
+            .onReceive(setMainSceneHideStatusBarSubject) { isHidden in
+                isRemoteStatusBarHidden = isHidden
             }
             .onOpenURL { url in
                 let urlString = url.absoluteString

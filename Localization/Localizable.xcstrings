@@ -178,6 +178,9 @@
         }
       }
     },
+    "[生成中断]" : {
+
+    },
     "**Darock 智能与隐私**\n\nDarock 智能旨在保护你的信息并可让你选择共享的内容。\n\n### 网页摘要\n使用网页摘要时，网页中的文本信息会被发送到设备外的 Darock 智能服务进行处理。这些信息不会被存储，且不会关联到个人。" : {
       "localizations" : {
         "en" : {
@@ -3898,6 +3901,7 @@
       }
     },
     "使用旧版引擎时，用户脚本不可用" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -5311,6 +5315,9 @@
         }
       }
     },
+    "启动时恢复上次浏览的页面" : {
+
+    },
     "哔哩哔哩" : {
       "localizations" : {
         "en" : {
@@ -6122,6 +6129,7 @@
       }
     },
     "安装此脚本" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -6556,6 +6564,7 @@
       }
     },
     "已启用的脚本" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -6724,6 +6733,7 @@
       }
     },
     "应用到" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -7918,6 +7928,7 @@
       }
     },
     "操作" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -9044,6 +9055,7 @@
       }
     },
     "标题" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -9413,6 +9425,7 @@
       }
     },
     "此脚本已安装" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -9635,6 +9648,7 @@
       }
     },
     "添加脚本" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -11124,6 +11138,9 @@
         }
       }
     },
+    "网页视图布局为“快速返回”时，快捷按钮不可用" : {
+
+    },
     "网页语言" : {
       "localizations" : {
         "en" : {
@@ -11145,6 +11162,7 @@
       }
     },
     "脚本均来自greasyfork.org，Darock 无法进行审核，请自行辨别内容" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -11167,6 +11185,7 @@
       }
     },
     "脚本详情" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
