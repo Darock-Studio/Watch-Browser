@@ -32,7 +32,7 @@ struct ImageGroupView: View {
                                         Image(systemName: "chevron.backward")
                                     })
                                     Spacer()
-                                    Text("\(selection + 1)/\(links.count)")
+                                    Text(verbatim: "\(selection + 1)/\(links.count)")
                                     Spacer()
                                     Button(action: {
                                         if _fastPath(selection + 1 < links.count) {

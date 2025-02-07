@@ -106,6 +106,14 @@ struct ProPurchaseView: View {
                                 .opacity(0.6)
                         }
                     })
+                    NavigationLink(destination: { ShortcutButtonDescriptionView() }, label: {
+                        HStack {
+                            Label("网页快捷按钮", systemImage: "button.programmable")
+                            Spacer()
+                            Image(systemName: "chevron.forward")
+                                .opacity(0.6)
+                        }
+                    })
                 } header: {
                     Text("Pro 功能")
                 }
@@ -257,5 +265,37 @@ private struct WebLayoutDescriptionView: View {
             }
         }
         .navigationTitle("网页视图与浏览菜单布局介绍")
+    }
+}
+
+private struct ShortcutButtonDescriptionView: View {
+    var body: some View {
+        Form {
+            Section {
+                Text("激活暗礁浏览器 Pro 后，在\(Text("设置→浏览引擎→快捷按钮").bold().foregroundColor(.blue))中设置快捷按钮")
+            }
+            Section {
+                Text("最多添加四个快捷按钮，按钮将显示在网页顶部，效果如下")
+                HStack {
+                    Image(systemName: "ellipsis.circle")
+                    Spacer()
+                    Image(systemName: "chevron.backward")
+                    Spacer()
+                    Image(systemName: "chevron.forward")
+                    Spacer()
+                    Image(systemName: "arrow.clockwise")
+                    Spacer()
+                    Image(systemName: "film.stack")
+                }
+                .font(.system(size: 18))
+                .foregroundStyle(.blue)
+                .listRowBackground(Color.clear)
+                .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+            }
+            Section {
+                Text("每个按钮的功能均可自定义，支持快速返回、重新载入以及查看媒体等多项功能。")
+            }
+        }
+        .navigationTitle("网页快捷按钮介绍")
     }
 }

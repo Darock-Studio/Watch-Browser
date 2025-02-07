@@ -30,7 +30,6 @@ struct BrowsingMenuView: View {
     @State var linkInput = ""
     @State var linkInputOffset: CGFloat = 0
     @State var isHomeViewPresented = false
-    @State var isCheckingWebContent = true
     @State var linksUpdateTimer: Timer?
     @State var videoLinks = [String]()
     @State var imageLinks = [String]()
@@ -113,45 +112,41 @@ struct BrowsingMenuView: View {
                     }
                     if browsingMenuLayout != "Compact" {
                         Section {
-                            if !isCheckingWebContent {
-                                if !videoLinks.isEmpty {
-                                    Button(action: {
-                                        presentationMode.wrappedValue.dismiss()
-                                        presentingMediaList = .video
-                                    }, label: {
-                                        HStack {
-                                            Text("播放网页视频")
-                                            Spacer()
-                                            Image(systemName: "film.stack")
-                                        }
-                                    })
-                                }
-                                if !imageLinks.isEmpty {
-                                    Button(action: {
-                                        presentationMode.wrappedValue.dismiss()
-                                        presentingMediaList = .image
-                                    }, label: {
-                                        HStack {
-                                            Text("查看网页图片")
-                                            Spacer()
-                                            Image(systemName: "photo.stack")
-                                        }
-                                    })
-                                }
-                                if !audioLinks.isEmpty {
-                                    Button(action: {
-                                        presentationMode.wrappedValue.dismiss()
-                                        presentingMediaList = .music
-                                    }, label: {
-                                        HStack {
-                                            Text("播放网页音频")
-                                            Spacer()
-                                            Image(systemName: "music.quarternote.3")
-                                        }
-                                    })
-                                }
-                            } else {
-                                ProgressView()
+                            if !videoLinks.isEmpty {
+                                Button(action: {
+                                    presentationMode.wrappedValue.dismiss()
+                                    presentingMediaList = .init(.video, links: videoLinks)
+                                }, label: {
+                                    HStack {
+                                        Text("播放网页视频")
+                                        Spacer()
+                                        Image(systemName: "film.stack")
+                                    }
+                                })
+                            }
+                            if !imageLinks.isEmpty {
+                                Button(action: {
+                                    presentationMode.wrappedValue.dismiss()
+                                    presentingMediaList = .init(.image, links: imageLinks, linksAlt: imageAltTexts)
+                                }, label: {
+                                    HStack {
+                                        Text("查看网页图片")
+                                        Spacer()
+                                        Image(systemName: "photo.stack")
+                                    }
+                                })
+                            }
+                            if !audioLinks.isEmpty {
+                                Button(action: {
+                                    presentationMode.wrappedValue.dismiss()
+                                    presentingMediaList = .init(.music, links: audioLinks)
+                                }, label: {
+                                    HStack {
+                                        Text("播放网页音频")
+                                        Spacer()
+                                        Image(systemName: "music.quarternote.3")
+                                    }
+                                })
                             }
                         }
                         Section {
@@ -386,33 +381,28 @@ struct BrowsingMenuView: View {
                     } else {
                         Section {
                             Group {
-                                if !isCheckingWebContent {
-                                    HStack {
-                                        Button(action: {
-                                            presentationMode.wrappedValue.dismiss()
-                                            presentingMediaList = .video
-                                        }, label: {
-                                            Image(systemName: "film.stack")
-                                        })
-                                        .disabled(videoLinks.isEmpty)
-                                        Button(action: {
-                                            presentationMode.wrappedValue.dismiss()
-                                            presentingMediaList = .image
-                                        }, label: {
-                                            Image(systemName: "photo.stack")
-                                        })
-                                        .disabled(imageLinks.isEmpty)
-                                        Button(action: {
-                                            presentationMode.wrappedValue.dismiss()
-                                            presentingMediaList = .music
-                                        }, label: {
-                                            Image(systemName: "music.quarternote.3")
-                                        })
-                                        .disabled(audioLinks.isEmpty)
-                                    }
-                                } else {
-                                    ProgressView()
-                                        .centerAligned()
+                                HStack {
+                                    Button(action: {
+                                        presentationMode.wrappedValue.dismiss()
+                                        presentingMediaList = .init(.video, links: videoLinks)
+                                    }, label: {
+                                        Image(systemName: "film.stack")
+                                    })
+                                    .disabled(videoLinks.isEmpty)
+                                    Button(action: {
+                                        presentationMode.wrappedValue.dismiss()
+                                        presentingMediaList = .init(.image, links: imageLinks, linksAlt: imageAltTexts)
+                                    }, label: {
+                                        Image(systemName: "photo.stack")
+                                    })
+                                    .disabled(imageLinks.isEmpty)
+                                    Button(action: {
+                                        presentationMode.wrappedValue.dismiss()
+                                        presentingMediaList = .init(.music, links: audioLinks)
+                                    }, label: {
+                                        Image(systemName: "music.quarternote.3")
+                                    })
+                                    .disabled(audioLinks.isEmpty)
                                 }
                                 HStack {
                                     Button(action: {
@@ -639,7 +629,6 @@ struct BrowsingMenuView: View {
                 imageAltTexts = imageAltTextLists
                 audioLinks = audioLinkLists
             }
-            checkWebContent(for: webView, flag: $isCheckingWebContent)
         }
         .onDisappear {
             linksUpdateTimer?.invalidate()
@@ -851,31 +840,31 @@ private struct BackForwardListView: View {
 }
 
 struct WebViewMediaListPresentation: Identifiable {
-    static let video = WebViewMediaListPresentation(.video)
-    static let image = WebViewMediaListPresentation(.image)
-    static let music = WebViewMediaListPresentation(.music)
-    
     let id: String
     private let underlyingType: UnderlyingPresentationType
+    private let links: [String]
+    private let linksAlt: [String]?
     
-    private init(_ underlyingType: UnderlyingPresentationType) {
+    init(_ underlyingType: UnderlyingPresentationType, links: [String], linksAlt: [String]? = nil) {
         self.id = underlyingType.rawValue
         self.underlyingType = underlyingType
+        self.links = links
+        self.linksAlt = linksAlt
     }
     
     @ViewBuilder
     func callAsFunction() -> some View {
         switch underlyingType {
         case .video:
-            VideoListView()
+            VideoListView(links: links)
         case .image:
-            ImageListView()
+            ImageListView(links: links, linksAlt: linksAlt)
         case .music:
-            AudioListView()
+            AudioListView(links: links)
         }
     }
     
-    private enum UnderlyingPresentationType: String {
+    enum UnderlyingPresentationType: String {
         case video
         case image
         case music

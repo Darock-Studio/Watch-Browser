@@ -42,7 +42,7 @@ var globalHapticEngine: CHHapticEngine?
 struct DarockBrowserApp: App {
     @WKApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) var scenePhase
-    @AppStorage("ShouldTipNewFeatures7") var shouldTipNewFeatures = if #available(watchOS 10, *) { true } else { false }
+    @AppStorage("ShouldTipNewFeatures8") var shouldTipNewFeatures = true
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockDarockBrowser") var usePasscodeForLockDarockBrowser = false
     @AppStorage("IsThisClusterInstalled") var isThisClusterInstalled = false
@@ -113,12 +113,12 @@ struct DarockBrowserApp: App {
                 Button(role: .cancel, action: {
                     
                 }, label: {
-                    Text("Cancel")
+                    Text(verbatim: "Cancel")
                 })
                 Button(action: {
                     WKExtension.shared().openSystemURL(URL(string: "https://darock.top/internal/tap-to-radar/new?ProductName=Darock Browser&Title=Internal autoattachd Error&Description=\(pTapToRadarAttachText)")!)
                 }, label: {
-                    Text("Tap-to-Radar")
+                    Text(verbatim: "Tap-to-Radar")
                 })
             }, message: {
                 Text(tapToRadarAlertContent)
@@ -207,12 +207,13 @@ class AppDelegate: NSObject, WKApplicationDelegate {
         SDImageCodersManager.shared.addCoder(SDImagePDFCoder.shared)
         
         _ = AppearenceManager.shared
-        _ = LocationManager.shared
         _ = CachedLocationManager.shared
         
         Task {
             do {
-                try await COKChecker.shared.appStartupAutoCheck()
+                let checker = COKChecker(caller: .darock)
+                let updater = COKUpdater(caller: .darock)
+                try await checker.appStartupAutoCheck()
                 let manager = RKCFeedbackManager(projectName: "Darock Browser")
                 let feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
                 for id in feedbackIds {
@@ -222,9 +223,9 @@ class AppDelegate: NSObject, WKApplicationDelegate {
                             if _slowPath(lastReply.isInternalHidden),
                                let state = lastReply.UpdateCorvusState,
                                state == "true" {
-                                try await COKUpdater.shared.updateCOStatus(true)
-                                COKChecker.shared._applyWatermarkNow()
-                                COKChecker.shared.cachedCheckStatus = true
+                                try await updater.updateCOStatus(true)
+                                checker._applyWatermarkNow()
+                                checker.cachedCheckStatus = true
                                 break
                             }
                         }

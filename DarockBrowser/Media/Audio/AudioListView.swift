@@ -9,27 +9,33 @@ import SwiftUI
 import DarockFoundation
 
 struct AudioListView: View {
+    var links: [String]
     @AppStorage("MPIsShowTranslatedLyrics") var isShowTranslatedLyrics = true
     @State var willDownloadAudioLink = ""
     @State var downloadFileName: String?
     @State var isAudioDownloadPresented = false
     @State var addPlaylistUrl = ""
     @State var isAddToPlaylistPresented = false
+    
+    init(links: [String]? = nil) {
+        self.links = links ?? audioLinkLists
+    }
+    
     var body: some View {
-        if !audioLinkLists.isEmpty {
+        if !links.isEmpty {
             List {
-                ForEach(0..<audioLinkLists.count, id: \.self) { i in
+                ForEach(0..<links.count, id: \.self) { i in
                     Button(action: {
                         setForAudioPlaying()
-                        playAudio(url: audioLinkLists[i])
+                        playAudio(url: links[i])
                     }, label: {
-                        Text(audioLinkLists[i])
+                        Text(links[i])
                     })
                     .swipeActions {
                         Button(action: {
-                            willDownloadAudioLink = audioLinkLists[i]
-                            if audioLinkLists[i].contains(/music\..*\.com/) && audioLinkLists[i].contains(/(\?|&)id=[0-9]*\.mp3($|&)/),
-                               let mid = audioLinkLists[i].split(separator: "id=")[from: 1]?.split(separator: ".mp3").first {
+                            willDownloadAudioLink = links[i]
+                            if links[i].contains(/music\..*\.com/) && links[i].contains(/(\?|&)id=[0-9]*\.mp3($|&)/),
+                               let mid = links[i].split(separator: "id=")[from: 1]?.split(separator: ".mp3").first {
                                 downloadFileName = "\(mid).mp3"
                                 requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(mid)&ids=%5B\(mid)%5D".compatibleUrlEncoded()) { respJson, isSuccess in
                                     if isSuccess {
@@ -94,14 +100,14 @@ struct AudioListView: View {
                                     }
                                 }
                             } else {
-                                downloadFileName = "\(audioLinkLists[i].split(separator: "/").last!.split(separator: ".mp3")[0]).mp3"
+                                downloadFileName = "\(links[i].split(separator: "/").last!.split(separator: ".mp3")[0]).mp3"
                             }
                             isAudioDownloadPresented = true
                         }, label: {
                             Image(systemName: "square.and.arrow.down")
                         })
                         Button(action: {
-                            addPlaylistUrl = audioLinkLists[i]
+                            addPlaylistUrl = links[i]
                             isAddToPlaylistPresented = true
                         }, label: {
                             Image(systemName: "text.badge.plus")

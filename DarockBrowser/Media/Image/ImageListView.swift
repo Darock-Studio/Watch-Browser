@@ -10,15 +10,23 @@ import Alamofire
 import DarockFoundation
 
 struct ImageListView: View {
+    var links: [String]
+    var linksAlt: [String]
     @AppStorage("IVUseDigitalCrownFor") var useDigitalCrownFor = "zoom"
     @State var isImageViewerPresented = false
     @State var tabSelection = 0
     @State var isMultiSelecting = false
     @State var selectedIndexs = [Int]()
+    
+    init(links: [String]? = nil, linksAlt: [String]? = nil) {
+        self.links = links ?? imageLinkLists
+        self.linksAlt = linksAlt ?? imageAltTextLists
+    }
+    
     var body: some View {
-        if !imageLinkLists.isEmpty {
+        if !links.isEmpty {
             List {
-                ForEach(0..<imageLinkLists.count, id: \.self) { i in
+                ForEach(0..<links.count, id: \.self) { i in
                     Button(action: {
                         if !isMultiSelecting {
                             tabSelection = i
@@ -36,17 +44,17 @@ struct ImageListView: View {
                                 Image(systemName: selectedIndexs.contains(i) ? "checkmark.circle.fill" : "circle")
                                     .foregroundStyle(.accent)
                             }
-                            if let altText = imageAltTextLists[from: 1], !altText.isEmpty {
+                            if let altText = linksAlt[from: 1], !altText.isEmpty {
                                 VStack(alignment: .leading) {
-                                    Text(imageAltTextLists[i])
-                                    Text(imageLinkLists[i])
+                                    Text(linksAlt[i])
+                                    Text(links[i])
                                         .font(.system(size: 14))
                                         .lineLimit(1)
                                         .truncationMode(.middle)
                                         .foregroundStyle(.gray)
                                 }
                             } else {
-                                Text(imageLinkLists[i])
+                                Text(links[i])
                             }
                         }
                     })
@@ -56,7 +64,7 @@ struct ImageListView: View {
                                 return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/LocalImages/\(Date.now.timeIntervalSince1970).png"),
                                         [.removePreviousFile, .createIntermediateDirectories])
                             }
-                            AF.download(imageLinkLists[i], to: destination)
+                            AF.download(links[i], to: destination)
                                 .response { result in
                                     if result.error == nil, let filePath = result.fileURL?.path {
                                         debugPrint(filePath)
@@ -71,9 +79,9 @@ struct ImageListView: View {
                     }
                 }
             }
-            .navigationTitle("图片列表 (\(imageLinkLists.count))")
+            .navigationTitle("图片列表 (\(links.count))")
             .toolbar {
-                if #available(watchOS 10.5, *), imageLinkLists.count > 1 {
+                if #available(watchOS 10.5, *), links.count > 1 {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button(action: {
                             if isMultiSelecting {
@@ -96,7 +104,7 @@ struct ImageListView: View {
                                         return (URL(fileURLWithPath: NSHomeDirectory() + "/Documents/LocalImages/\(baseTimeInterval + Double(index) / 10).png"),
                                                 [.removePreviousFile, .createIntermediateDirectories])
                                     }
-                                    AF.download(imageLinkLists[index], to: destination)
+                                    AF.download(links[index], to: destination)
                                         .response { result in
                                             if result.error == nil, let filePath = result.fileURL?.path {
                                                 debugPrint(filePath)
@@ -113,7 +121,7 @@ struct ImageListView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isImageViewerPresented, content: { ImageGroupView(links: .constant(imageLinkLists), selection: tabSelection) })
+            .sheet(isPresented: $isImageViewerPresented, content: { ImageGroupView(links: .constant(links), selection: tabSelection) })
             .onDisappear {
                 if (UserDefaults.standard.object(forKey: "CCIsContinuityMediaEnabled") as? Bool) ?? true {
                     globalMediaUserActivity?.invalidate()

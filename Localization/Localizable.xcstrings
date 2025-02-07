@@ -179,7 +179,14 @@
       }
     },
     "[生成中断]" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Generation Interrupted]"
+          }
+        }
+      }
     },
     "**Darock 智能与隐私**\n\nDarock 智能旨在保护你的信息并可让你选择共享的内容。\n\n### 网页摘要\n使用网页摘要时，网页中的文本信息会被发送到设备外的 Darock 智能服务进行处理。这些信息不会被存储，且不会关联到个人。" : {
       "localizations" : {
@@ -551,17 +558,6 @@
         }
       }
     },
-    "%lld/%lld" : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld/%2$lld"
-          }
-        }
-      },
-      "shouldTranslate" : false
-    },
     "%lld秒" : {
       "localizations" : {
         "en" : {
@@ -618,50 +614,6 @@
         }
       }
     },
-    "0.5x" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "0.5x"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "0.5x"
-          }
-        }
-      }
-    },
-    "0.75x" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "0.75x"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "0.75x"
-          }
-        }
-      }
-    },
     "1" : {
       "localizations" : {
         "en" : {
@@ -690,53 +642,6 @@
         }
       }
     },
-    "1.5x" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "1.5x"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "1.5x"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "1.5x"
-          }
-        }
-      }
-    },
-    "1.25x" : {
-      "shouldTranslate" : false
-    },
-    "1x" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "1x"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "1x"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "1x"
-          }
-        }
-      }
-    },
     "2" : {
       "localizations" : {
         "en" : {
@@ -761,28 +666,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "2"
-          }
-        }
-      }
-    },
-    "2x" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "2x"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "2x"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "2x"
           }
         }
       }
@@ -983,26 +866,6 @@
         }
       }
     },
-    "A" : {
-      "shouldTranslate" : false
-    },
-    "Active Pro" : {
-      "shouldTranslate" : false
-    },
-    "All data will be lost!" : {
-      "shouldTranslate" : false
-    },
-    "ALPHA" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      },
-      "shouldTranslate" : false
-    },
     "App 版本" : {
       "localizations" : {
         "en" : {
@@ -1074,17 +937,6 @@
           }
         }
       }
-    },
-    "BETA" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      },
-      "shouldTranslate" : false
     },
     "Beta 构建" : {
       "localizations" : {
@@ -1264,12 +1116,6 @@
         }
       }
     },
-    "Cancel" : {
-      "shouldTranslate" : false
-    },
-    "Continue" : {
-      "shouldTranslate" : false
-    },
     "Cookie" : {
       "localizations" : {
         "en" : {
@@ -1290,26 +1136,6 @@
           }
         }
       }
-    },
-    "Crash This App through NSException" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crash This App through NSException"
-          }
-        }
-      },
-      "shouldTranslate" : false
-    },
-    "Crash This App through Swift fatalError" : {
-      "shouldTranslate" : false
-    },
-    "D" : {
-      "shouldTranslate" : false
-    },
-    "Danger Zone" : {
-      "shouldTranslate" : false
     },
     "Darock API" : {
       "localizations" : {
@@ -1494,12 +1320,6 @@
       },
       "shouldTranslate" : false
     },
-    "Darock Community" : {
-      "shouldTranslate" : false
-    },
-    "Darock Studio" : {
-      "shouldTranslate" : false
-    },
     "Darock 始终重视您的隐私，所有 Cookie 仅在本地存储" : {
       "localizations" : {
         "en" : {
@@ -1586,34 +1406,13 @@
         }
       }
     },
-    "Data & Cloud" : {
-      "shouldTranslate" : false
-    },
-    "Debugger" : {
-      "shouldTranslate" : false
-    },
     "Debugging" : {
-      "shouldTranslate" : false
-    },
-    "Discord" : {
       "shouldTranslate" : false
     },
     "Discord Server" : {
       "shouldTranslate" : false
     },
-    "Energy & Performance" : {
-      "shouldTranslate" : false
-    },
-    "Error Handler" : {
-      "shouldTranslate" : false
-    },
     "Feature Flags" : {
-      "shouldTranslate" : false
-    },
-    "Firefox - macOS" : {
-      "shouldTranslate" : false
-    },
-    "Firefox - Windows" : {
       "shouldTranslate" : false
     },
     "google" : {
@@ -1643,12 +1442,6 @@
           }
         }
       }
-    },
-    "Google Chrome - macOS" : {
-      "shouldTranslate" : false
-    },
-    "Google Chrome - Windows" : {
-      "shouldTranslate" : false
     },
     "History.clear" : {
       "localizations" : {
@@ -2157,28 +1950,7 @@
         }
       }
     },
-    "Microsoft Edge - macOS" : {
-      "shouldTranslate" : false
-    },
-    "Microsoft Edge - Windows" : {
-      "shouldTranslate" : false
-    },
     "Pigeon" : {
-      "shouldTranslate" : false
-    },
-    "Powered by Cepheus Keyboard" : {
-      "shouldTranslate" : false
-    },
-    "Present Debugger Attach Status" : {
-      "shouldTranslate" : false
-    },
-    "Present History Count" : {
-      "shouldTranslate" : false
-    },
-    "Present Thermal State" : {
-      "shouldTranslate" : false
-    },
-    "Print NSHomeDirectory" : {
       "shouldTranslate" : false
     },
     "Pro" : {
@@ -2194,57 +1966,7 @@
         }
       }
     },
-    "Purchasing" : {
-      "shouldTranslate" : false
-    },
-    "QQ" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "QQ"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "QQ"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      },
-      "shouldTranslate" : false
-    },
-    "Reset All What‘s New Screen State" : {
-      "shouldTranslate" : false
-    },
-    "Reset Pro State" : {
-      "shouldTranslate" : false
-    },
-    "Reset TQCAccentColorHiddenButton" : {
-      "shouldTranslate" : false
-    },
-    "Run App Removal Service" : {
-      "shouldTranslate" : false
-    },
     "Runtime Error" : {
-      "shouldTranslate" : false
-    },
-    "Safari - iOS 17.4 - iPhone" : {
-      "shouldTranslate" : false
-    },
-    "Safari - iPadOS 17.4 - iPad" : {
-      "shouldTranslate" : false
-    },
-    "Safari - iPadOS 17.4 - iPad mini" : {
-      "shouldTranslate" : false
-    },
-    "Safari 18.0" : {
       "shouldTranslate" : false
     },
     "Search.baidu" : {
@@ -2978,44 +2700,7 @@
     "Tap for Details about our Discord Server" : {
       "shouldTranslate" : false
     },
-    "Tap-to-Radar" : {
-      "shouldTranslate" : false
-    },
-    "Telegram" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Telegram"
-          }
-        }
-      },
-      "shouldTranslate" : false
-    },
-    "Test Browser App Removal" : {
-      "shouldTranslate" : false
-    },
-    "This will delete all Darock Browser app data." : {
-      "shouldTranslate" : false
-    },
-    "Toggle an Internal Error" : {
-      "shouldTranslate" : false
-    },
     "User Agent" : {
-      "shouldTranslate" : false
-    },
-    "v%@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "v%@"
-          }
-        }
-      },
-      "shouldTranslate" : false
-    },
-    "What’s New Screen & TQC" : {
       "shouldTranslate" : false
     },
     "一切良好" : {
@@ -3900,29 +3585,6 @@
         }
       }
     },
-    "使用旧版引擎时，用户脚本不可用" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Userscripts are not available when using traditional engine"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "旧エンジン使用時は、ユーザースクリプトは利用できません"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用舊版引擎時，用戶腳本不可用"
-          }
-        }
-      }
-    },
     "使用旧版引擎时，网页归档不可用" : {
       "localizations" : {
         "en" : {
@@ -4385,6 +4047,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Close All Tabs?"
+          }
+        }
+      }
+    },
+    "最多添加四个快捷按钮，按钮将显示在网页顶部，效果如下" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can add up to four shortcut buttons, which will be displayed at the top of the webpage, as shown below."
           }
         }
       }
@@ -5316,7 +4988,24 @@
       }
     },
     "启动时恢复上次浏览的页面" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore the last page visited upon startup"
+          }
+        }
+      }
+    },
+    "启用“隐藏时间”以添加按钮 4" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable “Hide Digital Time” to add Button 4"
+          }
+        }
+      }
     },
     "哔哩哔哩" : {
       "localizations" : {
@@ -6128,29 +5817,6 @@
         }
       }
     },
-    "安装此脚本" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Install This Script"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "このスクリプトをインストール"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "安裝此腳本"
-          }
-        }
-      }
-    },
     "完成" : {
       "localizations" : {
         "en" : {
@@ -6563,29 +6229,6 @@
         }
       }
     },
-    "已启用的脚本" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Active Scripts"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "有効化されたスクリプト"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已啟用的腳本"
-          }
-        }
-      }
-    },
     "已安装暗礁文件" : {
       "localizations" : {
         "en" : {
@@ -6728,29 +6371,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "常見問題"
-          }
-        }
-      }
-    },
-    "应用到" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apply to"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "適用対象"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "應用到"
           }
         }
       }
@@ -7927,35 +7547,6 @@
         }
       }
     },
-    "操作" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Action"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "操作"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "操作"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "操作"
-          }
-        }
-      }
-    },
     "断开 Apple Watch 与 iPhone 的连接" : {
       "localizations" : {
         "en" : {
@@ -8310,28 +7901,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yes"
-          }
-        }
-      }
-    },
-    "显示“快速退出”按钮" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Show Quick Exit Button"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "「クイック終了」ボタンを表示"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "顯示“快速退出”按鈕"
           }
         }
       }
@@ -9054,29 +8623,6 @@
         }
       }
     },
-    "标题" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Title"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "タイトル"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "標題"
-          }
-        }
-      }
-    },
     "检查更新时出错" : {
       "localizations" : {
         "en" : {
@@ -9152,9 +8698,6 @@
           }
         }
       }
-    },
-    "欢迎加入 QQ 群 1019196619" : {
-      "shouldTranslate" : false
     },
     "欢迎加入群聊" : {
       "localizations" : {
@@ -9424,29 +8967,6 @@
         }
       }
     },
-    "此脚本已安装" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "This Script Had Installed"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "このスクリプトはインストールされています"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "此腳本已安裝"
-          }
-        }
-      }
-    },
     "每个实验项目会带有以下标签中的一个：" : {
       "localizations" : {
         "en" : {
@@ -9465,6 +8985,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "每個實驗項目會帶有以下標籤中的一個："
+          }
+        }
+      }
+    },
+    "每个按钮的功能均可自定义，支持快速返回、重新载入以及查看媒体等多项功能。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Each button’s function is customizable, supporting go previous, reload, media viewing, and other features."
           }
         }
       }
@@ -9647,35 +9177,6 @@
         }
       }
     },
-    "添加脚本" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add Script"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "スクリプトを追加"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "添加腳本"
-          }
-        }
-      }
-    },
     "添加附件" : {
       "localizations" : {
         "en" : {
@@ -9816,6 +9317,16 @@
         }
       }
     },
+    "激活暗礁浏览器 Pro 后，在%@中设置快捷按钮" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After activating Darock Browser Pro, you can set up shortcut buttons in %@."
+          }
+        }
+      }
+    },
     "现可单独放大查看网页中的图片" : {
       "localizations" : {
         "en" : {
@@ -9840,6 +9351,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "現可單獨放大查看網頁中的圖片"
+          }
+        }
+      }
+    },
+    "现可向网页顶部添加快捷操作按钮" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can now add Shortcut Buttons to the top of the webpage"
           }
         }
       }
@@ -11022,6 +10543,26 @@
         }
       }
     },
+    "网页快捷按钮" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web Shortcut Buttons"
+          }
+        }
+      }
+    },
+    "网页快捷按钮介绍" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web Shortcut Button Introduction"
+          }
+        }
+      }
+    },
     "网页摘要" : {
       "localizations" : {
         "en" : {
@@ -11139,7 +10680,14 @@
       }
     },
     "网页视图布局为“快速返回”时，快捷按钮不可用" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shortcut Buttons are unavailable when the web view layout is set to “Quick Return.”"
+          }
+        }
+      }
     },
     "网页语言" : {
       "localizations" : {
@@ -11157,58 +10705,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Invalid Link"
-          }
-        }
-      }
-    },
-    "脚本均来自greasyfork.org，Darock 无法进行审核，请自行辨别内容" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scripts are form greasyfork.org which Darock will not scan. Only proceed when you own the risk."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "スクリプトは全てgreasyfork.orgから来ており、Darockは内容を監査できませんので、自身で判断してください"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "腳本均來自greasyfork.org，Darock 無法進行審核，請自行辨別內容"
-          }
-        }
-      }
-    },
-    "脚本详情" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Script Info"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "スクリプト詳細"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "腳本詳情"
           }
         }
       }
@@ -11329,9 +10825,6 @@
         }
       }
     },
-    "蜀ICP备2024100233号-1A" : {
-      "shouldTranslate" : false
-    },
     "许可证" : {
       "localizations" : {
         "en" : {
@@ -11392,6 +10885,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Settings → Browsing Engine"
+          }
+        }
+      }
+    },
+    "设置→浏览引擎→快捷按钮" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings → Browsing Engine → Shortcut Buttons"
           }
         }
       }
@@ -13348,28 +12851,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "預計時間：%llds"
-          }
-        }
-      }
-    },
-    "预载入搜索内容" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Preload Search Content"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "検索内容をプリロード"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "預載入搜索內容"
           }
         }
       }

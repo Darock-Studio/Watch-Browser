@@ -35,6 +35,32 @@
 		8C52812B2C25A07A00392315 /* TQCViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C52812A2C25A07A00392315 /* TQCViews.swift */; };
 		8C547B012C3296D40093D592 /* DarockBrowserUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C547B002C3296D40093D592 /* DarockBrowserUnitTests.swift */; };
 		8C5588B52D569CD50055BC32 /* CheckWebContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588B42D569CD20055BC32 /* CheckWebContent.swift */; };
+		8C5588BB2D56BF4F0055BC32 /* DarockIntelligence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588BA2D56BF4B0055BC32 /* DarockIntelligence.swift */; };
+		8C5588BF2D56BF850055BC32 /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588BE2D56BF810055BC32 /* Widget.swift */; };
+		8C5588C12D56BFE50055BC32 /* Stared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588C02D56BFE10055BC32 /* Stared.swift */; };
+		8C5588C32D56C0070055BC32 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588C22D56C0050055BC32 /* Network.swift */; };
+		8C5588C82D56C0430055BC32 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588C72D56C03F0055BC32 /* GeneralSettingsView.swift */; };
+		8C5588CA2D56C0870055BC32 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588C92D56C0850055BC32 /* About.swift */; };
+		8C5588CC2D56C0B70055BC32 /* SoftwareUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588CB2D56C0B30055BC32 /* SoftwareUpdate.swift */; };
+		8C5588CE2D56C0E10055BC32 /* Continuity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588CD2D56C0DC0055BC32 /* Continuity.swift */; };
+		8C5588D02D56C1030055BC32 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588CF2D56C1010055BC32 /* Keyboard.swift */; };
+		8C5588D22D56C12D0055BC32 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588D12D56C12B0055BC32 /* Downloader.swift */; };
+		8C5588D42D56C14E0055BC32 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588D32D56C1460055BC32 /* MusicPlayer.swift */; };
+		8C5588D62D56C1730055BC32 /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588D52D56C1710055BC32 /* ImageViewer.swift */; };
+		8C5588D82D56C1950055BC32 /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588D72D56C1940055BC32 /* Reader.swift */; };
+		8C5588DA2D56C1B70055BC32 /* Legal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588D92D56C1B50055BC32 /* Legal.swift */; };
+		8C5588DC2D56C1E80055BC32 /* Reset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588DB2D56C1E70055BC32 /* Reset.swift */; };
+		8C5588DE2D56C22E0055BC32 /* Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588DD2D56C22C0055BC32 /* Display.swift */; };
+		8C5588E02D56C2670055BC32 /* BrowsingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588DF2D56C2640055BC32 /* BrowsingEngine.swift */; };
+		8C5588E32D56C2AB0055BC32 /* SearchSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588E22D56C2A70055BC32 /* SearchSettingsView.swift */; };
+		8C5588E52D56C2CB0055BC32 /* CustomSearchEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588E42D56C2C50055BC32 /* CustomSearchEngine.swift */; };
+		8C5588E72D56C2ED0055BC32 /* SearchEngineShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588E62D56C2E70055BC32 /* SearchEngineShortcut.swift */; };
+		8C5588E92D56C3140055BC32 /* Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588E82D56C3110055BC32 /* Gestures.swift */; };
+		8C5588EB2D56C34F0055BC32 /* Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588EA2D56C34D0055BC32 /* Password.swift */; };
+		8C5588ED2D56C3710055BC32 /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588EC2D56C36F0055BC32 /* Privacy.swift */; };
+		8C5588EF2D56C3900055BC32 /* Developer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588EE2D56C38E0055BC32 /* Developer.swift */; };
+		8C5588F12D56C3B20055BC32 /* Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588F02D56C3B00055BC32 /* Internal.swift */; };
+		8C5588F32D56C48A0055BC32 /* CachedLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5588F22D56C4820055BC32 /* CachedLocationManager.swift */; };
 		8C5612442D0D8B41006C4BE9 /* ProUnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5612422D0D8B35006C4BE9 /* ProUnavailableView.swift */; };
 		8C5930652C712F75004C79CE /* BrowsingMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5930642C712F75004C79CE /* BrowsingMenuView.swift */; };
 		8C5930672C71CE51004C79CE /* SwiftWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5930662C71CE45004C79CE /* SwiftWebView.swift */; };
@@ -763,6 +789,32 @@
 		8C547AFE2C3296D40093D592 /* DarockBrowserUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DarockBrowserUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C547B002C3296D40093D592 /* DarockBrowserUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarockBrowserUnitTests.swift; sourceTree = "<group>"; };
 		8C5588B42D569CD20055BC32 /* CheckWebContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckWebContent.swift; sourceTree = "<group>"; };
+		8C5588BA2D56BF4B0055BC32 /* DarockIntelligence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarockIntelligence.swift; sourceTree = "<group>"; };
+		8C5588BE2D56BF810055BC32 /* Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widget.swift; sourceTree = "<group>"; };
+		8C5588C02D56BFE10055BC32 /* Stared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stared.swift; sourceTree = "<group>"; };
+		8C5588C22D56C0050055BC32 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		8C5588C72D56C03F0055BC32 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
+		8C5588C92D56C0850055BC32 /* About.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
+		8C5588CB2D56C0B30055BC32 /* SoftwareUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareUpdate.swift; sourceTree = "<group>"; };
+		8C5588CD2D56C0DC0055BC32 /* Continuity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Continuity.swift; sourceTree = "<group>"; };
+		8C5588CF2D56C1010055BC32 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		8C5588D12D56C12B0055BC32 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
+		8C5588D32D56C1460055BC32 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		8C5588D52D56C1710055BC32 /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
+		8C5588D72D56C1940055BC32 /* Reader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
+		8C5588D92D56C1B50055BC32 /* Legal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Legal.swift; sourceTree = "<group>"; };
+		8C5588DB2D56C1E70055BC32 /* Reset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reset.swift; sourceTree = "<group>"; };
+		8C5588DD2D56C22C0055BC32 /* Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Display.swift; sourceTree = "<group>"; };
+		8C5588DF2D56C2640055BC32 /* BrowsingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowsingEngine.swift; sourceTree = "<group>"; };
+		8C5588E22D56C2A70055BC32 /* SearchSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSettingsView.swift; sourceTree = "<group>"; };
+		8C5588E42D56C2C50055BC32 /* CustomSearchEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchEngine.swift; sourceTree = "<group>"; };
+		8C5588E62D56C2E70055BC32 /* SearchEngineShortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEngineShortcut.swift; sourceTree = "<group>"; };
+		8C5588E82D56C3110055BC32 /* Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gestures.swift; sourceTree = "<group>"; };
+		8C5588EA2D56C34D0055BC32 /* Password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Password.swift; sourceTree = "<group>"; };
+		8C5588EC2D56C36F0055BC32 /* Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy.swift; sourceTree = "<group>"; };
+		8C5588EE2D56C38E0055BC32 /* Developer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Developer.swift; sourceTree = "<group>"; };
+		8C5588F02D56C3B00055BC32 /* Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Internal.swift; sourceTree = "<group>"; };
+		8C5588F22D56C4820055BC32 /* CachedLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedLocationManager.swift; sourceTree = "<group>"; };
 		8C5612422D0D8B35006C4BE9 /* ProUnavailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProUnavailableView.swift; sourceTree = "<group>"; };
 		8C5869CE2C316A2100A18923 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		8C5930602C711C22004C79CE /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = "../../../../Library/Developer/CoreSimulator/Volumes/watchOS_22R5328f/Library/Developer/CoreSimulator/Profiles/Runtimes/watchOS 11.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/Frameworks/SafariServices.framework"; sourceTree = "<group>"; };
@@ -1628,6 +1680,55 @@
 			path = DarockBrowserUnitTests;
 			sourceTree = "<group>";
 		};
+		8C5588B82D56BF100055BC32 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				6BA7F79F2A2F6FC600FFEED0 /* SettingsView.swift */,
+				8C5588BA2D56BF4B0055BC32 /* DarockIntelligence.swift */,
+				8C5588BE2D56BF810055BC32 /* Widget.swift */,
+				8C5588C02D56BFE10055BC32 /* Stared.swift */,
+				8C5588C22D56C0050055BC32 /* Network.swift */,
+				8C5588C62D56C0330055BC32 /* General */,
+				8C5588DD2D56C22C0055BC32 /* Display.swift */,
+				8C5588DF2D56C2640055BC32 /* BrowsingEngine.swift */,
+				8C5588E12D56C29E0055BC32 /* Search */,
+				8C5588E82D56C3110055BC32 /* Gestures.swift */,
+				8C5588EA2D56C34D0055BC32 /* Password.swift */,
+				8C5588EC2D56C36F0055BC32 /* Privacy.swift */,
+				8C5588EE2D56C38E0055BC32 /* Developer.swift */,
+				8C5588F02D56C3B00055BC32 /* Internal.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		8C5588C62D56C0330055BC32 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				8C5588C72D56C03F0055BC32 /* GeneralSettingsView.swift */,
+				8C5588C92D56C0850055BC32 /* About.swift */,
+				8C5588CB2D56C0B30055BC32 /* SoftwareUpdate.swift */,
+				8C5588CD2D56C0DC0055BC32 /* Continuity.swift */,
+				8C5588CF2D56C1010055BC32 /* Keyboard.swift */,
+				8C5588D12D56C12B0055BC32 /* Downloader.swift */,
+				8C5588D32D56C1460055BC32 /* MusicPlayer.swift */,
+				8C5588D52D56C1710055BC32 /* ImageViewer.swift */,
+				8C5588D72D56C1940055BC32 /* Reader.swift */,
+				8C5588D92D56C1B50055BC32 /* Legal.swift */,
+				8C5588DB2D56C1E70055BC32 /* Reset.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		8C5588E12D56C29E0055BC32 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				8C5588E22D56C2A70055BC32 /* SearchSettingsView.swift */,
+				8C5588E42D56C2C50055BC32 /* CustomSearchEngine.swift */,
+				8C5588E62D56C2E70055BC32 /* SearchEngineShortcut.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		8CA47BEF2C97242E00753101 /* ProWidgets */ = {
 			isa = PBXGroup;
 			children = (
@@ -1687,6 +1788,7 @@
 			isa = PBXGroup;
 			children = (
 				8C1DED012C32AEB00048A32A /* General.swift */,
+				8C5588F22D56C4820055BC32 /* CachedLocationManager.swift */,
 				8CE70DC82C7A524D00EFB3AD /* BlurBackground.swift */,
 				8CE3FCA72CCE12DD009E4EBB /* UserDefinedBackground.swift */,
 				8CBA140F2C7D1B4200D40EE5 /* DoubleTapActionButton.swift */,
@@ -1784,7 +1886,7 @@
 		8CDA8C7F2C67EFF1001D5770 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				6BA7F79F2A2F6FC600FFEED0 /* SettingsView.swift */,
+				8C5588B82D56BF100055BC32 /* Settings */,
 				8CCF13F12C20A4FF00F5E0D7 /* DarockAccountsUI.swift */,
 				8CF6361C2CAD56EA00ECE3B3 /* AppearenceManager.swift */,
 				8CA47BF72C97586000753101 /* ProPurchaseView.swift */,
@@ -2179,11 +2281,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CA47BFF2C9812BC00753101 /* Models.swift in Sources */,
+				8C5588CE2D56C0E10055BC32 /* Continuity.swift in Sources */,
+				8C5588C82D56C0430055BC32 /* GeneralSettingsView.swift in Sources */,
 				8CE70DCB2C7A527E00EFB3AD /* BookReaderView.swift in Sources */,
 				8C038A962CCD516E00BC0FB4 /* TabsListView.swift in Sources */,
+				8C5588ED2D56C3710055BC32 /* Privacy.swift in Sources */,
 				8CF5DC4F2BAE04D5007F9974 /* ShareView.swift in Sources */,
 				8CC3353A2C9954A60025B936 /* PrivacyAboutView.swift in Sources */,
+				8C5588EF2D56C3900055BC32 /* Developer.swift in Sources */,
+				8C5588DC2D56C1E80055BC32 /* Reset.swift in Sources */,
 				8C5930652C712F75004C79CE /* BrowsingMenuView.swift in Sources */,
+				8C5588D22D56C12D0055BC32 /* Downloader.swift in Sources */,
 				8C4E349E2CB2B7A20091AD22 /* BetaJoinView.swift in Sources */,
 				8C6E11E12BDC0638005420C0 /* WebArchiveListView.swift in Sources */,
 				8CE70DBE2C7A510400EFB3AD /* AVPlayer+PeriodicTimePublisher.swift in Sources */,
@@ -2192,8 +2300,13 @@
 				8CDFFF3A2D4837E900A76224 /* IfContainer.swift in Sources */,
 				8C5588B52D569CD50055BC32 /* CheckWebContent.swift in Sources */,
 				8CB803D02BD3DCE4009B2FAC /* WebExtension.m in Sources */,
+				8C5588EB2D56C34F0055BC32 /* Password.swift in Sources */,
+				8C5588CA2D56C0870055BC32 /* About.swift in Sources */,
 				8CE70DB32C7A4FD100EFB3AD /* LocalVideosView.swift in Sources */,
 				8CB0189A2BDBC5C500982644 /* WebViewDelegate.swift in Sources */,
+				8C5588BB2D56BF4F0055BC32 /* DarockIntelligence.swift in Sources */,
+				8C5588F12D56C3B20055BC32 /* Internal.swift in Sources */,
+				8C5588D82D56C1950055BC32 /* Reader.swift in Sources */,
 				8CC2842B2CE05D5C000B2E33 /* DownloadToExternalView.swift in Sources */,
 				8C7C4D432C2D898700FD282B /* BookListView.swift in Sources */,
 				8CE70DB62C7A504100EFB3AD /* AudioControllerView.swift in Sources */,
@@ -2203,9 +2316,11 @@
 				8CA7B8492BE3DF47004643FE /* ImageListView.swift in Sources */,
 				8CA47C0A2C98305600753101 /* Intents.swift in Sources */,
 				8C6E11DF2BDC029E005420C0 /* WEBackSwift.swift in Sources */,
+				8C5588E52D56C2CB0055BC32 /* CustomSearchEngine.swift in Sources */,
 				6BF20A0A299100AE00E623FC /* BookmarkView.swift in Sources */,
 				8CE70DC92C7A525500EFB3AD /* BlurBackground.swift in Sources */,
 				8CE70DC52C7A51F800EFB3AD /* BookViewerView.swift in Sources */,
+				8C5588D62D56C1730055BC32 /* ImageViewer.swift in Sources */,
 				8CD3D8ED2CAA384A009276DD /* SuggestedResolvers.swift in Sources */,
 				8CA370E32B835AAD00CE0E9E /* NumberPadExt.swift in Sources */,
 				6BF209F62990E61C00E623FC /* ContentView.swift in Sources */,
@@ -2223,26 +2338,39 @@
 				8CF6361F2CADC19200ECE3B3 /* WebSummaryView.swift in Sources */,
 				8CC267E52CE8F1A800AE03F0 /* TabModels.swift in Sources */,
 				8CF636282CAE6B2900ECE3B3 /* View+BrightnessReducable.swift in Sources */,
+				8C5588E32D56C2AB0055BC32 /* SearchSettingsView.swift in Sources */,
 				8CF6361D2CAD56EF00ECE3B3 /* AppearenceManager.swift in Sources */,
+				8C5588F32D56C48A0055BC32 /* CachedLocationManager.swift in Sources */,
+				8C5588D42D56C14E0055BC32 /* MusicPlayer.swift in Sources */,
+				8C5588BF2D56BF850055BC32 /* Widget.swift in Sources */,
 				8CC306132CAB160F00323034 /* View+TouchZoomable.swift in Sources */,
 				8CB9A10E2C6D229600E6A367 /* MarkdownUI+.swift in Sources */,
+				8C5588E92D56C3140055BC32 /* Gestures.swift in Sources */,
+				8C5588DE2D56C22E0055BC32 /* Display.swift in Sources */,
+				8C5588C32D56C0070055BC32 /* Network.swift in Sources */,
 				8CE70DD02C7A536100EFB3AD /* LocalImageView.swift in Sources */,
 				8CE70DB82C7A507E00EFB3AD /* LocalAudiosView.swift in Sources */,
 				8CF87EDF2D3E8C5C00073C85 /* ImageGroupView.swift in Sources */,
 				8CA4537D2AE3C63900138CE4 /* JoinGroupView.swift in Sources */,
+				8C5588D02D56C1030055BC32 /* Keyboard.swift in Sources */,
 				8C5930672C71CE51004C79CE /* SwiftWebView.swift in Sources */,
 				8CCDABEF2C5674F100E29E3D /* ClusterTipView.swift in Sources */,
+				8C5588E72D56C2ED0055BC32 /* SearchEngineShortcut.swift in Sources */,
+				8C5588C12D56BFE50055BC32 /* Stared.swift in Sources */,
 				8C894B222BE7569300768B59 /* ExtKeyboardView.swift in Sources */,
 				8C5612442D0D8B41006C4BE9 /* ProUnavailableView.swift in Sources */,
 				8CE70DBC2C7A50C500EFB3AD /* AudioVisualizerView.swift in Sources */,
 				8CBA14102C7D1B4D00D40EE5 /* DoubleTapActionButton.swift in Sources */,
+				8C5588E02D56C2670055BC32 /* BrowsingEngine.swift in Sources */,
 				8CE70DB12C7A4F7300EFB3AD /* MediaDownloadView.swift in Sources */,
+				8C5588DA2D56C1B70055BC32 /* Legal.swift in Sources */,
 				8C6D86792C10C6A70089CE67 /* LaboratoryView.swift in Sources */,
 				6BF209F42990E61C00E623FC /* DarockBrowserApp.swift in Sources */,
 				8CE70DAF2C7A4F3500EFB3AD /* VideoPlayingView.swift in Sources */,
 				8CC267E72CE8F70800AE03F0 /* MediaMainView.swift in Sources */,
 				8C67C8F32C60DFF30091714D /* UIKitHelper.swift in Sources */,
 				8CDE9B9E2C3C19460083B09E /* AudioListView.swift in Sources */,
+				8C5588CC2D56C0B70055BC32 /* SoftwareUpdate.swift in Sources */,
 				8CCF13F22C20A4FF00F5E0D7 /* DarockAccountsUI.swift in Sources */,
 				8CE70DCE2C7A534100EFB3AD /* ImageViewerView.swift in Sources */,
 				8CB0D0202B889F3D0057EF1C /* FeedbackView.swift in Sources */,

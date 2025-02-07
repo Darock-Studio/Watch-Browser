@@ -52,7 +52,7 @@
       "location" : "https://github.com/Darock-Studio/CorvusKit",
       "state" : {
         "branch" : "main",
-        "revision" : "865481811cdc0d2e815c9a18be0bbda6878fb5f3"
+        "revision" : "df7f095270fe54ba52e5c232bc0f326718f910f6"
       }
     },
     {
@@ -293,8 +293,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/twostraws/Vortex",
       "state" : {
-        "revision" : "bb48b128d3c13c68c68e83833c622eec9f6c701f",
-        "version" : "1.0.1"
+        "revision" : "26e036c4f04efcc019c95d43bfeffeaefbef3c99",
+        "version" : "1.0.3"
       }
     },
     {

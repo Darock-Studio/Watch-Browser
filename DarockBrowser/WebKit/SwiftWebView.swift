@@ -22,7 +22,6 @@ struct SwiftWebView: View {
     @AppStorage("WebViewLayout") var webViewLayout = "MaximumViewport"
     @AppStorage("HideDigitalTime") var hideDigitalTime = false
     @AppStorage("KeepDigitalTime") var keepDigitalTime = false
-    @AppStorage("ShowFastExitButton") var showFastExitButton = false
     @AppStorage("IsProPurchased") var isProPurchased = false
     @AppStorage("AlwaysReloadWebPageAfterCrash") var alwaysReloadWebPageAfterCrash = false
     @State var fastButtons = [WebViewFastButton].getCurrentFastButtons()
@@ -36,6 +35,11 @@ struct SwiftWebView: View {
     @State var loadingProgress = 0.0
     @State var isLoadingProgressHidden = true
     @State var webErrorText: String?
+    @State var linksUpdateTimer: Timer?
+    @State var videoLinks = [String]()
+    @State var imageLinks = [String]()
+    @State var imageAltTexts = [String]()
+    @State var audioLinks = [String]()
     var body: some View {
         ZStack {
             DoubleTapActionButton(forType: .inWeb, webView: webView, presentationModeForExitWeb: presentationMode) {
@@ -184,7 +188,7 @@ struct SwiftWebView: View {
                         Button(action: {
                             isBrowsingMenuPresented = true
                         }, label: {
-                            ZStack(alignment: .trailing) {
+                            ZStack {
                                 Rectangle()
                                     .fill(Color.gray)
                                     .frame(width: 30, height: 40)
@@ -193,11 +197,11 @@ struct SwiftWebView: View {
                                     .font(.system(size: 20, weight: .light))
                                     .foregroundStyle(Color(hex: 0x00aad7))
                             }
+                            .padding(.leading, 7)
                         })
                         .buttonStyle(.plain)
                         .padding(.vertical, 5)
-                        .padding(.leading, 5)
-                        if fastButtons != [.empty, .empty, .empty, .empty] {
+                        if fastButtons != [.empty, .empty, .empty, .empty] && isProPurchased {
                             ForEach(0..<fastButtons.count, id: \.self) { i in
                                 Spacer()
                                 Button(action: {
@@ -213,11 +217,11 @@ struct SwiftWebView: View {
                                             webView.reload()
                                         }
                                     case .decodeVideo:
-                                        break
+                                        presentingMediaList = .init(.video, links: videoLinks)
                                     case .decodeImage:
-                                        break
+                                        presentingMediaList = .init(.image, links: imageLinks, linksAlt: imageAltTexts)
                                     case .decodeMusic:
-                                        break
+                                        presentingMediaList = .init(.music, links: audioLinks)
                                     case .exit:
                                         if let customDismissAction {
                                             customDismissAction()
@@ -231,7 +235,7 @@ struct SwiftWebView: View {
                                     ZStack {
                                         Rectangle()
                                             .fill(Color.gray)
-                                            .frame(width: 20, height: 40)
+                                            .frame(width: 30, height: 40)
                                             .minimumRenderableOpacity()
                                         Image(systemName: {
                                             switch fastButtons[i] {
@@ -246,7 +250,6 @@ struct SwiftWebView: View {
                                             }
                                         }())
                                         .font(.system(size: 20, weight: .light))
-                                        .opacity(fastButtons[i] == .empty ? kViewMinimumRenderableOpacity : 1)
                                         .foregroundStyle(fastButtons[i] == .exit ? .red : .blue)
                                     }
                                 })
@@ -254,29 +257,16 @@ struct SwiftWebView: View {
                                 .disabled(
                                     (fastButtons[i] == .previousPage && !webCanGoBack)
                                     || (fastButtons[i] == .nextPage && !webCanGoForward)
-                                    
+                                    || (fastButtons[i] == .decodeVideo && videoLinks.isEmpty)
+                                    || (fastButtons[i] == .decodeImage && imageLinks.isEmpty)
+                                    || (fastButtons[i] == .decodeMusic && audioLinks.isEmpty)
                                 )
+                                .opacity(fastButtons[i] == .empty || (i == 3 && !hideDigitalTime) ? 0 : 1)
+                                .wrapIf(i == 3) { content in
+                                    content
+                                        .padding(.trailing, 7)
+                                }
                             }
-                        } else if showFastExitButton {
-                            Button(action: {
-                                if let customDismissAction {
-                                    customDismissAction()
-                                } else {
-                                    presentationMode.wrappedValue.dismiss()
-                                }
-                            }, label: {
-                                ZStack {
-                                    Rectangle()
-                                        .fill(Color.gray)
-                                        .frame(width: 40, height: 40)
-                                        .minimumRenderableOpacity()
-                                    Image(systemName: "escape")
-                                        .font(.system(size: 20, weight: .light))
-                                        .foregroundStyle(.red)
-                                }
-                            })
-                            .buttonStyle(.plain)
-                            .padding(.vertical, 5)
                         }
                         Spacer()
                     }
@@ -322,11 +312,21 @@ struct SwiftWebView: View {
             if hideDigitalTime {
                 setMainSceneHideStatusBarSubject.send(true)
             }
+            if _fastPath(linksUpdateTimer == nil) {
+                linksUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
+                    videoLinks = videoLinkLists
+                    imageLinks = imageLinkLists
+                    imageAltTexts = imageAltTextLists
+                    audioLinks = audioLinkLists
+                }
+            }
         }
         .onDisappear {
             if hideDigitalTime {
                 setMainSceneHideStatusBarSubject.send(false)
             }
+            linksUpdateTimer?.invalidate()
+            linksUpdateTimer = nil
             globalWebBrowsingUserActivity?.invalidate()
         }
         .onChange(of: isQuickAvoidanceShowingEmpty) { _ in

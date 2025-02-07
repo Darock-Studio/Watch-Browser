@@ -25,10 +25,10 @@ struct JoinGroupView: View {
                         .navigationTitle("加入群聊")
                         .navigationBarTitleDisplayMode(.inline)
                     }, label: {
-                        Text("欢迎加入 QQ 群 1019196619")
+                        Text(verbatim: "欢迎加入 QQ 群 1019196619")
                     })
                 } header: {
-                    Text("QQ")
+                    Text(verbatim: "QQ")
                 }
             } else {
                 Section {
@@ -43,14 +43,14 @@ struct JoinGroupView: View {
                         .navigationBarTitleDisplayMode(.inline)
                     }, label: {
                         VStack(alignment: .leading) {
-                            Text("Darock Community")
+                            Text(verbatim: "Darock Community")
                             Text("轻触以查看二维码")
                                 .font(.system(size: 13))
                                 .foregroundStyle(.gray)
                         }
                     })
                 } header: {
-                    Text("Discord")
+                    Text(verbatim: "Discord")
                 }
                 Section {
                     NavigationLink(destination: {
@@ -71,7 +71,7 @@ struct JoinGroupView: View {
                         }
                     })
                 } header: {
-                    Text("Telegram")
+                    Text(verbatim: "Telegram")
                 }
             }
             Section {

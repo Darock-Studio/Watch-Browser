@@ -9,13 +9,12 @@ import SwiftSoup
 import Foundation
 import SwiftUICore
 
-func checkWebContent(for webView: WKWebView, flag isCheckingWebContent: Binding<Bool>? = nil) {
+func checkWebContent(for webView: WKWebView) {
     guard let currentUrl = webView.url?.absoluteString else {
         videoLinkLists.removeAll()
         imageLinkLists.removeAll()
         imageAltTextLists.removeAll()
         audioLinkLists.removeAll()
-        isCheckingWebContent?.wrappedValue = false
         return
     }
     webView.evaluateJavaScript("document.documentElement.outerHTML", completionHandler: { obj, error in
@@ -163,9 +162,6 @@ func checkWebContent(for webView: WKWebView, flag isCheckingWebContent: Binding<
             if currentUrl.contains(/music\..*\.com/) && currentUrl.contains(/(\?|&)id=[0-9]*($|&)/),
                let mid = currentUrl.split(separator: "id=")[from: 1]?.split(separator: "&").first {
                 audioLinkLists = ["http://music.\(0b10100011).com/song/media/outer/url?id=\(mid).mp3"]
-            }
-            DispatchQueue.main.async {
-                isCheckingWebContent?.wrappedValue = false
             }
         }
     })

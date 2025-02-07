@@ -21,7 +21,7 @@ struct LaboratoryView: View {
                             Spacer()
                         }
                         HStack {
-                            Text("BETA")
+                            Text(verbatim: "BETA")
                                 .font(.system(size: 14, weight: .semibold))
                                 .foregroundColor(.white)
                                 .padding(.horizontal, 5)
@@ -54,7 +54,7 @@ struct LaboratoryView: View {
                                 Spacer()
                             }
                             HStack {
-                                Text("ALPHA")
+                                Text(verbatim: "ALPHA")
                                     .font(.system(size: 14, weight: .semibold))
                                     .foregroundColor(.black)
                                     .padding(.horizontal, 5)
@@ -62,7 +62,7 @@ struct LaboratoryView: View {
                                         RoundedRectangle(cornerRadius: 8)
                                             .fill(Color.yellow)
                                     }
-                                Text("BETA")
+                                Text(verbatim: "BETA")
                                     .font(.system(size: 14, weight: .semibold))
                                     .foregroundColor(.white)
                                     .padding(.horizontal, 5)
