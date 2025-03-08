@@ -89,6 +89,12 @@ extension NewWebTabConfiguration {
     }
 }
 
+struct MediaTab: Identifiable {
+    var id = UUID()
+    
+    
+}
+
 enum TabMainPageSeletion: Hashable {
     case webPage(WebViewTab)
     case customView(HashableView)

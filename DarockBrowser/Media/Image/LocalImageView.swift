@@ -70,7 +70,10 @@ struct LocalImageView: View {
             .scrollIndicators(.never)
             .navigationTitle("本地图片")
             .sheet(isPresented: $isImageViewerPresented) {
-                ImageGroupView(links: .constant(images.map { NSHomeDirectory() + "/Documents/LocalImages/" + $0 }), selection: tabSelection)
+                ImageGroupView(
+                    links: .constant(images.map { URL(filePath: NSHomeDirectory() + "/Documents/LocalImages/" + $0).absoluteString }),
+                    selection: tabSelection
+                )
             }
             .sheet(isPresented: $isMenuPresented) {
                 NavigationStack {

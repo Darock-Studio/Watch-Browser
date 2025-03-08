@@ -128,6 +128,10 @@ struct SettingsView: View {
                                label: { SettingItemLabel(title: "显示与亮度", image: "sun.max.fill", color: .blue) })
                 NavigationLink(destination: { BrowsingEngineSettingsView() },
                                label: { SettingItemLabel(title: "浏览引擎", image: "globe", color: .blue) })
+                if #available(watchOS 10.0, *) {
+                    NavigationLink(destination: { BrowsingPreferenceSettingsView() },
+                                   label: { SettingItemLabel(title: "浏览偏好", image: "viewfinder", color: .gray) })
+                }
                 NavigationLink(destination: { SearchSettingsView() },
                                label: { SettingItemLabel(title: "搜索", image: "magnifyingglass", color: .gray) })
                 #if compiler(>=6)
@@ -199,6 +203,9 @@ struct SettingsView: View {
                     }
                 }
             }
+        }
+        .onReceive(appBecomeInactiveSubject) { _ in
+            isPasscodeViewPresented = false
         }
     }
     

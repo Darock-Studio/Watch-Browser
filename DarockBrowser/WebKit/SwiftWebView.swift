@@ -22,6 +22,7 @@ struct SwiftWebView: View {
     @AppStorage("WebViewLayout") var webViewLayout = "MaximumViewport"
     @AppStorage("HideDigitalTime") var hideDigitalTime = false
     @AppStorage("KeepDigitalTime") var keepDigitalTime = false
+    @AppStorage("IsUseTabBasedBrowsing") var isUseTabBasedBrowsing = true
     @AppStorage("IsProPurchased") var isProPurchased = false
     @AppStorage("AlwaysReloadWebPageAfterCrash") var alwaysReloadWebPageAfterCrash = false
     @State var fastButtons = [WebViewFastButton].getCurrentFastButtons()
@@ -35,6 +36,7 @@ struct SwiftWebView: View {
     @State var loadingProgress = 0.0
     @State var isLoadingProgressHidden = true
     @State var webErrorText: String?
+    @State var webContentCheckTimer: Timer?
     @State var linksUpdateTimer: Timer?
     @State var videoLinks = [String]()
     @State var imageLinks = [String]()
@@ -111,13 +113,15 @@ struct SwiftWebView: View {
                                     }
                                 }
                             }, label: {
-                                if #available(watchOS 10, *) {
-                                    Image(systemName: webCanGoBack ? "chevron.backward" : "list.bullet")
-                                        .foregroundStyle(.accent)
-                                        .contentTransition(.symbolEffect(.replace))
-                                } else {
-                                    Image(systemName: webCanGoBack ? "chevron.backward" : "list.bullet")
-                                        .foregroundStyle(.accent)
+                                Group {
+                                    if #available(watchOS 10, *) {
+                                        Image(systemName: webCanGoBack ? "chevron.backward" : (isUseTabBasedBrowsing ? "list.bullet" : "escape"))
+                                            .foregroundStyle(!isUseTabBasedBrowsing && !webCanGoBack ? .red : .accent)
+                                            .contentTransition(.symbolEffect(.replace))
+                                    } else {
+                                        Image(systemName: webCanGoBack ? "chevron.backward" : (isUseTabBasedBrowsing ? "list.bullet" : "escape"))
+                                            .foregroundStyle(!isUseTabBasedBrowsing && !webCanGoBack ? .red : .accent)
+                                    }
                                 }
                             })
                         }
@@ -137,8 +141,14 @@ struct SwiftWebView: View {
                     }
                 }
                 .wrapIf(webViewLayout != "MaximumViewport") { content in
-                    NavigationView {
-                        content
+                    if isUseTabBasedBrowsing {
+                        NavigationView {
+                            content
+                        }
+                    } else {
+                        NavigationStack {
+                            content
+                        }
                     }
                 }
                 .toolbar(.hidden)
@@ -312,6 +322,11 @@ struct SwiftWebView: View {
             if hideDigitalTime {
                 setMainSceneHideStatusBarSubject.send(true)
             }
+            if _fastPath(webContentCheckTimer == nil) {
+                webContentCheckTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { _ in
+                    checkWebContent(for: webView)
+                }
+            }
             if _fastPath(linksUpdateTimer == nil) {
                 linksUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
                     videoLinks = videoLinkLists
@@ -327,6 +342,8 @@ struct SwiftWebView: View {
             }
             linksUpdateTimer?.invalidate()
             linksUpdateTimer = nil
+            webContentCheckTimer?.invalidate()
+            webContentCheckTimer = nil
             globalWebBrowsingUserActivity?.invalidate()
         }
         .onChange(of: isQuickAvoidanceShowingEmpty) { _ in

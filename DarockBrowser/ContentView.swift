@@ -24,6 +24,7 @@ struct ContentView: View {
     @AppStorage("DCSaveHistory") var isSaveHistoryToCloud = false
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
     @AppStorage("WebSearch") var webSearch = "必应"
+    @AppStorage("IsUseTabBasedBrowsing") var isUseTabBasedBrowsing = true
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
     @AppStorage("IsProPurchased") var isProPurchased = false
     @State var mainTabSelection = 2
@@ -36,7 +37,7 @@ struct ContentView: View {
         Group {
             if #available(watchOS 10.0, *) {
                 Group {
-                    if !isUseOldWebView {
+                    if !isUseOldWebView && isUseTabBasedBrowsing {
                         TabsListView { onCreate in
                             MainView(createPageAction: onCreate)
                         }
@@ -117,7 +118,6 @@ struct MainView: View {
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
-    @AppStorage("LabTabBrowsingEnabled") var labTabBrowsingEnabled = false
     @State var textOrURL = ""
     @State var goToButtonLabelText: LocalizedStringKey = "Home.search"
     @State var isKeyboardPresented = false
@@ -179,7 +179,7 @@ struct MainView: View {
                     })
                     .disabled(isUseOldWebView)
                 }
-                if #unavailable(watchOS 10.0) {
+                if createPageAction == nil {
                     NavigationLink(destination: { MediaMainView() }, label: {
                         Label("媒体", systemImage: "rectangle.stack")
                             .centerAligned()
@@ -253,7 +253,7 @@ struct MainView: View {
                     .modifier(UserDefinedBackground())
             }
         }
-        .navigationTitle({ if #available(watchOS 10.0, *) { true } else { false } }() ? String(localized: "起始页") : String(localized: "暗礁浏览器"))
+        .navigationTitle(createPageAction != nil ? String(localized: "起始页") : String(localized: "暗礁浏览器"))
         .navigationBarTitleDisplayMode(.large)
         .toolbar {
             if #available(watchOS 10.0, *), createPageAction == nil {

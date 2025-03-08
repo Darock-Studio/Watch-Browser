@@ -29,6 +29,7 @@ let isAppBetaBuild = false
 #endif
 
 let setMainSceneHideStatusBarSubject = PassthroughSubject<Bool, Never>()
+let appBecomeInactiveSubject = PassthroughSubject<Void, Never>()
 
 var pTapToRadarAlertContent = ""
 var pTapToRadarAttachText = ""
@@ -43,6 +44,7 @@ struct DarockBrowserApp: App {
     @WKApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) var scenePhase
     @AppStorage("ShouldTipNewFeatures8") var shouldTipNewFeatures = true
+    @AppStorage("ShouldAskForBrowsingPreference") var shouldAskForBrowsingPreference = if #available(watchOS 10.0, *) { true } else { false }
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockDarockBrowser") var usePasscodeForLockDarockBrowser = false
     @AppStorage("IsThisClusterInstalled") var isThisClusterInstalled = false
@@ -71,6 +73,13 @@ struct DarockBrowserApp: App {
                     .blur(radius: isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser ? 12 : 0)
                     .allowsHitTesting(!(isBrowserLocked && !userPasscodeEncrypted.isEmpty && usePasscodeForLockDarockBrowser))
                     .sheet(isPresented: $shouldTipNewFeatures, content: { NewFeaturesView() })
+                    .sheet(isPresented: $shouldAskForBrowsingPreference) {
+                        if #available(watchOS 10.0, *) {
+                            NavigationStack {
+                                SettingsView.BrowsingPreferenceSettingsView(isShowingInStartup: true)
+                            }
+                        }
+                    }
                     .sheet(isPresented: $isClusterInstalledTipPresented, content: { ClusterTipView() })
                     .sheet(isPresented: $isBrowserProAdPresented, onDismiss: { isBrowserProAdFirstTipped = true }) {
                         NavigationStack {
@@ -158,6 +167,7 @@ struct DarockBrowserApp: App {
                     isBrowserLocked = true
                 }
             case .inactive:
+                appBecomeInactiveSubject.send(())
                 if isAutoAppearence {
                     AppearenceManager.shared.updateAll()
                 }

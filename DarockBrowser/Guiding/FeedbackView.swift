@@ -17,7 +17,7 @@ struct FeedbackView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var isNewVerAvailableAlertPresented = false
     var body: some View {
-        if !COKChecker.shared.cachedCheckStatus {
+        if !COKChecker(caller: .darock).cachedCheckStatus {
             RKFeedbackView(projName: "Darock Browser")
                 .radarAdditionalData(["NearestHistories": getWebHistory().map { $0.url.prefix(100) }.prefix(3).description])
                 .radarTitleInputSample("示例：历史记录缺少最近的浏览数据")
@@ -206,7 +206,6 @@ private struct CorvusBannedView: View {
     @State var descriptionInput = ""
     @State var descriptionSnapshotCount = 0
     @State var isSubmitting = false
-    @State var descriptionClearTimer: Timer?
     var body: some View {
         List {
             Section {
@@ -267,17 +266,6 @@ private struct CorvusBannedView: View {
         }
         .listStyle(.plain)
         .navigationTitle("Corvus 封禁")
-        .onAppear {
-            descriptionClearTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                if (descriptionInput.count - descriptionSnapshotCount > 10) && !descriptionInput.isEmpty {
-                    descriptionInput = ""
-                }
-                descriptionSnapshotCount = descriptionInput.count
-            }
-        }
-        .onDisappear {
-            descriptionClearTimer?.invalidate()
-        }
     }
 }
 

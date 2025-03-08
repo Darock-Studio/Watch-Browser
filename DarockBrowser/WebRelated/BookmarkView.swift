@@ -295,7 +295,10 @@ class BookmarkStackManager {
         guard endIndex > 0 else { return result }
         
         for i in 1...endIndex {
-            result.append((UserDefaults.standard.string(forKey: "BookmarkName\(i)")!, UserDefaults.standard.string(forKey: "BookmarkLink\(i)")!))
+            if let name = UserDefaults.standard.string(forKey: "BookmarkName\(i)"),
+               let link = UserDefaults.standard.string(forKey: "BookmarkLink\(i)") {
+                result.append((name, link))
+            }
         }
         return result
     }

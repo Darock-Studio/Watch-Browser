@@ -39,7 +39,7 @@ extension SettingsView.GeneralSettingsView {
                             session.prefersEphemeralWebBrowserSession = true
                             session.start()
                         }, label: {
-                            Text(verbatim: "蜀ICP备2024100233号-1A")
+                            Text(verbatim: "蜀ICP备2025125473号-4A")
                         })
                     } header: {
                         Text("中国大陆ICP备案号")
