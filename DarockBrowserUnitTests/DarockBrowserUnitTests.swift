@@ -89,8 +89,8 @@ struct URLProcessorTests {
         GeneralTestArgument(input: "https://darock.top:65535", expectedOutput: "top"),
         GeneralTestArgument(input: "darock.top:65535/", expectedOutput: "top"),
         GeneralTestArgument(input: "https://darock.top:65535/", expectedOutput: "top"),
-        GeneralTestArgument(input: "https://fapi.darock.top:65535/", expectedOutput: "top"),
-        GeneralTestArgument(input: "https://fapi.darock.top:65535", expectedOutput: "top")
+        GeneralTestArgument(input: "https://api.darock.top/", expectedOutput: "top"),
+        GeneralTestArgument(input: "https://api.darock.top", expectedOutput: "top")
     ])
     func testGetUrlTopLevel(by arg: GeneralTestArgument<String, String?>) async throws {
         #expect(getTopLevel(from: arg.input) == arg.expectedOutput, .init(stringLiteral: arg.input))

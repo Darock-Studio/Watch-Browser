@@ -418,10 +418,10 @@ struct TipsView: View {
             "___KawaiiChieriChan.drkdatau"
         ]
         let tqcCopyrightList = [
-            "© 2024 YUZUSOFT/JUNOS Inc. All Rights Reserved.",
-            "© 2024 YUZUSOFT/JUNOS Inc. All Rights Reserved.",
-            "© 2024 YUZUSOFT/JUNOS Inc. All Rights Reserved.",
-            "© 2024 きゃべつそふと All Rights Reserved."
+            "© 2025 YUZUSOFT/JUNOS Inc. All Rights Reserved.",
+            "© 2025 YUZUSOFT/JUNOS Inc. All Rights Reserved.",
+            "© 2025 YUZUSOFT/JUNOS Inc. All Rights Reserved.",
+            "© 2025 きゃべつそふと All Rights Reserved."
         ]
     }
     struct BooksView: View {
@@ -432,10 +432,10 @@ struct TipsView: View {
                 }
                 Section {
                     Button(action: {
-                        bookLinkLists = ["https://darock.storage.linecom.net.cn/darockbrowser/example/ThreeBody.epub"]
+                        bookLinkLists = ["https://darock.r2.darock.top/ThreeBody.epub"]
                         pShouldPresentBookList = true
                     }, label: {
-                        Text("查看示例图书 [《三体》(1.83 MB)]")
+                        Text("查看示例图书 [《三体》(2.86 MB)]")
                     })
                 } header: {
                     Text("示例图书")
@@ -455,10 +455,10 @@ struct TipsView: View {
                 }
                 Section {
                     Button(action: {
-                        videoLinkLists = ["https://darock.storage.linecom.net.cn/darockbrowser/example/Shiroko.mp4"]
+                        videoLinkLists = ["https://darock.r2.darock.top/Shiroko.mp4"]
                         pShouldPresentVideoList = true
                     }, label: {
-                        Text("查看示例视频 (41.4 MB)")
+                        Text("查看示例视频 (27.49 MB)")
                     })
                 } header: {
                     Text("示例视频")

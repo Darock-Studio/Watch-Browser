@@ -275,7 +275,7 @@ struct MainView: View {
                     let feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
                     newFeedbackCount = 0
                     for id in feedbackIds {
-                        requestString("https://fapi.darock.top:65535/radar/details/Darock Browser/\(id)".compatibleUrlEncoded()) { respStr, isSuccess in
+                        requestString("https://api.darock.top/radar/details/Darock Browser/\(id)".compatibleUrlEncoded()) { respStr, isSuccess in
                             if isSuccess {
                                 let repCount = respStr.apiFixed().components(separatedBy: "---").count - 1
                                 let lastViewCount = UserDefaults.standard.integer(forKey: "RadarFB\(id)ReplyCount")
@@ -286,7 +286,7 @@ struct MainView: View {
                         }
                     }
                 }
-                requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
+                requestString("https://api.darock.top/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
                     if isSuccess {
                         let spdVer = respStr.apiFixed().split(separator: ".")
                         if spdVer.count == 3 {

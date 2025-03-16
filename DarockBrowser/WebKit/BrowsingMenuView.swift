@@ -623,6 +623,9 @@ struct BrowsingMenuView: View {
         .onAppear {
             isLoading = webView.isLoading
             linkInput = webSearchString(from: webView.url?.absoluteString ?? "") ?? webView.url?.absoluteString ?? ""
+            if linkInput.hasPrefix("https://privacy-relay.darock.top/proxy/") {
+                linkInput = String(linkInput.dropFirst("https://privacy-relay.darock.top/proxy/".count))
+            }
             linksUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
                 videoLinks = videoLinkLists
                 imageLinks = imageLinkLists

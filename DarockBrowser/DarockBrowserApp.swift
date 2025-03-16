@@ -53,6 +53,8 @@ struct DarockBrowserApp: App {
     @AppStorage("IsBrowserProAdFirstTipped") var isBrowserProAdFirstTipped = false
     @AppStorage("DBIsAutoAppearence") var isAutoAppearence = false
     @AppStorage("DBAutoAppearenceOptionEnableForReduceBrightness") var autoAppearenceOptionEnableForReduceBrightness = false
+    @AppStorage("PRSubscriptionExpirationDate") var subscriptionExpirationDate = 0.0
+    @AppStorage("PRIsPrivateRelayEnabled") var isPrivateRelayEnabled = false
     @State var isBrowserLocked = true
     @State var passcodeInputCache = ""
     @State var tapToRadarAlertContent = ""
@@ -185,6 +187,12 @@ struct DarockBrowserApp: App {
                         isReduceBrightness = AppearenceManager.shared.currentAppearence == .dark
                     }
                 }
+                
+                if isPrivateRelayEnabled {
+                    if subscriptionExpirationDate < Date.now.timeIntervalSince1970 {
+                        isPrivateRelayEnabled = false
+                    }
+                }
             @unknown default:
                 break
             }
@@ -247,7 +255,7 @@ class AppDelegate: NSObject, WKApplicationDelegate {
         }
         
         requestString(
-            "https://fapi.darock.top:65535/analyze/add/DBStatsAppStartupCount".compatibleUrlEncoded()
+            "https://api.darock.top/analyze/add/DBStatsAppStartupCount".compatibleUrlEncoded()
         ) { _, _ in }
     }
     

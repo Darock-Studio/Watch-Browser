@@ -204,6 +204,16 @@
         }
       }
     },
+    "**关于专用代理与隐私**\n\n专用代理会将暗礁浏览器的部分网络请求转发到 Darock 的专用代理服务器，以向网站隐藏你的 IP 地址与隐私信息。\n\nDarock 不会通过专用代理收集你的任何数据，所有通过 Darock 专用代理服务器转发的内容不会被记录。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**About Private Relay and Privacy**\n\nPrivate Relay forwards some of Darock Browser's network requests to Darock Private Relay server, hiding your IP address and privacy information from websites.\n\nDarock does not collect any data from you through Private Relay, and none of the content forwarded through Darock Private Relay server is recorded."
+          }
+        }
+      }
+    },
     "**关于暗礁浏览器与隐私**\n\n暗礁浏览器旨在保护你的信息并可让你选择共享的内容。\n\n## 数据收集与使用\n本节中列出了暗礁浏览器 App 可能收集个人数据的功能及其对应的数据类别和用途。\n\n### App\n暗礁浏览器 App 会收集少量的、与隐私信息无关的、不与你身份关联的交互数据（例如 App 启动）。这些数据将与其他人的数据汇总，仅用于 App 分析。\n\n### Darock 账户\n在注册 Darock 账户时，Darock 会收集你的电子邮件地址。作为 Darock 账户凭据的一部分，电子邮件地址用于识别你的身份，以提供需要账户支持的 Darock 服务。\n\n### 存储至 Darock Cloud\n#### 历史记录\n如果你选择将历史记录存储至 Darock Cloud，你最近的浏览历史记录将会自动上传至 Darock Cloud。这些信息将在受保护的区域存储，且不会用于向你提供历史记录同步功能以外的用途。\n\n### 反馈助理\n在通过反馈助理提交反馈时，反馈助理会收集基于 IP 的大致位置。此信息被隔离存储，且不与你的身份关联，并会在合理的时间内被删除。这些信息仅用于保护 Darock 服务器和反馈助理，以及防止欺诈行为。\n\n反馈助理还会收集 App 诊断信息，你可以在每次提交前查看这些信息，并可选择删除。\n\n仅在你在反馈助理中选择“提交”后，这些信息才会被收集和发送。" : {
       "localizations" : {
         "en" : {
@@ -862,6 +872,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "9"
+          }
+        }
+      }
+    },
+    "App 内购买项目当前不可用，请稍后再试" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In-App purchase is unavailable currently, please try again later."
           }
         }
       }
@@ -2703,6 +2723,16 @@
     "User Agent" : {
       "shouldTranslate" : false
     },
+    "一些网站可能无法在专用代理下工作。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some websites may not work with Private Relay."
+          }
+        }
+      }
+    },
     "一切良好" : {
       "localizations" : {
         "en" : {
@@ -2909,6 +2939,9 @@
         }
       }
     },
+    "不丹" : {
+
+    },
     "不再显示" : {
       "localizations" : {
         "en" : {
@@ -2951,6 +2984,46 @@
         }
       }
     },
+    "专用代理" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Private Relay"
+          }
+        }
+      }
+    },
+    "专用代理会隐藏你的 IP 地址和暗礁浏览器中的浏览活动，从而包括 Darock 在内，任何人都无法查看你的身份和你访问的站点。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Private Relay hides your IP address and browsing activity in Darock Browser, so no one, including Darock, can see your identity or the sites you visit."
+          }
+        }
+      }
+    },
+    "专用代理可让你以更安全和隐私的方式连接并浏览网站。%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Private Relay allows you to connect and browse websites in a more secure and private way. %@"
+          }
+        }
+      }
+    },
+    "专用代理在你所在的国家或地区不可用" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Private Relay is not supported in your country or region."
+          }
+        }
+      }
+    },
     "个性化主屏幕" : {
       "localizations" : {
         "en" : {
@@ -2960,6 +3033,9 @@
           }
         }
       }
+    },
+    "中国大陆" : {
+
     },
     "中国大陆ICP备案号" : {
       "localizations" : {
@@ -2983,6 +3059,16 @@
         }
       }
     },
+    "丹麦" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denmark"
+          }
+        }
+      }
+    },
     "为减少电量消耗，同步已暂停" : {
       "localizations" : {
         "en" : {
@@ -2992,6 +3078,38 @@
           }
         }
       }
+    },
+    "乌克兰" : {
+
+    },
+    "乌兹别克斯坦" : {
+
+    },
+    "乌干达" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uganda"
+          }
+        }
+      }
+    },
+    "乌拉圭" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uruguay"
+          }
+        }
+      }
+    },
+    "乍得" : {
+
+    },
+    "也门" : {
+
     },
     "书签" : {
       "localizations" : {
@@ -3132,6 +3250,12 @@
           }
         }
       }
+    },
+    "亚太地区" : {
+
+    },
+    "亚美尼亚" : {
+
     },
     "仅作示例\n©2020 NAT GAMES Co., Ltd. All Rights Reserved.\n©2020 Yostar, Inc. All Rights Reserved." : {
       "localizations" : {
@@ -3417,6 +3541,16 @@
         }
       }
     },
+    "以%@/月订阅专用代理" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subscribe to Private Relay for %@/month"
+          }
+        }
+      }
+    },
     "以前的更新" : {
       "localizations" : {
         "en" : {
@@ -3426,6 +3560,25 @@
           }
         }
       }
+    },
+    "以色列" : {
+
+    },
+    "伊拉克" : {
+
+    },
+    "伯利兹" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belize"
+          }
+        }
+      }
+    },
+    "佛得角" : {
+
     },
     "你因为在“反馈助理”中发送不适宜的言论而被附加 Corvus 封禁。\n\n此封禁不会影响 App 功能，但会禁用你的“反馈助理”，以及在你的 App 内加上如你现在看到的水印。\n\n你可以通过下方的表单进行申诉。" : {
       "localizations" : {
@@ -3465,6 +3618,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Add the search result to bookmark"
+          }
+        }
+      }
+    },
+    "你的位置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your Location"
           }
         }
       }
@@ -3639,6 +3802,12 @@
         }
       }
     },
+    "俄罗斯" : {
+
+    },
+    "保加利亚" : {
+
+    },
     "保存" : {
       "localizations" : {
         "en" : {
@@ -3799,6 +3968,16 @@
         }
       }
     },
+    "克罗地亚" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Croatia"
+          }
+        }
+      }
+    },
     "全局操作" : {
       "localizations" : {
         "en" : {
@@ -3897,6 +4076,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "About Darock Intelligence & Privacy"
+          }
+        }
+      }
+    },
+    "关于专用代理与隐私" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About Private Relay & Privacy"
+          }
+        }
+      }
+    },
+    "关于专用代理与隐私..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About Private Relay & Privacy…"
           }
         }
       }
@@ -4051,6 +4250,9 @@
         }
       }
     },
+    "冈比亚" : {
+
+    },
     "最多添加四个快捷按钮，按钮将显示在网页顶部，效果如下" : {
       "localizations" : {
         "en" : {
@@ -4102,6 +4304,19 @@
           }
         }
       }
+    },
+    "冰岛" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iceland"
+          }
+        }
+      }
+    },
+    "几内亚比绍" : {
+
     },
     "分享" : {
       "localizations" : {
@@ -4239,6 +4454,12 @@
         }
       }
     },
+    "刚果共和国" : {
+
+    },
+    "刚果民主共和国" : {
+
+    },
     "创建" : {
       "localizations" : {
         "en" : {
@@ -4364,6 +4585,12 @@
           }
         }
       }
+    },
+    "利比亚" : {
+
+    },
+    "利比里亚" : {
+
     },
     "前往 App Store 下载" : {
       "localizations" : {
@@ -4579,6 +4806,35 @@
         }
       }
     },
+    "加拿大" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canada"
+          }
+        }
+      }
+    },
+    "加纳" : {
+
+    },
+    "加蓬" : {
+
+    },
+    "匈牙利" : {
+
+    },
+    "北马其顿" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "North Macedonia"
+          }
+        }
+      }
+    },
     "升级到暗礁浏览器 Pro 以解锁更多高级功能" : {
       "localizations" : {
         "en" : {
@@ -4605,6 +4861,68 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Single-page Browsing"
+          }
+        }
+      }
+    },
+    "南非" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "South Africa"
+          }
+        }
+      }
+    },
+    "博茨瓦纳" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Botswana"
+          }
+        }
+      }
+    },
+    "卡塔尔" : {
+
+    },
+    "卢旺达" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rwanda"
+          }
+        }
+      }
+    },
+    "卢森堡" : {
+
+    },
+    "印度" : {
+
+    },
+    "印度尼西亚" : {
+
+    },
+    "危地马拉" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guatemala"
+          }
+        }
+      }
+    },
+    "厄瓜多尔" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ecuador"
           }
         }
       }
@@ -4909,6 +5227,19 @@
         }
       }
     },
+    "台湾" : {
+
+    },
+    "吉尔吉斯斯坦" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kyrgyzstan"
+          }
+        }
+      }
+    },
     "名称" : {
       "localizations" : {
         "en" : {
@@ -5017,6 +5348,16 @@
         }
       }
     },
+    "哈萨克斯坦" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kazakhstan"
+          }
+        }
+      }
+    },
     "哔哩哔哩" : {
       "localizations" : {
         "en" : {
@@ -5038,6 +5379,22 @@
           }
         }
       }
+    },
+    "哥伦比亚" : {
+
+    },
+    "哥斯达黎加" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Costa Rica"
+          }
+        }
+      }
+    },
+    "喀麦隆" : {
+
     },
     "喜欢暗礁浏览器？前往 iPhone 上的 App Store 为我们评分！" : {
       "localizations" : {
@@ -5319,6 +5676,59 @@
         }
       }
     },
+    "土库曼斯坦" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turkmenistan"
+          }
+        }
+      }
+    },
+    "土耳其" : {
+
+    },
+    "圣卢西亚" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "St. Lucia"
+          }
+        }
+      }
+    },
+    "圣基茨和尼维斯" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "St. Kitts and Nevis"
+          }
+        }
+      }
+    },
+    "圣多美和普林西比" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "São Tomé and Príncipe"
+          }
+        }
+      }
+    },
+    "圣文森特和格林纳丁斯" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "St. Vincent and the Grenadines"
+          }
+        }
+      }
+    },
     "在 App Store 中查看" : {
       "localizations" : {
         "en" : {
@@ -5509,6 +5919,61 @@
         }
       }
     },
+    "圭亚那" : {
+
+    },
+    "坦桑尼亚" : {
+
+    },
+    "埃及" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egypt"
+          }
+        }
+      }
+    },
+    "塔吉克斯坦" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tajikistan"
+          }
+        }
+      }
+    },
+    "塞内加尔" : {
+
+    },
+    "塞尔维亚" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serbia"
+          }
+        }
+      }
+    },
+    "塞拉利昂" : {
+
+    },
+    "塞浦路斯" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cyprus"
+          }
+        }
+      }
+    },
+    "塞舌尔" : {
+
+    },
     "增强的历史记录" : {
       "localizations" : {
         "en" : {
@@ -5633,6 +6098,19 @@
         }
       }
     },
+    "多米尼克" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dominica"
+          }
+        }
+      }
+    },
+    "多米尼加共和国" : {
+
+    },
     "天气" : {
       "localizations" : {
         "en" : {
@@ -5642,6 +6120,9 @@
           }
         }
       }
+    },
+    "奥地利" : {
+
     },
     "如果下载大小长时间未变化，说明此 M3U8 视频无法被下载。" : {
       "localizations" : {
@@ -5684,6 +6165,9 @@
           }
         }
       }
+    },
+    "委内瑞拉" : {
+
     },
     "媒体" : {
       "localizations" : {
@@ -5827,6 +6311,29 @@
         }
       }
     },
+    "安哥拉" : {
+
+    },
+    "安圭拉" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anguilla"
+          }
+        }
+      }
+    },
+    "安提瓜和巴布达" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Antigua and Barbuda"
+          }
+        }
+      }
+    },
     "完成" : {
       "localizations" : {
         "en" : {
@@ -5956,6 +6463,9 @@
           }
         }
       }
+    },
+    "密克罗尼西亚" : {
+
     },
     "密码" : {
       "localizations" : {
@@ -6207,6 +6717,32 @@
         }
       }
     },
+    "尼加拉瓜" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicaragua"
+          }
+        }
+      }
+    },
+    "尼日利亚" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nigeria"
+          }
+        }
+      }
+    },
+    "尼日尔" : {
+
+    },
+    "尼泊尔" : {
+
+    },
     "屏幕右上方的时间不会被降低亮度" : {
       "localizations" : {
         "en" : {
@@ -6331,12 +6867,73 @@
         }
       }
     },
+    "巴哈马" : {
+
+    },
+    "巴基斯坦" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pakistan"
+          }
+        }
+      }
+    },
+    "巴巴多斯" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barbados"
+          }
+        }
+      }
+    },
+    "巴布亚新几内亚" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Papua New Guinea"
+          }
+        }
+      }
+    },
+    "巴拉圭" : {
+
+    },
+    "巴拿马" : {
+
+    },
+    "巴林" : {
+
+    },
+    "巴西" : {
+
+    },
+    "布基纳法索" : {
+
+    },
     "布局" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Layout"
+          }
+        }
+      }
+    },
+    "希腊" : {
+
+    },
+    "帕劳" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Palau"
           }
         }
       }
@@ -6537,6 +7134,9 @@
         }
       }
     },
+    "开曼群岛" : {
+
+    },
     "开源协议许可" : {
       "localizations" : {
         "en" : {
@@ -6621,6 +7221,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "德国" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Germany"
           }
         }
       }
@@ -6867,6 +7477,16 @@
         }
       }
     },
+    "意大利" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Italy"
+          }
+        }
+      }
+    },
     "我们不会对特定的网站优化视频解析。\n以前能解析的网站不代表现在能解析，我们一般不会更改视频解析逻辑，某网站的视频无法解析是因为网站更新了，我们不可能追踪网站的更新来更新暗礁浏览器。" : {
       "localizations" : {
         "en" : {
@@ -6964,6 +7584,9 @@
           }
         }
       }
+    },
+    "所罗门群岛" : {
+
     },
     "手势" : {
       "localizations" : {
@@ -7161,6 +7784,12 @@
         }
       }
     },
+    "拉丁美洲和加勒比海地区" : {
+
+    },
+    "拉脱维亚" : {
+
+    },
     "按原样抄写" : {
       "localizations" : {
         "en" : {
@@ -7202,6 +7831,12 @@
           }
         }
       }
+    },
+    "挪威" : {
+
+    },
+    "捷克共和国" : {
+
     },
     "接力" : {
       "localizations" : {
@@ -7423,6 +8058,12 @@
         }
       }
     },
+    "摩尔多瓦" : {
+
+    },
+    "摩洛哥" : {
+
+    },
     "播放" : {
       "localizations" : {
         "en" : {
@@ -7567,6 +8208,26 @@
         }
       }
     },
+    "文莱" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brunei"
+          }
+        }
+      }
+    },
+    "斐济" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fiji"
+          }
+        }
+      }
+    },
     "断开 Apple Watch 与 iPhone 的连接" : {
       "localizations" : {
         "en" : {
@@ -7588,6 +8249,32 @@
           }
         }
       }
+    },
+    "斯威士兰" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eswatini"
+          }
+        }
+      }
+    },
+    "斯洛伐克" : {
+
+    },
+    "斯洛文尼亚" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slovenia"
+          }
+        }
+      }
+    },
+    "斯里兰卡" : {
+
     },
     "新功能" : {
       "localizations" : {
@@ -7616,6 +8303,9 @@
           }
         }
       }
+    },
+    "新加坡" : {
+
     },
     "新名称" : {
       "localizations" : {
@@ -7689,6 +8379,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "新西兰" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Zealand"
           }
         }
       }
@@ -7839,6 +8539,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Keep Dark Appearance before Sunrise"
+          }
+        }
+      }
+    },
+    "日本" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Japan"
           }
         }
       }
@@ -8022,6 +8732,9 @@
           }
         }
       }
+    },
+    "智利" : {
+
     },
     "暗礁文件可与暗礁浏览器配合使用，在安装暗礁文件后，您可以将暗礁浏览器中的本地媒体存储至暗礁文件。" : {
       "localizations" : {
@@ -8323,6 +9036,16 @@
         }
       }
     },
+    "未订阅" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not Subscribed"
+          }
+        }
+      }
+    },
     "本地" : {
       "localizations" : {
         "en" : {
@@ -8421,6 +9144,16 @@
         }
       }
     },
+    "条款与条件" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terms & Conditions"
+          }
+        }
+      }
+    },
     "构建版本" : {
       "localizations" : {
         "en" : {
@@ -8493,24 +9226,12 @@
         }
       }
     },
-    "查看示例图书 [《三体》(1.83 MB)]" : {
+    "查看示例图书 [《三体》(2.86 MB)]" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "View sample book [The Three-Body Problem (1.83 MB)]"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "サンプル図書を見る[『三体』(1.83 MB)]"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
           }
         }
       }
@@ -8537,24 +9258,12 @@
         }
       }
     },
-    "查看示例视频 (41.4 MB)" : {
+    "查看示例视频 (27.49 MB)" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "View sample video (41.4 MB)"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "サンプルビデオを見る (41.4 MB)"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
+            "value" : "View sample video (27.49 MB)"
           }
         }
       }
@@ -8613,6 +9322,9 @@
         }
       }
     },
+    "柬埔寨" : {
+
+    },
     "标准" : {
       "localizations" : {
         "en" : {
@@ -8642,6 +9354,12 @@
           }
         }
       }
+    },
+    "格林纳达" : {
+
+    },
+    "格鲁吉亚" : {
+
     },
     "检查更新时出错" : {
       "localizations" : {
@@ -8725,6 +9443,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Welcome to Group Chat"
+          }
+        }
+      }
+    },
+    "欧洲" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Europe"
           }
         }
       }
@@ -8925,6 +9653,16 @@
         }
       }
     },
+    "正在验证购买..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verifying purchase…"
+          }
+        }
+      }
+    },
     "此布局在网页视图顶部工具栏添加返回按钮，轻触可返回上一页直至退出网页。" : {
       "localizations" : {
         "en" : {
@@ -9019,6 +9757,45 @@
         }
       }
     },
+    "比利时" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belgium"
+          }
+        }
+      }
+    },
+    "毛里塔尼亚" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mauritania"
+          }
+        }
+      }
+    },
+    "毛里求斯" : {
+
+    },
+    "汤加" : {
+
+    },
+    "沙特阿拉伯" : {
+
+    },
+    "法国" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "France"
+          }
+        }
+      }
+    },
     "法律与监管" : {
       "localizations" : {
         "en" : {
@@ -9050,6 +9827,35 @@
           }
         }
       }
+    },
+    "波兰" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poland"
+          }
+        }
+      }
+    },
+    "波斯尼亚和黑塞哥维那" : {
+
+    },
+    "泰国" : {
+
+    },
+    "津巴布韦" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zimbabwe"
+          }
+        }
+      }
+    },
+    "洪都拉斯" : {
+
     },
     "浅色" : {
       "localizations" : {
@@ -9327,6 +10133,19 @@
         }
       }
     },
+    "澳大利亚" : {
+
+    },
+    "澳门" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Macao"
+          }
+        }
+      }
+    },
     "激活暗礁浏览器 Pro " : {
       "localizations" : {
         "en" : {
@@ -9353,6 +10172,31 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "After activating Darock Browser Pro, you can set up shortcut buttons in %@."
+          }
+        }
+      }
+    },
+    "爱尔兰" : {
+
+    },
+    "爱沙尼亚" : {
+
+    },
+    "牙买加" : {
+
+    },
+    "特克斯和凯科斯群岛" : {
+
+    },
+    "特立尼达和多巴哥" : {
+
+    },
+    "现可使用专用代理以保护隐私" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Private Relay is available to protect your privacy."
           }
         }
       }
@@ -9549,6 +10393,28 @@
         }
       }
     },
+    "玻利维亚" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bolivia"
+          }
+        }
+      }
+    },
+    "瑙鲁" : {
+
+    },
+    "瑞典" : {
+
+    },
+    "瑞士" : {
+
+    },
+    "瓦努阿图" : {
+
+    },
     "生成短链接" : {
       "localizations" : {
         "en" : {
@@ -9683,6 +10549,9 @@
         }
       }
     },
+    "白俄罗斯" : {
+
+    },
     "百度贴吧" : {
       "localizations" : {
         "en" : {
@@ -9701,6 +10570,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "百慕大" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bermuda"
           }
         }
       }
@@ -10049,6 +10928,32 @@
         }
       }
     },
+    "科威特" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuwait"
+          }
+        }
+      }
+    },
+    "科特迪瓦" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Côte d'Ivoire"
+          }
+        }
+      }
+    },
+    "科索沃" : {
+
+    },
+    "秘鲁" : {
+
+    },
     "空列表" : {
       "localizations" : {
         "en" : {
@@ -10168,6 +11073,12 @@
           }
         }
       }
+    },
+    "突尼斯" : {
+
+    },
+    "立陶宛" : {
+
     },
     "站点安全" : {
       "localizations" : {
@@ -10325,6 +11236,12 @@
         }
       }
     },
+    "约旦" : {
+
+    },
+    "纳米比亚" : {
+
+    },
     "练习主要手势" : {
       "localizations" : {
         "en" : {
@@ -10368,6 +11285,9 @@
           }
         }
       }
+    },
+    "缅甸" : {
+
     },
     "缩放" : {
       "localizations" : {
@@ -10739,6 +11659,42 @@
         }
       }
     },
+    "罗马尼亚" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Romania"
+          }
+        }
+      }
+    },
+    "美国" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "United States"
+          }
+        }
+      }
+    },
+    "美国和加拿大" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The United States and Canada"
+          }
+        }
+      }
+    },
+    "老挝" : {
+
+    },
+    "肯尼亚" : {
+
+    },
     "自动" : {
       "localizations" : {
         "en" : {
@@ -10813,6 +11769,19 @@
         }
       }
     },
+    "芬兰" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finland"
+          }
+        }
+      }
+    },
+    "苏里南" : {
+
+    },
     "若要使用网页检查器，通过线缆将此 Apple Watch 配对的 iPhone 与 Mac 连接，在 Safari 的“开发”菜单中访问此 Apple Watch。你可以在 Safari 设置中的“高级”选项卡中打开开发菜单。" : {
       "localizations" : {
         "en" : {
@@ -10851,6 +11820,73 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "To play in the background, your device needs to be connected to a Bluetooth audio device before playback."
+          }
+        }
+      }
+    },
+    "英国" : {
+
+    },
+    "英属维尔京群岛" : {
+
+    },
+    "荷兰" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Netherlands"
+          }
+        }
+      }
+    },
+    "莫桑比克" : {
+
+    },
+    "菲律宾" : {
+
+    },
+    "萨尔瓦多" : {
+
+    },
+    "葡萄牙" : {
+
+    },
+    "蒙古" : {
+
+    },
+    "蒙特塞拉特" : {
+
+    },
+    "西班牙" : {
+
+    },
+    "订阅" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subscribe"
+          }
+        }
+      }
+    },
+    "订阅将于%@过期" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subscription will expire in %@"
+          }
+        }
+      }
+    },
+    "订阅已于%@过期" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subscription has expired at %@"
           }
         }
       }
@@ -11013,6 +12049,12 @@
         }
       }
     },
+    "贝宁" : {
+
+    },
+    "赞比亚" : {
+
+    },
     "起始页" : {
       "localizations" : {
         "en" : {
@@ -11038,6 +12080,9 @@
           }
         }
       }
+    },
+    "越南" : {
+
     },
     "跳转到" : {
       "localizations" : {
@@ -12105,6 +13150,26 @@
         }
       }
     },
+    "选择你的国家或地区以供确认服务可用性。这些信息不会被发送至设备外。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select your country or region to confirm service availability. This information will not be sent outside the device."
+          }
+        }
+      }
+    },
+    "选择国家或地区" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Your Country or Region"
+          }
+        }
+      }
+    },
     "选择浏览偏好" : {
       "localizations" : {
         "en" : {
@@ -12573,6 +13638,55 @@
         }
       }
     },
+    "阿塞拜疆" : {
+
+    },
+    "阿富汗" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afghanistan"
+          }
+        }
+      }
+    },
+    "阿尔及利亚" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Algeria"
+          }
+        }
+      }
+    },
+    "阿尔巴尼亚" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Albania"
+          }
+        }
+      }
+    },
+    "阿拉伯联合酋长国" : {
+
+    },
+    "阿曼" : {
+
+    },
+    "阿根廷" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Argentina"
+          }
+        }
+      }
+    },
     "附加选项" : {
       "localizations" : {
         "en" : {
@@ -12681,6 +13795,16 @@
         }
       }
     },
+    "隐私策略" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Policy"
+          }
+        }
+      }
+    },
     "隐藏干扰项目" : {
       "localizations" : {
         "en" : {
@@ -12739,6 +13863,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "需要遷移"
+          }
+        }
+      }
+    },
+    "非洲、中东和印度" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Africa, Middle East, and India"
+          }
+        }
+      }
+    },
+    "韩国" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "South Korea"
           }
         }
       }
@@ -12915,6 +14059,68 @@
         }
       }
     },
+    "香港" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hong Kong"
+          }
+        }
+      }
+    },
+    "马尔代夫" : {
+
+    },
+    "马拉维" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Malawi"
+          }
+        }
+      }
+    },
+    "马来西亚" : {
+
+    },
+    "马耳他" : {
+
+    },
+    "马达加斯加" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Madagascar"
+          }
+        }
+      }
+    },
+    "马里" : {
+
+    },
+    "验证购买时出错：未订阅" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed verifying purchase: Not purchased"
+          }
+        }
+      }
+    },
+    "验证购买时出错：订阅已过期" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed verifying purchase: Subscription has expired"
+          }
+        }
+      }
+    },
     "高级功能" : {
       "localizations" : {
         "en" : {
@@ -12936,6 +14142,15 @@
           }
         }
       }
+    },
+    "黎巴嫩" : {
+
+    },
+    "黑山" : {
+
+    },
+    "墨西哥" : {
+
     },
     "默认" : {
       "localizations" : {

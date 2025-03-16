@@ -22,10 +22,11 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("DBIsAutoAppearence") var isAutoAppearence = false
     @AppStorage("DBAutoAppearenceOptionEnableForWebForceDark") var autoAppearenceOptionEnableForWebForceDark = true
+    @AppStorage("PRIsPrivateRelayEnabled") var isPrivateRelayEnabled = false
     
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
-        // MARK: Handle Darock Custom URL Schemes
         if let url = navigationAction.request.url?.absoluteString {
+            // MARK: Handle Darock Custom URL Schemes
             if !url.hasPrefix("http://") && !url.hasPrefix("https://") {
                 let schemeSplited = url.split(separator: "://", maxSplits: 1, omittingEmptySubsequences: false).map { String($0) }
                 if schemeSplited.count == 2 {
@@ -40,6 +41,20 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
                         return .cancel
                     default: break
                     }
+                }
+            } else {
+                if isPrivateRelayEnabled {
+                    if !url.contains("https://privacy-relay.darock.top/proxy/") {
+                        // MARK: Darock Private Relay
+                        if let relaiedURL = URL(string: "https://privacy-relay.darock.top/proxy/\(url)") {
+                            await webView.load(.init(url: relaiedURL))
+                            return .cancel
+                        }
+                    }
+                } else if url.hasPrefix("https://privacy-relay.darock.top/proxy/"),
+                          let sourceURL = URL(string: String(url.dropFirst("https://privacy-relay.darock.top/proxy/".count))) {
+                    await webView.load(.init(url: sourceURL))
+                    return .cancel
                 }
             }
         }

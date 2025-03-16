@@ -273,7 +273,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                         }
                     }
                 }
-                requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
+                requestString("https://api.darock.top/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
                     if isSuccess {
                         let spdVer = respStr.apiFixed().split(separator: ".")
                         if spdVer.count == 3 {
@@ -294,7 +294,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                         }
                     }
                 }
-                requestString("https://fapi.darock.top:65535/tf/get/DarockBrowser") { respStr, isSuccess in
+                requestString("https://api.darock.top/tf/get/DarockBrowser") { respStr, isSuccess in
                     if isSuccess {
                         isBetaJoinAvailable = respStr.apiFixed() != "[None]"
                     }

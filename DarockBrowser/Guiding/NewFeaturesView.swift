@@ -15,7 +15,7 @@ struct NewFeaturesView: View {
                 VStack {
                     Text("“暗礁浏览器”新功能")
                         .font(.system(size: 18, weight: .bold))
-                    SingleFeatureRow(symbol: "button.programmable", mainText: "网页快捷按钮", detailText: "现可向网页顶部添加快捷操作按钮")
+                    SingleFeatureRow(symbol: "network.badge.shield.half.filled", mainText: "专用代理", detailText: "现可使用专用代理以保护隐私")
                     Text("您可以随时在“提示→新功能”中重新打开此页")
                         .multilineTextAlignment(.center)
                         .opacity(0.7)
@@ -32,6 +32,7 @@ struct NewFeaturesView: View {
         var body: some View {
             ScrollView {
                 VStack {
+                    SingleFeatureRow(symbol: "button.programmable", mainText: "网页快捷按钮", detailText: "现可向网页顶部添加快捷操作按钮")
                     if #available(watchOS 10.0, *) {
                         SingleFeatureRow(symbol: "macwindow.on.rectangle", mainText: "标签页浏览", detailText: "现可进行基于标签页的网页浏览")
                     }

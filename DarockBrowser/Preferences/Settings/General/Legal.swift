@@ -85,7 +85,7 @@ extension SettingsView.GeneralSettingsView {
                 .sheet(isPresented: $isTQCView1Presented, content: {
                     TQCOnaniiView()
                         .onAppear {
-                            requestString("https://fapi.darock.top:65535/analyze/add/DBTQCOnanii/\(Date.now.timeIntervalSince1970)".compatibleUrlEncoded()) { _, _ in }
+                            requestString("https://api.darock.top/analyze/add/DBTQCOnanii/\(Date.now.timeIntervalSince1970)".compatibleUrlEncoded()) { _, _ in }
                         }
                 })
             }

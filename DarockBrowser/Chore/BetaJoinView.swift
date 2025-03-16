@@ -49,7 +49,7 @@ struct BetaJoinView: View {
         .navigationTitle("参与 Beta 测试")
         .onAppear {
             requestString(
-                "https://fapi.darock.top:65535/tf/get/DarockBrowser\(NSLocale.current.language.languageCode!.identifier == "zh" ? "" : "_en")"
+                "https://api.darock.top/tf/get/DarockBrowser\(NSLocale.current.language.languageCode!.identifier == "zh" ? "" : "_en")"
             ) { respStr, isSuccess in
                 if isSuccess {
                     let splited = respStr.apiFixed().components(separatedBy: "|")

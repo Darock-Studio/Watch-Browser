@@ -114,7 +114,7 @@ struct NetworkCheckView: View {
             networkState = 0
             darockAPIState = 0
             checkInternet()
-            requestString("https://fapi.darock.top:65535/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
+            requestString("https://api.darock.top/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
                 if isSuccess {
                     let spdVer = respStr.apiFixed().split(separator: ".")
                     if spdVer.count == 3 {

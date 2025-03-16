@@ -389,7 +389,7 @@ struct HistoryView: View {
                                        !account.isEmpty {
                                         if let uploadData = jsonString(from: [SingleHistoryItem]()) {
                                             let encodedData = uploadData.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
-                                            requestString("https://fapi.darock.top:65535/drkbs/cloud/update/\(account)/WebHistory.drkdataw/\(encodedData)".compatibleUrlEncoded()) { _, _ in }
+                                            requestString("https://api.darock.top/drkbs/cloud/update/\(account)/WebHistory.drkdataw/\(encodedData)".compatibleUrlEncoded()) { _, _ in }
                                         }
                                     }
                                     histories = getWebHistory().dateGrouped()
@@ -430,7 +430,7 @@ struct HistoryView: View {
                                     if let uploadData = jsonString(from: historiesToUpload) {
                                         _onFastPath()
                                         let encodedData = uploadData.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
-                                        requestString("https://fapi.darock.top:65535/drkbs/cloud/update/\(account)/WebHistory.drkdataw/\(encodedData)".compatibleUrlEncoded()) { _, _ in }
+                                        requestString("https://api.darock.top/drkbs/cloud/update/\(account)/WebHistory.drkdataw/\(encodedData)".compatibleUrlEncoded()) { _, _ in }
                                     }
                                 }
                                 histories = getWebHistory().dateGrouped()
@@ -482,6 +482,10 @@ func recordHistory(_ inp: String, webSearch: String, showName: String? = nil) {
     if (UserDefaults.standard.object(forKey: "IsHistoryTransferNeeded") as? Bool) ?? true {
         return
     }
+    var inp = inp
+    if inp.hasPrefix("https://privacy-relay.darock.top/proxy/") {
+        inp = String(inp.dropFirst("https://privacy-relay.darock.top/proxy/".count))
+    }
     var fullHistory = getWebHistory()
     if let lstf = fullHistory.first {
         guard lstf.url != inp && lstf.url != getWebSearchedURL(inp, webSearch: webSearch, isSearchEngineShortcutEnabled: false) else {
@@ -503,7 +507,7 @@ func recordHistory(_ inp: String, webSearch: String, showName: String? = nil) {
         if let uploadData = jsonString(from: historiesToUpload) {
             _onFastPath()
             let encodedData = uploadData.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
-            requestString("https://fapi.darock.top:65535/drkbs/cloud/update/\(account)/WebHistory.drkdataw/\(encodedData)".compatibleUrlEncoded()) { _, _ in }
+            requestString("https://api.darock.top/drkbs/cloud/update/\(account)/WebHistory.drkdataw/\(encodedData)".compatibleUrlEncoded()) { _, _ in }
         }
     }
 }
@@ -534,7 +538,7 @@ func writeWebHistory(from histories: [SingleHistoryItem]) {
 @_effects(readonly)
 func getWebHistoryFromCloud(with account: String) async -> [SingleHistoryItem]? {
     await withCheckedContinuation { continuation in
-        requestJSON("https://fapi.darock.top:65535/drkbs/cloud/get/\(account)/WebHistory.drkdataw".compatibleUrlEncoded()) { respJson, isSuccess in
+        requestJSON("https://api.darock.top/drkbs/cloud/get/\(account)/WebHistory.drkdataw".compatibleUrlEncoded()) { respJson, isSuccess in
             if isSuccess {
                 if let rawString = respJson.rawString(), let jsonData = getJsonData([SingleHistoryItem].self, from: rawString) {
                     _onFastPath()
@@ -583,7 +587,7 @@ struct CloseHistoryTipView: View {
                         if let uploadData = jsonString(from: [SingleHistoryItem]()) {
                             _onFastPath()
                             let encodedData = uploadData.base64Encoded().replacingOccurrences(of: "/", with: "{slash}")
-                            requestString("https://fapi.darock.top:65535/drkbs/cloud/update/\(account)/WebHistory.drkdataw/\(encodedData)".compatibleUrlEncoded()) { _, _ in }
+                            requestString("https://api.darock.top/drkbs/cloud/update/\(account)/WebHistory.drkdataw/\(encodedData)".compatibleUrlEncoded()) { _, _ in }
                         }
                     }
                 } catch {

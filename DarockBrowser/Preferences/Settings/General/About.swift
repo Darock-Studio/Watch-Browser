@@ -73,7 +73,7 @@ extension SettingsView.GeneralSettingsView {
                     }
                     if #available(watchOS 10, *) {
                         TQCAccentColorHiddenButton {
-                            requestString("https://fapi.darock.top:65535/analyze/add/DBTQCAccentColor/\(Date.now.timeIntervalSince1970)".compatibleUrlEncoded()) { _, _ in }
+                            requestString("https://api.darock.top/analyze/add/DBTQCAccentColor/\(Date.now.timeIntervalSince1970)".compatibleUrlEncoded()) { _, _ in }
                         }
                     }
                 }

@@ -52,7 +52,7 @@ struct SettingsView: View {
                     })
                     .sheet(isPresented: $isDarockAccountLoginPresented, onDismiss: {
                         if !darockAccount.isEmpty {
-                            requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
+                            requestString("https://api.darock.top/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
                                 if isSuccess {
                                     accountUsername = respStr.apiFixed()
                                 }
@@ -118,6 +118,7 @@ struct SettingsView: View {
                 }
             }
             Section {
+                NavigationLink(destination: { PrivateRelaySettingsView() }, label: { SettingItemLabel(title: "专用代理", image: "network.badge.shield.half.filled", color: .blue) })
                 NavigationLink(destination: { StaredSettingsView() }, label: { SettingItemLabel(title: "常用设置", image: "star", color: .orange) })
                 NavigationLink(destination: { NetworkSettingsView() }, label: { SettingItemLabel(title: "网络", image: "network", color: .blue) })
             }
@@ -197,7 +198,7 @@ struct SettingsView: View {
         }
         .onAppear {
             if !darockAccount.isEmpty {
-                requestString("https://fapi.darock.top:65535/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
+                requestString("https://api.darock.top/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
                     if isSuccess {
                         accountUsername = respStr.apiFixed()
                     }
