@@ -14,6 +14,7 @@ extension SettingsView {
         @AppStorage("TQCIsColorChangeButtonUnlocked") var isColorChangeButtonUnlocked = false
         @AppStorage("TQCIsColorChangeButtonEntered") var isColorChangeButtonEntered = false
         @AppStorage("IsProPurchased") var isProPurchased = false
+        @AppStorage("PRSubscriptionExpirationDate") var subscriptionExpirationDate = 0.0
         var body: some View {
             List {
                 Section {
@@ -64,6 +65,16 @@ extension SettingsView {
                         WidgetCenter.shared.invalidateConfigurationRecommendations()
                     }, label: {
                         Text(verbatim: "Active Pro")
+                    })
+                    Button(action: {
+                        subscriptionExpirationDate = 0
+                    }, label: {
+                        Text(verbatim: "Reset Private Relay")
+                    })
+                    Button(action: {
+                        subscriptionExpirationDate = Date.now.timeIntervalSince1970 + 3600 * 24 * 30
+                    }, label: {
+                        Text(verbatim: "Active Private Relay")
                     })
                 } header: {
                     Text(verbatim: "Purchasing")

@@ -62,15 +62,21 @@ extension SettingsView {
                                 subscriptionExpirationDate = Date.now.timeIntervalSince1970 + 3600 * 24 * 30
                                 #endif
                             }, label: {
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(subscriptionPriceText)
-                                    #if targetEnvironment(simulator)
-                                    Text(verbatim: "Simulator Mode")
-                                        .font(.system(size: 14))
-                                        .foregroundStyle(.gray)
-                                    #endif
+                                if !isPurchasing {
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text(subscriptionPriceText)
+                                        #if targetEnvironment(simulator)
+                                        Text(verbatim: "Simulator Mode")
+                                            .font(.system(size: 14))
+                                            .foregroundStyle(.gray)
+                                        #endif
+                                    }
+                                } else {
+                                    ProgressView()
+                                        .centerAligned()
                                 }
                             })
+                            .disabled(isPurchasing)
                             Button(action: {
                                 isRestoring = true
                                 SwiftyStoreKit.restorePurchases(atomically: true) { results in
