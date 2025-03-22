@@ -31,7 +31,6 @@ struct TabsListView<StartPage>: View where StartPage: View {
     @State var isCreateButtonVisible = true
     @State var isCreateButtonPressed = false
     @State var wristLocation = WKInterfaceDevice.current().wristLocation
-    @State var newFeedbackCount = 0
     @State var isNewVerAvailable = false
     @State var isNewYearCelebrationPresented = false
     @State var isTabActionsPresented = false
@@ -92,20 +91,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                             Section {
                                 NavigationLink(value: TabMainPageSeletion.customView(.feedbackAssistant)) {
                                     VStack {
-                                        HStack {
-                                            ZStack(alignment: .topTrailing) {
-                                                Image(systemName: "exclamationmark.bubble")
-                                                    .font(.system(size: 20))
-                                                if newFeedbackCount > 0 {
-                                                    Text("\(newFeedbackCount)")
-                                                        .font(.system(size: 12, weight: .medium))
-                                                        .background(Circle().fill(Color.red).frame(width: 15, height: 15).opacity(1.0))
-                                                        .offset(x: 3, y: -5)
-                                                        .truncationMode(.head)
-                                                }
-                                            }
-                                            Text("反馈助理")
-                                        }
+                                        Label("反馈助理", systemImage: "exclamationmark.bubble")
                                         if isNewVerAvailable {
                                             Text("“反馈助理”不可用，因为暗礁浏览器有更新可用")
                                                 .font(.system(size: 12))
@@ -256,23 +242,6 @@ struct TabsListView<StartPage>: View where StartPage: View {
                 .animation(.easeOut, value: isCreateButtonPressed)
             }
             .onAppear {
-                if !ProcessInfo.processInfo.isLowPowerModeEnabled {
-                    let feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
-                    newFeedbackCount = 0
-                    Task {
-                        let manager = RKCFeedbackManager(projectName: "Darock Browser")
-                        for id in feedbackIds {
-                            if let feedback = await manager.getFeedback(byId: id) {
-                                let formatter = RKCFileFormatter(for: feedback)
-                                let repCount = formatter.replies().filter { !$0.isInternalHidden }.count
-                                let lastViewCount = UserDefaults.standard.integer(forKey: "RadarFB\(id)ReplyCount")
-                                if repCount > lastViewCount {
-                                    newFeedbackCount++
-                                }
-                            }
-                        }
-                    }
-                }
                 requestString("https://api.darock.top/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
                     if isSuccess {
                         let spdVer = respStr.apiFixed().split(separator: ".")

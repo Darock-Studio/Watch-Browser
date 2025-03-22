@@ -46,6 +46,8 @@ extension SettingsView {
                                 }
                                 Text("标签页浏览")
                             }
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.1)
                         }
                     }
                     .centerAligned()
@@ -81,6 +83,8 @@ extension SettingsView {
                             }
                             Text("单页面浏览")
                         }
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.1)
                     }
                     .centerAligned()
                 })

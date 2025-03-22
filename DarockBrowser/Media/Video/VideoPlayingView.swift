@@ -72,15 +72,6 @@ struct VideoPlayingView: View {
                         Text("画面")
                     }
                     Section {
-                        HStack {
-                            VolumeControlView()
-                            Text("轻触后滑动数码表冠")
-                        }
-                        .listRowBackground(Color.clear)
-                    } header: {
-                        Text("声音")
-                    }
-                    Section {
                         Picker("播放倍速", selection: $playbackSpeed) {
                             Text(verbatim: "0.5x").tag(0.5)
                             Text(verbatim: "0.75x").tag(0.75)

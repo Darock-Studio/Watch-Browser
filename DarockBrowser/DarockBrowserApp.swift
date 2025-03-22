@@ -43,7 +43,7 @@ var globalHapticEngine: CHHapticEngine?
 struct DarockBrowserApp: App {
     @WKApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) var scenePhase
-    @AppStorage("ShouldTipNewFeatures8") var shouldTipNewFeatures = true
+    @AppStorage("ShouldTipNewFeatures9") var shouldTipNewFeatures = true
     @AppStorage("ShouldAskForBrowsingPreference") var shouldAskForBrowsingPreference = if #available(watchOS 10.0, *) { true } else { false }
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockDarockBrowser") var usePasscodeForLockDarockBrowser = false
@@ -190,7 +190,25 @@ struct DarockBrowserApp: App {
                 
                 if isPrivateRelayEnabled {
                     if subscriptionExpirationDate < Date.now.timeIntervalSince1970 {
-                        isPrivateRelayEnabled = false
+                        let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: "e6f95fe6efbf467084bc17ba1113e2fa")
+                        SwiftyStoreKit.verifyReceipt(using: appleValidator, forceRefresh: true) { result in
+                            switch result {
+                            case .success(let receipt):
+                                let productId = "private_relay"
+                                let purchaseResult = SwiftyStoreKit.verifySubscription(
+                                    ofType: .autoRenewable,
+                                    productId: productId,
+                                    inReceipt: receipt)
+                                switch purchaseResult {
+                                case .purchased(let expiryDate, let items):
+                                    subscriptionExpirationDate = expiryDate.timeIntervalSince1970
+                                default:
+                                    isPrivateRelayEnabled = false
+                                }
+                            case .error(let error):
+                                print("Receipt verification failed: \(error)")
+                            }
+                        }
                     }
                 }
             @unknown default:

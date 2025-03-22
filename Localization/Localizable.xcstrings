@@ -482,28 +482,6 @@
         }
       }
     },
-    "%lld" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld"
-          }
-        }
-      }
-    },
     "%lld 个标签页" : {
       "localizations" : {
         "en" : {
@@ -2940,7 +2918,14 @@
       }
     },
     "不丹" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bhutan"
+          }
+        }
+      }
     },
     "不再显示" : {
       "localizations" : {
@@ -3035,7 +3020,14 @@
       }
     },
     "中国大陆" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "China mainland"
+          }
+        }
+      }
     },
     "中国大陆ICP备案号" : {
       "localizations" : {
@@ -3080,10 +3072,24 @@
       }
     },
     "乌克兰" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukraine"
+          }
+        }
+      }
     },
     "乌兹别克斯坦" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzbekistan"
+          }
+        }
+      }
     },
     "乌干达" : {
       "localizations" : {
@@ -3106,10 +3112,24 @@
       }
     },
     "乍得" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chad"
+          }
+        }
+      }
     },
     "也门" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yemen"
+          }
+        }
+      }
     },
     "书签" : {
       "localizations" : {
@@ -3252,10 +3272,24 @@
       }
     },
     "亚太地区" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asia Pacific"
+          }
+        }
+      }
     },
     "亚美尼亚" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Armenia"
+          }
+        }
+      }
     },
     "仅作示例\n©2020 NAT GAMES Co., Ltd. All Rights Reserved.\n©2020 Yostar, Inc. All Rights Reserved." : {
       "localizations" : {
@@ -3541,16 +3575,6 @@
         }
       }
     },
-    "以%@/月订阅专用代理" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Subscribe to Private Relay for %@/month"
-          }
-        }
-      }
-    },
     "以前的更新" : {
       "localizations" : {
         "en" : {
@@ -3562,10 +3586,24 @@
       }
     },
     "以色列" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Israel"
+          }
+        }
+      }
     },
     "伊拉克" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iraq"
+          }
+        }
+      }
     },
     "伯利兹" : {
       "localizations" : {
@@ -3578,7 +3616,14 @@
       }
     },
     "佛得角" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cape Verde"
+          }
+        }
+      }
     },
     "你因为在“反馈助理”中发送不适宜的言论而被附加 Corvus 封禁。\n\n此封禁不会影响 App 功能，但会禁用你的“反馈助理”，以及在你的 App 内加上如你现在看到的水印。\n\n你可以通过下方的表单进行申诉。" : {
       "localizations" : {
@@ -3803,10 +3848,24 @@
       }
     },
     "俄罗斯" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Russia"
+          }
+        }
+      }
     },
     "保加利亚" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulgaria"
+          }
+        }
+      }
     },
     "保存" : {
       "localizations" : {
@@ -3974,6 +4033,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Croatia"
+          }
+        }
+      }
+    },
+    "免费试用3天，随后以%@/月订阅专用代理" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Free trial for 3 days, then subscribe for %@/mo."
           }
         }
       }
@@ -4251,7 +4320,14 @@
       }
     },
     "冈比亚" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gambia"
+          }
+        }
+      }
     },
     "最多添加四个快捷按钮，按钮将显示在网页顶部，效果如下" : {
       "localizations" : {
@@ -4316,7 +4392,14 @@
       }
     },
     "几内亚比绍" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guinea-Bissau"
+          }
+        }
+      }
     },
     "分享" : {
       "localizations" : {
@@ -4455,10 +4538,24 @@
       }
     },
     "刚果共和国" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Congo, Republic of the"
+          }
+        }
+      }
     },
     "刚果民主共和国" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Congo, Democratic Republic of the"
+          }
+        }
+      }
     },
     "创建" : {
       "localizations" : {
@@ -4587,10 +4684,24 @@
       }
     },
     "利比亚" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Libya"
+          }
+        }
+      }
     },
     "利比里亚" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liberia"
+          }
+        }
+      }
     },
     "前往 App Store 下载" : {
       "localizations" : {
@@ -4817,13 +4928,34 @@
       }
     },
     "加纳" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ghana"
+          }
+        }
+      }
     },
     "加蓬" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gabon"
+          }
+        }
+      }
     },
     "匈牙利" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hungary"
+          }
+        }
+      }
     },
     "北马其顿" : {
       "localizations" : {
@@ -4886,7 +5018,14 @@
       }
     },
     "卡塔尔" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qatar"
+          }
+        }
+      }
     },
     "卢旺达" : {
       "localizations" : {
@@ -4899,13 +5038,34 @@
       }
     },
     "卢森堡" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Luxembourg"
+          }
+        }
+      }
     },
     "印度" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "India"
+          }
+        }
+      }
     },
     "印度尼西亚" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indonesia"
+          }
+        }
+      }
     },
     "危地马拉" : {
       "localizations" : {
@@ -5228,7 +5388,14 @@
       }
     },
     "台湾" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taiwan"
+          }
+        }
+      }
     },
     "吉尔吉斯斯坦" : {
       "localizations" : {
@@ -5381,7 +5548,14 @@
       }
     },
     "哥伦比亚" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Colombia"
+          }
+        }
+      }
     },
     "哥斯达黎加" : {
       "localizations" : {
@@ -5394,7 +5568,14 @@
       }
     },
     "喀麦隆" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cameroon"
+          }
+        }
+      }
     },
     "喜欢暗礁浏览器？前往 iPhone 上的 App Store 为我们评分！" : {
       "localizations" : {
@@ -5687,7 +5868,14 @@
       }
     },
     "土耳其" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Türkiye"
+          }
+        }
+      }
     },
     "圣卢西亚" : {
       "localizations" : {
@@ -5920,10 +6108,24 @@
       }
     },
     "圭亚那" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guyana"
+          }
+        }
+      }
     },
     "坦桑尼亚" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanzania"
+          }
+        }
+      }
     },
     "埃及" : {
       "localizations" : {
@@ -5946,7 +6148,14 @@
       }
     },
     "塞内加尔" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senegal"
+          }
+        }
+      }
     },
     "塞尔维亚" : {
       "localizations" : {
@@ -5959,7 +6168,14 @@
       }
     },
     "塞拉利昂" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sierra Leone"
+          }
+        }
+      }
     },
     "塞浦路斯" : {
       "localizations" : {
@@ -5972,7 +6188,14 @@
       }
     },
     "塞舌尔" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seychelles"
+          }
+        }
+      }
     },
     "增强的历史记录" : {
       "localizations" : {
@@ -6109,7 +6332,14 @@
       }
     },
     "多米尼加共和国" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dominican Republic"
+          }
+        }
+      }
     },
     "天气" : {
       "localizations" : {
@@ -6122,7 +6352,14 @@
       }
     },
     "奥地利" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Austria"
+          }
+        }
+      }
     },
     "如果下载大小长时间未变化，说明此 M3U8 视频无法被下载。" : {
       "localizations" : {
@@ -6167,7 +6404,14 @@
       }
     },
     "委内瑞拉" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Venezuela"
+          }
+        }
+      }
     },
     "媒体" : {
       "localizations" : {
@@ -6312,7 +6556,14 @@
       }
     },
     "安哥拉" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Angola"
+          }
+        }
+      }
     },
     "安圭拉" : {
       "localizations" : {
@@ -6465,7 +6716,14 @@
       }
     },
     "密克罗尼西亚" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Micronesia"
+          }
+        }
+      }
     },
     "密码" : {
       "localizations" : {
@@ -6738,10 +6996,24 @@
       }
     },
     "尼日尔" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niger"
+          }
+        }
+      }
     },
     "尼泊尔" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nepal"
+          }
+        }
+      }
     },
     "屏幕右上方的时间不会被降低亮度" : {
       "localizations" : {
@@ -6868,7 +7140,14 @@
       }
     },
     "巴哈马" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bahamas"
+          }
+        }
+      }
     },
     "巴基斯坦" : {
       "localizations" : {
@@ -6901,19 +7180,54 @@
       }
     },
     "巴拉圭" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paraguay"
+          }
+        }
+      }
     },
     "巴拿马" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Panama"
+          }
+        }
+      }
     },
     "巴林" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bahrain"
+          }
+        }
+      }
     },
     "巴西" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brazil"
+          }
+        }
+      }
     },
     "布基纳法索" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Burkina Faso"
+          }
+        }
+      }
     },
     "布局" : {
       "localizations" : {
@@ -6926,7 +7240,14 @@
       }
     },
     "希腊" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Greece"
+          }
+        }
+      }
     },
     "帕劳" : {
       "localizations" : {
@@ -7135,7 +7456,14 @@
       }
     },
     "开曼群岛" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cayman Islands"
+          }
+        }
+      }
     },
     "开源协议许可" : {
       "localizations" : {
@@ -7586,7 +7914,14 @@
       }
     },
     "所罗门群岛" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solomon Islands"
+          }
+        }
+      }
     },
     "手势" : {
       "localizations" : {
@@ -7785,10 +8120,24 @@
       }
     },
     "拉丁美洲和加勒比海地区" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latin America and the Caribbean"
+          }
+        }
+      }
     },
     "拉脱维亚" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latvia"
+          }
+        }
+      }
     },
     "按原样抄写" : {
       "localizations" : {
@@ -7833,10 +8182,24 @@
       }
     },
     "挪威" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Norway"
+          }
+        }
+      }
     },
     "捷克共和国" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czech Republic"
+          }
+        }
+      }
     },
     "接力" : {
       "localizations" : {
@@ -8059,10 +8422,24 @@
       }
     },
     "摩尔多瓦" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Moldova"
+          }
+        }
+      }
     },
     "摩洛哥" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Morocco"
+          }
+        }
+      }
     },
     "播放" : {
       "localizations" : {
@@ -8261,7 +8638,14 @@
       }
     },
     "斯洛伐克" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slovakia"
+          }
+        }
+      }
     },
     "斯洛文尼亚" : {
       "localizations" : {
@@ -8274,7 +8658,14 @@
       }
     },
     "斯里兰卡" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sri Lanka"
+          }
+        }
+      }
     },
     "新功能" : {
       "localizations" : {
@@ -8305,7 +8696,14 @@
       }
     },
     "新加坡" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Singapore"
+          }
+        }
+      }
     },
     "新名称" : {
       "localizations" : {
@@ -8734,7 +9132,14 @@
       }
     },
     "智利" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chile"
+          }
+        }
+      }
     },
     "暗礁文件可与暗礁浏览器配合使用，在安装暗礁文件后，您可以将暗礁浏览器中的本地媒体存储至暗礁文件。" : {
       "localizations" : {
@@ -9323,7 +9728,14 @@
       }
     },
     "柬埔寨" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cambodia"
+          }
+        }
+      }
     },
     "标准" : {
       "localizations" : {
@@ -9356,10 +9768,24 @@
       }
     },
     "格林纳达" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grenada"
+          }
+        }
+      }
     },
     "格鲁吉亚" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Georgia"
+          }
+        }
+      }
     },
     "检查更新时出错" : {
       "localizations" : {
@@ -9778,13 +10204,34 @@
       }
     },
     "毛里求斯" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mauritius"
+          }
+        }
+      }
     },
     "汤加" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tonga"
+          }
+        }
+      }
     },
     "沙特阿拉伯" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saudi Arabia"
+          }
+        }
+      }
     },
     "法国" : {
       "localizations" : {
@@ -9839,10 +10286,24 @@
       }
     },
     "波斯尼亚和黑塞哥维那" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bosnia and Herzegovina"
+          }
+        }
+      }
     },
     "泰国" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thailand"
+          }
+        }
+      }
     },
     "津巴布韦" : {
       "localizations" : {
@@ -9855,7 +10316,14 @@
       }
     },
     "洪都拉斯" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Honduras"
+          }
+        }
+      }
     },
     "浅色" : {
       "localizations" : {
@@ -10134,7 +10602,14 @@
       }
     },
     "澳大利亚" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Australia"
+          }
+        }
+      }
     },
     "澳门" : {
       "localizations" : {
@@ -10142,6 +10617,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Macao"
+          }
+        }
+      }
+    },
+    "激活 Pro" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active Pro"
           }
         }
       }
@@ -10177,19 +10662,54 @@
       }
     },
     "爱尔兰" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ireland"
+          }
+        }
+      }
     },
     "爱沙尼亚" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estonia"
+          }
+        }
+      }
     },
     "牙买加" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jamaica"
+          }
+        }
+      }
     },
     "特克斯和凯科斯群岛" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turks and Caicos Islands"
+          }
+        }
+      }
     },
     "特立尼达和多巴哥" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trinidad and Tobago"
+          }
+        }
+      }
     },
     "现可使用专用代理以保护隐私" : {
       "localizations" : {
@@ -10404,16 +10924,44 @@
       }
     },
     "瑙鲁" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nauru"
+          }
+        }
+      }
     },
     "瑞典" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sweden"
+          }
+        }
+      }
     },
     "瑞士" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Switzerland"
+          }
+        }
+      }
     },
     "瓦努阿图" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vanuatu"
+          }
+        }
+      }
     },
     "生成短链接" : {
       "localizations" : {
@@ -10550,7 +11098,14 @@
       }
     },
     "白俄罗斯" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belarus"
+          }
+        }
+      }
     },
     "百度贴吧" : {
       "localizations" : {
@@ -10949,10 +11504,24 @@
       }
     },
     "科索沃" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kosovo"
+          }
+        }
+      }
     },
     "秘鲁" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peru"
+          }
+        }
+      }
     },
     "空列表" : {
       "localizations" : {
@@ -11075,10 +11644,24 @@
       }
     },
     "突尼斯" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tunisia"
+          }
+        }
+      }
     },
     "立陶宛" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lithuania"
+          }
+        }
+      }
     },
     "站点安全" : {
       "localizations" : {
@@ -11237,10 +11820,24 @@
       }
     },
     "约旦" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jordan"
+          }
+        }
+      }
     },
     "纳米比亚" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namibia"
+          }
+        }
+      }
     },
     "练习主要手势" : {
       "localizations" : {
@@ -11287,7 +11884,14 @@
       }
     },
     "缅甸" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Myanmar"
+          }
+        }
+      }
     },
     "缩放" : {
       "localizations" : {
@@ -11690,10 +12294,24 @@
       }
     },
     "老挝" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laos"
+          }
+        }
+      }
     },
     "肯尼亚" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kenya"
+          }
+        }
+      }
     },
     "自动" : {
       "localizations" : {
@@ -11780,7 +12398,14 @@
       }
     },
     "苏里南" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suriname"
+          }
+        }
+      }
     },
     "若要使用网页检查器，通过线缆将此 Apple Watch 配对的 iPhone 与 Mac 连接，在 Safari 的“开发”菜单中访问此 Apple Watch。你可以在 Safari 设置中的“高级”选项卡中打开开发菜单。" : {
       "localizations" : {
@@ -11825,10 +12450,24 @@
       }
     },
     "英国" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "United Kingdom"
+          }
+        }
+      }
     },
     "英属维尔京群岛" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "British Virgin Islands"
+          }
+        }
+      }
     },
     "荷兰" : {
       "localizations" : {
@@ -11841,25 +12480,74 @@
       }
     },
     "莫桑比克" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mozambique"
+          }
+        }
+      }
     },
     "菲律宾" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Philippines"
+          }
+        }
+      }
     },
     "萨尔瓦多" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El Salvador"
+          }
+        }
+      }
     },
     "葡萄牙" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Portugal"
+          }
+        }
+      }
     },
     "蒙古" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mongolia"
+          }
+        }
+      }
     },
     "蒙特塞拉特" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Montserrat"
+          }
+        }
+      }
     },
     "西班牙" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spain"
+          }
+        }
+      }
     },
     "订阅" : {
       "localizations" : {
@@ -12050,10 +12738,24 @@
       }
     },
     "贝宁" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Benin"
+          }
+        }
+      }
     },
     "赞比亚" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zambia"
+          }
+        }
+      }
     },
     "起始页" : {
       "localizations" : {
@@ -12082,7 +12784,14 @@
       }
     },
     "越南" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vietnam"
+          }
+        }
+      }
     },
     "跳转到" : {
       "localizations" : {
@@ -13639,7 +14348,14 @@
       }
     },
     "阿塞拜疆" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Azerbaijan"
+          }
+        }
+      }
     },
     "阿富汗" : {
       "localizations" : {
@@ -13672,10 +14388,24 @@
       }
     },
     "阿拉伯联合酋长国" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "United Arab Emirates"
+          }
+        }
+      }
     },
     "阿曼" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oman"
+          }
+        }
+      }
     },
     "阿根廷" : {
       "localizations" : {
@@ -14070,7 +14800,14 @@
       }
     },
     "马尔代夫" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maldives"
+          }
+        }
+      }
     },
     "马拉维" : {
       "localizations" : {
@@ -14083,10 +14820,24 @@
       }
     },
     "马来西亚" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Malaysia"
+          }
+        }
+      }
     },
     "马耳他" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Malta"
+          }
+        }
+      }
     },
     "马达加斯加" : {
       "localizations" : {
@@ -14099,7 +14850,14 @@
       }
     },
     "马里" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mali"
+          }
+        }
+      }
     },
     "验证购买时出错：未订阅" : {
       "localizations" : {
@@ -14144,13 +14902,34 @@
       }
     },
     "黎巴嫩" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lebanon"
+          }
+        }
+      }
     },
     "黑山" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Montenegro"
+          }
+        }
+      }
     },
     "墨西哥" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mexico"
+          }
+        }
+      }
     },
     "默认" : {
       "localizations" : {

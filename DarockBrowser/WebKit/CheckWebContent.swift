@@ -6,8 +6,10 @@
 //
 
 import SwiftSoup
+import Alamofire
 import Foundation
 import SwiftUICore
+import DarockFoundation
 
 func checkWebContent(for webView: WKWebView) {
     guard let currentUrl = webView.url?.absoluteString else {
@@ -159,9 +161,33 @@ func checkWebContent(for webView: WKWebView) {
                     globalErrorHandler(error)
                 }
             }
+            // Optimize for specific websites
+            // 10100011 music
             if currentUrl.contains(/music\..*\.com/) && currentUrl.contains(/(\?|&)id=[0-9]*($|&)/),
                let mid = currentUrl.split(separator: "id=")[from: 1]?.split(separator: "&").first {
                 audioLinkLists = ["http://music.\(0b10100011).com/song/media/outer/url?id=\(mid).mp3"]
+            }
+            // TBH I really don't wanna do these things below, but users are gods😇.
+            // dilidili
+            if currentUrl.contains("bilibili.com/video/BV"),
+               let _fbvid = currentUrl.split(separator: "bilibili.com/video/", maxSplits: 1).last,
+               let bvid = _fbvid.split(separator: "/", maxSplits: 1).first {
+                let headers: HTTPHeaders = [
+                    "User-Agent": "Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+                ]
+                requestJSON("https://api.bilibili.com/x/web-interface/view?bvid=\(bvid)", headers: headers) { respJson, isSuccess in
+                    if isSuccess {
+                        guard (respJson["code"].int ?? 0) == 0 else { return }
+                        let cid = respJson["data"]["pages"][0]["cid"].int64!
+                        requestJSON("https://api.bilibili.com/x/player/playurl?bvid=\(bvid)&cid=\(cid)&platform=html5", headers: headers) { respJson, isSuccess in
+                            if isSuccess {
+                                guard (respJson["code"].int ?? 0) == 0 else { return }
+                                let videoLink = respJson["data"]["durl"][0]["url"].string!.replacingOccurrences(of: "\\u0026", with: "&")
+                                videoLinkLists.insert(videoLink, at: 0)
+                            }
+                        }
+                    }
+                }
             }
         }
     })

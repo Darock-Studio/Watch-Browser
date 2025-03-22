@@ -31,6 +31,8 @@ struct VideoListView: View {
                         isPlayerPresented = true
                     }, label: {
                         Text(links[i])
+                            .lineLimit(3)
+                            .truncationMode(.middle)
                     })
                     .swipeActions {
                         Button(action: {

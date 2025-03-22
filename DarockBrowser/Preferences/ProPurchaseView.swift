@@ -19,13 +19,33 @@ struct ProPurchaseView: View {
     @State var isPurchasing = false
     @State var isRestoring = false
     @State var restoreErrorText = ""
+    @State var tabSelection = 0
     var body: some View {
         ifContainer({ if #available(watchOS 10, *) { true } else { false } }()) { content in
             if #available(watchOS 10, *) {
-                TabView {
-                    content
+                ZStack {
+                    TabView(selection: $tabSelection) {
+                        content
+                    }
+                    .tabViewStyle(.verticalPage)
+                    VStack {
+                        Spacer()
+                        if tabSelection == 1 && !isProPurchased {
+                            Button(action: {
+                                withAnimation {
+                                    tabSelection = 2
+                                }
+                            }, label: {
+                                Text("激活 Pro")
+                            })
+                            .background(Capsule().fill(Material.thin))
+                            .padding(.bottom, 5)
+                            .transition(.offset(y: 50))
+                        }
+                    }
+                    .ignoresSafeArea()
+                    .animation(.easeOut, value: tabSelection)
                 }
-                .tabViewStyle(.verticalPage)
             }
         } false: { content in
             Form {
@@ -78,6 +98,7 @@ struct ProPurchaseView: View {
             }
             .listRowBackground(Color.clear)
             .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+            .tag(0)
             List {
                 Section {
                     Label(title: {
@@ -114,6 +135,9 @@ struct ProPurchaseView: View {
                                 .opacity(0.6)
                         }
                     })
+                    if #available(watchOS 10.0, *) {
+                        Spacer()
+                    }
                 } header: {
                     Text("Pro 功能")
                 }
@@ -128,6 +152,7 @@ struct ProPurchaseView: View {
                     .listRowBackground(Color.clear)
                 }
             }
+            .tag(1)
             List {
                 if !isProPurchased {
                     Section {
@@ -224,6 +249,7 @@ struct ProPurchaseView: View {
                     }
                 }
             }
+            .tag(2)
         }
         .navigationTitle("暗礁浏览器 Pro")
         .navigationBarTitleDisplayMode(isProPurchased ? .inline : .large)

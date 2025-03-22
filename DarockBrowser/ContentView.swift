@@ -118,6 +118,11 @@ struct MainView: View {
     @AppStorage("isHistoryRecording") var isHistoryRecording = true
     @AppStorage("IsSearchEngineShortcutEnabled") var isSearchEngineShortcutEnabled = true
     @AppStorage("isUseOldWebView") var isUseOldWebView = false
+    @AppStorage("ShouldShowRatingRequest") var shouldShowRatingRequest = false
+    @AppStorage("MainPageShowCount") var mainPageShowCount = 0
+    @AppStorage("IsShowJoinGroup2") var isShowJoinGroup = true
+    @AppStorage("IsShowClusterAd") var isShowClusterAd = true
+    @AppStorage("IsBetaJoinAvailable") var isBetaJoinAvailable = false
     @State var textOrURL = ""
     @State var goToButtonLabelText: LocalizedStringKey = "Home.search"
     @State var isKeyboardPresented = false
@@ -219,20 +224,7 @@ struct MainView: View {
                 Section {
                     NavigationLink(destination: { FeedbackView() }, label: {
                         VStack {
-                            HStack {
-                                ZStack(alignment: .topTrailing) {
-                                    Image(systemName: "exclamationmark.bubble")
-                                        .font(.system(size: 20))
-                                    if newFeedbackCount > 0 {
-                                        Text("\(newFeedbackCount)")
-                                            .font(.system(size: 12, weight: .medium))
-                                            .background(Circle().fill(Color.red).frame(width: 15, height: 15).opacity(1.0))
-                                            .offset(x: 3, y: -5)
-                                            .truncationMode(.head)
-                                    }
-                                }
-                                Text("反馈助理")
-                            }
+                            Label("反馈助理", systemImage: "exclamationmark.bubble")
                             if isNewVerAvailable {
                                 Text("“反馈助理”不可用，因为暗礁浏览器有更新可用")
                                     .font(.system(size: 12))
@@ -244,6 +236,38 @@ struct MainView: View {
                     NavigationLink(destination: { TipsView() }, label: {
                         Label("提示", privateSystemImage: "tips")
                     })
+                }
+                Section {
+                    if shouldShowRatingRequest {
+                        Button(action: {
+                            shouldShowRatingRequest = false
+                        }, label: {
+                            VStack(alignment: .leading) {
+                                Text("喜欢暗礁浏览器？前往 iPhone 上的 App Store 为我们评分！")
+                                Text("轻触以隐藏")
+                                    .font(.system(size: 14))
+                                    .foregroundStyle(.gray)
+                            }
+                        })
+                    }
+                    if isBetaJoinAvailable && !isAppBetaBuild {
+                        NavigationLink(value: TabMainPageSeletion.customView(.betaTesting)) {
+                            Label("参与 Beta 测试", systemImage: "person.badge.clock")
+                                .centerAligned()
+                        }
+                    }
+                    if #available(watchOS 10, *), isShowClusterAd {
+                        NavigationLink(value: TabMainPageSeletion.customView(.clusterAd)) {
+                            Label("推荐 - 暗礁文件", systemImage: "sparkles")
+                                .centerAligned()
+                        }
+                    }
+                    if isShowJoinGroup {
+                        NavigationLink(value: TabMainPageSeletion.customView(.joinGroup)) {
+                            Label("欢迎加入群聊", systemImage: "bubble.left.and.bubble.right")
+                                .centerAligned()
+                        }
+                    }
                 }
             }
         }
@@ -270,22 +294,7 @@ struct MainView: View {
             pinnedBookmarkIndexs = (UserDefaults.standard.array(forKey: "PinnedBookmarkIndex") as! [Int]?) ?? [Int]()
             webArchiveLinks = UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()
             
-            if #unavailable(watchOS 10) {
-                if !ProcessInfo.processInfo.isLowPowerModeEnabled {
-                    let feedbackIds = UserDefaults.standard.stringArray(forKey: "RadarFBIDs") ?? [String]()
-                    newFeedbackCount = 0
-                    for id in feedbackIds {
-                        requestString("https://api.darock.top/radar/details/Darock Browser/\(id)".compatibleUrlEncoded()) { respStr, isSuccess in
-                            if isSuccess {
-                                let repCount = respStr.apiFixed().components(separatedBy: "---").count - 1
-                                let lastViewCount = UserDefaults.standard.integer(forKey: "RadarFB\(id)ReplyCount")
-                                if repCount > lastViewCount {
-                                    newFeedbackCount++
-                                }
-                            }
-                        }
-                    }
-                }
+            if createPageAction == nil {
                 requestString("https://api.darock.top/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
                     if isSuccess {
                         let spdVer = respStr.apiFixed().split(separator: ".")
@@ -306,6 +315,15 @@ struct MainView: View {
                             }
                         }
                     }
+                }
+                requestString("https://api.darock.top/tf/get/DarockBrowser") { respStr, isSuccess in
+                    if isSuccess {
+                        isBetaJoinAvailable = respStr.apiFixed() != "[None]"
+                    }
+                }
+                mainPageShowCount++
+                if mainPageShowCount == 10 {
+                    shouldShowRatingRequest = true
                 }
             }
         }

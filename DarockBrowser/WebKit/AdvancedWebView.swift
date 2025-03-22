@@ -268,3 +268,10 @@ struct GeneralUIViewControllerRepresenting: _UIViewControllerRepresentable {
     }
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
 }
+struct GeneralUIViewRepresenting: _UIViewRepresentable {
+    var view: NSObject
+    func makeUIView(context: Context) -> some NSObject {
+        view
+    }
+    func updateUIView(_ uiView: UIViewType, context: Context) {}
+}

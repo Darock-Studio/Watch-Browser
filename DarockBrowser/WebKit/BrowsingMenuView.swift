@@ -27,6 +27,7 @@ struct BrowsingMenuView: View {
     @AppStorage("DBIsAutoAppearence") var isAutoAppearence = false
     @AppStorage("DBAutoAppearenceOptionEnableForWebForceDark") var autoAppearenceOptionEnableForWebForceDark = true
     @AppStorage("IsProPurchased") var isProPurchased = false
+    @AppStorage("IsUseTabBasedBrowsing") var isUseTabBasedBrowsing = true
     @State var linkInput = ""
     @State var linkInputOffset: CGFloat = 0
     @State var isHomeViewPresented = false
@@ -217,7 +218,7 @@ struct BrowsingMenuView: View {
                                 }
                             }, label: {
                                 HStack {
-                                    if #available(watchOS 10.0, *) {
+                                    if #available(watchOS 10.0, *), isUseTabBasedBrowsing {
                                         Text("返回标签页列表")
                                         Spacer()
                                         Image(systemName: "list.bullet")
@@ -228,7 +229,7 @@ struct BrowsingMenuView: View {
                                     }
                                 }
                             })
-                            .tint({ if #available(watchOS 10.0, *) { true } else { false } }() ? .accentColor : .red)
+                            .tint({ if #available(watchOS 10.0, *), isUseTabBasedBrowsing { true } else { false } }() ? .accentColor : .red)
                         }
                         if isProPurchased {
                             Section {
@@ -455,7 +456,7 @@ struct BrowsingMenuView: View {
                                     }
                                 }, label: {
                                     HStack {
-                                        if #available(watchOS 10.0, *) {
+                                        if #available(watchOS 10.0, *), isUseTabBasedBrowsing {
                                             Image(systemName: "list.bullet")
                                             Text("返回标签页列表")
                                         } else {
@@ -464,7 +465,7 @@ struct BrowsingMenuView: View {
                                         }
                                     }
                                 })
-                                .tint({ if #available(watchOS 10.0, *) { true } else { false } }() ? .accentColor : .red)
+                                .tint({ if #available(watchOS 10.0, *), isUseTabBasedBrowsing { true } else { false } }() ? .accentColor : .red)
                                 if isProPurchased {
                                     Button(action: {
                                         isWebSummaryPresented = true

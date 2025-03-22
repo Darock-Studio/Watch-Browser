@@ -21,7 +21,7 @@ extension SettingsView {
         @State var purchasingErrorText = ""
         @State var isRestoring = false
         var body: some View {
-            List {
+            Form {
                 Section {
                     if !selectedCountry.isEmpty {
                         if selectedCountry != "中国大陆" {
@@ -99,9 +99,11 @@ extension SettingsView {
                         Text("订阅")
                     } footer: {
                         VStack(alignment: .leading) {
-                            Text(purchasingErrorText)
-                                .font(.system(size: 12))
-                                .foregroundStyle(.red)
+                            if !purchasingErrorText.isEmpty {
+                                Text(purchasingErrorText)
+                                    .font(.system(size: 12))
+                                    .foregroundStyle(.red)
+                            }
                             Text("条款与条件")
                                 .foregroundStyle(.blue)
                                 .onTapGesture {
@@ -125,7 +127,7 @@ extension SettingsView {
                         VStack(alignment: .leading) {
                             Text("选择国家或地区")
                             if !selectedCountry.isEmpty {
-                                Text(selectedCountry)
+                                Text(String(localized: .init(selectedCountry)))
                                     .font(.system(size: 14))
                                     .foregroundStyle(.gray)
                             }
@@ -155,7 +157,7 @@ extension SettingsView {
             .onInitialAppear {
                 SwiftyStoreKit.retrieveProductsInfo(["private_relay"]) { result in
                     if let product = result.retrievedProducts.first {
-                        subscriptionPriceText = String(localized: "以\(product.localizedPrice!)/月订阅专用代理")
+                        subscriptionPriceText = String(localized: "免费试用3天，随后以\(product.localizedPrice!)/月订阅专用代理")
                     } else if let invalidProductId = result.invalidProductIDs.first {
                         print("Invalid product identifier: \(invalidProductId)")
                         purchasingErrorText = String(localized: "App 内购买项目当前不可用，请稍后再试")
