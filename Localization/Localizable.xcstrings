@@ -1318,6 +1318,9 @@
       },
       "shouldTranslate" : false
     },
+    "Darock Intelligence can %@." : {
+      "shouldTranslate" : false
+    },
     "Darock 始终重视您的隐私，所有 Cookie 仅在本地存储" : {
       "localizations" : {
         "en" : {
@@ -1349,6 +1352,17 @@
           }
         }
       }
+    },
+    "Darock 智能可%@，小屏幕浏览网页也能%@" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Darock 智能可%1$@，小屏幕浏览网页也能%2$@"
+          }
+        }
+      },
+      "shouldTranslate" : false
     },
     "Darock 短链接" : {
       "localizations" : {
@@ -1408,6 +1422,17 @@
       "shouldTranslate" : false
     },
     "Discord Server" : {
+      "shouldTranslate" : false
+    },
+    "Each button can be %@. Support %@, %@, %@ and so on." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Each button can be %1$@. Support %2$@, %3$@, %4$@ and so on."
+          }
+        }
+      },
       "shouldTranslate" : false
     },
     "Feature Flags" : {
@@ -4007,6 +4032,16 @@
         }
       }
     },
+    "先刷重点" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get the highlights"
+          }
+        }
+      }
+    },
     "先试试这个方案" : {
       "localizations" : {
         "en" : {
@@ -4963,16 +4998,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "North Macedonia"
-          }
-        }
-      }
-    },
-    "升级到暗礁浏览器 Pro 以解锁更多高级功能" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Upgrade to Darock Browser Pro to unlock more premium features"
           }
         }
       }
@@ -6270,6 +6295,7 @@
       }
     },
     "声音" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -6917,6 +6943,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Widgets"
+          }
+        }
+      }
+    },
+    "小组件，\n高效直达" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widgets,\nGo Directly"
           }
         }
       }
@@ -7811,16 +7847,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Italy"
-          }
-        }
-      }
-    },
-    "我们不会对特定的网站优化视频解析。\n以前能解析的网站不代表现在能解析，我们一般不会更改视频解析逻辑，某网站的视频无法解析是因为网站更新了，我们不可能追踪网站的更新来更新暗礁浏览器。" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "We do not optimize video parsing for specific websites.  \nWebsites that could be parsed before may not be parseable now. We generally do not change the video parsing logic. If a website’s video cannot be parsed, it is because the website has been updated. It is not feasible for us to track website updates to update Darock Browser."
           }
         }
       }
@@ -10089,6 +10115,16 @@
         }
       }
     },
+    "此刻的 Pro，不仅在此刻" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro this time, not only this time"
+          }
+        }
+      }
+    },
     "此布局在网页视图顶部工具栏添加返回按钮，轻触可返回上一页直至退出网页。" : {
       "localizations" : {
         "en" : {
@@ -10172,6 +10208,17 @@
           }
         }
       }
+    },
+    "每个按钮的功能均可%@，支持%@、%@以及%@等多项功能。" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "每个按钮的功能均可%1$@，支持%2$@、%3$@以及%4$@等多项功能。"
+          }
+        }
+      },
+      "shouldTranslate" : false
     },
     "每个按钮的功能均可自定义，支持快速返回、重新载入以及查看媒体等多项功能。" : {
       "localizations" : {
@@ -13006,6 +13053,7 @@
       }
     },
     "轻触后滑动数码表冠" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

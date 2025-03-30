@@ -73,7 +73,7 @@ extension SettingsView.GeneralSettingsView {
             }
             .navigationTitle("软件更新")
             .onAppear {
-                requestString("https://api.darock.top/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
+                requestAPI("/drkbs/newver") { respStr, isSuccess in
                     if isSuccess {
                         let spdVer = respStr.apiFixed().split(separator: ".")
                         if spdVer.count == 3 {

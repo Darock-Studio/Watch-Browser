@@ -20,14 +20,21 @@ struct ProPurchaseView: View {
     @State var isRestoring = false
     @State var restoreErrorText = ""
     @State var tabSelection = 0
+    @State var isWidgetTimeAnimating = false
+    @State var isWidgetSearchAnimating = false
+    @State var isWidgetBookmarkAnimating = false
+    @State var isWidgetTextAnimating = false
+    @State var quickButtonAnimationProperty = 0
     var body: some View {
         ifContainer({ if #available(watchOS 10, *) { true } else { false } }()) { content in
             if #available(watchOS 10, *) {
                 ZStack {
                     TabView(selection: $tabSelection) {
                         content
+                            .scrollIndicators(.never)
                     }
                     .tabViewStyle(.verticalPage)
+                    .scrollIndicators(.never)
                     VStack {
                         Spacer()
                         if tabSelection == 1 && !isProPurchased {
@@ -46,11 +53,20 @@ struct ProPurchaseView: View {
                     .ignoresSafeArea()
                     .animation(.easeOut, value: tabSelection)
                 }
+                .navigationTitle({
+                    return switch tabSelection {
+                    case 1: Text("先刷重点")
+                    default: Text("暗礁浏览器 Pro")
+                    }
+                }())
+                .navigationBarTitleDisplayMode(.inline)
             }
         } false: { content in
             Form {
                 content
             }
+            .navigationTitle("暗礁浏览器 Pro")
+            .navigationBarTitleDisplayMode(isProPurchased ? .inline : .large)
         } containing: {
             VStack {
                 HStack(spacing: 0) {
@@ -92,10 +108,24 @@ struct ProPurchaseView: View {
                 }
                 .foregroundStyle(.accent)
                 .frame(height: 80)
-                .padding(.vertical, -20)
-                Text("升级到暗礁浏览器 Pro 以解锁更多高级功能")
+                .padding(.bottom, -20)
+                Text("此刻的 Pro，不仅在此刻")
+                    .multilineTextAlignment(.center)
                     .centerAligned()
+                if #available(watchOS 10, *) {
+                    Spacer()
+                    Button(action: {
+                        withAnimation {
+                            tabSelection = 2
+                        }
+                    }, label: {
+                        Text("激活 Pro")
+                    })
+                    .background(Capsule().fill(Material.thin))
+                    .padding(.bottom, 5)
+                }
             }
+            .ignoresSafeArea(edges: .bottom)
             .listRowBackground(Color.clear)
             .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
             .tag(0)
@@ -153,6 +183,186 @@ struct ProPurchaseView: View {
                 }
             }
             .tag(1)
+            if #available(watchOS 10, *) {
+                ScrollView {
+                    VStack {
+                        VStack {
+                            Text("Darock 智能")
+                                .font(.system(size: 20, weight: .bold))
+                            Image("DarockIntelligenceIcon")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                                .clipShape(Circle())
+                            if NSLocale.current.language.languageCode!.identifier != "en" {
+                                Text("Darock 智能可\(Text(verbatim: "总结网页摘要").foregroundColor(.white))，小屏幕浏览网页也能\(Text(verbatim: "简单轻松").foregroundColor(.white))")
+                                    .multilineTextAlignment(.center)
+                                    .foregroundStyle(.gray)
+                            } else {
+                                Text("Darock Intelligence can \(Text(verbatim: "summerize webpages").foregroundColor(.white)).")
+                                    .multilineTextAlignment(.center)
+                                    .foregroundStyle(.gray)
+                            }
+                        }
+                    }
+                }
+                .tag(3)
+                ZStack {
+                    VStack {
+                        Spacer()
+                            .frame(height: 20)
+                        HStack {
+                            Spacer()
+                            Text({
+                                let calendar = Calendar.autoupdatingCurrent
+                                var minute = String(calendar.component(.minute, from: .now))
+                                if minute.count == 1 {
+                                    minute = "0" + minute
+                                }
+                                return String("\(calendar.component(.hour, from: .now)):\(minute)")
+                            }())
+                            .font(.system(size: 50, weight: .semibold, design: .rounded))
+                            Spacer()
+                                .frame(width: 5)
+                        }
+                        .opacity(isWidgetTimeAnimating ? 1 : 0)
+                        .offset(y: isWidgetTimeAnimating ? -20 : 0)
+                        Spacer()
+                        ZStack {
+                            Label("使用暗礁浏览器搜索", systemImage: "magnifyingglass")
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.gray.opacity(0.8))
+                                .frame(width: 170, height: 60)
+                        }
+                        .opacity(isWidgetSearchAnimating ? 1 : 0)
+                        .offset(y: isWidgetSearchAnimating ? -20 : 0)
+                        Spacer()
+                        ZStack {
+                            VStack {
+                                HStack {
+                                    Image(systemName: "bookmark.fill")
+                                    Text(verbatim: "Darock")
+                                }
+                                Text(verbatim: "https://darock.top")
+                            }
+                            .fontDesign(.rounded)
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.gray.opacity(0.8))
+                                .frame(width: 170, height: 60)
+                        }
+                        .opacity(isWidgetBookmarkAnimating ? 1 : 0)
+                        .offset(y: isWidgetBookmarkAnimating ? -20 : 0)
+                        Spacer()
+                            .frame(height: 30)
+                    }
+                    .blur(radius: isWidgetTextAnimating ? 10 : 0)
+                    if isWidgetTextAnimating {
+                        Text("小组件，\n高效直达")
+                            .font(.system(size: 30, weight: .semibold))
+                            .multilineTextAlignment(.center)
+                            .transition(.opacity)
+                    }
+                }
+                .animation(.smooth, value: isWidgetTextAnimating)
+                .ignoresSafeArea(edges: .vertical)
+                .toolbar(.hidden)
+                .onAppear {
+                    setMainSceneHideStatusBarSubject.send(true)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                        withAnimation(.easeOut(duration: 0.3)) {
+                            isWidgetTimeAnimating = true
+                        } completion: {
+                            withAnimation(.easeOut(duration: 0.3)) {
+                                isWidgetSearchAnimating = true
+                            } completion: {
+                                withAnimation(.easeOut(duration: 0.3)) {
+                                    isWidgetBookmarkAnimating = true
+                                } completion: {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                        isWidgetTextAnimating = true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .onDisappear {
+                    setMainSceneHideStatusBarSubject.send(false)
+                    isWidgetTimeAnimating = false
+                    isWidgetSearchAnimating = false
+                    isWidgetBookmarkAnimating = false
+                    isWidgetTextAnimating = false
+                }
+                .tag(4)
+                ScrollView {
+                    VStack {
+                        Text("网页快捷按钮")
+                            .font(.system(size: 20, weight: .bold))
+                            .multilineTextAlignment(.center)
+                        Spacer(minLength: 20)
+                        HStack {
+                            Image(systemName: "ellipsis.circle")
+                                .opacity(quickButtonAnimationProperty > 0 ? 1 : 0)
+                                .offset(y: quickButtonAnimationProperty > 0 ? 0 : 20)
+                            Spacer()
+                            Image(systemName: "chevron.backward")
+                                .opacity(quickButtonAnimationProperty > 1 ? 1 : 0)
+                                .offset(y: quickButtonAnimationProperty > 1 ? 0 : 20)
+                            Spacer()
+                            Image(systemName: "chevron.forward")
+                                .opacity(quickButtonAnimationProperty > 2 ? 1 : 0)
+                                .offset(y: quickButtonAnimationProperty > 2 ? 0 : 20)
+                            Spacer()
+                            Image(systemName: "arrow.clockwise")
+                                .opacity(quickButtonAnimationProperty > 3 ? 1 : 0)
+                                .offset(y: quickButtonAnimationProperty > 3 ? 0 : 20)
+                            Spacer()
+                            Image(systemName: "film.stack")
+                                .opacity(quickButtonAnimationProperty > 4 ? 1 : 0)
+                                .offset(y: quickButtonAnimationProperty > 4 ? 0 : 20)
+                        }
+                        .font(.system(size: 18))
+                        .foregroundStyle(.blue)
+                        Spacer(minLength: 20)
+                        Group {
+                            if NSLocale.current.language.languageCode!.identifier != "en" {
+                                Text("每个按钮的功能均可\(Text(verbatim: "自定义").foregroundColor(.white))，支持\(Text(verbatim: "快速返回").foregroundColor(.white))、\(Text(verbatim: "重新载入").foregroundColor(.white))以及\(Text(verbatim: "查看媒体").foregroundColor(.white))等多项功能。")
+                            } else {
+                                Text("Each button can be \(Text(verbatim: "customized").foregroundColor(.white)). Support \(Text(verbatim: "go back").foregroundColor(.white)), \(Text(verbatim: "reload").foregroundColor(.white)), \(Text(verbatim: "view media").foregroundColor(.white)) and so on.")
+                            }
+                        }
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.gray)
+                        .opacity(quickButtonAnimationProperty > 4 ? 1 : 0)
+                        .offset(y: quickButtonAnimationProperty > 4 ? 0 : 20)
+                    }
+                }
+                .onAppear {
+                    withAnimation(.easeOut) {
+                        quickButtonAnimationProperty = 1
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            withAnimation(.easeOut) {
+                                quickButtonAnimationProperty = 2
+                            }
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                            withAnimation(.easeOut) {
+                                quickButtonAnimationProperty = 3
+                            }
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+                            withAnimation(.easeOut) {
+                                quickButtonAnimationProperty = 4
+                            }
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                            withAnimation(.easeOut) {
+                                quickButtonAnimationProperty = 5
+                            }
+                        }
+                    }
+                }
+                .tag(5)
+            }
             List {
                 if !isProPurchased {
                     Section {
@@ -251,8 +461,6 @@ struct ProPurchaseView: View {
             }
             .tag(2)
         }
-        .navigationTitle("暗礁浏览器 Pro")
-        .navigationBarTitleDisplayMode(isProPurchased ? .inline : .large)
         .onAppear {
             if !isProPurchased {
                 isErrorLoadingPriceString = false

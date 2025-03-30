@@ -52,7 +52,7 @@ struct SettingsView: View {
                     })
                     .sheet(isPresented: $isDarockAccountLoginPresented, onDismiss: {
                         if !darockAccount.isEmpty {
-                            requestString("https://api.darock.top/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
+                            requestAPI("/user/name/get/\(darockAccount)") { respStr, isSuccess in
                                 if isSuccess {
                                     accountUsername = respStr.apiFixed()
                                 }
@@ -168,7 +168,7 @@ struct SettingsView: View {
                         }
                     }(), color: .blue)
                 })
-                if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "IsDarockInternalTap-to-RadarAvailable") {
+                if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "DarockInternal") {
                     NavigationLink(destination: { InternalDebuggingView() }, label: {
                         SettingItemLabel(title: "Debugging", image: "ant.fill", color: .purple)
                     })
@@ -198,7 +198,7 @@ struct SettingsView: View {
         }
         .onAppear {
             if !darockAccount.isEmpty {
-                requestString("https://api.darock.top/user/name/get/\(darockAccount)".compatibleUrlEncoded()) { respStr, isSuccess in
+                requestAPI("/user/name/get/\(darockAccount)") { respStr, isSuccess in
                     if isSuccess {
                         accountUsername = respStr.apiFixed()
                     }

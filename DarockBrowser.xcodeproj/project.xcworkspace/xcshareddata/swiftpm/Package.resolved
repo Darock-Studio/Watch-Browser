@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Serene-Garden/Cepheus",
       "state" : {
-        "revision" : "04b049ba99021e821f3a3945aced4112c10bd0ae",
-        "version" : "3.0.1"
+        "revision" : "8fb14385f3b233cf381a9babb4524cbc444bbe9f",
+        "version" : "3.1.0"
       }
     },
     {
@@ -70,7 +70,7 @@
       "location" : "https://github.com/Darock-Studio/DarockFoundation",
       "state" : {
         "branch" : "main",
-        "revision" : "914678eb6936130582e5e398754e2079c1f669a4"
+        "revision" : "4fbb2ffb2aeb6bf5aed52505f190666bc2816291"
       }
     },
     {
@@ -79,7 +79,7 @@
       "location" : "https://github.com/Darock-Studio/DarockIntelligenceKit",
       "state" : {
         "branch" : "main",
-        "revision" : "e3e5407101f545c9a26036026fee81a7812c3a28"
+        "revision" : "4052606961a40747b4adf4a14f7f12cf14f1a441"
       }
     },
     {
@@ -141,7 +141,7 @@
       "location" : "https://github.com/Darock-Studio/NotifKit",
       "state" : {
         "branch" : "main",
-        "revision" : "b8c26ce4c4ce36845c2f30fbdbaab392f6065633"
+        "revision" : "05e858c9cc3b0d6a72ab5c36586bd38cfaaa7c44"
       }
     },
     {
@@ -185,8 +185,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "10d06f6a33bafae8c164fbfd1f03391f6d4692b3",
-        "version" : "5.20.0"
+        "revision" : "cac9a55a3ae92478a2c95042dcc8d9695d2129ca",
+        "version" : "5.21.0"
       }
     },
     {

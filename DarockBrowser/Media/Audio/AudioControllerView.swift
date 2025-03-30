@@ -420,7 +420,7 @@ struct AudioControllerView: View {
         isSoftScrolling = true
         lyrics.removeAll()
         if !nowPlayingAudioId.isEmpty {
-            requestJSON("https://music.\(0b10100011).com/api/song/lyric?id=\(nowPlayingAudioId)&lv=1&kv=1&tv=-1".compatibleUrlEncoded()) { respJson, isSuccess in
+            requestJSON("https://music.\(0b10100011).com/api/song/lyric?id=\(nowPlayingAudioId)&lv=1&kv=1&tv=-1") { respJson, isSuccess in
                 if isSuccess {
                     if let lyric = respJson["lrc"]["lyric"].string {
                         let lineSpd = lyric.components(separatedBy: "\n")
@@ -477,7 +477,7 @@ struct AudioControllerView: View {
                     }
                 }
             }
-            requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(nowPlayingAudioId)&ids=%5B\(nowPlayingAudioId)%5D".compatibleUrlEncoded()) { respJson, isSuccess in
+            requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(nowPlayingAudioId)&ids=%5B\(nowPlayingAudioId)%5D") { respJson, isSuccess in
                 if isSuccess {
                     if let imageUrl = respJson["songs"][0]["album"]["picUrl"].string {
                         backgroundImageUrl = URL(string: imageUrl)
@@ -745,7 +745,7 @@ func getCurrentPlaylistContents() -> [String]? {
 func updateNowPlaying() {
     var nowPlayingInfo = [String: Any]()
     if !nowPlayingAudioId.isEmpty {
-        requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(nowPlayingAudioId)&ids=%5B\(nowPlayingAudioId)%5D".compatibleUrlEncoded()) { respJson, isSuccess in
+        requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(nowPlayingAudioId)&ids=%5B\(nowPlayingAudioId)%5D") { respJson, isSuccess in
             if isSuccess {
                 if let imageUrlString = respJson["songs"][0]["album"]["picUrl"].string,
                    let imageUrl = URL(string: imageUrlString),

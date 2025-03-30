@@ -295,7 +295,7 @@ struct MainView: View {
             webArchiveLinks = UserDefaults.standard.stringArray(forKey: "WebArchiveList") ?? [String]()
             
             if createPageAction == nil {
-                requestString("https://api.darock.top/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
+                requestAPI("/drkbs/newver") { respStr, isSuccess in
                     if isSuccess {
                         let spdVer = respStr.apiFixed().split(separator: ".")
                         if spdVer.count == 3 {
@@ -316,7 +316,7 @@ struct MainView: View {
                         }
                     }
                 }
-                requestString("https://api.darock.top/tf/get/DarockBrowser") { respStr, isSuccess in
+                requestAPI("/tf/get/DarockBrowser") { respStr, isSuccess in
                     if isSuccess {
                         isBetaJoinAvailable = respStr.apiFixed() != "[None]"
                     }
@@ -553,26 +553,6 @@ func getTopLevel(from url: String) -> String? {
 }
 
 extension String {
-    /// 将原始的url编码为合法的url
-    func urlEncoded() -> String {
-        let encodeUrlString = self.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        return encodeUrlString ?? ""
-    }
-     
-    /// 将编码后的url转换回原始的url
-    func urlDecoded() -> String {
-        return self.removingPercentEncoding ?? ""
-    }
-    
-    /// 仅为要求手动编码URL的系统编码URL
-    func compatibleUrlEncoded() -> String {
-        if #available(watchOS 10.0, *) {
-            return self
-        } else {
-            return self.urlEncoded()
-        }
-    }
-    
     /// 是否为URL
     func isURL() -> Bool {
         let dotSplited = self.split(separator: ".")

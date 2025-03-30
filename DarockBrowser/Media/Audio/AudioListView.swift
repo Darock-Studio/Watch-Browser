@@ -37,7 +37,7 @@ struct AudioListView: View {
                             if links[i].contains(/music\..*\.com/) && links[i].contains(/(\?|&)id=[0-9]*\.mp3($|&)/),
                                let mid = links[i].split(separator: "id=")[from: 1]?.split(separator: ".mp3").first {
                                 downloadFileName = "\(mid).mp3"
-                                requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(mid)&ids=%5B\(mid)%5D".compatibleUrlEncoded()) { respJson, isSuccess in
+                                requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(mid)&ids=%5B\(mid)%5D") { respJson, isSuccess in
                                     if isSuccess {
                                         if let audioName = respJson["songs"][0]["name"].string {
                                             var nameChart = (
@@ -48,7 +48,7 @@ struct AudioListView: View {
                                         }
                                     }
                                 }
-                                requestJSON("https://music.\(0b10100011).com/api/song/lyric?id=\(mid)&lv=1&kv=1&tv=-1".compatibleUrlEncoded()) { respJson, isSuccess in
+                                requestJSON("https://music.\(0b10100011).com/api/song/lyric?id=\(mid)&lv=1&kv=1&tv=-1") { respJson, isSuccess in
                                     if isSuccess {
                                         var lyrics = [Double: String]()
                                         if let lyric = respJson["lrc"]["lyric"].string {
@@ -130,7 +130,7 @@ struct AudioListView: View {
                                     try newStr.write(toFile: NSHomeDirectory() + "/Documents/Playlists/\(fileName)", atomically: true, encoding: .utf8)
                                     if addPlaylistUrl.contains(/music\..*\.com/) && addPlaylistUrl.contains(/(\?|&)id=[0-9]*\.mp3($|&)/),
                                        let mid = addPlaylistUrl.split(separator: "id=")[from: 1]?.split(separator: ".mp3").first {
-                                        requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(mid)&ids=%5B\(mid)%5D".compatibleUrlEncoded()) { respJson, isSuccess in
+                                        requestJSON("https://music.\(0b10100011).com/api/song/detail/?id=\(mid)&ids=%5B\(mid)%5D") { respJson, isSuccess in
                                             if isSuccess {
                                                 if let audioName = respJson["songs"][0]["name"].string {
                                                     var nameChart = (

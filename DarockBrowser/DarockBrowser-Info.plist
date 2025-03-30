@@ -12,6 +12,13 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>altapi.darock.top</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
 			<key>api.darock.top</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>

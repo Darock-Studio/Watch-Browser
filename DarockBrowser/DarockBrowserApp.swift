@@ -200,7 +200,7 @@ struct DarockBrowserApp: App {
                                     productId: productId,
                                     inReceipt: receipt)
                                 switch purchaseResult {
-                                case .purchased(let expiryDate, let items):
+                                case .purchased(let expiryDate, _):
                                     subscriptionExpirationDate = expiryDate.timeIntervalSince1970
                                 default:
                                     isPrivateRelayEnabled = false
@@ -272,9 +272,7 @@ class AppDelegate: NSObject, WKApplicationDelegate {
             }
         }
         
-        requestString(
-            "https://api.darock.top/analyze/add/DBStatsAppStartupCount".compatibleUrlEncoded()
-        ) { _, _ in }
+        requestAPI("/analyze/add/DBStatsAppStartupCount") { _, _ in }
     }
     
     func didRegisterForRemoteNotifications(withDeviceToken deviceToken: Data) {
@@ -335,7 +333,7 @@ public func globalErrorHandler(_ error: Error, file: StaticString = #fileID, fun
     } catch {
         print("Error in globalErrorHandler: \(error)")
     }
-    if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "IsDarockInternalTap-to-RadarAvailable") {
+    if UserDefaults(suiteName: "group.darockst")!.bool(forKey: "DarockInternal") {
         pTapToRadarAlertContent = "Swift has caught an internal error.\nPlease help us make Darock Browser better by logging a bug. Thanks. (\(file):\(line) - \(function))"
         pTapToRadarAttachText = "Autoattachd DarockBrowser(\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)). At \(file):\(line) - \(function). LocdStr: \(error.localizedDescription) Add more infomation here: "
             .replacingOccurrences(of: "\n", with: "{LineBreak}")

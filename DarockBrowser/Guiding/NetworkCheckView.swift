@@ -114,7 +114,7 @@ struct NetworkCheckView: View {
             networkState = 0
             darockAPIState = 0
             checkInternet()
-            requestString("https://api.darock.top/drkbs/newver".compatibleUrlEncoded()) { respStr, isSuccess in
+            requestAPI("/drkbs/newver") { respStr, isSuccess in
                 if isSuccess {
                     let spdVer = respStr.apiFixed().split(separator: ".")
                     if spdVer.count == 3 {
@@ -145,7 +145,7 @@ struct NetworkCheckView: View {
         Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { timer in
             timer.invalidate()
             networkState = 1
-            requestString("https://apple.com.cn".compatibleUrlEncoded()) { _, isSuccess in
+            requestString("https://apple.com.cn") { _, isSuccess in
                 if isSuccess {
                     checkDarock()
                     networkState = 3
@@ -158,7 +158,7 @@ struct NetworkCheckView: View {
         
         func checkDarock() {
             darockAPIState = 1
-            requestString("https://api.darock.top".compatibleUrlEncoded()) { respStr, isSuccess in
+            requestAPI("/") { respStr, isSuccess in
                 if isSuccess {
                     if respStr.apiFixed() == "OK" {
                         darockAPIState = 3
