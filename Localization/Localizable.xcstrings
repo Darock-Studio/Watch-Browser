@@ -6710,7 +6710,14 @@
       }
     },
     "定睛细看" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take a closer look"
+          }
+        }
+      }
     },
     "实验室" : {
       "localizations" : {
@@ -7065,7 +7072,14 @@
       }
     },
     "屏蔽广告，流畅浏览新一步" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Block ADs, new step for a smooth browsing"
+          }
+        }
+      }
     },
     "已下载 %@MB" : {
       "localizations" : {
@@ -7346,10 +7360,24 @@
       }
     },
     "广告" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AD"
+          }
+        }
+      }
     },
     "广告屏蔽" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AD Block"
+          }
+        }
+      }
     },
     "开发者" : {
       "localizations" : {
@@ -9364,7 +9392,14 @@
       }
     },
     "暗礁浏览器能够自动屏蔽网页中的广告，所有内容均在本地处理。" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Browser can block advertisements in webpages automatically, all contents are processed locally."
+          }
+        }
+      }
     },
     "更好的 Cookie 支持" : {
       "localizations" : {
@@ -12128,7 +12163,14 @@
       }
     },
     "网页广告屏蔽" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AD Block for webpages"
+          }
+        }
+      }
     },
     "网页强制深色模式" : {
       "localizations" : {
