@@ -11,6 +11,7 @@ extension SettingsView {
     struct PrivacySettingsView: View {
         @State var isAboutPrivacyPresented = false
         @AppStorage("PCReopenPreviousWebTab") var reopenPreviousWebTab = true
+        @AppStorage("IsUseTabBasedBrowsing") var isUseTabBasedBrowsing = true
         var body: some View {
             List {
                 Section {
@@ -21,7 +22,9 @@ extension SettingsView {
                     })
                 }
                 Section {
-                    Toggle("启动时恢复上次浏览的页面", isOn: $reopenPreviousWebTab)
+                    if isUseTabBasedBrowsing {
+                        Toggle("启动时恢复上次浏览的页面", isOn: $reopenPreviousWebTab)
+                    }
                     NavigationLink(destination: { CookieView() },
                                    label: { SettingItemLabel(title: "Cookie", image: "doc.fill", color: .gray) })
                     NavigationLink(destination: { WebsiteSecurityView() },

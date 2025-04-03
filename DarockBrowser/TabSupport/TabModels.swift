@@ -11,7 +11,22 @@ struct WebViewTab: Identifiable {
     var id = UUID()
     
     var webView: WKWebView?
-    var metadata: Metadata?
+    private var _metadata: Metadata?
+    var metadata: Metadata? {
+        get {
+            return _metadata
+        }
+        set {
+            if newValue?.url != _metadata?.url, let newValue, let newURL = newValue.url {
+                if !newValue.isWebArchive {
+                    shouldLoad = .web(newURL)
+                } else {
+                    shouldLoad = .webArchive(newURL)
+                }
+            }
+            _metadata = newValue
+        }
+    }
     var shouldLoad: LoadResource?
     
     init(metadata: Metadata) {

@@ -116,9 +116,11 @@ struct SettingsView: View {
                     NavigationLink(destination: { WidgetSettingsView() },
                                    label: { SettingItemLabel(title: "小组件", image: "watchface.applewatch.case", color: .blue) })
                 }
+                NavigationLink(destination: { ADBlockerSettingsView() }, label: { SettingItemLabel(title: "广告屏蔽", image: "circle.slash", color: .red) })
             }
             Section {
-                NavigationLink(destination: { PrivateRelaySettingsView() }, label: { SettingItemLabel(title: "专用代理", image: "network.badge.shield.half.filled", color: .blue) })
+                NavigationLink(destination: { PrivateRelaySettingsView() },
+                               label: { SettingItemLabel(title: "专用代理", image: "network.badge.shield.half.filled", color: .blue) })
                 NavigationLink(destination: { StaredSettingsView() }, label: { SettingItemLabel(title: "常用设置", image: "star", color: .orange) })
                 NavigationLink(destination: { NetworkSettingsView() }, label: { SettingItemLabel(title: "网络", image: "network", color: .blue) })
             }

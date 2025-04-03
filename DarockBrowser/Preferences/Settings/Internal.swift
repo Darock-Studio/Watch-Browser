@@ -136,7 +136,7 @@ extension SettingsView {
                 if #available(watchOS 10.5, *) {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button(action: {
-                            WKExtension.shared().openSystemURL(URL(string: "https://darock.top/internal/tap-to-radar/new?ProductName=Darock Browser")!)
+                            WKExtension.shared().openSystemURL(URL(string: "https://darock.top/internal/radar/new?ProductName=Darock Browser")!)
                         }, label: {
                             Image(systemName: "ant.fill")
                         })

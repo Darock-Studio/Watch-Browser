@@ -135,6 +135,8 @@
 		8CDE9B9E2C3C19460083B09E /* AudioListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE9B9D2C3C19460083B09E /* AudioListView.swift */; };
 		8CDFFF3A2D4837E900A76224 /* IfContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDFFF392D4837E400A76224 /* IfContainer.swift */; };
 		8CDFFF692D4962CC00A76224 /* DarockIntelligenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8CDFFF682D4962CC00A76224 /* DarockIntelligenceKit */; };
+		8CE307DB2D9EB24400A49BD7 /* JSScripts.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CE307DA2D9EB24400A49BD7 /* JSScripts.plist */; };
+		8CE307DF2D9EC10200A49BD7 /* ADBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE307DE2D9EC0FA00A49BD7 /* ADBlocker.swift */; };
 		8CE3FCA82CCE12E3009E4EBB /* UserDefinedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE3FCA72CCE12DD009E4EBB /* UserDefinedBackground.swift */; };
 		8CE70DAF2C7A4F3500EFB3AD /* VideoPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DAE2C7A4F3100EFB3AD /* VideoPlayingView.swift */; };
 		8CE70DB12C7A4F7300EFB3AD /* MediaDownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE70DB02C7A4F6F00EFB3AD /* MediaDownloadView.swift */; };
@@ -903,6 +905,11 @@
 		8CDE9B982C3BD7A40083B09E /* ci_pre_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_pre_xcodebuild.sh; sourceTree = "<group>"; };
 		8CDE9B9D2C3C19460083B09E /* AudioListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioListView.swift; sourceTree = "<group>"; };
 		8CDFFF392D4837E400A76224 /* IfContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfContainer.swift; sourceTree = "<group>"; };
+		8CE307D62D9E98C200A49BD7 /* ADBlock.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ADBlock.js; sourceTree = "<group>"; };
+		8CE307DA2D9EB24400A49BD7 /* JSScripts.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = JSScripts.plist; sourceTree = "<group>"; };
+		8CE307DC2D9EB3CE00A49BD7 /* PrivateRelayInjection.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = PrivateRelayInjection.js; sourceTree = "<group>"; };
+		8CE307DD2D9EB45E00A49BD7 /* ForceDarkMode.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ForceDarkMode.js; sourceTree = "<group>"; };
+		8CE307DE2D9EC0FA00A49BD7 /* ADBlocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADBlocker.swift; sourceTree = "<group>"; };
 		8CE3FCA72CCE12DD009E4EBB /* UserDefinedBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefinedBackground.swift; sourceTree = "<group>"; };
 		8CE70DAE2C7A4F3100EFB3AD /* VideoPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayingView.swift; sourceTree = "<group>"; };
 		8CE70DB02C7A4F6F00EFB3AD /* MediaDownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDownloadView.swift; sourceTree = "<group>"; };
@@ -1013,6 +1020,7 @@
 				8CDE9B972C3BD77A0083B09E /* ci_scripts */,
 				8CD6711E2C7F2EF5004C5D08 /* Localization */,
 				8CA47BFD2C98129E00753101 /* SharedCode */,
+				8CE307D82D9EB13F00A49BD7 /* Scripts */,
 				6BF209F22990E61C00E623FC /* DarockBrowser */,
 				8CA47BEF2C97242E00753101 /* ProWidgets */,
 				8C5281172C22FA3C00392315 /* TripleQuestionmarkCore */,
@@ -1690,6 +1698,7 @@
 				6BA7F79F2A2F6FC600FFEED0 /* SettingsView.swift */,
 				8C5588BA2D56BF4B0055BC32 /* DarockIntelligence.swift */,
 				8C5588BE2D56BF810055BC32 /* Widget.swift */,
+				8CE307DE2D9EC0FA00A49BD7 /* ADBlocker.swift */,
 				8C7179FB2D85EC7000C6E85C /* PrivateRelay.swift */,
 				8C5588C02D56BFE10055BC32 /* Stared.swift */,
 				8C5588C22D56C0050055BC32 /* Network.swift */,
@@ -1936,6 +1945,25 @@
 				8C298D9A2CCD1B2E0074A938 /* ci_post_xcodebuild.sh */,
 			);
 			path = ci_scripts;
+			sourceTree = "<group>";
+		};
+		8CE307D82D9EB13F00A49BD7 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				8CE307D92D9EB14A00A49BD7 /* Source_DoNotEmbed */,
+				8CE307DA2D9EB24400A49BD7 /* JSScripts.plist */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
+		8CE307D92D9EB14A00A49BD7 /* Source_DoNotEmbed */ = {
+			isa = PBXGroup;
+			children = (
+				8CE307DC2D9EB3CE00A49BD7 /* PrivateRelayInjection.js */,
+				8CE307D62D9E98C200A49BD7 /* ADBlock.js */,
+				8CE307DD2D9EB45E00A49BD7 /* ForceDarkMode.js */,
+			);
+			path = Source_DoNotEmbed;
 			sourceTree = "<group>";
 		};
 		8CE70DAD2C7A4F2100EFB3AD /* Video */ = {
@@ -2219,6 +2247,7 @@
 			files = (
 				8CC3060F2CAB08C000323034 /* Success.ahap in Resources */,
 				8CC306112CAB0ECD00323034 /* Failure.ahap in Resources */,
+				8CE307DB2D9EB24400A49BD7 /* JSScripts.plist in Resources */,
 				8CF636232CADD7CC00ECE3B3 /* IntelligenceStart.ahap in Resources */,
 				8C3E839D2C82246B00686E9C /* LICENSE in Resources */,
 				8C40D4C62C33DE6B00C4221C /* TopLevelDomainList.drkdatat in Resources */,
@@ -2293,6 +2322,7 @@
 				8C038A962CCD516E00BC0FB4 /* TabsListView.swift in Sources */,
 				8C7179FC2D85EC7300C6E85C /* PrivateRelay.swift in Sources */,
 				8C5588ED2D56C3710055BC32 /* Privacy.swift in Sources */,
+				8CE307DF2D9EC10200A49BD7 /* ADBlocker.swift in Sources */,
 				8CF5DC4F2BAE04D5007F9974 /* ShareView.swift in Sources */,
 				8CC3353A2C9954A60025B936 /* PrivacyAboutView.swift in Sources */,
 				8C5588EF2D56C3900055BC32 /* Developer.swift in Sources */,
@@ -2609,7 +2639,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.3.2;
+				MARKETING_VERSION = 7.4.0;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_WKContentRuleListStore";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
@@ -2657,7 +2687,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.3.2;
+				MARKETING_VERSION = 7.4.0;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_WKContentRuleListStore";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
@@ -2684,7 +2714,7 @@
 				INFOPLIST_FILE = "DarockBrowser/DarockBrowser-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 7.3.2;
+				MARKETING_VERSION = 7.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2703,7 +2733,7 @@
 				INFOPLIST_FILE = "DarockBrowser/DarockBrowser-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 7.3.2;
+				MARKETING_VERSION = 7.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2788,7 +2818,7 @@
 				INFOPLIST_FILE = "DarockBrowser/DarockBrowser-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 7.3.2;
+				MARKETING_VERSION = 7.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2831,7 +2861,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.3.2;
+				MARKETING_VERSION = 7.4.0;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_WKContentRuleListStore";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
@@ -2869,7 +2899,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 7.3.2;
+				MARKETING_VERSION = 7.4.0;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3022,7 +3052,7 @@
 				INFOPLIST_FILE = "DarockBrowser/DarockBrowser-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 7.3.2;
+				MARKETING_VERSION = 7.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -3065,7 +3095,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.3.2;
+				MARKETING_VERSION = 7.4.0;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_WKContentRuleListStore";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
@@ -3104,7 +3134,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 7.3.2;
+				MARKETING_VERSION = 7.4.0;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3346,7 +3376,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 7.3.2;
+				MARKETING_VERSION = 7.4.0;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3383,7 +3413,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 7.3.2;
+				MARKETING_VERSION = 7.4.0;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";

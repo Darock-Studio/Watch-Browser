@@ -126,27 +126,11 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         // Dark Mode
         if UserDefaults.standard.bool(forKey: "ForceApplyDarkMode")
             || (isAutoAppearence && autoAppearenceOptionEnableForWebForceDark && AppearenceManager.shared.currentAppearence == .dark) {
-            webView.evaluateJavaScript("""
-            const allElements = document.querySelectorAll('*');
-            function applyDarkMode(element) {
-                element.style.backgroundColor = '#121212';
-                element.style.color = '#ffffff';
-            }
-            allElements.forEach(applyDarkMode);
-            const observer = new MutationObserver(mutations => {
-                mutations.forEach(mutation => {
-                    if (mutation.type === 'childList') {
-                        mutation.addedNodes.forEach(node => {
-                            if (node.nodeType === Node.ELEMENT_NODE) {
-                                applyDarkMode(node);
-                                node.querySelectorAll('*').forEach(applyDarkMode);
-                            }
-                        });
-                    }
-                });
-            });
-            observer.observe(document.documentElement, { childList: true, subtree: true });
-            """)
+            let embeddedScripts = try! PropertyListSerialization.propertyList(
+                from: try! Data(contentsOf: Bundle.main.url(forResource: "JSScripts", withExtension: "plist")!),
+                format: nil
+            ) as! [String: String]
+            webView.evaluateJavaScript(embeddedScripts["ForceDarkMode"]!)
         }
         
         let curl = webView.url

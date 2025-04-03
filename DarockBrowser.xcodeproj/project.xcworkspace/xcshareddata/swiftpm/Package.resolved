@@ -70,7 +70,7 @@
       "location" : "https://github.com/Darock-Studio/DarockFoundation",
       "state" : {
         "branch" : "main",
-        "revision" : "4fbb2ffb2aeb6bf5aed52505f190666bc2816291"
+        "revision" : "e32261dd077d4935ebc5da3995b44453818f8c8c"
       }
     },
     {
@@ -230,8 +230,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swiftlang/swift-cmark",
       "state" : {
-        "revision" : "3ccff77b2dc5b96b77db3da0d68d28068593fa53",
-        "version" : "0.5.0"
+        "revision" : "b022b08312decdc46585e0b3440d97f6f22ef703",
+        "version" : "0.6.0"
       }
     },
     {

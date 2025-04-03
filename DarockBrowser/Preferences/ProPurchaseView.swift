@@ -20,6 +20,7 @@ struct ProPurchaseView: View {
     @State var isRestoring = false
     @State var restoreErrorText = ""
     @State var tabSelection = 0
+    @State var adBlockAnimationProperty = 0
     @State var isWidgetTimeAnimating = false
     @State var isWidgetSearchAnimating = false
     @State var isWidgetBookmarkAnimating = false
@@ -56,6 +57,8 @@ struct ProPurchaseView: View {
                 .navigationTitle({
                     return switch tabSelection {
                     case 1: Text("先刷重点")
+                    case 2: Text("激活 Pro")
+                    case 3...6: Text("定睛细看")
                     default: Text("暗礁浏览器 Pro")
                     }
                 }())
@@ -139,6 +142,7 @@ struct ProPurchaseView: View {
                             .frame(width: 25, height: 25)
                             .clipShape(Circle())
                     })
+                    Label("网页广告屏蔽", systemImage: "slash.circle")
                     if #available(watchOS 10.0, *) {
                         Label("书签小组件", systemImage: "bookmark")
                         Label("快速搜索小组件", systemImage: "magnifyingglass")
@@ -206,6 +210,53 @@ struct ProPurchaseView: View {
                     }
                 }
                 .tag(3)
+                ScrollView {
+                    VStack {
+                        VStack(alignment: .leading) {
+                            Text(Array(repeating: "Placeholder", count: adBlockAnimationProperty > 0 ? 4 : 0).joined())
+                                .redacted(reason: .placeholder)
+                            if adBlockAnimationProperty <= 3 {
+                                Text("广告")
+                                    .foregroundStyle(.red)
+                                    .opacity(adBlockAnimationProperty > 1 ? 1 : 0)
+                            }
+                            Text(Array(repeating: "Placeholder", count: adBlockAnimationProperty > 2 ? 3 : 0).joined())
+                                .redacted(reason: .placeholder)
+                        }
+                        if adBlockAnimationProperty > 4 {
+                            Text("屏蔽广告，流畅浏览新一步")
+                                .multilineTextAlignment(.center)
+                                .transition(.offset(y: 20))
+                        }
+                    }
+                }
+                .onAppear {
+                    withAnimation(.easeOut(duration: 1)) {
+                        adBlockAnimationProperty = 1
+                    } completion: {
+                        withAnimation(.easeOut(duration: 1)) {
+                            adBlockAnimationProperty = 2
+                        } completion: {
+                            withAnimation(.easeOut(duration: 1)) {
+                                adBlockAnimationProperty = 3
+                            } completion: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                    withAnimation(.easeOut(duration: 1)) {
+                                        adBlockAnimationProperty = 4
+                                    } completion: {
+                                        withAnimation {
+                                            adBlockAnimationProperty = 5
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .onDisappear {
+                    adBlockAnimationProperty = 0
+                }
+                .tag(6)
                 ZStack {
                     VStack {
                         Spacer()
