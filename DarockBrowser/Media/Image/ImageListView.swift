@@ -121,7 +121,7 @@ struct ImageListView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isImageViewerPresented, content: { ImageGroupView(links: .constant(links), selection: tabSelection) })
+            .sheet(isPresented: $isImageViewerPresented, content: { ImageGroupView(links: .constant(links), selection: $tabSelection) })
             .onDisappear {
                 if (UserDefaults.standard.object(forKey: "CCIsContinuityMediaEnabled") as? Bool) ?? true {
                     globalMediaUserActivity?.invalidate()

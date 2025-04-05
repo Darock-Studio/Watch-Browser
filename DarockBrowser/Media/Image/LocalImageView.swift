@@ -72,7 +72,7 @@ struct LocalImageView: View {
             .sheet(isPresented: $isImageViewerPresented) {
                 ImageGroupView(
                     links: .constant(images.map { URL(filePath: NSHomeDirectory() + "/Documents/LocalImages/" + $0).absoluteString }),
-                    selection: tabSelection
+                    selection: $tabSelection
                 )
             }
             .sheet(isPresented: $isMenuPresented) {

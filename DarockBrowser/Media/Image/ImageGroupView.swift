@@ -10,7 +10,7 @@ import DarockFoundation
 
 struct ImageGroupView: View {
     @Binding var links: [String]
-    @State var selection = 0
+    @Binding var selection: Int
     @AppStorage("IVUseDigitalCrownFor") var useDigitalCrownFor = "zoom"
     @State var isControlsHidden = false
     @State var controlsHiddenTimer: Timer?
