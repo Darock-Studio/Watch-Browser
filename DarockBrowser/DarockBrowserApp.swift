@@ -221,6 +221,7 @@ struct DarockBrowserApp: App {
 class AppDelegate: NSObject, WKApplicationDelegate {
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("IsProPurchased") var isProPurchased = false
+    @AppStorage("NFIsNotificationsFromDarockAllowed") var isNotificationsFromDarockAllowed = true
     
     func applicationDidFinishLaunching() {
         SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
@@ -272,6 +273,14 @@ class AppDelegate: NSObject, WKApplicationDelegate {
             }
         }
         
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { isGrand, _ in
+            DispatchQueue.main.async {
+                if isGrand {
+                    WKApplication.shared().registerForRemoteNotifications()
+                }
+            }
+        }
+        
         requestAPI("/analyze/add/DBStatsAppStartupCount") { _, _ in }
     }
     
@@ -279,6 +288,7 @@ class AppDelegate: NSObject, WKApplicationDelegate {
         let tokenString = deviceToken.hexEncodedString()
         debugPrint(tokenString)
         UserDefaults.standard.set(tokenString, forKey: "UserNotificationToken")
+        requestAPI("/apns/devtoken/\(isNotificationsFromDarockAllowed ? "add" : "remove")/DarockBrowser_Promotion/0/\(tokenString)") { _, _ in }
     }
     
     func handle(_ userActivity: NSUserActivity) {

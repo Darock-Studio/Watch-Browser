@@ -141,6 +141,7 @@ struct SettingsView: View {
                 NavigationLink(destination: { GesturesSettingsView() },
                                label: { SettingItemLabel(title: "手势", privateImage: "hand.side.pinch.fill", color: .blue) })
                 #endif
+                NavigationLink(destination: {  }, label: { SettingItemLabel(title: "通知", image: "bell.badge.fill", color: .red) })
             }
             Section {
                 Button(action: {

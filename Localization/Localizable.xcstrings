@@ -6090,6 +6090,16 @@
         }
       }
     },
+    "在系统设置中允许来自暗礁浏览器的通知，随后在此处管理。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow notifications from Darock Browser in System Settings, then manage them here."
+          }
+        }
+      }
+    },
     "在网页中寻找或直接在搜索框中输入.epub链接" : {
       "localizations" : {
         "en" : {
@@ -8307,6 +8317,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "接收来自 Darock 的通知推送" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow Notifications from Darock"
           }
         }
       }
@@ -14025,6 +14045,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "一般"
+          }
+        }
+      }
+    },
+    "通知" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
           }
         }
       }
