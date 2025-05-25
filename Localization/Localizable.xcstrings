@@ -1989,6 +1989,9 @@
         }
       }
     },
+    "Project Mako" : {
+      "shouldTranslate" : false
+    },
     "Runtime Error" : {
       "shouldTranslate" : false
     },
@@ -2725,6 +2728,16 @@
     },
     "User Agent" : {
       "shouldTranslate" : false
+    },
+    "watchOS 上的开源音乐客户端" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open source music app on Apple Watch"
+          }
+        }
+      }
     },
     "一些网站可能无法在专用代理下工作。" : {
       "localizations" : {
@@ -11906,6 +11919,16 @@
         }
       }
     },
+    "约旦" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jordan"
+          }
+        }
+      }
+    },
     "紧凑" : {
       "localizations" : {
         "en" : {
@@ -11932,16 +11955,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Emergency Evade Action"
-          }
-        }
-      }
-    },
-    "约旦" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jordan"
           }
         }
       }

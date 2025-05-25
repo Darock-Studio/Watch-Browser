@@ -11,6 +11,7 @@ import SwiftUI
 import Intents
 import WatchKit
 import NotifKit
+import DarockUI
 import SDWebImage
 import RadarKitCore
 import AVFoundation
@@ -44,7 +45,7 @@ struct DarockBrowserApp: App {
     @WKApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) var scenePhase
     @AppStorage("ShouldTipNewFeatures9") var shouldTipNewFeatures = true
-    @AppStorage("ShouldAskForBrowsingPreference") var shouldAskForBrowsingPreference = if #available(watchOS 10.0, *) { true } else { false }
+    @AppStorage("ShouldAskForBrowsingPreference") var shouldAskForBrowsingPreference: Bool = if #available(watchOS 10.0, *) { true } else { false }
     @AppStorage("UserPasscodeEncrypted") var userPasscodeEncrypted = ""
     @AppStorage("UsePasscodeForLockDarockBrowser") var usePasscodeForLockDarockBrowser = false
     @AppStorage("IsThisClusterInstalled") var isThisClusterInstalled = false

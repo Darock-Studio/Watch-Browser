@@ -327,6 +327,14 @@ struct MainView: View {
                 }
             }
         }
+        .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
+            if createPageAction == nil, let url = userActivity.webpageURL, var openUrl = url.absoluteString.split(separator: "darock.top/darockbrowser/open/", maxSplits: 1)[from: 1] {
+                if !openUrl.hasPrefix("http://") && !openUrl.hasPrefix("https://") {
+                    openUrl = "http://" + openUrl
+                }
+                AdvancedWebViewController.shared.present(String(openUrl).urlEncoded())
+            }
+        }
     }
     
     @ViewBuilder var searchField: some View {

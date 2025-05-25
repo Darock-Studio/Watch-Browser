@@ -741,6 +741,29 @@ struct BrowsingMenuView: View {
                     .buttonBorderShape(.roundedRectangle(radius: 12))
                 }
             }
+        case let x where x.contains("music.163.com"):
+            Section {
+                VStack {
+                    appHeadView(
+                        imageURL: "https://darock.top/mako/imgs/AppIcon.png",
+                        title: "Project Mako",
+                        description: "watchOS 上的开源音乐客户端"
+                    )
+                    Button(action: {
+                        webView.load(URLRequest(url: URL(string: "https://testflight.apple.com/join/khcS3jDk")!))
+                    }, label: {
+                        HStack {
+                            Text("前往 TestFlight")
+                            Image(systemName: "arrow.up.right.square")
+                        }
+                        .font(.headline)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.3)
+                    })
+                    .buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.roundedRectangle(radius: 12))
+                }
+            }
         default:
             EmptyView()
         }

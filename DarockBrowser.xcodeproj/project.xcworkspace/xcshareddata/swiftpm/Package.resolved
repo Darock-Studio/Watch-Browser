@@ -70,7 +70,7 @@
       "location" : "https://github.com/Darock-Studio/DarockFoundation",
       "state" : {
         "branch" : "main",
-        "revision" : "e32261dd077d4935ebc5da3995b44453818f8c8c"
+        "revision" : "217f002106f97eebac53765f24911ae1d9861ce7"
       }
     },
     {
@@ -88,7 +88,7 @@
       "location" : "https://github.com/Darock-Studio/DarockUI",
       "state" : {
         "branch" : "main",
-        "revision" : "a7f4dc5ce3e7bd47f83e867b35b48e64144249cc"
+        "revision" : "59bdb90db526f079f8630d712cb2930eb1a07b8c"
       }
     },
     {
@@ -248,8 +248,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/EFPrefix/swift_qrcodejs.git",
       "state" : {
-        "revision" : "817ba220a2eba840bae888e7eeb11207bec05f8c",
-        "version" : "2.3.0"
+        "revision" : "d1605333f7edac39b4518538ef4f2638fdd2e4d6",
+        "version" : "2.3.1"
       }
     },
     {

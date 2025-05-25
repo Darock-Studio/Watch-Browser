@@ -80,10 +80,6 @@ struct TextField: View {
     }
 }
 
-extension Int: @retroactive Identifiable {
-    public var id: Self { self }
-}
-
 @ViewBuilder
 func Label(_ titleKey: LocalizedStringKey, privateSystemImage systemName: String) -> some View { // swiftlint:disable:this identifier_name
     Label(title: {
