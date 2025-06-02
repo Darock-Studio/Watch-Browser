@@ -102,6 +102,7 @@ struct SettingsView: View {
                 }
             }
             Section {
+                NavigationLink(destination: { DarockVisionSettingsView() }, label: { SettingItemLabel(title: "Darock Vision", image: "film", color: .blue) })
                 NavigationLink(destination: { ProPurchaseView() }, label: { SettingItemLabel(title: "暗礁浏览器 Pro", image: "sparkles", color: .blue) })
                 NavigationLink(destination: { DarockIntelligenceView() }, label: {
                     HStack {

@@ -223,6 +223,9 @@ class AppDelegate: NSObject, WKApplicationDelegate {
     @AppStorage("WebSearch") var webSearch = "必应"
     @AppStorage("IsProPurchased") var isProPurchased = false
     @AppStorage("NFIsNotificationsFromDarockAllowed") var isNotificationsFromDarockAllowed = true
+    @AppStorage("MainPageShowCount") var mainPageShowCount = 0
+    @AppStorage("DVIsDarockVisionActived") var isDarockVisionActived = false
+    @AppStorage("DVIsDarockVisionAutoActivedFromOldVersion") var isDarockVisionAutoActivedFromOldVersion = false
     
     func applicationDidFinishLaunching() {
         SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
@@ -246,6 +249,11 @@ class AppDelegate: NSObject, WKApplicationDelegate {
         
         _ = AppearenceManager.shared
         _ = CachedLocationManager.shared
+        
+        if _slowPath(mainPageShowCount > 0 && !isDarockVisionActived) {
+            isDarockVisionActived = true
+            isDarockVisionAutoActivedFromOldVersion = true
+        }
         
         Task {
             do {

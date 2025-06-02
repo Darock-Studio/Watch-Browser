@@ -340,6 +340,16 @@
         }
       }
     },
+    "%@ 以播放与下载网页中的视频" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ to play and download videos in webpages"
+          }
+        }
+      }
+    },
     "%@%%" : {
       "localizations" : {
         "en" : {
@@ -1320,6 +1330,19 @@
     },
     "Darock Intelligence can %@." : {
       "shouldTranslate" : false
+    },
+    "Darock Vision" : {
+      "shouldTranslate" : false
+    },
+    "Darock Vision 已激活" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darock Vision is Actived"
+          }
+        }
+      }
     },
     "Darock 始终重视您的隐私，所有 Cookie 仅在本地存储" : {
       "localizations" : {
@@ -3329,24 +3352,12 @@
         }
       }
     },
-    "仅作示例\n©2020 NAT GAMES Co., Ltd. All Rights Reserved.\n©2020 Yostar, Inc. All Rights Reserved." : {
+    "仅作示例\n©BDP ©BILIBILI" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "For demonstration purposes only.\n©2020 NAT GAMES Co., Ltd. All Rights Reserved.\n©2020 Yostar, Inc. All Rights Reserved."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "例示のみ\n\n©2020 ナットゲーム株式会社 無断複写・転載を禁じます。\n\n©2020 ヨスター株式会社 無断複写・転載を禁じます。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "僅作示例\n©2020 NAT GAMES Co., Ltd. All Rights Reserved.\n©2020 Yostar, Inc. All Rights Reserved."
+            "value" : "For demonstration purposes only.\n©BDP ©BILIBILI"
           }
         }
       }
@@ -3669,6 +3680,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "You have been issued a Corvus ban for sending inappropriate remarks in “Feedback Assistant.”\n\nThis ban will not affect app functionality but will disable your “Feedback Assistant” and add a watermark in your app, like the one you are seeing now.\n\nYou can file an appeal using the form below."
+          }
+        }
+      }
+    },
+    "你在 Darock Vision 推出前使用过暗礁浏览器，因此已为你免费激活 Darock Vision。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You used Darock Browser before the launch of Darock Vision, so Darock Vision has been activated for you for free."
           }
         }
       }
@@ -8966,6 +8987,16 @@
         }
       }
     },
+    "无法使用 Beta 版本购买 Darock Vision" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can’t purchase Darock Vision through beta versions of Darock Browser"
+          }
+        }
+      }
+    },
     "无法使用 Beta 版本购买暗礁浏览器 Pro" : {
       "localizations" : {
         "en" : {
@@ -9772,12 +9803,12 @@
         }
       }
     },
-    "查看示例视频 (27.49 MB)" : {
+    "查看示例视频" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "View sample video (27.49 MB)"
+            "value" : "View Sample Video"
           }
         }
       }
@@ -10747,6 +10778,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Macao"
+          }
+        }
+      }
+    },
+    "激活 Darock Vision" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active Darock Vision"
+          }
+        }
+      }
+    },
+    "激活 Darock Vision 以播放与下载网页内的视频。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activate Darock Vision to play and download videos in webpages."
           }
         }
       }

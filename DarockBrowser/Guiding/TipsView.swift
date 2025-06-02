@@ -59,6 +59,14 @@ struct TipsView: View {
                 Text("发现更多")
             }
             Section {
+                NavigationLink(destination: { VideosView() }, label: {
+                    Label(title: {
+                        Text("视频")
+                    }, icon: {
+                        Image(systemName: "film.stack")
+                            .foregroundColor(.mint)
+                    })
+                })
                 NavigationLink(destination: { MusicView() }, label: {
                     Label(title: {
                         Text("音乐")
@@ -81,14 +89,6 @@ struct TipsView: View {
                     }, icon: {
                         Image(systemName: "book")
                             .foregroundColor(.green)
-                    })
-                })
-                NavigationLink(destination: { VideosView() }, label: {
-                    Label(title: {
-                        Text("视频")
-                    }, icon: {
-                        Image(systemName: "film.stack")
-                            .foregroundColor(.mint)
                     })
                 })
             } header: {
@@ -407,7 +407,6 @@ struct TipsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 randomIndex = Int.random(in: 0..<tqcImageNameList.count)
-                debugPrint(randomIndex)
             }
         }
         
@@ -448,22 +447,36 @@ struct TipsView: View {
         }
     }
     struct VideosView: View {
+        @AppStorage("DVIsDarockVisionActived") var isDarockVisionActived = false
         var body: some View {
             List {
                 Section {
                     Text("轻触浏览菜单“播放网页视频”、在网页中寻找或直接在搜索框中输入视频链接")
+                    if !isDarockVisionActived {
+                        NavigationLink(destination: { SettingsView.DarockVisionSettingsView() }, label: {
+                            Text("\(Text("激活 Darock Vision").foregroundColor(.blue)) 以播放与下载网页中的视频")
+                        })
+                    }
                 }
                 Section {
                     Button(action: {
-                        videoLinkLists = ["https://darock.r2.darock.top/Shiroko.mp4"]
+                        let videoLinks = [
+                            "https://darock.r2.darock.top/Haruhikage_MyGO!!!!!.mp4",
+                            "https://darock.r2.darock.top/Hitoshizuku.mp4",
+                            "https://darock.r2.darock.top/Ishizuenokakan.mp4",
+                            "https://darock.r2.darock.top/Mayoiuta.mp4",
+                            "https://darock.r2.darock.top/SilhouetteDance.mp4",
+                            "https://darock.r2.darock.top/StarryNightAsButterfliesDance.mp4"
+                        ]
+                        videoLinkLists = [videoLinks.randomElement()!]
                         pShouldPresentVideoList = true
                     }, label: {
-                        Text("查看示例视频 (27.49 MB)")
+                        Text("查看示例视频")
                     })
                 } header: {
                     Text("示例视频")
                 } footer: {
-                    Text("仅作示例\n©2020 NAT GAMES Co., Ltd. All Rights Reserved.\n©2020 Yostar, Inc. All Rights Reserved.")
+                    Text("仅作示例\n©BDP ©BILIBILI")
                 }
             }
             .navigationTitle("视频")

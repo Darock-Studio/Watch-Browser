@@ -15,6 +15,7 @@ extension SettingsView {
         @AppStorage("TQCIsColorChangeButtonEntered") var isColorChangeButtonEntered = false
         @AppStorage("IsProPurchased") var isProPurchased = false
         @AppStorage("PRSubscriptionExpirationDate") var subscriptionExpirationDate = 0.0
+        @AppStorage("DVIsDarockVisionActived") var isDarockVisionActived = false
         var body: some View {
             List {
                 Section {
@@ -65,6 +66,16 @@ extension SettingsView {
                         WidgetCenter.shared.invalidateConfigurationRecommendations()
                     }, label: {
                         Text(verbatim: "Active Pro")
+                    })
+                    Button(action: {
+                        isDarockVisionActived = false
+                    }, label: {
+                        Text(verbatim: "Reset Darock Vision")
+                    })
+                    Button(action: {
+                        isDarockVisionActived = true
+                    }, label: {
+                        Text(verbatim: "Active Darock Vision")
                     })
                     Button(action: {
                         subscriptionExpirationDate = 0
