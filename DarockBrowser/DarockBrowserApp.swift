@@ -226,6 +226,7 @@ class AppDelegate: NSObject, WKApplicationDelegate {
     @AppStorage("MainPageShowCount") var mainPageShowCount = 0
     @AppStorage("DVIsDarockVisionActived") var isDarockVisionActived = false
     @AppStorage("DVIsDarockVisionAutoActivedFromOldVersion") var isDarockVisionAutoActivedFromOldVersion = false
+    @AppStorage("DVIsDarockVisionAutoActivationChecked") var isDarockVisionAutoActivationChecked = false
     
     func applicationDidFinishLaunching() {
         SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
@@ -250,10 +251,11 @@ class AppDelegate: NSObject, WKApplicationDelegate {
         _ = AppearenceManager.shared
         _ = CachedLocationManager.shared
         
-        if _slowPath(mainPageShowCount > 0 && !isDarockVisionActived) {
+        if _slowPath(!isDarockVisionAutoActivationChecked && mainPageShowCount > 0 && !isDarockVisionActived) {
             isDarockVisionActived = true
             isDarockVisionAutoActivedFromOldVersion = true
         }
+        isDarockVisionAutoActivationChecked = true
         
         Task {
             do {
