@@ -7,7 +7,7 @@
 
 // From GitHub repo: https://github.com/ApplebaumIan/SwiftUI-Apple-Watch-Decimal-Pad. Edited
 
-import SwiftUI
+import DarockUI
 
 struct PasswordInputView: View {
     @Binding var text: String

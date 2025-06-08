@@ -7,7 +7,6 @@
 
 import OSLog
 import Combine
-import SwiftUI
 import Intents
 import WatchKit
 import NotifKit

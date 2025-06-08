@@ -112,7 +112,6 @@
 		8CB349FB2C32E05300CB6AC3 /* ___0721NeneChan.drkdatau in Resources */ = {isa = PBXBuildFile; fileRef = 8CB349F62C32E05300CB6AC3 /* ___0721NeneChan.drkdatau */; };
 		8CB803D02BD3DCE4009B2FAC /* WebExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB803CF2BD3DCE4009B2FAC /* WebExtension.m */; };
 		8CB803D42BD3E6D1009B2FAC /* AdvancedWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB803D32BD3E6D1009B2FAC /* AdvancedWebView.swift */; };
-		8CB9A10E2C6D229600E6A367 /* MarkdownUI+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9A10D2C6D229200E6A367 /* MarkdownUI+.swift */; };
 		8CBA140A2C7CEAD900D40EE5 /* View+CompatibleDoubleTapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA14092C7CEAC000D40EE5 /* View+CompatibleDoubleTapGesture.swift */; };
 		8CBA14102C7D1B4D00D40EE5 /* DoubleTapActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA140F2C7D1B4200D40EE5 /* DoubleTapActionButton.swift */; };
 		8CC267E12CE8D5C500AE03F0 /* StorageUI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC267E02CE8D5C500AE03F0 /* StorageUI.xcframework */; };
@@ -169,7 +168,6 @@
 		8CF6363C2CAEC5D800ECE3B3 /* Pictor in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF6363B2CAEC5D800ECE3B3 /* Pictor */; };
 		8CF6363F2CAEC5E400ECE3B3 /* Pictor in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF6363E2CAEC5E400ECE3B3 /* Pictor */; };
 		8CF87EDF2D3E8C5C00073C85 /* ImageGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF87EDD2D3E8C5800073C85 /* ImageGroupView.swift */; };
-		8CF8B9632C44FCAA0070F833 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF8B9622C44FCAA0070F833 /* MarkdownUI */; };
 		8CF998E52D04C1D2009C7A28 /* Cepheus in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF998E42D04C1D2009C7A28 /* Cepheus */; };
 		E25EA8382B70ABEF00BFEC6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E25EA83A2B70ABEF00BFEC6E /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
@@ -878,7 +876,6 @@
 		8CB803D12BD3DCEE009B2FAC /* WebExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebExtension.h; sourceTree = "<group>"; };
 		8CB803D32BD3E6D1009B2FAC /* AdvancedWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedWebView.swift; sourceTree = "<group>"; };
 		8CB803DE2BD44879009B2FAC /* DarockBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DarockBrowser.entitlements; sourceTree = "<group>"; };
-		8CB9A10D2C6D229200E6A367 /* MarkdownUI+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarkdownUI+.swift"; sourceTree = "<group>"; };
 		8CB9A11B2C6D2CCB00E6A367 /* gl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gl.h; sourceTree = "<group>"; };
 		8CB9A11C2C6D2CCB00E6A367 /* glext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glext.h; sourceTree = "<group>"; };
 		8CB9A11E2C6D2CCB00E6A367 /* gl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gl.h; sourceTree = "<group>"; };
@@ -966,7 +963,6 @@
 				8CF4E24F2D4543BA00EA6EEF /* NotifKit in Frameworks */,
 				8CF4E2472D45050700EA6EEF /* CorvusKit in Frameworks */,
 				8CA47BF52C972A9A00753101 /* SwiftyStoreKit in Frameworks */,
-				8CF8B9632C44FCAA0070F833 /* MarkdownUI in Frameworks */,
 				8CF6363A2CAEB8AA00ECE3B3 /* Cepheus in Frameworks */,
 				8CD6DAA12D29AEE700D3895F /* DiagnosticsUI in Frameworks */,
 				8C40D4C42C33DBE900C4221C /* SDWebImagePDFCoder in Frameworks */,
@@ -1811,7 +1807,6 @@
 				8CE70DC82C7A524D00EFB3AD /* BlurBackground.swift */,
 				8CE3FCA72CCE12DD009E4EBB /* UserDefinedBackground.swift */,
 				8CBA140F2C7D1B4200D40EE5 /* DoubleTapActionButton.swift */,
-				8CB9A10D2C6D229200E6A367 /* MarkdownUI+.swift */,
 				8C9188822C73A64000C64E70 /* WKWebView+.swift */,
 				8CE70DBD2C7A50FE00EFB3AD /* AVPlayer+PeriodicTimePublisher.swift */,
 				8CF636272CAE6B1D00ECE3B3 /* View+BrightnessReducable.swift */,
@@ -2071,7 +2066,6 @@
 				8CA7B8512BE3E078004643FE /* SDWebImageSVGCoder */,
 				8C7C4D402C2D87B300FD282B /* EPUBKit */,
 				8C40D4C32C33DBE900C4221C /* SDWebImagePDFCoder */,
-				8CF8B9622C44FCAA0070F833 /* MarkdownUI */,
 				8CA47BF42C972A9A00753101 /* SwiftyStoreKit */,
 				8CD3D89A2CA7E5D9009276DD /* Punycode */,
 				8CF636362CAEB84A00ECE3B3 /* Cepheus */,
@@ -2206,7 +2200,6 @@
 				8CB349F12C32B87700CB6AC3 /* XCRemoteSwiftPackageReference "Vela" */,
 				8C40D4C22C33DBE900C4221C /* XCRemoteSwiftPackageReference "SDWebImagePDFCoder" */,
 				8C40D4C72C33EC9900C4221C /* XCRemoteSwiftPackageReference "PunycodeSwift" */,
-				8CF8B9612C44FCAA0070F833 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 				8CA47BF32C972A9900753101 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 				8CF636352CAEB84A00ECE3B3 /* XCRemoteSwiftPackageReference "Cache" */,
 				8C34D5C32CAFC45E009257D0 /* XCRemoteSwiftPackageReference "Pictor" */,
@@ -2384,7 +2377,6 @@
 				8C5588D42D56C14E0055BC32 /* MusicPlayer.swift in Sources */,
 				8C5588BF2D56BF850055BC32 /* Widget.swift in Sources */,
 				8CC306132CAB160F00323034 /* View+TouchZoomable.swift in Sources */,
-				8CB9A10E2C6D229600E6A367 /* MarkdownUI+.swift in Sources */,
 				8C15307D2D7C9D4200D8910F /* BrowsingPreference.swift in Sources */,
 				8C5588E92D56C3140055BC32 /* Gestures.swift in Sources */,
 				8C5588DE2D56C22E0055BC32 /* Display.swift in Sources */,
@@ -2621,6 +2613,7 @@
 				CODE_SIGN_ENTITLEMENTS = DarockBrowser/DarockBrowser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = Scripts/Source_DoNotEmbed;
 				DEVELOPMENT_TEAM = B57D8PP775;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -2643,7 +2636,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.5.0;
+				MARKETING_VERSION = 7.5.1;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_WKContentRuleListStore";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
@@ -2669,6 +2662,7 @@
 				CODE_SIGN_ENTITLEMENTS = DarockBrowser/DarockBrowser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = Scripts/Source_DoNotEmbed;
 				DEVELOPMENT_TEAM = B57D8PP775;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -2691,7 +2685,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.5.0;
+				MARKETING_VERSION = 7.5.1;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_WKContentRuleListStore";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
@@ -2718,7 +2712,7 @@
 				INFOPLIST_FILE = "DarockBrowser/DarockBrowser-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 7.5.0;
+				MARKETING_VERSION = 7.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2737,7 +2731,7 @@
 				INFOPLIST_FILE = "DarockBrowser/DarockBrowser-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 7.5.0;
+				MARKETING_VERSION = 7.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2822,7 +2816,7 @@
 				INFOPLIST_FILE = "DarockBrowser/DarockBrowser-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 7.5.0;
+				MARKETING_VERSION = 7.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2840,6 +2834,7 @@
 				CODE_SIGN_ENTITLEMENTS = DarockBrowser/DarockBrowser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = Scripts/Source_DoNotEmbed;
 				DEVELOPMENT_TEAM = B57D8PP775;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -2865,7 +2860,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.5.0;
+				MARKETING_VERSION = 7.5.1;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_WKContentRuleListStore";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
@@ -2903,7 +2898,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 7.5.0;
+				MARKETING_VERSION = 7.5.1;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3056,7 +3051,7 @@
 				INFOPLIST_FILE = "DarockBrowser/DarockBrowser-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 7.5.0;
+				MARKETING_VERSION = 7.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -3076,6 +3071,7 @@
 				CODE_SIGN_ENTITLEMENTS = DarockBrowser/DarockBrowser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = Scripts/Source_DoNotEmbed;
 				DEVELOPMENT_TEAM = B57D8PP775;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -3099,7 +3095,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.5.0;
+				MARKETING_VERSION = 7.5.1;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_WKContentRuleListStore";
 				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
@@ -3138,7 +3134,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 7.5.0;
+				MARKETING_VERSION = 7.5.1;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3380,7 +3376,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 7.5.0;
+				MARKETING_VERSION = 7.5.1;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3417,7 +3413,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 7.5.0;
+				MARKETING_VERSION = 7.5.1;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3689,14 +3685,6 @@
 				minimumVersion = 7.4.0;
 			};
 		};
-		8CF8B9612C44FCAA0070F833 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.3.1;
-			};
-		};
 		8CF998E32D04C1D1009C7A28 /* XCRemoteSwiftPackageReference "Cepheus" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Serene-Garden/Cepheus";
@@ -3838,11 +3826,6 @@
 		8CF6363E2CAEC5E400ECE3B3 /* Pictor */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Pictor;
-		};
-		8CF8B9622C44FCAA0070F833 /* MarkdownUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8CF8B9612C44FCAA0070F833 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
-			productName = MarkdownUI;
 		};
 		8CF998E42D04C1D2009C7A28 /* Cepheus */ = {
 			isa = XCSwiftPackageProductDependency;

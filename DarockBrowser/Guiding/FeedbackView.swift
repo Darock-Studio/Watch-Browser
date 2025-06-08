@@ -5,8 +5,8 @@
 //  Created by memz233 on 2024/2/23.
 //
 
-import SwiftUI
 import Cepheus
+import DarockUI
 import CorvusKit
 import MarkdownUI
 import DarockFoundation
@@ -99,13 +99,6 @@ struct FeedbackView: View {
                         .navigationTitle("添加附件")
                     }
                 }
-                .radarMessageMarkdownRender { str in
-                    Markdown(str)
-                        .environment(\.openURL, OpenURLAction { url in
-                            createNewTabSubject.send(.init(url: url.absoluteString))
-                            return .handled
-                        })
-                }
                 .radarSuggsetResolver(SuggestedResolver.self)
                 .alert("“反馈助理”不可用", isPresented: $isNewVerAvailableAlertPresented, actions: {
                     Button(role: .cancel, action: {
@@ -150,7 +143,7 @@ struct FAQView: View {
         List {
             NavigationLink(destination: {
                 ScrollView {
-                    Markdown(String(localized: """
+                    CodedMarkdown(String(localized: """
                     **并非所有网页内的视频均能被解析**
                     
                     请**不要**提出网站视频无法播放之类的反馈
@@ -161,7 +154,7 @@ struct FAQView: View {
             })
             NavigationLink(destination: {
                 ScrollView {
-                    Markdown(String(localized: """
+                    CodedMarkdown(String(localized: """
                     在少数情况下，播放视频时可能会出现**只有声音，没有画面或画面卡住**的情况。
                     
                     遇到此类情况，重启 Apple Watch 即可解决，请勿提交反馈。
@@ -172,7 +165,7 @@ struct FAQView: View {
             })
             NavigationLink(destination: {
                 ScrollView {
-                    Markdown(String(localized: """
+                    CodedMarkdown(String(localized: """
                     **并非所有网页都能在 Apple Watch 上正常工作**
                     
                     请**不要**提出网站*打不开*、*有问题*之类的反馈
@@ -183,7 +176,7 @@ struct FAQView: View {
             })
             NavigationLink(destination: {
                 ScrollView {
-                    Markdown(String(localized: """
+                    CodedMarkdown(String(localized: """
                     单独为特定的网页优化根本**不可行**。
                     
                     想想今天让为网站A进行优化，明天另一个用户反馈想为网站B进行优化。不仅工作量大大提升，还会使代码极其难维护，这就是个无底洞。

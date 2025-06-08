@@ -6,7 +6,7 @@
 //
 
 import OSLog
-import SwiftUI
+import DarockUI
 import WeatherKit
 
 final class AppearenceManager {

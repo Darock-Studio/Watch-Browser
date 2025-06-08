@@ -9907,6 +9907,16 @@
         }
       }
     },
+    "根据 Apple 的规定，Darock 不得设计迁移机制。如果你更换设备，则仍需通过 App Store 购买与你的 Apple 账户关联的 Darock Vision。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "According to Apple’s policies, Darock is not allowed to implement a migration mechanism. If you switch devices, you will still need to purchase Darock Vision through the App Store using your Apple account."
+          }
+        }
+      }
+    },
     "格林纳达" : {
       "localizations" : {
         "en" : {

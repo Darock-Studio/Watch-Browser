@@ -5,7 +5,7 @@
 //  Created by memz233 on 2024/3/23.
 //
 
-import SwiftUI
+import DarockUI
 import EFQRCode
 import DarockFoundation
 

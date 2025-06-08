@@ -5,7 +5,7 @@
 //  Created by memz233 on 2024/8/18.
 //
 
-import SwiftUI
+import DarockUI
 import SwiftSoup
 import MarqueeText
 import DarockFoundation

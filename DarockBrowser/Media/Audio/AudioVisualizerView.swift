@@ -5,7 +5,7 @@
 //  Created by memz233 on 2024/8/25.
 //
 
-import SwiftUI
+import DarockUI
 
 struct AudioVisualizerView: View {
     @State private var drawingHeight = true

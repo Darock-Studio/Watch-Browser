@@ -5,7 +5,7 @@
 //  Created by memz233 on 6/24/24.
 //
 
-import SwiftUI
+import DarockUI
 import DarockFoundation
 
 struct NetworkCheckView: View {

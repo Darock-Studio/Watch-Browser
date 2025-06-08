@@ -5,7 +5,7 @@
 //  Created by Mark Chan on 2025/4/3.
 //
 
-import SwiftUI
+import DarockUI
 
 extension SettingsView {
     struct ADBlockerSettingsView: View {

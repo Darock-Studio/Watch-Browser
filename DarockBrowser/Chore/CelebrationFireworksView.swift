@@ -6,7 +6,7 @@
 //
 
 import Vortex
-import SwiftUI
+import DarockUI
 
 struct CelebrationFireworksView: View {
     @Environment(\.presentationMode) var presentationMode

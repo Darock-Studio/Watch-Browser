@@ -6,7 +6,6 @@
 //
 
 import Vortex
-import SwiftUI
 import DarockUI
 import WidgetKit
 import SwiftyStoreKit

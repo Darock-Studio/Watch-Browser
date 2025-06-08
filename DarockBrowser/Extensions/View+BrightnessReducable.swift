@@ -5,7 +5,7 @@
 //  Created by memz233 on 10/3/24.
 //
 
-import SwiftUI
+import DarockUI
 
 extension View {
     func brightnessReducable() -> some View {

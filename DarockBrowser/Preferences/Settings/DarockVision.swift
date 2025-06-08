@@ -5,7 +5,7 @@
 //  Created by Mark Chan on 2025/6/2.
 //
 
-import SwiftUI
+import DarockUI
 import SwiftyStoreKit
 
 extension SettingsView {
@@ -99,7 +99,10 @@ extension SettingsView {
                     }
                 } footer: {
                     if isDarockVisionAutoActivedFromOldVersion {
-                        Text("你在 Darock Vision 推出前使用过暗礁浏览器，因此已为你免费激活 Darock Vision。")
+                        VStack(alignment: .leading) {
+                            Text("你在 Darock Vision 推出前使用过暗礁浏览器，因此已为你免费激活 Darock Vision。")
+                            Text("根据 Apple 的规定，Darock 不得设计迁移机制。如果你更换设备，则仍需通过 App Store 购买与你的 Apple 账户关联的 Darock Vision。")
+                        }
                     }
                     Text(errorText)
                         .foregroundStyle(.red)

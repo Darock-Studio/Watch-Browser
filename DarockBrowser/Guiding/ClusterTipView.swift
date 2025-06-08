@@ -5,7 +5,7 @@
 //  Created by memz233 on 7/28/24.
 //
 
-import SwiftUI
+import DarockUI
 
 struct ClusterTipView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -26,8 +26,4 @@ struct ClusterTipView: View {
             }
         }
     }
-}
-
-#Preview {
-    ClusterTipView()
 }

@@ -5,7 +5,7 @@
 //  Created by memz233 on 2023/10/21.
 //
 
-import SwiftUI
+import DarockUI
 import EFQRCode
 
 struct JoinGroupView: View {

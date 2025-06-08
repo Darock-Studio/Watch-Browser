@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import SwiftUI
 import Cepheus
+import DarockUI
 import EFQRCode
 import Punycode
 import Alamofire
@@ -328,7 +328,9 @@ struct MainView: View {
             }
         }
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
-            if createPageAction == nil, let url = userActivity.webpageURL, var openUrl = url.absoluteString.split(separator: "darock.top/darockbrowser/open/", maxSplits: 1)[from: 1] {
+            if createPageAction == nil,
+               let url = userActivity.webpageURL,
+               var openUrl = url.absoluteString.split(separator: "darock.top/darockbrowser/open/", maxSplits: 1)[from: 1] {
                 if !openUrl.hasPrefix("http://") && !openUrl.hasPrefix("https://") {
                     openUrl = "http://" + openUrl
                 }

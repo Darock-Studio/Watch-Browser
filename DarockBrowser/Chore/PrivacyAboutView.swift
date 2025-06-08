@@ -5,7 +5,7 @@
 //  Created by memz233 on 2024/9/17.
 //
 
-import SwiftUI
+import DarockUI
 import MarkdownUI
 import DarockFoundation
 
@@ -51,7 +51,7 @@ struct PrivacyAboutView: View {
             ScrollView {
                 Spacer()
                     .frame(height: 50)
-                Markdown(String(localized: detailText))
+                CodedMarkdown(String(localized: detailText))
                     .font(.system(size: 14))
                     .multilineTextAlignment(.center)
                     .environment(\.openURL, OpenURLAction { url in

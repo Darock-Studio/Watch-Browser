@@ -5,7 +5,7 @@
 //  Created by memz233 on 2024/6/6.
 //
 
-import SwiftUI
+import DarockUI
 
 struct LaboratoryView: View {
     @AppStorage("IsFirstEnterLab") var isFirstEnterLab = true

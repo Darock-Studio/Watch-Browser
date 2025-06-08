@@ -5,7 +5,7 @@
 //  Created by Mark Chan on 2025/5/2.
 //
 
-import SwiftUI
+import DarockUI
 
 extension SettingsView {
     struct NotificationsSettingsView: View {

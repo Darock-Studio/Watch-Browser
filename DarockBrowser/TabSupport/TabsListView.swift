@@ -7,7 +7,6 @@
 
 import OSLog
 import Combine
-import SwiftUI
 import DarockUI
 import RadarKitCore
 import DarockFoundation
@@ -416,6 +415,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                 }
                 tabs.append(newTab)
                 if let tab = tabs.last {
+                    self.selectedTab = nil
                     self.selectedTab = .webPage(tab)
                 } else {
                     self.selectedTab = nil

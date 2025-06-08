@@ -5,7 +5,7 @@
 //  Created by memz233 on 11/16/24.
 //
 
-import SwiftUI
+import DarockUI
 
 struct WebViewTab: Identifiable {
     var id = UUID()

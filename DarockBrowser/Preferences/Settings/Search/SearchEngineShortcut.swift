@@ -5,7 +5,7 @@
 //  Created by Mark Chan on 2025/2/8.
 //
 
-import SwiftUI
+import DarockUI
 
 extension SettingsView.SearchSettingsView {
     struct SearchEngineShortcutSettingsView: View {

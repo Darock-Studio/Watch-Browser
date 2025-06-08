@@ -5,7 +5,7 @@
 //  Created by memz233 on 6/20/24.
 //
 
-import SwiftUI
+import DarockUI
 
 struct TipsView: View {
     var body: some View {
@@ -364,7 +364,7 @@ struct TipsView: View {
                 }
                 Section {
                     Button(action: {
-                        audioLinkLists = ["http://music.\(0b10100011).com/song/media/outer/url?id=411500345.mp3"]
+                        audioLinkLists = ["http://music.\(0b10100011).com/song/media/outer/url?id=2097485069.mp3"]
                         pShouldPresentAudioList = true
                     }, label: {
                         Text("查看示例音频")

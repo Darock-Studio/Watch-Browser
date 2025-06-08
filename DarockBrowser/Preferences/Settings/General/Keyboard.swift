@@ -5,8 +5,8 @@
 //  Created by Mark Chan on 2025/2/8.
 //
 
-import SwiftUI
 import Cepheus
+import DarockUI
 
 extension SettingsView.GeneralSettingsView {
     struct KeyboardView: View {
