@@ -176,7 +176,11 @@ struct TabsListView<StartPage>: View where StartPage: View {
                 .sheet(isPresented: $isNewYearCelebrationPresented, content: { CelebrationFireworksView() })
                 .sheet(isPresented: $isTabActionsPresented, content: { tabActionsBody })
                 .toolbar {
-                    ToolbarItem(placement: .bottomBar) {
+                    ToolbarItemGroup(placement: .bottomBar) {
+                        // Workaround for watchOS 26+
+                        if wristLocation == .left {
+                            Spacer()
+                        }
                         ZStack {
                             HStack {
                                 if wristLocation == .left {
@@ -236,6 +240,9 @@ struct TabsListView<StartPage>: View where StartPage: View {
                             .opacity(isCreateButtonVisible ? 1 : 0)
                             .animation(.easeIn(duration: 0.2), value: isCreateButtonVisible)
                         }
+                        if wristLocation == .right {
+                            Spacer()
+                        }
                     }
                 }
                 .animation(.easeOut, value: isCreateButtonPressed)
@@ -289,6 +296,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                             }
                             // Take snapshot
                             let snapshotConfiguration = WKSnapshotConfiguration()
+                            snapshotConfiguration.afterScreenUpdates = false
                             webView.takeSnapshot(with: snapshotConfiguration) { image, _ in
                                 if let image {
                                     do {
@@ -392,6 +400,12 @@ struct TabsListView<StartPage>: View where StartPage: View {
                     openUrl = "http://" + openUrl
                 }
                 loadTab(from: .init(url: String(openUrl).urlEncoded()))
+            } else if let url = userActivity.webpageURL, url.absoluteString.contains("drcc.cc") {
+                var openUrl = url.absoluteString
+                if !openUrl.hasPrefix("http://") && !openUrl.hasPrefix("https://") {
+                    openUrl = "http://" + openUrl
+                }
+                loadTab(from: .init(url: openUrl))
             }
         }
     }
@@ -415,8 +429,14 @@ struct TabsListView<StartPage>: View where StartPage: View {
                 }
                 tabs.append(newTab)
                 if let tab = tabs.last {
-                    self.selectedTab = nil
-                    self.selectedTab = .webPage(tab)
+                    if self.selectedTab == nil {
+                        self.selectedTab = .webPage(tab)
+                    } else {
+                        self.selectedTab = nil
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            self.selectedTab = .webPage(tab)
+                        }
+                    }
                 } else {
                     self.selectedTab = nil
                 }
