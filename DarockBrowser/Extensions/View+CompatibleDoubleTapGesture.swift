@@ -10,7 +10,6 @@ import DarockUI
 extension View {
     @ViewBuilder
     func compatibleDoubleTapGesture(followsUserSetting: Bool = true) -> some View {
-        #if compiler(>=6)
         if !followsUserSetting || UserDefaults.standard.bool(forKey: "GSIsDoubleTapEnabled") {
             if #available(watchOS 11.0, *), WKInterfaceDevice.supportsDoubleTapGesture {
                 handGestureShortcut(.primaryAction)
@@ -22,9 +21,6 @@ extension View {
         } else {
             self
         }
-        #else
-        self
-        #endif
     }
 }
 

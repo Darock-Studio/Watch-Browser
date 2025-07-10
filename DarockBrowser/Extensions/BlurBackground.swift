@@ -17,7 +17,6 @@ struct BlurBackground: ViewModifier {
     init(imageUrl: URL? = nil) {
         self.imageUrl = imageUrl
     }
-    #if compiler(>=6)
     @available(watchOS 11.0, *)
     init(imageUrl: URL? = nil, meshForUnavailable: Mesh) {
         self.imageUrl = imageUrl
@@ -36,7 +35,6 @@ struct BlurBackground: ViewModifier {
         case .spicificedGradient(let meshGradient): meshGradient
         }
     }
-    #endif
     
     func body(content: Content) -> some View {
         if #available(watchOS 10, *) {
@@ -57,11 +55,9 @@ struct BlurBackground: ViewModifier {
                                         .resizable()
                                         .scaledToFill()
                                 } else {
-                                    #if compiler(>=6)
                                     if #available(watchOS 11.0, *), let gradient = meshGradientForUnavailable as? MeshGradient {
                                         gradient
                                     }
-                                    #endif
                                 }
                             }
                             .frame(width: WKInterfaceDevice.current().screenBounds.width, height: WKInterfaceDevice.current().screenBounds.height)
@@ -78,12 +74,10 @@ struct BlurBackground: ViewModifier {
         }
     }
     
-    #if compiler(>=6)
     @available(watchOS 11.0, *)
     enum Mesh {
         case none
         case autoGradient
         case spicificedGradient(MeshGradient)
     }
-    #endif
 }
