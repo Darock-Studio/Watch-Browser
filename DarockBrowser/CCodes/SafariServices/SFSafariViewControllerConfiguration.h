@@ -6,7 +6,7 @@
 //
 
 #import "SafariServices/SFFoundation.h"
-#import <UIKit/UIKit.h>
+#import "UIKit/UIKit.h"
 
 @class SFSafariViewControllerActivityButton;
 

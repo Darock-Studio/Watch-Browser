@@ -88,7 +88,7 @@
       "location" : "https://github.com/Darock-Studio/DarockUI",
       "state" : {
         "branch" : "main",
-        "revision" : "373cf8cc67206e4c475e23e689bfc8cfb5d9b2c3"
+        "revision" : "e33b26b9d32846e9dcda96026e93d34e0a40af1d"
       }
     },
     {
@@ -149,8 +149,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Serene-Garden/Pictor",
       "state" : {
-        "revision" : "b8a34956d3dc99e2b2b8b504df14c7a1e9d8948f",
-        "version" : "1.3.1"
+        "revision" : "df2d2f87598e2d92470fcd13d2ffbb2782c3916a",
+        "version" : "1.4.0"
       }
     },
     {
@@ -185,8 +185,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "cac9a55a3ae92478a2c95042dcc8d9695d2129ca",
-        "version" : "5.21.0"
+        "revision" : "b62cb63bf4ed1f04c961a56c9c6c9d5ab8524ec6",
+        "version" : "5.21.1"
       }
     },
     {

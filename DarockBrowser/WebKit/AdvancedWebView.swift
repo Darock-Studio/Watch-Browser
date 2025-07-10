@@ -50,7 +50,7 @@ final class AdvancedWebViewController: NSObject {
     @AppStorage("ADBIsAdBlockEnabled") var isAdBlockEnabled = false
     
     func newWebView(_ url: URL?, archiveURL: URL? = nil, loadMimeType: String = "application/x-webarchive") -> WKWebView {
-        let wkWebView = WKWebView(frame: WKInterfaceDevice.current().screenBounds)
+        let wkWebView = WKWebView(frame: WKInterfaceDevice.current().screenBounds, configuration: .init())
         if _fastPath(customUserAgent.isEmpty) {
             if _slowPath(requestDesktopWeb) {
                 wkWebView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15 DarockBrowser/\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String).\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
