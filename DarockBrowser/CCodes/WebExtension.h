@@ -8,6 +8,7 @@
 #ifndef WebExtension_h
 #define WebExtension_h
 
+#import <UIKit/UIKit.h>
 #import <WatchKit/WatchKit.h>
 #import <Foundation/Foundation.h>
 #import "WebKit/WebKit.h"

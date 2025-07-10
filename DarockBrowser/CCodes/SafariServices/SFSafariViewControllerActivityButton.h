@@ -7,7 +7,7 @@
 //
 
 #import "SafariServices/SFFoundation.h"
-#import "UIKit/UIKit.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

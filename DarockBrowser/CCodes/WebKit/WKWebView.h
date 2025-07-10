@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 #if TARGET_OS_IPHONE
 WK_EXTERN API_AVAILABLE(macos(10.10), ios(8.0))
-@interface WKWebView : NSObject
+@interface WKWebView : UIView
 #else
 WK_EXTERN API_AVAILABLE(macos(10.10), ios(8.0))
 @interface WKWebView : NSView
@@ -464,7 +464,7 @@ The uniform type identifier kUTTypeWebArchive can be used get the related pasteb
 #if TARGET_OS_IPHONE
 /*! @abstract The scroll view associated with the web view.
  */
-@property (nonatomic, readonly, strong) NSObject *scrollView;
+@property (nonatomic, readonly, strong) UIScrollView *scrollView;
 #endif
 
 #if !TARGET_OS_IPHONE

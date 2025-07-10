@@ -6,6 +6,7 @@
 //
 
 #import "SafariServices/SFFoundation.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,7 +29,7 @@ API_AVAILABLE(ios(11.0)) NS_SWIFT_NAME(SFSafariViewController.DismissButtonStyle
  A view controller for displaying web content in a Safari-like interface with some of Safari’s features.
  */
 SF_EXTERN API_AVAILABLE(ios(9.0))
-@interface SFSafariViewController : NSObject
+@interface SFSafariViewController : UIViewController
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
@@ -128,6 +129,13 @@ API_UNAVAILABLE(visionos)
 #endif
 @protocol SFSafariViewControllerDelegate <NSObject>
 @optional
+
+/*! @abstract Called when the view controller is about to show UIActivityViewController after the user taps the action button.
+    @param URL the URL of the web page.
+    @param title the title of the web page.
+    @result Returns an array of UIActivity instances that will be appended to UIActivityViewController.
+ */
+- (NSArray<UIActivity *> *)safariViewController:(SFSafariViewController *)controller activityItemsForURL:(NSURL *)URL title:(nullable NSString *)title;
 
 /*! @abstract Allows you to exclude certain UIActivityTypes from the UIActivityViewController presented when the user taps the action button.
     @discussion Called when the view controller is about to show a UIActivityViewController after the user taps the action button.

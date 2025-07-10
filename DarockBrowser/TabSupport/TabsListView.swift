@@ -176,11 +176,7 @@ struct TabsListView<StartPage>: View where StartPage: View {
                 .sheet(isPresented: $isNewYearCelebrationPresented, content: { CelebrationFireworksView() })
                 .sheet(isPresented: $isTabActionsPresented, content: { tabActionsBody })
                 .toolbar {
-                    ToolbarItemGroup(placement: .bottomBar) {
-                        // Workaround for watchOS 26+
-                        if wristLocation == .left {
-                            Spacer()
-                        }
+                    ToolbarItem(placement: .bottomBar) {
                         ZStack {
                             HStack {
                                 if wristLocation == .left {
@@ -240,9 +236,6 @@ struct TabsListView<StartPage>: View where StartPage: View {
                             .opacity(isCreateButtonVisible ? 1 : 0)
                             .animation(.easeIn(duration: 0.2), value: isCreateButtonVisible)
                         }
-                        if wristLocation == .right {
-                            Spacer()
-                        }
                     }
                 }
                 .animation(.easeOut, value: isCreateButtonPressed)
@@ -296,7 +289,6 @@ struct TabsListView<StartPage>: View where StartPage: View {
                             }
                             // Take snapshot
                             let snapshotConfiguration = WKSnapshotConfiguration()
-                            snapshotConfiguration.afterScreenUpdates = false
                             webView.takeSnapshot(with: snapshotConfiguration) { image, _ in
                                 if let image {
                                     do {
@@ -400,12 +392,6 @@ struct TabsListView<StartPage>: View where StartPage: View {
                     openUrl = "http://" + openUrl
                 }
                 loadTab(from: .init(url: String(openUrl).urlEncoded()))
-            } else if let url = userActivity.webpageURL, url.absoluteString.contains("drcc.cc") {
-                var openUrl = url.absoluteString
-                if !openUrl.hasPrefix("http://") && !openUrl.hasPrefix("https://") {
-                    openUrl = "http://" + openUrl
-                }
-                loadTab(from: .init(url: openUrl))
             }
         }
     }

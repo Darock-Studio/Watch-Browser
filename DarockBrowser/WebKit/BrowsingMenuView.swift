@@ -73,7 +73,7 @@ struct BrowsingMenuView: View {
                             }
                             .noAutoInput()
                             .submitLabel(.go)
-                            .compatibleGlassButtonStyle(fallback: BorderedButtonStyle())
+                            .buttonStyle(.bordered)
                             .buttonBorderShape(.roundedRectangle(radius: 14))
                             .minimumRenderableOpacity()
                             .overlay {
@@ -93,7 +93,7 @@ struct BrowsingMenuView: View {
                                         )
                                     }
                                 })
-                                .compatibleGlassButtonStyle(fallback: BorderedButtonStyle())
+                                .buttonStyle(.bordered)
                                 .buttonBorderShape(.roundedRectangle(radius: 14))
                                 .allowsHitTesting(false)
                             }
@@ -103,7 +103,7 @@ struct BrowsingMenuView: View {
                                 }, label: {
                                     Image(systemName: "star.fill")
                                 })
-                                .compatibleGlassButtonStyle(fallback: BorderedButtonStyle())
+                                .buttonStyle(.bordered)
                                 .buttonBorderShape(.roundedRectangle(radius: 14))
                                 .frame(width: 55)
                             }
@@ -573,7 +573,7 @@ struct BrowsingMenuView: View {
                                     }
                                 }
                             }
-                            .compatibleGlassButtonStyle(fallback: BorderedButtonStyle())
+                            .buttonStyle(.bordered)
                             .buttonBorderShape(.roundedRectangle(radius: 1000))
                         }
                         .listRowBackground(Color.clear)
@@ -793,7 +793,6 @@ struct BrowsingMenuView: View {
     private func webSearchString(from url: String) -> String? {
         var searchPrefixes = [
             "https://www.bing.com/search?q=",
-            "https://cn.bing.com/search?q=",
             "https://www.baidu.com/s?wd=",
             "https://www.google.com/search?q=",
             "https://www.sogou.com/web?query="

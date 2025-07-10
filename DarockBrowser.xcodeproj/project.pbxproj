@@ -77,7 +77,6 @@
 		8C7C4D3E2C2C999F00FD282B /* HYWenHei.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CCF13F32C20B31700F5E0D7 /* HYWenHei.ttf */; };
 		8C7C4D412C2D87B300FD282B /* EPUBKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C7C4D402C2D87B300FD282B /* EPUBKit */; };
 		8C7C4D432C2D898700FD282B /* BookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C4D422C2D898700FD282B /* BookListView.swift */; };
-		8C820B8B2E1DAFA8007ABA81 /* View+CompatibleGlassEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C820B8A2E1DAF98007ABA81 /* View+CompatibleGlassEffects.swift */; };
 		8C894B222BE7569300768B59 /* ExtKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C894B212BE7569300768B59 /* ExtKeyboardView.swift */; };
 		8C9188832C73A64200C64E70 /* WKWebView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9188822C73A64000C64E70 /* WKWebView+.swift */; };
 		8C96E34B2C15901400751FAF /* ClusterAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C96E34A2C15901400751FAF /* ClusterAdView.swift */; };
@@ -270,6 +269,457 @@
 		8C207DCD2CBA8F650054D687 /* RadarKitCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RadarKitCore.xcframework; path = DarockFrameworks/RadarKitCore.xcframework; sourceTree = "<group>"; };
 		8C298D9A2CCD1B2E0074A938 /* ci_post_xcodebuild.sh */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = text.script.sh; path = ci_post_xcodebuild.sh; sourceTree = "<group>"; };
 		8C2D27C72DECE39000E629CE /* DarockVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarockVision.swift; sourceTree = "<group>"; };
+		8C3A5DEC2C6BCBDB002097A8 /* DocumentManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentManager.h; sourceTree = "<group>"; };
+		8C3A5DEE2C6BCBDB002097A8 /* NSDataAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDataAsset.h; sourceTree = "<group>"; };
+		8C3A5DEF2C6BCBDB002097A8 /* NSDiffableDataSourceSectionSnapshot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDiffableDataSourceSectionSnapshot.h; sourceTree = "<group>"; };
+		8C3A5DF02C6BCBDB002097A8 /* NSFileProviderExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSFileProviderExtension.h; sourceTree = "<group>"; };
+		8C3A5DF12C6BCBDB002097A8 /* NSIndexPath+UIKitAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+UIKitAdditions.h"; sourceTree = "<group>"; };
+		8C3A5DF32C6BCBDB002097A8 /* NSLayoutAnchor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSLayoutAnchor.h; sourceTree = "<group>"; };
+		8C3A5DF42C6BCBDB002097A8 /* NSLayoutConstraint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSLayoutConstraint.h; sourceTree = "<group>"; };
+		8C3A5DF52C6BCBDB002097A8 /* NSLayoutManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSLayoutManager.h; sourceTree = "<group>"; };
+		8C3A5DFB2C6BCBDB002097A8 /* NSTextContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTextContainer.h; sourceTree = "<group>"; };
+		8C3A5DFC2C6BCBDB002097A8 /* NSTextContentManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTextContentManager.h; sourceTree = "<group>"; };
+		8C3A5DFD2C6BCBDB002097A8 /* NSTextElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTextElement.h; sourceTree = "<group>"; };
+		8C3A5DFE2C6BCBDB002097A8 /* NSTextLayoutFragment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTextLayoutFragment.h; sourceTree = "<group>"; };
+		8C3A5DFF2C6BCBDB002097A8 /* NSTextLayoutManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTextLayoutManager.h; sourceTree = "<group>"; };
+		8C3A5E002C6BCBDB002097A8 /* NSTextLineFragment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTextLineFragment.h; sourceTree = "<group>"; };
+		8C3A5E022C6BCBDB002097A8 /* NSTextListElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTextListElement.h; sourceTree = "<group>"; };
+		8C3A5E032C6BCBDB002097A8 /* NSTextRange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTextRange.h; sourceTree = "<group>"; };
+		8C3A5E042C6BCBDB002097A8 /* NSTextSelection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTextSelection.h; sourceTree = "<group>"; };
+		8C3A5E052C6BCBDB002097A8 /* NSTextSelectionNavigation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTextSelectionNavigation.h; sourceTree = "<group>"; };
+		8C3A5E062C6BCBDB002097A8 /* NSTextStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTextStorage.h; sourceTree = "<group>"; };
+		8C3A5E072C6BCBDB002097A8 /* NSTextViewportLayoutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTextViewportLayoutController.h; sourceTree = "<group>"; };
+		8C3A5E082C6BCBDB002097A8 /* NSToolbar+UIKitAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSToolbar+UIKitAdditions.h"; sourceTree = "<group>"; };
+		8C3A5E092C6BCBDB002097A8 /* NSTouchBar+UIKitAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTouchBar+UIKitAdditions.h"; sourceTree = "<group>"; };
+		8C3A5E0A2C6BCBDB002097A8 /* NSUserActivity+NSItemProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserActivity+NSItemProvider.h"; sourceTree = "<group>"; };
+		8C3A5E0B2C6BCBDB002097A8 /* PrintKitUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrintKitUI.h; sourceTree = "<group>"; };
+		8C3A5E0C2C6BCBDB002097A8 /* ShareSheet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareSheet.h; sourceTree = "<group>"; };
+		8C3A5E0D2C6BCBDB002097A8 /* UIAccelerometer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAccelerometer.h; sourceTree = "<group>"; };
+		8C3A5E0E2C6BCBDB002097A8 /* UIAccessibility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAccessibility.h; sourceTree = "<group>"; };
+		8C3A5E0F2C6BCBDB002097A8 /* UIAccessibilityAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAccessibilityAdditions.h; sourceTree = "<group>"; };
+		8C3A5E112C6BCBDB002097A8 /* UIAccessibilityContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAccessibilityContainer.h; sourceTree = "<group>"; };
+		8C3A5E122C6BCBDB002097A8 /* UIAccessibilityContentSizeCategoryImageAdjusting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAccessibilityContentSizeCategoryImageAdjusting.h; sourceTree = "<group>"; };
+		8C3A5E132C6BCBDB002097A8 /* UIAccessibilityCustomAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAccessibilityCustomAction.h; sourceTree = "<group>"; };
+		8C3A5E142C6BCBDB002097A8 /* UIAccessibilityCustomRotor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAccessibilityCustomRotor.h; sourceTree = "<group>"; };
+		8C3A5E152C6BCBDB002097A8 /* UIAccessibilityElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAccessibilityElement.h; sourceTree = "<group>"; };
+		8C3A5E162C6BCBDB002097A8 /* UIAccessibilityIdentification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAccessibilityIdentification.h; sourceTree = "<group>"; };
+		8C3A5E172C6BCBDB002097A8 /* UIAccessibilityLocationDescriptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAccessibilityLocationDescriptor.h; sourceTree = "<group>"; };
+		8C3A5E182C6BCBDB002097A8 /* UIAccessibilityZoom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAccessibilityZoom.h; sourceTree = "<group>"; };
+		8C3A5E192C6BCBDB002097A8 /* UIAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAction.h; sourceTree = "<group>"; };
+		8C3A5E1A2C6BCBDB002097A8 /* UIActionSheet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIActionSheet.h; sourceTree = "<group>"; };
+		8C3A5E1B2C6BCBDB002097A8 /* UIActivity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIActivity.h; sourceTree = "<group>"; };
+		8C3A5E1C2C6BCBDB002097A8 /* UIActivityIndicatorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIActivityIndicatorView.h; sourceTree = "<group>"; };
+		8C3A5E1D2C6BCBDB002097A8 /* UIActivityItemProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIActivityItemProvider.h; sourceTree = "<group>"; };
+		8C3A5E1E2C6BCBDB002097A8 /* UIActivityItemsConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIActivityItemsConfiguration.h; sourceTree = "<group>"; };
+		8C3A5E1F2C6BCBDB002097A8 /* UIActivityItemsConfigurationReading.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIActivityItemsConfigurationReading.h; sourceTree = "<group>"; };
+		8C3A5E202C6BCBDB002097A8 /* UIActivityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIActivityViewController.h; sourceTree = "<group>"; };
+		8C3A5E212C6BCBDB002097A8 /* UIAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAlert.h; sourceTree = "<group>"; };
+		8C3A5E222C6BCBDB002097A8 /* UIAlertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAlertController.h; sourceTree = "<group>"; };
+		8C3A5E232C6BCBDB002097A8 /* UIAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAlertView.h; sourceTree = "<group>"; };
+		8C3A5E242C6BCBDB002097A8 /* UIAppearance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAppearance.h; sourceTree = "<group>"; };
+		8C3A5E252C6BCBDB002097A8 /* UIApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIApplication.h; sourceTree = "<group>"; };
+		8C3A5E262C6BCBDB002097A8 /* UIApplicationShortcutItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIApplicationShortcutItem.h; sourceTree = "<group>"; };
+		8C3A5E272C6BCBDB002097A8 /* UIAttachmentBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAttachmentBehavior.h; sourceTree = "<group>"; };
+		8C3A5E282C6BCBDB002097A8 /* UIBackgroundConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIBackgroundConfiguration.h; sourceTree = "<group>"; };
+		8C3A5E292C6BCBDB002097A8 /* UIBandSelectionInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIBandSelectionInteraction.h; sourceTree = "<group>"; };
+		8C3A5E2A2C6BCBDB002097A8 /* UIBarAppearance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIBarAppearance.h; sourceTree = "<group>"; };
+		8C3A5E2B2C6BCBDB002097A8 /* UIBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIBarButtonItem.h; sourceTree = "<group>"; };
+		8C3A5E2C2C6BCBDB002097A8 /* UIBarButtonItemAppearance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIBarButtonItemAppearance.h; sourceTree = "<group>"; };
+		8C3A5E2D2C6BCBDB002097A8 /* UIBarButtonItemGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIBarButtonItemGroup.h; sourceTree = "<group>"; };
+		8C3A5E2E2C6BCBDB002097A8 /* UIBarCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIBarCommon.h; sourceTree = "<group>"; };
+		8C3A5E2F2C6BCBDB002097A8 /* UIBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIBarItem.h; sourceTree = "<group>"; };
+		8C3A5E302C6BCBDB002097A8 /* UIBehavioralStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIBehavioralStyle.h; sourceTree = "<group>"; };
+		8C3A5E322C6BCBDB002097A8 /* UIBlurEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIBlurEffect.h; sourceTree = "<group>"; };
+		8C3A5E332C6BCBDB002097A8 /* UIButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIButton.h; sourceTree = "<group>"; };
+		8C3A5E342C6BCBDB002097A8 /* UIButtonConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIButtonConfiguration.h; sourceTree = "<group>"; };
+		8C3A5E352C6BCBDB002097A8 /* UICalendarSelection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICalendarSelection.h; sourceTree = "<group>"; };
+		8C3A5E362C6BCBDB002097A8 /* UICalendarSelectionMultiDate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICalendarSelectionMultiDate.h; sourceTree = "<group>"; };
+		8C3A5E372C6BCBDB002097A8 /* UICalendarSelectionSingleDate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICalendarSelectionSingleDate.h; sourceTree = "<group>"; };
+		8C3A5E382C6BCBDB002097A8 /* UICalendarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICalendarView.h; sourceTree = "<group>"; };
+		8C3A5E392C6BCBDB002097A8 /* UICalendarViewDecoration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICalendarViewDecoration.h; sourceTree = "<group>"; };
+		8C3A5E3A2C6BCBDB002097A8 /* UICanvasFeedbackGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICanvasFeedbackGenerator.h; sourceTree = "<group>"; };
+		8C3A5E3B2C6BCBDB002097A8 /* UICellAccessory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICellAccessory.h; sourceTree = "<group>"; };
+		8C3A5E3C2C6BCBDB002097A8 /* UICellConfigurationState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICellConfigurationState.h; sourceTree = "<group>"; };
+		8C3A5E3D2C6BCBDB002097A8 /* UICloudSharingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICloudSharingController.h; sourceTree = "<group>"; };
+		8C3A5E3E2C6BCBDB002097A8 /* UICollectionLayoutList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollectionLayoutList.h; sourceTree = "<group>"; };
+		8C3A5E3F2C6BCBDB002097A8 /* UICollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollectionView.h; sourceTree = "<group>"; };
+		8C3A5E402C6BCBDB002097A8 /* UICollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollectionViewCell.h; sourceTree = "<group>"; };
+		8C3A5E412C6BCBDB002097A8 /* UICollectionViewCompositionalLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollectionViewCompositionalLayout.h; sourceTree = "<group>"; };
+		8C3A5E422C6BCBDB002097A8 /* UICollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollectionViewController.h; sourceTree = "<group>"; };
+		8C3A5E432C6BCBDB002097A8 /* UICollectionViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		8C3A5E442C6BCBDB002097A8 /* UICollectionViewItemRegistration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollectionViewItemRegistration.h; sourceTree = "<group>"; };
+		8C3A5E452C6BCBDB002097A8 /* UICollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollectionViewLayout.h; sourceTree = "<group>"; };
+		8C3A5E462C6BCBDB002097A8 /* UICollectionViewListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollectionViewListCell.h; sourceTree = "<group>"; };
+		8C3A5E472C6BCBDB002097A8 /* UICollectionViewTransitionLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollectionViewTransitionLayout.h; sourceTree = "<group>"; };
+		8C3A5E482C6BCBDB002097A8 /* UICollectionViewUpdateItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollectionViewUpdateItem.h; sourceTree = "<group>"; };
+		8C3A5E492C6BCBDB002097A8 /* UICollisionBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollisionBehavior.h; sourceTree = "<group>"; };
+		8C3A5E4B2C6BCBDB002097A8 /* UIColorPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIColorPickerViewController.h; sourceTree = "<group>"; };
+		8C3A5E4C2C6BCBDB002097A8 /* UIColorWell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIColorWell.h; sourceTree = "<group>"; };
+		8C3A5E4D2C6BCBDB002097A8 /* UICommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICommand.h; sourceTree = "<group>"; };
+		8C3A5E4E2C6BCBDB002097A8 /* UIConfigurationColorTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIConfigurationColorTransformer.h; sourceTree = "<group>"; };
+		8C3A5E4F2C6BCBDB002097A8 /* UIConfigurationState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIConfigurationState.h; sourceTree = "<group>"; };
+		8C3A5E502C6BCBDB002097A8 /* UIContentConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIContentConfiguration.h; sourceTree = "<group>"; };
+		8C3A5E512C6BCBDB002097A8 /* UIContentSizeCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIContentSizeCategory.h; sourceTree = "<group>"; };
+		8C3A5E522C6BCBDB002097A8 /* UIContentSizeCategoryAdjusting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIContentSizeCategoryAdjusting.h; sourceTree = "<group>"; };
+		8C3A5E532C6BCBDB002097A8 /* UIContentUnavailableButtonProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIContentUnavailableButtonProperties.h; sourceTree = "<group>"; };
+		8C3A5E542C6BCBDB002097A8 /* UIContentUnavailableConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIContentUnavailableConfiguration.h; sourceTree = "<group>"; };
+		8C3A5E552C6BCBDB002097A8 /* UIContentUnavailableConfigurationState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIContentUnavailableConfigurationState.h; sourceTree = "<group>"; };
+		8C3A5E562C6BCBDB002097A8 /* UIContentUnavailableImageProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIContentUnavailableImageProperties.h; sourceTree = "<group>"; };
+		8C3A5E572C6BCBDB002097A8 /* UIContentUnavailableTextProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIContentUnavailableTextProperties.h; sourceTree = "<group>"; };
+		8C3A5E582C6BCBDB002097A8 /* UIContentUnavailableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIContentUnavailableView.h; sourceTree = "<group>"; };
+		8C3A5E592C6BCBDB002097A8 /* UIContextMenuConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIContextMenuConfiguration.h; sourceTree = "<group>"; };
+		8C3A5E5A2C6BCBDB002097A8 /* UIContextMenuInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIContextMenuInteraction.h; sourceTree = "<group>"; };
+		8C3A5E5B2C6BCBDB002097A8 /* UIContextualAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIContextualAction.h; sourceTree = "<group>"; };
+		8C3A5E5C2C6BCBDB002097A8 /* UIControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIControl.h; sourceTree = "<group>"; };
+		8C3A5E5D2C6BCBDB002097A8 /* UIDataDetectors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDataDetectors.h; sourceTree = "<group>"; };
+		8C3A5E5E2C6BCBDB002097A8 /* UIDataSourceTranslating.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDataSourceTranslating.h; sourceTree = "<group>"; };
+		8C3A5E5F2C6BCBDB002097A8 /* UIDatePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDatePicker.h; sourceTree = "<group>"; };
+		8C3A5E602C6BCBDB002097A8 /* UIDeferredMenuElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDeferredMenuElement.h; sourceTree = "<group>"; };
+		8C3A5E612C6BCBDB002097A8 /* UIDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDevice.h; sourceTree = "<group>"; };
+		8C3A5E622C6BCBDB002097A8 /* UIDiffableDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDiffableDataSource.h; sourceTree = "<group>"; };
+		8C3A5E632C6BCBDB002097A8 /* UIDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDocument.h; sourceTree = "<group>"; };
+		8C3A5E642C6BCBDB002097A8 /* UIDocumentBrowserAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDocumentBrowserAction.h; sourceTree = "<group>"; };
+		8C3A5E652C6BCBDB002097A8 /* UIDocumentBrowserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDocumentBrowserViewController.h; sourceTree = "<group>"; };
+		8C3A5E662C6BCBDB002097A8 /* UIDocumentInteractionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDocumentInteractionController.h; sourceTree = "<group>"; };
+		8C3A5E672C6BCBDB002097A8 /* UIDocumentMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDocumentMenuViewController.h; sourceTree = "<group>"; };
+		8C3A5E682C6BCBDB002097A8 /* UIDocumentPickerExtensionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDocumentPickerExtensionViewController.h; sourceTree = "<group>"; };
+		8C3A5E692C6BCBDB002097A8 /* UIDocumentPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDocumentPickerViewController.h; sourceTree = "<group>"; };
+		8C3A5E6A2C6BCBDB002097A8 /* UIDocumentProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDocumentProperties.h; sourceTree = "<group>"; };
+		8C3A5E6B2C6BCBDB002097A8 /* UIDocumentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDocumentViewController.h; sourceTree = "<group>"; };
+		8C3A5E6C2C6BCBDB002097A8 /* UIDragInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDragInteraction.h; sourceTree = "<group>"; };
+		8C3A5E6D2C6BCBDB002097A8 /* UIDragItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDragItem.h; sourceTree = "<group>"; };
+		8C3A5E6E2C6BCBDB002097A8 /* UIDragPreview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDragPreview.h; sourceTree = "<group>"; };
+		8C3A5E6F2C6BCBDB002097A8 /* UIDragPreviewParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDragPreviewParameters.h; sourceTree = "<group>"; };
+		8C3A5E702C6BCBDB002097A8 /* UIDragSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDragSession.h; sourceTree = "<group>"; };
+		8C3A5E712C6BCBDB002097A8 /* UIDropInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDropInteraction.h; sourceTree = "<group>"; };
+		8C3A5E722C6BCBDB002097A8 /* UIDynamicAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDynamicAnimator.h; sourceTree = "<group>"; };
+		8C3A5E732C6BCBDB002097A8 /* UIDynamicBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDynamicBehavior.h; sourceTree = "<group>"; };
+		8C3A5E742C6BCBDB002097A8 /* UIDynamicItemBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDynamicItemBehavior.h; sourceTree = "<group>"; };
+		8C3A5E752C6BCBDB002097A8 /* UIEditMenuInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIEditMenuInteraction.h; sourceTree = "<group>"; };
+		8C3A5E762C6BCBDB002097A8 /* UIEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIEvent.h; sourceTree = "<group>"; };
+		8C3A5E772C6BCBDB002097A8 /* UIEventAttribution.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIEventAttribution.h; sourceTree = "<group>"; };
+		8C3A5E782C6BCBDB002097A8 /* UIEventAttributionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIEventAttributionView.h; sourceTree = "<group>"; };
+		8C3A5E792C6BCBDB002097A8 /* UIFeedbackGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFeedbackGenerator.h; sourceTree = "<group>"; };
+		8C3A5E7A2C6BCBDB002097A8 /* UIFieldBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFieldBehavior.h; sourceTree = "<group>"; };
+		8C3A5E7B2C6BCBDB002097A8 /* UIFindInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFindInteraction.h; sourceTree = "<group>"; };
+		8C3A5E7C2C6BCBDB002097A8 /* UIFindSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFindSession.h; sourceTree = "<group>"; };
+		8C3A5E7D2C6BCBDB002097A8 /* UIFocus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFocus.h; sourceTree = "<group>"; };
+		8C3A5E7E2C6BCBDB002097A8 /* UIFocusAnimationCoordinator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFocusAnimationCoordinator.h; sourceTree = "<group>"; };
+		8C3A5E7F2C6BCBDB002097A8 /* UIFocusDebugger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFocusDebugger.h; sourceTree = "<group>"; };
+		8C3A5E802C6BCBDB002097A8 /* UIFocusEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFocusEffect.h; sourceTree = "<group>"; };
+		8C3A5E812C6BCBDB002097A8 /* UIFocusGuide.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFocusGuide.h; sourceTree = "<group>"; };
+		8C3A5E822C6BCBDB002097A8 /* UIFocusMovementHint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFocusMovementHint.h; sourceTree = "<group>"; };
+		8C3A5E832C6BCBDB002097A8 /* UIFocusSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFocusSystem.h; sourceTree = "<group>"; };
+		8C3A5E872C6BCBDB002097A8 /* UIFontPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFontPickerViewController.h; sourceTree = "<group>"; };
+		8C3A5E882C6BCBDB002097A8 /* UIFontPickerViewControllerConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFontPickerViewControllerConfiguration.h; sourceTree = "<group>"; };
+		8C3A5E892C6BCBDB002097A8 /* UIFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFoundation.h; sourceTree = "<group>"; };
+		8C3A5E8B2C6BCBDB002097A8 /* UIGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIGestureRecognizer.h; sourceTree = "<group>"; };
+		8C3A5E8C2C6BCBDB002097A8 /* UIGestureRecognizerSubclass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIGestureRecognizerSubclass.h; sourceTree = "<group>"; };
+		8C3A5E8D2C6BCBDB002097A8 /* UIGraphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIGraphics.h; sourceTree = "<group>"; };
+		8C3A5E8E2C6BCBDB002097A8 /* UIGraphicsImageRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIGraphicsImageRenderer.h; sourceTree = "<group>"; };
+		8C3A5E8F2C6BCBDB002097A8 /* UIGraphicsPDFRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIGraphicsPDFRenderer.h; sourceTree = "<group>"; };
+		8C3A5E902C6BCBDB002097A8 /* UIGraphicsRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIGraphicsRenderer.h; sourceTree = "<group>"; };
+		8C3A5E912C6BCBDB002097A8 /* UIGraphicsRendererSubclass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIGraphicsRendererSubclass.h; sourceTree = "<group>"; };
+		8C3A5E922C6BCBDB002097A8 /* UIGravityBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIGravityBehavior.h; sourceTree = "<group>"; };
+		8C3A5E932C6BCBDB002097A8 /* UIGuidedAccess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIGuidedAccess.h; sourceTree = "<group>"; };
+		8C3A5E942C6BCBDB002097A8 /* UIGuidedAccessRestrictions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIGuidedAccessRestrictions.h; sourceTree = "<group>"; };
+		8C3A5E952C6BCBDB002097A8 /* UIHoverEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIHoverEffect.h; sourceTree = "<group>"; };
+		8C3A5E962C6BCBDB002097A8 /* UIHoverEffectLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIHoverEffectLayer.h; sourceTree = "<group>"; };
+		8C3A5E972C6BCBDB002097A8 /* UIHoverGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIHoverGestureRecognizer.h; sourceTree = "<group>"; };
+		8C3A5E982C6BCBDB002097A8 /* UIHoverStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIHoverStyle.h; sourceTree = "<group>"; };
+		8C3A5E9A2C6BCBDB002097A8 /* UIImageAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIImageAsset.h; sourceTree = "<group>"; };
+		8C3A5E9C2C6BCBDB002097A8 /* UIImagePickerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIImagePickerController.h; sourceTree = "<group>"; };
+		8C3A5E9F2C6BCBDB002097A8 /* UIImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIImageView.h; sourceTree = "<group>"; };
+		8C3A5EA02C6BCBDB002097A8 /* UIImpactFeedbackGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIImpactFeedbackGenerator.h; sourceTree = "<group>"; };
+		8C3A5EA12C6BCBDB002097A8 /* UIIndirectScribbleInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIIndirectScribbleInteraction.h; sourceTree = "<group>"; };
+		8C3A5EA22C6BCBDB002097A8 /* UIInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIInputView.h; sourceTree = "<group>"; };
+		8C3A5EA32C6BCBDB002097A8 /* UIInputViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIInputViewController.h; sourceTree = "<group>"; };
+		8C3A5EA42C6BCBDB002097A8 /* UIInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIInteraction.h; sourceTree = "<group>"; };
+		8C3A5EA52C6BCBDB002097A8 /* UIInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIInterface.h; sourceTree = "<group>"; };
+		8C3A5EA62C6BCBDB002097A8 /* UIKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIKey.h; sourceTree = "<group>"; };
+		8C3A5EA72C6BCBDB002097A8 /* UIKeyboardLayoutGuide.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIKeyboardLayoutGuide.h; sourceTree = "<group>"; };
+		8C3A5EA82C6BCBDB002097A8 /* UIKeyCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIKeyCommand.h; sourceTree = "<group>"; };
+		8C3A5EA92C6BCBDB002097A8 /* UIKeyConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIKeyConstants.h; sourceTree = "<group>"; };
+		8C3A5EAA2C6BCBDB002097A8 /* UIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIKit.h; sourceTree = "<group>"; };
+		8C3A5EAC2C6BCBDB002097A8 /* UIKitCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIKitCore.h; sourceTree = "<group>"; };
+		8C3A5EAD2C6BCBDB002097A8 /* UIKitDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIKitDefines.h; sourceTree = "<group>"; };
+		8C3A5EAE2C6BCBDB002097A8 /* UILabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UILabel.h; sourceTree = "<group>"; };
+		8C3A5EAF2C6BCBDB002097A8 /* UILargeContentViewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UILargeContentViewer.h; sourceTree = "<group>"; };
+		8C3A5EB02C6BCBDB002097A8 /* UILayoutGuide.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UILayoutGuide.h; sourceTree = "<group>"; };
+		8C3A5EB12C6BCBDB002097A8 /* UILetterformAwareAdjusting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UILetterformAwareAdjusting.h; sourceTree = "<group>"; };
+		8C3A5EB22C6BCBDB002097A8 /* UILexicon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UILexicon.h; sourceTree = "<group>"; };
+		8C3A5EB32C6BCBDB002097A8 /* UIListContentConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIListContentConfiguration.h; sourceTree = "<group>"; };
+		8C3A5EB42C6BCBDB002097A8 /* UIListContentImageProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIListContentImageProperties.h; sourceTree = "<group>"; };
+		8C3A5EB52C6BCBDB002097A8 /* UIListContentTextProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIListContentTextProperties.h; sourceTree = "<group>"; };
+		8C3A5EB62C6BCBDB002097A8 /* UIListSeparatorConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIListSeparatorConfiguration.h; sourceTree = "<group>"; };
+		8C3A5EB72C6BCBDB002097A8 /* UILocalizedIndexedCollation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UILocalizedIndexedCollation.h; sourceTree = "<group>"; };
+		8C3A5EB92C6BCBDB002097A8 /* UILongPressGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UILongPressGestureRecognizer.h; sourceTree = "<group>"; };
+		8C3A5EBA2C6BCBDB002097A8 /* UIManagedDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIManagedDocument.h; sourceTree = "<group>"; };
+		8C3A5EBB2C6BCBDB002097A8 /* UIMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIMenu.h; sourceTree = "<group>"; };
+		8C3A5EBC2C6BCBDB002097A8 /* UIMenuBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIMenuBuilder.h; sourceTree = "<group>"; };
+		8C3A5EBD2C6BCBDB002097A8 /* UIMenuController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIMenuController.h; sourceTree = "<group>"; };
+		8C3A5EBE2C6BCBDB002097A8 /* UIMenuDisplayPreferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIMenuDisplayPreferences.h; sourceTree = "<group>"; };
+		8C3A5EBF2C6BCBDB002097A8 /* UIMenuElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIMenuElement.h; sourceTree = "<group>"; };
+		8C3A5EC02C6BCBDB002097A8 /* UIMenuLeaf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIMenuLeaf.h; sourceTree = "<group>"; };
+		8C3A5EC12C6BCBDB002097A8 /* UIMenuSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIMenuSystem.h; sourceTree = "<group>"; };
+		8C3A5EC22C6BCBDB002097A8 /* UIMotionEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIMotionEffect.h; sourceTree = "<group>"; };
+		8C3A5EC32C6BCBDB002097A8 /* UINavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UINavigationBar.h; sourceTree = "<group>"; };
+		8C3A5EC42C6BCBDB002097A8 /* UINavigationBarAppearance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UINavigationBarAppearance.h; sourceTree = "<group>"; };
+		8C3A5EC52C6BCBDB002097A8 /* UINavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UINavigationController.h; sourceTree = "<group>"; };
+		8C3A5EC62C6BCBDB002097A8 /* UINavigationItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UINavigationItem.h; sourceTree = "<group>"; };
+		8C3A5EC72C6BCBDB002097A8 /* UINib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UINib.h; sourceTree = "<group>"; };
+		8C3A5EC82C6BCBDB002097A8 /* UINibDeclarations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UINibDeclarations.h; sourceTree = "<group>"; };
+		8C3A5EC92C6BCBDB002097A8 /* UINibLoading.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UINibLoading.h; sourceTree = "<group>"; };
+		8C3A5ECA2C6BCBDB002097A8 /* UINotificationFeedbackGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UINotificationFeedbackGenerator.h; sourceTree = "<group>"; };
+		8C3A5ECB2C6BCBDB002097A8 /* UIOpenURLContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIOpenURLContext.h; sourceTree = "<group>"; };
+		8C3A5ECC2C6BCBDB002097A8 /* UIOrientation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIOrientation.h; sourceTree = "<group>"; };
+		8C3A5ECD2C6BCBDB002097A8 /* UIPageControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPageControl.h; sourceTree = "<group>"; };
+		8C3A5ECE2C6BCBDB002097A8 /* UIPageControlProgress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPageControlProgress.h; sourceTree = "<group>"; };
+		8C3A5ECF2C6BCBDB002097A8 /* UIPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPageViewController.h; sourceTree = "<group>"; };
+		8C3A5ED02C6BCBDB002097A8 /* UIPanGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPanGestureRecognizer.h; sourceTree = "<group>"; };
+		8C3A5ED12C6BCBDB002097A8 /* UIPasteboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPasteboard.h; sourceTree = "<group>"; };
+		8C3A5ED22C6BCBDB002097A8 /* UIPasteConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPasteConfiguration.h; sourceTree = "<group>"; };
+		8C3A5ED32C6BCBDB002097A8 /* UIPasteConfigurationSupporting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPasteConfigurationSupporting.h; sourceTree = "<group>"; };
+		8C3A5ED42C6BCBDB002097A8 /* UIPasteControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPasteControl.h; sourceTree = "<group>"; };
+		8C3A5ED52C6BCBDB002097A8 /* UIPencilInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPencilInteraction.h; sourceTree = "<group>"; };
+		8C3A5ED62C6BCBDB002097A8 /* UIPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPickerView.h; sourceTree = "<group>"; };
+		8C3A5ED72C6BCBDB002097A8 /* UIPinchGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPinchGestureRecognizer.h; sourceTree = "<group>"; };
+		8C3A5ED82C6BCBDB002097A8 /* UIPointerAccessory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPointerAccessory.h; sourceTree = "<group>"; };
+		8C3A5ED92C6BCBDB002097A8 /* UIPointerInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPointerInteraction.h; sourceTree = "<group>"; };
+		8C3A5EDA2C6BCBDB002097A8 /* UIPointerLockState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPointerLockState.h; sourceTree = "<group>"; };
+		8C3A5EDB2C6BCBDB002097A8 /* UIPointerRegion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPointerRegion.h; sourceTree = "<group>"; };
+		8C3A5EDC2C6BCBDB002097A8 /* UIPointerStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPointerStyle.h; sourceTree = "<group>"; };
+		8C3A5EDD2C6BCBDB002097A8 /* UIPopoverBackgroundView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPopoverBackgroundView.h; sourceTree = "<group>"; };
+		8C3A5EDE2C6BCBDB002097A8 /* UIPopoverController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPopoverController.h; sourceTree = "<group>"; };
+		8C3A5EDF2C6BCBDB002097A8 /* UIPopoverPresentationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPopoverPresentationController.h; sourceTree = "<group>"; };
+		8C3A5EE02C6BCBDB002097A8 /* UIPopoverPresentationControllerSourceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPopoverPresentationControllerSourceItem.h; sourceTree = "<group>"; };
+		8C3A5EE12C6BCBDB002097A8 /* UIPopoverSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPopoverSupport.h; sourceTree = "<group>"; };
+		8C3A5EE22C6BCBDB002097A8 /* UIPresentationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPresentationController.h; sourceTree = "<group>"; };
+		8C3A5EE32C6BCBDB002097A8 /* UIPress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPress.h; sourceTree = "<group>"; };
+		8C3A5EE42C6BCBDB002097A8 /* UIPressesEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPressesEvent.h; sourceTree = "<group>"; };
+		8C3A5EE52C6BCBDB002097A8 /* UIPreviewInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPreviewInteraction.h; sourceTree = "<group>"; };
+		8C3A5EE62C6BCBDB002097A8 /* UIPreviewParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPreviewParameters.h; sourceTree = "<group>"; };
+		8C3A5EE72C6BCBDB002097A8 /* UIPrinter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPrinter.h; sourceTree = "<group>"; };
+		8C3A5EE82C6BCBDB002097A8 /* UIPrinterPickerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPrinterPickerController.h; sourceTree = "<group>"; };
+		8C3A5EE92C6BCBDB002097A8 /* UIPrintError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPrintError.h; sourceTree = "<group>"; };
+		8C3A5EEA2C6BCBDB002097A8 /* UIPrintFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPrintFormatter.h; sourceTree = "<group>"; };
+		8C3A5EEB2C6BCBDB002097A8 /* UIPrintInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPrintInfo.h; sourceTree = "<group>"; };
+		8C3A5EEC2C6BCBDB002097A8 /* UIPrintInteractionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPrintInteractionController.h; sourceTree = "<group>"; };
+		8C3A5EED2C6BCBDB002097A8 /* UIPrintPageRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPrintPageRenderer.h; sourceTree = "<group>"; };
+		8C3A5EEE2C6BCBDB002097A8 /* UIPrintPaper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPrintPaper.h; sourceTree = "<group>"; };
+		8C3A5EEF2C6BCBDB002097A8 /* UIPrintServiceExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPrintServiceExtension.h; sourceTree = "<group>"; };
+		8C3A5EF02C6BCBDB002097A8 /* UIProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIProgressView.h; sourceTree = "<group>"; };
+		8C3A5EF12C6BCBDB002097A8 /* UIPushBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPushBehavior.h; sourceTree = "<group>"; };
+		8C3A5EF22C6BCBDB002097A8 /* UIReferenceLibraryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIReferenceLibraryViewController.h; sourceTree = "<group>"; };
+		8C3A5EF32C6BCBDB002097A8 /* UIRefreshControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIRefreshControl.h; sourceTree = "<group>"; };
+		8C3A5EF42C6BCBDB002097A8 /* UIRegion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIRegion.h; sourceTree = "<group>"; };
+		8C3A5EF52C6BCBDB002097A8 /* UIResponder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIResponder.h; sourceTree = "<group>"; };
+		8C3A5EF62C6BCBDB002097A8 /* UIResponder+UIActivityItemsConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+UIActivityItemsConfiguration.h"; sourceTree = "<group>"; };
+		8C3A5EF72C6BCBDB002097A8 /* UIRotationGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIRotationGestureRecognizer.h; sourceTree = "<group>"; };
+		8C3A5EF82C6BCBDB002097A8 /* UIScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIScene.h; sourceTree = "<group>"; };
+		8C3A5EF92C6BCBDB002097A8 /* UIScene+AVAudioSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScene+AVAudioSession.h"; sourceTree = "<group>"; };
+		8C3A5EFA2C6BCBDB002097A8 /* UISceneActivationConditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISceneActivationConditions.h; sourceTree = "<group>"; };
+		8C3A5EFB2C6BCBDB002097A8 /* UISceneDefinitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISceneDefinitions.h; sourceTree = "<group>"; };
+		8C3A5EFC2C6BCBDB002097A8 /* UISceneEnhancedStateRestoration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISceneEnhancedStateRestoration.h; sourceTree = "<group>"; };
+		8C3A5EFD2C6BCBDB002097A8 /* UISceneOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISceneOptions.h; sourceTree = "<group>"; };
+		8C3A5EFE2C6BCBDB002097A8 /* UISceneSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISceneSession.h; sourceTree = "<group>"; };
+		8C3A5EFF2C6BCBDB002097A8 /* UISceneSessionActivationRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISceneSessionActivationRequest.h; sourceTree = "<group>"; };
+		8C3A5F002C6BCBDB002097A8 /* UISceneWindowingBehaviors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISceneWindowingBehaviors.h; sourceTree = "<group>"; };
+		8C3A5F012C6BCBDB002097A8 /* UIScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIScreen.h; sourceTree = "<group>"; };
+		8C3A5F022C6BCBDB002097A8 /* UIScreenEdgePanGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIScreenEdgePanGestureRecognizer.h; sourceTree = "<group>"; };
+		8C3A5F032C6BCBDB002097A8 /* UIScreenMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIScreenMode.h; sourceTree = "<group>"; };
+		8C3A5F042C6BCBDB002097A8 /* UIScreenshotService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIScreenshotService.h; sourceTree = "<group>"; };
+		8C3A5F052C6BCBDB002097A8 /* UIScribbleInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIScribbleInteraction.h; sourceTree = "<group>"; };
+		8C3A5F062C6BCBDB002097A8 /* UIScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIScrollView.h; sourceTree = "<group>"; };
+		8C3A5F072C6BCBDB002097A8 /* UISearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISearchBar.h; sourceTree = "<group>"; };
+		8C3A5F082C6BCBDB002097A8 /* UISearchContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISearchContainerViewController.h; sourceTree = "<group>"; };
+		8C3A5F092C6BCBDB002097A8 /* UISearchController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISearchController.h; sourceTree = "<group>"; };
+		8C3A5F0A2C6BCBDB002097A8 /* UISearchDisplayController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISearchDisplayController.h; sourceTree = "<group>"; };
+		8C3A5F0B2C6BCBDB002097A8 /* UISearchSuggestion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISearchSuggestion.h; sourceTree = "<group>"; };
+		8C3A5F0C2C6BCBDB002097A8 /* UISearchTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISearchTextField.h; sourceTree = "<group>"; };
+		8C3A5F0D2C6BCBDB002097A8 /* UISegmentedControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISegmentedControl.h; sourceTree = "<group>"; };
+		8C3A5F0E2C6BCBDB002097A8 /* UISelectionFeedbackGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISelectionFeedbackGenerator.h; sourceTree = "<group>"; };
+		8C3A5F0F2C6BCBDB002097A8 /* UIShape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIShape.h; sourceTree = "<group>"; };
+		8C3A5F102C6BCBDB002097A8 /* UISheetPresentationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISheetPresentationController.h; sourceTree = "<group>"; };
+		8C3A5F112C6BCBDB002097A8 /* UISlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISlider.h; sourceTree = "<group>"; };
+		8C3A5F122C6BCBDB002097A8 /* UISnapBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISnapBehavior.h; sourceTree = "<group>"; };
+		8C3A5F132C6BCBDB002097A8 /* UISplitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISplitViewController.h; sourceTree = "<group>"; };
+		8C3A5F142C6BCBDB002097A8 /* UISpringLoadedInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISpringLoadedInteraction.h; sourceTree = "<group>"; };
+		8C3A5F152C6BCBDB002097A8 /* UISpringLoadedInteractionSupporting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISpringLoadedInteractionSupporting.h; sourceTree = "<group>"; };
+		8C3A5F162C6BCBDB002097A8 /* UIStackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIStackView.h; sourceTree = "<group>"; };
+		8C3A5F172C6BCBDB002097A8 /* UIStandardTextCursorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIStandardTextCursorView.h; sourceTree = "<group>"; };
+		8C3A5F182C6BCBDB002097A8 /* UIStateRestoration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIStateRestoration.h; sourceTree = "<group>"; };
+		8C3A5F192C6BCBDB002097A8 /* UIStatusBarManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIStatusBarManager.h; sourceTree = "<group>"; };
+		8C3A5F1A2C6BCBDB002097A8 /* UIStepper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIStepper.h; sourceTree = "<group>"; };
+		8C3A5F1B2C6BCBDB002097A8 /* UIStoryboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIStoryboard.h; sourceTree = "<group>"; };
+		8C3A5F1C2C6BCBDB002097A8 /* UIStoryboardPopoverSegue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIStoryboardPopoverSegue.h; sourceTree = "<group>"; };
+		8C3A5F1D2C6BCBDB002097A8 /* UIStoryboardSegue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIStoryboardSegue.h; sourceTree = "<group>"; };
+		8C3A5F1E2C6BCBDB002097A8 /* UIStringDrawing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIStringDrawing.h; sourceTree = "<group>"; };
+		8C3A5F1F2C6BCBDB002097A8 /* UISwipeActionsConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISwipeActionsConfiguration.h; sourceTree = "<group>"; };
+		8C3A5F202C6BCBDB002097A8 /* UISwipeGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISwipeGestureRecognizer.h; sourceTree = "<group>"; };
+		8C3A5F212C6BCBDB002097A8 /* UISwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISwitch.h; sourceTree = "<group>"; };
+		8C3A5F222C6BCBDB002097A8 /* UISymbolEffectCompletion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISymbolEffectCompletion.h; sourceTree = "<group>"; };
+		8C3A5F232C6BCBDB002097A8 /* UITabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITabBar.h; sourceTree = "<group>"; };
+		8C3A5F242C6BCBDB002097A8 /* UITabBarAppearance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITabBarAppearance.h; sourceTree = "<group>"; };
+		8C3A5F252C6BCBDB002097A8 /* UITabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITabBarController.h; sourceTree = "<group>"; };
+		8C3A5F262C6BCBDB002097A8 /* UITabBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITabBarItem.h; sourceTree = "<group>"; };
+		8C3A5F272C6BCBDB002097A8 /* UITableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITableView.h; sourceTree = "<group>"; };
+		8C3A5F282C6BCBDB002097A8 /* UITableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITableViewCell.h; sourceTree = "<group>"; };
+		8C3A5F292C6BCBDB002097A8 /* UITableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITableViewController.h; sourceTree = "<group>"; };
+		8C3A5F2A2C6BCBDB002097A8 /* UITableViewHeaderFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITableViewHeaderFooterView.h; sourceTree = "<group>"; };
+		8C3A5F2B2C6BCBDB002097A8 /* UITapGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITapGestureRecognizer.h; sourceTree = "<group>"; };
+		8C3A5F2C2C6BCBDB002097A8 /* UITargetedDragPreview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITargetedDragPreview.h; sourceTree = "<group>"; };
+		8C3A5F2D2C6BCBDB002097A8 /* UITargetedPreview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITargetedPreview.h; sourceTree = "<group>"; };
+		8C3A5F2E2C6BCBDB002097A8 /* UITextChecker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextChecker.h; sourceTree = "<group>"; };
+		8C3A5F2F2C6BCBDB002097A8 /* UITextCursorDropPositionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextCursorDropPositionAnimator.h; sourceTree = "<group>"; };
+		8C3A5F302C6BCBDB002097A8 /* UITextCursorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextCursorView.h; sourceTree = "<group>"; };
+		8C3A5F312C6BCBDB002097A8 /* UITextDragging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextDragging.h; sourceTree = "<group>"; };
+		8C3A5F322C6BCBDB002097A8 /* UITextDragPreviewRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextDragPreviewRenderer.h; sourceTree = "<group>"; };
+		8C3A5F332C6BCBDB002097A8 /* UITextDragURLPreviews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextDragURLPreviews.h; sourceTree = "<group>"; };
+		8C3A5F342C6BCBDB002097A8 /* UITextDropping.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextDropping.h; sourceTree = "<group>"; };
+		8C3A5F352C6BCBDB002097A8 /* UITextDropProposal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextDropProposal.h; sourceTree = "<group>"; };
+		8C3A5F362C6BCBDB002097A8 /* UITextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextField.h; sourceTree = "<group>"; };
+		8C3A5F372C6BCBDB002097A8 /* UITextFormattingCoordinator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextFormattingCoordinator.h; sourceTree = "<group>"; };
+		8C3A5F382C6BCBDB002097A8 /* UITextInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextInput.h; sourceTree = "<group>"; };
+		8C3A5F392C6BCBDB002097A8 /* UITextInputContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextInputContext.h; sourceTree = "<group>"; };
+		8C3A5F3A2C6BCBDB002097A8 /* UITextInputTraits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextInputTraits.h; sourceTree = "<group>"; };
+		8C3A5F3B2C6BCBDB002097A8 /* UITextInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextInteraction.h; sourceTree = "<group>"; };
+		8C3A5F3C2C6BCBDB002097A8 /* UITextItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextItem.h; sourceTree = "<group>"; };
+		8C3A5F3D2C6BCBDB002097A8 /* UITextItemInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextItemInteraction.h; sourceTree = "<group>"; };
+		8C3A5F3E2C6BCBDB002097A8 /* UITextLoupeSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextLoupeSession.h; sourceTree = "<group>"; };
+		8C3A5F3F2C6BCBDB002097A8 /* UITextPasteConfigurationSupporting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextPasteConfigurationSupporting.h; sourceTree = "<group>"; };
+		8C3A5F402C6BCBDB002097A8 /* UITextPasteDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextPasteDelegate.h; sourceTree = "<group>"; };
+		8C3A5F412C6BCBDB002097A8 /* UITextSearching.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextSearching.h; sourceTree = "<group>"; };
+		8C3A5F422C6BCBDB002097A8 /* UITextSelectionDisplayInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextSelectionDisplayInteraction.h; sourceTree = "<group>"; };
+		8C3A5F432C6BCBDB002097A8 /* UITextSelectionHandleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextSelectionHandleView.h; sourceTree = "<group>"; };
+		8C3A5F442C6BCBDB002097A8 /* UITextSelectionHighlightView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextSelectionHighlightView.h; sourceTree = "<group>"; };
+		8C3A5F452C6BCBDB002097A8 /* UITextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextView.h; sourceTree = "<group>"; };
+		8C3A5F462C6BCBDB002097A8 /* UITimingCurveProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITimingCurveProvider.h; sourceTree = "<group>"; };
+		8C3A5F472C6BCBDB002097A8 /* UITimingParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITimingParameters.h; sourceTree = "<group>"; };
+		8C3A5F482C6BCBDB002097A8 /* UIToolbar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIToolbar.h; sourceTree = "<group>"; };
+		8C3A5F492C6BCBDB002097A8 /* UIToolbarAppearance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIToolbarAppearance.h; sourceTree = "<group>"; };
+		8C3A5F4A2C6BCBDB002097A8 /* UIToolTipInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIToolTipInteraction.h; sourceTree = "<group>"; };
+		8C3A5F4B2C6BCBDB002097A8 /* UITouch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITouch.h; sourceTree = "<group>"; };
+		8C3A5F4C2C6BCBDB002097A8 /* UITrackingLayoutGuide.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITrackingLayoutGuide.h; sourceTree = "<group>"; };
+		8C3A5F4D2C6BCBDB002097A8 /* UITrait.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITrait.h; sourceTree = "<group>"; };
+		8C3A5F4E2C6BCBDB002097A8 /* UITraitCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITraitCollection.h; sourceTree = "<group>"; };
+		8C3A5F4F2C6BCBDB002097A8 /* UIUserActivity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIUserActivity.h; sourceTree = "<group>"; };
+		8C3A5F502C6BCBDB002097A8 /* UIUserNotificationSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIUserNotificationSettings.h; sourceTree = "<group>"; };
+		8C3A5F512C6BCBDB002097A8 /* UIVibrancyEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIVibrancyEffect.h; sourceTree = "<group>"; };
+		8C3A5F522C6BCBDB002097A8 /* UIVideoEditorController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIVideoEditorController.h; sourceTree = "<group>"; };
+		8C3A5F532C6BCBDB002097A8 /* UIView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIView.h; sourceTree = "<group>"; };
+		8C3A5F542C6BCBDB002097A8 /* UIViewAnimating.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewAnimating.h; sourceTree = "<group>"; };
+		8C3A5F552C6BCBDB002097A8 /* UIViewConfigurationState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewConfigurationState.h; sourceTree = "<group>"; };
+		8C3A5F562C6BCBDB002097A8 /* UIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewController.h; sourceTree = "<group>"; };
+		8C3A5F572C6BCBDB002097A8 /* UIViewControllerTransitionCoordinator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewControllerTransitionCoordinator.h; sourceTree = "<group>"; };
+		8C3A5F582C6BCBDB002097A8 /* UIViewControllerTransitioning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewControllerTransitioning.h; sourceTree = "<group>"; };
+		8C3A5F592C6BCBDB002097A8 /* UIViewPropertyAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewPropertyAnimator.h; sourceTree = "<group>"; };
+		8C3A5F5A2C6BCBDB002097A8 /* UIVisualEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIVisualEffect.h; sourceTree = "<group>"; };
+		8C3A5F5B2C6BCBDB002097A8 /* UIVisualEffectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIVisualEffectView.h; sourceTree = "<group>"; };
+		8C3A5F5C2C6BCBDB002097A8 /* UIWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWebView.h; sourceTree = "<group>"; };
+		8C3A5F5D2C6BCBDB002097A8 /* UIWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWindow.h; sourceTree = "<group>"; };
+		8C3A5F5E2C6BCBDB002097A8 /* UIWindowScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWindowScene.h; sourceTree = "<group>"; };
+		8C3A5F5F2C6BCBDB002097A8 /* UIWindowSceneActivationAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWindowSceneActivationAction.h; sourceTree = "<group>"; };
+		8C3A5F602C6BCBDB002097A8 /* UIWindowSceneActivationConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWindowSceneActivationConfiguration.h; sourceTree = "<group>"; };
+		8C3A5F612C6BCBDB002097A8 /* UIWindowSceneActivationInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWindowSceneActivationInteraction.h; sourceTree = "<group>"; };
+		8C3A5F622C6BCBDB002097A8 /* UIWindowSceneActivationRequestOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWindowSceneActivationRequestOptions.h; sourceTree = "<group>"; };
+		8C3A5F632C6BCBDB002097A8 /* UIWindowSceneDragInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWindowSceneDragInteraction.h; sourceTree = "<group>"; };
+		8C3A5F642C6BCBDB002097A8 /* UIWindowSceneGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWindowSceneGeometry.h; sourceTree = "<group>"; };
+		8C3A5F652C6BCBDB002097A8 /* UIWindowSceneGeometryPreferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWindowSceneGeometryPreferences.h; sourceTree = "<group>"; };
+		8C3A5F662C6BCBDB002097A8 /* UIWindowSceneGeometryPreferencesIOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWindowSceneGeometryPreferencesIOS.h; sourceTree = "<group>"; };
+		8C3A5F672C6BCBDB002097A8 /* UIWindowSceneGeometryPreferencesMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWindowSceneGeometryPreferencesMac.h; sourceTree = "<group>"; };
+		8C3A5F682C6BCBDB002097A8 /* UIWindowSceneGeometryPreferencesVision.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWindowSceneGeometryPreferencesVision.h; sourceTree = "<group>"; };
+		8C3A5F692C6BCBDB002097A8 /* UIWindowScenePlacement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWindowScenePlacement.h; sourceTree = "<group>"; };
+		8C3A5F6A2C6BCBDB002097A8 /* UIWindowSceneProminentPlacement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWindowSceneProminentPlacement.h; sourceTree = "<group>"; };
+		8C3A5F6B2C6BCBDB002097A8 /* UIWindowSceneStandardPlacement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWindowSceneStandardPlacement.h; sourceTree = "<group>"; };
+		8C3A5F6C2C6BCBDB002097A8 /* UNNotificationResponse+UIKitAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UNNotificationResponse+UIKitAdditions.h"; sourceTree = "<group>"; };
+		8C3A5F6E2C6BCE67002097A8 /* CAAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAAnimation.h; sourceTree = "<group>"; };
+		8C3A5F6F2C6BCE67002097A8 /* CABase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CABase.h; sourceTree = "<group>"; };
+		8C3A5F702C6BCE67002097A8 /* CADisplayLink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CADisplayLink.h; sourceTree = "<group>"; };
+		8C3A5F712C6BCE67002097A8 /* CAEAGLLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAEAGLLayer.h; sourceTree = "<group>"; };
+		8C3A5F722C6BCE67002097A8 /* CAEDRMetadata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAEDRMetadata.h; sourceTree = "<group>"; };
+		8C3A5F732C6BCE67002097A8 /* CAEmitterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAEmitterCell.h; sourceTree = "<group>"; };
+		8C3A5F742C6BCE67002097A8 /* CAEmitterLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAEmitterLayer.h; sourceTree = "<group>"; };
+		8C3A5F752C6BCE67002097A8 /* CAFrameRateRange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAFrameRateRange.h; sourceTree = "<group>"; };
+		8C3A5F762C6BCE67002097A8 /* CAGradientLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAGradientLayer.h; sourceTree = "<group>"; };
+		8C3A5F772C6BCE67002097A8 /* CALayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CALayer.h; sourceTree = "<group>"; };
+		8C3A5F782C6BCE67002097A8 /* CAMediaTiming.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAMediaTiming.h; sourceTree = "<group>"; };
+		8C3A5F792C6BCE67002097A8 /* CAMediaTimingFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAMediaTimingFunction.h; sourceTree = "<group>"; };
+		8C3A5F7A2C6BCE67002097A8 /* CAMetalDisplayLink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAMetalDisplayLink.h; sourceTree = "<group>"; };
+		8C3A5F7B2C6BCE67002097A8 /* CAMetalLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAMetalLayer.h; sourceTree = "<group>"; };
+		8C3A5F7C2C6BCE67002097A8 /* CARenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CARenderer.h; sourceTree = "<group>"; };
+		8C3A5F7D2C6BCE67002097A8 /* CAReplicatorLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAReplicatorLayer.h; sourceTree = "<group>"; };
+		8C3A5F7E2C6BCE67002097A8 /* CAScrollLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAScrollLayer.h; sourceTree = "<group>"; };
+		8C3A5F7F2C6BCE67002097A8 /* CAShapeLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAShapeLayer.h; sourceTree = "<group>"; };
+		8C3A5F802C6BCE67002097A8 /* CATextLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CATextLayer.h; sourceTree = "<group>"; };
+		8C3A5F812C6BCE67002097A8 /* CATiledLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CATiledLayer.h; sourceTree = "<group>"; };
+		8C3A5F822C6BCE67002097A8 /* CATransaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CATransaction.h; sourceTree = "<group>"; };
+		8C3A5F832C6BCE67002097A8 /* CATransform3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CATransform3D.h; sourceTree = "<group>"; };
+		8C3A5F842C6BCE67002097A8 /* CATransformLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CATransformLayer.h; sourceTree = "<group>"; };
+		8C3A5F852C6BCE67002097A8 /* CAValueFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAValueFunction.h; sourceTree = "<group>"; };
+		8C3A5F862C6BCE67002097A8 /* CoreAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreAnimation.h; sourceTree = "<group>"; };
+		8C3A5F872C6BCE67002097A8 /* QuartzCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuartzCore.h; sourceTree = "<group>"; };
+		8C3A5F8A2C6BCEA1002097A8 /* EAGL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EAGL.h; sourceTree = "<group>"; };
+		8C3A5F8B2C6BCEA1002097A8 /* EAGLDrawable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EAGLDrawable.h; sourceTree = "<group>"; };
+		8C3A5F8C2C6BCEA1002097A8 /* EAGLIOSurface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EAGLIOSurface.h; sourceTree = "<group>"; };
+		8C3A5F962C6BCEA1002097A8 /* gltypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gltypes.h; sourceTree = "<group>"; };
+		8C3A5F972C6BCEA1002097A8 /* OpenGLESAvailability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenGLESAvailability.h; sourceTree = "<group>"; };
+		8C3A5F992C6BCED5002097A8 /* Metal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Metal.h; sourceTree = "<group>"; };
+		8C3A5F9A2C6BCED5002097A8 /* MTLAccelerationStructure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLAccelerationStructure.h; sourceTree = "<group>"; };
+		8C3A5F9B2C6BCED5002097A8 /* MTLAccelerationStructureCommandEncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLAccelerationStructureCommandEncoder.h; sourceTree = "<group>"; };
+		8C3A5F9C2C6BCED5002097A8 /* MTLAccelerationStructureTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLAccelerationStructureTypes.h; sourceTree = "<group>"; };
+		8C3A5F9D2C6BCED5002097A8 /* MTLArgument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLArgument.h; sourceTree = "<group>"; };
+		8C3A5F9E2C6BCED5002097A8 /* MTLArgumentEncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLArgumentEncoder.h; sourceTree = "<group>"; };
+		8C3A5F9F2C6BCED5002097A8 /* MTLBinaryArchive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLBinaryArchive.h; sourceTree = "<group>"; };
+		8C3A5FA02C6BCED5002097A8 /* MTLBlitCommandEncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLBlitCommandEncoder.h; sourceTree = "<group>"; };
+		8C3A5FA12C6BCED5002097A8 /* MTLBlitPass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLBlitPass.h; sourceTree = "<group>"; };
+		8C3A5FA22C6BCED5002097A8 /* MTLBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLBuffer.h; sourceTree = "<group>"; };
+		8C3A5FA32C6BCED5002097A8 /* MTLCaptureManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLCaptureManager.h; sourceTree = "<group>"; };
+		8C3A5FA42C6BCED5002097A8 /* MTLCaptureScope.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLCaptureScope.h; sourceTree = "<group>"; };
+		8C3A5FA52C6BCED5002097A8 /* MTLCommandBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLCommandBuffer.h; sourceTree = "<group>"; };
+		8C3A5FA62C6BCED5002097A8 /* MTLCommandEncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLCommandEncoder.h; sourceTree = "<group>"; };
+		8C3A5FA72C6BCED5002097A8 /* MTLCommandQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLCommandQueue.h; sourceTree = "<group>"; };
+		8C3A5FA82C6BCED5002097A8 /* MTLComputeCommandEncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLComputeCommandEncoder.h; sourceTree = "<group>"; };
+		8C3A5FA92C6BCED5002097A8 /* MTLComputePass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLComputePass.h; sourceTree = "<group>"; };
+		8C3A5FAA2C6BCED5002097A8 /* MTLComputePipeline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLComputePipeline.h; sourceTree = "<group>"; };
+		8C3A5FAB2C6BCED5002097A8 /* MTLCounters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLCounters.h; sourceTree = "<group>"; };
+		8C3A5FAC2C6BCED5002097A8 /* MTLDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLDefines.h; sourceTree = "<group>"; };
+		8C3A5FAD2C6BCED5002097A8 /* MTLDepthStencil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLDepthStencil.h; sourceTree = "<group>"; };
+		8C3A5FAE2C6BCED5002097A8 /* MTLDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLDevice.h; sourceTree = "<group>"; };
+		8C3A5FAF2C6BCED5002097A8 /* MTLDrawable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLDrawable.h; sourceTree = "<group>"; };
+		8C3A5FB02C6BCED5002097A8 /* MTLDynamicLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLDynamicLibrary.h; sourceTree = "<group>"; };
+		8C3A5FB12C6BCED5002097A8 /* MTLEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLEvent.h; sourceTree = "<group>"; };
+		8C3A5FB22C6BCED5002097A8 /* MTLFence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLFence.h; sourceTree = "<group>"; };
+		8C3A5FB32C6BCED5002097A8 /* MTLFunctionConstantValues.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLFunctionConstantValues.h; sourceTree = "<group>"; };
+		8C3A5FB42C6BCED5002097A8 /* MTLFunctionDescriptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLFunctionDescriptor.h; sourceTree = "<group>"; };
+		8C3A5FB52C6BCED5002097A8 /* MTLFunctionHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLFunctionHandle.h; sourceTree = "<group>"; };
+		8C3A5FB62C6BCED5002097A8 /* MTLFunctionLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLFunctionLog.h; sourceTree = "<group>"; };
+		8C3A5FB72C6BCED5002097A8 /* MTLFunctionStitching.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLFunctionStitching.h; sourceTree = "<group>"; };
+		8C3A5FB82C6BCED5002097A8 /* MTLHeap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLHeap.h; sourceTree = "<group>"; };
+		8C3A5FB92C6BCED5002097A8 /* MTLIndirectCommandBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLIndirectCommandBuffer.h; sourceTree = "<group>"; };
+		8C3A5FBA2C6BCED5002097A8 /* MTLIndirectCommandEncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLIndirectCommandEncoder.h; sourceTree = "<group>"; };
+		8C3A5FBB2C6BCED5002097A8 /* MTLIntersectionFunctionTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLIntersectionFunctionTable.h; sourceTree = "<group>"; };
+		8C3A5FBC2C6BCED5002097A8 /* MTLIOCommandBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLIOCommandBuffer.h; sourceTree = "<group>"; };
+		8C3A5FBD2C6BCED5002097A8 /* MTLIOCommandQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLIOCommandQueue.h; sourceTree = "<group>"; };
+		8C3A5FBE2C6BCED5002097A8 /* MTLIOCompressor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLIOCompressor.h; sourceTree = "<group>"; };
+		8C3A5FBF2C6BCED5002097A8 /* MTLLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLLibrary.h; sourceTree = "<group>"; };
+		8C3A5FC02C6BCED5002097A8 /* MTLLinkedFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLLinkedFunctions.h; sourceTree = "<group>"; };
+		8C3A5FC12C6BCED5002097A8 /* MTLParallelRenderCommandEncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLParallelRenderCommandEncoder.h; sourceTree = "<group>"; };
+		8C3A5FC22C6BCED5002097A8 /* MTLPipeline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLPipeline.h; sourceTree = "<group>"; };
+		8C3A5FC32C6BCED5002097A8 /* MTLPixelFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLPixelFormat.h; sourceTree = "<group>"; };
+		8C3A5FC42C6BCED5002097A8 /* MTLRasterizationRate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLRasterizationRate.h; sourceTree = "<group>"; };
+		8C3A5FC52C6BCED5002097A8 /* MTLRenderCommandEncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLRenderCommandEncoder.h; sourceTree = "<group>"; };
+		8C3A5FC62C6BCED5002097A8 /* MTLRenderPass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLRenderPass.h; sourceTree = "<group>"; };
+		8C3A5FC72C6BCED5002097A8 /* MTLRenderPipeline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLRenderPipeline.h; sourceTree = "<group>"; };
+		8C3A5FC82C6BCED5002097A8 /* MTLResource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLResource.h; sourceTree = "<group>"; };
+		8C3A5FC92C6BCED5002097A8 /* MTLResourceStateCommandEncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLResourceStateCommandEncoder.h; sourceTree = "<group>"; };
+		8C3A5FCA2C6BCED5002097A8 /* MTLResourceStatePass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLResourceStatePass.h; sourceTree = "<group>"; };
+		8C3A5FCB2C6BCED5002097A8 /* MTLSampler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLSampler.h; sourceTree = "<group>"; };
+		8C3A5FCC2C6BCED5002097A8 /* MTLStageInputOutputDescriptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLStageInputOutputDescriptor.h; sourceTree = "<group>"; };
+		8C3A5FCD2C6BCED5002097A8 /* MTLTexture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLTexture.h; sourceTree = "<group>"; };
+		8C3A5FCE2C6BCED5002097A8 /* MTLTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLTypes.h; sourceTree = "<group>"; };
+		8C3A5FCF2C6BCED5002097A8 /* MTLVertexDescriptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLVertexDescriptor.h; sourceTree = "<group>"; };
+		8C3A5FD02C6BCED5002097A8 /* MTLVisibleFunctionTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTLVisibleFunctionTable.h; sourceTree = "<group>"; };
 		8C3A5FD22C6C8CD1002097A8 /* NSAttributedString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAttributedString.h; sourceTree = "<group>"; };
 		8C3A5FD32C6C8CD1002097A8 /* WebKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebKit.h; sourceTree = "<group>"; };
 		8C3A5FD42C6C8CD1002097A8 /* WebKitLegacy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebKitLegacy.h; sourceTree = "<group>"; };
@@ -282,6 +732,7 @@
 		8C3A5FDB2C6C8CD1002097A8 /* WKDataDetectorTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKDataDetectorTypes.h; sourceTree = "<group>"; };
 		8C3A5FDC2C6C8CD1002097A8 /* WKDownload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKDownload.h; sourceTree = "<group>"; };
 		8C3A5FDD2C6C8CD1002097A8 /* WKDownloadDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKDownloadDelegate.h; sourceTree = "<group>"; };
+		8C3A5FDE2C6C8CD1002097A8 /* WKError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKError.h; sourceTree = "<group>"; };
 		8C3A5FDF2C6C8CD1002097A8 /* WKFindConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKFindConfiguration.h; sourceTree = "<group>"; };
 		8C3A5FE02C6C8CD1002097A8 /* WKFindResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKFindResult.h; sourceTree = "<group>"; };
 		8C3A5FE12C6C8CD1002097A8 /* WKFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKFoundation.h; sourceTree = "<group>"; };
@@ -296,6 +747,7 @@
 		8C3A5FEA2C6C8CD1002097A8 /* WKPreferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPreferences.h; sourceTree = "<group>"; };
 		8C3A5FEB2C6C8CD1002097A8 /* WKPreviewActionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPreviewActionItem.h; sourceTree = "<group>"; };
 		8C3A5FEC2C6C8CD1002097A8 /* WKPreviewActionItemIdentifiers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPreviewActionItemIdentifiers.h; sourceTree = "<group>"; };
+		8C3A5FED2C6C8CD1002097A8 /* WKPreviewElementInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPreviewElementInfo.h; sourceTree = "<group>"; };
 		8C3A5FEE2C6C8CD1002097A8 /* WKProcessPool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKProcessPool.h; sourceTree = "<group>"; };
 		8C3A5FEF2C6C8CD1002097A8 /* WKScriptMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKScriptMessage.h; sourceTree = "<group>"; };
 		8C3A5FF02C6C8CD1002097A8 /* WKScriptMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKScriptMessageHandler.h; sourceTree = "<group>"; };
@@ -303,6 +755,8 @@
 		8C3A5FF22C6C8CD1002097A8 /* WKSecurityOrigin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKSecurityOrigin.h; sourceTree = "<group>"; };
 		8C3A5FF32C6C8CD1002097A8 /* WKSnapshotConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKSnapshotConfiguration.h; sourceTree = "<group>"; };
 		8C3A5FF42C6C8CD1002097A8 /* WKUIDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKUIDelegate.h; sourceTree = "<group>"; };
+		8C3A5FF52C6C8CD1002097A8 /* WKURLSchemeHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKURLSchemeHandler.h; sourceTree = "<group>"; };
+		8C3A5FF62C6C8CD1002097A8 /* WKURLSchemeTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKURLSchemeTask.h; sourceTree = "<group>"; };
 		8C3A5FF72C6C8CD1002097A8 /* WKUserContentController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKUserContentController.h; sourceTree = "<group>"; };
 		8C3A5FF82C6C8CD1002097A8 /* WKUserScript.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKUserScript.h; sourceTree = "<group>"; };
 		8C3A5FF92C6C8CD1002097A8 /* WKWebpagePreferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKWebpagePreferences.h; sourceTree = "<group>"; };
@@ -383,7 +837,6 @@
 		8C7353FB2C9899080062DC00 /* TestDynamic.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = TestDynamic.dylib; path = "../../Library/Developer/CoreSimulator/Devices/F15CE65A-CE18-42B8-878A-FBFC637CBDB6/data/Containers/Data/Application/A94D7B5E-577F-4670-BD2E-FEDD1116AD39/Documents/TestDynamic.dylib"; sourceTree = "<group>"; };
 		8C7353FE2C989B0D0062DC00 /* TestDynamic.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = TestDynamic.dylib; path = "../../Library/Developer/Xcode/DerivedData/TestDynamic-fzrcyqcbtexpqldmfpnthctiphih/Build/Products/Debug-watchos/TestDynamic.dylib"; sourceTree = "<group>"; };
 		8C7C4D422C2D898700FD282B /* BookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListView.swift; sourceTree = "<group>"; };
-		8C820B8A2E1DAF98007ABA81 /* View+CompatibleGlassEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CompatibleGlassEffects.swift"; sourceTree = "<group>"; };
 		8C8345452C9F03EB00311CE4 /* SaltUICore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SaltUICore.framework; path = "../../Library/Developer/Xcode/DerivedData/SaltUICore-bojldjzbsenpcufsomovujkhghou/Build/Products/Debug-watchos/SaltUICore.framework"; sourceTree = "<group>"; };
 		8C83454A2C9F049700311CE4 /* SaltUICore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SaltUICore.framework; sourceTree = "<group>"; };
 		8C83454D2C9F04E800311CE4 /* SaltUICore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SaltUICore.framework; path = DarockFrameworks/SaltUICore.framework; sourceTree = "<group>"; };
@@ -423,6 +876,12 @@
 		8CB803D12BD3DCEE009B2FAC /* WebExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebExtension.h; sourceTree = "<group>"; };
 		8CB803D32BD3E6D1009B2FAC /* AdvancedWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedWebView.swift; sourceTree = "<group>"; };
 		8CB803DE2BD44879009B2FAC /* DarockBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DarockBrowser.entitlements; sourceTree = "<group>"; };
+		8CB9A11B2C6D2CCB00E6A367 /* gl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gl.h; sourceTree = "<group>"; };
+		8CB9A11C2C6D2CCB00E6A367 /* glext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glext.h; sourceTree = "<group>"; };
+		8CB9A11E2C6D2CCB00E6A367 /* gl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gl.h; sourceTree = "<group>"; };
+		8CB9A11F2C6D2CCB00E6A367 /* glext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glext.h; sourceTree = "<group>"; };
+		8CB9A1212C6D2CCB00E6A367 /* gl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gl.h; sourceTree = "<group>"; };
+		8CB9A1222C6D2CCB00E6A367 /* glext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glext.h; sourceTree = "<group>"; };
 		8CBA14092C7CEAC000D40EE5 /* View+CompatibleDoubleTapGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CompatibleDoubleTapGesture.swift"; sourceTree = "<group>"; };
 		8CBA140F2C7D1B4200D40EE5 /* DoubleTapActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleTapActionButton.swift; sourceTree = "<group>"; };
 		8CC267D82CE8CAAC00AE03F0 /* StorageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StorageUI.framework; path = "../../Library/Developer/Xcode/DerivedData/StorageUI-gwslkipsdtvfcbfttcyuprqlonjc/Build/Products/Release-watchsimulator/StorageUI.framework"; sourceTree = "<group>"; };
@@ -620,6 +1079,488 @@
 			path = CoreHaptics;
 			sourceTree = "<group>";
 		};
+		8C3A5DEB2C6BCBC4002097A8 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				8C3A5DEC2C6BCBDB002097A8 /* DocumentManager.h */,
+				8C3A5DEE2C6BCBDB002097A8 /* NSDataAsset.h */,
+				8C3A5DEF2C6BCBDB002097A8 /* NSDiffableDataSourceSectionSnapshot.h */,
+				8C3A5DF02C6BCBDB002097A8 /* NSFileProviderExtension.h */,
+				8C3A5DF12C6BCBDB002097A8 /* NSIndexPath+UIKitAdditions.h */,
+				8C3A5DF32C6BCBDB002097A8 /* NSLayoutAnchor.h */,
+				8C3A5DF42C6BCBDB002097A8 /* NSLayoutConstraint.h */,
+				8C3A5DF52C6BCBDB002097A8 /* NSLayoutManager.h */,
+				8C3A5DFB2C6BCBDB002097A8 /* NSTextContainer.h */,
+				8C3A5DFC2C6BCBDB002097A8 /* NSTextContentManager.h */,
+				8C3A5DFD2C6BCBDB002097A8 /* NSTextElement.h */,
+				8C3A5DFE2C6BCBDB002097A8 /* NSTextLayoutFragment.h */,
+				8C3A5DFF2C6BCBDB002097A8 /* NSTextLayoutManager.h */,
+				8C3A5E002C6BCBDB002097A8 /* NSTextLineFragment.h */,
+				8C3A5E022C6BCBDB002097A8 /* NSTextListElement.h */,
+				8C3A5E032C6BCBDB002097A8 /* NSTextRange.h */,
+				8C3A5E042C6BCBDB002097A8 /* NSTextSelection.h */,
+				8C3A5E052C6BCBDB002097A8 /* NSTextSelectionNavigation.h */,
+				8C3A5E062C6BCBDB002097A8 /* NSTextStorage.h */,
+				8C3A5E072C6BCBDB002097A8 /* NSTextViewportLayoutController.h */,
+				8C3A5E082C6BCBDB002097A8 /* NSToolbar+UIKitAdditions.h */,
+				8C3A5E092C6BCBDB002097A8 /* NSTouchBar+UIKitAdditions.h */,
+				8C3A5E0A2C6BCBDB002097A8 /* NSUserActivity+NSItemProvider.h */,
+				8C3A5E0B2C6BCBDB002097A8 /* PrintKitUI.h */,
+				8C3A5E0C2C6BCBDB002097A8 /* ShareSheet.h */,
+				8C3A5E0D2C6BCBDB002097A8 /* UIAccelerometer.h */,
+				8C3A5E0E2C6BCBDB002097A8 /* UIAccessibility.h */,
+				8C3A5E0F2C6BCBDB002097A8 /* UIAccessibilityAdditions.h */,
+				8C3A5E112C6BCBDB002097A8 /* UIAccessibilityContainer.h */,
+				8C3A5E122C6BCBDB002097A8 /* UIAccessibilityContentSizeCategoryImageAdjusting.h */,
+				8C3A5E132C6BCBDB002097A8 /* UIAccessibilityCustomAction.h */,
+				8C3A5E142C6BCBDB002097A8 /* UIAccessibilityCustomRotor.h */,
+				8C3A5E152C6BCBDB002097A8 /* UIAccessibilityElement.h */,
+				8C3A5E162C6BCBDB002097A8 /* UIAccessibilityIdentification.h */,
+				8C3A5E172C6BCBDB002097A8 /* UIAccessibilityLocationDescriptor.h */,
+				8C3A5E182C6BCBDB002097A8 /* UIAccessibilityZoom.h */,
+				8C3A5E192C6BCBDB002097A8 /* UIAction.h */,
+				8C3A5E1A2C6BCBDB002097A8 /* UIActionSheet.h */,
+				8C3A5E1B2C6BCBDB002097A8 /* UIActivity.h */,
+				8C3A5E1C2C6BCBDB002097A8 /* UIActivityIndicatorView.h */,
+				8C3A5E1D2C6BCBDB002097A8 /* UIActivityItemProvider.h */,
+				8C3A5E1E2C6BCBDB002097A8 /* UIActivityItemsConfiguration.h */,
+				8C3A5E1F2C6BCBDB002097A8 /* UIActivityItemsConfigurationReading.h */,
+				8C3A5E202C6BCBDB002097A8 /* UIActivityViewController.h */,
+				8C3A5E212C6BCBDB002097A8 /* UIAlert.h */,
+				8C3A5E222C6BCBDB002097A8 /* UIAlertController.h */,
+				8C3A5E232C6BCBDB002097A8 /* UIAlertView.h */,
+				8C3A5E242C6BCBDB002097A8 /* UIAppearance.h */,
+				8C3A5E252C6BCBDB002097A8 /* UIApplication.h */,
+				8C3A5E262C6BCBDB002097A8 /* UIApplicationShortcutItem.h */,
+				8C3A5E272C6BCBDB002097A8 /* UIAttachmentBehavior.h */,
+				8C3A5E282C6BCBDB002097A8 /* UIBackgroundConfiguration.h */,
+				8C3A5E292C6BCBDB002097A8 /* UIBandSelectionInteraction.h */,
+				8C3A5E2A2C6BCBDB002097A8 /* UIBarAppearance.h */,
+				8C3A5E2B2C6BCBDB002097A8 /* UIBarButtonItem.h */,
+				8C3A5E2C2C6BCBDB002097A8 /* UIBarButtonItemAppearance.h */,
+				8C3A5E2D2C6BCBDB002097A8 /* UIBarButtonItemGroup.h */,
+				8C3A5E2E2C6BCBDB002097A8 /* UIBarCommon.h */,
+				8C3A5E2F2C6BCBDB002097A8 /* UIBarItem.h */,
+				8C3A5E302C6BCBDB002097A8 /* UIBehavioralStyle.h */,
+				8C3A5E322C6BCBDB002097A8 /* UIBlurEffect.h */,
+				8C3A5E332C6BCBDB002097A8 /* UIButton.h */,
+				8C3A5E342C6BCBDB002097A8 /* UIButtonConfiguration.h */,
+				8C3A5E352C6BCBDB002097A8 /* UICalendarSelection.h */,
+				8C3A5E362C6BCBDB002097A8 /* UICalendarSelectionMultiDate.h */,
+				8C3A5E372C6BCBDB002097A8 /* UICalendarSelectionSingleDate.h */,
+				8C3A5E382C6BCBDB002097A8 /* UICalendarView.h */,
+				8C3A5E392C6BCBDB002097A8 /* UICalendarViewDecoration.h */,
+				8C3A5E3A2C6BCBDB002097A8 /* UICanvasFeedbackGenerator.h */,
+				8C3A5E3B2C6BCBDB002097A8 /* UICellAccessory.h */,
+				8C3A5E3C2C6BCBDB002097A8 /* UICellConfigurationState.h */,
+				8C3A5E3D2C6BCBDB002097A8 /* UICloudSharingController.h */,
+				8C3A5E3E2C6BCBDB002097A8 /* UICollectionLayoutList.h */,
+				8C3A5E3F2C6BCBDB002097A8 /* UICollectionView.h */,
+				8C3A5E402C6BCBDB002097A8 /* UICollectionViewCell.h */,
+				8C3A5E412C6BCBDB002097A8 /* UICollectionViewCompositionalLayout.h */,
+				8C3A5E422C6BCBDB002097A8 /* UICollectionViewController.h */,
+				8C3A5E432C6BCBDB002097A8 /* UICollectionViewFlowLayout.h */,
+				8C3A5E442C6BCBDB002097A8 /* UICollectionViewItemRegistration.h */,
+				8C3A5E452C6BCBDB002097A8 /* UICollectionViewLayout.h */,
+				8C3A5E462C6BCBDB002097A8 /* UICollectionViewListCell.h */,
+				8C3A5E472C6BCBDB002097A8 /* UICollectionViewTransitionLayout.h */,
+				8C3A5E482C6BCBDB002097A8 /* UICollectionViewUpdateItem.h */,
+				8C3A5E492C6BCBDB002097A8 /* UICollisionBehavior.h */,
+				8C3A5E4B2C6BCBDB002097A8 /* UIColorPickerViewController.h */,
+				8C3A5E4C2C6BCBDB002097A8 /* UIColorWell.h */,
+				8C3A5E4D2C6BCBDB002097A8 /* UICommand.h */,
+				8C3A5E4E2C6BCBDB002097A8 /* UIConfigurationColorTransformer.h */,
+				8C3A5E4F2C6BCBDB002097A8 /* UIConfigurationState.h */,
+				8C3A5E502C6BCBDB002097A8 /* UIContentConfiguration.h */,
+				8C3A5E512C6BCBDB002097A8 /* UIContentSizeCategory.h */,
+				8C3A5E522C6BCBDB002097A8 /* UIContentSizeCategoryAdjusting.h */,
+				8C3A5E532C6BCBDB002097A8 /* UIContentUnavailableButtonProperties.h */,
+				8C3A5E542C6BCBDB002097A8 /* UIContentUnavailableConfiguration.h */,
+				8C3A5E552C6BCBDB002097A8 /* UIContentUnavailableConfigurationState.h */,
+				8C3A5E562C6BCBDB002097A8 /* UIContentUnavailableImageProperties.h */,
+				8C3A5E572C6BCBDB002097A8 /* UIContentUnavailableTextProperties.h */,
+				8C3A5E582C6BCBDB002097A8 /* UIContentUnavailableView.h */,
+				8C3A5E592C6BCBDB002097A8 /* UIContextMenuConfiguration.h */,
+				8C3A5E5A2C6BCBDB002097A8 /* UIContextMenuInteraction.h */,
+				8C3A5E5B2C6BCBDB002097A8 /* UIContextualAction.h */,
+				8C3A5E5C2C6BCBDB002097A8 /* UIControl.h */,
+				8C3A5E5D2C6BCBDB002097A8 /* UIDataDetectors.h */,
+				8C3A5E5E2C6BCBDB002097A8 /* UIDataSourceTranslating.h */,
+				8C3A5E5F2C6BCBDB002097A8 /* UIDatePicker.h */,
+				8C3A5E602C6BCBDB002097A8 /* UIDeferredMenuElement.h */,
+				8C3A5E612C6BCBDB002097A8 /* UIDevice.h */,
+				8C3A5E622C6BCBDB002097A8 /* UIDiffableDataSource.h */,
+				8C3A5E632C6BCBDB002097A8 /* UIDocument.h */,
+				8C3A5E642C6BCBDB002097A8 /* UIDocumentBrowserAction.h */,
+				8C3A5E652C6BCBDB002097A8 /* UIDocumentBrowserViewController.h */,
+				8C3A5E662C6BCBDB002097A8 /* UIDocumentInteractionController.h */,
+				8C3A5E672C6BCBDB002097A8 /* UIDocumentMenuViewController.h */,
+				8C3A5E682C6BCBDB002097A8 /* UIDocumentPickerExtensionViewController.h */,
+				8C3A5E692C6BCBDB002097A8 /* UIDocumentPickerViewController.h */,
+				8C3A5E6A2C6BCBDB002097A8 /* UIDocumentProperties.h */,
+				8C3A5E6B2C6BCBDB002097A8 /* UIDocumentViewController.h */,
+				8C3A5E6C2C6BCBDB002097A8 /* UIDragInteraction.h */,
+				8C3A5E6D2C6BCBDB002097A8 /* UIDragItem.h */,
+				8C3A5E6E2C6BCBDB002097A8 /* UIDragPreview.h */,
+				8C3A5E6F2C6BCBDB002097A8 /* UIDragPreviewParameters.h */,
+				8C3A5E702C6BCBDB002097A8 /* UIDragSession.h */,
+				8C3A5E712C6BCBDB002097A8 /* UIDropInteraction.h */,
+				8C3A5E722C6BCBDB002097A8 /* UIDynamicAnimator.h */,
+				8C3A5E732C6BCBDB002097A8 /* UIDynamicBehavior.h */,
+				8C3A5E742C6BCBDB002097A8 /* UIDynamicItemBehavior.h */,
+				8C3A5E752C6BCBDB002097A8 /* UIEditMenuInteraction.h */,
+				8C3A5E762C6BCBDB002097A8 /* UIEvent.h */,
+				8C3A5E772C6BCBDB002097A8 /* UIEventAttribution.h */,
+				8C3A5E782C6BCBDB002097A8 /* UIEventAttributionView.h */,
+				8C3A5E792C6BCBDB002097A8 /* UIFeedbackGenerator.h */,
+				8C3A5E7A2C6BCBDB002097A8 /* UIFieldBehavior.h */,
+				8C3A5E7B2C6BCBDB002097A8 /* UIFindInteraction.h */,
+				8C3A5E7C2C6BCBDB002097A8 /* UIFindSession.h */,
+				8C3A5E7D2C6BCBDB002097A8 /* UIFocus.h */,
+				8C3A5E7E2C6BCBDB002097A8 /* UIFocusAnimationCoordinator.h */,
+				8C3A5E7F2C6BCBDB002097A8 /* UIFocusDebugger.h */,
+				8C3A5E802C6BCBDB002097A8 /* UIFocusEffect.h */,
+				8C3A5E812C6BCBDB002097A8 /* UIFocusGuide.h */,
+				8C3A5E822C6BCBDB002097A8 /* UIFocusMovementHint.h */,
+				8C3A5E832C6BCBDB002097A8 /* UIFocusSystem.h */,
+				8C3A5E872C6BCBDB002097A8 /* UIFontPickerViewController.h */,
+				8C3A5E882C6BCBDB002097A8 /* UIFontPickerViewControllerConfiguration.h */,
+				8C3A5E892C6BCBDB002097A8 /* UIFoundation.h */,
+				8C3A5E8B2C6BCBDB002097A8 /* UIGestureRecognizer.h */,
+				8C3A5E8C2C6BCBDB002097A8 /* UIGestureRecognizerSubclass.h */,
+				8C3A5E8D2C6BCBDB002097A8 /* UIGraphics.h */,
+				8C3A5E8E2C6BCBDB002097A8 /* UIGraphicsImageRenderer.h */,
+				8C3A5E8F2C6BCBDB002097A8 /* UIGraphicsPDFRenderer.h */,
+				8C3A5E902C6BCBDB002097A8 /* UIGraphicsRenderer.h */,
+				8C3A5E912C6BCBDB002097A8 /* UIGraphicsRendererSubclass.h */,
+				8C3A5E922C6BCBDB002097A8 /* UIGravityBehavior.h */,
+				8C3A5E932C6BCBDB002097A8 /* UIGuidedAccess.h */,
+				8C3A5E942C6BCBDB002097A8 /* UIGuidedAccessRestrictions.h */,
+				8C3A5E952C6BCBDB002097A8 /* UIHoverEffect.h */,
+				8C3A5E962C6BCBDB002097A8 /* UIHoverEffectLayer.h */,
+				8C3A5E972C6BCBDB002097A8 /* UIHoverGestureRecognizer.h */,
+				8C3A5E982C6BCBDB002097A8 /* UIHoverStyle.h */,
+				8C3A5E9A2C6BCBDB002097A8 /* UIImageAsset.h */,
+				8C3A5E9C2C6BCBDB002097A8 /* UIImagePickerController.h */,
+				8C3A5E9F2C6BCBDB002097A8 /* UIImageView.h */,
+				8C3A5EA02C6BCBDB002097A8 /* UIImpactFeedbackGenerator.h */,
+				8C3A5EA12C6BCBDB002097A8 /* UIIndirectScribbleInteraction.h */,
+				8C3A5EA22C6BCBDB002097A8 /* UIInputView.h */,
+				8C3A5EA32C6BCBDB002097A8 /* UIInputViewController.h */,
+				8C3A5EA42C6BCBDB002097A8 /* UIInteraction.h */,
+				8C3A5EA52C6BCBDB002097A8 /* UIInterface.h */,
+				8C3A5EA62C6BCBDB002097A8 /* UIKey.h */,
+				8C3A5EA72C6BCBDB002097A8 /* UIKeyboardLayoutGuide.h */,
+				8C3A5EA82C6BCBDB002097A8 /* UIKeyCommand.h */,
+				8C3A5EA92C6BCBDB002097A8 /* UIKeyConstants.h */,
+				8C3A5EAA2C6BCBDB002097A8 /* UIKit.h */,
+				8C3A5EAC2C6BCBDB002097A8 /* UIKitCore.h */,
+				8C3A5EAD2C6BCBDB002097A8 /* UIKitDefines.h */,
+				8C3A5EAE2C6BCBDB002097A8 /* UILabel.h */,
+				8C3A5EAF2C6BCBDB002097A8 /* UILargeContentViewer.h */,
+				8C3A5EB02C6BCBDB002097A8 /* UILayoutGuide.h */,
+				8C3A5EB12C6BCBDB002097A8 /* UILetterformAwareAdjusting.h */,
+				8C3A5EB22C6BCBDB002097A8 /* UILexicon.h */,
+				8C3A5EB32C6BCBDB002097A8 /* UIListContentConfiguration.h */,
+				8C3A5EB42C6BCBDB002097A8 /* UIListContentImageProperties.h */,
+				8C3A5EB52C6BCBDB002097A8 /* UIListContentTextProperties.h */,
+				8C3A5EB62C6BCBDB002097A8 /* UIListSeparatorConfiguration.h */,
+				8C3A5EB72C6BCBDB002097A8 /* UILocalizedIndexedCollation.h */,
+				8C3A5EB92C6BCBDB002097A8 /* UILongPressGestureRecognizer.h */,
+				8C3A5EBA2C6BCBDB002097A8 /* UIManagedDocument.h */,
+				8C3A5EBB2C6BCBDB002097A8 /* UIMenu.h */,
+				8C3A5EBC2C6BCBDB002097A8 /* UIMenuBuilder.h */,
+				8C3A5EBD2C6BCBDB002097A8 /* UIMenuController.h */,
+				8C3A5EBE2C6BCBDB002097A8 /* UIMenuDisplayPreferences.h */,
+				8C3A5EBF2C6BCBDB002097A8 /* UIMenuElement.h */,
+				8C3A5EC02C6BCBDB002097A8 /* UIMenuLeaf.h */,
+				8C3A5EC12C6BCBDB002097A8 /* UIMenuSystem.h */,
+				8C3A5EC22C6BCBDB002097A8 /* UIMotionEffect.h */,
+				8C3A5EC32C6BCBDB002097A8 /* UINavigationBar.h */,
+				8C3A5EC42C6BCBDB002097A8 /* UINavigationBarAppearance.h */,
+				8C3A5EC52C6BCBDB002097A8 /* UINavigationController.h */,
+				8C3A5EC62C6BCBDB002097A8 /* UINavigationItem.h */,
+				8C3A5EC72C6BCBDB002097A8 /* UINib.h */,
+				8C3A5EC82C6BCBDB002097A8 /* UINibDeclarations.h */,
+				8C3A5EC92C6BCBDB002097A8 /* UINibLoading.h */,
+				8C3A5ECA2C6BCBDB002097A8 /* UINotificationFeedbackGenerator.h */,
+				8C3A5ECB2C6BCBDB002097A8 /* UIOpenURLContext.h */,
+				8C3A5ECC2C6BCBDB002097A8 /* UIOrientation.h */,
+				8C3A5ECD2C6BCBDB002097A8 /* UIPageControl.h */,
+				8C3A5ECE2C6BCBDB002097A8 /* UIPageControlProgress.h */,
+				8C3A5ECF2C6BCBDB002097A8 /* UIPageViewController.h */,
+				8C3A5ED02C6BCBDB002097A8 /* UIPanGestureRecognizer.h */,
+				8C3A5ED12C6BCBDB002097A8 /* UIPasteboard.h */,
+				8C3A5ED22C6BCBDB002097A8 /* UIPasteConfiguration.h */,
+				8C3A5ED32C6BCBDB002097A8 /* UIPasteConfigurationSupporting.h */,
+				8C3A5ED42C6BCBDB002097A8 /* UIPasteControl.h */,
+				8C3A5ED52C6BCBDB002097A8 /* UIPencilInteraction.h */,
+				8C3A5ED62C6BCBDB002097A8 /* UIPickerView.h */,
+				8C3A5ED72C6BCBDB002097A8 /* UIPinchGestureRecognizer.h */,
+				8C3A5ED82C6BCBDB002097A8 /* UIPointerAccessory.h */,
+				8C3A5ED92C6BCBDB002097A8 /* UIPointerInteraction.h */,
+				8C3A5EDA2C6BCBDB002097A8 /* UIPointerLockState.h */,
+				8C3A5EDB2C6BCBDB002097A8 /* UIPointerRegion.h */,
+				8C3A5EDC2C6BCBDB002097A8 /* UIPointerStyle.h */,
+				8C3A5EDD2C6BCBDB002097A8 /* UIPopoverBackgroundView.h */,
+				8C3A5EDE2C6BCBDB002097A8 /* UIPopoverController.h */,
+				8C3A5EDF2C6BCBDB002097A8 /* UIPopoverPresentationController.h */,
+				8C3A5EE02C6BCBDB002097A8 /* UIPopoverPresentationControllerSourceItem.h */,
+				8C3A5EE12C6BCBDB002097A8 /* UIPopoverSupport.h */,
+				8C3A5EE22C6BCBDB002097A8 /* UIPresentationController.h */,
+				8C3A5EE32C6BCBDB002097A8 /* UIPress.h */,
+				8C3A5EE42C6BCBDB002097A8 /* UIPressesEvent.h */,
+				8C3A5EE52C6BCBDB002097A8 /* UIPreviewInteraction.h */,
+				8C3A5EE62C6BCBDB002097A8 /* UIPreviewParameters.h */,
+				8C3A5EE72C6BCBDB002097A8 /* UIPrinter.h */,
+				8C3A5EE82C6BCBDB002097A8 /* UIPrinterPickerController.h */,
+				8C3A5EE92C6BCBDB002097A8 /* UIPrintError.h */,
+				8C3A5EEA2C6BCBDB002097A8 /* UIPrintFormatter.h */,
+				8C3A5EEB2C6BCBDB002097A8 /* UIPrintInfo.h */,
+				8C3A5EEC2C6BCBDB002097A8 /* UIPrintInteractionController.h */,
+				8C3A5EED2C6BCBDB002097A8 /* UIPrintPageRenderer.h */,
+				8C3A5EEE2C6BCBDB002097A8 /* UIPrintPaper.h */,
+				8C3A5EEF2C6BCBDB002097A8 /* UIPrintServiceExtension.h */,
+				8C3A5EF02C6BCBDB002097A8 /* UIProgressView.h */,
+				8C3A5EF12C6BCBDB002097A8 /* UIPushBehavior.h */,
+				8C3A5EF22C6BCBDB002097A8 /* UIReferenceLibraryViewController.h */,
+				8C3A5EF32C6BCBDB002097A8 /* UIRefreshControl.h */,
+				8C3A5EF42C6BCBDB002097A8 /* UIRegion.h */,
+				8C3A5EF52C6BCBDB002097A8 /* UIResponder.h */,
+				8C3A5EF62C6BCBDB002097A8 /* UIResponder+UIActivityItemsConfiguration.h */,
+				8C3A5EF72C6BCBDB002097A8 /* UIRotationGestureRecognizer.h */,
+				8C3A5EF82C6BCBDB002097A8 /* UIScene.h */,
+				8C3A5EF92C6BCBDB002097A8 /* UIScene+AVAudioSession.h */,
+				8C3A5EFA2C6BCBDB002097A8 /* UISceneActivationConditions.h */,
+				8C3A5EFB2C6BCBDB002097A8 /* UISceneDefinitions.h */,
+				8C3A5EFC2C6BCBDB002097A8 /* UISceneEnhancedStateRestoration.h */,
+				8C3A5EFD2C6BCBDB002097A8 /* UISceneOptions.h */,
+				8C3A5EFE2C6BCBDB002097A8 /* UISceneSession.h */,
+				8C3A5EFF2C6BCBDB002097A8 /* UISceneSessionActivationRequest.h */,
+				8C3A5F002C6BCBDB002097A8 /* UISceneWindowingBehaviors.h */,
+				8C3A5F012C6BCBDB002097A8 /* UIScreen.h */,
+				8C3A5F022C6BCBDB002097A8 /* UIScreenEdgePanGestureRecognizer.h */,
+				8C3A5F032C6BCBDB002097A8 /* UIScreenMode.h */,
+				8C3A5F042C6BCBDB002097A8 /* UIScreenshotService.h */,
+				8C3A5F052C6BCBDB002097A8 /* UIScribbleInteraction.h */,
+				8C3A5F062C6BCBDB002097A8 /* UIScrollView.h */,
+				8C3A5F072C6BCBDB002097A8 /* UISearchBar.h */,
+				8C3A5F082C6BCBDB002097A8 /* UISearchContainerViewController.h */,
+				8C3A5F092C6BCBDB002097A8 /* UISearchController.h */,
+				8C3A5F0A2C6BCBDB002097A8 /* UISearchDisplayController.h */,
+				8C3A5F0B2C6BCBDB002097A8 /* UISearchSuggestion.h */,
+				8C3A5F0C2C6BCBDB002097A8 /* UISearchTextField.h */,
+				8C3A5F0D2C6BCBDB002097A8 /* UISegmentedControl.h */,
+				8C3A5F0E2C6BCBDB002097A8 /* UISelectionFeedbackGenerator.h */,
+				8C3A5F0F2C6BCBDB002097A8 /* UIShape.h */,
+				8C3A5F102C6BCBDB002097A8 /* UISheetPresentationController.h */,
+				8C3A5F112C6BCBDB002097A8 /* UISlider.h */,
+				8C3A5F122C6BCBDB002097A8 /* UISnapBehavior.h */,
+				8C3A5F132C6BCBDB002097A8 /* UISplitViewController.h */,
+				8C3A5F142C6BCBDB002097A8 /* UISpringLoadedInteraction.h */,
+				8C3A5F152C6BCBDB002097A8 /* UISpringLoadedInteractionSupporting.h */,
+				8C3A5F162C6BCBDB002097A8 /* UIStackView.h */,
+				8C3A5F172C6BCBDB002097A8 /* UIStandardTextCursorView.h */,
+				8C3A5F182C6BCBDB002097A8 /* UIStateRestoration.h */,
+				8C3A5F192C6BCBDB002097A8 /* UIStatusBarManager.h */,
+				8C3A5F1A2C6BCBDB002097A8 /* UIStepper.h */,
+				8C3A5F1B2C6BCBDB002097A8 /* UIStoryboard.h */,
+				8C3A5F1C2C6BCBDB002097A8 /* UIStoryboardPopoverSegue.h */,
+				8C3A5F1D2C6BCBDB002097A8 /* UIStoryboardSegue.h */,
+				8C3A5F1E2C6BCBDB002097A8 /* UIStringDrawing.h */,
+				8C3A5F1F2C6BCBDB002097A8 /* UISwipeActionsConfiguration.h */,
+				8C3A5F202C6BCBDB002097A8 /* UISwipeGestureRecognizer.h */,
+				8C3A5F212C6BCBDB002097A8 /* UISwitch.h */,
+				8C3A5F222C6BCBDB002097A8 /* UISymbolEffectCompletion.h */,
+				8C3A5F232C6BCBDB002097A8 /* UITabBar.h */,
+				8C3A5F242C6BCBDB002097A8 /* UITabBarAppearance.h */,
+				8C3A5F252C6BCBDB002097A8 /* UITabBarController.h */,
+				8C3A5F262C6BCBDB002097A8 /* UITabBarItem.h */,
+				8C3A5F272C6BCBDB002097A8 /* UITableView.h */,
+				8C3A5F282C6BCBDB002097A8 /* UITableViewCell.h */,
+				8C3A5F292C6BCBDB002097A8 /* UITableViewController.h */,
+				8C3A5F2A2C6BCBDB002097A8 /* UITableViewHeaderFooterView.h */,
+				8C3A5F2B2C6BCBDB002097A8 /* UITapGestureRecognizer.h */,
+				8C3A5F2C2C6BCBDB002097A8 /* UITargetedDragPreview.h */,
+				8C3A5F2D2C6BCBDB002097A8 /* UITargetedPreview.h */,
+				8C3A5F2E2C6BCBDB002097A8 /* UITextChecker.h */,
+				8C3A5F2F2C6BCBDB002097A8 /* UITextCursorDropPositionAnimator.h */,
+				8C3A5F302C6BCBDB002097A8 /* UITextCursorView.h */,
+				8C3A5F312C6BCBDB002097A8 /* UITextDragging.h */,
+				8C3A5F322C6BCBDB002097A8 /* UITextDragPreviewRenderer.h */,
+				8C3A5F332C6BCBDB002097A8 /* UITextDragURLPreviews.h */,
+				8C3A5F342C6BCBDB002097A8 /* UITextDropping.h */,
+				8C3A5F352C6BCBDB002097A8 /* UITextDropProposal.h */,
+				8C3A5F362C6BCBDB002097A8 /* UITextField.h */,
+				8C3A5F372C6BCBDB002097A8 /* UITextFormattingCoordinator.h */,
+				8C3A5F382C6BCBDB002097A8 /* UITextInput.h */,
+				8C3A5F392C6BCBDB002097A8 /* UITextInputContext.h */,
+				8C3A5F3A2C6BCBDB002097A8 /* UITextInputTraits.h */,
+				8C3A5F3B2C6BCBDB002097A8 /* UITextInteraction.h */,
+				8C3A5F3C2C6BCBDB002097A8 /* UITextItem.h */,
+				8C3A5F3D2C6BCBDB002097A8 /* UITextItemInteraction.h */,
+				8C3A5F3E2C6BCBDB002097A8 /* UITextLoupeSession.h */,
+				8C3A5F3F2C6BCBDB002097A8 /* UITextPasteConfigurationSupporting.h */,
+				8C3A5F402C6BCBDB002097A8 /* UITextPasteDelegate.h */,
+				8C3A5F412C6BCBDB002097A8 /* UITextSearching.h */,
+				8C3A5F422C6BCBDB002097A8 /* UITextSelectionDisplayInteraction.h */,
+				8C3A5F432C6BCBDB002097A8 /* UITextSelectionHandleView.h */,
+				8C3A5F442C6BCBDB002097A8 /* UITextSelectionHighlightView.h */,
+				8C3A5F452C6BCBDB002097A8 /* UITextView.h */,
+				8C3A5F462C6BCBDB002097A8 /* UITimingCurveProvider.h */,
+				8C3A5F472C6BCBDB002097A8 /* UITimingParameters.h */,
+				8C3A5F482C6BCBDB002097A8 /* UIToolbar.h */,
+				8C3A5F492C6BCBDB002097A8 /* UIToolbarAppearance.h */,
+				8C3A5F4A2C6BCBDB002097A8 /* UIToolTipInteraction.h */,
+				8C3A5F4B2C6BCBDB002097A8 /* UITouch.h */,
+				8C3A5F4C2C6BCBDB002097A8 /* UITrackingLayoutGuide.h */,
+				8C3A5F4D2C6BCBDB002097A8 /* UITrait.h */,
+				8C3A5F4E2C6BCBDB002097A8 /* UITraitCollection.h */,
+				8C3A5F4F2C6BCBDB002097A8 /* UIUserActivity.h */,
+				8C3A5F502C6BCBDB002097A8 /* UIUserNotificationSettings.h */,
+				8C3A5F512C6BCBDB002097A8 /* UIVibrancyEffect.h */,
+				8C3A5F522C6BCBDB002097A8 /* UIVideoEditorController.h */,
+				8C3A5F532C6BCBDB002097A8 /* UIView.h */,
+				8C3A5F542C6BCBDB002097A8 /* UIViewAnimating.h */,
+				8C3A5F552C6BCBDB002097A8 /* UIViewConfigurationState.h */,
+				8C3A5F562C6BCBDB002097A8 /* UIViewController.h */,
+				8C3A5F572C6BCBDB002097A8 /* UIViewControllerTransitionCoordinator.h */,
+				8C3A5F582C6BCBDB002097A8 /* UIViewControllerTransitioning.h */,
+				8C3A5F592C6BCBDB002097A8 /* UIViewPropertyAnimator.h */,
+				8C3A5F5A2C6BCBDB002097A8 /* UIVisualEffect.h */,
+				8C3A5F5B2C6BCBDB002097A8 /* UIVisualEffectView.h */,
+				8C3A5F5C2C6BCBDB002097A8 /* UIWebView.h */,
+				8C3A5F5D2C6BCBDB002097A8 /* UIWindow.h */,
+				8C3A5F5E2C6BCBDB002097A8 /* UIWindowScene.h */,
+				8C3A5F5F2C6BCBDB002097A8 /* UIWindowSceneActivationAction.h */,
+				8C3A5F602C6BCBDB002097A8 /* UIWindowSceneActivationConfiguration.h */,
+				8C3A5F612C6BCBDB002097A8 /* UIWindowSceneActivationInteraction.h */,
+				8C3A5F622C6BCBDB002097A8 /* UIWindowSceneActivationRequestOptions.h */,
+				8C3A5F632C6BCBDB002097A8 /* UIWindowSceneDragInteraction.h */,
+				8C3A5F642C6BCBDB002097A8 /* UIWindowSceneGeometry.h */,
+				8C3A5F652C6BCBDB002097A8 /* UIWindowSceneGeometryPreferences.h */,
+				8C3A5F662C6BCBDB002097A8 /* UIWindowSceneGeometryPreferencesIOS.h */,
+				8C3A5F672C6BCBDB002097A8 /* UIWindowSceneGeometryPreferencesMac.h */,
+				8C3A5F682C6BCBDB002097A8 /* UIWindowSceneGeometryPreferencesVision.h */,
+				8C3A5F692C6BCBDB002097A8 /* UIWindowScenePlacement.h */,
+				8C3A5F6A2C6BCBDB002097A8 /* UIWindowSceneProminentPlacement.h */,
+				8C3A5F6B2C6BCBDB002097A8 /* UIWindowSceneStandardPlacement.h */,
+				8C3A5F6C2C6BCBDB002097A8 /* UNNotificationResponse+UIKitAdditions.h */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		8C3A5F6D2C6BCE5B002097A8 /* QuartzCore */ = {
+			isa = PBXGroup;
+			children = (
+				8C3A5F6E2C6BCE67002097A8 /* CAAnimation.h */,
+				8C3A5F6F2C6BCE67002097A8 /* CABase.h */,
+				8C3A5F702C6BCE67002097A8 /* CADisplayLink.h */,
+				8C3A5F712C6BCE67002097A8 /* CAEAGLLayer.h */,
+				8C3A5F722C6BCE67002097A8 /* CAEDRMetadata.h */,
+				8C3A5F732C6BCE67002097A8 /* CAEmitterCell.h */,
+				8C3A5F742C6BCE67002097A8 /* CAEmitterLayer.h */,
+				8C3A5F752C6BCE67002097A8 /* CAFrameRateRange.h */,
+				8C3A5F762C6BCE67002097A8 /* CAGradientLayer.h */,
+				8C3A5F772C6BCE67002097A8 /* CALayer.h */,
+				8C3A5F782C6BCE67002097A8 /* CAMediaTiming.h */,
+				8C3A5F792C6BCE67002097A8 /* CAMediaTimingFunction.h */,
+				8C3A5F7A2C6BCE67002097A8 /* CAMetalDisplayLink.h */,
+				8C3A5F7B2C6BCE67002097A8 /* CAMetalLayer.h */,
+				8C3A5F7C2C6BCE67002097A8 /* CARenderer.h */,
+				8C3A5F7D2C6BCE67002097A8 /* CAReplicatorLayer.h */,
+				8C3A5F7E2C6BCE67002097A8 /* CAScrollLayer.h */,
+				8C3A5F7F2C6BCE67002097A8 /* CAShapeLayer.h */,
+				8C3A5F802C6BCE67002097A8 /* CATextLayer.h */,
+				8C3A5F812C6BCE67002097A8 /* CATiledLayer.h */,
+				8C3A5F822C6BCE67002097A8 /* CATransaction.h */,
+				8C3A5F832C6BCE67002097A8 /* CATransform3D.h */,
+				8C3A5F842C6BCE67002097A8 /* CATransformLayer.h */,
+				8C3A5F852C6BCE67002097A8 /* CAValueFunction.h */,
+				8C3A5F862C6BCE67002097A8 /* CoreAnimation.h */,
+				8C3A5F872C6BCE67002097A8 /* QuartzCore.h */,
+			);
+			path = QuartzCore;
+			sourceTree = "<group>";
+		};
+		8C3A5F892C6BCE94002097A8 /* OpenGLES */ = {
+			isa = PBXGroup;
+			children = (
+				8C3A5F8A2C6BCEA1002097A8 /* EAGL.h */,
+				8C3A5F8B2C6BCEA1002097A8 /* EAGLDrawable.h */,
+				8C3A5F8C2C6BCEA1002097A8 /* EAGLIOSurface.h */,
+				8CB9A11D2C6D2CCB00E6A367 /* ES1 */,
+				8CB9A1202C6D2CCB00E6A367 /* ES2 */,
+				8CB9A1232C6D2CCB00E6A367 /* ES3 */,
+				8C3A5F962C6BCEA1002097A8 /* gltypes.h */,
+				8C3A5F972C6BCEA1002097A8 /* OpenGLESAvailability.h */,
+			);
+			path = OpenGLES;
+			sourceTree = "<group>";
+		};
+		8C3A5F982C6BCECB002097A8 /* Metal */ = {
+			isa = PBXGroup;
+			children = (
+				8C3A5F992C6BCED5002097A8 /* Metal.h */,
+				8C3A5F9A2C6BCED5002097A8 /* MTLAccelerationStructure.h */,
+				8C3A5F9B2C6BCED5002097A8 /* MTLAccelerationStructureCommandEncoder.h */,
+				8C3A5F9C2C6BCED5002097A8 /* MTLAccelerationStructureTypes.h */,
+				8C3A5F9D2C6BCED5002097A8 /* MTLArgument.h */,
+				8C3A5F9E2C6BCED5002097A8 /* MTLArgumentEncoder.h */,
+				8C3A5F9F2C6BCED5002097A8 /* MTLBinaryArchive.h */,
+				8C3A5FA02C6BCED5002097A8 /* MTLBlitCommandEncoder.h */,
+				8C3A5FA12C6BCED5002097A8 /* MTLBlitPass.h */,
+				8C3A5FA22C6BCED5002097A8 /* MTLBuffer.h */,
+				8C3A5FA32C6BCED5002097A8 /* MTLCaptureManager.h */,
+				8C3A5FA42C6BCED5002097A8 /* MTLCaptureScope.h */,
+				8C3A5FA52C6BCED5002097A8 /* MTLCommandBuffer.h */,
+				8C3A5FA62C6BCED5002097A8 /* MTLCommandEncoder.h */,
+				8C3A5FA72C6BCED5002097A8 /* MTLCommandQueue.h */,
+				8C3A5FA82C6BCED5002097A8 /* MTLComputeCommandEncoder.h */,
+				8C3A5FA92C6BCED5002097A8 /* MTLComputePass.h */,
+				8C3A5FAA2C6BCED5002097A8 /* MTLComputePipeline.h */,
+				8C3A5FAB2C6BCED5002097A8 /* MTLCounters.h */,
+				8C3A5FAC2C6BCED5002097A8 /* MTLDefines.h */,
+				8C3A5FAD2C6BCED5002097A8 /* MTLDepthStencil.h */,
+				8C3A5FAE2C6BCED5002097A8 /* MTLDevice.h */,
+				8C3A5FAF2C6BCED5002097A8 /* MTLDrawable.h */,
+				8C3A5FB02C6BCED5002097A8 /* MTLDynamicLibrary.h */,
+				8C3A5FB12C6BCED5002097A8 /* MTLEvent.h */,
+				8C3A5FB22C6BCED5002097A8 /* MTLFence.h */,
+				8C3A5FB32C6BCED5002097A8 /* MTLFunctionConstantValues.h */,
+				8C3A5FB42C6BCED5002097A8 /* MTLFunctionDescriptor.h */,
+				8C3A5FB52C6BCED5002097A8 /* MTLFunctionHandle.h */,
+				8C3A5FB62C6BCED5002097A8 /* MTLFunctionLog.h */,
+				8C3A5FB72C6BCED5002097A8 /* MTLFunctionStitching.h */,
+				8C3A5FB82C6BCED5002097A8 /* MTLHeap.h */,
+				8C3A5FB92C6BCED5002097A8 /* MTLIndirectCommandBuffer.h */,
+				8C3A5FBA2C6BCED5002097A8 /* MTLIndirectCommandEncoder.h */,
+				8C3A5FBB2C6BCED5002097A8 /* MTLIntersectionFunctionTable.h */,
+				8C3A5FBC2C6BCED5002097A8 /* MTLIOCommandBuffer.h */,
+				8C3A5FBD2C6BCED5002097A8 /* MTLIOCommandQueue.h */,
+				8C3A5FBE2C6BCED5002097A8 /* MTLIOCompressor.h */,
+				8C3A5FBF2C6BCED5002097A8 /* MTLLibrary.h */,
+				8C3A5FC02C6BCED5002097A8 /* MTLLinkedFunctions.h */,
+				8C3A5FC12C6BCED5002097A8 /* MTLParallelRenderCommandEncoder.h */,
+				8C3A5FC22C6BCED5002097A8 /* MTLPipeline.h */,
+				8C3A5FC32C6BCED5002097A8 /* MTLPixelFormat.h */,
+				8C3A5FC42C6BCED5002097A8 /* MTLRasterizationRate.h */,
+				8C3A5FC52C6BCED5002097A8 /* MTLRenderCommandEncoder.h */,
+				8C3A5FC62C6BCED5002097A8 /* MTLRenderPass.h */,
+				8C3A5FC72C6BCED5002097A8 /* MTLRenderPipeline.h */,
+				8C3A5FC82C6BCED5002097A8 /* MTLResource.h */,
+				8C3A5FC92C6BCED5002097A8 /* MTLResourceStateCommandEncoder.h */,
+				8C3A5FCA2C6BCED5002097A8 /* MTLResourceStatePass.h */,
+				8C3A5FCB2C6BCED5002097A8 /* MTLSampler.h */,
+				8C3A5FCC2C6BCED5002097A8 /* MTLStageInputOutputDescriptor.h */,
+				8C3A5FCD2C6BCED5002097A8 /* MTLTexture.h */,
+				8C3A5FCE2C6BCED5002097A8 /* MTLTypes.h */,
+				8C3A5FCF2C6BCED5002097A8 /* MTLVertexDescriptor.h */,
+				8C3A5FD02C6BCED5002097A8 /* MTLVisibleFunctionTable.h */,
+			);
+			path = Metal;
+			sourceTree = "<group>";
+		};
 		8C3A5FD12C6C8CB8002097A8 /* WebKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -635,6 +1576,7 @@
 				8C3A5FDB2C6C8CD1002097A8 /* WKDataDetectorTypes.h */,
 				8C3A5FDC2C6C8CD1002097A8 /* WKDownload.h */,
 				8C3A5FDD2C6C8CD1002097A8 /* WKDownloadDelegate.h */,
+				8C3A5FDE2C6C8CD1002097A8 /* WKError.h */,
 				8C3A5FDF2C6C8CD1002097A8 /* WKFindConfiguration.h */,
 				8C3A5FE02C6C8CD1002097A8 /* WKFindResult.h */,
 				8C3A5FE12C6C8CD1002097A8 /* WKFoundation.h */,
@@ -649,6 +1591,7 @@
 				8C3A5FEA2C6C8CD1002097A8 /* WKPreferences.h */,
 				8C3A5FEB2C6C8CD1002097A8 /* WKPreviewActionItem.h */,
 				8C3A5FEC2C6C8CD1002097A8 /* WKPreviewActionItemIdentifiers.h */,
+				8C3A5FED2C6C8CD1002097A8 /* WKPreviewElementInfo.h */,
 				8C3A5FEE2C6C8CD1002097A8 /* WKProcessPool.h */,
 				8C3A5FEF2C6C8CD1002097A8 /* WKScriptMessage.h */,
 				8C3A5FF02C6C8CD1002097A8 /* WKScriptMessageHandler.h */,
@@ -656,6 +1599,8 @@
 				8C3A5FF22C6C8CD1002097A8 /* WKSecurityOrigin.h */,
 				8C3A5FF32C6C8CD1002097A8 /* WKSnapshotConfiguration.h */,
 				8C3A5FF42C6C8CD1002097A8 /* WKUIDelegate.h */,
+				8C3A5FF52C6C8CD1002097A8 /* WKURLSchemeHandler.h */,
+				8C3A5FF62C6C8CD1002097A8 /* WKURLSchemeTask.h */,
 				8C3A5FF72C6C8CD1002097A8 /* WKUserContentController.h */,
 				8C3A5FF82C6C8CD1002097A8 /* WKUserScript.h */,
 				8C3A5FF92C6C8CD1002097A8 /* WKWebpagePreferences.h */,
@@ -830,6 +1775,10 @@
 				8CB803CF2BD3DCE4009B2FAC /* WebExtension.m */,
 				8C3A5FD12C6C8CB8002097A8 /* WebKit */,
 				8C4B9D8E2CD6345C008D0A52 /* SafariServices */,
+				8C3A5DEB2C6BCBC4002097A8 /* UIKit */,
+				8C3A5F6D2C6BCE5B002097A8 /* QuartzCore */,
+				8C3A5F892C6BCE94002097A8 /* OpenGLES */,
+				8C3A5F982C6BCECB002097A8 /* Metal */,
 				8C0373BB2CAAF9E80029F047 /* CoreHaptics */,
 			);
 			path = CCodes;
@@ -860,12 +1809,38 @@
 				8CBA140F2C7D1B4200D40EE5 /* DoubleTapActionButton.swift */,
 				8C9188822C73A64000C64E70 /* WKWebView+.swift */,
 				8CE70DBD2C7A50FE00EFB3AD /* AVPlayer+PeriodicTimePublisher.swift */,
-				8C820B8A2E1DAF98007ABA81 /* View+CompatibleGlassEffects.swift */,
 				8CF636272CAE6B1D00ECE3B3 /* View+BrightnessReducable.swift */,
 				8CBA14092C7CEAC000D40EE5 /* View+CompatibleDoubleTapGesture.swift */,
 				8CC306122CAB160200323034 /* View+TouchZoomable.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8CB9A11D2C6D2CCB00E6A367 /* ES1 */ = {
+			isa = PBXGroup;
+			children = (
+				8CB9A11B2C6D2CCB00E6A367 /* gl.h */,
+				8CB9A11C2C6D2CCB00E6A367 /* glext.h */,
+			);
+			path = ES1;
+			sourceTree = "<group>";
+		};
+		8CB9A1202C6D2CCB00E6A367 /* ES2 */ = {
+			isa = PBXGroup;
+			children = (
+				8CB9A11E2C6D2CCB00E6A367 /* gl.h */,
+				8CB9A11F2C6D2CCB00E6A367 /* glext.h */,
+			);
+			path = ES2;
+			sourceTree = "<group>";
+		};
+		8CB9A1232C6D2CCB00E6A367 /* ES3 */ = {
+			isa = PBXGroup;
+			children = (
+				8CB9A1212C6D2CCB00E6A367 /* gl.h */,
+				8CB9A1222C6D2CCB00E6A367 /* glext.h */,
+			);
+			path = ES3;
 			sourceTree = "<group>";
 		};
 		8CC267E32CE8E6D900AE03F0 /* TabSupport */ = {
@@ -1181,7 +2156,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 2600;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					6BF209E72990E61C00E623FC = {
 						CreatedOnToolsVersion = 14.2;
@@ -1364,7 +2339,6 @@
 				8CB0189A2BDBC5C500982644 /* WebViewDelegate.swift in Sources */,
 				8C5588BB2D56BF4F0055BC32 /* DarockIntelligence.swift in Sources */,
 				8C5588F12D56C3B20055BC32 /* Internal.swift in Sources */,
-				8C820B8B2E1DAFA8007ABA81 /* View+CompatibleGlassEffects.swift in Sources */,
 				8C5588D82D56C1950055BC32 /* Reader.swift in Sources */,
 				8CC2842B2CE05D5C000B2E33 /* DownloadToExternalView.swift in Sources */,
 				8C7C4D432C2D898700FD282B /* BookListView.swift in Sources */,
@@ -1544,7 +2518,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = B57D8PP775;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1566,7 +2539,6 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1611,7 +2583,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = B57D8PP775;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1626,7 +2597,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 8.4;
@@ -1644,6 +2614,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = Scripts/Source_DoNotEmbed;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1665,8 +2636,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.5.2;
-				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_WKContentRuleListStore,-U,_OBJC_CLASS_$_WKWebViewConfiguration";
+				MARKETING_VERSION = 7.5.1;
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_WKContentRuleListStore";
+				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = watchos;
@@ -1691,6 +2663,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = Scripts/Source_DoNotEmbed;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1712,8 +2685,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.5.2;
-				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_WKContentRuleListStore,-U,_OBJC_CLASS_$_WKWebViewConfiguration";
+				MARKETING_VERSION = 7.5.1;
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_WKContentRuleListStore";
+				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = watchos;
@@ -1734,10 +2708,11 @@
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				INFOPLIST_FILE = "DarockBrowser/DarockBrowser-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 7.5.2;
+				MARKETING_VERSION = 7.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -1751,11 +2726,12 @@
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				GCC_OPTIMIZATION_LEVEL = z;
 				INFOPLIST_FILE = "DarockBrowser/DarockBrowser-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 7.5.2;
+				MARKETING_VERSION = 7.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -1802,7 +2778,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = B57D8PP775;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1824,7 +2799,6 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1838,10 +2812,11 @@
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				INFOPLIST_FILE = "DarockBrowser/DarockBrowser-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 7.5.2;
+				MARKETING_VERSION = 7.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -1860,6 +2835,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = Scripts/Source_DoNotEmbed;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1884,8 +2860,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.5.2;
-				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_WKContentRuleListStore,-U,_OBJC_CLASS_$_WKWebViewConfiguration";
+				MARKETING_VERSION = 7.5.1;
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_WKContentRuleListStore";
+				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = watchos;
@@ -1908,6 +2885,7 @@
 				CODE_SIGN_ENTITLEMENTS = ProWidgets/ProWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProWidgets/Info.plist;
@@ -1920,7 +2898,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 7.5.2;
+				MARKETING_VERSION = 7.5.1;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1945,6 +2923,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1986,6 +2965,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
@@ -2040,7 +3020,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = B57D8PP775;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -2055,7 +3034,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 8.4;
@@ -2068,11 +3046,12 @@
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				GCC_OPTIMIZATION_LEVEL = z;
 				INFOPLIST_FILE = "DarockBrowser/DarockBrowser-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "暗礁浏览器";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 7.5.2;
+				MARKETING_VERSION = 7.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = iphoneos;
@@ -2093,6 +3072,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = Scripts/Source_DoNotEmbed;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2115,8 +3095,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.5.2;
-				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_WKContentRuleListStore,-U,_OBJC_CLASS_$_WKWebViewConfiguration";
+				MARKETING_VERSION = 7.5.1;
+				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKNavigationAction,-U,_OBJC_CLASS_$_WKBackForwardListItem,-U,_OBJC_CLASS_$_WKUserScript,-U,_CHHapticEventParameterIDHapticIntensity,-U,_CHHapticEventParameterIDHapticSharpness,-U,_CHHapticEventTypeHapticTransient,-U,_OBJC_CLASS_$_CHHapticDynamicParameter,-U,_OBJC_CLASS_$_CHHapticEngine,-U,_OBJC_CLASS_$_CHHapticEvent,-U,_OBJC_CLASS_$_CHHapticEventParameter,-U,_OBJC_CLASS_$_CHHapticPattern,-U,_OBJC_CLASS_$_WKSnapshotConfiguration,-U,_OBJC_CLASS_$_WKContentRuleListStore";
+				OTHER_SWIFT_FLAGS = "-locale zh -localization-path /Applications/Xcode-beta.app/Contents/Developer/diagnostics";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp;
 				PRODUCT_NAME = DarockBrowser;
 				SDKROOT = watchos;
@@ -2140,6 +3121,7 @@
 				CODE_SIGN_ENTITLEMENTS = ProWidgets/ProWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProWidgets/Info.plist;
@@ -2152,7 +3134,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 7.5.2;
+				MARKETING_VERSION = 7.5.1;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2177,6 +3159,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2217,6 +3200,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
@@ -2243,6 +3227,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2287,6 +3272,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2327,6 +3313,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
@@ -2350,6 +3337,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
@@ -2375,6 +3363,7 @@
 				CODE_SIGN_ENTITLEMENTS = ProWidgets/ProWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProWidgets/Info.plist;
@@ -2387,7 +3376,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 7.5.2;
+				MARKETING_VERSION = 7.5.1;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2411,6 +3400,7 @@
 				CODE_SIGN_ENTITLEMENTS = ProWidgets/ProWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B57D8PP775;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProWidgets/Info.plist;
@@ -2423,7 +3413,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 7.5.2;
+				MARKETING_VERSION = 7.5.1;
 				OTHER_LDFLAGS = "-Wl,-U,_OBJC_CLASS_$_WKWebView,-U,_OBJC_CLASS_$_WKSnapshotConfiguration";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darock.WatchBrowser.watchkitapp.ProWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -30,7 +30,7 @@
 #import "UIKit/UIViewController.h"
 
 API_DEPRECATED("This API will be replaced", ios(10.0, 13.0))
-@protocol WKPreviewActionItem
+@protocol WKPreviewActionItem <UIPreviewActionItem>
 
 @property (nonatomic, copy, readonly) NSString *identifier;
 

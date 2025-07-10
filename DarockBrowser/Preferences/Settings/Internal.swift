@@ -34,7 +34,7 @@ extension SettingsView {
                 }
                 Section {
                     Button(action: {
-                        tipWithText("\(String(describing: ProcessInfo.processInfo.thermalState))", symbol: "hammer.circle.fill")
+                        tipWithText("\(ProcessInfo.processInfo.thermalState)", symbol: "hammer.circle.fill")
                     }, label: {
                         Text(verbatim: "Present Thermal State")
                     })

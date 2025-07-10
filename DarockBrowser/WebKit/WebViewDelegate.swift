@@ -47,13 +47,13 @@ public final class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
                     if !url.contains("https://privacy-relay.darock.top/proxy/") {
                         // MARK: Darock Private Relay
                         if let relaiedURL = URL(string: "https://privacy-relay.darock.top/proxy/\(url)") {
-                            webView.load(.init(url: relaiedURL))
+                            await webView.load(.init(url: relaiedURL))
                             return .cancel
                         }
                     }
                 } else if url.hasPrefix("https://privacy-relay.darock.top/proxy/"),
                           let sourceURL = URL(string: String(url.dropFirst("https://privacy-relay.darock.top/proxy/".count))) {
-                    webView.load(.init(url: sourceURL))
+                    await webView.load(.init(url: sourceURL))
                     return .cancel
                 }
             }

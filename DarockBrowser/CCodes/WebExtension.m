@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import "WebExtension.h"
+#import "UIKit/UIButton.h"
 #import "DarockBrowser-Swift.h"
 
 #pragma clang diagnostic push
