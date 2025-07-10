@@ -328,19 +328,20 @@ struct MainView: View {
             }
         }
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
-            if createPageAction == nil,
-               let url = userActivity.webpageURL,
-               var openUrl = url.absoluteString.split(separator: "darock.top/darockbrowser/open/", maxSplits: 1)[from: 1] {
-                if !openUrl.hasPrefix("http://") && !openUrl.hasPrefix("https://") {
-                    openUrl = "http://" + openUrl
+            if createPageAction == nil {
+                if let url = userActivity.webpageURL,
+                   var openUrl = url.absoluteString.split(separator: "darock.top/darockbrowser/open/", maxSplits: 1)[from: 1] {
+                    if !openUrl.hasPrefix("http://") && !openUrl.hasPrefix("https://") {
+                        openUrl = "http://" + openUrl
+                    }
+                    AdvancedWebViewController.shared.present(String(openUrl).urlEncoded())
+                } else if let url = userActivity.webpageURL, url.absoluteString.contains("drcc.cc") {
+                    var openUrl = url.absoluteString
+                    if !openUrl.hasPrefix("http://") && !openUrl.hasPrefix("https://") {
+                        openUrl = "http://" + openUrl
+                    }
+                    AdvancedWebViewController.shared.present(openUrl)
                 }
-                AdvancedWebViewController.shared.present(String(openUrl).urlEncoded())
-            } else if let url = userActivity.webpageURL, url.absoluteString.contains("drcc.cc") {
-                var openUrl = url.absoluteString
-                if !openUrl.hasPrefix("http://") && !openUrl.hasPrefix("https://") {
-                    openUrl = "http://" + openUrl
-                }
-                AdvancedWebViewController.shared.present(openUrl)
             }
         }
     }
@@ -569,7 +570,6 @@ func getTopLevel(from url: String) -> String? {
 }
 
 extension String {
-    
     /// Determines whether the string is a valid URL.
     ///
     /// - Returns: A Boolean value indicating whether the string is a valid URL.

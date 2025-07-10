@@ -429,8 +429,14 @@ struct TabsListView<StartPage>: View where StartPage: View {
                 }
                 tabs.append(newTab)
                 if let tab = tabs.last {
-                    self.selectedTab = nil
-                    self.selectedTab = .webPage(tab)
+                    if self.selectedTab == nil {
+                        self.selectedTab = .webPage(tab)
+                    } else {
+                        self.selectedTab = nil
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            self.selectedTab = .webPage(tab)
+                        }
+                    }
                 } else {
                     self.selectedTab = nil
                 }
