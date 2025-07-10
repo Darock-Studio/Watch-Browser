@@ -18,7 +18,6 @@ struct DoubleTapActionButton: View {
     @AppStorage("GSOpenWebLink") var openWebLink = ""
     @AppStorage("GSQuickAvoidanceAction") var quickAvoidanceAction = "ShowEmpty"
     var body: some View {
-        #if compiler(>=6)
         if isDoubleTapEnabled {
             Button("") {
                 switch forType {
@@ -46,9 +45,6 @@ struct DoubleTapActionButton: View {
             .minimumRenderableOpacity()
             .allowsHitTesting(false)
         }
-        #else
-        EmptyView()
-        #endif
     }
     
     @inline(__always)

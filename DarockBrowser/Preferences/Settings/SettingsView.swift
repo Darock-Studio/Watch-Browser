@@ -138,10 +138,8 @@ struct SettingsView: View {
                 }
                 NavigationLink(destination: { SearchSettingsView() },
                                label: { SettingItemLabel(title: "搜索", image: "magnifyingglass", color: .gray) })
-                #if compiler(>=6)
                 NavigationLink(destination: { GesturesSettingsView() },
                                label: { SettingItemLabel(title: "手势", privateImage: "hand.side.pinch.fill", color: .blue) })
-                #endif
                 NavigationLink(destination: { NotificationsSettingsView() }, label: { SettingItemLabel(title: "通知", image: "bell.badge.fill", color: .red) })
             }
             Section {

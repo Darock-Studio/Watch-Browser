@@ -7,7 +7,6 @@
 
 import DarockUI
 
-#if compiler(>=6)
 extension SettingsView {
     struct GesturesSettingsView: View {
         @AppStorage("GSIsDoubleTapEnabled") var isDoubleTapEnabled = false
@@ -165,4 +164,3 @@ extension SettingsView {
         }
     }
 }
-#endif
